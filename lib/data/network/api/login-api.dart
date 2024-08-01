@@ -1,6 +1,5 @@
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/login-entity.dart';
-import 'package:bst_staff_mobile/data/network/entity/network-error-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:dio/dio.dart';
 
