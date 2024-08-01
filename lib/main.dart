@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
+import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
+import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
 import 'package:bst_staff_mobile/domain/model/config.dart';
@@ -45,10 +47,15 @@ Future<InitialData> _createData() async {
   final config = await _loadConfig(log);
 
   // Data
-  final loginApi = LoginApi(baseUrl: config.baseUrl);
   final networkMapper = NetworkMapper(log: log);
+  final loginApi = LoginApi(baseUrl: config.baseUrl);
   final loginRepository = LoginRepository(
     loginApi: loginApi,
+    networkMapper: networkMapper,
+  );
+  final dashboardApi = DashboardApi(baseUrl: config.baseUrl);
+  final dashboardRepository = DashboardRepository(
+    dashboardApi: dashboardApi,
     networkMapper: networkMapper,
   );
 
@@ -64,6 +71,7 @@ Future<InitialData> _createData() async {
     providers: [
       Provider<Logger>.value(value: log),
       Provider<LoginRepository>.value(value: loginRepository),
+      Provider<DashboardRepository>.value(value: dashboardRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );
