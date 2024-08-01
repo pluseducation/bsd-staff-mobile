@@ -1,0 +1,3 @@
+{
+  "baseUrl": "http://k8s-bstproxy-414e7603aa-467939501.ap-southeast-1.elb.amazonaws.com/bst-admin-service"
+}
