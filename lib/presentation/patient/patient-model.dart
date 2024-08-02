@@ -1,6 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
+import 'package:bst_staff_mobile/domain/model/patient.dart';
+import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:logger/logger.dart';
 
 class PatientModel {
+  final Logger log;
+  final PatientRepository patientRepository;
+  final AppService appService;
+
+  PatientModel({
+    required this.log,
+    required this.patientRepository,
+    required this.appService,
+  });
+
   List<PatientData> patients = List.empty();
   int page = 0;
   int size = 50;
@@ -30,6 +43,10 @@ class PatientModel {
     }
 
     return tempData;
+  }
+
+  Future<PatientAll> test() async {
+    return patientRepository.findPatientAll(searchVal: name, page: page);
   }
 }
 

@@ -10,11 +10,11 @@ StatYearEntity _$StatYearEntityFromJson(Map<String, dynamic> json) =>
     StatYearEntity(
       year: json['year'] as int,
       total: json['total'] as int,
-      register: json['register'] as int,
-      screening: json['screening'] as int,
-      treatment: json['treatment'] as int,
-      monitoring: json['monitoring'] as int,
-      discharged: json['discharged'] as int,
+      register: (json['register'] as num).toDouble(),
+      screening: (json['screening'] as num).toDouble(),
+      treatment: (json['treatment'] as num).toDouble(),
+      monitoring: (json['monitoring'] as num).toDouble(),
+      discharged: (json['discharged'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$StatYearEntityToJson(StatYearEntity instance) =>

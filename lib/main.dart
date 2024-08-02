@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
+import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
+import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
 import 'package:bst_staff_mobile/domain/model/config.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
@@ -58,6 +60,11 @@ Future<InitialData> _createData() async {
     dashboardApi: dashboardApi,
     networkMapper: networkMapper,
   );
+  final patientApi = PatientApi(baseUrl: config.baseUrl);
+  final patientRepository = PatientRepository(
+    patientApi: patientApi,
+    networkMapper: networkMapper,
+  );
 
   final preferences = Preferences(prefs: await SharedPreferences.getInstance());
   final preferencesRepo = PreferencesRepository(preferences: preferences);
@@ -72,6 +79,7 @@ Future<InitialData> _createData() async {
       Provider<Logger>.value(value: log),
       Provider<LoginRepository>.value(value: loginRepository),
       Provider<DashboardRepository>.value(value: dashboardRepository),
+      Provider<PatientRepository>.value(value: patientRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

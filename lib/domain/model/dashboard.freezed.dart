@@ -18,16 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$StatYear {
   int get year => throw _privateConstructorUsedError;
   int get total => throw _privateConstructorUsedError;
-  int get register => throw _privateConstructorUsedError;
-  double get registerPercent => throw _privateConstructorUsedError;
-  int get screening => throw _privateConstructorUsedError;
-  double get screeningPercent => throw _privateConstructorUsedError;
-  int get treatment => throw _privateConstructorUsedError;
-  double get treatmentPercent => throw _privateConstructorUsedError;
-  int get monitoring => throw _privateConstructorUsedError;
-  double get monitoringPercent => throw _privateConstructorUsedError;
-  int get discharged => throw _privateConstructorUsedError;
-  double get dischargedPercent => throw _privateConstructorUsedError;
+  double get register => throw _privateConstructorUsedError;
+  double get screening => throw _privateConstructorUsedError;
+  double get treatment => throw _privateConstructorUsedError;
+  double get monitoring => throw _privateConstructorUsedError;
+  double get discharged => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StatYearCopyWith<StatYear> get copyWith =>
@@ -42,16 +37,11 @@ abstract class $StatYearCopyWith<$Res> {
   $Res call(
       {int year,
       int total,
-      int register,
-      double registerPercent,
-      int screening,
-      double screeningPercent,
-      int treatment,
-      double treatmentPercent,
-      int monitoring,
-      double monitoringPercent,
-      int discharged,
-      double dischargedPercent});
+      double register,
+      double screening,
+      double treatment,
+      double monitoring,
+      double discharged});
 }
 
 /// @nodoc
@@ -70,15 +60,10 @@ class _$StatYearCopyWithImpl<$Res, $Val extends StatYear>
     Object? year = null,
     Object? total = null,
     Object? register = null,
-    Object? registerPercent = null,
     Object? screening = null,
-    Object? screeningPercent = null,
     Object? treatment = null,
-    Object? treatmentPercent = null,
     Object? monitoring = null,
-    Object? monitoringPercent = null,
     Object? discharged = null,
-    Object? dischargedPercent = null,
   }) {
     return _then(_value.copyWith(
       year: null == year
@@ -92,42 +77,22 @@ class _$StatYearCopyWithImpl<$Res, $Val extends StatYear>
       register: null == register
           ? _value.register
           : register // ignore: cast_nullable_to_non_nullable
-              as int,
-      registerPercent: null == registerPercent
-          ? _value.registerPercent
-          : registerPercent // ignore: cast_nullable_to_non_nullable
               as double,
       screening: null == screening
           ? _value.screening
           : screening // ignore: cast_nullable_to_non_nullable
-              as int,
-      screeningPercent: null == screeningPercent
-          ? _value.screeningPercent
-          : screeningPercent // ignore: cast_nullable_to_non_nullable
               as double,
       treatment: null == treatment
           ? _value.treatment
           : treatment // ignore: cast_nullable_to_non_nullable
-              as int,
-      treatmentPercent: null == treatmentPercent
-          ? _value.treatmentPercent
-          : treatmentPercent // ignore: cast_nullable_to_non_nullable
               as double,
       monitoring: null == monitoring
           ? _value.monitoring
           : monitoring // ignore: cast_nullable_to_non_nullable
-              as int,
-      monitoringPercent: null == monitoringPercent
-          ? _value.monitoringPercent
-          : monitoringPercent // ignore: cast_nullable_to_non_nullable
               as double,
       discharged: null == discharged
           ? _value.discharged
           : discharged // ignore: cast_nullable_to_non_nullable
-              as int,
-      dischargedPercent: null == dischargedPercent
-          ? _value.dischargedPercent
-          : dischargedPercent // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -144,16 +109,11 @@ abstract class _$$StatYearImplCopyWith<$Res>
   $Res call(
       {int year,
       int total,
-      int register,
-      double registerPercent,
-      int screening,
-      double screeningPercent,
-      int treatment,
-      double treatmentPercent,
-      int monitoring,
-      double monitoringPercent,
-      int discharged,
-      double dischargedPercent});
+      double register,
+      double screening,
+      double treatment,
+      double monitoring,
+      double discharged});
 }
 
 /// @nodoc
@@ -170,15 +130,10 @@ class __$$StatYearImplCopyWithImpl<$Res>
     Object? year = null,
     Object? total = null,
     Object? register = null,
-    Object? registerPercent = null,
     Object? screening = null,
-    Object? screeningPercent = null,
     Object? treatment = null,
-    Object? treatmentPercent = null,
     Object? monitoring = null,
-    Object? monitoringPercent = null,
     Object? discharged = null,
-    Object? dischargedPercent = null,
   }) {
     return _then(_$StatYearImpl(
       year: null == year
@@ -192,42 +147,22 @@ class __$$StatYearImplCopyWithImpl<$Res>
       register: null == register
           ? _value.register
           : register // ignore: cast_nullable_to_non_nullable
-              as int,
-      registerPercent: null == registerPercent
-          ? _value.registerPercent
-          : registerPercent // ignore: cast_nullable_to_non_nullable
               as double,
       screening: null == screening
           ? _value.screening
           : screening // ignore: cast_nullable_to_non_nullable
-              as int,
-      screeningPercent: null == screeningPercent
-          ? _value.screeningPercent
-          : screeningPercent // ignore: cast_nullable_to_non_nullable
               as double,
       treatment: null == treatment
           ? _value.treatment
           : treatment // ignore: cast_nullable_to_non_nullable
-              as int,
-      treatmentPercent: null == treatmentPercent
-          ? _value.treatmentPercent
-          : treatmentPercent // ignore: cast_nullable_to_non_nullable
               as double,
       monitoring: null == monitoring
           ? _value.monitoring
           : monitoring // ignore: cast_nullable_to_non_nullable
-              as int,
-      monitoringPercent: null == monitoringPercent
-          ? _value.monitoringPercent
-          : monitoringPercent // ignore: cast_nullable_to_non_nullable
               as double,
       discharged: null == discharged
           ? _value.discharged
           : discharged // ignore: cast_nullable_to_non_nullable
-              as int,
-      dischargedPercent: null == dischargedPercent
-          ? _value.dischargedPercent
-          : dischargedPercent // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -240,44 +175,29 @@ class _$StatYearImpl implements _StatYear {
       {required this.year,
       required this.total,
       required this.register,
-      required this.registerPercent,
       required this.screening,
-      required this.screeningPercent,
       required this.treatment,
-      required this.treatmentPercent,
       required this.monitoring,
-      required this.monitoringPercent,
-      required this.discharged,
-      required this.dischargedPercent});
+      required this.discharged});
 
   @override
   final int year;
   @override
   final int total;
   @override
-  final int register;
+  final double register;
   @override
-  final double registerPercent;
+  final double screening;
   @override
-  final int screening;
+  final double treatment;
   @override
-  final double screeningPercent;
+  final double monitoring;
   @override
-  final int treatment;
-  @override
-  final double treatmentPercent;
-  @override
-  final int monitoring;
-  @override
-  final double monitoringPercent;
-  @override
-  final int discharged;
-  @override
-  final double dischargedPercent;
+  final double discharged;
 
   @override
   String toString() {
-    return 'StatYear(year: $year, total: $total, register: $register, registerPercent: $registerPercent, screening: $screening, screeningPercent: $screeningPercent, treatment: $treatment, treatmentPercent: $treatmentPercent, monitoring: $monitoring, monitoringPercent: $monitoringPercent, discharged: $discharged, dischargedPercent: $dischargedPercent)';
+    return 'StatYear(year: $year, total: $total, register: $register, screening: $screening, treatment: $treatment, monitoring: $monitoring, discharged: $discharged)';
   }
 
   @override
@@ -289,41 +209,19 @@ class _$StatYearImpl implements _StatYear {
             (identical(other.total, total) || other.total == total) &&
             (identical(other.register, register) ||
                 other.register == register) &&
-            (identical(other.registerPercent, registerPercent) ||
-                other.registerPercent == registerPercent) &&
             (identical(other.screening, screening) ||
                 other.screening == screening) &&
-            (identical(other.screeningPercent, screeningPercent) ||
-                other.screeningPercent == screeningPercent) &&
             (identical(other.treatment, treatment) ||
                 other.treatment == treatment) &&
-            (identical(other.treatmentPercent, treatmentPercent) ||
-                other.treatmentPercent == treatmentPercent) &&
             (identical(other.monitoring, monitoring) ||
                 other.monitoring == monitoring) &&
-            (identical(other.monitoringPercent, monitoringPercent) ||
-                other.monitoringPercent == monitoringPercent) &&
             (identical(other.discharged, discharged) ||
-                other.discharged == discharged) &&
-            (identical(other.dischargedPercent, dischargedPercent) ||
-                other.dischargedPercent == dischargedPercent));
+                other.discharged == discharged));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      year,
-      total,
-      register,
-      registerPercent,
-      screening,
-      screeningPercent,
-      treatment,
-      treatmentPercent,
-      monitoring,
-      monitoringPercent,
-      discharged,
-      dischargedPercent);
+  int get hashCode => Object.hash(runtimeType, year, total, register, screening,
+      treatment, monitoring, discharged);
 
   @JsonKey(ignore: true)
   @override
@@ -336,41 +234,26 @@ abstract class _StatYear implements StatYear {
   const factory _StatYear(
       {required final int year,
       required final int total,
-      required final int register,
-      required final double registerPercent,
-      required final int screening,
-      required final double screeningPercent,
-      required final int treatment,
-      required final double treatmentPercent,
-      required final int monitoring,
-      required final double monitoringPercent,
-      required final int discharged,
-      required final double dischargedPercent}) = _$StatYearImpl;
+      required final double register,
+      required final double screening,
+      required final double treatment,
+      required final double monitoring,
+      required final double discharged}) = _$StatYearImpl;
 
   @override
   int get year;
   @override
   int get total;
   @override
-  int get register;
+  double get register;
   @override
-  double get registerPercent;
+  double get screening;
   @override
-  int get screening;
+  double get treatment;
   @override
-  double get screeningPercent;
+  double get monitoring;
   @override
-  int get treatment;
-  @override
-  double get treatmentPercent;
-  @override
-  int get monitoring;
-  @override
-  double get monitoringPercent;
-  @override
-  int get discharged;
-  @override
-  double get dischargedPercent;
+  double get discharged;
   @override
   @JsonKey(ignore: true)
   _$$StatYearImplCopyWith<_$StatYearImpl> get copyWith =>

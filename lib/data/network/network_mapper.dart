@@ -1,8 +1,10 @@
 import 'package:bst_staff_mobile/data/network/entity/dashboard-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/login-entity.dart';
+import 'package:bst_staff_mobile/data/network/entity/patient-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/mapper-exception.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/model/login.dart';
+import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:logger/logger.dart';
 
 class NetworkMapper {
@@ -29,26 +31,16 @@ class NetworkMapper {
   // dashboard
   StatYear toStatYear(
     StatYearEntity entity,
-    double registerPercent,
-    double screeningPercent,
-    double treatmentPercent,
-    double monitoringPercent,
-    double dischargedPercent,
   ) {
     try {
       return StatYear(
         year: entity.year,
         total: entity.total,
         register: entity.register,
-        registerPercent: registerPercent,
         screening: entity.screening,
-        screeningPercent: screeningPercent,
         treatment: entity.treatment,
-        treatmentPercent: treatmentPercent,
         monitoring: entity.monitoring,
-        monitoringPercent: monitoringPercent,
         discharged: entity.discharged,
-        dischargedPercent: dischargedPercent,
       );
     } catch (e) {
       throw MapperException<LoginEntity, Login>(
@@ -99,6 +91,53 @@ class NetworkMapper {
       );
     } catch (e) {
       throw MapperException<LoginEntity, Login>(
+        e.toString(),
+      );
+    }
+  }
+
+  // patient
+  PatientAll toPatientAll(PatientAllEntity entity) {
+    try {
+      final List<Patient> content = toPatients(entity.content);
+
+      return PatientAll(
+        content: content,
+        totalPages: entity.totalPages,
+        totalElements: entity.totalElements,
+      );
+    } catch (e) {
+      throw MapperException<PatientEntity, Patient>(
+        e.toString(),
+      );
+    }
+  }
+
+  List<Patient> toPatients(List<PatientEntity> entities) {
+    final List<Patient> values = [];
+
+    for (final entity in entities) {
+      try {
+        values.add(toPatient(entity));
+      } catch (e) {
+        log.w('Could not map entity ${entity.patientId}', error: e);
+      }
+    }
+
+    return values;
+  }
+
+  Patient toPatient(PatientEntity entity) {
+    try {
+      return Patient(
+        patientId: entity.patientId,
+        fullName: "${entity.name} ${entity.surname}",
+        nationalId: entity.nationalId,
+        cycle: entity.cycle,
+        status: entity.status,
+      );
+    } catch (e) {
+      throw MapperException<PatientEntity, Patient>(
         e.toString(),
       );
     }

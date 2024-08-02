@@ -6,6 +6,7 @@ import 'package:bst_staff_mobile/presentation/layout/layout-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
+import 'package:bst_staff_mobile/widget/status-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -123,6 +124,15 @@ class _LoginFormState extends State<_LoginForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Row(
+          //   children: [
+          //     statusWidget("REGISTERING"),
+          //     statusWidget("SCREENING"),
+          //     statusWidget("TREATMENT"),
+          //     statusWidget("MONITORING"),
+          //     statusWidget("DISCHARGED"),
+          //   ],
+          // ),
           TextFormField(
             controller: _model.usernameController,
             decoration: const InputDecoration(

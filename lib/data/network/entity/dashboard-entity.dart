@@ -5,11 +5,11 @@ part 'dashboard-entity.g.dart';
 class StatYearEntity {
   int year;
   int total;
-  int register;
-  int screening;
-  int treatment;
-  int monitoring;
-  int discharged;
+  double register;
+  double screening;
+  double treatment;
+  double monitoring;
+  double discharged;
 
   StatYearEntity({
     required this.year,

@@ -53,20 +53,7 @@ class DashboardRepository {
 
   Future<StatYear> findStatYear() async {
     final entity = await dashboardApi.findStatYear();
-    final registerPercent = (entity.total / 100) * entity.register;
-    final screeningPercent = (entity.total / 100) * entity.screening;
-    final treatmentPercent = (entity.total / 100) * entity.treatment;
-    final monitoringPercent = (entity.total / 100) * entity.monitoring;
-    final dischargedPercent = (entity.total / 100) * entity.discharged;
-
-    final model = networkMapper.toStatYear(
-      entity,
-      registerPercent,
-      screeningPercent,
-      treatmentPercent,
-      monitoringPercent,
-      dischargedPercent,
-    );
+    final model = networkMapper.toStatYear(entity);
 
     return model;
   }

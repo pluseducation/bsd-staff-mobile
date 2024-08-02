@@ -1,9 +1,13 @@
 import 'dart:async';
 
+import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
+import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 class PatientScreen extends StatefulWidget {
   const PatientScreen({super.key});
@@ -23,16 +27,6 @@ class _PatientScreenState extends State<PatientScreen> {
       itemsPerPage: 7,
       totalItems: 0,
     );
-    _fetchPatientData();
-  }
-
-  void _fetchPatientData() async {
-    final patientModel = PatientModel();
-    final patientData = await patientModel.loadData();
-    setState(() {
-      _filteredPatientData = patientData;
-      _paginationController.totalItems = patientData.length;
-    });
   }
 
   void _searchPatient(String query) {
@@ -445,7 +439,14 @@ class _PatientListState extends State<PatientList> {
     // TODO: implement initState
     super.initState();
 
-    _model = PatientModel();
+    _model = PatientModel(
+      log: Provider.of<Logger>(super.context, listen: false),
+      patientRepository:
+          Provider.of<PatientRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+
+    _model.test();
 
     widget.paginationController.nameStream.listen((name) {
       _model.name = name;
