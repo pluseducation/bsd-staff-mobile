@@ -1,9 +1,17 @@
+import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
+import 'package:bst_staff_mobile/data/network/network_mapper.dart';
+import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
+import 'package:bst_staff_mobile/domain/model/dashboard.dart';
+import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/presentation/dashboard/dashboard-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -14,11 +22,18 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   DateTime? _selectedDate;
+  late final DashboardModel model;
 
   @override
   void initState() {
     super.initState();
     _selectedDate = DateTime.now();
+    model = DashboardModel(
+      log: Provider.of<Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
   }
 
   String _formatDate(DateTime date) {
@@ -103,6 +118,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
       ),
+      // ignore: use_colored_box
       body: Container(
         color: MainColors.primary500,
         child: Column(
@@ -152,54 +168,56 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ),
                           const SizedBox(height: 20),
-                          // New Column with Text("ทดสอบ")
-
-                          const SizedBox(height: 20),
-                          // Existing widgets inside Expanded
-                          const Column(
+                          Column(
                             children: [
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(child: Allpatients()),
-                                  Expanded(child: RetentionRate()),
+                                  Expanded(child: RetentionRate(model: model)),
                                 ],
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(child: Register()),
-                                  SizedBox(width: 5),
-                                  Expanded(child: Screening()),
+                                  Expanded(
+                                    child: Register(model: model),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Expanded(
+                                    child: Screening(
+                                      model: model,
+                                    ),
+                                  ),
                                 ],
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(child: Therapy()),
-                                  SizedBox(width: 5),
-                                  Expanded(child: Keeptrack()),
+                                  Expanded(child: Therapy(model: model)),
+                                  const SizedBox(width: 5),
+                                  Expanded(child: Keeptrack(model: model)),
                                 ],
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(child: Help()),
-                                  SizedBox(width: 5),
-                                  Expanded(child: Forward()),
+                                  Expanded(child: Help(model: model)),
+                                  const SizedBox(width: 5),
+                                  Expanded(child: Forward(model: model)),
                                 ],
                               ),
-                              SizedBox(height: 20),
-                              const Column(
+                              const SizedBox(height: 20),
+                              Column(
                                 children: [
-                                  Statistics(),
+                                  Statistics(model: model),
                                   SizedBox(height: 20),
                                   BarChartSample4(),
                                 ],
@@ -274,8 +292,11 @@ class _AllpatientsState extends State<Allpatients> {
 }
 // 2
 
+// findTotalRetention
+
 class RetentionRate extends StatefulWidget {
-  const RetentionRate({super.key});
+  final DashboardModel model;
+  const RetentionRate({super.key, required this.model});
 
   @override
   State<RetentionRate> createState() => _RetentionRateState();
@@ -284,95 +305,118 @@ class RetentionRate extends StatefulWidget {
 class _RetentionRateState extends State<RetentionRate> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Text(
-          "Retention Rate",
-          style: TextStyle(
-            fontSize: 18,
-            color: Color(0xFF3D4245),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Text(
-          "64%",
-          style: TextStyle(
-            fontSize: 25,
-            color: MainColors.primary500,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
+    return FutureBuilder<int>(
+      future: widget.model.findTotalRetention(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final count = snapshot.data!;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const Text(
+                "Retention Rate",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Color(0xFF3D4245),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                "${count.toString()}%",
+                style: const TextStyle(
+                  fontSize: 25,
+                  color: MainColors.primary500,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          );
+        }
+      },
     );
   }
 }
-
 // 3
-class Register extends StatefulWidget {
-  const Register({super.key});
 
-  @override
-  State<Register> createState() => _RegisterState();
-}
+class Register extends StatelessWidget {
+  final DashboardModel model;
 
-class _RegisterState extends State<Register> {
+  const Register({super.key, required this.model});
+
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: double.infinity,
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: SizedBox(
+    return FutureBuilder<int>(
+      future: model.findTotalRegistering(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final count = snapshot.data!;
+          return SizedBox(
             width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "ลงทะเบียน",
-                      style: TextStyle(
-                        fontSize: 18,
-                        // color: MainColors.background,
-                        fontWeight: FontWeight.bold,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "ลงทะเบียน",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 20,
+                            color: MainColors.primary500,
+                          ),
+                        ],
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 20,
-                      color: MainColors.primary500,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "60",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF3D4245),
-                    fontWeight: FontWeight.bold,
+                      const SizedBox(height: 5),
+                      Text(
+                        count.toString(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3D4245),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }
 
 // 4
 class Screening extends StatefulWidget {
-  const Screening({super.key});
+  final DashboardModel model;
+  const Screening({super.key, required this.model});
 
   @override
   State<Screening> createState() => _ScreeningState();
@@ -381,50 +425,61 @@ class Screening extends StatefulWidget {
 class _ScreeningState extends State<Screening> {
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: double.infinity,
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: SizedBox(
+    return FutureBuilder<int>(
+      future: widget.model.findTotalScreening(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final count = snapshot.data!;
+          return SizedBox(
             width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "คัดกรอง",
-                      style: TextStyle(
-                        fontSize: 18,
-                        // color: MainColors.background,
-                        fontWeight: FontWeight.bold,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "คัดกรอง",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 20,
+                            color: MainColors.primary500,
+                          ),
+                        ],
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 20,
-                      color: MainColors.primary500,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "100",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF3D4245),
-                    fontWeight: FontWeight.bold,
+                      const SizedBox(height: 5),
+                      Text(
+                        count.toString(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3D4245),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }
@@ -432,7 +487,8 @@ class _ScreeningState extends State<Screening> {
 // 5
 
 class Therapy extends StatefulWidget {
-  const Therapy({super.key});
+  final DashboardModel model;
+  const Therapy({super.key, required this.model});
 
   @override
   State<Therapy> createState() => _TherapyState();
@@ -441,57 +497,70 @@ class Therapy extends StatefulWidget {
 class _TherapyState extends State<Therapy> {
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: double.infinity,
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: SizedBox(
+    return FutureBuilder<int>(
+      future: widget.model.findTotalTreatment(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final count = snapshot.data!;
+          return SizedBox(
             width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "บำบัด",
-                      style: TextStyle(
-                        fontSize: 18,
-                        // color: MainColors.background,
-                        fontWeight: FontWeight.bold,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "บำบัด",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 20,
+                            color: MainColors.primary500,
+                          ),
+                        ],
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 20,
-                      color: MainColors.primary500,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "20",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF3D4245),
-                    fontWeight: FontWeight.bold,
+                      const SizedBox(height: 5),
+                      Text(
+                        count.toString(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3D4245),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }
+//
 
 // 6
 class Keeptrack extends StatefulWidget {
-  const Keeptrack({super.key});
+  final DashboardModel model;
+  const Keeptrack({super.key, required this.model});
 
   @override
   State<Keeptrack> createState() => _KeeptrackState();
@@ -500,58 +569,72 @@ class Keeptrack extends StatefulWidget {
 class _KeeptrackState extends State<Keeptrack> {
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: double.infinity,
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: SizedBox(
+    return FutureBuilder<int>(
+      future: widget.model.findTotalMonitoring(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final count = snapshot.data!;
+          return SizedBox(
             width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "ติดตาม",
-                      style: TextStyle(
-                        fontSize: 18,
-                        // color: MainColors.background,
-                        fontWeight: FontWeight.bold,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "ติดตาม",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 20,
+                            color: MainColors.primary500,
+                          ),
+                        ],
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 20,
-                      color: MainColors.primary500,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "14",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF3D4245),
-                    fontWeight: FontWeight.bold,
+                      const SizedBox(height: 5),
+                      Text(
+                        count.toString(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3D4245),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }
 
+// findTotalAssistance
 // 7
 
 class Help extends StatefulWidget {
-  const Help({super.key});
+  final DashboardModel model;
+
+  const Help({super.key, required this.model});
 
   @override
   State<Help> createState() => _HelpState();
@@ -560,57 +643,69 @@ class Help extends StatefulWidget {
 class _HelpState extends State<Help> {
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: double.infinity,
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: SizedBox(
+    return FutureBuilder<int>(
+      future: widget.model.findTotalAssistance(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final count = snapshot.data!;
+          return SizedBox(
             width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "ช่วยเหลือ",
-                      style: TextStyle(
-                        fontSize: 18,
-                        // color: MainColors.background,
-                        fontWeight: FontWeight.bold,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "ช่วยเหลือ",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 20,
+                            color: MainColors.primary500,
+                          ),
+                        ],
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 20,
-                      color: MainColors.primary500,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "230",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF3D4245),
-                    fontWeight: FontWeight.bold,
+                      const SizedBox(height: 5),
+                      Text(
+                        count.toString(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3D4245),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }
 
 // 7
 class Forward extends StatefulWidget {
-  const Forward({super.key});
+  final DashboardModel model;
+  const Forward({super.key, required this.model});
 
   @override
   State<Forward> createState() => _ForwardState();
@@ -619,50 +714,65 @@ class Forward extends StatefulWidget {
 class _ForwardState extends State<Forward> {
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: double.infinity,
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: SizedBox(
+    return FutureBuilder<Refer>(
+      future: widget.model.findTotalRefer(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final refer = snapshot.data!;
+          final sender = refer.sender.toString();
+          final receiver = refer.receiver.toString();
+
+          return SizedBox(
             width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "ส่งต่อ/รอรับ",
-                      style: TextStyle(
-                        fontSize: 18,
-                        // color: MainColors.background,
-                        fontWeight: FontWeight.bold,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "ส่งต่อ/รอรับ",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 20,
+                            color: MainColors.primary500,
+                          ),
+                        ],
                       ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 20,
-                      color: MainColors.primary500,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "523/62",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Color(0xFF3D4245),
-                    fontWeight: FontWeight.bold,
+                      const SizedBox(height: 5),
+                      Text(
+                        // count.toString(),
+                        "$sender / $receiver",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3D4245),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }
@@ -670,7 +780,9 @@ class _ForwardState extends State<Forward> {
 // -------------------------------------
 
 class Statistics extends StatefulWidget {
-  const Statistics({super.key});
+  final DashboardModel model;
+
+  const Statistics({super.key, required this.model});
 
   @override
   State<StatefulWidget> createState() => StatisticsState();
@@ -681,113 +793,146 @@ class StatisticsState extends State<Statistics> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Text(
-          "สถิติ (ปีงบประมาณ 2567)",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 40),
-        SizedBox(
-          height: 200,
-          child: Stack(
-            children: [
-              PieChart(
-                PieChartData(
-                  pieTouchData: PieTouchData(
-                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                      setState(() {
-                        if (!event.isInterestedForInteractions ||
-                            pieTouchResponse == null ||
-                            pieTouchResponse.touchedSection == null) {
-                          touchedIndex = -1;
-                          return;
-                        }
-                        touchedIndex = pieTouchResponse
-                            .touchedSection!.touchedSectionIndex;
-                      });
-                    },
-                  ),
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
-                  sectionsSpace: 5,
-                  centerSpaceRadius: 60,
-                  sections: showingSections(),
-                ),
+    return FutureBuilder<StatYear>(
+      future: widget.model.findStatYear(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final valuestatistics = snapshot.data!;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "สถิติ (ปีงบประมาณ ${valuestatistics.year})",
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              const Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+              const SizedBox(height: 40),
+              SizedBox(
+                height: 200,
+                child: Stack(
                   children: [
-                    Text(
-                      '520k',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF333333),
+                    PieChart(
+                      PieChartData(
+                        pieTouchData: PieTouchData(
+                          touchCallback:
+                              (FlTouchEvent event, pieTouchResponse) {
+                            setState(() {
+                              if (!event.isInterestedForInteractions ||
+                                  pieTouchResponse == null ||
+                                  pieTouchResponse.touchedSection == null) {
+                                touchedIndex = -1;
+                                return;
+                              }
+                              touchedIndex = pieTouchResponse
+                                  .touchedSection!.touchedSectionIndex;
+                            });
+                          },
+                        ),
+                        borderData: FlBorderData(
+                          show: false,
+                        ),
+                        sectionsSpace: 5,
+                        centerSpaceRadius: 60,
+                        sections: showingSections(valuestatistics),
                       ),
                     ),
-                    Text(
-                      'ผู้ป่วยทั้งหมด',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF6A7180),
+                    Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "${valuestatistics.total}k",
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF333333),
+                            ),
+                          ),
+                          const Text(
+                            'ผู้ป่วยทั้งหมด',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFF6A7180),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
+              const SizedBox(height: 40),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildLegend(
+                    color: MainColors.primary500,
+                    text: "ลงทะเบียน",
+                    percentage:
+                        "${valuestatistics.register.toStringAsFixed(2)}%",
+                  ),
+                  _buildLegend(
+                    color: const Color(0xFF0EB366),
+                    text: "คัดกรอง",
+                    percentage:
+                        "${valuestatistics.screening.toStringAsFixed(2)}%",
+                  ),
+                  _buildLegend(
+                    color: const Color(0xFFFF5630),
+                    text: "บำบัด",
+                    percentage:
+                        "${valuestatistics.treatment.toStringAsFixed(2)}%",
+                  ),
+                  _buildLegend(
+                    color: const Color.fromARGB(128, 227, 165, 148),
+                    text: "ติดตาม",
+                    percentage:
+                        "${valuestatistics.monitoring.toStringAsFixed(2)}%",
+                  ),
+                  _buildLegend(
+                    color: const Color.fromARGB(128, 235, 153, 134),
+                    text: "จำหน่าย",
+                    percentage:
+                        "${valuestatistics.discharged.toStringAsFixed(2)}%",
+                  ),
+                ],
+              ),
             ],
-          ),
-        ),
-        const SizedBox(height: 40),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildLegend(
-              color: MainColors.primary500,
-              text: "ลงทะเบียน",
-              percentage: "72%",
-            ),
-            _buildLegend(
-              color: const Color(0xFF0EB366),
-              text: "คัดกรอง",
-              percentage: "22%",
-            ),
-            _buildLegend(
-              color: const Color(0xFFFF5630),
-              text: "บำบัด",
-              percentage: "12%",
-            ),
-            _buildLegend(
-              color: const Color.fromARGB(128, 227, 165, 148),
-              text: "ติดตาม",
-              percentage: "12%",
-            ),
-            _buildLegend(
-              color: const Color.fromARGB(128, 235, 153, 134),
-              text: "จำหน่าย",
-              percentage: "12%",
-            ),
-          ],
-        ),
-      ],
+          );
+        }
+      },
     );
   }
 
-  List<PieChartSectionData> showingSections() {
+  List<PieChartSectionData> showingSections(StatYear valuestatistics) {
     return List.generate(5, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
       final radius = isTouched ? 60.0 : 50.0;
       const shadows = [Shadow(blurRadius: 2)];
+      final double registerValue =
+          double.parse(valuestatistics.register.toStringAsFixed(2));
+      final double screeningValue =
+          double.parse(valuestatistics.screening.toStringAsFixed(2));
+      final double treatmentValue =
+          double.parse(valuestatistics.treatment.toStringAsFixed(2));
+      final double monitoringValue =
+          double.parse(valuestatistics.monitoring.toStringAsFixed(2));
+      final double dischargedValue =
+          double.parse(valuestatistics.discharged.toStringAsFixed(2));
+
       switch (i) {
         case 0:
           return PieChartSectionData(
             color: MainColors.primary500,
-            value: 70,
+            value: registerValue,
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -800,7 +945,7 @@ class StatisticsState extends State<Statistics> {
         case 1:
           return PieChartSectionData(
             color: const Color(0xFF0EB366),
-            value: 15,
+            value: screeningValue,
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -813,7 +958,7 @@ class StatisticsState extends State<Statistics> {
         case 2:
           return PieChartSectionData(
             color: const Color(0xFFFF5630),
-            value: 12,
+            value: treatmentValue,
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -826,7 +971,7 @@ class StatisticsState extends State<Statistics> {
         case 3:
           return PieChartSectionData(
             color: const Color(0xFFFFCD3F),
-            value: 7,
+            value: monitoringValue,
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -839,7 +984,7 @@ class StatisticsState extends State<Statistics> {
         case 4:
           return PieChartSectionData(
             color: const Color(0xFFF2994A),
-            value: 7,
+            value: dischargedValue,
             title: '',
             radius: radius,
             titleStyle: TextStyle(
