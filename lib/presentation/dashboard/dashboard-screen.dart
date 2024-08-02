@@ -218,8 +218,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               Column(
                                 children: [
                                   Statistics(model: model),
-                                  SizedBox(height: 20),
-                                  BarChartSample4(),
+                                  const SizedBox(height: 20),
+                                  StatPatient(
+                                    model: model,
+                                  ),
                                 ],
                               ),
                             ],
@@ -917,22 +919,16 @@ class StatisticsState extends State<Statistics> {
       final fontSize = isTouched ? 25.0 : 16.0;
       final radius = isTouched ? 60.0 : 50.0;
       const shadows = [Shadow(blurRadius: 2)];
-      final double registerValue =
-          double.parse(valuestatistics.register.toStringAsFixed(2));
-      final double screeningValue =
-          double.parse(valuestatistics.screening.toStringAsFixed(2));
-      final double treatmentValue =
-          double.parse(valuestatistics.treatment.toStringAsFixed(2));
-      final double monitoringValue =
-          double.parse(valuestatistics.monitoring.toStringAsFixed(2));
-      final double dischargedValue =
-          double.parse(valuestatistics.discharged.toStringAsFixed(2));
+
+      double getValue(double value) {
+        return double.parse(value.toStringAsFixed(2));
+      }
 
       switch (i) {
         case 0:
           return PieChartSectionData(
             color: MainColors.primary500,
-            value: registerValue,
+            value: getValue(valuestatistics.register),
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -945,7 +941,7 @@ class StatisticsState extends State<Statistics> {
         case 1:
           return PieChartSectionData(
             color: const Color(0xFF0EB366),
-            value: screeningValue,
+            value: getValue(valuestatistics.screening),
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -958,7 +954,7 @@ class StatisticsState extends State<Statistics> {
         case 2:
           return PieChartSectionData(
             color: const Color(0xFFFF5630),
-            value: treatmentValue,
+            value: getValue(valuestatistics.treatment),
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -971,7 +967,7 @@ class StatisticsState extends State<Statistics> {
         case 3:
           return PieChartSectionData(
             color: const Color(0xFFFFCD3F),
-            value: monitoringValue,
+            value: getValue(valuestatistics.monitoring),
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -984,7 +980,7 @@ class StatisticsState extends State<Statistics> {
         case 4:
           return PieChartSectionData(
             color: const Color(0xFFF2994A),
-            value: dischargedValue,
+            value: getValue(valuestatistics.discharged),
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -1052,26 +1048,28 @@ class StatisticsState extends State<Statistics> {
 }
 
 // ------------------------
-class BarChartSample4 extends StatefulWidget {
-  const BarChartSample4({super.key});
+class StatPatient extends StatefulWidget {
+  final DashboardModel model;
+  const StatPatient({super.key, required this.model});
 
   @override
-  State<StatefulWidget> createState() => BarChartSample4State();
+  State<StatefulWidget> createState() => _StatPatientState();
 }
 
-class BarChartSample4State extends State<BarChartSample4> {
+class _StatPatientState extends State<StatPatient> {
   List<int> daysInMonth = [];
-  List<double> mockData = [];
-  List<double> weeklyMockData = [];
+  List<double> monthData = [];
+  List<double> weekData = [];
+
   int touchedIndex = -1;
   int selectedIndex = 1;
+  int newPatientMonth = 0;
+  int newPatientWeek = 0;
 
   @override
   void initState() {
     super.initState();
     generateDaysInMonth();
-    generateMockData();
-    generateWeeklyMockData();
   }
 
   void generateDaysInMonth() {
@@ -1080,19 +1078,29 @@ class BarChartSample4State extends State<BarChartSample4> {
     daysInMonth = List<int>.generate(daysCount, (i) => i + 1);
   }
 
-  void generateMockData() {
-    final List<double> pattern = [20, 30, 10, 40, 50];
-    mockData = List<double>.generate(daysInMonth.length, (index) {
-      return pattern[index % pattern.length];
-    });
+  Future<bool> loadData() async {
+    final tempMonth = await widget.model.findStatPatientMonth();
+    final tempWeek = await widget.model.findStatPatientWeek();
+    monthData = tempMonth.dataMonth;
+    newPatientMonth = tempMonth.newPatientMonth;
+    weekData = tempWeek.dataWeek;
+    newPatientWeek = tempWeek.newPatientWeek;
+    return true;
   }
 
-  void generateWeeklyMockData() {
-    final List<double> pattern = [5, 25, 35, 45, 50, 20, 30];
-    weeklyMockData = List<double>.generate(7, (index) {
-      return pattern[index % pattern.length];
-    });
-  }
+  // void generateMockData() {
+  //   final List<double> pattern = [20, 30, 10, 40, 50];
+  //   monthData = List<double>.generate(daysInMonth.length, (index) {
+  //     return pattern[index % pattern.length];
+  //   });
+  // }
+
+  // void generateWeeklyMockData() {
+  //   final List<double> pattern = [5, 25, 35, 45, 50, 20, 30];
+  //   weekData = List<double>.generate(7, (index) {
+  //     return pattern[index % pattern.length];
+  //   });
+  // }
 
   void onTextTapped(int index) {
     setState(() {
@@ -1177,170 +1185,183 @@ class BarChartSample4State extends State<BarChartSample4> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "สถิติผู้ป่วย",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Color(0xFF242B42),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Row(
-                  children: [
-                    buildSelectableText("สัปดาร์", 0),
-                    buildSelectableText("เดือน", 1),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            const Row(
-              children: [
-                Text(
-                  "165",
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Color(0xFF242B42),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(width: 15),
-                Icon(
-                  FontAwesomeIcons.chartLine,
-                  color: Color(0xFF36CB69),
-                  size: 20,
-                ),
-              ],
-            ),
-            const SizedBox(height: 5),
-            const SizedBox(height: 10),
-          ],
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: Column(
+    return FutureBuilder<bool>(
+      future: loadData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AspectRatio(
-                aspectRatio: 1.66,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      double barsSpace;
-                      double barsWidth;
-                      // week
-                      if (selectedIndex == 0) {
-                        barsSpace = 8.0 * constraints.maxWidth / 200;
-                        barsWidth =
-                            (constraints.maxWidth - (barsSpace * 6)) / 8;
-                      } else {
-                        // เดือน
-                        barsSpace = 8.0 * constraints.maxWidth / 55;
-                        barsWidth =
-                            (constraints.maxWidth - (barsSpace * 6)) / 15;
-                      }
-
-                      return BarChart(
-                        BarChartData(
-                          alignment: BarChartAlignment.center,
-                          barTouchData: BarTouchData(
-                            enabled: true,
-                            touchTooltipData: BarTouchTooltipData(
-                              tooltipPadding: const EdgeInsets.all(8),
-                              tooltipMargin: 4,
-                              getTooltipItem:
-                                  (group, groupIndex, rod, rodIndex) {
-                                return BarTooltipItem(
-                                  '${(selectedIndex == 0 ? (group.x + 1) : daysInMonth[group.x])}: ${rod.toY}',
-                                  const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                );
-                              },
-                            ),
-                            touchCallback:
-                                (FlTouchEvent event, barTouchResponse) {
-                              setState(() {
-                                if (!event.isInterestedForInteractions ||
-                                    barTouchResponse == null ||
-                                    barTouchResponse.spot == null) {
-                                  touchedIndex = -1;
-                                  return;
-                                }
-                                touchedIndex =
-                                    barTouchResponse.spot!.touchedBarGroupIndex;
-                              });
-                            },
-                          ),
-                          titlesData: FlTitlesData(
-                            bottomTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: true,
-                                reservedSize: 28,
-                                getTitlesWidget: bottomTitles,
-                              ),
-                            ),
-                            leftTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: true,
-                                reservedSize: 30,
-                                getTitlesWidget: leftTitles,
-                              ),
-                            ),
-                            topTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false),
-                            ),
-                            rightTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false),
-                            ),
-                          ),
-                          gridData: FlGridData(
-                            checkToShowHorizontalLine: (value) =>
-                                value % 10 == 0,
-                            getDrawingHorizontalLine: (value) => FlLine(
-                              color: Colors.grey.withOpacity(0.1),
-                              strokeWidth: 1,
-                            ),
-                            drawVerticalLine: false,
-                          ),
-                          borderData: FlBorderData(
-                            show: false,
-                          ),
-                          groupsSpace: barsSpace,
-                          barGroups: selectedIndex == 0
-                              ? weekData(barsWidth, barsSpace)
-                              : monthsData(barsWidth, barsSpace),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "สถิติผู้ป่วย",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Color(0xFF242B42),
+                          fontWeight: FontWeight.bold,
                         ),
-                      );
-                    },
+                      ),
+                      Row(
+                        children: [
+                          buildSelectableText("สัปดาร์", 0),
+                          buildSelectableText("เดือน", 1),
+                        ],
+                      ),
+                    ],
                   ),
+                  const SizedBox(height: 5),
+                  const Row(
+                    children: [
+                      Text(
+                        "165",
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Color(0xFF242B42),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 15),
+                      Icon(
+                        FontAwesomeIcons.chartLine,
+                        color: Color(0xFF36CB69),
+                        size: 20,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  const SizedBox(height: 10),
+                ],
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 1.66,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            double barsSpace;
+                            double barsWidth;
+                            // week
+                            if (selectedIndex == 0) {
+                              barsSpace = 8.0 * constraints.maxWidth / 200;
+                              barsWidth =
+                                  (constraints.maxWidth - (barsSpace * 6)) / 8;
+                            } else {
+                              // เดือน
+                              barsSpace = 8.0 * constraints.maxWidth / 55;
+                              barsWidth =
+                                  (constraints.maxWidth - (barsSpace * 6)) / 15;
+                            }
+
+                            return BarChart(
+                              BarChartData(
+                                alignment: BarChartAlignment.center,
+                                barTouchData: BarTouchData(
+                                  enabled: true,
+                                  touchTooltipData: BarTouchTooltipData(
+                                    tooltipPadding: const EdgeInsets.all(8),
+                                    tooltipMargin: 4,
+                                    getTooltipItem:
+                                        (group, groupIndex, rod, rodIndex) {
+                                      return BarTooltipItem(
+                                        '${(selectedIndex == 0 ? (group.x + 1) : daysInMonth[group.x])}: ${rod.toY}',
+                                        const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  touchCallback:
+                                      (FlTouchEvent event, barTouchResponse) {
+                                    setState(() {
+                                      if (!event.isInterestedForInteractions ||
+                                          barTouchResponse == null ||
+                                          barTouchResponse.spot == null) {
+                                        touchedIndex = -1;
+                                        return;
+                                      }
+                                      touchedIndex = barTouchResponse
+                                          .spot!.touchedBarGroupIndex;
+                                    });
+                                  },
+                                ),
+                                titlesData: FlTitlesData(
+                                  bottomTitles: AxisTitles(
+                                    sideTitles: SideTitles(
+                                      showTitles: true,
+                                      reservedSize: 28,
+                                      getTitlesWidget: bottomTitles,
+                                    ),
+                                  ),
+                                  leftTitles: AxisTitles(
+                                    sideTitles: SideTitles(
+                                      showTitles: true,
+                                      reservedSize: 30,
+                                      getTitlesWidget: leftTitles,
+                                    ),
+                                  ),
+                                  topTitles: const AxisTitles(
+                                    sideTitles: SideTitles(showTitles: false),
+                                  ),
+                                  rightTitles: const AxisTitles(
+                                    sideTitles: SideTitles(showTitles: false),
+                                  ),
+                                ),
+                                gridData: FlGridData(
+                                  checkToShowHorizontalLine: (value) =>
+                                      value % 10 == 0,
+                                  getDrawingHorizontalLine: (value) => FlLine(
+                                    color: Colors.grey.withOpacity(0.1),
+                                    strokeWidth: 1,
+                                  ),
+                                  drawVerticalLine: false,
+                                ),
+                                borderData: FlBorderData(
+                                  show: false,
+                                ),
+                                groupsSpace: barsSpace,
+                                barGroups: selectedIndex == 0
+                                    ? weekChartWidget(barsWidth, barsSpace)
+                                    : monthChartWidget(barsWidth, barsSpace),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
-          ),
-        ),
-      ],
+          );
+        }
+      },
     );
   }
 
-  List<BarChartGroupData> weekData(double barsWidth, double barsSpace) {
-    if (weeklyMockData.length != 7) {
+  List<BarChartGroupData> weekChartWidget(double barsWidth, double barsSpace) {
+    if (weekData.length != 7) {
       return [];
     }
 
     return List<BarChartGroupData>.generate(7, (index) {
       final bool isTouched = index == touchedIndex;
-      final double y = weeklyMockData[index];
+      final double y = weekData[index];
       return BarChartGroupData(
         x: index,
         barsSpace: barsSpace,
@@ -1358,14 +1379,14 @@ class BarChartSample4State extends State<BarChartSample4> {
     });
   }
 
-  List<BarChartGroupData> monthsData(double barsWidth, double barsSpace) {
-    if (mockData.length != daysInMonth.length) {
+  List<BarChartGroupData> monthChartWidget(double barsWidth, double barsSpace) {
+    if (monthData.length != daysInMonth.length) {
       return [];
     }
 
-    return List<BarChartGroupData>.generate(daysInMonth.length, (index) {
+    return List<BarChartGroupData>.generate(monthData.length, (index) {
       final bool isTouched = index == touchedIndex;
-      final double y = mockData[index];
+      final double y = monthData[index];
       return BarChartGroupData(
         x: index,
         barsSpace: barsSpace,

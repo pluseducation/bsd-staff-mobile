@@ -131,6 +131,34 @@ class DashboardModel {
       }
     }
   }
+
+  Future<StatPatientWeek> findStatPatientWeek() async {
+    try {
+      return await dashboardRepository.findStatPatientWeek();
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
+  Future<StatPatientMonth> findStatPatientMonth() async {
+    try {
+      return await dashboardRepository.findStatPatientMonth();
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
 }
 
 class Indicator extends StatelessWidget {

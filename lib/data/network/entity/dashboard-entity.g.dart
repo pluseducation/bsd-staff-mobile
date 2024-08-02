@@ -33,7 +33,7 @@ StatPatientWeekEntity _$StatPatientWeekEntityFromJson(
     StatPatientWeekEntity(
       newPatientToday: json['newPatientToday'] as int,
       newPatientWeek: json['newPatientWeek'] as int,
-      dayOfWeek: json['dayOfWeek'] as String,
+      dayOfWeek: json['dayOfWeek'] as String?,
       monday: json['monday'] as int,
       tuesday: json['tuesday'] as int,
       wednesday: json['wednesday'] as int,

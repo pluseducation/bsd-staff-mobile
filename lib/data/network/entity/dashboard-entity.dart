@@ -31,7 +31,7 @@ class StatYearEntity {
 class StatPatientWeekEntity {
   int newPatientToday;
   int newPatientWeek;
-  String dayOfWeek;
+  String? dayOfWeek;
   int monday;
   int tuesday;
   int wednesday;
