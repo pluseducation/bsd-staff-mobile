@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
+import 'package:bst_staff_mobile/presentation/patient/workflow-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/material.dart';
@@ -36,20 +37,6 @@ class _PatientScreenState extends State<PatientScreen> {
       _paginationController.currentPage = 0;
     });
   }
-  // void _searchPatient(String query) {
-  //   final filteredData = _filteredPatientData
-  //       .where((patient) =>
-  //           patient.name.contains(query) || patient.therapy.contains(query),),
-  //       .toList();
-
-  //   setState(() {
-  //     _filteredPatientData = filteredData;
-  //     _paginationController.totalItems = filteredData.length;
-  //     setState(() {
-  //       _paginationController.currentPage = 0;
-  //     });
-  //   });
-  // }
 
   void _onPageChanged(int page) {
     setState(() {
@@ -230,13 +217,13 @@ class PaginationControls extends StatefulWidget {
   final VoidCallback onNextPage;
 
   const PaginationControls({
-    Key? key,
+    super.key,
     required this.totalPages,
     required this.currentPage,
     required this.onPageChanged,
     required this.onPreviousPage,
     required this.onNextPage,
-  }) : super(key: key);
+  });
 
   @override
   _PaginationControlsState createState() => _PaginationControlsState();
@@ -487,70 +474,103 @@ class _PatientListState extends State<PatientList> {
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(child: Text('No patients available'));
+              return const Center(child: Text('ไม่มีข้อมูล'));
             } else {
               final List<PatientData> patients = snapshot.data!;
               return Column(
                 children: patients.map((patient) {
-                  return SizedBox(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              alignment: Alignment.topLeft,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: MainColors.background,
-                                child: ClipOval(
-                                  child: Image.asset(
-                                    patient.imagePath,
-                                    width: 50,
-                                    height: 50,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(15, 3, 0, 0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    patient.name,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    patient.cardnumber,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    patient.therapy,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      color: Color(0xFF808080),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Workflow(),
                         ),
-                        _buildStatusContainer(patient.status),
-                      ],
+                      );
+                    },
+                    child: Card(
+                      elevation: 0,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.topLeft,
+                                      child: CircleAvatar(
+                                        radius: 30,
+                                        backgroundColor: MainColors.background,
+                                        child: ClipOval(
+                                          child: Image.asset(
+                                            patient.imagePath,
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                        15,
+                                        3,
+                                        0,
+                                        0,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            patient.name,
+                                            style: const TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Text(
+                                            patient.cardnumber,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xFF808080),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Text(
+                                            patient.therapy,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xFF808080),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                _buildStatusContainer(patient.status),
+                              ],
+                            ),
+                          ),
+                          const Divider(
+                            color: Color(0xFFF1F1F1),
+                            thickness: 0.8,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }).toList(),
