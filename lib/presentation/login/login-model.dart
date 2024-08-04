@@ -34,7 +34,19 @@ class LoginModel {
       appService.preferencesRepo.setAccessToken(login.accessToken);
       appService.preferencesRepo.setRefreshToken(login.refreshToken);
       appService.preferencesRepo.setLoggedTooLong(login.loggedTooLong);
-      appService.preferencesRepo.setPhoneNo(login.phoneNo!);
+      appService.preferencesRepo.setPhoneNo(login.phoneNo);
+
+      // for test otp
+      final loginForOtp = await loginRepository.loginForOtp(
+        username: username,
+        password: password,
+      );
+
+      String phone = "0656644696";
+      await loginRepository.findOtp(
+        phone: phone,
+        token: loginForOtp.reqAuthenToken,
+      );
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);

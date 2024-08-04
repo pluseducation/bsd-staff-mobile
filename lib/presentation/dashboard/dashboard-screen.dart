@@ -73,7 +73,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       appService: Provider.of<AppService>(super.context, listen: false),
     );
 
-    onLoad();
+    //onLoad();
   }
 
   void onLoad() async {

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Login {
   String get accessToken => throw _privateConstructorUsedError;
   String get refreshToken => throw _privateConstructorUsedError;
+  String get reqAuthenToken => throw _privateConstructorUsedError;
   bool get loggedTooLong => throw _privateConstructorUsedError;
   String get phoneNo => throw _privateConstructorUsedError;
 
@@ -33,6 +34,7 @@ abstract class $LoginCopyWith<$Res> {
   $Res call(
       {String accessToken,
       String refreshToken,
+      String reqAuthenToken,
       bool loggedTooLong,
       String phoneNo});
 }
@@ -52,6 +54,7 @@ class _$LoginCopyWithImpl<$Res, $Val extends Login>
   $Res call({
     Object? accessToken = null,
     Object? refreshToken = null,
+    Object? reqAuthenToken = null,
     Object? loggedTooLong = null,
     Object? phoneNo = null,
   }) {
@@ -63,6 +66,10 @@ class _$LoginCopyWithImpl<$Res, $Val extends Login>
       refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      reqAuthenToken: null == reqAuthenToken
+          ? _value.reqAuthenToken
+          : reqAuthenToken // ignore: cast_nullable_to_non_nullable
               as String,
       loggedTooLong: null == loggedTooLong
           ? _value.loggedTooLong
@@ -86,6 +93,7 @@ abstract class _$$LoginImplCopyWith<$Res> implements $LoginCopyWith<$Res> {
   $Res call(
       {String accessToken,
       String refreshToken,
+      String reqAuthenToken,
       bool loggedTooLong,
       String phoneNo});
 }
@@ -103,6 +111,7 @@ class __$$LoginImplCopyWithImpl<$Res>
   $Res call({
     Object? accessToken = null,
     Object? refreshToken = null,
+    Object? reqAuthenToken = null,
     Object? loggedTooLong = null,
     Object? phoneNo = null,
   }) {
@@ -114,6 +123,10 @@ class __$$LoginImplCopyWithImpl<$Res>
       refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      reqAuthenToken: null == reqAuthenToken
+          ? _value.reqAuthenToken
+          : reqAuthenToken // ignore: cast_nullable_to_non_nullable
               as String,
       loggedTooLong: null == loggedTooLong
           ? _value.loggedTooLong
@@ -133,6 +146,7 @@ class _$LoginImpl implements _Login {
   const _$LoginImpl(
       {required this.accessToken,
       required this.refreshToken,
+      required this.reqAuthenToken,
       required this.loggedTooLong,
       required this.phoneNo});
 
@@ -141,13 +155,15 @@ class _$LoginImpl implements _Login {
   @override
   final String refreshToken;
   @override
+  final String reqAuthenToken;
+  @override
   final bool loggedTooLong;
   @override
   final String phoneNo;
 
   @override
   String toString() {
-    return 'Login(accessToken: $accessToken, refreshToken: $refreshToken, loggedTooLong: $loggedTooLong, phoneNo: $phoneNo)';
+    return 'Login(accessToken: $accessToken, refreshToken: $refreshToken, reqAuthenToken: $reqAuthenToken, loggedTooLong: $loggedTooLong, phoneNo: $phoneNo)';
   }
 
   @override
@@ -159,14 +175,16 @@ class _$LoginImpl implements _Login {
                 other.accessToken == accessToken) &&
             (identical(other.refreshToken, refreshToken) ||
                 other.refreshToken == refreshToken) &&
+            (identical(other.reqAuthenToken, reqAuthenToken) ||
+                other.reqAuthenToken == reqAuthenToken) &&
             (identical(other.loggedTooLong, loggedTooLong) ||
                 other.loggedTooLong == loggedTooLong) &&
             (identical(other.phoneNo, phoneNo) || other.phoneNo == phoneNo));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, accessToken, refreshToken, loggedTooLong, phoneNo);
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken,
+      reqAuthenToken, loggedTooLong, phoneNo);
 
   @JsonKey(ignore: true)
   @override
@@ -179,6 +197,7 @@ abstract class _Login implements Login {
   const factory _Login(
       {required final String accessToken,
       required final String refreshToken,
+      required final String reqAuthenToken,
       required final bool loggedTooLong,
       required final String phoneNo}) = _$LoginImpl;
 
@@ -186,6 +205,8 @@ abstract class _Login implements Login {
   String get accessToken;
   @override
   String get refreshToken;
+  @override
+  String get reqAuthenToken;
   @override
   bool get loggedTooLong;
   @override

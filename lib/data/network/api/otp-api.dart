@@ -1,29 +1,22 @@
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
-import 'package:bst_staff_mobile/data/network/entity/login-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:dio/dio.dart';
 
-class LoginApi extends BaseApi {
-  LoginApi({required super.baseUrl});
+class OtpApi extends BaseApi {
+  OtpApi({required super.baseUrl});
 
-  Future<LoginEntity> login({
-    required String username,
-    required String password,
+  Future<bool> findOtp({
+    required String phone,
+    required String reqAuthenToken,
   }) async {
     try {
-      final Dio dio = await getDio();
-      final response = await dio.post(
-        '/login?mobile=true',
-        data: {
-          'username': username,
-          'password': password,
-        },
+      final Dio dio = await getPrivateWithTokenDio(reqAuthenToken);
+      final response = await dio.get(
+        '/otps?phone=$phone',
       );
 
       if (response.statusCode == 200) {
-        return LoginEntity.fromJson(
-          response.data as Map<String, dynamic>,
-        );
+        return true;
       } else {
         throw Exception('Unknown error');
       }
@@ -44,24 +37,12 @@ class LoginApi extends BaseApi {
     }
   }
 
-  Future<LoginEntity> loginForOtp({
-    required String username,
-    required String password,
-  }) async {
+  Future<bool> updateUsersession({required bool complete}) async {
     try {
-      final Dio dio = await getDio();
-      final response = await dio.post(
-        '/login?mobile=false',
-        data: {
-          'username': username,
-          'password': password,
-        },
-      );
-
+      final Dio dio = await getPrivateDio();
+      final response = await dio.put("/usersessions/mobile?complete=$complete");
       if (response.statusCode == 200) {
-        return LoginEntity.fromJson(
-          response.data as Map<String, dynamic>,
-        );
+        return true;
       } else {
         throw Exception('Unknown error');
       }
