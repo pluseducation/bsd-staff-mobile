@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Config {
   String get baseUrl => throw _privateConstructorUsedError;
+  String get baseAuthUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
@@ -27,7 +28,7 @@ abstract class $ConfigCopyWith<$Res> {
   factory $ConfigCopyWith(Config value, $Res Function(Config) then) =
       _$ConfigCopyWithImpl<$Res, Config>;
   @useResult
-  $Res call({String baseUrl});
+  $Res call({String baseUrl, String baseAuthUrl});
 }
 
 /// @nodoc
@@ -44,11 +45,16 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   @override
   $Res call({
     Object? baseUrl = null,
+    Object? baseAuthUrl = null,
   }) {
     return _then(_value.copyWith(
       baseUrl: null == baseUrl
           ? _value.baseUrl
           : baseUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      baseAuthUrl: null == baseAuthUrl
+          ? _value.baseAuthUrl
+          : baseAuthUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -61,7 +67,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       __$$ConfigImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String baseUrl});
+  $Res call({String baseUrl, String baseAuthUrl});
 }
 
 /// @nodoc
@@ -76,11 +82,16 @@ class __$$ConfigImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? baseUrl = null,
+    Object? baseAuthUrl = null,
   }) {
     return _then(_$ConfigImpl(
       baseUrl: null == baseUrl
           ? _value.baseUrl
           : baseUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      baseAuthUrl: null == baseAuthUrl
+          ? _value.baseAuthUrl
+          : baseAuthUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -89,14 +100,16 @@ class __$$ConfigImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ConfigImpl implements _Config {
-  const _$ConfigImpl({required this.baseUrl});
+  const _$ConfigImpl({required this.baseUrl, required this.baseAuthUrl});
 
   @override
   final String baseUrl;
+  @override
+  final String baseAuthUrl;
 
   @override
   String toString() {
-    return 'Config(baseUrl: $baseUrl)';
+    return 'Config(baseUrl: $baseUrl, baseAuthUrl: $baseAuthUrl)';
   }
 
   @override
@@ -104,11 +117,13 @@ class _$ConfigImpl implements _Config {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ConfigImpl &&
-            (identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl));
+            (identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl) &&
+            (identical(other.baseAuthUrl, baseAuthUrl) ||
+                other.baseAuthUrl == baseAuthUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, baseUrl);
+  int get hashCode => Object.hash(runtimeType, baseUrl, baseAuthUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -118,10 +133,14 @@ class _$ConfigImpl implements _Config {
 }
 
 abstract class _Config implements Config {
-  const factory _Config({required final String baseUrl}) = _$ConfigImpl;
+  const factory _Config(
+      {required final String baseUrl,
+      required final String baseAuthUrl}) = _$ConfigImpl;
 
   @override
   String get baseUrl;
+  @override
+  String get baseAuthUrl;
   @override
   @JsonKey(ignore: true)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>

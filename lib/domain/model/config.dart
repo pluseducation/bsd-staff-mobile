@@ -6,5 +6,6 @@ part 'config.freezed.dart';
 class Config with _$Config {
   const factory Config({
     required String baseUrl,
+    required String baseAuthUrl,
   }) = _Config;
 }

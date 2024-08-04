@@ -13,7 +13,7 @@ class LoginApi extends BaseApi {
     try {
       final Dio dio = await getDio();
       final response = await dio.post(
-        '/api/public/login',
+        '/login?mobile=true',
         data: {
           'username': username,
           'password': password,

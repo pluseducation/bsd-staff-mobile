@@ -25,14 +25,18 @@ Map<String, dynamic> _$PatientAllEntityToJson(PatientAllEntity instance) =>
 PatientEntity _$PatientEntityFromJson(Map<String, dynamic> json) =>
     PatientEntity(
       name: json['name'] as String,
-      status: json['status'] as String,
+      status: json['status'] as String?,
       patientId: json['patientId'] as int,
       surname: json['surname'] as String,
-      cycle: json['cycle'] as String,
+      cycle: json['cycle'] as String?,
       nationalId: json['nationalId'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
-      generatedId: json['generatedId'] as String,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+      generatedId: json['generatedId'] as String?,
     );
 
 Map<String, dynamic> _$PatientEntityToJson(PatientEntity instance) =>
@@ -43,7 +47,7 @@ Map<String, dynamic> _$PatientEntityToJson(PatientEntity instance) =>
       'surname': instance.surname,
       'cycle': instance.cycle,
       'nationalId': instance.nationalId,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
       'generatedId': instance.generatedId,
     };

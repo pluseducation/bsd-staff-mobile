@@ -9,7 +9,17 @@ int convertToInt(dynamic object) {
 
 double convertToDouble(dynamic object) {
   try {
-    final double? value = double.parse(object.toString());
+    double? value;
+    if (object == null) {
+      value = 0;
+    } else if (object is num) {
+      value = object.toDouble();
+    } else if (object is String) {
+      value = double.tryParse(object);
+    } else {
+      value = 0;
+    }
+
     return value ?? 0;
   } catch (e) {
     rethrow;

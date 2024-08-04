@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
+import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
 import 'package:bst_staff_mobile/presentation/patient/workflow-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
+import 'package:bst_staff_mobile/util/constant.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
+import 'package:bst_staff_mobile/widget/status-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -19,41 +22,14 @@ class PatientScreen extends StatefulWidget {
 
 class _PatientScreenState extends State<PatientScreen> {
   late PaginationController _paginationController;
-  List<PatientData> _filteredPatientData = [];
 
   @override
   void initState() {
     super.initState();
     _paginationController = PaginationController(
-      itemsPerPage: 7,
+      itemsPerPage: Constant.size,
       totalItems: 0,
     );
-  }
-
-  void _searchPatient(String query) {
-    print('query =>>>>: $query');
-
-    setState(() {
-      _paginationController.currentPage = 0;
-    });
-  }
-
-  void _onPageChanged(int page) {
-    setState(() {
-      _paginationController.setCurrentPage(page);
-    });
-  }
-
-  void _onPreviousPage() {
-    setState(() {
-      _paginationController.previousPage();
-    });
-  }
-
-  void _onNextPage() {
-    setState(() {
-      _paginationController.nextPage();
-    });
   }
 
   @override
@@ -122,7 +98,6 @@ class _PatientScreenState extends State<PatientScreen> {
                             child: Column(
                               children: [
                                 PatientList(
-                                  patients: _filteredPatientData,
                                   paginationController: _paginationController,
                                 ),
                               ],
@@ -146,11 +121,7 @@ class _PatientScreenState extends State<PatientScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   PaginationControls(
-                    totalPages: _paginationController.totalPages,
-                    currentPage: _paginationController.currentPage,
-                    onPageChanged: _onPageChanged,
-                    onPreviousPage: _onPreviousPage,
-                    onNextPage: _onNextPage,
+                    paginationController: _paginationController,
                   ),
                 ],
               ),
@@ -169,9 +140,13 @@ class PaginationController {
   String name = "";
   final _nameController = StreamController<String>();
   final _pageController = StreamController<int>();
+  final _pageSearchController = StreamController<int>();
+  final _totalItemController = StreamController<int>();
 
   Stream<String> get nameStream => _nameController.stream;
   Stream<int> get pageStream => _pageController.stream;
+  Stream<int> get pageSearchStream => _pageSearchController.stream;
+  Stream<int> get totalItemStream => _totalItemController.stream;
 
   PaginationController({required this.itemsPerPage, required this.totalItems});
   int get totalPages => (totalItems / itemsPerPage).ceil();
@@ -185,6 +160,7 @@ class PaginationController {
     currentPage = value;
 
     _pageController.add(value);
+    _pageSearchController.add(value);
   }
 
   void nextPage() {
@@ -193,6 +169,7 @@ class PaginationController {
     }
 
     _pageController.add(currentPage);
+    _pageSearchController.add(currentPage);
   }
 
   void previousPage() {
@@ -201,28 +178,21 @@ class PaginationController {
     }
 
     _pageController.add(currentPage);
+    _pageSearchController.add(currentPage);
   }
 
-  // ignore: use_setters_to_change_properties
   void setTotalItem(int value) {
     totalItems = value;
+    _totalItemController.add(value);
   }
 }
 
 class PaginationControls extends StatefulWidget {
-  final int totalPages;
-  final int currentPage;
-  final void Function(int) onPageChanged;
-  final VoidCallback onPreviousPage;
-  final VoidCallback onNextPage;
+  final PaginationController paginationController;
 
   const PaginationControls({
     super.key,
-    required this.totalPages,
-    required this.currentPage,
-    required this.onPageChanged,
-    required this.onPreviousPage,
-    required this.onNextPage,
+    required this.paginationController,
   });
 
   @override
@@ -230,12 +200,36 @@ class PaginationControls extends StatefulWidget {
 }
 
 class _PaginationControlsState extends State<PaginationControls> {
+  int totalItem = 0;
+  int totalPage = 0;
+  int currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.paginationController.totalItemStream.listen((value) {
+      setState(() {
+        totalItem = value;
+        totalPage = widget.paginationController.totalPages;
+      });
+    });
+
+    widget.paginationController.pageSearchStream.listen((value) {
+      setState(() {
+        currentPage = value;
+      });
+    });
+
+    totalItem = widget.paginationController.totalItems;
+    totalPage = widget.paginationController.totalPages;
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> pageButtons = [];
 
-    if (widget.totalPages <= 4) {
-      for (int i = 0; i < widget.totalPages; i++) {
+    if (totalPage <= 4) {
+      for (int i = 0; i < totalPage; i++) {
         pageButtons.add(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 1.0),
@@ -244,25 +238,26 @@ class _PaginationControlsState extends State<PaginationControls> {
               height: 35,
               child: TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: i == widget.currentPage
+                  backgroundColor: i == currentPage
                       ? const Color(0xFF2563EB)
                       : Colors.transparent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                     side: BorderSide(
-                      color: i == widget.currentPage
+                      color: i == currentPage
                           ? const Color(0xFF2563EB)
                           : Colors.transparent,
                     ),
                   ),
                 ),
-                onPressed: () => widget.onPageChanged(i),
+                onPressed: () {
+                  widget.paginationController.setCurrentPage(i);
+                },
                 child: Center(
                   child: Text(
                     '${i + 1}',
                     style: TextStyle(
-                      color:
-                          i == widget.currentPage ? Colors.white : Colors.black,
+                      color: i == currentPage ? Colors.white : Colors.black,
                       fontSize: 17,
                     ),
                   ),
@@ -273,8 +268,8 @@ class _PaginationControlsState extends State<PaginationControls> {
         );
       }
     } else {
-      if (widget.currentPage > 0) {
-        if (widget.currentPage > 1) {
+      if (currentPage > 0) {
+        if (currentPage > 1) {
           pageButtons.add(
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 1.0),
@@ -284,9 +279,8 @@ class _PaginationControlsState extends State<PaginationControls> {
         }
       }
 
-      final int start =
-          (widget.currentPage - 1).clamp(0, widget.totalPages - 4);
-      final int end = (widget.currentPage + 1).clamp(4, widget.totalPages - 1);
+      final int start = (currentPage - 1).clamp(0, totalPage - 4);
+      final int end = (currentPage + 1).clamp(4, totalPage - 1);
 
       for (int i = start; i <= end; i++) {
         pageButtons.add(
@@ -297,25 +291,24 @@ class _PaginationControlsState extends State<PaginationControls> {
               height: 35,
               child: TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: i == widget.currentPage
+                  backgroundColor: i == currentPage
                       ? const Color(0xFF2563EB)
                       : Colors.transparent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                     side: BorderSide(
-                      color: i == widget.currentPage
+                      color: i == currentPage
                           ? const Color(0xFF2563EB)
                           : Colors.transparent,
                     ),
                   ),
                 ),
-                onPressed: () => widget.onPageChanged(i),
+                onPressed: () => widget.paginationController.setCurrentPage(i),
                 child: Center(
                   child: Text(
                     '${i + 1}',
                     style: TextStyle(
-                      color:
-                          i == widget.currentPage ? Colors.white : Colors.black,
+                      color: i == currentPage ? Colors.white : Colors.black,
                     ),
                   ),
                 ),
@@ -325,7 +318,7 @@ class _PaginationControlsState extends State<PaginationControls> {
         );
       }
 
-      if (widget.currentPage < widget.totalPages - 2) {
+      if (currentPage < totalPage - 2) {
         pageButtons.add(
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 1.0),
@@ -344,7 +337,7 @@ class _PaginationControlsState extends State<PaginationControls> {
             color: Color(0xFF808080),
             size: 20,
           ),
-          onPressed: widget.onPreviousPage,
+          onPressed: widget.paginationController.previousPage,
         ),
         ...pageButtons,
         IconButton(
@@ -353,7 +346,7 @@ class _PaginationControlsState extends State<PaginationControls> {
             color: Color(0xFF808080),
             size: 20,
           ),
-          onPressed: widget.onNextPage,
+          onPressed: widget.paginationController.nextPage,
         ),
       ],
     );
@@ -405,12 +398,10 @@ class _SearchPatientState extends State<SearchPatient> {
 }
 
 class PatientList extends StatefulWidget {
-  final List<PatientData> patients;
   final PaginationController paginationController;
 
   const PatientList({
     super.key,
-    required this.patients,
     required this.paginationController,
   });
 
@@ -433,8 +424,6 @@ class _PatientListState extends State<PatientList> {
       appService: Provider.of<AppService>(super.context, listen: false),
     );
 
-    _model.test();
-
     widget.paginationController.nameStream.listen((name) {
       _model.name = name;
       onChange();
@@ -451,34 +440,37 @@ class _PatientListState extends State<PatientList> {
     super.dispose();
   }
 
-  Future<List<PatientData>> onLoad() async {
-    final patiens = await _model.loadData();
-    widget.paginationController.setTotalItem(patiens.length);
-    return patiens;
+  Future<void> onChange() async {
+    await _model.loadData();
+    final totalItem = _model.patients.totalElements;
+    widget.paginationController.setTotalItem(totalItem);
+    setState(() {});
   }
 
-  Future<void> onChange() async {
-    await onLoad();
-    setState(() {});
+  Future<PatientAll> onLoad() async {
+    await _model.loadData();
+    final totalItem = _model.patients.totalElements;
+    widget.paginationController.setTotalItem(totalItem);
+    return _model.patients;
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FutureBuilder<List<PatientData>>(
+        FutureBuilder<PatientAll>(
           future: onLoad(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            } else if (!snapshot.hasData) {
               return const Center(child: Text('ไม่มีข้อมูล'));
             } else {
-              final List<PatientData> patients = snapshot.data!;
+              final PatientAll patients = snapshot.data!;
               return Column(
-                children: patients.map((patient) {
+                children: patients.content.map((patient) {
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -507,7 +499,7 @@ class _PatientListState extends State<PatientList> {
                                         backgroundColor: MainColors.background,
                                         child: ClipOval(
                                           child: Image.asset(
-                                            patient.imagePath,
+                                            "assets/images/profile2.png", //patient.imagePath,
                                             width: 50,
                                             height: 50,
                                             fit: BoxFit.cover,
@@ -527,7 +519,7 @@ class _PatientListState extends State<PatientList> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            patient.name,
+                                            patient.fullName,
                                             style: const TextStyle(
                                               fontSize: 18,
                                               color: Colors.black,
@@ -536,7 +528,7 @@ class _PatientListState extends State<PatientList> {
                                           ),
                                           const SizedBox(height: 8),
                                           Text(
-                                            patient.cardnumber,
+                                            patient.nationalId,
                                             style: const TextStyle(
                                               fontSize: 16,
                                               color: Color(0xFF808080),
@@ -544,7 +536,7 @@ class _PatientListState extends State<PatientList> {
                                           ),
                                           const SizedBox(height: 8),
                                           Text(
-                                            patient.therapy,
+                                            patient.cycle,
                                             style: const TextStyle(
                                               fontSize: 16,
                                               color: Color(0xFF808080),
@@ -558,7 +550,7 @@ class _PatientListState extends State<PatientList> {
                                     ),
                                   ],
                                 ),
-                                _buildStatusContainer(patient.status),
+                                patientStatusWidget(patient.status),
                               ],
                             ),
                           ),

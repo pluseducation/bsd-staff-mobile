@@ -1,6 +1,6 @@
+import 'package:bst_staff_mobile/data/datasource/preferences.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:bst_staff_mobile/data/datasource/preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BaseApi {
@@ -33,6 +33,25 @@ class BaseApi {
     final preferences =
         Preferences(prefs: await SharedPreferences.getInstance());
     final token = await preferences.getAccessToken();
+    final options = BaseOptions(
+      baseUrl: baseUrl,
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 3),
+    );
+    return Dio(options)
+      ..options.headers = {
+        'Authorization': 'Bearer $token',
+      }
+      ..interceptors.add(
+        LogInterceptor(
+          requestBody: true,
+          responseBody: true,
+        ),
+      );
+  }
+
+  @protected
+  Future<Dio> getPrivateWithTokenDio(String token) async {
     final options = BaseOptions(
       baseUrl: baseUrl,
       connectTimeout: const Duration(seconds: 5),

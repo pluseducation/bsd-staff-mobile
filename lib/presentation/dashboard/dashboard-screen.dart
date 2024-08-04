@@ -822,21 +822,21 @@ class StatisticsState extends State<Statistics> {
                   children: [
                     PieChart(
                       PieChartData(
-                        pieTouchData: PieTouchData(
-                          touchCallback:
-                              (FlTouchEvent event, pieTouchResponse) {
-                            setState(() {
-                              if (!event.isInterestedForInteractions ||
-                                  pieTouchResponse == null ||
-                                  pieTouchResponse.touchedSection == null) {
-                                touchedIndex = -1;
-                                return;
-                              }
-                              touchedIndex = pieTouchResponse
-                                  .touchedSection!.touchedSectionIndex;
-                            });
-                          },
-                        ),
+                        // pieTouchData: PieTouchData(
+                        //   touchCallback:
+                        //       (FlTouchEvent event, pieTouchResponse) {
+                        //     setState(() {
+                        //       if (!event.isInterestedForInteractions ||
+                        //           pieTouchResponse == null ||
+                        //           pieTouchResponse.touchedSection == null) {
+                        //         touchedIndex = -1;
+                        //         return;
+                        //       }
+                        //       touchedIndex = pieTouchResponse
+                        //           .touchedSection!.touchedSectionIndex;
+                        //     });
+                        //   },
+                        // ),
                         borderData: FlBorderData(
                           show: false,
                         ),
@@ -850,7 +850,7 @@ class StatisticsState extends State<Statistics> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "${valuestatistics.total}k",
+                            "${valuestatistics.total}",
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -1060,9 +1060,10 @@ class _StatPatientState extends State<StatPatient> {
   List<int> daysInMonth = [];
   List<double> monthData = [];
   List<double> weekData = [];
+  bool isLoading = false;
 
   int touchedIndex = -1;
-  int selectedIndex = 1;
+  int selectedIndex = 0;
   int newPatientMonth = 0;
   int newPatientWeek = 0;
 
@@ -1070,6 +1071,7 @@ class _StatPatientState extends State<StatPatient> {
   void initState() {
     super.initState();
     generateDaysInMonth();
+    loadData();
   }
 
   void generateDaysInMonth() {
@@ -1078,14 +1080,16 @@ class _StatPatientState extends State<StatPatient> {
     daysInMonth = List<int>.generate(daysCount, (i) => i + 1);
   }
 
-  Future<bool> loadData() async {
+  Future<void> loadData() async {
     final tempMonth = await widget.model.findStatPatientMonth();
     final tempWeek = await widget.model.findStatPatientWeek();
     monthData = tempMonth.dataMonth;
     newPatientMonth = tempMonth.newPatientMonth;
     weekData = tempWeek.dataWeek;
     newPatientWeek = tempWeek.newPatientWeek;
-    return true;
+    setState(() {
+      isLoading = true;
+    });
   }
 
   // void generateMockData() {
@@ -1185,17 +1189,9 @@ class _StatPatientState extends State<StatPatient> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-      future: loadData(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
-        } else {
-          return Column(
+    return isLoading == false
+        ? const Text("Loading...")
+        : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
@@ -1221,18 +1217,20 @@ class _StatPatientState extends State<StatPatient> {
                     ],
                   ),
                   const SizedBox(height: 5),
-                  const Row(
+                  Row(
                     children: [
                       Text(
-                        "165",
-                        style: TextStyle(
+                        selectedIndex == 0
+                            ? newPatientWeek.toString()
+                            : newPatientMonth.toString(),
+                        style: const TextStyle(
                           fontSize: 25,
                           color: Color(0xFF242B42),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 15),
-                      Icon(
+                      const SizedBox(width: 15),
+                      const Icon(
                         FontAwesomeIcons.chartLine,
                         color: Color(0xFF36CB69),
                         size: 20,
@@ -1349,9 +1347,6 @@ class _StatPatientState extends State<StatPatient> {
               ),
             ],
           );
-        }
-      },
-    );
   }
 
   List<BarChartGroupData> weekChartWidget(double barsWidth, double barsSpace) {

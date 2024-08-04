@@ -29,27 +29,42 @@ class _LayoutScreenState extends State<LayoutScreen> {
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
+            selectedIcon: Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
             icon: Icon(Icons.home_outlined),
             label: 'หน้าแรก',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.calendar_today),
+            selectedIcon: Icon(
+              Icons.calendar_today,
+              color: Colors.white,
+            ),
             icon: Icon(Icons.calendar_today_outlined),
             label: 'ผู้ป่วย',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.description),
+            selectedIcon: Icon(
+              Icons.description,
+              color: Colors.white,
+            ),
             icon: Icon(Icons.description_outlined),
             label: 'นัดหมาย',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.notifications),
+            selectedIcon: Icon(
+              Icons.notifications,
+              color: Colors.white,
+            ),
             icon: Icon(Icons.notifications_none_outlined),
             label: 'ใบรับรอง',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.person),
+            selectedIcon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
             icon: Icon(Icons.person_outline),
             label: 'โปรไฟล์',
             // icon: Badge(

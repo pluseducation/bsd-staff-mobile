@@ -50,7 +50,7 @@ Future<InitialData> _createData() async {
 
   // Data
   final networkMapper = NetworkMapper(log: log);
-  final loginApi = LoginApi(baseUrl: config.baseUrl);
+  final loginApi = LoginApi(baseUrl: config.baseAuthUrl);
   final loginRepository = LoginRepository(
     loginApi: loginApi,
     networkMapper: networkMapper,
@@ -94,8 +94,8 @@ Future<Config> _loadConfig(Logger log) async {
     final config = json.decode(raw) as Map<String, dynamic>;
 
     return Config(
-      baseUrl: config['baseUrl'] as String,
-    );
+        baseUrl: config['baseUrl'] as String,
+        baseAuthUrl: config['baseAuthUrl'] as String);
   } catch (e) {
     log.e(
       'Error while loading project configuration, please make sure '

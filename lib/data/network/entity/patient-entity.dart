@@ -22,14 +22,14 @@ class PatientAllEntity {
 @JsonSerializable()
 class PatientEntity {
   String name;
-  String status;
+  String? status;
   int patientId;
   String surname;
-  String cycle;
+  String? cycle;
   String nationalId;
-  DateTime createdAt;
-  DateTime updatedAt;
-  String generatedId;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? generatedId;
 
   PatientEntity({
     required this.name,

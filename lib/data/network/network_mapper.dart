@@ -133,8 +133,9 @@ class NetworkMapper {
         patientId: entity.patientId,
         fullName: "${entity.name} ${entity.surname}",
         nationalId: entity.nationalId,
-        cycle: entity.cycle,
-        status: entity.status,
+        cycle: entity.cycle == null ? "" : entity.cycle.toString(),
+        status:
+            entity.status == null ? "REGISTERIMG" : entity.status.toString(),
       );
     } catch (e) {
       throw MapperException<PatientEntity, Patient>(

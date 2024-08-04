@@ -60,7 +60,7 @@ class DashboardRepository {
 
   Future<StatPatientWeek> findStatPatientWeek() async {
     final entity = await dashboardApi.findStatPatientWeek();
-    final List<double> dataWeek = List.empty();
+    final List<double> dataWeek = [];
     dataWeek.add(convertToDouble(entity.monday));
     dataWeek.add(convertToDouble(entity.tuesday));
     dataWeek.add(convertToDouble(entity.wednesday));
@@ -78,9 +78,12 @@ class DashboardRepository {
 
   Future<StatPatientMonth> findStatPatientMonth() async {
     final entity = await dashboardApi.findStatPatientMonth();
-    final List<double> dataMonth = List.empty();
+    final List<double> dataMonth = [];
 
-    entity.totals.map((x) => dataMonth.add(convertToDouble(x.total)));
+    for (final total in entity.totals) {
+      dataMonth.add(convertToDouble(total.total));
+    }
+
     final model = networkMapper.toStatPatientMonth(
       entity,
       dataMonth,
