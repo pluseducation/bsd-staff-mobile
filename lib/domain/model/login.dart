@@ -8,6 +8,6 @@ class Login with _$Login {
     required String accessToken,
     required String refreshToken,
     required bool loggedTooLong,
-    required String? phoneNo,
+    required String phoneNo,
   }) = _Login;
 }

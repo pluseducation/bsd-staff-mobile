@@ -1,10 +1,12 @@
 import 'package:bst_staff_mobile/data/network/entity/dashboard-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/login-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/patient-entity.dart';
+import 'package:bst_staff_mobile/data/network/entity/usersession-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/mapper-exception.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/model/login.dart';
 import 'package:bst_staff_mobile/domain/model/patient.dart';
+import 'package:bst_staff_mobile/domain/model/session.dart';
 import 'package:logger/logger.dart';
 
 class NetworkMapper {
@@ -16,10 +18,25 @@ class NetworkMapper {
   Login toLogin(LoginEntity entity) {
     try {
       return Login(
-        accessToken: entity.accessToken,
-        refreshToken: entity.refreshToken,
-        loggedTooLong: entity.loggedTooLong,
-        phoneNo: entity.phoneNo,
+        accessToken: entity.accessToken ?? "",
+        refreshToken: entity.refreshToken ?? "",
+        loggedTooLong: entity.loggedTooLong ?? false,
+        phoneNo: entity.phoneNo ?? "",
+      );
+    } catch (e) {
+      throw MapperException<LoginEntity, Login>(
+        e.toString(),
+      );
+    }
+  }
+
+  Session toUserSession(UserSessionEntity entity) {
+    try {
+      return Session(
+        status: entity.status ?? "",
+        webAgentId: entity.webAgentId ?? "",
+        mobileDeviceId: entity.mobileDeviceId ?? "",
+        loginAt: entity.loginAt ?? DateTime.now(),
       );
     } catch (e) {
       throw MapperException<LoginEntity, Login>(

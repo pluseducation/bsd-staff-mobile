@@ -1,16 +1,31 @@
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
+import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
+import 'package:bst_staff_mobile/domain/model/session.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 
 class DashboardRepository {
   final DashboardApi dashboardApi;
+  final UserSessionApi userSessionApi;
   final NetworkMapper networkMapper;
 
   DashboardRepository({
     required this.dashboardApi,
+    required this.userSessionApi,
     required this.networkMapper,
   });
+
+  // TODO : user session
+  Future<Session> findUserSession() async {
+    final entity = await userSessionApi.findUsersession();
+    final model = networkMapper.toUserSession(entity);
+    return model;
+  }
+
+  Future<void> updateUserSession(bool complete) async {
+    await userSessionApi.updateUsersession(complete: complete);
+  }
 
   Future<int> findTotalRegistering() async {
     final value =

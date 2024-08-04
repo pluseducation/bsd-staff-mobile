@@ -19,7 +19,7 @@ mixin _$Login {
   String get accessToken => throw _privateConstructorUsedError;
   String get refreshToken => throw _privateConstructorUsedError;
   bool get loggedTooLong => throw _privateConstructorUsedError;
-  String? get phoneNo => throw _privateConstructorUsedError;
+  String get phoneNo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginCopyWith<Login> get copyWith => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $LoginCopyWith<$Res> {
       {String accessToken,
       String refreshToken,
       bool loggedTooLong,
-      String? phoneNo});
+      String phoneNo});
 }
 
 /// @nodoc
@@ -53,7 +53,7 @@ class _$LoginCopyWithImpl<$Res, $Val extends Login>
     Object? accessToken = null,
     Object? refreshToken = null,
     Object? loggedTooLong = null,
-    Object? phoneNo = freezed,
+    Object? phoneNo = null,
   }) {
     return _then(_value.copyWith(
       accessToken: null == accessToken
@@ -68,10 +68,10 @@ class _$LoginCopyWithImpl<$Res, $Val extends Login>
           ? _value.loggedTooLong
           : loggedTooLong // ignore: cast_nullable_to_non_nullable
               as bool,
-      phoneNo: freezed == phoneNo
+      phoneNo: null == phoneNo
           ? _value.phoneNo
           : phoneNo // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -87,7 +87,7 @@ abstract class _$$LoginImplCopyWith<$Res> implements $LoginCopyWith<$Res> {
       {String accessToken,
       String refreshToken,
       bool loggedTooLong,
-      String? phoneNo});
+      String phoneNo});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$$LoginImplCopyWithImpl<$Res>
     Object? accessToken = null,
     Object? refreshToken = null,
     Object? loggedTooLong = null,
-    Object? phoneNo = freezed,
+    Object? phoneNo = null,
   }) {
     return _then(_$LoginImpl(
       accessToken: null == accessToken
@@ -119,10 +119,10 @@ class __$$LoginImplCopyWithImpl<$Res>
           ? _value.loggedTooLong
           : loggedTooLong // ignore: cast_nullable_to_non_nullable
               as bool,
-      phoneNo: freezed == phoneNo
+      phoneNo: null == phoneNo
           ? _value.phoneNo
           : phoneNo // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -143,7 +143,7 @@ class _$LoginImpl implements _Login {
   @override
   final bool loggedTooLong;
   @override
-  final String? phoneNo;
+  final String phoneNo;
 
   @override
   String toString() {
@@ -180,7 +180,7 @@ abstract class _Login implements Login {
       {required final String accessToken,
       required final String refreshToken,
       required final bool loggedTooLong,
-      required final String? phoneNo}) = _$LoginImpl;
+      required final String phoneNo}) = _$LoginImpl;
 
   @override
   String get accessToken;
@@ -189,7 +189,7 @@ abstract class _Login implements Login {
   @override
   bool get loggedTooLong;
   @override
-  String? get phoneNo;
+  String get phoneNo;
   @override
   @JsonKey(ignore: true)
   _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>

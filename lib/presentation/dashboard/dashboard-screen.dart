@@ -13,6 +13,44 @@ import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
+Future<bool?> show2AuthDialog({
+  required BuildContext context,
+}) {
+  final textTheme = Theme.of(context)
+      .textTheme
+      .apply(displayColor: Theme.of(context).colorScheme.onSurface);
+
+  return showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: const Text('ข้อความแจ้งเตือน'),
+      titleTextStyle: textTheme.titleMedium,
+      icon: const Icon(
+        Icons.info,
+        size: 36,
+      ),
+      content: const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Text("มีการยืนยัน 2 ระดับกรุณาเลือกการยินยันด้านล่าง"),
+          ),
+        ],
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.pop(context, true),
+          child: const Text('ยืนยัน'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(context, false),
+          child: const Text('ปิด'),
+        ),
+      ],
+    ),
+  );
+}
+
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
@@ -34,6 +72,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
           Provider.of<DashboardRepository>(super.context, listen: false),
       appService: Provider.of<AppService>(super.context, listen: false),
     );
+
+    onLoad();
+  }
+
+  void onLoad() async {
+    final userSession = await model.findUserSession();
+    if (userSession.status == "REQ_LOGIN") {
+      final bool? complete = await show2AuthDialog(context: context);
+      if (complete != null) {
+        model.updateUserSession(complete);
+      } else {
+        model.updateUserSession(false);
+      }
+    }
   }
 
   String _formatDate(DateTime date) {

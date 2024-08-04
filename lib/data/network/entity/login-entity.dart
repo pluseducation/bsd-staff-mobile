@@ -3,16 +3,19 @@ part 'login-entity.g.dart';
 
 @JsonSerializable()
 class LoginEntity {
-  String accessToken;
-  String refreshToken;
-  bool loggedTooLong;
+  String? accessToken;
+  String? refreshToken;
+  String? reqAuthenToken;
+  bool? loggedTooLong;
   String? phoneNo;
 
-  LoginEntity(
-      {required this.accessToken,
-      required this.refreshToken,
-      required this.loggedTooLong,
-      required this.phoneNo});
+  LoginEntity({
+    required this.accessToken,
+    required this.refreshToken,
+    required this.reqAuthenToken,
+    required this.loggedTooLong,
+    required this.phoneNo,
+  });
 
   factory LoginEntity.fromJson(Map<String, dynamic> json) =>
       _$LoginEntityFromJson(json);

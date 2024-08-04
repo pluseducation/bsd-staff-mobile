@@ -1,10 +1,8 @@
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
-import 'package:bst_staff_mobile/domain/model/dashboard.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
+import 'package:bst_staff_mobile/domain/model/dashboard.dart';
+import 'package:bst_staff_mobile/domain/model/session.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -19,6 +17,34 @@ class DashboardModel {
     required this.dashboardRepository,
     required this.appService,
   });
+
+  Future<Session> findUserSession() async {
+    try {
+      return dashboardRepository.findUserSession();
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
+  Future<void> updateUserSession(bool complete) async {
+    try {
+      return dashboardRepository.updateUserSession(complete);
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
 
   Future<int> findTotalRegistering() async {
     try {

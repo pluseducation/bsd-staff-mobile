@@ -1,5 +1,5 @@
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
-import 'package:bst_staff_mobile/data/network/entity/userssion-entity.dart';
+import 'package:bst_staff_mobile/data/network/entity/usersession-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:dio/dio.dart';
 
@@ -40,9 +40,7 @@ class UserSessionApi extends BaseApi {
   Future<bool> updateUsersession({required bool complete}) async {
     try {
       final Dio dio = await getPrivateDio();
-      final response =
-          await dio.put('/usersessions/mobile', data: {'complete': complete});
-
+      final response = await dio.put("/usersessions/mobile?complete=$complete");
       if (response.statusCode == 200) {
         return true;
       } else {
