@@ -1,4 +1,6 @@
 import 'package:bst_staff_mobile/presentation/patient/registering-screen.dart';
+import 'package:bst_staff_mobile/presentation/patient/screening-screen.dart';
+import 'package:bst_staff_mobile/presentation/patient/treatment-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/material.dart';
@@ -72,12 +74,13 @@ class _WorkflowState extends State<Workflow> {
                   ),
                   BaseLayoutScrollView(
                     child: Column(
-                      children: [Text("ข้อมูล คัดกรอง")],
+                      children: [ScreeningScreen()],
                     ),
                   ),
+                  // TreatmentScreen
                   BaseLayoutScrollView(
                     child: Column(
-                      children: [Text("ข้อมูล บำบัด")],
+                      children: [TreatmentScreen()],
                     ),
                   ),
                 ],
