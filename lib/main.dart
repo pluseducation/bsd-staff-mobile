@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
+import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
@@ -52,8 +53,10 @@ Future<InitialData> _createData() async {
   // Data
   final networkMapper = NetworkMapper(log: log);
   final loginApi = LoginApi(baseUrl: config.baseAuthUrl);
+  final otpApi = OtpApi(baseUrl: config.baseAuthUrl);
   final loginRepository = LoginRepository(
     loginApi: loginApi,
+    otpApi: otpApi,
     networkMapper: networkMapper,
   );
   final dashboardApi = DashboardApi(baseUrl: config.baseUrl);

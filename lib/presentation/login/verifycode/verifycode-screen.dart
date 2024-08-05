@@ -5,6 +5,7 @@ import 'dart:async';
 // import 'package:berante/presentation/login/verifycode/verifycode-model.dart';
 // import 'package:berante/theme/main-colors.dart';
 // import 'package:berante/widget/screen/dialog.dart';
+import 'package:bst_staff_mobile/presentation/layout/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/verifycode/verifycode-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
@@ -224,7 +225,14 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
       return;
     }
     try {
-      _model.getPin();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LayoutScreen(),
+        ),
+      );
+
+      //_model.getPin();
       // if (widget.createUserModel != null) {
       //   widget.createUserModel?.registerUserForStudent(pin: pin);
       //   // Navigator.pop(context);

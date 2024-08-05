@@ -1,4 +1,5 @@
 import 'package:bst_staff_mobile/domain/service/notifi_service.dart';
+import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/cupertino.dart';
@@ -202,7 +203,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            },
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(
                                 color: Color(0xFFBDBDBD),

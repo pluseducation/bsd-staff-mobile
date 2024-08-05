@@ -73,7 +73,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       appService: Provider.of<AppService>(super.context, listen: false),
     );
 
-    onLoad();
+    //onLoad();
   }
 
   void onLoad() async {
@@ -1143,20 +1143,6 @@ class _StatPatientState extends State<StatPatient> {
       isLoading = true;
     });
   }
-
-  // void generateMockData() {
-  //   final List<double> pattern = [20, 30, 10, 40, 50];
-  //   monthData = List<double>.generate(daysInMonth.length, (index) {
-  //     return pattern[index % pattern.length];
-  //   });
-  // }
-
-  // void generateWeeklyMockData() {
-  //   final List<double> pattern = [5, 25, 35, 45, 50, 20, 30];
-  //   weekData = List<double>.generate(7, (index) {
-  //     return pattern[index % pattern.length];
-  //   });
-  // }
 
   void onTextTapped(int index) {
     setState(() {

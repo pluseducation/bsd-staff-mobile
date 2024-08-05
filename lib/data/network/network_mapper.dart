@@ -20,6 +20,7 @@ class NetworkMapper {
       return Login(
         accessToken: entity.accessToken ?? "",
         refreshToken: entity.refreshToken ?? "",
+        reqAuthenToken: entity.reqAuthenToken ?? "",
         loggedTooLong: entity.loggedTooLong ?? false,
         phoneNo: entity.phoneNo ?? "",
       );

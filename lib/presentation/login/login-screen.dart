@@ -1,12 +1,11 @@
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/presentation/layout/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-model.dart';
 import 'package:bst_staff_mobile/presentation/login/verifycode/verifycode-screen.dart';
-import 'package:bst_staff_mobile/presentation/layout/layout-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
-import 'package:bst_staff_mobile/widget/status-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const Center(
                   child: Text(
-                    "สำหรับผู้ป่วย/ผู้ปกครอง",
+                    "สำหรับเจ้าหน้าที่",
                     style: TextStyle(
                       fontSize: 17,
                       color: Color(0xFF797979),
@@ -58,31 +57,31 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 const _LoginForm(),
-                const SizedBox(height: 70),
-                Text('ยังไม่มีบัญชีใช้งาน', style: textTheme.titleMedium),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const VerifycodeScreen(),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        'ลงทะเบียน',
-                        style: TextStyle(
-                          color: MainColors.primary500,
-                          decoration: TextDecoration.underline,
-                          decorationColor: MainColors.primary300,
-                          decorationThickness: 1,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // const SizedBox(height: 70),
+                // Text('ยังไม่มีบัญชีใช้งาน', style: textTheme.titleMedium),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     GestureDetector(
+                //       onTap: () {
+                //         Navigator.of(context).push(
+                //           MaterialPageRoute(
+                //             builder: (context) => const VerifycodeScreen(),
+                //           ),
+                //         );
+                //       },
+                //       child: const Text(
+                //         'ลงทะเบียน',
+                //         style: TextStyle(
+                //           color: MainColors.primary500,
+                //           decoration: TextDecoration.underline,
+                //           decorationColor: MainColors.primary300,
+                //           decorationThickness: 1,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),
@@ -202,12 +201,18 @@ class _LoginFormState extends State<_LoginForm> {
     try {
       await _model.login();
 
-      Navigator.pushReplacement(
-        context,
+      Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const LayoutScreen(),
+          builder: (context) => const VerifycodeScreen(),
         ),
       );
+
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => const LayoutScreen(),
+      //   ),
+      // );
     } on Exception catch (e) {
       showInfoDialog(
         context: context,
