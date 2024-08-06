@@ -144,6 +144,20 @@ class DashboardModel {
     }
   }
 
+  Future<int> findpatients() async {
+    try {
+      return dashboardRepository.findpatients();
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
   Future<StatYear> findStatYear() async {
     try {
       return await dashboardRepository.findStatYear();

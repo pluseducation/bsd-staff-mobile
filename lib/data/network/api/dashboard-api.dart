@@ -155,6 +155,34 @@ class DashboardApi extends BaseApi {
     }
   }
 
+  Future<int> findpatients() async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get(
+        '/api/v1/dashboards/patients',
+      );
+      if (response.statusCode == 200) {
+        return convertToInt(response.data);
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data.toString(),
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
   Future<ReferEntity> findTotalRefer() async {
     try {
       final Dio dio = await getPrivateDio();

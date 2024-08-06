@@ -226,7 +226,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(child: Allpatients()),
+                                  Expanded(child: Allpatients(model: model)),
                                   Expanded(child: RetentionRate(model: model)),
                                 ],
                               ),
@@ -309,7 +309,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 // 1
 class Allpatients extends StatefulWidget {
-  const Allpatients({super.key});
+  final DashboardModel model;
+
+  const Allpatients({super.key, required this.model});
 
   @override
   State<Allpatients> createState() => _AllpatientsState();
@@ -318,32 +320,75 @@ class Allpatients extends StatefulWidget {
 class _AllpatientsState extends State<Allpatients> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "ผู้ป่วยทั้งหมด",
-          style: TextStyle(
-            fontSize: 18,
-            color: Color(0xFF3D4245),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Text(
-          "450 ",
-          style: TextStyle(
-            fontSize: 25,
-            color: Color(0xFF3D4245),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
+    return FutureBuilder<int>(
+      future: widget.model.findpatients(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final count = snapshot.data!;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "ผู้ป่วยทั้งหมด",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Color(0xFF3D4245),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                count.toString(),
+                style: const TextStyle(
+                  fontSize: 25,
+                  // color: MainColors.primary500,
+                  color: Color(0xFF3D4245),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          );
+        }
+      },
     );
   }
 }
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text(
+//           "ผู้ป่วยทั้งหมด",
+//           style: TextStyle(
+//             fontSize: 18,
+//             color: Color(0xFF3D4245),
+//             fontWeight: FontWeight.bold,
+//           ),
+//         ),
+//         SizedBox(
+//           width: 10,
+//         ),
+//         Text(
+//           "450 ",
+//           style: TextStyle(
+//             fontSize: 25,
+//             color: Color(0xFF3D4245),
+//             fontWeight: FontWeight.bold,
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
 // 2
 
 // findTotalRetention

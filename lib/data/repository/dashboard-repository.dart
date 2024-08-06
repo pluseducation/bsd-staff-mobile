@@ -112,6 +112,11 @@ class DashboardRepository {
     return value;
   }
 
+  Future<int> findpatients() async {
+    final value = await dashboardApi.findpatients();
+    return value;
+  }
+
   Future<Refer> findTotalRefer() async {
     final entity = await dashboardApi.findTotalRefer();
     final model = networkMapper.toRefer(entity);

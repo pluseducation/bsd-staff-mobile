@@ -4,7 +4,7 @@ This is a sample Flutter project demonstrating different best practices on how t
 
 ## How to build the project
 
-This app uses an API to get a list of the latest movies, you can see the details of said API in the following [link](https://rapidapi.com/SAdrian/api/moviesdatabase/). 
+This app uses an API to get a list of the latest movies, you can see the details of said API in the following [link](https://rapidapi.com/SAdrian/api/moviesdatabase/).
 
 Follow these steps to be able to build the project:
 
@@ -28,6 +28,8 @@ Once this is done, the app should be able to run on both Android and iOS (includ
 The domain and data layer models can be generated with the following command:
 
 `flutter pub run build_runner build --delete-conflicting-outputs`
+`or`
+`flutter pub run build_runner build`
 
 Translation files can also be generated with:
 
