@@ -1,11 +1,10 @@
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'workflow-entity.g.dart';
 
-// WorkflowEntity
-
 @JsonSerializable()
-class WorkflowEntity {
+class RegisteringEntity {
   int? patientId;
   String? nationalId;
   String? name;
@@ -43,7 +42,7 @@ class WorkflowEntity {
   String? joinTreatmentBy;
   String? joinSentByCourt;
 
-  WorkflowEntity({
+  RegisteringEntity({
     required this.patientId,
     required this.nationalId,
     required this.name,
@@ -82,7 +81,29 @@ class WorkflowEntity {
     required this.joinSentByCourt,
   });
 
-  factory WorkflowEntity.fromJson(Map<String, dynamic> json) =>
-      _$WorkflowEntityFromJson(json);
-  Map<String, dynamic> toJson() => _$WorkflowEntityToJson(this);
+  factory RegisteringEntity.fromJson(Map<String, dynamic> json) =>
+      _$RegisteringEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$RegisteringEntityToJson(this);
+}
+
+// ProfileEntity
+@JsonSerializable()
+class ProfileEntity {
+  String? name;
+  String? middleName;
+  String? surname;
+  String? patientStatus;
+  String? level;
+
+  ProfileEntity({
+    required this.name,
+    required this.middleName,
+    required this.surname,
+    required this.patientStatus,
+    required this.level,
+  });
+
+  factory ProfileEntity.fromJson(Map<String, dynamic> json) =>
+      _$ProfileEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$ProfileEntityToJson(this);
 }

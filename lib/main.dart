@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
+import 'package:bst_staff_mobile/data/network/api/master-api.dart';
 import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
+import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
@@ -72,6 +74,9 @@ Future<InitialData> _createData() async {
     patientApi: patientApi,
     networkMapper: networkMapper,
   );
+
+  final masterApi = MasterApi(baseUrl: config.baseUrl);
+  final questionApi = Question(baseUrl: config.baseUrl);
 
   final preferences = Preferences(prefs: await SharedPreferences.getInstance());
   final preferencesRepo = PreferencesRepository(preferences: preferences);

@@ -6,8 +6,8 @@ part of 'workflow-entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-WorkflowEntity _$WorkflowEntityFromJson(Map<String, dynamic> json) =>
-    WorkflowEntity(
+RegisteringEntity _$RegisteringEntityFromJson(Map<String, dynamic> json) =>
+    RegisteringEntity(
       patientId: json['patientId'] as int?,
       nationalId: json['nationalId'] as String?,
       name: json['name'] as String?,
@@ -48,7 +48,7 @@ WorkflowEntity _$WorkflowEntityFromJson(Map<String, dynamic> json) =>
       joinSentByCourt: json['joinSentByCourt'] as String?,
     );
 
-Map<String, dynamic> _$WorkflowEntityToJson(WorkflowEntity instance) =>
+Map<String, dynamic> _$RegisteringEntityToJson(RegisteringEntity instance) =>
     <String, dynamic>{
       'patientId': instance.patientId,
       'nationalId': instance.nationalId,
@@ -86,4 +86,22 @@ Map<String, dynamic> _$WorkflowEntityToJson(WorkflowEntity instance) =>
       'guardianPhoneNo': instance.guardianPhoneNo,
       'joinTreatmentBy': instance.joinTreatmentBy,
       'joinSentByCourt': instance.joinSentByCourt,
+    };
+
+ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) =>
+    ProfileEntity(
+      name: json['name'] as String?,
+      middleName: json['middleName'] as String?,
+      surname: json['surname'] as String?,
+      patientStatus: json['patientStatus'] as String?,
+      level: json['level'] as String?,
+    );
+
+Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'middleName': instance.middleName,
+      'surname': instance.surname,
+      'patientStatus': instance.patientStatus,
+      'level': instance.level,
     };
