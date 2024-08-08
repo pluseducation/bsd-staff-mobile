@@ -24,7 +24,9 @@ mixin _$StatYear {
   double get monitoring => throw _privateConstructorUsedError;
   double get discharged => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatYear
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StatYearCopyWith<StatYear> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +56,8 @@ class _$StatYearCopyWithImpl<$Res, $Val extends StatYear>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StatYear
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,6 +128,8 @@ class __$$StatYearImplCopyWithImpl<$Res>
       _$StatYearImpl _value, $Res Function(_$StatYearImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StatYear
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -223,7 +229,9 @@ class _$StatYearImpl implements _StatYear {
   int get hashCode => Object.hash(runtimeType, year, total, register, screening,
       treatment, monitoring, discharged);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatYear
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StatYearImplCopyWith<_$StatYearImpl> get copyWith =>
@@ -254,8 +262,11 @@ abstract class _StatYear implements StatYear {
   double get monitoring;
   @override
   double get discharged;
+
+  /// Create a copy of StatYear
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatYearImplCopyWith<_$StatYearImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -265,7 +276,9 @@ mixin _$StatPatientWeek {
   int get newPatientWeek => throw _privateConstructorUsedError;
   List<double> get dataWeek => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StatPatientWeekCopyWith<StatPatientWeek> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -289,6 +302,8 @@ class _$StatPatientWeekCopyWithImpl<$Res, $Val extends StatPatientWeek>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -327,6 +342,8 @@ class __$$StatPatientWeekImplCopyWithImpl<$Res>
       _$StatPatientWeekImpl _value, $Res Function(_$StatPatientWeekImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -382,7 +399,9 @@ class _$StatPatientWeekImpl implements _StatPatientWeek {
   int get hashCode => Object.hash(runtimeType, newPatientWeek,
       const DeepCollectionEquality().hash(_dataWeek));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StatPatientWeekImplCopyWith<_$StatPatientWeekImpl> get copyWith =>
@@ -399,8 +418,11 @@ abstract class _StatPatientWeek implements StatPatientWeek {
   int get newPatientWeek;
   @override
   List<double> get dataWeek;
+
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatPatientWeekImplCopyWith<_$StatPatientWeekImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -410,7 +432,9 @@ mixin _$StatPatientMonth {
   int get newPatientMonth => throw _privateConstructorUsedError;
   List<double> get dataMonth => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StatPatientMonthCopyWith<StatPatientMonth> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -434,6 +458,8 @@ class _$StatPatientMonthCopyWithImpl<$Res, $Val extends StatPatientMonth>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -472,6 +498,8 @@ class __$$StatPatientMonthImplCopyWithImpl<$Res>
       $Res Function(_$StatPatientMonthImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -528,7 +556,9 @@ class _$StatPatientMonthImpl implements _StatPatientMonth {
   int get hashCode => Object.hash(runtimeType, newPatientMonth,
       const DeepCollectionEquality().hash(_dataMonth));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StatPatientMonthImplCopyWith<_$StatPatientMonthImpl> get copyWith =>
@@ -545,8 +575,11 @@ abstract class _StatPatientMonth implements StatPatientMonth {
   int get newPatientMonth;
   @override
   List<double> get dataMonth;
+
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatPatientMonthImplCopyWith<_$StatPatientMonthImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -556,7 +589,9 @@ mixin _$Refer {
   int get sender => throw _privateConstructorUsedError;
   int get receiver => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Refer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ReferCopyWith<Refer> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -578,6 +613,8 @@ class _$ReferCopyWithImpl<$Res, $Val extends Refer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Refer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -615,6 +652,8 @@ class __$$ReferImplCopyWithImpl<$Res>
       _$ReferImpl _value, $Res Function(_$ReferImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Refer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -662,7 +701,9 @@ class _$ReferImpl implements _Refer {
   @override
   int get hashCode => Object.hash(runtimeType, sender, receiver);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Refer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReferImplCopyWith<_$ReferImpl> get copyWith =>
@@ -677,8 +718,11 @@ abstract class _Refer implements Refer {
   int get sender;
   @override
   int get receiver;
+
+  /// Create a copy of Refer
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReferImplCopyWith<_$ReferImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

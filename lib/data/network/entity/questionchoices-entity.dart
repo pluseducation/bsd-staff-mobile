@@ -26,6 +26,10 @@ class QuestionChoicesEntity {
   factory QuestionChoicesEntity.fromJson(Map<String, dynamic> json) =>
       _$QuestionChoicesEntityFromJson(json);
 
+  get gender => null;
+
+  get someStringField => null;
+
   Map<String, dynamic> toJson() => _$QuestionChoicesEntityToJson(this);
 }
 

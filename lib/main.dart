@@ -13,6 +13,7 @@ import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
+import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
 import 'package:bst_staff_mobile/domain/model/config.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/app/app.dart';
@@ -78,6 +79,13 @@ Future<InitialData> _createData() async {
   final masterApi = MasterApi(baseUrl: config.baseUrl);
   final questionApi = Question(baseUrl: config.baseUrl);
 
+  final workflowRepository = WorkflowRepository(
+    patientApi: patientApi,
+    masterApi: masterApi,
+    questionApi: questionApi,
+    networkMapper: networkMapper,
+  );
+
   final preferences = Preferences(prefs: await SharedPreferences.getInstance());
   final preferencesRepo = PreferencesRepository(preferences: preferences);
 
@@ -92,6 +100,7 @@ Future<InitialData> _createData() async {
       Provider<LoginRepository>.value(value: loginRepository),
       Provider<DashboardRepository>.value(value: dashboardRepository),
       Provider<PatientRepository>.value(value: patientRepository),
+      Provider<WorkflowRepository>.value(value: workflowRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

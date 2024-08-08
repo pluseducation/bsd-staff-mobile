@@ -7,7 +7,7 @@ class Registering with _$Registering {
   const factory Registering({
     required String
         fullname, //** find on profile name + surname /patients/${patientId}/profile */
-    required String patientStatus, //**  /patients/${patientId}/profile */
+    required String patientStatus, //**  /patients/${nationalityText}/profile */
     required String level, //**  /patients/${patientId}/profile */
     required String dateOfBirthText, //ว/ด/ป ** '/api/v1/patients$patientsid' */
     required String gender, // เพศ* "/questionchoices$REGISTERING */

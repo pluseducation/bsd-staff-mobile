@@ -40,13 +40,14 @@ class PatientApi extends BaseApi {
   }
   // ---------------------------------
 
-  Future<RegisteringEntity> findPatientAllID({
+  Future<RegisteringEntity> findPatient(
+    int id, {
     required int patientsid,
   }) async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/patients$patientsid',
+        '/api/v1/patients/$patientsid',
       );
       if (response.statusCode == 200) {
         return RegisteringEntity.fromJson(
@@ -72,13 +73,14 @@ class PatientApi extends BaseApi {
     }
   }
 
-  Future<ProfileEntity> findProfile({
+  Future<ProfileEntity> findProfile(
+    int id, {
     required int patientsid,
   }) async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/patients$patientsid/profile',
+        '/api/v1/patients/$patientsid/profile',
       );
       if (response.statusCode == 200) {
         return ProfileEntity.fromJson(response.data as Map<String, dynamic>);

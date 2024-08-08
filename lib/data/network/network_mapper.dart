@@ -1,12 +1,14 @@
 import 'package:bst_staff_mobile/data/network/entity/dashboard-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/login-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/patient-entity.dart';
+import 'package:bst_staff_mobile/data/network/entity/questionchoices-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/usersession-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/mapper-exception.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/model/login.dart';
 import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/domain/model/session.dart';
+import 'package:bst_staff_mobile/domain/model/workflow.dart';
 import 'package:logger/logger.dart';
 
 class NetworkMapper {
@@ -161,4 +163,33 @@ class NetworkMapper {
       );
     }
   }
+
+  // ------
+
+  // ignore: type_annotate_public_apis
+  // Registering toRegistering(QuestionChoicesEntity entity ) {
+  //   try {
+  //     return Registering(fullname: '',
+  //       // name: entity.name,
+  //     );
+  //   } catch (e) {
+  //     throw MapperException<QuestionChoicesEntity, Registering>(
+  //       e.toString(),
+  //     );
+  //   }
+  // }
+
+  // List<Registering> toGroups(List<QuestionChoicesEntity> entities) {
+  //   final List<Registering> registering = [];
+
+  //   for (final entity in entities) {
+  //     try {
+  //       registering.add(toRegistering(entity));
+  //     } catch (e) {
+  //       // log.w('Could not map entity ${entity.id}', error: e);
+  //     }
+  //   }
+
+  //   return registering;
+  // }
 }

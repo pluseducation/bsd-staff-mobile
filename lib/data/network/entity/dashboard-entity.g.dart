@@ -8,8 +8,8 @@ part of 'dashboard-entity.dart';
 
 StatYearEntity _$StatYearEntityFromJson(Map<String, dynamic> json) =>
     StatYearEntity(
-      year: json['year'] as int,
-      total: json['total'] as int,
+      year: (json['year'] as num).toInt(),
+      total: (json['total'] as num).toInt(),
       register: (json['register'] as num).toDouble(),
       screening: (json['screening'] as num).toDouble(),
       treatment: (json['treatment'] as num).toDouble(),
@@ -31,16 +31,16 @@ Map<String, dynamic> _$StatYearEntityToJson(StatYearEntity instance) =>
 StatPatientWeekEntity _$StatPatientWeekEntityFromJson(
         Map<String, dynamic> json) =>
     StatPatientWeekEntity(
-      newPatientToday: json['newPatientToday'] as int,
-      newPatientWeek: json['newPatientWeek'] as int,
+      newPatientToday: (json['newPatientToday'] as num).toInt(),
+      newPatientWeek: (json['newPatientWeek'] as num).toInt(),
       dayOfWeek: json['dayOfWeek'] as String?,
-      monday: json['monday'] as int,
-      tuesday: json['tuesday'] as int,
-      wednesday: json['wednesday'] as int,
-      thursday: json['thursday'] as int,
-      friday: json['friday'] as int,
-      saturday: json['saturday'] as int,
-      sunday: json['sunday'] as int,
+      monday: (json['monday'] as num).toInt(),
+      tuesday: (json['tuesday'] as num).toInt(),
+      wednesday: (json['wednesday'] as num).toInt(),
+      thursday: (json['thursday'] as num).toInt(),
+      friday: (json['friday'] as num).toInt(),
+      saturday: (json['saturday'] as num).toInt(),
+      sunday: (json['sunday'] as num).toInt(),
     );
 
 Map<String, dynamic> _$StatPatientWeekEntityToJson(
@@ -61,9 +61,9 @@ Map<String, dynamic> _$StatPatientWeekEntityToJson(
 StatPatientMonthEntity _$StatPatientMonthEntityFromJson(
         Map<String, dynamic> json) =>
     StatPatientMonthEntity(
-      newPatientToday: json['newPatientToday'] as int,
-      newPatientMonth: json['newPatientMonth'] as int,
-      dayOfMonth: json['dayOfMonth'] as int,
+      newPatientToday: (json['newPatientToday'] as num).toInt(),
+      newPatientMonth: (json['newPatientMonth'] as num).toInt(),
+      dayOfMonth: (json['dayOfMonth'] as num).toInt(),
       totals: (json['totals'] as List<dynamic>)
           .map((e) =>
               StatPatientMonthTotalEntity.fromJson(e as Map<String, dynamic>))
@@ -82,8 +82,8 @@ Map<String, dynamic> _$StatPatientMonthEntityToJson(
 StatPatientMonthTotalEntity _$StatPatientMonthTotalEntityFromJson(
         Map<String, dynamic> json) =>
     StatPatientMonthTotalEntity(
-      date: json['date'] as int,
-      total: json['total'] as int,
+      date: (json['date'] as num).toInt(),
+      total: (json['total'] as num).toInt(),
     );
 
 Map<String, dynamic> _$StatPatientMonthTotalEntityToJson(
@@ -94,8 +94,8 @@ Map<String, dynamic> _$StatPatientMonthTotalEntityToJson(
     };
 
 ReferEntity _$ReferEntityFromJson(Map<String, dynamic> json) => ReferEntity(
-      sender: json['sender'] as int,
-      receiver: json['receiver'] as int,
+      sender: (json['sender'] as num).toInt(),
+      receiver: (json['receiver'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ReferEntityToJson(ReferEntity instance) =>

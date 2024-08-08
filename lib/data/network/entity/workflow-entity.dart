@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:bst_staff_mobile/data/network/entity/questionchoices-entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'workflow-entity.g.dart';
@@ -84,6 +85,11 @@ class RegisteringEntity {
   factory RegisteringEntity.fromJson(Map<String, dynamic> json) =>
       _$RegisteringEntityFromJson(json);
   Map<String, dynamic> toJson() => _$RegisteringEntityToJson(this);
+
+  // String firstWhere(
+  //   bool Function(dynamic q) param0, {
+  //   required QuestionChoicesEntity Function() orElse,
+  // }) {}
 }
 
 // ProfileEntity

@@ -19,7 +19,7 @@ mixin _$Registering {
   String get fullname =>
       throw _privateConstructorUsedError; //** find on profile name + surname /patients/${patientId}/profile */
   String get patientStatus =>
-      throw _privateConstructorUsedError; //**  /patients/${patientId}/profile */
+      throw _privateConstructorUsedError; //**  /patients/${nationalityText}/profile */
   String get level =>
       throw _privateConstructorUsedError; //**  /patients/${patientId}/profile */
   String get dateOfBirthText =>
@@ -44,7 +44,9 @@ mixin _$Registering {
       throw _privateConstructorUsedError; //เข้าร่วมการรักษา ** find on questionchoices
   String get joinSentByCourtText => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Registering
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegisteringCopyWith<Registering> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -82,6 +84,8 @@ class _$RegisteringCopyWithImpl<$Res, $Val extends Registering>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Registering
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -194,6 +198,8 @@ class __$$RegisteringImplCopyWithImpl<$Res>
       _$RegisteringImpl _value, $Res Function(_$RegisteringImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Registering
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -297,7 +303,7 @@ class _$RegisteringImpl implements _Registering {
 //** find on profile name + surname /patients/${patientId}/profile */
   @override
   final String patientStatus;
-//**  /patients/${patientId}/profile */
+//**  /patients/${nationalityText}/profile */
   @override
   final String level;
 //**  /patients/${patientId}/profile */
@@ -390,7 +396,9 @@ class _$RegisteringImpl implements _Registering {
       joinTreatmentByText,
       joinSentByCourtText);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Registering
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisteringImplCopyWith<_$RegisteringImpl> get copyWith =>
@@ -415,35 +423,39 @@ abstract class _Registering implements Registering {
       required final String joinSentByCourtText}) = _$RegisteringImpl;
 
   @override
-  String get fullname;
-  @override //** find on profile name + surname /patients/${patientId}/profile */
-  String get patientStatus;
-  @override //**  /patients/${patientId}/profile */
-  String get level;
-  @override //**  /patients/${patientId}/profile */
-  String get dateOfBirthText;
-  @override //ว/ด/ป ** '/api/v1/patients$patientsid' */
-  String get gender;
-  @override // เพศ* "/questionchoices$REGISTERING */
-  String get nationalityText;
-  @override //สัญชาติ** /master/nationalities */
-  int get religionText;
-  @override //ศาสนา ** /master/religions
-  String get registereText;
-  @override //  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
-  String get currentAddrText;
-  @override //ที่อยู่ปัจจุบัน ** find on patient
-  String get guardianfullNameText;
-  @override //ข้อมูลผู้ปกครอง **  find on patient
-  int get relationShipId;
-  @override // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
-  String get guardianPhoneNo;
-  @override // เบอร์โทร 02-xxx-xxx   ** find on patient
-  String get joinTreatmentByText;
-  @override //เข้าร่วมการรักษา ** find on questionchoices
-  String get joinSentByCourtText;
+  String
+      get fullname; //** find on profile name + surname /patients/${patientId}/profile */
   @override
-  @JsonKey(ignore: true)
+  String get patientStatus; //**  /patients/${nationalityText}/profile */
+  @override
+  String get level; //**  /patients/${patientId}/profile */
+  @override
+  String get dateOfBirthText; //ว/ด/ป ** '/api/v1/patients$patientsid' */
+  @override
+  String get gender; // เพศ* "/questionchoices$REGISTERING */
+  @override
+  String get nationalityText; //สัญชาติ** /master/nationalities */
+  @override
+  int get religionText; //ศาสนา ** /master/religions
+  @override
+  String get registereText; //  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
+  @override
+  String get currentAddrText; //ที่อยู่ปัจจุบัน ** find on patient
+  @override
+  String get guardianfullNameText; //ข้อมูลผู้ปกครอง **  find on patient
+  @override
+  int get relationShipId; // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
+  @override
+  String get guardianPhoneNo; // เบอร์โทร 02-xxx-xxx   ** find on patient
+  @override
+  String get joinTreatmentByText; //เข้าร่วมการรักษา ** find on questionchoices
+  @override
+  String get joinSentByCourtText;
+
+  /// Create a copy of Registering
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegisteringImplCopyWith<_$RegisteringImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

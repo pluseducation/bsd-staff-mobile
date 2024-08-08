@@ -11,8 +11,8 @@ PatientAllEntity _$PatientAllEntityFromJson(Map<String, dynamic> json) =>
       content: (json['content'] as List<dynamic>)
           .map((e) => PatientEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalPages: json['totalPages'] as int,
-      totalElements: json['totalElements'] as int,
+      totalPages: (json['totalPages'] as num).toInt(),
+      totalElements: (json['totalElements'] as num).toInt(),
     );
 
 Map<String, dynamic> _$PatientAllEntityToJson(PatientAllEntity instance) =>
@@ -26,7 +26,7 @@ PatientEntity _$PatientEntityFromJson(Map<String, dynamic> json) =>
     PatientEntity(
       name: json['name'] as String,
       status: json['status'] as String?,
-      patientId: json['patientId'] as int,
+      patientId: (json['patientId'] as num).toInt(),
       surname: json['surname'] as String,
       cycle: json['cycle'] as String?,
       nationalId: json['nationalId'] as String,

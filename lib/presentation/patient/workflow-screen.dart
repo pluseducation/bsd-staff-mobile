@@ -1,9 +1,14 @@
+import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
+import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/patient/registering-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/screening-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/treatment-screen.dart';
+import 'package:bst_staff_mobile/presentation/patient/workflow-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 class Workflow extends StatefulWidget {
   const Workflow({super.key});
@@ -13,6 +18,20 @@ class Workflow extends StatefulWidget {
 }
 
 class _WorkflowState extends State<Workflow> {
+  late final WorkflowdModel _model;
+
+  @override
+  void initState() {
+    super.initState();
+    _model = WorkflowdModel(
+      log: Provider.of<Logger>(super.context, listen: false),
+      workflowRepository:
+          Provider.of<WorkflowRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+    final result = _model.testvalue();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

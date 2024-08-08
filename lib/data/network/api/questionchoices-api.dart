@@ -8,13 +8,11 @@ class Question extends BaseApi {
 
   // ---------------------------------
 
-  Future<List<QuestionChoicesEntity>> findQuestionChoices({
-    required String findbyworkflowtype,
-  }) async {
+  Future<List<QuestionChoicesEntity>> findRegisteringQuestionChoices() async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/questionchoices$findbyworkflowtype',
+        '/api/v1/questionchoices/REGISTERING',
       );
       if (response.statusCode == 200) {
         return questionChoicesEntityFromJson(

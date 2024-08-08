@@ -52,4 +52,30 @@ class ReligionsEntity {
       _$ReligionsEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReligionsEntityToJson(this);
+
+  //relationships-----------------------------------------------
+}
+
+List<RelationshipsEntity> relationshipsFromJson(List data) =>
+    List<RelationshipsEntity>.from(
+      data.map((x) => RelationshipsEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String relationshipsToJson(List<ReligionsEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class RelationshipsEntity {
+  int? id;
+  String? name;
+
+  RelationshipsEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory RelationshipsEntity.fromJson(Map<String, dynamic> json) =>
+      _$RelationshipsEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RelationshipsEntityToJson(this);
 }
