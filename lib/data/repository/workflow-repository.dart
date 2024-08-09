@@ -7,6 +7,7 @@ import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/workflow.dart';
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-screen.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
+import 'package:intl/intl.dart';
 
 class WorkflowRepository {
   final PatientApi patientApi;
@@ -28,13 +29,20 @@ class WorkflowRepository {
       final entityNationallity = await masterApi.findNationality();
       final entityReligion = await masterApi.findReligions();
       final entityRelationShip = await masterApi.findRelationships();
+      final entityVillages = await masterApi.findVillages();
+      final entityProvinces = await masterApi.findProvinces();
+      final entityDistricts = await masterApi.findDistricts();
+      final entitySubdistricts = await masterApi.findSubdistricts();
+
       final entityQuestion = await questionApi.findRegisteringQuestionChoices();
 
       final String fullname =
           "${convertToString(entityPatient.name)} ${convertToString(entityPatient.surname)}";
       final String patientStatus = convertToString(entityProfile.patientStatus);
       final String level = convertToString(entityProfile.level);
-      final String dateOfBirthText = entityPatient.dateOfBirth.toString();
+
+      final String dateOfBirthText = formatThaiDate(entityPatient.dateOfBirth);
+      print("วันที่เกิดในภาษาไทย: $dateOfBirthText");
 
       final String nationalityText = convertToString(
         entityNationallity
@@ -50,8 +58,43 @@ class WorkflowRepository {
             .name,
       );
 
+      // -----หมู่บ้าน/ชุมชน
+      final String villages = convertToString(
+        entityVillages
+            .where((t) => t.id == entityPatient.registeredVillageId)
+            .first
+            .name,
+      );
+
+      // ----จังหวัด
+
+      final String province = convertToString(
+        entityProvinces
+            .where((t) => t.id == entityPatient.registeredProvinceId)
+            .first
+            .name,
+      );
+
+      // ----เขต
+
+      final String districts = convertToString(
+        entityDistricts
+            .where((t) => t.id == entityPatient.registeredDistrictId)
+            .first
+            .name,
+      );
+
+      // ตำบล
+      final String subdistricts = convertToString(
+        entitySubdistricts
+            .where((t) => t.id == entityPatient.registeredSubDistrictId)
+            .first
+            .name,
+      );
+
       final String registereText =
-          "${entityPatient.registeredHouseNo} ${entityPatient.registeredHouseMoo} ${entityPatient.registeredVillageId}${entityPatient.registeredHouseRoad}${entityPatient.registeredProvinceId}${entityPatient.registeredDistrictId}${entityPatient.registeredSubDistrictId}${entityPatient.registeredPostalCode}";
+          "${entityPatient.registeredHouseNo} ${entityPatient.registeredHouseMoo} $villages ${entityPatient.registeredHouseRoad} $province $districts $subdistricts ${entityPatient.registeredPostalCode}";
+
       final String currentAddrText =
           "${entityPatient.currentAddrAsRegistered} ${entityPatient.currentHouseNo} ${entityPatient.currentHouseMoo} ${entityPatient.currentVillageId} ${entityPatient.currentHouseRoad} ${entityPatient.currentProvinceId} ${entityPatient.currentDistrictId}  ${entityPatient.currentSubDistrictId} ${entityPatient.currentPostalCode}";
       final String guardianfullNameText =
@@ -64,37 +107,128 @@ class WorkflowRepository {
             .name,
       );
 
-      final String gender = convertToString(
-        entityQuestion
-            .firstWhere(
-              (q) => q.question?.question == "gender",
-              orElse: () => throw Exception("Gender question not found"),
-            )
-            .choices
-            ?.firstWhere(
-              (choice) => choice.choice == entityPatient.gender,
-              orElse: () => throw Exception("Gender choice not found"),
-            )
-            .desc,
+      final String guardianPhoneNo = "${entityPatient.guardianPhoneNo}";
+
+      final String gender = _getChoiceDescription(
+        entityQuestion,
+        "gender",
+        entityPatient.gender,
       );
 
-      print(gender);
+      String? joinTreatmentByText = "";
+      joinTreatmentByText = _getChoiceDescription(
+        entityQuestion,
+        "join_treatment_by_prison",
+        entityPatient.joinTreatmentBy,
+      );
 
-      // final String? gender = entityQuestion.isNotEmpty
-      //     ? entityQuestion[0].gender.toString()
-      //     : entityQuestion.isNotEmpty
-      //         ? entityQuestion[1].toString()
-      //         : null;
+      if (joinTreatmentByText.isEmpty) {
+        joinTreatmentByText = _getChoiceDescription(
+          entityQuestion,
+          "join_treatment_by_djop",
+          entityPatient.joinTreatmentBy,
+        );
+      }
 
-      // final String? joinTreatmentByText = entityQuestion.isNotEmpty
-      //     ? entityQuestion[0].someStringField.toString()
-      //     : null;
+      if (joinTreatmentByText.isEmpty) {
+        joinTreatmentByText = _getChoiceDescription(
+          entityQuestion,
+          "join_treatment_by",
+          entityPatient.joinTreatmentBy,
+        );
+      }
+      // --------------------------
 
-      // final String? joinSentByCourtText = entityQuestion.isNotEmpty
-      //     ? entityQuestion[0].someStringField.toString()
-      //     : null;
+      String? joinSentByCourtText = "";
+      joinSentByCourtText = _getChoiceDescriptionChild(
+        entityQuestion,
+        "join_treatment_by_prison",
+        entityPatient.joinSentByCourt,
+      );
+
+      if (joinSentByCourtText.isEmpty) {
+        joinSentByCourtText = _getChoiceDescriptionChild(
+          entityQuestion,
+          "join_treatment_by_djop",
+          entityPatient.joinSentByCourt,
+        );
+      }
+
+      if (joinSentByCourtText.isEmpty) {
+        joinSentByCourtText = _getChoiceDescriptionChild(
+          entityQuestion,
+          "join_treatment_by",
+          entityPatient.joinSentByCourt,
+        );
+      }
+
+      print("end");
+      //----
     } catch (e) {
       rethrow;
     }
+  }
+
+  String _getChoiceDescription(
+    List<QuestionChoicesEntity> questionList,
+    String question,
+    String? choice,
+  ) {
+    final questionEntity =
+        questionList.where((t) => t.question?.question == question).firstOrNull;
+    if (questionEntity == null) {
+      return "";
+    }
+
+    final choise =
+        questionEntity.choices?.where((t) => t.choice == choice).firstOrNull;
+    if (choise == null) {
+      return "";
+    }
+
+    return convertToString(choise.desc);
+  }
+
+  String _getChoiceDescriptionChild(
+    List<QuestionChoicesEntity> questionList,
+    String question,
+    String? choice,
+  ) {
+    final questionEntity =
+        questionList.where((t) => t.question?.question == question).firstOrNull;
+    if (questionEntity == null) {
+      return "";
+    }
+
+    final choiceEntitys =
+        questionEntity.choices?.where((t) => t.choices != null).toList();
+    if (choiceEntitys == null) {
+      return "";
+    }
+
+    ChoiceEntity? choiceChildEntity;
+    for (int i = 0; i < choiceEntitys.length; i++) {
+      final choiceEntity = choiceEntitys[0];
+      choiceChildEntity =
+          choiceEntity.choices?.where((t) => t.choice == choice).firstOrNull;
+      if (choiceChildEntity != null) {
+        break;
+      }
+    }
+
+    if (choiceChildEntity == null) {
+      return "";
+    }
+
+    return convertToString(choiceChildEntity.desc);
+  }
+
+  String formatThaiDate(DateTime? date) {
+    if (date == null) {
+      return "";
+    }
+
+    final DateFormat thaiDateFormat = DateFormat.yMMMd('th_TH');
+    return thaiDateFormat.format(date);
   }
 }

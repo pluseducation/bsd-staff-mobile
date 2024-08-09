@@ -85,11 +85,6 @@ class RegisteringEntity {
   factory RegisteringEntity.fromJson(Map<String, dynamic> json) =>
       _$RegisteringEntityFromJson(json);
   Map<String, dynamic> toJson() => _$RegisteringEntityToJson(this);
-
-  // String firstWhere(
-  //   bool Function(dynamic q) param0, {
-  //   required QuestionChoicesEntity Function() orElse,
-  // }) {}
 }
 
 // ProfileEntity

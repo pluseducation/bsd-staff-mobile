@@ -34,3 +34,12 @@ String convertToString(dynamic object) {
     rethrow;
   }
 }
+
+String formatThaiDate(dynamic object) {
+  try {
+    final String? value = object as String?;
+    return value ?? "";
+  } catch (e) {
+    rethrow;
+  }
+}

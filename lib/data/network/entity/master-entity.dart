@@ -53,7 +53,7 @@ class ReligionsEntity {
 
   Map<String, dynamic> toJson() => _$ReligionsEntityToJson(this);
 
-  //relationships-----------------------------------------------
+  //relationships
 }
 
 List<RelationshipsEntity> relationshipsFromJson(List data) =>
@@ -61,7 +61,7 @@ List<RelationshipsEntity> relationshipsFromJson(List data) =>
       data.map((x) => RelationshipsEntity.fromJson(x as Map<String, dynamic>)),
     );
 
-String relationshipsToJson(List<ReligionsEntity> data) =>
+String relationshipsToJson(List<RelationshipsEntity> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 @JsonSerializable()
@@ -78,4 +78,106 @@ class RelationshipsEntity {
       _$RelationshipsEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$RelationshipsEntityToJson(this);
+}
+
+//Villages
+
+List<VillagesEntity> villagesFromJson(List data) => List<VillagesEntity>.from(
+      data.map((x) => VillagesEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String villagesToJson(List<VillagesEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class VillagesEntity {
+  int? id;
+  String? name;
+
+  VillagesEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory VillagesEntity.fromJson(Map<String, dynamic> json) =>
+      _$VillagesEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VillagesEntityToJson(this);
+}
+// provinces
+
+List<ProvincesEntity> provincesFromJson(List data) =>
+    List<ProvincesEntity>.from(
+      data.map((x) => ProvincesEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String provincesToJson(List<ProvincesEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class ProvincesEntity {
+  int? id;
+  String? name;
+
+  ProvincesEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory ProvincesEntity.fromJson(Map<String, dynamic> json) =>
+      _$ProvincesEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProvincesEntityToJson(this);
+}
+
+// districts
+
+List<DistrictsEntity> districtsFromJson(List data) =>
+    List<DistrictsEntity>.from(
+      data.map((x) => DistrictsEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String districtsToJson(List<DistrictsEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class DistrictsEntity {
+  int? id;
+  String? name;
+
+  DistrictsEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory DistrictsEntity.fromJson(Map<String, dynamic> json) =>
+      _$DistrictsEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DistrictsEntityToJson(this);
+}
+
+// subdistricts
+
+List<SubdistrictsEntity> subdistrictsFromJson(List data) =>
+    List<SubdistrictsEntity>.from(
+      data.map((x) => SubdistrictsEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String subdistrictsToJson(List<SubdistrictsEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class SubdistrictsEntity {
+  int? id;
+  String? name;
+
+  SubdistrictsEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory SubdistrictsEntity.fromJson(Map<String, dynamic> json) =>
+      _$SubdistrictsEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SubdistrictsEntityToJson(this);
 }

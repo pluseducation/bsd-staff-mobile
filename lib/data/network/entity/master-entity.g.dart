@@ -42,3 +42,51 @@ Map<String, dynamic> _$RelationshipsEntityToJson(
       'id': instance.id,
       'name': instance.name,
     };
+
+VillagesEntity _$VillagesEntityFromJson(Map<String, dynamic> json) =>
+    VillagesEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$VillagesEntityToJson(VillagesEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+ProvincesEntity _$ProvincesEntityFromJson(Map<String, dynamic> json) =>
+    ProvincesEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$ProvincesEntityToJson(ProvincesEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+DistrictsEntity _$DistrictsEntityFromJson(Map<String, dynamic> json) =>
+    DistrictsEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$DistrictsEntityToJson(DistrictsEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+SubdistrictsEntity _$SubdistrictsEntityFromJson(Map<String, dynamic> json) =>
+    SubdistrictsEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$SubdistrictsEntityToJson(SubdistrictsEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
