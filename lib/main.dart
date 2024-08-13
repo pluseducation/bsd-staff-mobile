@@ -7,6 +7,7 @@ import 'package:bst_staff_mobile/data/network/api/master-api.dart';
 import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
+import 'package:bst_staff_mobile/data/network/api/screenings-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
@@ -78,12 +79,14 @@ Future<InitialData> _createData() async {
 
   final masterApi = MasterApi(baseUrl: config.baseUrl);
   final questionApi = Question(baseUrl: config.baseUrl);
+  final screeningsApi = Screenings(baseUrl: config.baseUrl);
 
   final workflowRepository = WorkflowRepository(
     patientApi: patientApi,
     masterApi: masterApi,
     questionApi: questionApi,
     networkMapper: networkMapper,
+    screeningsApi: screeningsApi,
   );
 
   final preferences = Preferences(prefs: await SharedPreferences.getInstance());

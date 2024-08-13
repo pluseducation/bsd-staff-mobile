@@ -37,4 +37,35 @@ class Question extends BaseApi {
       throw Exception('Unknown error : $error');
     }
   }
+
+  Future<List<ScreeningsQuestionChoiceEntity>>
+      findScreeningsQuestionChoices() async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get(
+        '/api/v1/questionchoices/SCREENING',
+      );
+      if (response.statusCode == 200) {
+        return screeningsQuestionChoiceEntityFromJson(
+          response.data as List,
+        );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data.toString(),
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
 }

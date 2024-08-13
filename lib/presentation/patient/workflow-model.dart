@@ -19,6 +19,7 @@ class WorkflowdModel {
 
   Future<void> testvalue() async {
     workflowRepository.findRegistering(1190);
+    workflowRepository.findScreenings(1191);
   }
 
   // Future<Future<Registering>?> testvalue() async {
@@ -34,31 +35,4 @@ class WorkflowdModel {
   //     }
   //   }
   // }
-
-  // Future<Future<List<QuestionChoicesEntity>>> findScreening() async {
-  //   try {
-  //     return workflowRepository.findScreening();
-  //   } catch (e) {
-  //     if (e is NetworkException) {
-  //       log.e('Network Error', error: e);
-  //       throw CustomException(e.message);
-  //     } else {
-  //       log.e('System Error', error: e);
-  //       throw CustomException(e.toString());
-  //     }
-  //   }
 }
-
-  // Future<Future<List<QuestionChoicesEntity>>> findtreatment() async {
-  //   try {
-  //     return workflowRepository.findtreatment();
-  //   } catch (e) {
-  //     if (e is NetworkException) {
-  //       log.e('Network Error', error: e);
-  //       throw CustomException(e.message);
-  //     } else {
-  //       log.e('System Error', error: e);
-  //       throw CustomException(e.toString());
-  //     }
-  //   }
-  // }

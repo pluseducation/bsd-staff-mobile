@@ -90,3 +90,53 @@ Map<String, dynamic> _$SubdistrictsEntityToJson(SubdistrictsEntity instance) =>
       'id': instance.id,
       'name': instance.name,
     };
+
+EducationsEntity _$EducationsEntityFromJson(Map<String, dynamic> json) =>
+    EducationsEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$EducationsEntityToJson(EducationsEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+OccupationsEntity _$OccupationsEntityFromJson(Map<String, dynamic> json) =>
+    OccupationsEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$OccupationsEntityToJson(OccupationsEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+IncomesEntity _$IncomesEntityFromJson(Map<String, dynamic> json) =>
+    IncomesEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$IncomesEntityToJson(IncomesEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+MaritalstatusesEntity _$MaritalstatusesEntityFromJson(
+        Map<String, dynamic> json) =>
+    MaritalstatusesEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$MaritalstatusesEntityToJson(
+        MaritalstatusesEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };

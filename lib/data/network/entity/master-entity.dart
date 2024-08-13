@@ -181,3 +181,106 @@ class SubdistrictsEntity {
 
   Map<String, dynamic> toJson() => _$SubdistrictsEntityToJson(this);
 }
+
+// /master/educations
+
+List<EducationsEntity> educationsFromJson(List data) =>
+    List<EducationsEntity>.from(
+      data.map((x) => EducationsEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String educationsToJson(List<EducationsEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class EducationsEntity {
+  int? id;
+  String? name;
+
+  EducationsEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory EducationsEntity.fromJson(Map<String, dynamic> json) =>
+      _$EducationsEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EducationsEntityToJson(this);
+}
+
+// OccupationsEntity
+
+List<OccupationsEntity> occupationsFromJson(List data) =>
+    List<OccupationsEntity>.from(
+      data.map((x) => OccupationsEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String occupationsToJson(List<OccupationsEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class OccupationsEntity {
+  int? id;
+  String? name;
+
+  OccupationsEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory OccupationsEntity.fromJson(Map<String, dynamic> json) =>
+      _$OccupationsEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OccupationsEntityToJson(this);
+}
+
+// ----
+List<IncomesEntity> IncomesFromJson(List data) => List<IncomesEntity>.from(
+      data.map((x) => IncomesEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String incomesToJson(List<IncomesEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class IncomesEntity {
+  int? id;
+  String? name;
+
+  IncomesEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory IncomesEntity.fromJson(Map<String, dynamic> json) =>
+      _$IncomesEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$IncomesEntityToJson(this);
+}
+
+// MaritalstatusesEntity
+
+List<MaritalstatusesEntity> maritalstatusesFromJson(List data) =>
+    List<MaritalstatusesEntity>.from(
+      data.map(
+          (x) => MaritalstatusesEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String maritalstatusesToJson(List<MaritalstatusesEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class MaritalstatusesEntity {
+  int? id;
+  String? name;
+
+  MaritalstatusesEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory MaritalstatusesEntity.fromJson(Map<String, dynamic> json) =>
+      _$MaritalstatusesEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MaritalstatusesEntityToJson(this);
+}

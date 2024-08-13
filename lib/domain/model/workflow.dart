@@ -25,3 +25,76 @@ class Registering with _$Registering {
     required String joinSentByCourtText, //** find on questionchoices
   }) = _Registering;
 }
+
+// --------Screening----------
+@freezed
+class Screening with _$Screening {
+  const factory Screening({
+    required int maritalStatusId, //** สถานะ find on  /master/${patientId} */
+    required int educationId, //** การศึกษา  /master/educations */
+    required int occupationId, //**อาชีพ  /master/occupations */
+    required int incomeId, //**รายได้  /master/incomes */
+    required String livingWithLast30days, // /screenings/${patientId} */
+    required int
+        parentRelationshipId, //**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
+    required String startDate, // ว/ด/ป  /screenings/${patientId}
+    required String
+        isToBeNumberOneMember, //การใช้ยาเสพติด  /screenings/${patientId}
+    required String
+        drugUsageApproach, //การใช้ยาเสพติด(รูปแบบการเสพ)  /screenings/${patientId}
+    required String
+        mainDrugText, //ยาเสพติดที่ใช้  /master/drugs  #หมายเหตุ  answer == 17 show  other=""
+
+    required String
+        mentalEvalLevel, //** สรุปผล find on  /screenings/${patientId} */
+
+    required String
+        frequencyOfUse, //** คุณใช้บ่อยเพียงใด  find on  /screenings/${patientId} */
+
+    required String
+        feelingAddicted, //** คุณมีความต้องการ หรือมีความรู้สึกอยากใช้  find on  /screenings/${patientId} */
+
+    required String
+        irresponsible, //** การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด  find on  /screenings/${patientId} */
+
+    required String
+        frequencyOfProblem, //** การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?  find on  /screenings/${patientId} */
+    required String
+        beNoticed, //** ญาติ เพื่อน หรือคนรู้จัก   find on  /screenings/${patientId} */
+    required String
+        stopUsingButNotSuccess, //** คุนเคย find on  /screenings/${patientId} */
+
+    required String
+        injectableDrug, //** คุณเคยใช้สารเสพติดชนิดฉีดหรือไม่ /screenings/${patientId} */
+
+    required String
+        last3monthUsage, //** ภายใน 3 เดือนที่ผ่านมา คุณใช้บ่อยเพียงใด find on  /screenings/${patientId} */
+
+    required String
+        hadMentalTreatment, //**ประวัติรักษาโรคสุขภาพจิต find on  /screenings/${patientId} */
+
+    required int
+        mentalTreatmentText, //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadMentalTreatment == "YES" && show  ui เพิ่ม Text to ui  /master/mentaltreatments */
+
+    required String
+        hadChronicContagious, //**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
+
+    required int
+        chronicContagiousText, //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
+
+    required String
+        hadCriminalCase, //**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
+
+    required int
+        criminalCaseText, //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadCriminalCase == "YES" && show  ui เพิ่ม Text to ui  /master/criminalcases */
+
+    required String
+        homeless, //**คนเร่ร่อน ไร้ที่พักพิง find on  /screenings/${patientId} */
+
+    required String
+        disabledPerson, //**ผู้พิการ find on  /screenings/${patientId} */
+
+    required String
+        disabledCertificateNo, //**ผู้พิการ   disabledPerson == "PHYSICAL_DISABILITY" && show  ui เพิ่ม Text to ui  find on  /screenings/${patientId} */
+  }) = _Screening;
+}

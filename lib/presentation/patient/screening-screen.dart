@@ -195,7 +195,7 @@ class _ScreeningScreenState extends State<ScreeningScreen> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        "สถานะความเป็นสมาชิก ToBeNumber ONE (ใครติดยายกมือขึ้น)",
+                        "การใช้ยาเสพติด (สถานะการเป็นสมาชิก ToBeNumber ONE)",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -312,7 +312,39 @@ class _ScreeningScreenState extends State<ScreeningScreen> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "คุณมีความต้องการ หรือมีความรู้สึกอยากใช้ ยาบ้า จนทนไม่ได้บ่อยเพียงใด??",
+                          "คุณมีความต้องการ หรือมีความรู้สึกอยากใช้ ยาบ้า จนทนไม่ได้บ่อยเพียงใด?",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "เพียง 1-2 ครั้ง",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF434343),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "ไม่เคย",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF434343),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -492,6 +524,21 @@ class _ScreeningScreenState extends State<ScreeningScreen> {
                       SizedBox(height: 10),
                       Text(
                         "ประวัติรักษาโรคสุขภาพจิต",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "ไม่มี",
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "ประวัติโรคเรื้อรัง / โรคติดต่อ",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

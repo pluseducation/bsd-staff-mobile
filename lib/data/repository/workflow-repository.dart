@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/data/network/api/master-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
+import 'package:bst_staff_mobile/data/network/api/screenings-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/questionchoices-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/workflow-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
@@ -11,12 +12,14 @@ import 'package:intl/intl.dart';
 
 class WorkflowRepository {
   final PatientApi patientApi;
+  final Screenings screeningsApi;
   final MasterApi masterApi;
   final Question questionApi;
   final NetworkMapper networkMapper;
 
   WorkflowRepository({
     required this.patientApi,
+    required this.screeningsApi,
     required this.masterApi,
     required this.questionApi,
     required this.networkMapper,
@@ -42,7 +45,6 @@ class WorkflowRepository {
       final String level = convertToString(entityProfile.level);
 
       final String dateOfBirthText = formatThaiDate(entityPatient.dateOfBirth);
-      print("วันที่เกิดในภาษาไทย: $dateOfBirthText");
 
       final String nationalityText = convertToString(
         entityNationallity
@@ -169,6 +171,102 @@ class WorkflowRepository {
     }
   }
 
+  Future<void> findScreenings(int id) async {
+    try {
+      final entityScreenings =
+          await screeningsApi.findScreenings(id, patientsid: id);
+
+      final entityMaritalstatuses = await masterApi.findMaritalstatuses();
+      final entityEducations = await masterApi.findEducations();
+      final entityOccupations = await masterApi.findOccupations();
+      final entityIncomes = await masterApi.findIncomes();
+
+      final entityScreeningsQuestion =
+          await questionApi.findScreeningsQuestionChoices();
+
+      // final String maritalStatusId =
+      //     convertToString(entityScreenings.maritalStatusId);
+
+      final String entityMaritalstatusesText = convertToString(
+        entityMaritalstatuses
+            .where((t) => t.id == entityScreenings.maritalStatusId)
+            .first
+            .name,
+      );
+// -----
+      final String entityEducationsText = convertToString(
+        entityEducations
+            .where((t) => t.id == entityScreenings.educationId)
+            .first
+            .name,
+      );
+
+      final String entityOccupationsText = convertToString(
+        entityOccupations
+            .where((t) => t.id == entityScreenings.occupationId)
+            .first
+            .name,
+      );
+
+      final String entityIncomesText = convertToString(
+        entityIncomes
+            .where((t) => t.id == entityScreenings.incomeId)
+            .first
+            .name,
+      );
+
+      final String livingWithLast30days = _getChoiceDescriptionList(
+        entityScreeningsQuestion,
+        "screening_info_last_30_days_answer",
+        entityScreenings.livingWithLast30Days ?? [],
+        "OTHER",
+      );
+
+      //----
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  String _getChoiceDescriptionList(
+    List<ScreeningsQuestionChoiceEntity> questionList,
+    String question,
+    List<AnswerEntity> answers,
+    String otherKey,
+  ) {
+    final List<String> values = List.empty();
+
+    final questionEntity =
+        questionList.where((t) => t.question?.question == question).firstOrNull;
+    if (questionEntity == null) {
+      return "";
+    }
+
+    final choiseEntitys = questionEntity.choices;
+    if (choiseEntitys == null) {
+      return "";
+    }
+
+    for (final answer in answers) {
+      if (answer.answer == otherKey) {
+        values.add(convertToString(answer.other));
+      } else {
+        final choiseEntity =
+            choiseEntitys.where((t) => t.choice == answer.answer).firstOrNull;
+
+        if (choiseEntity != null) {
+          values.add(convertToString(choiseEntity.desc));
+        }
+      }
+    }
+
+    if (values.isEmpty) {
+      return "";
+    }
+
+    return values.join(', ');
+  }
+
   String _getChoiceDescription(
     List<QuestionChoicesEntity> questionList,
     String question,
@@ -221,14 +319,5 @@ class WorkflowRepository {
     }
 
     return convertToString(choiceChildEntity.desc);
-  }
-
-  String formatThaiDate(DateTime? date) {
-    if (date == null) {
-      return "";
-    }
-
-    final DateFormat thaiDateFormat = DateFormat.yMMMd('th_TH');
-    return thaiDateFormat.format(date);
   }
 }

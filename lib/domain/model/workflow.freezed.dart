@@ -459,3 +459,800 @@ abstract class _Registering implements Registering {
   _$$RegisteringImplCopyWith<_$RegisteringImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$Screening {
+  int get maritalStatusId =>
+      throw _privateConstructorUsedError; //** สถานะ find on  /master/${patientId} */
+  int get educationId =>
+      throw _privateConstructorUsedError; //** การศึกษา  /master/educations */
+  int get occupationId =>
+      throw _privateConstructorUsedError; //**อาชีพ  /master/occupations */
+  int get incomeId =>
+      throw _privateConstructorUsedError; //**รายได้  /master/incomes */
+  String get livingWithLast30days =>
+      throw _privateConstructorUsedError; // /screenings/${patientId} */
+  int get parentRelationshipId =>
+      throw _privateConstructorUsedError; //**ความสัมพันธ์ระหว่างบิดามารดา */ master/relationships
+  String get startDate =>
+      throw _privateConstructorUsedError; // ว/ด/ป  /screenings/${patientId}
+  String get isToBeNumberOneMember =>
+      throw _privateConstructorUsedError; //การใช้ยาเสพติด  /screenings/${patientId}
+  String get drugUsageApproach =>
+      throw _privateConstructorUsedError; //การใช้ยาเสพติด(รูปแบบการเสพ)  /screenings/${patientId}
+  String get mainDrugText =>
+      throw _privateConstructorUsedError; //ยาเสพติดที่ใช้  /master/drugs  #หมายเหตุ  answer == 17 show  other=""
+  String get mentalEvalLevel =>
+      throw _privateConstructorUsedError; //** สรุปผล find on  /screenings/${patientId} */
+  String get frequencyOfUse =>
+      throw _privateConstructorUsedError; //** คุณใช้บ่อยเพียงใด  find on  /screenings/${patientId} */
+  String get feelingAddicted =>
+      throw _privateConstructorUsedError; //** คุณมีความต้องการ หรือมีความรู้สึกอยากใช้  find on  /screenings/${patientId} */
+  String get irresponsible =>
+      throw _privateConstructorUsedError; //** การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด  find on  /screenings/${patientId} */
+  String get frequencyOfProblem =>
+      throw _privateConstructorUsedError; //** การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?  find on  /screenings/${patientId} */
+  String get beNoticed =>
+      throw _privateConstructorUsedError; //** ญาติ เพื่อน หรือคนรู้จัก   find on  /screenings/${patientId} */
+  String get stopUsingButNotSuccess =>
+      throw _privateConstructorUsedError; //** คุนเคย find on  /screenings/${patientId} */
+  String get injectableDrug =>
+      throw _privateConstructorUsedError; //** คุณเคยใช้สารเสพติดชนิดฉีดหรือไม่ /screenings/${patientId} */
+  String get last3monthUsage =>
+      throw _privateConstructorUsedError; //** ภายใน 3 เดือนที่ผ่านมา คุณใช้บ่อยเพียงใด find on  /screenings/${patientId} */
+  String get hadMentalTreatment =>
+      throw _privateConstructorUsedError; //**ประวัติรักษาโรคสุขภาพจิต find on  /screenings/${patientId} */
+  int get mentalTreatmentText =>
+      throw _privateConstructorUsedError; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadMentalTreatment == "YES" && show  ui เพิ่ม Text to ui  /master/mentaltreatments */
+  String get hadChronicContagious =>
+      throw _privateConstructorUsedError; //**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
+  int get chronicContagiousText =>
+      throw _privateConstructorUsedError; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
+  String get hadCriminalCase =>
+      throw _privateConstructorUsedError; //**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
+  int get criminalCaseText =>
+      throw _privateConstructorUsedError; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadCriminalCase == "YES" && show  ui เพิ่ม Text to ui  /master/criminalcases */
+  String get homeless =>
+      throw _privateConstructorUsedError; //**คนเร่ร่อน ไร้ที่พักพิง find on  /screenings/${patientId} */
+  String get disabledPerson =>
+      throw _privateConstructorUsedError; //**ผู้พิการ find on  /screenings/${patientId} */
+  String get disabledCertificateNo => throw _privateConstructorUsedError;
+
+  /// Create a copy of Screening
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ScreeningCopyWith<Screening> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ScreeningCopyWith<$Res> {
+  factory $ScreeningCopyWith(Screening value, $Res Function(Screening) then) =
+      _$ScreeningCopyWithImpl<$Res, Screening>;
+  @useResult
+  $Res call(
+      {int maritalStatusId,
+      int educationId,
+      int occupationId,
+      int incomeId,
+      String livingWithLast30days,
+      int parentRelationshipId,
+      String startDate,
+      String isToBeNumberOneMember,
+      String drugUsageApproach,
+      String mainDrugText,
+      String mentalEvalLevel,
+      String frequencyOfUse,
+      String feelingAddicted,
+      String irresponsible,
+      String frequencyOfProblem,
+      String beNoticed,
+      String stopUsingButNotSuccess,
+      String injectableDrug,
+      String last3monthUsage,
+      String hadMentalTreatment,
+      int mentalTreatmentText,
+      String hadChronicContagious,
+      int chronicContagiousText,
+      String hadCriminalCase,
+      int criminalCaseText,
+      String homeless,
+      String disabledPerson,
+      String disabledCertificateNo});
+}
+
+/// @nodoc
+class _$ScreeningCopyWithImpl<$Res, $Val extends Screening>
+    implements $ScreeningCopyWith<$Res> {
+  _$ScreeningCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Screening
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? maritalStatusId = null,
+    Object? educationId = null,
+    Object? occupationId = null,
+    Object? incomeId = null,
+    Object? livingWithLast30days = null,
+    Object? parentRelationshipId = null,
+    Object? startDate = null,
+    Object? isToBeNumberOneMember = null,
+    Object? drugUsageApproach = null,
+    Object? mainDrugText = null,
+    Object? mentalEvalLevel = null,
+    Object? frequencyOfUse = null,
+    Object? feelingAddicted = null,
+    Object? irresponsible = null,
+    Object? frequencyOfProblem = null,
+    Object? beNoticed = null,
+    Object? stopUsingButNotSuccess = null,
+    Object? injectableDrug = null,
+    Object? last3monthUsage = null,
+    Object? hadMentalTreatment = null,
+    Object? mentalTreatmentText = null,
+    Object? hadChronicContagious = null,
+    Object? chronicContagiousText = null,
+    Object? hadCriminalCase = null,
+    Object? criminalCaseText = null,
+    Object? homeless = null,
+    Object? disabledPerson = null,
+    Object? disabledCertificateNo = null,
+  }) {
+    return _then(_value.copyWith(
+      maritalStatusId: null == maritalStatusId
+          ? _value.maritalStatusId
+          : maritalStatusId // ignore: cast_nullable_to_non_nullable
+              as int,
+      educationId: null == educationId
+          ? _value.educationId
+          : educationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      occupationId: null == occupationId
+          ? _value.occupationId
+          : occupationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      incomeId: null == incomeId
+          ? _value.incomeId
+          : incomeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      livingWithLast30days: null == livingWithLast30days
+          ? _value.livingWithLast30days
+          : livingWithLast30days // ignore: cast_nullable_to_non_nullable
+              as String,
+      parentRelationshipId: null == parentRelationshipId
+          ? _value.parentRelationshipId
+          : parentRelationshipId // ignore: cast_nullable_to_non_nullable
+              as int,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      isToBeNumberOneMember: null == isToBeNumberOneMember
+          ? _value.isToBeNumberOneMember
+          : isToBeNumberOneMember // ignore: cast_nullable_to_non_nullable
+              as String,
+      drugUsageApproach: null == drugUsageApproach
+          ? _value.drugUsageApproach
+          : drugUsageApproach // ignore: cast_nullable_to_non_nullable
+              as String,
+      mainDrugText: null == mainDrugText
+          ? _value.mainDrugText
+          : mainDrugText // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalEvalLevel: null == mentalEvalLevel
+          ? _value.mentalEvalLevel
+          : mentalEvalLevel // ignore: cast_nullable_to_non_nullable
+              as String,
+      frequencyOfUse: null == frequencyOfUse
+          ? _value.frequencyOfUse
+          : frequencyOfUse // ignore: cast_nullable_to_non_nullable
+              as String,
+      feelingAddicted: null == feelingAddicted
+          ? _value.feelingAddicted
+          : feelingAddicted // ignore: cast_nullable_to_non_nullable
+              as String,
+      irresponsible: null == irresponsible
+          ? _value.irresponsible
+          : irresponsible // ignore: cast_nullable_to_non_nullable
+              as String,
+      frequencyOfProblem: null == frequencyOfProblem
+          ? _value.frequencyOfProblem
+          : frequencyOfProblem // ignore: cast_nullable_to_non_nullable
+              as String,
+      beNoticed: null == beNoticed
+          ? _value.beNoticed
+          : beNoticed // ignore: cast_nullable_to_non_nullable
+              as String,
+      stopUsingButNotSuccess: null == stopUsingButNotSuccess
+          ? _value.stopUsingButNotSuccess
+          : stopUsingButNotSuccess // ignore: cast_nullable_to_non_nullable
+              as String,
+      injectableDrug: null == injectableDrug
+          ? _value.injectableDrug
+          : injectableDrug // ignore: cast_nullable_to_non_nullable
+              as String,
+      last3monthUsage: null == last3monthUsage
+          ? _value.last3monthUsage
+          : last3monthUsage // ignore: cast_nullable_to_non_nullable
+              as String,
+      hadMentalTreatment: null == hadMentalTreatment
+          ? _value.hadMentalTreatment
+          : hadMentalTreatment // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalTreatmentText: null == mentalTreatmentText
+          ? _value.mentalTreatmentText
+          : mentalTreatmentText // ignore: cast_nullable_to_non_nullable
+              as int,
+      hadChronicContagious: null == hadChronicContagious
+          ? _value.hadChronicContagious
+          : hadChronicContagious // ignore: cast_nullable_to_non_nullable
+              as String,
+      chronicContagiousText: null == chronicContagiousText
+          ? _value.chronicContagiousText
+          : chronicContagiousText // ignore: cast_nullable_to_non_nullable
+              as int,
+      hadCriminalCase: null == hadCriminalCase
+          ? _value.hadCriminalCase
+          : hadCriminalCase // ignore: cast_nullable_to_non_nullable
+              as String,
+      criminalCaseText: null == criminalCaseText
+          ? _value.criminalCaseText
+          : criminalCaseText // ignore: cast_nullable_to_non_nullable
+              as int,
+      homeless: null == homeless
+          ? _value.homeless
+          : homeless // ignore: cast_nullable_to_non_nullable
+              as String,
+      disabledPerson: null == disabledPerson
+          ? _value.disabledPerson
+          : disabledPerson // ignore: cast_nullable_to_non_nullable
+              as String,
+      disabledCertificateNo: null == disabledCertificateNo
+          ? _value.disabledCertificateNo
+          : disabledCertificateNo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ScreeningImplCopyWith<$Res>
+    implements $ScreeningCopyWith<$Res> {
+  factory _$$ScreeningImplCopyWith(
+          _$ScreeningImpl value, $Res Function(_$ScreeningImpl) then) =
+      __$$ScreeningImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int maritalStatusId,
+      int educationId,
+      int occupationId,
+      int incomeId,
+      String livingWithLast30days,
+      int parentRelationshipId,
+      String startDate,
+      String isToBeNumberOneMember,
+      String drugUsageApproach,
+      String mainDrugText,
+      String mentalEvalLevel,
+      String frequencyOfUse,
+      String feelingAddicted,
+      String irresponsible,
+      String frequencyOfProblem,
+      String beNoticed,
+      String stopUsingButNotSuccess,
+      String injectableDrug,
+      String last3monthUsage,
+      String hadMentalTreatment,
+      int mentalTreatmentText,
+      String hadChronicContagious,
+      int chronicContagiousText,
+      String hadCriminalCase,
+      int criminalCaseText,
+      String homeless,
+      String disabledPerson,
+      String disabledCertificateNo});
+}
+
+/// @nodoc
+class __$$ScreeningImplCopyWithImpl<$Res>
+    extends _$ScreeningCopyWithImpl<$Res, _$ScreeningImpl>
+    implements _$$ScreeningImplCopyWith<$Res> {
+  __$$ScreeningImplCopyWithImpl(
+      _$ScreeningImpl _value, $Res Function(_$ScreeningImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Screening
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? maritalStatusId = null,
+    Object? educationId = null,
+    Object? occupationId = null,
+    Object? incomeId = null,
+    Object? livingWithLast30days = null,
+    Object? parentRelationshipId = null,
+    Object? startDate = null,
+    Object? isToBeNumberOneMember = null,
+    Object? drugUsageApproach = null,
+    Object? mainDrugText = null,
+    Object? mentalEvalLevel = null,
+    Object? frequencyOfUse = null,
+    Object? feelingAddicted = null,
+    Object? irresponsible = null,
+    Object? frequencyOfProblem = null,
+    Object? beNoticed = null,
+    Object? stopUsingButNotSuccess = null,
+    Object? injectableDrug = null,
+    Object? last3monthUsage = null,
+    Object? hadMentalTreatment = null,
+    Object? mentalTreatmentText = null,
+    Object? hadChronicContagious = null,
+    Object? chronicContagiousText = null,
+    Object? hadCriminalCase = null,
+    Object? criminalCaseText = null,
+    Object? homeless = null,
+    Object? disabledPerson = null,
+    Object? disabledCertificateNo = null,
+  }) {
+    return _then(_$ScreeningImpl(
+      maritalStatusId: null == maritalStatusId
+          ? _value.maritalStatusId
+          : maritalStatusId // ignore: cast_nullable_to_non_nullable
+              as int,
+      educationId: null == educationId
+          ? _value.educationId
+          : educationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      occupationId: null == occupationId
+          ? _value.occupationId
+          : occupationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      incomeId: null == incomeId
+          ? _value.incomeId
+          : incomeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      livingWithLast30days: null == livingWithLast30days
+          ? _value.livingWithLast30days
+          : livingWithLast30days // ignore: cast_nullable_to_non_nullable
+              as String,
+      parentRelationshipId: null == parentRelationshipId
+          ? _value.parentRelationshipId
+          : parentRelationshipId // ignore: cast_nullable_to_non_nullable
+              as int,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      isToBeNumberOneMember: null == isToBeNumberOneMember
+          ? _value.isToBeNumberOneMember
+          : isToBeNumberOneMember // ignore: cast_nullable_to_non_nullable
+              as String,
+      drugUsageApproach: null == drugUsageApproach
+          ? _value.drugUsageApproach
+          : drugUsageApproach // ignore: cast_nullable_to_non_nullable
+              as String,
+      mainDrugText: null == mainDrugText
+          ? _value.mainDrugText
+          : mainDrugText // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalEvalLevel: null == mentalEvalLevel
+          ? _value.mentalEvalLevel
+          : mentalEvalLevel // ignore: cast_nullable_to_non_nullable
+              as String,
+      frequencyOfUse: null == frequencyOfUse
+          ? _value.frequencyOfUse
+          : frequencyOfUse // ignore: cast_nullable_to_non_nullable
+              as String,
+      feelingAddicted: null == feelingAddicted
+          ? _value.feelingAddicted
+          : feelingAddicted // ignore: cast_nullable_to_non_nullable
+              as String,
+      irresponsible: null == irresponsible
+          ? _value.irresponsible
+          : irresponsible // ignore: cast_nullable_to_non_nullable
+              as String,
+      frequencyOfProblem: null == frequencyOfProblem
+          ? _value.frequencyOfProblem
+          : frequencyOfProblem // ignore: cast_nullable_to_non_nullable
+              as String,
+      beNoticed: null == beNoticed
+          ? _value.beNoticed
+          : beNoticed // ignore: cast_nullable_to_non_nullable
+              as String,
+      stopUsingButNotSuccess: null == stopUsingButNotSuccess
+          ? _value.stopUsingButNotSuccess
+          : stopUsingButNotSuccess // ignore: cast_nullable_to_non_nullable
+              as String,
+      injectableDrug: null == injectableDrug
+          ? _value.injectableDrug
+          : injectableDrug // ignore: cast_nullable_to_non_nullable
+              as String,
+      last3monthUsage: null == last3monthUsage
+          ? _value.last3monthUsage
+          : last3monthUsage // ignore: cast_nullable_to_non_nullable
+              as String,
+      hadMentalTreatment: null == hadMentalTreatment
+          ? _value.hadMentalTreatment
+          : hadMentalTreatment // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalTreatmentText: null == mentalTreatmentText
+          ? _value.mentalTreatmentText
+          : mentalTreatmentText // ignore: cast_nullable_to_non_nullable
+              as int,
+      hadChronicContagious: null == hadChronicContagious
+          ? _value.hadChronicContagious
+          : hadChronicContagious // ignore: cast_nullable_to_non_nullable
+              as String,
+      chronicContagiousText: null == chronicContagiousText
+          ? _value.chronicContagiousText
+          : chronicContagiousText // ignore: cast_nullable_to_non_nullable
+              as int,
+      hadCriminalCase: null == hadCriminalCase
+          ? _value.hadCriminalCase
+          : hadCriminalCase // ignore: cast_nullable_to_non_nullable
+              as String,
+      criminalCaseText: null == criminalCaseText
+          ? _value.criminalCaseText
+          : criminalCaseText // ignore: cast_nullable_to_non_nullable
+              as int,
+      homeless: null == homeless
+          ? _value.homeless
+          : homeless // ignore: cast_nullable_to_non_nullable
+              as String,
+      disabledPerson: null == disabledPerson
+          ? _value.disabledPerson
+          : disabledPerson // ignore: cast_nullable_to_non_nullable
+              as String,
+      disabledCertificateNo: null == disabledCertificateNo
+          ? _value.disabledCertificateNo
+          : disabledCertificateNo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ScreeningImpl implements _Screening {
+  const _$ScreeningImpl(
+      {required this.maritalStatusId,
+      required this.educationId,
+      required this.occupationId,
+      required this.incomeId,
+      required this.livingWithLast30days,
+      required this.parentRelationshipId,
+      required this.startDate,
+      required this.isToBeNumberOneMember,
+      required this.drugUsageApproach,
+      required this.mainDrugText,
+      required this.mentalEvalLevel,
+      required this.frequencyOfUse,
+      required this.feelingAddicted,
+      required this.irresponsible,
+      required this.frequencyOfProblem,
+      required this.beNoticed,
+      required this.stopUsingButNotSuccess,
+      required this.injectableDrug,
+      required this.last3monthUsage,
+      required this.hadMentalTreatment,
+      required this.mentalTreatmentText,
+      required this.hadChronicContagious,
+      required this.chronicContagiousText,
+      required this.hadCriminalCase,
+      required this.criminalCaseText,
+      required this.homeless,
+      required this.disabledPerson,
+      required this.disabledCertificateNo});
+
+  @override
+  final int maritalStatusId;
+//** สถานะ find on  /master/${patientId} */
+  @override
+  final int educationId;
+//** การศึกษา  /master/educations */
+  @override
+  final int occupationId;
+//**อาชีพ  /master/occupations */
+  @override
+  final int incomeId;
+//**รายได้  /master/incomes */
+  @override
+  final String livingWithLast30days;
+// /screenings/${patientId} */
+  @override
+  final int parentRelationshipId;
+//**ความสัมพันธ์ระหว่างบิดามารดา */ master/relationships
+  @override
+  final String startDate;
+// ว/ด/ป  /screenings/${patientId}
+  @override
+  final String isToBeNumberOneMember;
+//การใช้ยาเสพติด  /screenings/${patientId}
+  @override
+  final String drugUsageApproach;
+//การใช้ยาเสพติด(รูปแบบการเสพ)  /screenings/${patientId}
+  @override
+  final String mainDrugText;
+//ยาเสพติดที่ใช้  /master/drugs  #หมายเหตุ  answer == 17 show  other=""
+  @override
+  final String mentalEvalLevel;
+//** สรุปผล find on  /screenings/${patientId} */
+  @override
+  final String frequencyOfUse;
+//** คุณใช้บ่อยเพียงใด  find on  /screenings/${patientId} */
+  @override
+  final String feelingAddicted;
+//** คุณมีความต้องการ หรือมีความรู้สึกอยากใช้  find on  /screenings/${patientId} */
+  @override
+  final String irresponsible;
+//** การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด  find on  /screenings/${patientId} */
+  @override
+  final String frequencyOfProblem;
+//** การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?  find on  /screenings/${patientId} */
+  @override
+  final String beNoticed;
+//** ญาติ เพื่อน หรือคนรู้จัก   find on  /screenings/${patientId} */
+  @override
+  final String stopUsingButNotSuccess;
+//** คุนเคย find on  /screenings/${patientId} */
+  @override
+  final String injectableDrug;
+//** คุณเคยใช้สารเสพติดชนิดฉีดหรือไม่ /screenings/${patientId} */
+  @override
+  final String last3monthUsage;
+//** ภายใน 3 เดือนที่ผ่านมา คุณใช้บ่อยเพียงใด find on  /screenings/${patientId} */
+  @override
+  final String hadMentalTreatment;
+//**ประวัติรักษาโรคสุขภาพจิต find on  /screenings/${patientId} */
+  @override
+  final int mentalTreatmentText;
+//**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadMentalTreatment == "YES" && show  ui เพิ่ม Text to ui  /master/mentaltreatments */
+  @override
+  final String hadChronicContagious;
+//**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
+  @override
+  final int chronicContagiousText;
+//**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
+  @override
+  final String hadCriminalCase;
+//**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
+  @override
+  final int criminalCaseText;
+//**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadCriminalCase == "YES" && show  ui เพิ่ม Text to ui  /master/criminalcases */
+  @override
+  final String homeless;
+//**คนเร่ร่อน ไร้ที่พักพิง find on  /screenings/${patientId} */
+  @override
+  final String disabledPerson;
+//**ผู้พิการ find on  /screenings/${patientId} */
+  @override
+  final String disabledCertificateNo;
+
+  @override
+  String toString() {
+    return 'Screening(maritalStatusId: $maritalStatusId, educationId: $educationId, occupationId: $occupationId, incomeId: $incomeId, livingWithLast30days: $livingWithLast30days, parentRelationshipId: $parentRelationshipId, startDate: $startDate, isToBeNumberOneMember: $isToBeNumberOneMember, drugUsageApproach: $drugUsageApproach, mainDrugText: $mainDrugText, mentalEvalLevel: $mentalEvalLevel, frequencyOfUse: $frequencyOfUse, feelingAddicted: $feelingAddicted, irresponsible: $irresponsible, frequencyOfProblem: $frequencyOfProblem, beNoticed: $beNoticed, stopUsingButNotSuccess: $stopUsingButNotSuccess, injectableDrug: $injectableDrug, last3monthUsage: $last3monthUsage, hadMentalTreatment: $hadMentalTreatment, mentalTreatmentText: $mentalTreatmentText, hadChronicContagious: $hadChronicContagious, chronicContagiousText: $chronicContagiousText, hadCriminalCase: $hadCriminalCase, criminalCaseText: $criminalCaseText, homeless: $homeless, disabledPerson: $disabledPerson, disabledCertificateNo: $disabledCertificateNo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ScreeningImpl &&
+            (identical(other.maritalStatusId, maritalStatusId) ||
+                other.maritalStatusId == maritalStatusId) &&
+            (identical(other.educationId, educationId) ||
+                other.educationId == educationId) &&
+            (identical(other.occupationId, occupationId) ||
+                other.occupationId == occupationId) &&
+            (identical(other.incomeId, incomeId) ||
+                other.incomeId == incomeId) &&
+            (identical(other.livingWithLast30days, livingWithLast30days) ||
+                other.livingWithLast30days == livingWithLast30days) &&
+            (identical(other.parentRelationshipId, parentRelationshipId) ||
+                other.parentRelationshipId == parentRelationshipId) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.isToBeNumberOneMember, isToBeNumberOneMember) ||
+                other.isToBeNumberOneMember == isToBeNumberOneMember) &&
+            (identical(other.drugUsageApproach, drugUsageApproach) ||
+                other.drugUsageApproach == drugUsageApproach) &&
+            (identical(other.mainDrugText, mainDrugText) ||
+                other.mainDrugText == mainDrugText) &&
+            (identical(other.mentalEvalLevel, mentalEvalLevel) ||
+                other.mentalEvalLevel == mentalEvalLevel) &&
+            (identical(other.frequencyOfUse, frequencyOfUse) ||
+                other.frequencyOfUse == frequencyOfUse) &&
+            (identical(other.feelingAddicted, feelingAddicted) ||
+                other.feelingAddicted == feelingAddicted) &&
+            (identical(other.irresponsible, irresponsible) ||
+                other.irresponsible == irresponsible) &&
+            (identical(other.frequencyOfProblem, frequencyOfProblem) ||
+                other.frequencyOfProblem == frequencyOfProblem) &&
+            (identical(other.beNoticed, beNoticed) ||
+                other.beNoticed == beNoticed) &&
+            (identical(other.stopUsingButNotSuccess, stopUsingButNotSuccess) ||
+                other.stopUsingButNotSuccess == stopUsingButNotSuccess) &&
+            (identical(other.injectableDrug, injectableDrug) ||
+                other.injectableDrug == injectableDrug) &&
+            (identical(other.last3monthUsage, last3monthUsage) ||
+                other.last3monthUsage == last3monthUsage) &&
+            (identical(other.hadMentalTreatment, hadMentalTreatment) ||
+                other.hadMentalTreatment == hadMentalTreatment) &&
+            (identical(other.mentalTreatmentText, mentalTreatmentText) ||
+                other.mentalTreatmentText == mentalTreatmentText) &&
+            (identical(other.hadChronicContagious, hadChronicContagious) ||
+                other.hadChronicContagious == hadChronicContagious) &&
+            (identical(other.chronicContagiousText, chronicContagiousText) ||
+                other.chronicContagiousText == chronicContagiousText) &&
+            (identical(other.hadCriminalCase, hadCriminalCase) ||
+                other.hadCriminalCase == hadCriminalCase) &&
+            (identical(other.criminalCaseText, criminalCaseText) ||
+                other.criminalCaseText == criminalCaseText) &&
+            (identical(other.homeless, homeless) ||
+                other.homeless == homeless) &&
+            (identical(other.disabledPerson, disabledPerson) ||
+                other.disabledPerson == disabledPerson) &&
+            (identical(other.disabledCertificateNo, disabledCertificateNo) ||
+                other.disabledCertificateNo == disabledCertificateNo));
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        maritalStatusId,
+        educationId,
+        occupationId,
+        incomeId,
+        livingWithLast30days,
+        parentRelationshipId,
+        startDate,
+        isToBeNumberOneMember,
+        drugUsageApproach,
+        mainDrugText,
+        mentalEvalLevel,
+        frequencyOfUse,
+        feelingAddicted,
+        irresponsible,
+        frequencyOfProblem,
+        beNoticed,
+        stopUsingButNotSuccess,
+        injectableDrug,
+        last3monthUsage,
+        hadMentalTreatment,
+        mentalTreatmentText,
+        hadChronicContagious,
+        chronicContagiousText,
+        hadCriminalCase,
+        criminalCaseText,
+        homeless,
+        disabledPerson,
+        disabledCertificateNo
+      ]);
+
+  /// Create a copy of Screening
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScreeningImplCopyWith<_$ScreeningImpl> get copyWith =>
+      __$$ScreeningImplCopyWithImpl<_$ScreeningImpl>(this, _$identity);
+}
+
+abstract class _Screening implements Screening {
+  const factory _Screening(
+      {required final int maritalStatusId,
+      required final int educationId,
+      required final int occupationId,
+      required final int incomeId,
+      required final String livingWithLast30days,
+      required final int parentRelationshipId,
+      required final String startDate,
+      required final String isToBeNumberOneMember,
+      required final String drugUsageApproach,
+      required final String mainDrugText,
+      required final String mentalEvalLevel,
+      required final String frequencyOfUse,
+      required final String feelingAddicted,
+      required final String irresponsible,
+      required final String frequencyOfProblem,
+      required final String beNoticed,
+      required final String stopUsingButNotSuccess,
+      required final String injectableDrug,
+      required final String last3monthUsage,
+      required final String hadMentalTreatment,
+      required final int mentalTreatmentText,
+      required final String hadChronicContagious,
+      required final int chronicContagiousText,
+      required final String hadCriminalCase,
+      required final int criminalCaseText,
+      required final String homeless,
+      required final String disabledPerson,
+      required final String disabledCertificateNo}) = _$ScreeningImpl;
+
+  @override
+  int get maritalStatusId; //** สถานะ find on  /master/${patientId} */
+  @override
+  int get educationId; //** การศึกษา  /master/educations */
+  @override
+  int get occupationId; //**อาชีพ  /master/occupations */
+  @override
+  int get incomeId; //**รายได้  /master/incomes */
+  @override
+  String get livingWithLast30days; // /screenings/${patientId} */
+  @override
+  int get parentRelationshipId; //**ความสัมพันธ์ระหว่างบิดามารดา */ master/relationships
+  @override
+  String get startDate; // ว/ด/ป  /screenings/${patientId}
+  @override
+  String get isToBeNumberOneMember; //การใช้ยาเสพติด  /screenings/${patientId}
+  @override
+  String
+      get drugUsageApproach; //การใช้ยาเสพติด(รูปแบบการเสพ)  /screenings/${patientId}
+  @override
+  String
+      get mainDrugText; //ยาเสพติดที่ใช้  /master/drugs  #หมายเหตุ  answer == 17 show  other=""
+  @override
+  String get mentalEvalLevel; //** สรุปผล find on  /screenings/${patientId} */
+  @override
+  String
+      get frequencyOfUse; //** คุณใช้บ่อยเพียงใด  find on  /screenings/${patientId} */
+  @override
+  String
+      get feelingAddicted; //** คุณมีความต้องการ หรือมีความรู้สึกอยากใช้  find on  /screenings/${patientId} */
+  @override
+  String
+      get irresponsible; //** การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด  find on  /screenings/${patientId} */
+  @override
+  String
+      get frequencyOfProblem; //** การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?  find on  /screenings/${patientId} */
+  @override
+  String
+      get beNoticed; //** ญาติ เพื่อน หรือคนรู้จัก   find on  /screenings/${patientId} */
+  @override
+  String
+      get stopUsingButNotSuccess; //** คุนเคย find on  /screenings/${patientId} */
+  @override
+  String
+      get injectableDrug; //** คุณเคยใช้สารเสพติดชนิดฉีดหรือไม่ /screenings/${patientId} */
+  @override
+  String
+      get last3monthUsage; //** ภายใน 3 เดือนที่ผ่านมา คุณใช้บ่อยเพียงใด find on  /screenings/${patientId} */
+  @override
+  String
+      get hadMentalTreatment; //**ประวัติรักษาโรคสุขภาพจิต find on  /screenings/${patientId} */
+  @override
+  int get mentalTreatmentText; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadMentalTreatment == "YES" && show  ui เพิ่ม Text to ui  /master/mentaltreatments */
+  @override
+  String
+      get hadChronicContagious; //**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
+  @override
+  int get chronicContagiousText; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
+  @override
+  String
+      get hadCriminalCase; //**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
+  @override
+  int get criminalCaseText; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadCriminalCase == "YES" && show  ui เพิ่ม Text to ui  /master/criminalcases */
+  @override
+  String
+      get homeless; //**คนเร่ร่อน ไร้ที่พักพิง find on  /screenings/${patientId} */
+  @override
+  String get disabledPerson; //**ผู้พิการ find on  /screenings/${patientId} */
+  @override
+  String get disabledCertificateNo;
+
+  /// Create a copy of Screening
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ScreeningImplCopyWith<_$ScreeningImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 int convertToInt(dynamic object) {
   try {
     final int? value = object as int?;
@@ -35,11 +37,11 @@ String convertToString(dynamic object) {
   }
 }
 
-String formatThaiDate(dynamic object) {
-  try {
-    final String? value = object as String?;
-    return value ?? "";
-  } catch (e) {
-    rethrow;
+String formatThaiDate(DateTime? date) {
+  if (date == null) {
+    return "";
   }
+
+  final DateFormat thaiDateFormat = DateFormat.yMMMd('th_TH');
+  return thaiDateFormat.format(date);
 }
