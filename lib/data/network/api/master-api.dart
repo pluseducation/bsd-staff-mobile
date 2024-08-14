@@ -329,4 +329,122 @@ class MasterApi extends BaseApi {
     }
   }
   // /master/relationships
+
+  Future<List<RelationshipsValueEntity>> findRelationshipsvalue() async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get('/api/v1/master/relationships');
+
+      if (response.statusCode == 200) {
+        return relationshipsvalueFromJson(
+          response.data as List,
+        );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.statusMessage,
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
+  Future<List<DrugsEntity>> findDrugs() async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get('/api/v1/master/drugs');
+
+      if (response.statusCode == 200) {
+        return drugsFromJson(
+          response.data as List,
+        );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.statusMessage,
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
+  Future<List<MentaltreatmentsEntity>> findMentaltreatments() async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get('/api/v1/master/mentaltreatments');
+
+      if (response.statusCode == 200) {
+        return mentaltreatmentsFromJson(
+          response.data as List,
+        );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.statusMessage,
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
+  // /master/criminalcases
+
+  Future<List<MriminalcasesEntity>> findcriminalcases() async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get('/api/v1/master/criminalcases');
+
+      if (response.statusCode == 200) {
+        return criminalcasesFromJson(
+          response.data as List,
+        );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.statusMessage,
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
 }

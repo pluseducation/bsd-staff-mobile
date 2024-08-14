@@ -38,15 +38,14 @@ class Question extends BaseApi {
     }
   }
 
-  Future<List<ScreeningsQuestionChoiceEntity>>
-      findScreeningsQuestionChoices() async {
+  Future<List<QuestionChoicesEntity>> findScreeningsQuestionChoices() async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
         '/api/v1/questionchoices/SCREENING',
       );
       if (response.statusCode == 200) {
-        return screeningsQuestionChoiceEntityFromJson(
+        return questionChoicesEntityFromJson(
           response.data as List,
         );
       } else {

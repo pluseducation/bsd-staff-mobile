@@ -140,3 +140,55 @@ Map<String, dynamic> _$MaritalstatusesEntityToJson(
       'id': instance.id,
       'name': instance.name,
     };
+
+RelationshipsValueEntity _$RelationshipsValueEntityFromJson(
+        Map<String, dynamic> json) =>
+    RelationshipsValueEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$RelationshipsValueEntityToJson(
+        RelationshipsValueEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+DrugsEntity _$DrugsEntityFromJson(Map<String, dynamic> json) => DrugsEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$DrugsEntityToJson(DrugsEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+MentaltreatmentsEntity _$MentaltreatmentsEntityFromJson(
+        Map<String, dynamic> json) =>
+    MentaltreatmentsEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$MentaltreatmentsEntityToJson(
+        MentaltreatmentsEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+MriminalcasesEntity _$MriminalcasesEntityFromJson(Map<String, dynamic> json) =>
+    MriminalcasesEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$MriminalcasesEntityToJson(
+        MriminalcasesEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };

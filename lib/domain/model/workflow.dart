@@ -78,13 +78,17 @@ class Screening with _$Screening {
 
     required String
         hadChronicContagious, //**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
-
+    required int chronicContagiousId,
     required int
         chronicContagiousText, //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
 
     required String
         hadCriminalCase, //**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
 
+    //----------
+    required int criminalCaseIdText,
+
+    //-------
     required int
         criminalCaseText, //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadCriminalCase == "YES" && show  ui เพิ่ม Text to ui  /master/criminalcases */
 
