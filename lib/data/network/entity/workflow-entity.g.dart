@@ -121,7 +121,7 @@ ScreeningEntity _$ScreeningEntityFromJson(Map<String, dynamic> json) =>
       occupationOther: json['occupationOther'] as String?,
       incomeId: (json['incomeId'] as num?)?.toInt(),
       parentRelationshipId: (json['parentRelationshipId'] as num?)?.toInt(),
-      livingWithLast30Days: (json['livingWithLast30Days'] as List<dynamic>?)
+      livingWithLast30days: (json['livingWithLast30days'] as List<dynamic>?)
           ?.map((e) => AnswerEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       mainDrugs: (json['mainDrugs'] as List<dynamic>?)
@@ -158,7 +158,8 @@ ScreeningEntity _$ScreeningEntityFromJson(Map<String, dynamic> json) =>
       disabledPerson: json['disabledPerson'] as String?,
       disabledCertificateNo: json['disabledCertificateNo'] as String?,
       files: (json['files'] as List<dynamic>?)
-          ?.map((e) => FileElementEntity.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              FileElementdataEntityEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       newFiles: (json['newFiles'] as List<dynamic>?)
           ?.map((e) => NewFileEntity.fromJson(e as Map<String, dynamic>))
@@ -180,7 +181,7 @@ Map<String, dynamic> _$ScreeningEntityToJson(ScreeningEntity instance) =>
       'occupationOther': instance.occupationOther,
       'incomeId': instance.incomeId,
       'parentRelationshipId': instance.parentRelationshipId,
-      'livingWithLast30Days': instance.livingWithLast30Days,
+      'livingWithLast30days': instance.livingWithLast30days,
       'mainDrugs': instance.mainDrugs,
       'secondaryDrugs': instance.secondaryDrugs,
       'isToBeNumberOneMember': instance.isToBeNumberOneMember,
@@ -224,13 +225,15 @@ Map<String, dynamic> _$AnswerEntityToJson(AnswerEntity instance) =>
       'other': instance.other,
     };
 
-FileElementEntity _$FileElementEntityFromJson(Map<String, dynamic> json) =>
-    FileElementEntity(
+FileElementdataEntityEntity _$FileElementdataEntityEntityFromJson(
+        Map<String, dynamic> json) =>
+    FileElementdataEntityEntity(
       documentId: (json['documentId'] as num?)?.toInt(),
       fileNameOrg: json['fileNameOrg'] as String?,
     );
 
-Map<String, dynamic> _$FileElementEntityToJson(FileElementEntity instance) =>
+Map<String, dynamic> _$FileElementdataEntityEntityToJson(
+        FileElementdataEntityEntity instance) =>
     <String, dynamic>{
       'documentId': instance.documentId,
       'fileNameOrg': instance.fileNameOrg,
@@ -246,4 +249,235 @@ Map<String, dynamic> _$NewFileEntityToJson(NewFileEntity instance) =>
     <String, dynamic>{
       'fileNameOrg': instance.fileNameOrg,
       'content': instance.content,
+    };
+
+TreatmentEntity _$TreatmentEntityFromJson(Map<String, dynamic> json) =>
+    TreatmentEntity(
+      patientId: (json['patientId'] as num?)?.toInt(),
+      startDate: json['startDate'] == null
+          ? null
+          : DateTime.parse(json['startDate'] as String),
+      refFilePath: json['refFilePath'],
+      refFileName: json['refFileName'],
+      firstAgeUsage: (json['firstAgeUsage'] as num?)?.toInt(),
+      firstDrugUsageId: (json['firstDrugUsageId'] as num?)?.toInt(),
+      yearOfUsage: (json['yearOfUsage'] as num?)?.toInt(),
+      monthOfUsage: (json['monthOfUsage'] as num?)?.toInt(),
+      dayOfUsage: (json['dayOfUsage'] as num?)?.toInt(),
+      totalUsage: (json['totalUsage'] as num?)?.toDouble(),
+      hadTreatment: json['hadTreatment'] as String?,
+      histories: json['histories'] as List<dynamic>?,
+      usageReasons: (json['usageReasons'] as List<dynamic>?)
+          ?.map(
+              (e) => CurrentDrugUsageEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      currentDrugUsages: (json['currentDrugUsages'] as List<dynamic>?)
+          ?.map(
+              (e) => CurrentDrugUsageEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      joinReasons: (json['joinReasons'] as List<dynamic>?)
+          ?.map(
+              (e) => CurrentDrugUsageEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      drugUsageBefores: (json['drugUsageBefores'] as List<dynamic>?)
+          ?.map(
+              (e) => DrugUsageBeforeEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      hadDosing: json['hadDosing'] as String?,
+      otherDosing: json['otherDosing'],
+      dosings: json['dosings'] as List<dynamic>?,
+      techniques: (json['techniques'] as List<dynamic>?)
+          ?.map(
+              (e) => CurrentDrugUsageEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      programmes: (json['programmes'] as List<dynamic>?)
+          ?.map(
+              (e) => CurrentDrugUsageEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      plans: (json['plans'] as List<dynamic>?)
+          ?.map((e) => PlanEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      frequencyOfUse: json['frequencyOfUse'] as String?,
+      feelingAddicted: json['feelingAddicted'] as String?,
+      frequencyOfProblem: json['frequencyOfProblem'] as String?,
+      irresponsible: json['irresponsible'] as String?,
+      beNoticed: json['beNoticed'] as String?,
+      stopUsingButNotSuccess: json['stopUsingButNotSuccess'] as String?,
+      drugEvalScore: (json['drugEvalScore'] as num?)?.toInt(),
+      levelOfAddicted: json['levelOfAddicted'] as String?,
+      treatmentResult: json['treatmentResult'] as String?,
+      mentalIssueIds: (json['mentalIssueIds'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      mentalScore: (json['mentalScore'] as num?)?.toInt(),
+      mentalEvalLevel: json['mentalEvalLevel'] as String?,
+      latestTreatmentEvalDate: json['latestTreatmentEvalDate'] == null
+          ? null
+          : DateTime.parse(json['latestTreatmentEvalDate'] as String),
+      evaluationResult: json['evaluationResult'] as String?,
+      monitoringReportMentalTo: json['monitoringReportMentalTo'],
+      monitoringReportMentalReferId:
+          (json['monitoringReportMentalReferId'] as num?)?.toInt(),
+      monitoringReportSocialTo: json['monitoringReportSocialTo'],
+      monitoringReportSocialReferId:
+          (json['monitoringReportSocialReferId'] as num?)?.toInt(),
+      incompletedReason: json['incompletedReason'] as String?,
+      mentalTreatmentResult: json['mentalTreatmentResult'] as String?,
+      physicalTreatmentResult: json['physicalTreatmentResult'] as String?,
+      files: (json['files'] as List<dynamic>?)
+          ?.map(
+              (e) => FileElementdataEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      newFiles: json['newFiles'] as List<dynamic>?,
+      removeFiles: json['removeFiles'] as List<dynamic>?,
+    );
+
+Map<String, dynamic> _$TreatmentEntityToJson(TreatmentEntity instance) =>
+    <String, dynamic>{
+      'patientId': instance.patientId,
+      'startDate': instance.startDate?.toIso8601String(),
+      'refFilePath': instance.refFilePath,
+      'refFileName': instance.refFileName,
+      'firstAgeUsage': instance.firstAgeUsage,
+      'firstDrugUsageId': instance.firstDrugUsageId,
+      'yearOfUsage': instance.yearOfUsage,
+      'monthOfUsage': instance.monthOfUsage,
+      'dayOfUsage': instance.dayOfUsage,
+      'totalUsage': instance.totalUsage,
+      'hadTreatment': instance.hadTreatment,
+      'histories': instance.histories,
+      'usageReasons': instance.usageReasons,
+      'currentDrugUsages': instance.currentDrugUsages,
+      'joinReasons': instance.joinReasons,
+      'drugUsageBefores': instance.drugUsageBefores,
+      'hadDosing': instance.hadDosing,
+      'otherDosing': instance.otherDosing,
+      'dosings': instance.dosings,
+      'techniques': instance.techniques,
+      'programmes': instance.programmes,
+      'plans': instance.plans,
+      'frequencyOfUse': instance.frequencyOfUse,
+      'feelingAddicted': instance.feelingAddicted,
+      'frequencyOfProblem': instance.frequencyOfProblem,
+      'irresponsible': instance.irresponsible,
+      'beNoticed': instance.beNoticed,
+      'stopUsingButNotSuccess': instance.stopUsingButNotSuccess,
+      'drugEvalScore': instance.drugEvalScore,
+      'levelOfAddicted': instance.levelOfAddicted,
+      'treatmentResult': instance.treatmentResult,
+      'mentalIssueIds': instance.mentalIssueIds,
+      'mentalScore': instance.mentalScore,
+      'mentalEvalLevel': instance.mentalEvalLevel,
+      'latestTreatmentEvalDate':
+          instance.latestTreatmentEvalDate?.toIso8601String(),
+      'evaluationResult': instance.evaluationResult,
+      'monitoringReportMentalTo': instance.monitoringReportMentalTo,
+      'monitoringReportMentalReferId': instance.monitoringReportMentalReferId,
+      'monitoringReportSocialTo': instance.monitoringReportSocialTo,
+      'monitoringReportSocialReferId': instance.monitoringReportSocialReferId,
+      'incompletedReason': instance.incompletedReason,
+      'mentalTreatmentResult': instance.mentalTreatmentResult,
+      'physicalTreatmentResult': instance.physicalTreatmentResult,
+      'files': instance.files,
+      'newFiles': instance.newFiles,
+      'removeFiles': instance.removeFiles,
+    };
+
+CurrentDrugUsageEntity _$CurrentDrugUsageEntityFromJson(
+        Map<String, dynamic> json) =>
+    CurrentDrugUsageEntity(
+      answer: json['answer'] as String?,
+      other: json['other'] as String?,
+    );
+
+Map<String, dynamic> _$CurrentDrugUsageEntityToJson(
+        CurrentDrugUsageEntity instance) =>
+    <String, dynamic>{
+      'answer': instance.answer,
+      'other': instance.other,
+    };
+
+DrugUsageBeforeEntity _$DrugUsageBeforeEntityFromJson(
+        Map<String, dynamic> json) =>
+    DrugUsageBeforeEntity(
+      order: (json['order'] as num?)?.toInt(),
+      drugId: (json['drugId'] as num?)?.toInt(),
+      drugApproachId: (json['drugApproachId'] as num?)?.toInt(),
+      gramPerDay: (json['gramPerDay'] as num?)?.toInt(),
+      drugUnitId: (json['drugUnitId'] as num?)?.toInt(),
+      qtyAmountUsage: (json['qtyAmountUsage'] as num?)?.toInt(),
+      drugFrequencyUsageId: (json['drugFrequencyUsageId'] as num?)?.toInt(),
+      main: json['main'] as bool?,
+      firstYearUsage: (json['firstYearUsage'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$DrugUsageBeforeEntityToJson(
+        DrugUsageBeforeEntity instance) =>
+    <String, dynamic>{
+      'order': instance.order,
+      'drugId': instance.drugId,
+      'drugApproachId': instance.drugApproachId,
+      'gramPerDay': instance.gramPerDay,
+      'drugUnitId': instance.drugUnitId,
+      'qtyAmountUsage': instance.qtyAmountUsage,
+      'drugFrequencyUsageId': instance.drugFrequencyUsageId,
+      'main': instance.main,
+      'firstYearUsage': instance.firstYearUsage,
+    };
+
+FileElementdataEntity _$FileElementdataEntityFromJson(
+        Map<String, dynamic> json) =>
+    FileElementdataEntity(
+      documentId: (json['documentId'] as num?)?.toInt(),
+      fileNameOrg: json['fileNameOrg'] as String?,
+    );
+
+Map<String, dynamic> _$FileElementdataEntityToJson(
+        FileElementdataEntity instance) =>
+    <String, dynamic>{
+      'documentId': instance.documentId,
+      'fileNameOrg': instance.fileNameOrg,
+    };
+
+PlanEntity _$PlanEntityFromJson(Map<String, dynamic> json) => PlanEntity(
+      order: (json['order'] as num?)?.toInt(),
+      planType: json['planType'] as String?,
+      endDate: json['endDate'] == null
+          ? null
+          : DateTime.parse(json['endDate'] as String),
+      other: json['other'],
+      subDistrictId: json['subDistrictId'],
+      villageId: json['villageId'],
+      planEvalResults: (json['planEvalResults'] as List<dynamic>?)
+          ?.map((e) => PlanEvalResultEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$PlanEntityToJson(PlanEntity instance) =>
+    <String, dynamic>{
+      'order': instance.order,
+      'planType': instance.planType,
+      'endDate': instance.endDate?.toIso8601String(),
+      'other': instance.other,
+      'subDistrictId': instance.subDistrictId,
+      'villageId': instance.villageId,
+      'planEvalResults': instance.planEvalResults,
+    };
+
+PlanEvalResultEntity _$PlanEvalResultEntityFromJson(
+        Map<String, dynamic> json) =>
+    PlanEvalResultEntity(
+      order: (json['order'] as num?)?.toInt(),
+      evalDate: json['evalDate'] == null
+          ? null
+          : DateTime.parse(json['evalDate'] as String),
+      evalResult: (json['evalResult'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$PlanEvalResultEntityToJson(
+        PlanEvalResultEntity instance) =>
+    <String, dynamic>{
+      'order': instance.order,
+      'evalDate': instance.evalDate?.toIso8601String(),
+      'evalResult': instance.evalResult,
     };

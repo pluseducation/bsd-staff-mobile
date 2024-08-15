@@ -122,7 +122,7 @@ class ScreeningEntity {
   String? occupationOther;
   int? incomeId;
   int? parentRelationshipId;
-  List<AnswerEntity>? livingWithLast30Days;
+  List<AnswerEntity>? livingWithLast30days;
   List<AnswerEntity>? mainDrugs;
   List<AnswerEntity>? secondaryDrugs;
   String? isToBeNumberOneMember;
@@ -150,7 +150,7 @@ class ScreeningEntity {
   String? homeless;
   String? disabledPerson;
   String? disabledCertificateNo;
-  List<FileElementEntity>? files;
+  List<FileElementdataEntityEntity>? files;
   List<NewFileEntity>? newFiles;
   List<int>? removeDocIds;
 
@@ -165,7 +165,7 @@ class ScreeningEntity {
     required this.occupationOther,
     required this.incomeId,
     required this.parentRelationshipId,
-    required this.livingWithLast30Days,
+    required this.livingWithLast30days,
     required this.mainDrugs,
     required this.secondaryDrugs,
     required this.isToBeNumberOneMember,
@@ -221,19 +221,19 @@ class AnswerEntity {
 }
 
 @JsonSerializable()
-class FileElementEntity {
+class FileElementdataEntityEntity {
   int? documentId;
   String? fileNameOrg;
 
-  FileElementEntity({
+  FileElementdataEntityEntity({
     this.documentId,
     this.fileNameOrg,
   });
 
-  factory FileElementEntity.fromJson(Map<String, dynamic> json) =>
-      _$FileElementEntityFromJson(json);
+  factory FileElementdataEntityEntity.fromJson(Map<String, dynamic> json) =>
+      _$FileElementdataEntityEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FileElementEntityToJson(this);
+  Map<String, dynamic> toJson() => _$FileElementdataEntityEntityToJson(this);
 }
 
 @JsonSerializable()
@@ -250,4 +250,213 @@ class NewFileEntity {
       _$NewFileEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$NewFileEntityToJson(this);
+}
+
+// ---------------treatments------------------
+@JsonSerializable()
+class TreatmentEntity {
+  int? patientId;
+  DateTime? startDate;
+  dynamic? refFilePath;
+  dynamic? refFileName;
+  int? firstAgeUsage;
+  int? firstDrugUsageId;
+  int? yearOfUsage;
+  int? monthOfUsage;
+  int? dayOfUsage;
+  double? totalUsage;
+  String? hadTreatment;
+  List<dynamic>? histories;
+  List<CurrentDrugUsageEntity>? usageReasons;
+  List<CurrentDrugUsageEntity>? currentDrugUsages;
+  List<CurrentDrugUsageEntity>? joinReasons;
+  List<DrugUsageBeforeEntity>? drugUsageBefores;
+  String? hadDosing;
+  dynamic? otherDosing;
+  List<dynamic>? dosings;
+  List<CurrentDrugUsageEntity>? techniques;
+  List<CurrentDrugUsageEntity>? programmes;
+  List<PlanEntity>? plans;
+  String? frequencyOfUse;
+  String? feelingAddicted;
+  String? frequencyOfProblem;
+  String? irresponsible;
+  String? beNoticed;
+  String? stopUsingButNotSuccess;
+  int? drugEvalScore;
+  String? levelOfAddicted;
+  String? treatmentResult;
+  List<int>? mentalIssueIds;
+  int? mentalScore;
+  String? mentalEvalLevel;
+  DateTime? latestTreatmentEvalDate;
+  String? evaluationResult;
+  dynamic? monitoringReportMentalTo;
+  int? monitoringReportMentalReferId;
+  dynamic? monitoringReportSocialTo;
+  int? monitoringReportSocialReferId;
+  String? incompletedReason;
+  String? mentalTreatmentResult;
+  String? physicalTreatmentResult;
+  List<FileElementdataEntity>? files;
+  List<dynamic>? newFiles;
+  List<dynamic>? removeFiles;
+
+  TreatmentEntity({
+    required this.patientId,
+    required this.startDate,
+    required this.refFilePath,
+    required this.refFileName,
+    required this.firstAgeUsage,
+    required this.firstDrugUsageId,
+    required this.yearOfUsage,
+    required this.monthOfUsage,
+    required this.dayOfUsage,
+    required this.totalUsage,
+    required this.hadTreatment,
+    required this.histories,
+    required this.usageReasons,
+    required this.currentDrugUsages,
+    required this.joinReasons,
+    required this.drugUsageBefores,
+    required this.hadDosing,
+    required this.otherDosing,
+    required this.dosings,
+    required this.techniques,
+    required this.programmes,
+    required this.plans,
+    required this.frequencyOfUse,
+    required this.feelingAddicted,
+    required this.frequencyOfProblem,
+    required this.irresponsible,
+    required this.beNoticed,
+    required this.stopUsingButNotSuccess,
+    required this.drugEvalScore,
+    required this.levelOfAddicted,
+    required this.treatmentResult,
+    required this.mentalIssueIds,
+    required this.mentalScore,
+    required this.mentalEvalLevel,
+    required this.latestTreatmentEvalDate,
+    required this.evaluationResult,
+    required this.monitoringReportMentalTo,
+    required this.monitoringReportMentalReferId,
+    required this.monitoringReportSocialTo,
+    required this.monitoringReportSocialReferId,
+    required this.incompletedReason,
+    required this.mentalTreatmentResult,
+    required this.physicalTreatmentResult,
+    required this.files,
+    required this.newFiles,
+    required this.removeFiles,
+  });
+
+  factory TreatmentEntity.fromJson(Map<String, dynamic> json) =>
+      _$TreatmentEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TreatmentEntityToJson(this);
+}
+
+@JsonSerializable()
+class CurrentDrugUsageEntity {
+  String? answer;
+  String? other;
+
+  CurrentDrugUsageEntity({
+    required this.answer,
+    required this.other,
+  });
+
+  factory CurrentDrugUsageEntity.fromJson(Map<String, dynamic> json) =>
+      _$CurrentDrugUsageEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CurrentDrugUsageEntityToJson(this);
+}
+
+@JsonSerializable()
+class DrugUsageBeforeEntity {
+  int? order;
+  int? drugId;
+  int? drugApproachId;
+  int? gramPerDay;
+  int? drugUnitId;
+  int? qtyAmountUsage;
+  int? drugFrequencyUsageId;
+  bool? main;
+  int? firstYearUsage;
+
+  DrugUsageBeforeEntity({
+    required this.order,
+    required this.drugId,
+    required this.drugApproachId,
+    required this.gramPerDay,
+    required this.drugUnitId,
+    required this.qtyAmountUsage,
+    required this.drugFrequencyUsageId,
+    required this.main,
+    required this.firstYearUsage,
+  });
+
+  factory DrugUsageBeforeEntity.fromJson(Map<String, dynamic> json) =>
+      _$DrugUsageBeforeEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DrugUsageBeforeEntityToJson(this);
+}
+
+@JsonSerializable()
+class FileElementdataEntity {
+  int? documentId;
+  String? fileNameOrg;
+
+  FileElementdataEntity({
+    required this.documentId,
+    required this.fileNameOrg,
+  });
+  factory FileElementdataEntity.fromJson(Map<String, dynamic> json) =>
+      _$FileElementdataEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FileElementdataEntityToJson(this);
+}
+
+@JsonSerializable()
+class PlanEntity {
+  int? order;
+  String? planType;
+  DateTime? endDate;
+  dynamic? other;
+  dynamic? subDistrictId;
+  dynamic? villageId;
+  List<PlanEvalResultEntity>? planEvalResults;
+
+  PlanEntity({
+    required this.order,
+    required this.planType,
+    required this.endDate,
+    required this.other,
+    required this.subDistrictId,
+    required this.villageId,
+    required this.planEvalResults,
+  });
+
+  factory PlanEntity.fromJson(Map<String, dynamic> json) =>
+      _$PlanEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlanEntityToJson(this);
+}
+
+@JsonSerializable()
+class PlanEvalResultEntity {
+  int? order;
+  DateTime? evalDate;
+  int? evalResult;
+
+  PlanEvalResultEntity({
+    required this.order,
+    required this.evalDate,
+    required this.evalResult,
+  });
+  factory PlanEvalResultEntity.fromJson(Map<String, dynamic> json) =>
+      _$PlanEvalResultEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlanEvalResultEntityToJson(this);
 }

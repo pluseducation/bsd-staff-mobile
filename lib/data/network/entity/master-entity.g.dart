@@ -192,3 +192,17 @@ Map<String, dynamic> _$MriminalcasesEntityToJson(
       'id': instance.id,
       'name': instance.name,
     };
+
+ChroniccontagiousesEntity _$ChroniccontagiousesEntityFromJson(
+        Map<String, dynamic> json) =>
+    ChroniccontagiousesEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$ChroniccontagiousesEntityToJson(
+        ChroniccontagiousesEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };

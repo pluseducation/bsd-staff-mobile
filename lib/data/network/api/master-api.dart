@@ -6,7 +6,6 @@ import 'package:dio/dio.dart';
 class MasterApi extends BaseApi {
   MasterApi({required super.baseUrl});
 
-  // ---NationalityEntity
   Future<List<NationalityEntity>> findNationality() async {
     try {
       final Dio dio = await getPrivateDio();
@@ -210,8 +209,6 @@ class MasterApi extends BaseApi {
     }
   }
 
-  // /master/occupations
-
   Future<List<OccupationsEntity>> findOccupations() async {
     try {
       final Dio dio = await getPrivateDio();
@@ -240,7 +237,6 @@ class MasterApi extends BaseApi {
       throw Exception('Unknown error : $error');
     }
   }
-  // incomes
 
   Future<List<IncomesEntity>> findIncomes() async {
     try {
@@ -328,7 +324,6 @@ class MasterApi extends BaseApi {
       throw Exception('Unknown error : $error');
     }
   }
-  // /master/relationships
 
   Future<List<RelationshipsValueEntity>> findRelationshipsvalue() async {
     try {
@@ -417,8 +412,6 @@ class MasterApi extends BaseApi {
     }
   }
 
-  // /master/criminalcases
-
   Future<List<MriminalcasesEntity>> findcriminalcases() async {
     try {
       final Dio dio = await getPrivateDio();
@@ -426,6 +419,37 @@ class MasterApi extends BaseApi {
 
       if (response.statusCode == 200) {
         return criminalcasesFromJson(
+          response.data as List,
+        );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.statusMessage,
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
+  // /master/chroniccontagiouses
+
+  Future<List<ChroniccontagiousesEntity>> findChroniccontagiouses() async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get('/api/v1/master/chroniccontagiouses');
+
+      if (response.statusCode == 200) {
+        return chroniccontagiousesFromJson(
           response.data as List,
         );
       } else {

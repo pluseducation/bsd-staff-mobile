@@ -45,28 +45,38 @@ class WorkflowRepository {
       final String patientStatus = convertToString(entityProfile.patientStatus);
       final String level = convertToString(entityProfile.level);
 
-      final String dateOfBirthText = formatThaiDate(entityPatient.dateOfBirth);
+      final String dateOfBirthText =
+          formatThaiDateOfBirth(entityPatient.dateOfBirth);
 
       final String nationalityText = convertToString(
         entityNationallity
             .where((t) => t.id == entityPatient.nationalityId)
-            .first
-            .name,
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
       );
 
       final String religionText = convertToString(
         entityReligion
             .where((t) => t.id == entityPatient.religionId)
-            .first
-            .name,
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
       );
 
       // -----หมู่บ้าน/ชุมชน
       final String villages = convertToString(
         entityVillages
             .where((t) => t.id == entityPatient.registeredVillageId)
-            .first
-            .name,
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
       );
 
       // ----จังหวัด
@@ -74,8 +84,11 @@ class WorkflowRepository {
       final String province = convertToString(
         entityProvinces
             .where((t) => t.id == entityPatient.registeredProvinceId)
-            .first
-            .name,
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
       );
 
       // ----เขต
@@ -83,31 +96,84 @@ class WorkflowRepository {
       final String districts = convertToString(
         entityDistricts
             .where((t) => t.id == entityPatient.registeredDistrictId)
-            .first
-            .name,
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
       );
 
       // ตำบล
       final String subdistricts = convertToString(
         entitySubdistricts
             .where((t) => t.id == entityPatient.registeredSubDistrictId)
-            .first
-            .name,
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
       );
 
       final String registereText =
           "${entityPatient.registeredHouseNo} ${entityPatient.registeredHouseMoo} $villages ${entityPatient.registeredHouseRoad} $province $districts $subdistricts ${entityPatient.registeredPostalCode}";
 
+      // -----หมู่บ้าน/ชุมชน
+      final String currentVillageText = convertToString(
+        entityVillages
+            .where((t) => t.id == entityPatient.currentVillageId)
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
+      );
+
+      final String currentProvinceText = convertToString(
+        entityProvinces
+            .where((t) => t.id == entityPatient.currentProvinceId)
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
+      );
+
+      final String currentDistrictText = convertToString(
+        entityDistricts
+            .where((t) => t.id == entityPatient.currentDistrictId)
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
+      );
+
+      // ตำบล
+      final String currentSubDistrictText = convertToString(
+        entitySubdistricts
+            .where((t) => t.id == entityPatient.currentSubDistrictId)
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
+      );
+
+// ${entityPatient.currentAddrAsRegistered}
       final String currentAddrText =
-          "${entityPatient.currentAddrAsRegistered} ${entityPatient.currentHouseNo} ${entityPatient.currentHouseMoo} ${entityPatient.currentVillageId} ${entityPatient.currentHouseRoad} ${entityPatient.currentProvinceId} ${entityPatient.currentDistrictId}  ${entityPatient.currentSubDistrictId} ${entityPatient.currentPostalCode}";
+          "${entityPatient.currentHouseNo} ${entityPatient.currentHouseMoo} ${entityPatient.currentHouseMoo} $currentVillageText ${entityPatient.currentHouseRoad} $currentProvinceText $currentDistrictText  $currentSubDistrictText ${entityPatient.currentPostalCode}";
+
       final String guardianfullNameText =
           "${entityPatient.guardianName} ${entityPatient.guardianSurname}";
 
-      final String relationShipId = convertToString(
+      final String relationShipText = convertToString(
         entityRelationShip
             .where((t) => t.id == entityPatient.relationShipId)
-            .first
-            .name,
+            .map((t) => t.name)
+            .firstWhere(
+              (name) => name != null,
+              orElse: () => "",
+            ),
       );
 
       final String guardianPhoneNo = "${entityPatient.guardianPhoneNo}";
@@ -173,236 +239,231 @@ class WorkflowRepository {
   }
 
   Future<void> findScreenings(int id) async {
-    try {
-      final entityScreenings =
-          await screeningsApi.findScreenings(id, patientsid: id);
+    final entityScreenings =
+        await screeningsApi.findScreenings(id, patientsid: id);
 
-      final entityMaritalstatuses = await masterApi.findMaritalstatuses();
-      final entityEducations = await masterApi.findEducations();
-      final entityOccupations = await masterApi.findOccupations();
-      final entityIncomes = await masterApi.findIncomes();
-      final entityRelationshipsvalue = await masterApi.findRelationshipsvalue();
-      final entityDrugs = await masterApi.findDrugs();
-      final entityMentaltreatments = await masterApi.findMentaltreatments();
-      final entityCriminalcases = await masterApi.findcriminalcases();
-      final entityQuestion = await questionApi.findScreeningsQuestionChoices();
+    final entityMaritalstatuses = await masterApi.findMaritalstatuses();
+    final entityEducations = await masterApi.findEducations();
+    final entityOccupations = await masterApi.findOccupations();
+    final entityIncomes = await masterApi.findIncomes();
+    final entityRelationshipsvalue = await masterApi.findRelationshipsvalue();
+    final entityDrugs = await masterApi.findDrugs();
+    final entityMentaltreatments = await masterApi.findMentaltreatments();
+    final entityCriminalcases = await masterApi.findcriminalcases();
+    final entityChroniccontagiouses = await masterApi.findChroniccontagiouses();
 
-      // final String startDate = convertToString(entityScreenings.startDate);
+    final entityQuestion = await questionApi.findScreeningsQuestionChoices();
 
-      final String maritalstatusesText = convertToString(
-        entityMaritalstatuses
-            .where((t) => t.id == entityScreenings.maritalStatusId)
-            .first
-            .name,
-      );
-      print(maritalstatusesText);
+    // final String startDate = convertToString(entityScreenings.startDate);
 
-      final String educationsText = convertToString(
-        entityEducations
-            .where((t) => t.id == entityScreenings.educationId)
-            .first
-            .name,
-      );
+    final String maritalstatusesText = convertToString(
+      entityMaritalstatuses
+          .where((t) => t.id == entityScreenings.maritalStatusId)
+          .map((t) => t.name)
+          .firstWhere(
+            (name) => name != null,
+            orElse: () => "",
+          ),
+    );
 
-      final String occupationsText = convertToString(
-        entityOccupations
-            .where((t) => t.id == entityScreenings.occupationId)
-            .first
-            .name,
-      );
+    final String educationsText = convertToString(
+      entityEducations
+          .where((t) => t.id == entityScreenings.educationId)
+          .map((t) => t.name)
+          .firstWhere(
+            (name) => name != null,
+            orElse: () => "",
+          ),
+    );
 
-      final String incomesText = convertToString(
-        entityIncomes
-            .where((t) => t.id == entityScreenings.incomeId)
-            .first
-            .name,
-      );
+    final String occupationsText = convertToString(
+      entityOccupations
+          .where((t) => t.id == entityScreenings.occupationId)
+          .map((t) => t.name)
+          .firstWhere(
+            (name) => name != null,
+            orElse: () => "",
+          ),
+    );
 
-      final String livingWithLast30days = _getChoiceDescriptionList(
-        entityQuestion,
-        "screening_info_last_30_days_answer",
-        entityScreenings.livingWithLast30Days ?? [],
-      );
+    final String incomesText = convertToString(
+      entityIncomes
+          .where((t) => t.id == entityScreenings.incomeId)
+          .map((t) => t.name)
+          .firstWhere(
+            (name) => name != null,
+            orElse: () => "",
+          ),
+    );
 
-      final String relationshipsvalueText = convertToString(
-        entityRelationshipsvalue
-            .where((t) => t.id == entityScreenings.parentRelationshipId)
-            .first
-            .name,
-      );
+    final String livingWithLast30days = _getChoiceDescriptionList(
+      entityQuestion,
+      "screening_info_last_30_days_answer",
+      entityScreenings.livingWithLast30days ?? [],
+    );
 
-      final String startDate = entityScreenings.startDate != null
-          ? formatThaiDate(entityScreenings.startDate)
-          : '';
+    final String relationshipsvalueText = convertToString(
+      entityRelationshipsvalue
+          .where((t) => t.id == entityScreenings.parentRelationshipId)
+          .map((t) => t.name)
+          .firstWhere(
+            (name) => name != null,
+            orElse: () => "",
+          ),
+    );
 
-      final String isToBeNumberOneMember = _getChoiceDescription(
-        entityQuestion,
-        "is_to_be_number_one_member",
-        entityScreenings.isToBeNumberOneMember,
-      );
+    final String startDate = entityScreenings.startDate != null
+        ? formatThaiDate(entityScreenings.startDate)
+        : '';
 
-      final String drugUsageApproach = _getChoiceDescription(
-        entityQuestion,
-        "drug_usage_approach",
-        entityScreenings.drugUsageApproach,
-      );
+    final String isToBeNumberOneMember = _getChoiceDescription(
+      entityQuestion,
+      "is_to_be_number_one_member",
+      entityScreenings.isToBeNumberOneMember,
+    );
 
-      final String entityDrugsText = _getChoiceDescriptionList(
-        entityQuestion,
-        "screening_info_last_30_days_answer",
-        entityScreenings.livingWithLast30Days ?? [],
-      );
+    final String drugUsageApproach = _getChoiceDescription(
+      entityQuestion,
+      "drug_usage_approach",
+      entityScreenings.drugUsageApproach ?? "",
+    );
 
-      final String mentalEvalLevel =
-          convertToString(entityScreenings.mentalEvalLevel);
+    String mainDrugsText = _getDrugDescriptionList(
+      entityDrugs,
+      entityScreenings.mainDrugs ?? [],
+    );
 
-      final String frequencyOfUse = _getChoiceDescription(
-        entityQuestion,
-        "frequency_of_use",
-        entityScreenings.frequencyOfUse,
-      );
+    final String mentalEvalLevel =
+        convertToString(entityScreenings.mentalEvalLevel);
 
-      final String feelingAddicted = _getChoiceDescription(
-        entityQuestion,
-        "feeling_addicted",
-        entityScreenings.feelingAddicted,
-      );
+    final String frequencyOfUse = _getChoiceDescription(
+      entityQuestion,
+      "frequency_of_use",
+      entityScreenings.frequencyOfUse,
+    );
 
-      // irresponsible
+    final String feelingAddicted = _getChoiceDescription(
+      entityQuestion,
+      "feeling_addicted",
+      entityScreenings.feelingAddicted,
+    );
 
-      final String irresponsible = _getChoiceDescription(
-        entityQuestion,
-        "irresponsible",
-        entityScreenings.irresponsible,
-      );
+    // irresponsible
 
-      final String frequencyOfProblem = _getChoiceDescription(
-        entityQuestion,
-        "frequency_of_problem",
-        entityScreenings.frequencyOfProblem,
-      );
+    final String irresponsible = _getChoiceDescription(
+      entityQuestion,
+      "irresponsible",
+      entityScreenings.irresponsible,
+    );
 
-      // beNoticed
-      final String beNoticed = _getChoiceDescription(
-        entityQuestion,
-        "be_noticed",
-        entityScreenings.beNoticed,
-      );
+    final String frequencyOfProblem = _getChoiceDescription(
+      entityQuestion,
+      "frequency_of_problem",
+      entityScreenings.frequencyOfProblem,
+    );
 
-      final String stopUsingButNotSuccess = _getChoiceDescription(
-        entityQuestion,
-        "stop_using_but_not_success",
-        entityScreenings.stopUsingButNotSuccess,
-      );
+    // beNoticed
+    final String beNoticed = _getChoiceDescription(
+      entityQuestion,
+      "be_noticed",
+      entityScreenings.beNoticed,
+    );
 
-      // ---------------
-      String mainDrugsText = _getDrugDescriptionList(
-        entityDrugs,
-        entityScreenings.mainDrugs!,
-      );
+    final String stopUsingButNotSuccess = _getChoiceDescription(
+      entityQuestion,
+      "stop_using_but_not_success",
+      entityScreenings.stopUsingButNotSuccess,
+    );
 
-      if (mainDrugsText.isEmpty) {
-        mainDrugsText = _getChoiceDescription(
-          entityQuestion,
-          "feeling_addicted",
-          entityScreenings.feelingAddicted,
-        );
-      }
+    final String DrugsText = _getChoiceDescriptionList(
+      entityQuestion,
+      "screening_info_last_30_days_answer",
+      entityScreenings.livingWithLast30days ?? [],
+    );
+    //  ผลการคัดกรอง
 
-      if (mainDrugsText.isEmpty) {
-        mainDrugsText = _getChoiceDescription(
-          entityQuestion,
-          "frequency_of_problem",
-          entityScreenings.irresponsible,
-        );
-      }
+    final String levelOfAddicted =
+        convertToString(entityScreenings.levelOfAddicted);
 
-      if (mainDrugsText.isEmpty) {
-        mainDrugsText = _getChoiceDescription(
-          entityQuestion,
-          "stop_using_but_not_success",
-          entityScreenings.frequencyOfProblem,
-        );
-      }
-      if (mainDrugsText.isEmpty) {
-        mainDrugsText = _getChoiceDescription(
-          entityQuestion,
-          "be_noticed",
-          entityScreenings.beNoticed,
-        );
-      }
+    final int mentalEvalScore = convertToInt(entityScreenings.mentalEvalScore);
 
-      if (mainDrugsText.isEmpty) {
-        mainDrugsText = _getChoiceDescription(
-          entityQuestion,
-          "frequency_of_use",
-          entityScreenings.stopUsingButNotSuccess,
-        );
-      }
+    final String screeningResult =
+        convertToString(entityScreenings.screeningResult);
 
-      final String injectableDrug = _getChoiceDescription(
-        entityQuestion,
-        "injectable_drug",
-        entityScreenings.injectableDrug,
-      );
+    final String injectableDrug = _getChoiceDescription(
+      entityQuestion,
+      "injectable_drug",
+      entityScreenings.injectableDrug,
+    );
 
-      final String last3monthUsage = _getChoiceDescription(
-        entityQuestion,
-        "last_3_months_usage",
-        entityScreenings.last3MonthUsage,
-      );
+    final String last3monthUsage = _getChoiceDescription(
+      entityQuestion,
+      "last_3_months_usage",
+      entityScreenings.last3MonthUsage,
+    );
 
-      // had_mental_treatment
+    final String hadMentalTreatment = _getChoiceDescription(
+      entityQuestion,
+      "had_mental_treatment",
+      entityScreenings.hadMentalTreatment,
+    );
 
-      final String hadMentalTreatment = _getChoiceDescription(
-        entityQuestion,
-        "had_mental_treatment",
-        entityScreenings.hadMentalTreatment,
-      );
+    final String? mentalTreatmentText = convertToString(
+      entityMentaltreatments
+          .where((t) => t.id == entityScreenings.mentalTreatmentId)
+          .map((t) => t.name)
+          .firstWhere(
+            (name) => name != null,
+            orElse: () => "",
+          ),
+    );
 
-      final String chronicContagiousId = convertToString(
-        entityMentaltreatments
-            .where((t) => t.id == entityScreenings.chronicContagiousId)
-            .first
-            .name,
-      );
+    final String hadCriminalCase = _getChoiceDescription(
+      entityQuestion,
+      "had_criminal_case",
+      entityScreenings.hadCriminalCase,
+    );
 
-      final String hadCriminalCase = _getChoiceDescription(
-        entityQuestion,
-        "had_criminal_case",
-        entityScreenings.hadCriminalCase,
-      );
+    final String homeless = _getChoiceDescription(
+      entityQuestion,
+      "is_homeless",
+      entityScreenings.homeless,
+    );
 
-      final String criminalCaseId = convertToString(
-        entityCriminalcases
-            .where((t) => t.id == entityScreenings.criminalCaseId)
-            .first
-            .name,
-      );
+    final String disabledPerson = _getChoiceDescription(
+      entityQuestion,
+      "disabled_person",
+      entityScreenings.disabledPerson,
+    );
 
-      final String homeless = _getChoiceDescription(
-        entityQuestion,
-        "is_homeless",
-        entityScreenings.homeless,
-      );
+    final String criminalCaseText = convertToString(
+      entityCriminalcases
+          .where((t) => t.id == entityScreenings.criminalCaseId)
+          .map((t) => t.name)
+          .firstWhere(
+            (name) => name != null,
+            orElse: () => "",
+          ),
+    );
 
-      final String disabledPerson = _getChoiceDescription(
-        entityQuestion,
-        "disabled_person",
-        entityScreenings.disabledPerson,
-      );
+    final String chronicContagiousText = convertToString(
+      entityChroniccontagiouses
+          .where((t) => t.id == entityScreenings.chronicContagiousId)
+          .map((t) => t.name)
+          .firstWhere(
+            (name) => name != null,
+            orElse: () => "",
+          ),
+    );
 
-      print('finish');
-    } catch (e) {
-      rethrow;
-    }
+    print('finish');
   }
 
   String _getDrugDescriptionList(
     List<DrugsEntity> drugList,
     List<AnswerEntity> answers,
   ) {
-    final List<String> values = List.empty();
+    final List<String> values = [];
 
     for (final answer in answers) {
       if (answer.answer == "17") {
@@ -426,7 +487,7 @@ class WorkflowRepository {
 
   String _getChoiceDescriptionList(List<QuestionChoicesEntity> questionList,
       String question, List<AnswerEntity> answers) {
-    final List<String> values = List.empty();
+    final List<String> values = [];
 
     final questionEntity =
         questionList.where((t) => t.question?.question == question).firstOrNull;

@@ -27,3 +27,14 @@ class MainColors {
   static const Color errorLight = Color(0XFFf8dcdb);
   static const Color error = Color(0XFFF04438);
 }
+
+class PatientMainColors {
+  static const Color normalbg = Color(0xFFEEFFF4);
+  static const Color normal = Color(0xFF3CA468);
+  static const Color semiurgencybg = Color(0xFFFFFAED);
+  static const Color semiurgency = Color(0xFFF2994B);
+  static const Color urgencybg = Color(0xFFFFF0E5);
+  static const Color urgency = Color(0xFFFE6805);
+  static const Color monitoringbg = Color(0xFFFBE9E9);
+  static const Color monitoring = Color(0xFFD82E22);
+}

@@ -52,3 +52,52 @@ Widget patientStatusWidget(String status) {
     backgroundColor: lightColor,
   );
 }
+
+// เปลี่ยนจาก Widget เป็น Object เนื่องจากต้อง return "" เมื่อไม่เข้าเงื่อนไข
+Widget mentalEvalLevelWidget(String status) {
+  Color lightColor;
+  Color color;
+  String text;
+
+  if (status == "NORMAL") {
+    lightColor = const Color(0xFFEEFFF4);
+    color = const Color(0xFF3CA468);
+    text = "ไม่มีอาการ";
+  } else if (status == "SEMI_URGENCY") {
+    lightColor = const Color(0xFFFFFAED);
+    color = const Color(0xFFF2994B);
+    text = "กึ่งเร่งด่วน";
+  } else if (status == "URGENCY") {
+    lightColor = const Color(0xFFFFF0E5);
+    color = const Color(0xFFFE6805);
+    text = "เร่งด่วน";
+  } else if (status == "MONITORING") {
+    lightColor = const Color(0xFFFBE9E9);
+    color = const Color(0xFFD82E22);
+    text = "ฉุกเฉิน";
+  } else {
+    lightColor = MainColors.secondaryLight;
+    color = MainColors.secondary;
+    text = "";
+  }
+
+  return SizedBox(
+    width: 90,
+    child: Chip(
+      label: Text(
+        text,
+        style:
+            TextStyle(color: color, fontSize: 16, fontWeight: FontWeight.bold),
+      ),
+      side: BorderSide(
+        color: lightColor,
+      ),
+      elevation: 0.5,
+      shadowColor: Colors.grey,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      backgroundColor: lightColor,
+    ),
+  );
+}

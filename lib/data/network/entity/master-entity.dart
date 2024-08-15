@@ -389,3 +389,28 @@ class MriminalcasesEntity {
 
   Map<String, dynamic> toJson() => _$MriminalcasesEntityToJson(this);
 }
+
+List<ChroniccontagiousesEntity> chroniccontagiousesFromJson(List data) =>
+    List<ChroniccontagiousesEntity>.from(
+      data.map(
+          (x) => ChroniccontagiousesEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+String chroniccontagiousesToJson(List<ChroniccontagiousesEntity> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+@JsonSerializable()
+class ChroniccontagiousesEntity {
+  int? id;
+  String? name;
+
+  ChroniccontagiousesEntity({
+    required this.id,
+    required this.name,
+  });
+
+  factory ChroniccontagiousesEntity.fromJson(Map<String, dynamic> json) =>
+      _$ChroniccontagiousesEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ChroniccontagiousesEntityToJson(this);
+}
