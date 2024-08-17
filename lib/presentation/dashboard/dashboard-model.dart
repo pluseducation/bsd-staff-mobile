@@ -5,10 +5,10 @@ import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/model/session.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:logger/logger.dart' as lg;
 
 class DashboardModel {
-  final Logger log;
+  final lg.Logger log;
   final DashboardRepository dashboardRepository;
   final AppService appService;
 
@@ -158,9 +158,23 @@ class DashboardModel {
     }
   }
 
-  Future<StatYear> findStatYear() async {
+  // Future<StatYear> findStatYear() async {
+  //   try {
+  //     return await dashboardRepository.findStatYear();
+  //   } catch (e) {
+  //     if (e is NetworkException) {
+  //       log.e('Network Error', error: e);
+  //       throw CustomException(e.message);
+  //     } else {
+  //       log.e('System Error', error: e);
+  //       throw CustomException(e.toString());
+  //     }
+  //   }
+  // }
+
+  Future<Level> findLevel() async {
     try {
-      return await dashboardRepository.findStatYear();
+      return await dashboardRepository.findLevel();
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);

@@ -24,9 +24,7 @@ mixin _$StatYear {
   double get monitoring => throw _privateConstructorUsedError;
   double get discharged => throw _privateConstructorUsedError;
 
-  /// Create a copy of StatYear
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $StatYearCopyWith<StatYear> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,8 +54,6 @@ class _$StatYearCopyWithImpl<$Res, $Val extends StatYear>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StatYear
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -128,8 +124,6 @@ class __$$StatYearImplCopyWithImpl<$Res>
       _$StatYearImpl _value, $Res Function(_$StatYearImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StatYear
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -229,9 +223,7 @@ class _$StatYearImpl implements _StatYear {
   int get hashCode => Object.hash(runtimeType, year, total, register, screening,
       treatment, monitoring, discharged);
 
-  /// Create a copy of StatYear
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$StatYearImplCopyWith<_$StatYearImpl> get copyWith =>
@@ -262,11 +254,8 @@ abstract class _StatYear implements StatYear {
   double get monitoring;
   @override
   double get discharged;
-
-  /// Create a copy of StatYear
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$StatYearImplCopyWith<_$StatYearImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -276,9 +265,7 @@ mixin _$StatPatientWeek {
   int get newPatientWeek => throw _privateConstructorUsedError;
   List<double> get dataWeek => throw _privateConstructorUsedError;
 
-  /// Create a copy of StatPatientWeek
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $StatPatientWeekCopyWith<StatPatientWeek> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -302,8 +289,6 @@ class _$StatPatientWeekCopyWithImpl<$Res, $Val extends StatPatientWeek>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StatPatientWeek
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -342,8 +327,6 @@ class __$$StatPatientWeekImplCopyWithImpl<$Res>
       _$StatPatientWeekImpl _value, $Res Function(_$StatPatientWeekImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StatPatientWeek
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -399,9 +382,7 @@ class _$StatPatientWeekImpl implements _StatPatientWeek {
   int get hashCode => Object.hash(runtimeType, newPatientWeek,
       const DeepCollectionEquality().hash(_dataWeek));
 
-  /// Create a copy of StatPatientWeek
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$StatPatientWeekImplCopyWith<_$StatPatientWeekImpl> get copyWith =>
@@ -418,11 +399,8 @@ abstract class _StatPatientWeek implements StatPatientWeek {
   int get newPatientWeek;
   @override
   List<double> get dataWeek;
-
-  /// Create a copy of StatPatientWeek
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$StatPatientWeekImplCopyWith<_$StatPatientWeekImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -432,9 +410,7 @@ mixin _$StatPatientMonth {
   int get newPatientMonth => throw _privateConstructorUsedError;
   List<double> get dataMonth => throw _privateConstructorUsedError;
 
-  /// Create a copy of StatPatientMonth
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $StatPatientMonthCopyWith<StatPatientMonth> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -458,8 +434,6 @@ class _$StatPatientMonthCopyWithImpl<$Res, $Val extends StatPatientMonth>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StatPatientMonth
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -498,8 +472,6 @@ class __$$StatPatientMonthImplCopyWithImpl<$Res>
       $Res Function(_$StatPatientMonthImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StatPatientMonth
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -556,9 +528,7 @@ class _$StatPatientMonthImpl implements _StatPatientMonth {
   int get hashCode => Object.hash(runtimeType, newPatientMonth,
       const DeepCollectionEquality().hash(_dataMonth));
 
-  /// Create a copy of StatPatientMonth
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$StatPatientMonthImplCopyWith<_$StatPatientMonthImpl> get copyWith =>
@@ -575,11 +545,8 @@ abstract class _StatPatientMonth implements StatPatientMonth {
   int get newPatientMonth;
   @override
   List<double> get dataMonth;
-
-  /// Create a copy of StatPatientMonth
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$StatPatientMonthImplCopyWith<_$StatPatientMonthImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -589,9 +556,7 @@ mixin _$Refer {
   int get sender => throw _privateConstructorUsedError;
   int get receiver => throw _privateConstructorUsedError;
 
-  /// Create a copy of Refer
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ReferCopyWith<Refer> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -613,8 +578,6 @@ class _$ReferCopyWithImpl<$Res, $Val extends Refer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Refer
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -652,8 +615,6 @@ class __$$ReferImplCopyWithImpl<$Res>
       _$ReferImpl _value, $Res Function(_$ReferImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Refer
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -701,9 +662,7 @@ class _$ReferImpl implements _Refer {
   @override
   int get hashCode => Object.hash(runtimeType, sender, receiver);
 
-  /// Create a copy of Refer
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReferImplCopyWith<_$ReferImpl> get copyWith =>
@@ -718,11 +677,528 @@ abstract class _Refer implements Refer {
   int get sender;
   @override
   int get receiver;
-
-  /// Create a copy of Refer
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ReferImplCopyWith<_$ReferImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$Level {
+  int get year => throw _privateConstructorUsedError;
+  int get screeningTotal => throw _privateConstructorUsedError;
+  int get screeningUrgencyCount => throw _privateConstructorUsedError;
+  double get screeningUrgencyPercent => throw _privateConstructorUsedError;
+  int get screeningEmergencyCount => throw _privateConstructorUsedError;
+  double get screeningEmergencyPercent => throw _privateConstructorUsedError;
+  int get screeningSemiUrgencyCount => throw _privateConstructorUsedError;
+  double get screeningSemiUrgencyPercent => throw _privateConstructorUsedError;
+  int get screeningNormalCount => throw _privateConstructorUsedError;
+  double get screeningNormalPercent => throw _privateConstructorUsedError;
+  int get treatmentTotal => throw _privateConstructorUsedError;
+  int get treatmentUrgencyCount => throw _privateConstructorUsedError;
+  double get treatmentUrgencyPercent => throw _privateConstructorUsedError;
+  int get treatmentEmergencyCount => throw _privateConstructorUsedError;
+  double get treatmentEmergencyPercent => throw _privateConstructorUsedError;
+  int get treatmentSemiUrgencyCount => throw _privateConstructorUsedError;
+  double get treatmentSemiUrgencyPercent => throw _privateConstructorUsedError;
+  int get treatmentNormalCount => throw _privateConstructorUsedError;
+  double get treatmentNormalPercent => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LevelCopyWith<Level> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LevelCopyWith<$Res> {
+  factory $LevelCopyWith(Level value, $Res Function(Level) then) =
+      _$LevelCopyWithImpl<$Res, Level>;
+  @useResult
+  $Res call(
+      {int year,
+      int screeningTotal,
+      int screeningUrgencyCount,
+      double screeningUrgencyPercent,
+      int screeningEmergencyCount,
+      double screeningEmergencyPercent,
+      int screeningSemiUrgencyCount,
+      double screeningSemiUrgencyPercent,
+      int screeningNormalCount,
+      double screeningNormalPercent,
+      int treatmentTotal,
+      int treatmentUrgencyCount,
+      double treatmentUrgencyPercent,
+      int treatmentEmergencyCount,
+      double treatmentEmergencyPercent,
+      int treatmentSemiUrgencyCount,
+      double treatmentSemiUrgencyPercent,
+      int treatmentNormalCount,
+      double treatmentNormalPercent});
+}
+
+/// @nodoc
+class _$LevelCopyWithImpl<$Res, $Val extends Level>
+    implements $LevelCopyWith<$Res> {
+  _$LevelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? year = null,
+    Object? screeningTotal = null,
+    Object? screeningUrgencyCount = null,
+    Object? screeningUrgencyPercent = null,
+    Object? screeningEmergencyCount = null,
+    Object? screeningEmergencyPercent = null,
+    Object? screeningSemiUrgencyCount = null,
+    Object? screeningSemiUrgencyPercent = null,
+    Object? screeningNormalCount = null,
+    Object? screeningNormalPercent = null,
+    Object? treatmentTotal = null,
+    Object? treatmentUrgencyCount = null,
+    Object? treatmentUrgencyPercent = null,
+    Object? treatmentEmergencyCount = null,
+    Object? treatmentEmergencyPercent = null,
+    Object? treatmentSemiUrgencyCount = null,
+    Object? treatmentSemiUrgencyPercent = null,
+    Object? treatmentNormalCount = null,
+    Object? treatmentNormalPercent = null,
+  }) {
+    return _then(_value.copyWith(
+      year: null == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningTotal: null == screeningTotal
+          ? _value.screeningTotal
+          : screeningTotal // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningUrgencyCount: null == screeningUrgencyCount
+          ? _value.screeningUrgencyCount
+          : screeningUrgencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningUrgencyPercent: null == screeningUrgencyPercent
+          ? _value.screeningUrgencyPercent
+          : screeningUrgencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      screeningEmergencyCount: null == screeningEmergencyCount
+          ? _value.screeningEmergencyCount
+          : screeningEmergencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningEmergencyPercent: null == screeningEmergencyPercent
+          ? _value.screeningEmergencyPercent
+          : screeningEmergencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      screeningSemiUrgencyCount: null == screeningSemiUrgencyCount
+          ? _value.screeningSemiUrgencyCount
+          : screeningSemiUrgencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningSemiUrgencyPercent: null == screeningSemiUrgencyPercent
+          ? _value.screeningSemiUrgencyPercent
+          : screeningSemiUrgencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      screeningNormalCount: null == screeningNormalCount
+          ? _value.screeningNormalCount
+          : screeningNormalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningNormalPercent: null == screeningNormalPercent
+          ? _value.screeningNormalPercent
+          : screeningNormalPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      treatmentTotal: null == treatmentTotal
+          ? _value.treatmentTotal
+          : treatmentTotal // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentUrgencyCount: null == treatmentUrgencyCount
+          ? _value.treatmentUrgencyCount
+          : treatmentUrgencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentUrgencyPercent: null == treatmentUrgencyPercent
+          ? _value.treatmentUrgencyPercent
+          : treatmentUrgencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      treatmentEmergencyCount: null == treatmentEmergencyCount
+          ? _value.treatmentEmergencyCount
+          : treatmentEmergencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentEmergencyPercent: null == treatmentEmergencyPercent
+          ? _value.treatmentEmergencyPercent
+          : treatmentEmergencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      treatmentSemiUrgencyCount: null == treatmentSemiUrgencyCount
+          ? _value.treatmentSemiUrgencyCount
+          : treatmentSemiUrgencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentSemiUrgencyPercent: null == treatmentSemiUrgencyPercent
+          ? _value.treatmentSemiUrgencyPercent
+          : treatmentSemiUrgencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      treatmentNormalCount: null == treatmentNormalCount
+          ? _value.treatmentNormalCount
+          : treatmentNormalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentNormalPercent: null == treatmentNormalPercent
+          ? _value.treatmentNormalPercent
+          : treatmentNormalPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LevelImplCopyWith<$Res> implements $LevelCopyWith<$Res> {
+  factory _$$LevelImplCopyWith(
+          _$LevelImpl value, $Res Function(_$LevelImpl) then) =
+      __$$LevelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int year,
+      int screeningTotal,
+      int screeningUrgencyCount,
+      double screeningUrgencyPercent,
+      int screeningEmergencyCount,
+      double screeningEmergencyPercent,
+      int screeningSemiUrgencyCount,
+      double screeningSemiUrgencyPercent,
+      int screeningNormalCount,
+      double screeningNormalPercent,
+      int treatmentTotal,
+      int treatmentUrgencyCount,
+      double treatmentUrgencyPercent,
+      int treatmentEmergencyCount,
+      double treatmentEmergencyPercent,
+      int treatmentSemiUrgencyCount,
+      double treatmentSemiUrgencyPercent,
+      int treatmentNormalCount,
+      double treatmentNormalPercent});
+}
+
+/// @nodoc
+class __$$LevelImplCopyWithImpl<$Res>
+    extends _$LevelCopyWithImpl<$Res, _$LevelImpl>
+    implements _$$LevelImplCopyWith<$Res> {
+  __$$LevelImplCopyWithImpl(
+      _$LevelImpl _value, $Res Function(_$LevelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? year = null,
+    Object? screeningTotal = null,
+    Object? screeningUrgencyCount = null,
+    Object? screeningUrgencyPercent = null,
+    Object? screeningEmergencyCount = null,
+    Object? screeningEmergencyPercent = null,
+    Object? screeningSemiUrgencyCount = null,
+    Object? screeningSemiUrgencyPercent = null,
+    Object? screeningNormalCount = null,
+    Object? screeningNormalPercent = null,
+    Object? treatmentTotal = null,
+    Object? treatmentUrgencyCount = null,
+    Object? treatmentUrgencyPercent = null,
+    Object? treatmentEmergencyCount = null,
+    Object? treatmentEmergencyPercent = null,
+    Object? treatmentSemiUrgencyCount = null,
+    Object? treatmentSemiUrgencyPercent = null,
+    Object? treatmentNormalCount = null,
+    Object? treatmentNormalPercent = null,
+  }) {
+    return _then(_$LevelImpl(
+      year: null == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningTotal: null == screeningTotal
+          ? _value.screeningTotal
+          : screeningTotal // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningUrgencyCount: null == screeningUrgencyCount
+          ? _value.screeningUrgencyCount
+          : screeningUrgencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningUrgencyPercent: null == screeningUrgencyPercent
+          ? _value.screeningUrgencyPercent
+          : screeningUrgencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      screeningEmergencyCount: null == screeningEmergencyCount
+          ? _value.screeningEmergencyCount
+          : screeningEmergencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningEmergencyPercent: null == screeningEmergencyPercent
+          ? _value.screeningEmergencyPercent
+          : screeningEmergencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      screeningSemiUrgencyCount: null == screeningSemiUrgencyCount
+          ? _value.screeningSemiUrgencyCount
+          : screeningSemiUrgencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningSemiUrgencyPercent: null == screeningSemiUrgencyPercent
+          ? _value.screeningSemiUrgencyPercent
+          : screeningSemiUrgencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      screeningNormalCount: null == screeningNormalCount
+          ? _value.screeningNormalCount
+          : screeningNormalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      screeningNormalPercent: null == screeningNormalPercent
+          ? _value.screeningNormalPercent
+          : screeningNormalPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      treatmentTotal: null == treatmentTotal
+          ? _value.treatmentTotal
+          : treatmentTotal // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentUrgencyCount: null == treatmentUrgencyCount
+          ? _value.treatmentUrgencyCount
+          : treatmentUrgencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentUrgencyPercent: null == treatmentUrgencyPercent
+          ? _value.treatmentUrgencyPercent
+          : treatmentUrgencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      treatmentEmergencyCount: null == treatmentEmergencyCount
+          ? _value.treatmentEmergencyCount
+          : treatmentEmergencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentEmergencyPercent: null == treatmentEmergencyPercent
+          ? _value.treatmentEmergencyPercent
+          : treatmentEmergencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      treatmentSemiUrgencyCount: null == treatmentSemiUrgencyCount
+          ? _value.treatmentSemiUrgencyCount
+          : treatmentSemiUrgencyCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentSemiUrgencyPercent: null == treatmentSemiUrgencyPercent
+          ? _value.treatmentSemiUrgencyPercent
+          : treatmentSemiUrgencyPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+      treatmentNormalCount: null == treatmentNormalCount
+          ? _value.treatmentNormalCount
+          : treatmentNormalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      treatmentNormalPercent: null == treatmentNormalPercent
+          ? _value.treatmentNormalPercent
+          : treatmentNormalPercent // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LevelImpl implements _Level {
+  const _$LevelImpl(
+      {required this.year,
+      required this.screeningTotal,
+      required this.screeningUrgencyCount,
+      required this.screeningUrgencyPercent,
+      required this.screeningEmergencyCount,
+      required this.screeningEmergencyPercent,
+      required this.screeningSemiUrgencyCount,
+      required this.screeningSemiUrgencyPercent,
+      required this.screeningNormalCount,
+      required this.screeningNormalPercent,
+      required this.treatmentTotal,
+      required this.treatmentUrgencyCount,
+      required this.treatmentUrgencyPercent,
+      required this.treatmentEmergencyCount,
+      required this.treatmentEmergencyPercent,
+      required this.treatmentSemiUrgencyCount,
+      required this.treatmentSemiUrgencyPercent,
+      required this.treatmentNormalCount,
+      required this.treatmentNormalPercent});
+
+  @override
+  final int year;
+  @override
+  final int screeningTotal;
+  @override
+  final int screeningUrgencyCount;
+  @override
+  final double screeningUrgencyPercent;
+  @override
+  final int screeningEmergencyCount;
+  @override
+  final double screeningEmergencyPercent;
+  @override
+  final int screeningSemiUrgencyCount;
+  @override
+  final double screeningSemiUrgencyPercent;
+  @override
+  final int screeningNormalCount;
+  @override
+  final double screeningNormalPercent;
+  @override
+  final int treatmentTotal;
+  @override
+  final int treatmentUrgencyCount;
+  @override
+  final double treatmentUrgencyPercent;
+  @override
+  final int treatmentEmergencyCount;
+  @override
+  final double treatmentEmergencyPercent;
+  @override
+  final int treatmentSemiUrgencyCount;
+  @override
+  final double treatmentSemiUrgencyPercent;
+  @override
+  final int treatmentNormalCount;
+  @override
+  final double treatmentNormalPercent;
+
+  @override
+  String toString() {
+    return 'Level(year: $year, screeningTotal: $screeningTotal, screeningUrgencyCount: $screeningUrgencyCount, screeningUrgencyPercent: $screeningUrgencyPercent, screeningEmergencyCount: $screeningEmergencyCount, screeningEmergencyPercent: $screeningEmergencyPercent, screeningSemiUrgencyCount: $screeningSemiUrgencyCount, screeningSemiUrgencyPercent: $screeningSemiUrgencyPercent, screeningNormalCount: $screeningNormalCount, screeningNormalPercent: $screeningNormalPercent, treatmentTotal: $treatmentTotal, treatmentUrgencyCount: $treatmentUrgencyCount, treatmentUrgencyPercent: $treatmentUrgencyPercent, treatmentEmergencyCount: $treatmentEmergencyCount, treatmentEmergencyPercent: $treatmentEmergencyPercent, treatmentSemiUrgencyCount: $treatmentSemiUrgencyCount, treatmentSemiUrgencyPercent: $treatmentSemiUrgencyPercent, treatmentNormalCount: $treatmentNormalCount, treatmentNormalPercent: $treatmentNormalPercent)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LevelImpl &&
+            (identical(other.year, year) || other.year == year) &&
+            (identical(other.screeningTotal, screeningTotal) ||
+                other.screeningTotal == screeningTotal) &&
+            (identical(other.screeningUrgencyCount, screeningUrgencyCount) ||
+                other.screeningUrgencyCount == screeningUrgencyCount) &&
+            (identical(other.screeningUrgencyPercent, screeningUrgencyPercent) ||
+                other.screeningUrgencyPercent == screeningUrgencyPercent) &&
+            (identical(other.screeningEmergencyCount, screeningEmergencyCount) ||
+                other.screeningEmergencyCount == screeningEmergencyCount) &&
+            (identical(other.screeningEmergencyPercent, screeningEmergencyPercent) ||
+                other.screeningEmergencyPercent == screeningEmergencyPercent) &&
+            (identical(other.screeningSemiUrgencyCount, screeningSemiUrgencyCount) ||
+                other.screeningSemiUrgencyCount == screeningSemiUrgencyCount) &&
+            (identical(other.screeningSemiUrgencyPercent, screeningSemiUrgencyPercent) ||
+                other.screeningSemiUrgencyPercent ==
+                    screeningSemiUrgencyPercent) &&
+            (identical(other.screeningNormalCount, screeningNormalCount) ||
+                other.screeningNormalCount == screeningNormalCount) &&
+            (identical(other.screeningNormalPercent, screeningNormalPercent) ||
+                other.screeningNormalPercent == screeningNormalPercent) &&
+            (identical(other.treatmentTotal, treatmentTotal) ||
+                other.treatmentTotal == treatmentTotal) &&
+            (identical(other.treatmentUrgencyCount, treatmentUrgencyCount) ||
+                other.treatmentUrgencyCount == treatmentUrgencyCount) &&
+            (identical(other.treatmentUrgencyPercent, treatmentUrgencyPercent) ||
+                other.treatmentUrgencyPercent == treatmentUrgencyPercent) &&
+            (identical(
+                    other.treatmentEmergencyCount, treatmentEmergencyCount) ||
+                other.treatmentEmergencyCount == treatmentEmergencyCount) &&
+            (identical(other.treatmentEmergencyPercent, treatmentEmergencyPercent) ||
+                other.treatmentEmergencyPercent == treatmentEmergencyPercent) &&
+            (identical(other.treatmentSemiUrgencyCount, treatmentSemiUrgencyCount) ||
+                other.treatmentSemiUrgencyCount == treatmentSemiUrgencyCount) &&
+            (identical(other.treatmentSemiUrgencyPercent, treatmentSemiUrgencyPercent) ||
+                other.treatmentSemiUrgencyPercent ==
+                    treatmentSemiUrgencyPercent) &&
+            (identical(other.treatmentNormalCount, treatmentNormalCount) ||
+                other.treatmentNormalCount == treatmentNormalCount) &&
+            (identical(other.treatmentNormalPercent, treatmentNormalPercent) ||
+                other.treatmentNormalPercent == treatmentNormalPercent));
+  }
+
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        year,
+        screeningTotal,
+        screeningUrgencyCount,
+        screeningUrgencyPercent,
+        screeningEmergencyCount,
+        screeningEmergencyPercent,
+        screeningSemiUrgencyCount,
+        screeningSemiUrgencyPercent,
+        screeningNormalCount,
+        screeningNormalPercent,
+        treatmentTotal,
+        treatmentUrgencyCount,
+        treatmentUrgencyPercent,
+        treatmentEmergencyCount,
+        treatmentEmergencyPercent,
+        treatmentSemiUrgencyCount,
+        treatmentSemiUrgencyPercent,
+        treatmentNormalCount,
+        treatmentNormalPercent
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LevelImplCopyWith<_$LevelImpl> get copyWith =>
+      __$$LevelImplCopyWithImpl<_$LevelImpl>(this, _$identity);
+}
+
+abstract class _Level implements Level {
+  const factory _Level(
+      {required final int year,
+      required final int screeningTotal,
+      required final int screeningUrgencyCount,
+      required final double screeningUrgencyPercent,
+      required final int screeningEmergencyCount,
+      required final double screeningEmergencyPercent,
+      required final int screeningSemiUrgencyCount,
+      required final double screeningSemiUrgencyPercent,
+      required final int screeningNormalCount,
+      required final double screeningNormalPercent,
+      required final int treatmentTotal,
+      required final int treatmentUrgencyCount,
+      required final double treatmentUrgencyPercent,
+      required final int treatmentEmergencyCount,
+      required final double treatmentEmergencyPercent,
+      required final int treatmentSemiUrgencyCount,
+      required final double treatmentSemiUrgencyPercent,
+      required final int treatmentNormalCount,
+      required final double treatmentNormalPercent}) = _$LevelImpl;
+
+  @override
+  int get year;
+  @override
+  int get screeningTotal;
+  @override
+  int get screeningUrgencyCount;
+  @override
+  double get screeningUrgencyPercent;
+  @override
+  int get screeningEmergencyCount;
+  @override
+  double get screeningEmergencyPercent;
+  @override
+  int get screeningSemiUrgencyCount;
+  @override
+  double get screeningSemiUrgencyPercent;
+  @override
+  int get screeningNormalCount;
+  @override
+  double get screeningNormalPercent;
+  @override
+  int get treatmentTotal;
+  @override
+  int get treatmentUrgencyCount;
+  @override
+  double get treatmentUrgencyPercent;
+  @override
+  int get treatmentEmergencyCount;
+  @override
+  double get treatmentEmergencyPercent;
+  @override
+  int get treatmentSemiUrgencyCount;
+  @override
+  double get treatmentSemiUrgencyPercent;
+  @override
+  int get treatmentNormalCount;
+  @override
+  double get treatmentNormalPercent;
+  @override
+  @JsonKey(ignore: true)
+  _$$LevelImplCopyWith<_$LevelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

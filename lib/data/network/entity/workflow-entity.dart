@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:bst_staff_mobile/data/network/entity/questionchoices-entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'workflow-entity.g.dart';

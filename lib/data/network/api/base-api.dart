@@ -1,7 +1,10 @@
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
+import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
+import 'package:bst_staff_mobile/main.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
 
 class BaseApi {
   late final Dio _dio;
@@ -14,13 +17,33 @@ class BaseApi {
       receiveTimeout: const Duration(seconds: 3),
     );
 
-    _dio = Dio(options)
-      ..interceptors.add(
-        LogInterceptor(
-          requestBody: true,
-          responseBody: true,
-        ),
-      );
+    _dio = Dio(options);
+    _dio.interceptors.add(
+      LogInterceptor(
+        requestBody: true,
+        responseBody: true,
+      ),
+    );
+    _dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          // You can add headers here if needed
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          // Handle the response
+          return handler.next(response);
+        },
+        onError: (DioException error, handler) {
+          if (error.response?.statusCode == 401 ||
+              error.response?.statusCode == 403) {
+            // Navigate to login screen if 401 error occurs
+            getIt<NavigationService>().navigateToReplacement('/login');
+          }
+          return handler.next(error);
+        },
+      ),
+    );
   }
 
   @protected
@@ -37,17 +60,39 @@ class BaseApi {
       baseUrl: baseUrl,
       connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 3),
-    );
-    return Dio(options)
-      ..options.headers = {
+      headers: {
         'Authorization': 'Bearer $token',
-      }
-      ..interceptors.add(
-        LogInterceptor(
-          requestBody: true,
-          responseBody: true,
-        ),
-      );
+      },
+    );
+    final Dio dio = Dio(options);
+    dio.interceptors.add(
+      LogInterceptor(
+        requestBody: true,
+        responseBody: true,
+      ),
+    );
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          // You can add headers here if needed
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          // Handle the response
+          return handler.next(response);
+        },
+        onError: (DioException error, handler) {
+          if (error.response?.statusCode == 401 ||
+              error.response?.statusCode == 403) {
+            // Navigate to login screen if 401 error occurs
+            getIt<NavigationService>().navigateToReplacement('/login');
+          }
+          return handler.next(error);
+        },
+      ),
+    );
+
+    return dio;
   }
 
   @protected

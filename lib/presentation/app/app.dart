@@ -1,4 +1,5 @@
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
 import 'package:bst_staff_mobile/main.dart';
 import 'package:bst_staff_mobile/presentation/layout/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
@@ -14,15 +15,16 @@ class App extends StatelessWidget {
 
   const App({required this.data});
 
+  //NavigateService(navigatorKey : navigatorKey);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: data.providers,
       child: Consumer<AppService>(
         builder: (context, service, child) => MaterialApp(
-          // title: 'Plus Live',
+          navigatorKey: getIt<NavigationService>().navigatorKey,
           theme: lightTheme,
-          // theme: darkTheme,
           darkTheme: darkTheme,
           themeMode: service.themeMode,
           supportedLocales: const [
@@ -35,9 +37,11 @@ class App extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          // home: LoginScreen(),
-          // home: PatientList(),
           home: LayoutScreen(),
+          initialRoute: '/',
+          routes: {
+            '/login': (context) => LoginScreen(),
+          },
         ),
       ),
     );

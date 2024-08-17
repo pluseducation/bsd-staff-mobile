@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class AppService extends ChangeNotifier {
   final PreferencesRepository preferencesRepo;
-
   late ThemeMode _themeMode;
+  late GlobalKey<NavigatorState> navigatorKey;
 
   ThemeMode get themeMode => _themeMode;
 
@@ -17,8 +17,8 @@ class AppService extends ChangeNotifier {
   }
 
   AppService({required this.preferencesRepo});
-
   Future<void> load() async {
     _themeMode = await preferencesRepo.getThemeMode();
+    navigatorKey = GlobalKey<NavigatorState>();
   }
 }

@@ -44,9 +44,7 @@ mixin _$Registering {
       throw _privateConstructorUsedError; //เข้าร่วมการรักษา ** find on questionchoices
   String get joinSentByCourtText => throw _privateConstructorUsedError;
 
-  /// Create a copy of Registering
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RegisteringCopyWith<Registering> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -84,8 +82,6 @@ class _$RegisteringCopyWithImpl<$Res, $Val extends Registering>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Registering
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -198,8 +194,6 @@ class __$$RegisteringImplCopyWithImpl<$Res>
       _$RegisteringImpl _value, $Res Function(_$RegisteringImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Registering
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -396,9 +390,7 @@ class _$RegisteringImpl implements _Registering {
       joinTreatmentByText,
       joinSentByCourtText);
 
-  /// Create a copy of Registering
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisteringImplCopyWith<_$RegisteringImpl> get copyWith =>
@@ -423,39 +415,35 @@ abstract class _Registering implements Registering {
       required final String joinSentByCourtText}) = _$RegisteringImpl;
 
   @override
-  String
-      get fullname; //** find on profile name + surname /patients/${patientId}/profile */
-  @override
-  String get patientStatus; //**  /patients/${nationalityText}/profile */
-  @override
-  String get level; //**  /patients/${patientId}/profile */
-  @override
-  String get dateOfBirthText; //ว/ด/ป ** '/api/v1/patients$patientsid' */
-  @override
-  String get gender; // เพศ* "/questionchoices$REGISTERING */
-  @override
-  String get nationalityText; //สัญชาติ** /master/nationalities */
-  @override
-  int get religionText; //ศาสนา ** /master/religions
-  @override
-  String get registereText; //  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
-  @override
-  String get currentAddrText; //ที่อยู่ปัจจุบัน ** find on patient
-  @override
-  String get guardianfullNameText; //ข้อมูลผู้ปกครอง **  find on patient
-  @override
-  int get relationShipId; // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
-  @override
-  String get guardianPhoneNo; // เบอร์โทร 02-xxx-xxx   ** find on patient
-  @override
-  String get joinTreatmentByText; //เข้าร่วมการรักษา ** find on questionchoices
-  @override
+  String get fullname;
+  @override //** find on profile name + surname /patients/${patientId}/profile */
+  String get patientStatus;
+  @override //**  /patients/${nationalityText}/profile */
+  String get level;
+  @override //**  /patients/${patientId}/profile */
+  String get dateOfBirthText;
+  @override //ว/ด/ป ** '/api/v1/patients$patientsid' */
+  String get gender;
+  @override // เพศ* "/questionchoices$REGISTERING */
+  String get nationalityText;
+  @override //สัญชาติ** /master/nationalities */
+  int get religionText;
+  @override //ศาสนา ** /master/religions
+  String get registereText;
+  @override //  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
+  String get currentAddrText;
+  @override //ที่อยู่ปัจจุบัน ** find on patient
+  String get guardianfullNameText;
+  @override //ข้อมูลผู้ปกครอง **  find on patient
+  int get relationShipId;
+  @override // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
+  String get guardianPhoneNo;
+  @override // เบอร์โทร 02-xxx-xxx   ** find on patient
+  String get joinTreatmentByText;
+  @override //เข้าร่วมการรักษา ** find on questionchoices
   String get joinSentByCourtText;
-
-  /// Create a copy of Registering
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RegisteringImplCopyWith<_$RegisteringImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -521,9 +509,7 @@ mixin _$Screening {
       throw _privateConstructorUsedError; //**ผู้พิการ find on  /screenings/${patientId} */
   String get disabledCertificateNo => throw _privateConstructorUsedError;
 
-  /// Create a copy of Screening
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ScreeningCopyWith<Screening> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -576,8 +562,6 @@ class _$ScreeningCopyWithImpl<$Res, $Val extends Screening>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Screening
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -786,8 +770,6 @@ class __$$ScreeningImplCopyWithImpl<$Res>
       _$ScreeningImpl _value, $Res Function(_$ScreeningImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Screening
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1179,9 +1161,7 @@ class _$ScreeningImpl implements _Screening {
         disabledCertificateNo
       ]);
 
-  /// Create a copy of Screening
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ScreeningImplCopyWith<_$ScreeningImpl> get copyWith =>
@@ -1222,85 +1202,68 @@ abstract class _Screening implements Screening {
       required final String disabledCertificateNo}) = _$ScreeningImpl;
 
   @override
-  int get maritalStatusId; //** สถานะ find on  /master/${patientId} */
-  @override
-  int get educationId; //** การศึกษา  /master/educations */
-  @override
-  int get occupationId; //**อาชีพ  /master/occupations */
-  @override
-  int get incomeId; //**รายได้  /master/incomes */
-  @override
-  String get livingWithLast30days; // /screenings/${patientId} */
-  @override
-  int get parentRelationshipId; //**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
-  @override
-  String get startDate; // ว/ด/ป  /screenings/${patientId}
-  @override
-  String get isToBeNumberOneMember; //การใช้ยาเสพติด  /screenings/${patientId}
-  @override
-  String
-      get drugUsageApproach; //การใช้ยาเสพติด(รูปแบบการเสพ)  /screenings/${patientId}
-  @override
-  String
-      get mainDrugText; //ยาเสพติดที่ใช้  /master/drugs  #หมายเหตุ  answer == 17 show  other=""
-  @override
-  String get mentalEvalLevel; //** สรุปผล find on  /screenings/${patientId} */
-  @override
-  String
-      get frequencyOfUse; //** คุณใช้บ่อยเพียงใด  find on  /screenings/${patientId} */
-  @override
-  String
-      get feelingAddicted; //** คุณมีความต้องการ หรือมีความรู้สึกอยากใช้  find on  /screenings/${patientId} */
-  @override
-  String
-      get irresponsible; //** การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด  find on  /screenings/${patientId} */
-  @override
-  String
-      get frequencyOfProblem; //** การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?  find on  /screenings/${patientId} */
-  @override
-  String
-      get beNoticed; //** ญาติ เพื่อน หรือคนรู้จัก   find on  /screenings/${patientId} */
-  @override
-  String
-      get stopUsingButNotSuccess; //** คุนเคย find on  /screenings/${patientId} */
-  @override
-  String
-      get injectableDrug; //** คุณเคยใช้สารเสพติดชนิดฉีดหรือไม่ /screenings/${patientId} */
-  @override
-  String
-      get last3monthUsage; //** ภายใน 3 เดือนที่ผ่านมา คุณใช้บ่อยเพียงใด find on  /screenings/${patientId} */
-  @override
-  String
-      get hadMentalTreatment; //**ประวัติรักษาโรคสุขภาพจิต find on  /screenings/${patientId} */
-  @override
-  int get mentalTreatmentText; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadMentalTreatment == "YES" && show  ui เพิ่ม Text to ui  /master/mentaltreatments */
-  @override
-  String
-      get hadChronicContagious; //**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
-  @override
+  int get maritalStatusId;
+  @override //** สถานะ find on  /master/${patientId} */
+  int get educationId;
+  @override //** การศึกษา  /master/educations */
+  int get occupationId;
+  @override //**อาชีพ  /master/occupations */
+  int get incomeId;
+  @override //**รายได้  /master/incomes */
+  String get livingWithLast30days;
+  @override // /screenings/${patientId} */
+  int get parentRelationshipId;
+  @override //**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
+  String get startDate;
+  @override // ว/ด/ป  /screenings/${patientId}
+  String get isToBeNumberOneMember;
+  @override //การใช้ยาเสพติด  /screenings/${patientId}
+  String get drugUsageApproach;
+  @override //การใช้ยาเสพติด(รูปแบบการเสพ)  /screenings/${patientId}
+  String get mainDrugText;
+  @override //ยาเสพติดที่ใช้  /master/drugs  #หมายเหตุ  answer == 17 show  other=""
+  String get mentalEvalLevel;
+  @override //** สรุปผล find on  /screenings/${patientId} */
+  String get frequencyOfUse;
+  @override //** คุณใช้บ่อยเพียงใด  find on  /screenings/${patientId} */
+  String get feelingAddicted;
+  @override //** คุณมีความต้องการ หรือมีความรู้สึกอยากใช้  find on  /screenings/${patientId} */
+  String get irresponsible;
+  @override //** การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด  find on  /screenings/${patientId} */
+  String get frequencyOfProblem;
+  @override //** การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?  find on  /screenings/${patientId} */
+  String get beNoticed;
+  @override //** ญาติ เพื่อน หรือคนรู้จัก   find on  /screenings/${patientId} */
+  String get stopUsingButNotSuccess;
+  @override //** คุนเคย find on  /screenings/${patientId} */
+  String get injectableDrug;
+  @override //** คุณเคยใช้สารเสพติดชนิดฉีดหรือไม่ /screenings/${patientId} */
+  String get last3monthUsage;
+  @override //** ภายใน 3 เดือนที่ผ่านมา คุณใช้บ่อยเพียงใด find on  /screenings/${patientId} */
+  String get hadMentalTreatment;
+  @override //**ประวัติรักษาโรคสุขภาพจิต find on  /screenings/${patientId} */
+  int get mentalTreatmentText;
+  @override //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadMentalTreatment == "YES" && show  ui เพิ่ม Text to ui  /master/mentaltreatments */
+  String get hadChronicContagious;
+  @override //**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
   int get chronicContagiousId;
   @override
-  int get chronicContagiousText; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
-  @override
-  String
-      get hadCriminalCase; //**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
+  int get chronicContagiousText;
+  @override //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
+  String get hadCriminalCase;
+  @override //**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
 //----------
-  @override
-  int get criminalCaseIdText; //-------
-  @override
-  int get criminalCaseText; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadCriminalCase == "YES" && show  ui เพิ่ม Text to ui  /master/criminalcases */
-  @override
-  String
-      get homeless; //**คนเร่ร่อน ไร้ที่พักพิง find on  /screenings/${patientId} */
-  @override
-  String get disabledPerson; //**ผู้พิการ find on  /screenings/${patientId} */
-  @override
+  int get criminalCaseIdText;
+  @override //-------
+  int get criminalCaseText;
+  @override //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadCriminalCase == "YES" && show  ui เพิ่ม Text to ui  /master/criminalcases */
+  String get homeless;
+  @override //**คนเร่ร่อน ไร้ที่พักพิง find on  /screenings/${patientId} */
+  String get disabledPerson;
+  @override //**ผู้พิการ find on  /screenings/${patientId} */
   String get disabledCertificateNo;
-
-  /// Create a copy of Screening
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ScreeningImplCopyWith<_$ScreeningImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -17,10 +17,12 @@ import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
 import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
 import 'package:bst_staff_mobile/domain/model/config.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
 import 'package:bst_staff_mobile/presentation/app/app.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -33,6 +35,7 @@ class InitialData {
   InitialData({required this.providers});
 }
 
+final getIt = GetIt.instance;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -41,6 +44,7 @@ Future<void> main() async {
 
   final data = await _createData();
 
+  getIt.registerSingleton<NavigationService>(NavigationService());
   runApp(App(data: data));
 }
 
@@ -53,6 +57,12 @@ Future<InitialData> _createData() async {
 
   // Load project configuration
   final config = await _loadConfig(log);
+
+  // Services
+  final preferences = Preferences(prefs: await SharedPreferences.getInstance());
+  final preferencesRepo = PreferencesRepository(preferences: preferences);
+  final appService = AppService(preferencesRepo: preferencesRepo);
+  await appService.load();
 
   // Data
   final networkMapper = NetworkMapper(log: log);
@@ -88,13 +98,6 @@ Future<InitialData> _createData() async {
     networkMapper: networkMapper,
     screeningsApi: screeningsApi,
   );
-
-  final preferences = Preferences(prefs: await SharedPreferences.getInstance());
-  final preferencesRepo = PreferencesRepository(preferences: preferences);
-
-  // Services
-  final appService = AppService(preferencesRepo: preferencesRepo);
-  await appService.load();
 
   // Create list of providers
   return InitialData(

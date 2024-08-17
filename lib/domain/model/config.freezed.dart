@@ -19,9 +19,7 @@ mixin _$Config {
   String get baseUrl => throw _privateConstructorUsedError;
   String get baseAuthUrl => throw _privateConstructorUsedError;
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ConfigCopyWith<Config> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -43,8 +41,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -82,8 +78,6 @@ class __$$ConfigImplCopyWithImpl<$Res>
       _$ConfigImpl _value, $Res Function(_$ConfigImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,9 +125,7 @@ class _$ConfigImpl implements _Config {
   @override
   int get hashCode => Object.hash(runtimeType, baseUrl, baseAuthUrl);
 
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
@@ -149,11 +141,8 @@ abstract class _Config implements Config {
   String get baseUrl;
   @override
   String get baseAuthUrl;
-
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

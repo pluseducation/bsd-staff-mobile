@@ -6,10 +6,7 @@ import 'package:bst_staff_mobile/data/network/entity/master-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/questionchoices-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/workflow-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
-import 'package:bst_staff_mobile/domain/model/workflow.dart';
-import 'package:bst_staff_mobile/presentation/dashboard/dashboard-screen.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
-import 'package:intl/intl.dart';
 
 class WorkflowRepository {
   final PatientApi patientApi;
@@ -230,9 +227,6 @@ class WorkflowRepository {
           entityPatient.joinSentByCourt,
         );
       }
-
-      print("end");
-      //----
     } catch (e) {
       rethrow;
     }

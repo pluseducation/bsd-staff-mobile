@@ -122,4 +122,10 @@ class DashboardRepository {
     final model = networkMapper.toRefer(entity);
     return model;
   }
+
+  Future<Level> findLevel() async {
+    final entity = await dashboardApi.findLevel();
+    final model = networkMapper.toLevel(entity);
+    return model;
+  }
 }

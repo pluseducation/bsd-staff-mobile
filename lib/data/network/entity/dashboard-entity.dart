@@ -110,3 +110,51 @@ class ReferEntity {
 
   Map<String, dynamic> toJson() => _$ReferEntityToJson(this);
 }
+
+@JsonSerializable()
+class LevelEntity {
+  LevelTypeEntity? screening;
+  LevelTypeEntity? treatment;
+  int? fiscalYear;
+
+  LevelEntity({
+    required this.screening,
+    required this.treatment,
+    required this.fiscalYear,
+  });
+
+  factory LevelEntity.fromJson(Map<String, dynamic> json) =>
+      _$LevelEntityFromJson(json);
+}
+
+@JsonSerializable()
+class LevelTypeEntity {
+  LevelDataEntity URGENCY;
+  LevelDataEntity EMERGENCY;
+  LevelDataEntity SEMI_URGENCY;
+  LevelDataEntity NORMAL;
+
+  LevelTypeEntity({
+    required this.URGENCY,
+    required this.EMERGENCY,
+    required this.SEMI_URGENCY,
+    required this.NORMAL,
+  });
+
+  factory LevelTypeEntity.fromJson(Map<String, dynamic> json) =>
+      _$LevelTypeEntityFromJson(json);
+}
+
+@JsonSerializable()
+class LevelDataEntity {
+  double percentage;
+  int count;
+
+  LevelDataEntity({
+    required this.percentage,
+    required this.count,
+  });
+
+  factory LevelDataEntity.fromJson(Map<String, dynamic> json) =>
+      _$LevelDataEntityFromJson(json);
+}

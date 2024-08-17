@@ -201,18 +201,18 @@ class _LoginFormState extends State<_LoginForm> {
     try {
       await _model.login();
 
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const VerifycodeScreen(),
-        ),
-      );
-
-      // Navigator.pushReplacement(
-      //   context,
+      // Navigator.of(context).push(
       //   MaterialPageRoute(
-      //     builder: (context) => const LayoutScreen(),
+      //     builder: (context) => const VerifycodeScreen(),
       //   ),
       // );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LayoutScreen(),
+        ),
+      );
     } on Exception catch (e) {
       showInfoDialog(
         context: context,

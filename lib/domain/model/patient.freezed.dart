@@ -20,9 +20,7 @@ mixin _$PatientAll {
   int get totalPages => throw _privateConstructorUsedError;
   int get totalElements => throw _privateConstructorUsedError;
 
-  /// Create a copy of PatientAll
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PatientAllCopyWith<PatientAll> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,8 +44,6 @@ class _$PatientAllCopyWithImpl<$Res, $Val extends PatientAll>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PatientAll
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,8 +87,6 @@ class __$$PatientAllImplCopyWithImpl<$Res>
       _$PatientAllImpl _value, $Res Function(_$PatientAllImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PatientAll
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,9 +154,7 @@ class _$PatientAllImpl implements _PatientAll {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_content), totalPages, totalElements);
 
-  /// Create a copy of PatientAll
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PatientAllImplCopyWith<_$PatientAllImpl> get copyWith =>
@@ -181,11 +173,8 @@ abstract class _PatientAll implements PatientAll {
   int get totalPages;
   @override
   int get totalElements;
-
-  /// Create a copy of PatientAll
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PatientAllImplCopyWith<_$PatientAllImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -198,9 +187,7 @@ mixin _$Patient {
   String get cycle => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PatientCopyWith<Patient> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -227,8 +214,6 @@ class _$PatientCopyWithImpl<$Res, $Val extends Patient>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -286,8 +271,6 @@ class __$$PatientImplCopyWithImpl<$Res>
       _$PatientImpl _value, $Res Function(_$PatientImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -367,9 +350,7 @@ class _$PatientImpl implements _Patient {
   int get hashCode =>
       Object.hash(runtimeType, patientId, fullName, nationalId, cycle, status);
 
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PatientImplCopyWith<_$PatientImpl> get copyWith =>
@@ -394,11 +375,8 @@ abstract class _Patient implements Patient {
   String get cycle;
   @override
   String get status;
-
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PatientImplCopyWith<_$PatientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

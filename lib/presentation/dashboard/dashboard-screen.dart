@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
@@ -10,7 +12,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
+import 'package:logger/logger.dart' as lg;
 import 'package:provider/provider.dart';
 
 Future<bool?> show2AuthDialog({
@@ -67,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     super.initState();
     _selectedDate = DateTime.now();
     model = DashboardModel(
-      log: Provider.of<Logger>(super.context, listen: false),
+      log: Provider.of<lg.Logger>(super.context, listen: false),
       dashboardRepository:
           Provider.of<DashboardRepository>(super.context, listen: false),
       appService: Provider.of<AppService>(super.context, listen: false),
@@ -889,11 +891,13 @@ class Statistics extends StatefulWidget {
 
 class StatisticsState extends State<Statistics> {
   int touchedIndex = -1;
+  String type = "Screening"; //Screening, Treatment
+  bool isScreening = true;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<StatYear>(
-      future: widget.model.findStatYear(),
+    return FutureBuilder<Level>(
+      future: widget.model.findLevel(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -902,15 +906,51 @@ class StatisticsState extends State<Statistics> {
         } else if (!snapshot.hasData) {
           return const Center(child: Text('No data'));
         } else {
-          final valuestatistics = snapshot.data!;
+          final level = snapshot.data!;
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                "สถิติ (ปีงบประมาณ ${valuestatistics.year})",
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              Flex(
+                direction: Axis.horizontal,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "สถิติ (ปีงบประมาณ ${level.year})",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        type == "screening" ? 'คัดกรอง' : 'บำบัด',
+                        style: const TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Switch(
+                        value: type == "screening" && true,
+                        onChanged: (value) {
+                          String newType = "";
+                          if (value) {
+                            newType = "screening";
+                          } else {
+                            newType = "treatment";
+                          }
+                          setState(() {
+                            type = newType;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
               const SizedBox(height: 40),
               SizedBox(
@@ -919,27 +959,13 @@ class StatisticsState extends State<Statistics> {
                   children: [
                     PieChart(
                       PieChartData(
-                        // pieTouchData: PieTouchData(
-                        //   touchCallback:
-                        //       (FlTouchEvent event, pieTouchResponse) {
-                        //     setState(() {
-                        //       if (!event.isInterestedForInteractions ||
-                        //           pieTouchResponse == null ||
-                        //           pieTouchResponse.touchedSection == null) {
-                        //         touchedIndex = -1;
-                        //         return;
-                        //       }
-                        //       touchedIndex = pieTouchResponse
-                        //           .touchedSection!.touchedSectionIndex;
-                        //     });
-                        //   },
-                        // ),
+                        startDegreeOffset: 180,
                         borderData: FlBorderData(
                           show: false,
                         ),
-                        sectionsSpace: 5,
+                        sectionsSpace: 4,
                         centerSpaceRadius: 60,
-                        sections: showingSections(valuestatistics),
+                        sections: _levelPieChart(level, type),
                       ),
                     ),
                     Center(
@@ -947,7 +973,9 @@ class StatisticsState extends State<Statistics> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "${valuestatistics.total}",
+                            type == "screening"
+                                ? level.screeningTotal.toString()
+                                : level.treatmentTotal.toString(),
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -968,41 +996,7 @@ class StatisticsState extends State<Statistics> {
                 ),
               ),
               const SizedBox(height: 40),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildLegend(
-                    color: MainColors.primary500,
-                    text: "ลงทะเบียน",
-                    percentage:
-                        "${valuestatistics.register.toStringAsFixed(2)}%",
-                  ),
-                  _buildLegend(
-                    color: const Color(0xFF0EB366),
-                    text: "คัดกรอง",
-                    percentage:
-                        "${valuestatistics.screening.toStringAsFixed(2)}%",
-                  ),
-                  _buildLegend(
-                    color: const Color(0xFFFF5630),
-                    text: "บำบัด",
-                    percentage:
-                        "${valuestatistics.treatment.toStringAsFixed(2)}%",
-                  ),
-                  _buildLegend(
-                    color: const Color.fromARGB(128, 227, 165, 148),
-                    text: "ติดตาม",
-                    percentage:
-                        "${valuestatistics.monitoring.toStringAsFixed(2)}%",
-                  ),
-                  _buildLegend(
-                    color: const Color.fromARGB(128, 235, 153, 134),
-                    text: "จำหน่าย",
-                    percentage:
-                        "${valuestatistics.discharged.toStringAsFixed(2)}%",
-                  ),
-                ],
-              ),
+              _levelText(level, type)
             ],
           );
         }
@@ -1010,87 +1004,214 @@ class StatisticsState extends State<Statistics> {
     );
   }
 
-  List<PieChartSectionData> showingSections(StatYear valuestatistics) {
-    return List.generate(5, (i) {
-      final isTouched = i == touchedIndex;
-      final fontSize = isTouched ? 25.0 : 16.0;
-      final radius = isTouched ? 60.0 : 50.0;
-      const shadows = [Shadow(blurRadius: 2)];
+  List<PieChartSectionData> _levelPieChart(Level level, String type) {
+    if (type == "screening") {
+      return [
+        PieChartSectionData(
+          color: const Color(0xFF11b366),
+          value: level.screeningNormalCount.toDouble(),
+          title: '',
+          titleStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: MainColors.primary50,
+          ),
+        ),
+        PieChartSectionData(
+          color: const Color(0xFFffcd3f),
+          value: level.screeningSemiUrgencyCount.toDouble(),
+          title: '',
+          titleStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: MainColors.primary50,
+          ),
+        ),
+        PieChartSectionData(
+          color: const Color(0xFFf2994a),
+          value: level.screeningUrgencyCount.toDouble(),
+          title: '',
+          titleStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: MainColors.primary50,
+          ),
+        ),
+        PieChartSectionData(
+          color: const Color(0xFFff5631),
+          value: level.screeningEmergencyCount.toDouble(),
+          title: '',
+          titleStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: MainColors.primary50,
+          ),
+        ),
+      ];
+    } else {
+      return [
+        PieChartSectionData(
+          color: const Color(0xFF11b366),
+          value: level.treatmentNormalCount.toDouble(),
+          title: '',
+          titleStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: MainColors.primary50,
+          ),
+        ),
+        PieChartSectionData(
+          color: const Color(0xFFffcd3f),
+          value: level.treatmentSemiUrgencyCount.toDouble(),
+          title: '',
+          titleStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: MainColors.primary50,
+          ),
+        ),
+        PieChartSectionData(
+          color: const Color(0xFFf2994a),
+          value: level.treatmentUrgencyCount.toDouble(),
+          title: '',
+          titleStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: MainColors.primary50,
+          ),
+        ),
+        PieChartSectionData(
+          color: const Color(0xFFff5631),
+          value: level.treatmentEmergencyCount.toDouble(),
+          title: '',
+          titleStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: MainColors.primary50,
+          ),
+        ),
+      ];
+    }
 
-      double getValue(double value) {
-        return double.parse(value.toStringAsFixed(2));
-      }
+    // return List.generate(4, (i) {
+    //   final isTouched = i == touchedIndex;
+    //   final fontSize = isTouched ? 25.0 : 16.0;
+    //   final radius = isTouched ? 60.0 : 50.0;
+    //   const shadows = [Shadow(blurRadius: 2)];
 
-      switch (i) {
-        case 0:
-          return PieChartSectionData(
-            color: MainColors.primary500,
-            value: getValue(valuestatistics.register),
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: MainColors.primary50,
-              shadows: shadows,
-            ),
-          );
-        case 1:
-          return PieChartSectionData(
-            color: const Color(0xFF0EB366),
-            value: getValue(valuestatistics.screening),
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: MainColors.primary50,
-              shadows: shadows,
-            ),
-          );
-        case 2:
-          return PieChartSectionData(
-            color: const Color(0xFFFF5630),
-            value: getValue(valuestatistics.treatment),
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: MainColors.primary50,
-              shadows: shadows,
-            ),
-          );
-        case 3:
-          return PieChartSectionData(
-            color: const Color(0xFFFFCD3F),
-            value: getValue(valuestatistics.monitoring),
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: MainColors.primary50,
-              shadows: shadows,
-            ),
-          );
-        case 4:
-          return PieChartSectionData(
-            color: const Color(0xFFF2994A),
-            value: getValue(valuestatistics.discharged),
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: MainColors.primary50,
-              shadows: shadows,
-            ),
-          );
-        default:
-          throw Error();
-      }
-    });
+    //   switch (i) {
+    //     case 0:
+    //       return PieChartSectionData(
+    //         color: const Color(0xFF11b366),
+    //         value: level.screeningNormalCount.toDouble(),
+    //         title: '',
+    //         radius: radius,
+    //         titleStyle: TextStyle(
+    //           fontSize: fontSize,
+    //           fontWeight: FontWeight.bold,
+    //           color: MainColors.primary50,
+    //           shadows: shadows,
+    //         ),
+    //       );
+    //     case 1:
+    //       return PieChartSectionData(
+    //         color: const Color(0xFFffcd3f),
+    //         value: level.screeningSemiUrgencyCount.toDouble(),
+    //         title: '',
+    //         radius: radius,
+    //         titleStyle: TextStyle(
+    //           fontSize: fontSize,
+    //           fontWeight: FontWeight.bold,
+    //           color: MainColors.primary50,
+    //           shadows: shadows,
+    //         ),
+    //       );
+    //     case 2:
+    //       return PieChartSectionData(
+    //         color: const Color(0xFFf2994a),
+    //         value: level.screeningUrgencyCount.toDouble(),
+    //         title: '',
+    //         radius: radius,
+    //         titleStyle: TextStyle(
+    //           fontSize: fontSize,
+    //           fontWeight: FontWeight.bold,
+    //           color: MainColors.primary50,
+    //           shadows: shadows,
+    //         ),
+    //       );
+    //     case 3:
+    //       return PieChartSectionData(
+    //         color: const Color(0xFFff5631),
+    //         value: level.screeningEmergencyCount.toDouble(),
+    //         title: '',
+    //         radius: radius,
+    //         titleStyle: TextStyle(
+    //           fontSize: fontSize,
+    //           fontWeight: FontWeight.bold,
+    //           color: MainColors.primary50,
+    //           shadows: shadows,
+    //         ),
+    //       );
+    //     default:
+    //       throw Error();
+    //   }
+    // });
+  }
+
+  Widget _levelText(Level level, String type) {
+    if (type == "screening") {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildLegend(
+            color: const Color(0xFF11b366),
+            text: "เขียว",
+            percentage:
+                "${level.screeningNormalCount} (${level.screeningNormalPercent.toStringAsFixed(2)}%)",
+          ),
+          _buildLegend(
+            color: const Color(0xFFffcd3f),
+            text: "เหลือง",
+            percentage:
+                "${level.screeningSemiUrgencyCount} (${level.screeningSemiUrgencyPercent.toStringAsFixed(2)}%)",
+          ),
+          _buildLegend(
+            color: const Color(0xFFf2994a),
+            text: "ส้ม",
+            percentage:
+                "${level.screeningUrgencyCount} (${level.screeningUrgencyPercent.toStringAsFixed(2)}%)",
+          ),
+          _buildLegend(
+            color: const Color(0xFFff5631),
+            text: "แดง",
+            percentage:
+                "${level.screeningEmergencyCount} (${level.screeningEmergencyPercent.toStringAsFixed(2)}%)",
+          ),
+        ],
+      );
+    } else {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildLegend(
+            color: const Color(0xFF11b366),
+            text: "เขียว",
+            percentage:
+                "${level.treatmentNormalCount} (${level.treatmentNormalPercent.toStringAsFixed(2)}%)",
+          ),
+          _buildLegend(
+            color: const Color(0xFFffcd3f),
+            text: "เหลือง",
+            percentage:
+                "${level.treatmentSemiUrgencyCount} (${level.treatmentSemiUrgencyPercent.toStringAsFixed(2)}%)",
+          ),
+          _buildLegend(
+            color: const Color(0xFFf2994a),
+            text: "ส้ม",
+            percentage:
+                "${level.treatmentUrgencyCount} (${level.treatmentUrgencyPercent.toStringAsFixed(2)}%)",
+          ),
+          _buildLegend(
+            color: const Color(0xFFff5631),
+            text: "แดง",
+            percentage:
+                "${level.treatmentEmergencyCount} (${level.treatmentEmergencyPercent.toStringAsFixed(2)}%)",
+          ),
+        ],
+      );
+    }
   }
 
   Widget _buildLegend({
@@ -1125,8 +1246,6 @@ class StatisticsState extends State<Statistics> {
                 text,
                 style: const TextStyle(
                   fontSize: 18,
-                  color: Color(0xFF757575),
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -1135,7 +1254,6 @@ class StatisticsState extends State<Statistics> {
             percentage,
             style: const TextStyle(
               fontSize: 18,
-              fontWeight: FontWeight.bold,
             ),
           ),
         ],
@@ -1154,9 +1272,31 @@ class StatPatient extends StatefulWidget {
 }
 
 class _StatPatientState extends State<StatPatient> {
-  List<int> daysInMonth = [];
   List<double> monthData = [];
   List<double> weekData = [];
+  List<String> weekTexts = [
+    "จันทร์",
+    "อังคาร",
+    "พุธ",
+    "พฤหัสบดี",
+    "ศุกร์",
+    "เสาร์",
+    "อาทิตย์",
+  ];
+  List<String> yearTexts = [
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
+  ];
   bool isLoading = false;
 
   int touchedIndex = -1;
@@ -1167,14 +1307,7 @@ class _StatPatientState extends State<StatPatient> {
   @override
   void initState() {
     super.initState();
-    generateDaysInMonth();
     loadData();
-  }
-
-  void generateDaysInMonth() {
-    final DateTime now = DateTime.now();
-    final int daysCount = DateUtils.getDaysInMonth(now.year, now.month);
-    daysInMonth = List<int>.generate(daysCount, (i) => i + 1);
   }
 
   Future<void> loadData() async {
@@ -1237,16 +1370,12 @@ class _StatPatientState extends State<StatPatient> {
     final TextStyle style = TextStyle(
       fontSize: selectedIndex == 0 ? 13 : 10,
     );
+
     String text = '';
     if (selectedIndex == 0) {
-      text = (value.toInt() < 7
-              ? ['จ', 'อ', 'พ', 'ฤ', 'ศ', 'ส', 'อ'][value.toInt()]
-              : '')
-          .toString();
+      text = weekTexts[value.toInt()];
     } else if (selectedIndex == 1) {
-      text = (value.toInt() < daysInMonth.length
-          ? daysInMonth[value.toInt()].toString()
-          : '');
+      text = yearTexts[value.toInt()];
     }
     return SideTitleWidget(
       axisSide: meta.axisSide,
@@ -1294,7 +1423,7 @@ class _StatPatientState extends State<StatPatient> {
                       Row(
                         children: [
                           buildSelectableText("สัปดาร์", 0),
-                          buildSelectableText("เดือน", 1),
+                          buildSelectableText("ปี", 1),
                         ],
                       ),
                     ],
@@ -1359,7 +1488,9 @@ class _StatPatientState extends State<StatPatient> {
                                     getTooltipItem:
                                         (group, groupIndex, rod, rodIndex) {
                                       return BarTooltipItem(
-                                        '${(selectedIndex == 0 ? (group.x + 1) : daysInMonth[group.x])}: ${rod.toY}',
+                                        selectedIndex == 0
+                                            ? weekTexts[group.x]
+                                            : yearTexts[group.x],
                                         const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -1458,10 +1589,6 @@ class _StatPatientState extends State<StatPatient> {
   }
 
   List<BarChartGroupData> monthChartWidget(double barsWidth, double barsSpace) {
-    if (monthData.length != daysInMonth.length) {
-      return [];
-    }
-
     return List<BarChartGroupData>.generate(monthData.length, (index) {
       final bool isTouched = index == touchedIndex;
       final double y = monthData[index];

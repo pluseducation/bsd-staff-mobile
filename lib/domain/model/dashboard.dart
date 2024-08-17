@@ -38,3 +38,28 @@ class Refer with _$Refer {
     required int receiver,
   }) = _Refer;
 }
+
+@freezed
+class Level with _$Level {
+  const factory Level({
+    required int year,
+    required int screeningTotal,
+    required int screeningUrgencyCount,
+    required double screeningUrgencyPercent,
+    required int screeningEmergencyCount,
+    required double screeningEmergencyPercent,
+    required int screeningSemiUrgencyCount,
+    required double screeningSemiUrgencyPercent,
+    required int screeningNormalCount,
+    required double screeningNormalPercent,
+    required int treatmentTotal,
+    required int treatmentUrgencyCount,
+    required double treatmentUrgencyPercent,
+    required int treatmentEmergencyCount,
+    required double treatmentEmergencyPercent,
+    required int treatmentSemiUrgencyCount,
+    required double treatmentSemiUrgencyPercent,
+    required int treatmentNormalCount,
+    required double treatmentNormalPercent,
+  }) = _Level;
+}
