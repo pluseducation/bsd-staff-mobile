@@ -28,7 +28,7 @@ mixin _$Registering {
       throw _privateConstructorUsedError; // เพศ* "/questionchoices$REGISTERING */
   String get nationalityText =>
       throw _privateConstructorUsedError; //สัญชาติ** /master/nationalities */
-  int get religionText =>
+  String get religionText =>
       throw _privateConstructorUsedError; //ศาสนา ** /master/religions
   String get registereText =>
       throw _privateConstructorUsedError; //  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
@@ -36,7 +36,7 @@ mixin _$Registering {
       throw _privateConstructorUsedError; //ที่อยู่ปัจจุบัน ** find on patient
   String get guardianfullNameText =>
       throw _privateConstructorUsedError; //ข้อมูลผู้ปกครอง **  find on patient
-  int get relationShipId =>
+  String get relationShipText =>
       throw _privateConstructorUsedError; // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
   String get guardianPhoneNo =>
       throw _privateConstructorUsedError; // เบอร์โทร 02-xxx-xxx   ** find on patient
@@ -62,11 +62,11 @@ abstract class $RegisteringCopyWith<$Res> {
       String dateOfBirthText,
       String gender,
       String nationalityText,
-      int religionText,
+      String religionText,
       String registereText,
       String currentAddrText,
       String guardianfullNameText,
-      int relationShipId,
+      String relationShipText,
       String guardianPhoneNo,
       String joinTreatmentByText,
       String joinSentByCourtText});
@@ -95,7 +95,7 @@ class _$RegisteringCopyWithImpl<$Res, $Val extends Registering>
     Object? registereText = null,
     Object? currentAddrText = null,
     Object? guardianfullNameText = null,
-    Object? relationShipId = null,
+    Object? relationShipText = null,
     Object? guardianPhoneNo = null,
     Object? joinTreatmentByText = null,
     Object? joinSentByCourtText = null,
@@ -128,7 +128,7 @@ class _$RegisteringCopyWithImpl<$Res, $Val extends Registering>
       religionText: null == religionText
           ? _value.religionText
           : religionText // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       registereText: null == registereText
           ? _value.registereText
           : registereText // ignore: cast_nullable_to_non_nullable
@@ -141,10 +141,10 @@ class _$RegisteringCopyWithImpl<$Res, $Val extends Registering>
           ? _value.guardianfullNameText
           : guardianfullNameText // ignore: cast_nullable_to_non_nullable
               as String,
-      relationShipId: null == relationShipId
-          ? _value.relationShipId
-          : relationShipId // ignore: cast_nullable_to_non_nullable
-              as int,
+      relationShipText: null == relationShipText
+          ? _value.relationShipText
+          : relationShipText // ignore: cast_nullable_to_non_nullable
+              as String,
       guardianPhoneNo: null == guardianPhoneNo
           ? _value.guardianPhoneNo
           : guardianPhoneNo // ignore: cast_nullable_to_non_nullable
@@ -176,11 +176,11 @@ abstract class _$$RegisteringImplCopyWith<$Res>
       String dateOfBirthText,
       String gender,
       String nationalityText,
-      int religionText,
+      String religionText,
       String registereText,
       String currentAddrText,
       String guardianfullNameText,
-      int relationShipId,
+      String relationShipText,
       String guardianPhoneNo,
       String joinTreatmentByText,
       String joinSentByCourtText});
@@ -207,7 +207,7 @@ class __$$RegisteringImplCopyWithImpl<$Res>
     Object? registereText = null,
     Object? currentAddrText = null,
     Object? guardianfullNameText = null,
-    Object? relationShipId = null,
+    Object? relationShipText = null,
     Object? guardianPhoneNo = null,
     Object? joinTreatmentByText = null,
     Object? joinSentByCourtText = null,
@@ -240,7 +240,7 @@ class __$$RegisteringImplCopyWithImpl<$Res>
       religionText: null == religionText
           ? _value.religionText
           : religionText // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       registereText: null == registereText
           ? _value.registereText
           : registereText // ignore: cast_nullable_to_non_nullable
@@ -253,10 +253,10 @@ class __$$RegisteringImplCopyWithImpl<$Res>
           ? _value.guardianfullNameText
           : guardianfullNameText // ignore: cast_nullable_to_non_nullable
               as String,
-      relationShipId: null == relationShipId
-          ? _value.relationShipId
-          : relationShipId // ignore: cast_nullable_to_non_nullable
-              as int,
+      relationShipText: null == relationShipText
+          ? _value.relationShipText
+          : relationShipText // ignore: cast_nullable_to_non_nullable
+              as String,
       guardianPhoneNo: null == guardianPhoneNo
           ? _value.guardianPhoneNo
           : guardianPhoneNo // ignore: cast_nullable_to_non_nullable
@@ -287,7 +287,7 @@ class _$RegisteringImpl implements _Registering {
       required this.registereText,
       required this.currentAddrText,
       required this.guardianfullNameText,
-      required this.relationShipId,
+      required this.relationShipText,
       required this.guardianPhoneNo,
       required this.joinTreatmentByText,
       required this.joinSentByCourtText});
@@ -311,7 +311,7 @@ class _$RegisteringImpl implements _Registering {
   final String nationalityText;
 //สัญชาติ** /master/nationalities */
   @override
-  final int religionText;
+  final String religionText;
 //ศาสนา ** /master/religions
   @override
   final String registereText;
@@ -323,7 +323,7 @@ class _$RegisteringImpl implements _Registering {
   final String guardianfullNameText;
 //ข้อมูลผู้ปกครอง **  find on patient
   @override
-  final int relationShipId;
+  final String relationShipText;
 // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
   @override
   final String guardianPhoneNo;
@@ -336,7 +336,7 @@ class _$RegisteringImpl implements _Registering {
 
   @override
   String toString() {
-    return 'Registering(fullname: $fullname, patientStatus: $patientStatus, level: $level, dateOfBirthText: $dateOfBirthText, gender: $gender, nationalityText: $nationalityText, religionText: $religionText, registereText: $registereText, currentAddrText: $currentAddrText, guardianfullNameText: $guardianfullNameText, relationShipId: $relationShipId, guardianPhoneNo: $guardianPhoneNo, joinTreatmentByText: $joinTreatmentByText, joinSentByCourtText: $joinSentByCourtText)';
+    return 'Registering(fullname: $fullname, patientStatus: $patientStatus, level: $level, dateOfBirthText: $dateOfBirthText, gender: $gender, nationalityText: $nationalityText, religionText: $religionText, registereText: $registereText, currentAddrText: $currentAddrText, guardianfullNameText: $guardianfullNameText, relationShipText: $relationShipText, guardianPhoneNo: $guardianPhoneNo, joinTreatmentByText: $joinTreatmentByText, joinSentByCourtText: $joinSentByCourtText)';
   }
 
   @override
@@ -362,8 +362,8 @@ class _$RegisteringImpl implements _Registering {
                 other.currentAddrText == currentAddrText) &&
             (identical(other.guardianfullNameText, guardianfullNameText) ||
                 other.guardianfullNameText == guardianfullNameText) &&
-            (identical(other.relationShipId, relationShipId) ||
-                other.relationShipId == relationShipId) &&
+            (identical(other.relationShipText, relationShipText) ||
+                other.relationShipText == relationShipText) &&
             (identical(other.guardianPhoneNo, guardianPhoneNo) ||
                 other.guardianPhoneNo == guardianPhoneNo) &&
             (identical(other.joinTreatmentByText, joinTreatmentByText) ||
@@ -385,7 +385,7 @@ class _$RegisteringImpl implements _Registering {
       registereText,
       currentAddrText,
       guardianfullNameText,
-      relationShipId,
+      relationShipText,
       guardianPhoneNo,
       joinTreatmentByText,
       joinSentByCourtText);
@@ -405,11 +405,11 @@ abstract class _Registering implements Registering {
       required final String dateOfBirthText,
       required final String gender,
       required final String nationalityText,
-      required final int religionText,
+      required final String religionText,
       required final String registereText,
       required final String currentAddrText,
       required final String guardianfullNameText,
-      required final int relationShipId,
+      required final String relationShipText,
       required final String guardianPhoneNo,
       required final String joinTreatmentByText,
       required final String joinSentByCourtText}) = _$RegisteringImpl;
@@ -427,7 +427,7 @@ abstract class _Registering implements Registering {
   @override // เพศ* "/questionchoices$REGISTERING */
   String get nationalityText;
   @override //สัญชาติ** /master/nationalities */
-  int get religionText;
+  String get religionText;
   @override //ศาสนา ** /master/religions
   String get registereText;
   @override //  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
@@ -435,7 +435,7 @@ abstract class _Registering implements Registering {
   @override //ที่อยู่ปัจจุบัน ** find on patient
   String get guardianfullNameText;
   @override //ข้อมูลผู้ปกครอง **  find on patient
-  int get relationShipId;
+  String get relationShipText;
   @override // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
   String get guardianPhoneNo;
   @override // เบอร์โทร 02-xxx-xxx   ** find on patient

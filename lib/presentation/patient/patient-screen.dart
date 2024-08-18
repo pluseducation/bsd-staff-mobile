@@ -13,6 +13,65 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
+class PaginationController {
+  int currentPage = 0;
+  final int itemsPerPage;
+  int totalItems;
+  String name = "";
+  final _totalItemController = StreamController<int>();
+  final _nameController = StreamController<String>();
+  final _pageController = StreamController<int>();
+  final _pageSearchController = StreamController<int>();
+  final _totalSearchItemController = StreamController<int>();
+
+  Stream<int> get totalItemStream => _totalItemController.stream;
+  Stream<String> get nameStream => _nameController.stream;
+  Stream<int> get pageStream => _pageController.stream;
+  Stream<int> get pageSearchStream => _pageSearchController.stream;
+  Stream<int> get totalSearchItemStream => _totalSearchItemController.stream;
+
+  PaginationController({required this.itemsPerPage, required this.totalItems});
+  int get totalPages => (totalItems / itemsPerPage).ceil();
+
+  void setName(String value) {
+    name = value;
+    currentPage = 0;
+    _nameController.add(value);
+    _pageSearchController.add(0);
+  }
+
+  void setCurrentPage(int value) {
+    currentPage = value;
+
+    _pageController.add(value);
+    _pageSearchController.add(value);
+  }
+
+  void nextPage() {
+    if (currentPage < totalPages - 1) {
+      currentPage++;
+    }
+
+    _pageController.add(currentPage);
+    _pageSearchController.add(currentPage);
+  }
+
+  void previousPage() {
+    if (currentPage > 0) {
+      currentPage--;
+    }
+
+    _pageController.add(currentPage);
+    _pageSearchController.add(currentPage);
+  }
+
+  void setTotalItem(int value) {
+    totalItems = value;
+    _totalSearchItemController.add(value);
+    _totalItemController.add(value);
+  }
+}
+
 class PatientScreen extends StatefulWidget {
   const PatientScreen({super.key});
 
@@ -40,27 +99,8 @@ class _PatientScreenState extends State<PatientScreen> {
         toolbarHeight: 80,
         automaticallyImplyLeading: false,
         backgroundColor: MainColors.primary500,
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "ผู้ป่วย",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(width: 5),
-            Text(
-              "(2,000)",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        title: PatientTitleScreen(
+          paginationController: _paginationController,
         ),
       ),
       body: Stack(
@@ -133,57 +173,100 @@ class _PatientScreenState extends State<PatientScreen> {
   }
 }
 
-class PaginationController {
-  int currentPage = 0;
-  final int itemsPerPage;
-  int totalItems;
-  String name = "";
-  final _nameController = StreamController<String>();
-  final _pageController = StreamController<int>();
-  final _pageSearchController = StreamController<int>();
-  final _totalItemController = StreamController<int>();
+class PatientTitleScreen extends StatefulWidget {
+  final PaginationController paginationController;
 
-  Stream<String> get nameStream => _nameController.stream;
-  Stream<int> get pageStream => _pageController.stream;
-  Stream<int> get pageSearchStream => _pageSearchController.stream;
-  Stream<int> get totalItemStream => _totalItemController.stream;
+  const PatientTitleScreen({
+    super.key,
+    required this.paginationController,
+  });
 
-  PaginationController({required this.itemsPerPage, required this.totalItems});
-  int get totalPages => (totalItems / itemsPerPage).ceil();
+  @override
+  State<PatientTitleScreen> createState() => _PatientTitleScreenState();
+}
 
-  void setName(String value) {
-    name = value;
-    _nameController.add(value);
+class _PatientTitleScreenState extends State<PatientTitleScreen> {
+  int totalItem = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.paginationController.totalItemStream.listen((value) {
+      setState(() {
+        totalItem = value;
+      });
+    });
   }
 
-  void setCurrentPage(int value) {
-    currentPage = value;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          "ผู้ป่วย",
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(width: 5),
+        Text(
+          "($totalItem)",
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+}
 
-    _pageController.add(value);
-    _pageSearchController.add(value);
+class SearchPatient extends StatefulWidget {
+  final PaginationController paginationController;
+
+  const SearchPatient({super.key, required this.paginationController});
+
+  @override
+  _SearchPatientState createState() => _SearchPatientState();
+}
+
+class _SearchPatientState extends State<SearchPatient> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
   }
 
-  void nextPage() {
-    if (currentPage < totalPages - 1) {
-      currentPage++;
-    }
-
-    _pageController.add(currentPage);
-    _pageSearchController.add(currentPage);
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
-  void previousPage() {
-    if (currentPage > 0) {
-      currentPage--;
-    }
-
-    _pageController.add(currentPage);
-    _pageSearchController.add(currentPage);
+  void _onSearchChanged(String value) {
+    widget.paginationController.setName(value);
   }
 
-  void setTotalItem(int value) {
-    totalItems = value;
-    _totalItemController.add(value);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextFormField(
+          controller: _searchController,
+          decoration: const InputDecoration(
+            prefixIcon: Icon(Icons.search),
+            hintText: "ค้นหาจากชื่อ รอบบำบัด",
+          ),
+          onChanged: _onSearchChanged,
+        ),
+      ],
+    );
   }
 }
 
@@ -207,7 +290,7 @@ class _PaginationControlsState extends State<PaginationControls> {
   @override
   void initState() {
     super.initState();
-    widget.paginationController.totalItemStream.listen((value) {
+    widget.paginationController.totalSearchItemStream.listen((value) {
       setState(() {
         totalItem = value;
         totalPage = widget.paginationController.totalPages;
@@ -353,50 +436,6 @@ class _PaginationControlsState extends State<PaginationControls> {
   }
 }
 
-class SearchPatient extends StatefulWidget {
-  final PaginationController paginationController;
-
-  const SearchPatient({super.key, required this.paginationController});
-
-  @override
-  _SearchPatientState createState() => _SearchPatientState();
-}
-
-class _SearchPatientState extends State<SearchPatient> {
-  final TextEditingController _searchController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  void _onSearchChanged(String value) {
-    widget.paginationController.setName(value);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFormField(
-          controller: _searchController,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.search),
-            hintText: "ค้นหาจากชื่อ รอบบำบัด",
-          ),
-          onChanged: _onSearchChanged,
-        ),
-      ],
-    );
-  }
-}
-
 class PatientList extends StatefulWidget {
   final PaginationController paginationController;
 
@@ -426,6 +465,7 @@ class _PatientListState extends State<PatientList> {
 
     widget.paginationController.nameStream.listen((name) {
       _model.name = name;
+      _model.page = 0;
       onChange();
     });
 
@@ -471,99 +511,99 @@ class _PatientListState extends State<PatientList> {
               final PatientAll patients = snapshot.data!;
               return Column(
                 children: patients.content.map((patient) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Workflow(),
-                        ),
-                      );
-                    },
-                    child: Card(
-                      elevation: 0,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      alignment: Alignment.topLeft,
-                                      child: CircleAvatar(
-                                        radius: 30,
-                                        backgroundColor: MainColors.background,
-                                        child: ClipOval(
-                                          child: Image.asset(
-                                            "assets/images/profile2.png", //patient.imagePath,
-                                            width: 50,
-                                            height: 50,
-                                            fit: BoxFit.cover,
-                                          ),
+                  return Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => WorkflowScreen(
+                                patientId: patient.patientId,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          color: Colors.white,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.topLeft,
+                                    child: CircleAvatar(
+                                      radius: 30,
+                                      backgroundColor: MainColors.background,
+                                      child: ClipOval(
+                                        child: Image.asset(
+                                          "assets/images/profile2.png", //patient.imagePath,
+                                          width: 50,
+                                          height: 50,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                        15,
-                                        3,
-                                        0,
-                                        0,
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            patient.fullName,
-                                            style: const TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 8),
-                                          Text(
-                                            patient.nationalId,
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Color(0xFF808080),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 8),
-                                          Text(
-                                            patient.cycle,
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Color(0xFF808080),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                        ],
-                                      ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                      15,
+                                      3,
+                                      0,
+                                      0,
                                     ),
-                                  ],
-                                ),
-                                patientStatusWidget(patient.status),
-                              ],
-                            ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          patient.fullName,
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          patient.nationalId,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Color(0xFF808080),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          patient.cycle,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Color(0xFF808080),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              patientStatusWidget(patient.status),
+                            ],
                           ),
-                          const Divider(
-                            color: Color(0xFFF1F1F1),
-                            thickness: 0.8,
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      const Divider(
+                        color: Color(0xFFF1F1F1),
+                        thickness: 0.8,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                    ],
                   );
                 }).toList(),
               );

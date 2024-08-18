@@ -1317,9 +1317,12 @@ class _StatPatientState extends State<StatPatient> {
     newPatientMonth = tempMonth.newPatientMonth;
     weekData = tempWeek.dataWeek;
     newPatientWeek = tempWeek.newPatientWeek;
-    setState(() {
-      isLoading = true;
-    });
+
+    if (mounted) {
+      setState(() {
+        isLoading = true;
+      });
+    }
   }
 
   void onTextTapped(int index) {

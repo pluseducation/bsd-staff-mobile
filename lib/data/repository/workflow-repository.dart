@@ -6,6 +6,7 @@ import 'package:bst_staff_mobile/data/network/entity/master-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/questionchoices-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/workflow-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
+import 'package:bst_staff_mobile/domain/model/workflow.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 
 class WorkflowRepository {
@@ -23,7 +24,7 @@ class WorkflowRepository {
     required this.networkMapper,
   });
 
-  Future<void> findRegistering(int id) async {
+  Future<Registering> findRegistering(int id) async {
     try {
       final entityPatient = await patientApi.findPatient(id, patientsid: id);
       final entityProfile = await patientApi.findProfile(id, patientsid: id);
@@ -160,8 +161,15 @@ class WorkflowRepository {
       final String currentAddrText =
           "${entityPatient.currentHouseNo} ${entityPatient.currentHouseMoo} ${entityPatient.currentHouseMoo} $currentVillageText ${entityPatient.currentHouseRoad} $currentProvinceText $currentDistrictText  $currentSubDistrictText ${entityPatient.currentPostalCode}";
 
-      final String guardianfullNameText =
-          "${entityPatient.guardianName} ${entityPatient.guardianSurname}";
+      String guardianfullNameText = "";
+      final String tmpGuardianName =
+          convertToString(entityPatient.guardianName);
+      final String tmpGuardianSurName =
+          convertToString(entityPatient.guardianSurname);
+
+      if (tmpGuardianName.isNotEmpty && tmpGuardianName.isNotEmpty) {
+        guardianfullNameText = "$tmpGuardianName $tmpGuardianSurName";
+      }
 
       final String relationShipText = convertToString(
         entityRelationShip
@@ -227,6 +235,25 @@ class WorkflowRepository {
           entityPatient.joinSentByCourt,
         );
       }
+
+      final model = Registering(
+        fullname: fullname,
+        patientStatus: patientStatus,
+        level: level,
+        dateOfBirthText: dateOfBirthText,
+        gender: gender,
+        nationalityText: nationalityText,
+        religionText: religionText,
+        registereText: registereText,
+        currentAddrText: currentAddrText,
+        guardianfullNameText: guardianfullNameText,
+        relationShipText: relationShipText,
+        guardianPhoneNo: guardianPhoneNo,
+        joinTreatmentByText: joinTreatmentByText,
+        joinSentByCourtText: joinSentByCourtText,
+      );
+
+      return model;
     } catch (e) {
       rethrow;
     }

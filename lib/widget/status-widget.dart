@@ -36,20 +36,21 @@ Widget patientStatusWidget(String status) {
     text = "ลงทะเบียน";
   }
 
-  return Chip(
-    label: Text(
-      text,
-      style: TextStyle(color: color, fontWeight: FontWeight.bold),
-    ),
-    side: BorderSide(
+  return Container(
+    padding: const EdgeInsets.all(8.0), // Padding inside the Chip
+    decoration: BoxDecoration(
       color: lightColor,
+      borderRadius: BorderRadius.circular(8.0),
     ),
-    elevation: 0.5,
-    shadowColor: Colors.grey,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          text,
+          style: TextStyle(color: color, fontWeight: FontWeight.bold),
+        ),
+      ],
     ),
-    backgroundColor: lightColor,
   );
 }
 
@@ -81,23 +82,53 @@ Widget mentalEvalLevelWidget(String status) {
     text = "";
   }
 
-  return SizedBox(
-    width: 90,
-    child: Chip(
-      label: Text(
-        text,
-        style:
-            TextStyle(color: color, fontSize: 16, fontWeight: FontWeight.bold),
-      ),
-      side: BorderSide(
-        color: lightColor,
-      ),
-      elevation: 0.5,
-      shadowColor: Colors.grey,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      backgroundColor: lightColor,
+  return Container(
+    padding: const EdgeInsets.all(8.0), // Padding inside the Chip
+    decoration: BoxDecoration(
+      color: lightColor,
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          text,
+          style: TextStyle(color: color, fontWeight: FontWeight.bold),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget certificateStatusWidget(String status) {
+  Color lightColor;
+  Color color;
+  String text;
+
+  if (status == "1") {
+    lightColor = MainColors.secondaryLight;
+    color = MainColors.secondary;
+    text = "รายการขอ";
+  } else {
+    lightColor = MainColors.warningLight;
+    color = MainColors.warning;
+    text = "จัดการ Sign off";
+  }
+
+  return Container(
+    padding: const EdgeInsets.all(8.0), // Padding inside the Chip
+    decoration: BoxDecoration(
+      color: lightColor,
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          text,
+          style: TextStyle(color: color, fontWeight: FontWeight.bold),
+        ),
+      ],
     ),
   );
 }

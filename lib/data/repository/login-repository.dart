@@ -40,7 +40,7 @@ class LoginRepository {
     required String phone,
     required String token,
   }) async {
-    final entitie = await otpApi.findOtp(phone: phone, reqAuthenToken: token);
+    await otpApi.findOtp(phone: phone, reqAuthenToken: token);
     //final login = networkMapper.toLogin(entitie);
     return true;
   }

@@ -1,7 +1,4 @@
-import 'package:bst_staff_mobile/data/network/entity/questionchoices-entity.dart';
 import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
-import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
-import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/workflow.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:logger/logger.dart';
@@ -16,6 +13,10 @@ class WorkflowdModel {
     required this.workflowRepository,
     required this.appService,
   });
+
+  Future<Registering> findRegistering(int patientId) async {
+    return workflowRepository.findRegistering(patientId);
+  }
 
   Future<void> testvalue() async {
     workflowRepository.findRegistering(1190);

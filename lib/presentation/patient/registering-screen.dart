@@ -1,316 +1,324 @@
+import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
+import 'package:bst_staff_mobile/domain/model/workflow.dart';
+import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/presentation/patient/workflow-model.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
+import 'package:bst_staff_mobile/widget/status-widget.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
-class Registering extends StatefulWidget {
-  const Registering({super.key});
+class RegisteringScreen extends StatefulWidget {
+  final int patientId;
+  const RegisteringScreen({super.key, required this.patientId});
 
   @override
-  State<Registering> createState() => _RegisteringtState();
+  State<RegisteringScreen> createState() => _RegisteringScreenState();
 }
 
-class _RegisteringtState extends State<Registering> {
+class _RegisteringScreenState extends State<RegisteringScreen> {
+  late final WorkflowdModel _model;
+
+  @override
+  void initState() {
+    super.initState();
+    _model = WorkflowdModel(
+      log: Provider.of<Logger>(super.context, listen: false),
+      workflowRepository:
+          Provider.of<WorkflowRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          child: Card(
-            child: BaseLayoutPadding(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        "assets/images/profile2.png",
-                        width: 100,
-                        fit: BoxFit.cover,
-                        filterQuality: FilterQuality.high,
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "สมหญิง ประกอบ",
-                            style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.bold,
+    return FutureBuilder<Registering>(
+      future: _model.findRegistering(widget.patientId),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('No data'));
+        } else {
+          final data = snapshot.data!;
+
+          return Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                child: Card(
+                  child: BaseLayoutPadding(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              "assets/images/profile2.png",
+                              width: 100,
+                              fit: BoxFit.cover,
+                              filterQuality: FilterQuality.high,
                             ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data.fullname,
+                                  style: const TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    patientStatusWidget(data.patientStatus),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    mentalEvalLevelWidget(data.level),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Divider(
+                          color: Color(0xFFF1F1F1),
+                          thickness: 1,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Text(
+                          "ข้อมูลส่วนบุคคล",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(
-                            height: 10,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              "วันเดือนปีเกิด",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xFF848484),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              data.dateOfBirthText,
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              "เพศ",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xFF848484),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 100,
+                            ),
+                            Text(
+                              data.gender,
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              "สัญชาติ",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xFF848484),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 74,
+                            ),
+                            Text(
+                              data.nationalityText,
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              "ศาสนา",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Color(0xFF848484),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 82,
+                            ),
+                            Text(
+                              data.religionText,
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Text(
+                          "ที่อยู่",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
-                          Row(
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Text(
+                          "ที่อยู่ตามทะเบียนราษฎร์",
+                          style:
+                              TextStyle(fontSize: 18, color: Color(0xFF434343)),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          data.registereText,
+                          style: const TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "ที่อยู่ปัจจุบัน",
+                          style:
+                              TextStyle(fontSize: 18, color: Color(0xFF434343)),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          data.currentAddrText,
+                          style: const TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Text(
+                          "ข้อมูลผู้ปกครอง",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        if (data.guardianfullNameText.isNotEmpty &&
+                            data.guardianPhoneNo.isNotEmpty)
+                          Column(
                             children: [
-                              SizedBox(
-                                width: 90,
-                                child: Container(
-                                  padding: const EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFF0DDBF),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Center(
-                                        child: Text(
-                                          "คัดกรอง",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFFB76E00),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                              Text(
+                                data.guardianfullNameText,
+                                style: const TextStyle(
+                                  fontSize: 18,
                                 ),
                               ),
                               const SizedBox(
-                                width: 10,
+                                height: 10,
                               ),
-                              SizedBox(
-                                width: 90,
-                                child: Container(
-                                  padding: const EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFF0DDBF),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Center(
-                                        child: Text(
-                                          "กึ่งเร่งด่วน",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFFB76E00),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                              Text(
+                                data.guardianPhoneNo,
+                                style: const TextStyle(
+                                  fontSize: 18,
                                 ),
                               ),
                             ],
+                          )
+                        else
+                          const Text(
+                            'ไม่พบข้อมูลผู้ปกครอง',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Divider(
-                    color: Color(0xFFF1F1F1),
-                    thickness: 1,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    "ข้อมูลส่วนบุคคล",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Row(
-                    children: [
-                      Text(
-                        "วันเดือนปีเกิด",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFF848484),
+                        const SizedBox(
+                          height: 10,
                         ),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text(
-                        "02/02/1002",
-                        style: TextStyle(
-                          fontSize: 18,
+                        const Text(
+                          "การเข้าสู่ระบบมาตรการบำบัด",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Row(
-                    children: [
-                      Text(
-                        "เพศ",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFF848484),
+                        const SizedBox(
+                          height: 15,
                         ),
-                      ),
-                      SizedBox(
-                        width: 100,
-                      ),
-                      Text(
-                        "หญิง",
-                        style: TextStyle(
-                          fontSize: 18,
+                        Text(
+                          data.joinTreatmentByText,
+                          style: const TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Row(
-                    children: [
-                      Text(
-                        "สัญชาติ",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFF848484),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 74,
-                      ),
-                      Text(
-                        "ไทย",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Row(
-                    children: [
-                      Text(
-                        "ศาสนา",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFF848484),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 82,
-                      ),
-                      Text(
-                        "พุทธ",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    "ที่อยู่",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                        if (data.joinSentByCourtText.isNotEmpty)
+                          Text(
+                            data.joinSentByCourtText,
+                            style: const TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                      ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    "ที่อยู่ตามทะเบียนราษฎร์",
-                    style: TextStyle(fontSize: 18, color: Color(0xFF434343)),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "77/14 รัชดา 23 แยก 7 กรุงเทพมหานคร 10900",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "ที่อยู่ปัจจุบัน",
-                    style: TextStyle(fontSize: 18, color: Color(0xFF434343)),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "77/14 รัชดา 23 แยก 7 กรุงเทพมหานคร 10900",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    "ข้อมูลผู้ปกครอง",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    "นาย ทิพย ประกอบ (บิดา)",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "02-222-2222",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    "การเข้าสู่ระบบมาตรการบำบัด",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    "77/14 รัชดา 23 แยก 7  กรุงเทพมหานคร 10900",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
-      ],
+            ],
+          );
+        }
+      },
     );
   }
 }

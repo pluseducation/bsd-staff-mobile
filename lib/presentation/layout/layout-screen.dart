@@ -79,7 +79,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
         const DashboardScreen(),
         const PatientScreen(),
         const AppointmentScreen(),
-        const CretificateScreen(),
+        const CertificateScreen(),
         const ProfileScreen(),
       ][currentPageIndex],
     );

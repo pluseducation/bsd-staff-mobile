@@ -18,9 +18,10 @@ ThemeData lightTheme = ThemeData(
     elevation: 4,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.0),
+      side: const BorderSide(color: Color(0xFFf1f1f1)),
     ),
     clipBehavior: Clip.antiAliasWithSaveLayer,
-    shadowColor: Colors.grey.withOpacity(0.5),
+    shadowColor: Colors.grey.withOpacity(0.1),
   ),
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(

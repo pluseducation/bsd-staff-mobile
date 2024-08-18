@@ -12,13 +12,13 @@ class Registering with _$Registering {
     required String dateOfBirthText, //ว/ด/ป ** '/api/v1/patients$patientsid' */
     required String gender, // เพศ* "/questionchoices$REGISTERING */
     required String nationalityText, //สัญชาติ** /master/nationalities */
-    required int religionText, //ศาสนา ** /master/religions
+    required String religionText, //ศาสนา ** /master/religions
     required String
         registereText, //  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
     required String currentAddrText, //ที่อยู่ปัจจุบัน ** find on patient
     required String guardianfullNameText, //ข้อมูลผู้ปกครอง **  find on patient
-    required int
-        relationShipId, // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
+    required String
+        relationShipText, // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
     required String guardianPhoneNo, // เบอร์โทร 02-xxx-xxx   ** find on patient
     required String
         joinTreatmentByText, //เข้าร่วมการรักษา ** find on questionchoices
