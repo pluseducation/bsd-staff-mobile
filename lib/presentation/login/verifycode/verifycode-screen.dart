@@ -5,6 +5,7 @@ import 'dart:async';
 // import 'package:berante/presentation/login/verifycode/verifycode-model.dart';
 // import 'package:berante/theme/main-colors.dart';
 // import 'package:berante/widget/screen/dialog.dart';
+import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/layout/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/verifycode/verifycode-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
@@ -228,7 +229,7 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const LayoutScreen(),
+          builder: (context) => const HomeScreen(),
         ),
       );
 

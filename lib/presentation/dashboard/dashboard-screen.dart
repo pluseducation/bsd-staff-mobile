@@ -7,6 +7,7 @@ import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
+import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -99,82 +100,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      appBar: AppBar(
-        toolbarHeight: 80,
-        automaticallyImplyLeading: false,
-        backgroundColor: MainColors.primary500,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Image.asset(
-                  "assets/images/snapedit.png",
-                  width: 115,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(width: 8),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Drug Treatment",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 2),
-                    Text(
-                      "Network",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    const CircleAvatar(
-                      radius: 25,
-                      backgroundColor: MainColors.background,
-                    ),
-                    Positioned(
-                      right: 24,
-                      bottom: 0,
-                      top: 0,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 12,
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.notifications_none,
-                            color: MainColors.secondaryDark,
-                            size: 30,
-                          ),
-                          onPressed: () {
-                            print("ทดสอบจากระบบ");
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      // ignore: use_colored_box
+      //appBar: BaseAppbar(),
       body: Container(
-        color: MainColors.primary500,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              MainColors.primary500,
+              Colors.white,
+            ],
+            stops: [-0.017, 1.2193],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            transform: GradientRotation(280 * (3.14159 / 50)),
+          ),
+          color: Colors.white12,
+        ),
         child: Column(
           children: [
             Expanded(
