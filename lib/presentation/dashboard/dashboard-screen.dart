@@ -50,42 +50,8 @@ Future<bool?> show2AuthDialog({
   );
 }
 
-class DashboardScreen extends StatefulWidget {
+class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
-
-  @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
-}
-
-class _DashboardScreenState extends State<DashboardScreen> {
-  DateTime? _selectedDate;
-  late final DashboardModel model;
-
-  @override
-  void initState() {
-    super.initState();
-    _selectedDate = DateTime.now();
-    model = DashboardModel(
-      log: Provider.of<lg.Logger>(super.context, listen: false),
-      dashboardRepository:
-          Provider.of<DashboardRepository>(super.context, listen: false),
-      appService: Provider.of<AppService>(super.context, listen: false),
-    );
-
-    //onLoad();
-  }
-
-  void onLoad() async {
-    final userSession = await model.findUserSession();
-    if (userSession.status == "REQ_LOGIN") {
-      final bool? complete = await show2AuthDialog(context: context);
-      if (complete != null) {
-        model.updateUserSession(complete);
-      } else {
-        model.updateUserSession(false);
-      }
-    }
-  }
 
   String _formatDate(DateTime date) {
     final DateFormat formatter = DateFormat('dd MMMM yyyy', 'th_TH');
@@ -94,6 +60,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final DateTime selectedDate = DateTime.now();
+
     return Scaffold(
       backgroundColor: MainColors.primary500,
       appBar: BaseAppbar(),
@@ -129,7 +97,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Column(
                         children: [
                           Container(
-                            padding: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
                               color: const Color(0xFFF9F9F9),
                               borderRadius: BorderRadius.circular(10),
@@ -137,86 +105,64 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                if (_selectedDate != null)
-                                  Text(
-                                    _formatDate(_selectedDate!),
-                                    style: const TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                Text(
+                                  _formatDate(selectedDate),
+                                  style: const TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.calendar_today_outlined,
-                                    size: 25,
-                                    color: Color(0xFF4F4F4F),
-                                  ),
-                                  onPressed: () => _selectDate(context),
                                 ),
                               ],
                             ),
                           ),
                           const SizedBox(height: 20),
-                          Column(
+                          const Column(
                             children: [
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(child: Allpatients(model: model)),
-                                  Expanded(child: RetentionRate(model: model)),
+                                  Expanded(child: Allpatients()),
+                                  Expanded(child: RetentionRate()),
                                 ],
                               ),
-                              const SizedBox(height: 20),
+                              SizedBox(height: 20),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
-                                    child: Register(model: model),
+                                    child: Register(),
                                   ),
-                                  const SizedBox(width: 5),
+                                  SizedBox(width: 5),
                                   Expanded(
-                                    child: Screening(
-                                      model: model,
-                                    ),
+                                    child: Screening(),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 10),
+                              SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(child: Therapy(model: model)),
-                                  const SizedBox(width: 5),
-                                  Expanded(child: Keeptrack(model: model)),
+                                  Expanded(child: Therapy()),
+                                  SizedBox(width: 5),
+                                  Expanded(child: Keeptrack()),
                                 ],
                               ),
-                              const SizedBox(height: 10),
+                              SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(child: Help(model: model)),
-                                  const SizedBox(width: 5),
-                                  Expanded(child: Forward(model: model)),
+                                  Expanded(child: Help()),
+                                  SizedBox(width: 5),
+                                  Expanded(child: Forward()),
                                 ],
                               ),
-                              const SizedBox(height: 20),
-                              Statistics(model: model),
-                              StatPatient(
-                                model: model,
-                              ),
-                              // Column(
-                              //   children: [
-                              //     Statistics(model: model),
-                              //     const SizedBox(height: 20),
-                              //     StatPatient(
-                              //       model: model,
-                              //     ),
-                              //   ],
-                              // ),
+                              SizedBox(height: 20),
+                              Statistics(),
+                              StatPatient(),
                             ],
                           ),
                         ],
@@ -231,40 +177,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
     );
   }
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2100),
-    );
-
-    if (pickedDate != null && pickedDate != _selectedDate) {
-      if (mounted) {
-        setState(() {
-          _selectedDate = pickedDate;
-        });
-      }
-    }
-  }
 }
 
 // 1
 class Allpatients extends StatefulWidget {
-  final DashboardModel model;
-
-  const Allpatients({super.key, required this.model});
+  const Allpatients({
+    super.key,
+  });
 
   @override
   State<Allpatients> createState() => _AllpatientsState();
 }
 
 class _AllpatientsState extends State<Allpatients> {
+  late final DashboardModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<int>(
-      future: widget.model.findpatients(),
+      future: model.findpatients(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -304,18 +246,32 @@ class _AllpatientsState extends State<Allpatients> {
 // findTotalRetention
 
 class RetentionRate extends StatefulWidget {
-  final DashboardModel model;
-  const RetentionRate({super.key, required this.model});
+  const RetentionRate({
+    super.key,
+  });
 
   @override
   State<RetentionRate> createState() => _RetentionRateState();
 }
 
 class _RetentionRateState extends State<RetentionRate> {
+  late final DashboardModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<int>(
-      future: widget.model.findTotalRetention(),
+      future: model.findTotalRetention(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -338,7 +294,7 @@ class _RetentionRateState extends State<RetentionRate> {
                 width: 10,
               ),
               Text(
-                "${count.toString()}%",
+                "$count%",
                 style: const TextStyle(
                   fontSize: 25,
                   color: MainColors.primary500,
@@ -354,10 +310,28 @@ class _RetentionRateState extends State<RetentionRate> {
 }
 // 3
 
-class Register extends StatelessWidget {
-  final DashboardModel model;
+class Register extends StatefulWidget {
+  const Register({
+    super.key,
+  });
 
-  const Register({super.key, required this.model});
+  @override
+  _RegisterState createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  late final DashboardModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -420,18 +394,30 @@ class Register extends StatelessWidget {
 
 // 4
 class Screening extends StatefulWidget {
-  final DashboardModel model;
-  const Screening({super.key, required this.model});
+  const Screening({super.key});
 
   @override
   State<Screening> createState() => _ScreeningState();
 }
 
 class _ScreeningState extends State<Screening> {
+  late final DashboardModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<int>(
-      future: widget.model.findTotalScreening(),
+      future: model.findTotalScreening(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -490,18 +476,32 @@ class _ScreeningState extends State<Screening> {
 // 5
 
 class Therapy extends StatefulWidget {
-  final DashboardModel model;
-  const Therapy({super.key, required this.model});
+  const Therapy({
+    super.key,
+  });
 
   @override
   State<Therapy> createState() => _TherapyState();
 }
 
 class _TherapyState extends State<Therapy> {
+  late final DashboardModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<int>(
-      future: widget.model.findTotalTreatment(),
+      future: model.findTotalTreatment(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -560,18 +560,32 @@ class _TherapyState extends State<Therapy> {
 
 // 6
 class Keeptrack extends StatefulWidget {
-  final DashboardModel model;
-  const Keeptrack({super.key, required this.model});
+  const Keeptrack({
+    super.key,
+  });
 
   @override
   State<Keeptrack> createState() => _KeeptrackState();
 }
 
 class _KeeptrackState extends State<Keeptrack> {
+  late final DashboardModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<int>(
-      future: widget.model.findTotalMonitoring(),
+      future: model.findTotalMonitoring(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -631,19 +645,32 @@ class _KeeptrackState extends State<Keeptrack> {
 // 7
 
 class Help extends StatefulWidget {
-  final DashboardModel model;
-
-  const Help({super.key, required this.model});
+  const Help({
+    super.key,
+  });
 
   @override
   State<Help> createState() => _HelpState();
 }
 
 class _HelpState extends State<Help> {
+  late final DashboardModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<int>(
-      future: widget.model.findTotalAssistance(),
+      future: model.findTotalAssistance(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -701,18 +728,32 @@ class _HelpState extends State<Help> {
 
 // 7
 class Forward extends StatefulWidget {
-  final DashboardModel model;
-  const Forward({super.key, required this.model});
+  const Forward({
+    super.key,
+  });
 
   @override
   State<Forward> createState() => _ForwardState();
 }
 
 class _ForwardState extends State<Forward> {
+  late final DashboardModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Refer>(
-      future: widget.model.findTotalRefer(),
+      future: model.findTotalRefer(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -771,26 +812,33 @@ class _ForwardState extends State<Forward> {
   }
 }
 
-// -------------------------------------
-
 class Statistics extends StatefulWidget {
-  final DashboardModel model;
-
-  const Statistics({super.key, required this.model});
+  const Statistics({
+    super.key,
+  });
 
   @override
   State<StatefulWidget> createState() => StatisticsState();
 }
 
 class StatisticsState extends State<Statistics> {
-  int touchedIndex = -1;
-  String type = "Screening"; //Screening, Treatment
-  bool isScreening = true;
+  late final DashboardModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Level>(
-      future: widget.model.findLevel(),
+      future: model.findLevel(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -802,100 +850,125 @@ class StatisticsState extends State<Statistics> {
           final level = snapshot.data!;
 
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Flex(
-                direction: Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "สถิติ (ปีงบประมาณ ${level.year})",
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        type == "screening" ? 'คัดกรอง' : 'บำบัด',
-                        style: const TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Switch(
-                        value: type == "screening" && true,
-                        onChanged: (value) {
-                          String newType = "";
-                          if (value) {
-                            newType = "screening";
-                          } else {
-                            newType = "treatment";
-                          }
-                          if (mounted) {
-                            setState(() {
-                              type = newType;
-                            });
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+            children: [
+              StatisticsLevel(
+                level: level,
               ),
-              const SizedBox(height: 40),
-              SizedBox(
-                height: 200,
-                child: Stack(
+            ],
+          );
+        }
+      },
+    );
+  }
+}
+
+class StatisticsLevel extends StatefulWidget {
+  final Level level;
+
+  const StatisticsLevel({
+    super.key,
+    required this.level,
+  });
+
+  @override
+  _StatisticsLevelState createState() => _StatisticsLevelState();
+}
+
+class _StatisticsLevelState extends State<StatisticsLevel> {
+  String type = "screening";
+
+  void _handleTypeChange(String newType) {
+    setState(() {
+      type = newType;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final level = widget.level;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Flex(
+          direction: Axis.horizontal,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "สถิติ (ปีงบประมาณ ${level.year})",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  type == "screening" ? 'คัดกรอง' : 'บำบัด',
+                  style: const TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Switch(
+                  value: type == "screening",
+                  onChanged: (value) {
+                    _handleTypeChange(value ? "screening" : "treatment");
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+        const SizedBox(height: 40),
+        SizedBox(
+          height: 200,
+          child: Stack(
+            children: [
+              PieChart(
+                PieChartData(
+                  startDegreeOffset: 180,
+                  borderData: FlBorderData(
+                    show: false,
+                  ),
+                  sectionsSpace: 4,
+                  centerSpaceRadius: 60,
+                  sections: _levelPieChart(level, type),
+                ),
+              ),
+              Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    PieChart(
-                      PieChartData(
-                        startDegreeOffset: 180,
-                        borderData: FlBorderData(
-                          show: false,
-                        ),
-                        sectionsSpace: 4,
-                        centerSpaceRadius: 60,
-                        sections: _levelPieChart(level, type),
+                    Text(
+                      type == "screening"
+                          ? level.screeningTotal.toString()
+                          : level.treatmentTotal.toString(),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF333333),
                       ),
                     ),
-                    Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            type == "screening"
-                                ? level.screeningTotal.toString()
-                                : level.treatmentTotal.toString(),
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF333333),
-                            ),
-                          ),
-                          const Text(
-                            'ผู้ป่วยทั้งหมด',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFF6A7180),
-                            ),
-                          ),
-                        ],
+                    const Text(
+                      'ผู้ป่วยทั้งหมด',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF6A7180),
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 40),
-              _levelText(level, type)
             ],
-          );
-        }
-      },
+          ),
+        ),
+        const SizedBox(height: 40),
+        _levelText(level, type),
+      ],
     );
   }
 
@@ -979,70 +1052,6 @@ class StatisticsState extends State<Statistics> {
         ),
       ];
     }
-
-    // return List.generate(4, (i) {
-    //   final isTouched = i == touchedIndex;
-    //   final fontSize = isTouched ? 25.0 : 16.0;
-    //   final radius = isTouched ? 60.0 : 50.0;
-    //   const shadows = [Shadow(blurRadius: 2)];
-
-    //   switch (i) {
-    //     case 0:
-    //       return PieChartSectionData(
-    //         color: const Color(0xFF11b366),
-    //         value: level.screeningNormalCount.toDouble(),
-    //         title: '',
-    //         radius: radius,
-    //         titleStyle: TextStyle(
-    //           fontSize: fontSize,
-    //           fontWeight: FontWeight.bold,
-    //           color: MainColors.primary50,
-    //           shadows: shadows,
-    //         ),
-    //       );
-    //     case 1:
-    //       return PieChartSectionData(
-    //         color: const Color(0xFFffcd3f),
-    //         value: level.screeningSemiUrgencyCount.toDouble(),
-    //         title: '',
-    //         radius: radius,
-    //         titleStyle: TextStyle(
-    //           fontSize: fontSize,
-    //           fontWeight: FontWeight.bold,
-    //           color: MainColors.primary50,
-    //           shadows: shadows,
-    //         ),
-    //       );
-    //     case 2:
-    //       return PieChartSectionData(
-    //         color: const Color(0xFFf2994a),
-    //         value: level.screeningUrgencyCount.toDouble(),
-    //         title: '',
-    //         radius: radius,
-    //         titleStyle: TextStyle(
-    //           fontSize: fontSize,
-    //           fontWeight: FontWeight.bold,
-    //           color: MainColors.primary50,
-    //           shadows: shadows,
-    //         ),
-    //       );
-    //     case 3:
-    //       return PieChartSectionData(
-    //         color: const Color(0xFFff5631),
-    //         value: level.screeningEmergencyCount.toDouble(),
-    //         title: '',
-    //         radius: radius,
-    //         titleStyle: TextStyle(
-    //           fontSize: fontSize,
-    //           fontWeight: FontWeight.bold,
-    //           color: MainColors.primary50,
-    //           shadows: shadows,
-    //         ),
-    //       );
-    //     default:
-    //       throw Error();
-    //   }
-    // });
   }
 
   Widget _levelText(Level level, String type) {
@@ -1117,56 +1126,35 @@ class StatisticsState extends State<Statistics> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Container(
-                width: 24,
-                height: 24,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: color,
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.circle,
-                    color: color,
-                    size: 16,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ],
+          Container(
+            width: 20,
+            height: 20,
+            color: color,
           ),
-          Text(
-            percentage,
-            style: const TextStyle(
-              fontSize: 18,
-            ),
-          ),
+          const SizedBox(width: 10),
+          Text(text),
+          const Spacer(),
+          Text(percentage),
         ],
       ),
     );
   }
 }
 
-// ------------------------
+// ---------
 class StatPatient extends StatefulWidget {
-  final DashboardModel model;
-  const StatPatient({super.key, required this.model});
+  const StatPatient({
+    super.key,
+  });
 
   @override
   State<StatefulWidget> createState() => _StatPatientState();
 }
 
 class _StatPatientState extends State<StatPatient> {
+  late final DashboardModel model;
+
   List<double> monthData = [];
   List<double> weekData = [];
   List<String> weekTexts = [
@@ -1202,12 +1190,18 @@ class _StatPatientState extends State<StatPatient> {
   @override
   void initState() {
     super.initState();
+    model = DashboardModel(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
     loadData();
   }
 
   Future<void> loadData() async {
-    final tempMonth = await widget.model.findStatPatientMonth();
-    final tempWeek = await widget.model.findStatPatientWeek();
+    final tempMonth = await model.findStatPatientMonth();
+    final tempWeek = await model.findStatPatientWeek();
     monthData = tempMonth.dataMonth;
     newPatientMonth = tempMonth.newPatientMonth;
     weekData = tempWeek.dataWeek;
@@ -1428,12 +1422,8 @@ class _StatPatientState extends State<StatPatient> {
                                       getTitlesWidget: leftTitles,
                                     ),
                                   ),
-                                  topTitles: const AxisTitles(
-                                    sideTitles: SideTitles(showTitles: false),
-                                  ),
-                                  rightTitles: const AxisTitles(
-                                    sideTitles: SideTitles(showTitles: false),
-                                  ),
+                                  topTitles: const AxisTitles(),
+                                  rightTitles: const AxisTitles(),
                                 ),
                                 gridData: FlGridData(
                                   checkToShowHorizontalLine: (value) =>

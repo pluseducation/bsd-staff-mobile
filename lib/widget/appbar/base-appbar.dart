@@ -1,7 +1,9 @@
+import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 
 const double toolbarHeight = 105;
+const double toolbarHeightPatient = 80;
 
 class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -145,4 +147,127 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(toolbarHeight);
+}
+
+class BaseAppbarPatient extends StatefulWidget implements PreferredSizeWidget {
+  final PaginationController paginationController;
+  const BaseAppbarPatient({
+    super.key,
+    required this.paginationController,
+  });
+
+  @override
+  _BaseAppbarPatientState createState() => _BaseAppbarPatientState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(toolbarHeightPatient);
+}
+
+class _BaseAppbarPatientState extends State<BaseAppbarPatient> {
+  int totalItem = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.paginationController.totalItemStream.listen((value) {
+      if (mounted) {
+        setState(() {
+          totalItem = value;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [MainColors.primary500, MainColors.primary500],
+              stops: [-0.017, 1.2193],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: AppBar(
+            toolbarHeight: toolbarHeight,
+            backgroundColor: Colors.transparent,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "ผู้ป่วย",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(width: 5),
+                Text(
+                  "($totalItem)",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          top: -100,
+          left: -70,
+          child: Container(
+            width: 280,
+            height: 400,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.1449, 0.9606],
+                colors: [
+                  MainColors.primary500,
+                  Colors.white,
+                ],
+                transform: GradientRotation(300.72 * (3.14159 / 180)),
+              ),
+              color: Colors.white12,
+            ),
+          ),
+        ),
+        Positioned(
+          top: 60,
+          right: -20,
+          child: Container(
+            width: 180,
+            height: 280,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(100),
+                bottomRight: Radius.circular(100),
+                topLeft: Radius.circular(60),
+              ),
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomRight,
+                stops: [0.1449, 0.9606],
+                colors: [
+                  MainColors.primary500,
+                  Colors.white,
+                ],
+                transform: GradientRotation(280 * (3.14159 / 50)),
+              ),
+              color: Colors.white12,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }

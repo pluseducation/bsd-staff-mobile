@@ -7,6 +7,7 @@ import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
 import 'package:bst_staff_mobile/presentation/patient/workflow-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/constant.dart';
+import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:bst_staff_mobile/widget/status-widget.dart';
 import 'package:flutter/material.dart';
@@ -95,18 +96,23 @@ class _PatientScreenState extends State<PatientScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      appBar: AppBar(
-        toolbarHeight: 80,
-        automaticallyImplyLeading: false,
-        backgroundColor: MainColors.primary500,
-        title: PatientTitleScreen(
-          paginationController: _paginationController,
-        ),
-      ),
+      appBar: BaseAppbarPatient(paginationController: _paginationController),
       body: Stack(
         children: [
           Container(
-            color: MainColors.primary500,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  MainColors.primary500,
+                  Colors.white,
+                ],
+                stops: [-0.017, 1.2193],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                transform: GradientRotation(280 * (3.14159 / 50)),
+              ),
+              color: Colors.white12,
+            ),
             child: Column(
               children: [
                 Expanded(
@@ -126,11 +132,14 @@ class _PatientScreenState extends State<PatientScreen> {
                             vertical: 20,
                             horizontal: 20,
                           ),
-                          child: Container(
-                            color: Colors.white,
-                            child: SearchPatient(
-                              paginationController: _paginationController,
-                            ),
+
+                          // color: Colors.white,
+                          child: Column(
+                            children: [
+                              SearchPatient(
+                                paginationController: _paginationController,
+                              ),
+                            ],
                           ),
                         ),
                         Expanded(
@@ -169,61 +178,6 @@ class _PatientScreenState extends State<PatientScreen> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class PatientTitleScreen extends StatefulWidget {
-  final PaginationController paginationController;
-
-  const PatientTitleScreen({
-    super.key,
-    required this.paginationController,
-  });
-
-  @override
-  State<PatientTitleScreen> createState() => _PatientTitleScreenState();
-}
-
-class _PatientTitleScreenState extends State<PatientTitleScreen> {
-  int totalItem = 0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    widget.paginationController.totalItemStream.listen((value) {
-      if (mounted) {
-        setState(() {
-          totalItem = value;
-        });
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          "ผู้ป่วย",
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(width: 5),
-        Text(
-          "($totalItem)",
-          style: const TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
     );
   }
 }
@@ -548,7 +502,7 @@ class _PatientListState extends State<PatientList> {
                                       backgroundColor: MainColors.background,
                                       child: ClipOval(
                                         child: Image.asset(
-                                          "assets/images/profile2.png", //patient.imagePath,
+                                          "assets/images/profile2.png",
                                           width: 50,
                                           height: 50,
                                           fit: BoxFit.cover,
@@ -571,28 +525,25 @@ class _PatientListState extends State<PatientList> {
                                           patient.fullName,
                                           style: const TextStyle(
                                             fontSize: 18,
-                                            color: Colors.black,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        const SizedBox(height: 8),
+                                        const SizedBox(height: 3),
                                         Text(
                                           patient.nationalId,
                                           style: const TextStyle(
                                             fontSize: 16,
-                                            color: Color(0xFF808080),
                                           ),
                                         ),
-                                        const SizedBox(height: 8),
+                                        const SizedBox(height: 3),
                                         Text(
                                           patient.cycle,
                                           style: const TextStyle(
                                             fontSize: 16,
-                                            color: Color(0xFF808080),
                                           ),
                                         ),
                                         const SizedBox(
-                                          height: 5,
+                                          height: 2,
                                         ),
                                       ],
                                     ),
@@ -609,7 +560,7 @@ class _PatientListState extends State<PatientList> {
                         thickness: 0.8,
                       ),
                       const SizedBox(
-                        height: 5,
+                        height: 2,
                       ),
                     ],
                   );
