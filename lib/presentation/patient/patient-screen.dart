@@ -193,9 +193,11 @@ class _PatientTitleScreenState extends State<PatientTitleScreen> {
     super.initState();
 
     widget.paginationController.totalItemStream.listen((value) {
-      setState(() {
-        totalItem = value;
-      });
+      if (mounted) {
+        setState(() {
+          totalItem = value;
+        });
+      }
     });
   }
 
@@ -291,16 +293,20 @@ class _PaginationControlsState extends State<PaginationControls> {
   void initState() {
     super.initState();
     widget.paginationController.totalSearchItemStream.listen((value) {
-      setState(() {
-        totalItem = value;
-        totalPage = widget.paginationController.totalPages;
-      });
+      if (mounted) {
+        setState(() {
+          totalItem = value;
+          totalPage = widget.paginationController.totalPages;
+        });
+      }
     });
 
     widget.paginationController.pageSearchStream.listen((value) {
-      setState(() {
-        currentPage = value;
-      });
+      if (mounted) {
+        setState(() {
+          currentPage = value;
+        });
+      }
     });
 
     totalItem = widget.paginationController.totalItems;
@@ -484,7 +490,9 @@ class _PatientListState extends State<PatientList> {
     await _model.loadData();
     final totalItem = _model.patients.totalElements;
     widget.paginationController.setTotalItem(totalItem);
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   Future<PatientAll> onLoad() async {

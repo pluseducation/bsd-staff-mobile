@@ -116,12 +116,14 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
           top: 60,
           right: -20,
           child: Container(
-            width: 170,
+            width: 180,
             height: 280,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(100),
                 bottomRight: Radius.circular(100),
+                // topLeft: Radius.elliptical(70, 40),
+                topLeft: Radius.circular(60),
               ),
               gradient: LinearGradient(
                 begin: Alignment.topRight,
@@ -131,7 +133,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
                   MainColors.primary500,
                   Colors.white,
                 ],
-                transform: GradientRotation(280 * (3.14159 / 45)),
+                transform: GradientRotation(280 * (3.14159 / 50)),
               ),
               color: Colors.white12,
             ),

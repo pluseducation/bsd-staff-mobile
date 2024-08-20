@@ -1,7 +1,3 @@
-import 'dart:collection';
-
-import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
-import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
@@ -100,7 +96,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      //appBar: BaseAppbar(),
+      appBar: BaseAppbar(),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -147,7 +143,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black,
                                     ),
                                   ),
                                 IconButton(
@@ -209,15 +204,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 ],
                               ),
                               const SizedBox(height: 20),
-                              Column(
-                                children: [
-                                  Statistics(model: model),
-                                  const SizedBox(height: 20),
-                                  StatPatient(
-                                    model: model,
-                                  ),
-                                ],
+                              Statistics(model: model),
+                              StatPatient(
+                                model: model,
                               ),
+                              // Column(
+                              //   children: [
+                              //     Statistics(model: model),
+                              //     const SizedBox(height: 20),
+                              //     StatPatient(
+                              //       model: model,
+                              //     ),
+                              //   ],
+                              // ),
                             ],
                           ),
                         ],
@@ -242,9 +241,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
 
     if (pickedDate != null && pickedDate != _selectedDate) {
-      setState(() {
-        _selectedDate = pickedDate;
-      });
+      if (mounted) {
+        setState(() {
+          _selectedDate = pickedDate;
+        });
+      }
     }
   }
 }
@@ -280,8 +281,6 @@ class _AllpatientsState extends State<Allpatients> {
                 "ผู้ป่วยทั้งหมด",
                 style: TextStyle(
                   fontSize: 18,
-                  color: Color(0xFF3D4245),
-                  fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(
@@ -291,8 +290,6 @@ class _AllpatientsState extends State<Allpatients> {
                 count.toString(),
                 style: const TextStyle(
                   fontSize: 25,
-                  // color: MainColors.primary500,
-                  color: Color(0xFF3D4245),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -303,35 +300,6 @@ class _AllpatientsState extends State<Allpatients> {
     );
   }
 }
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Text(
-//           "ผู้ป่วยทั้งหมด",
-//           style: TextStyle(
-//             fontSize: 18,
-//             color: Color(0xFF3D4245),
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//         SizedBox(
-//           width: 10,
-//         ),
-//         Text(
-//           "450 ",
-//           style: TextStyle(
-//             fontSize: 25,
-//             color: Color(0xFF3D4245),
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-// 2
 
 // findTotalRetention
 
@@ -364,8 +332,6 @@ class _RetentionRateState extends State<RetentionRate> {
                 "Retention Rate",
                 style: TextStyle(
                   fontSize: 18,
-                  color: Color(0xFF3D4245),
-                  fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(
@@ -423,7 +389,6 @@ class Register extends StatelessWidget {
                             "ลงทะเบียน",
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Icon(
@@ -438,7 +403,6 @@ class Register extends StatelessWidget {
                         count.toString(),
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Color(0xFF3D4245),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -494,7 +458,6 @@ class _ScreeningState extends State<Screening> {
                             "คัดกรอง",
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Icon(
@@ -509,7 +472,6 @@ class _ScreeningState extends State<Screening> {
                         count.toString(),
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Color(0xFF3D4245),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -566,7 +528,6 @@ class _TherapyState extends State<Therapy> {
                             "บำบัด",
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Icon(
@@ -581,7 +542,6 @@ class _TherapyState extends State<Therapy> {
                         count.toString(),
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Color(0xFF3D4245),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -638,7 +598,6 @@ class _KeeptrackState extends State<Keeptrack> {
                             "ติดตาม",
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Icon(
@@ -653,7 +612,6 @@ class _KeeptrackState extends State<Keeptrack> {
                         count.toString(),
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Color(0xFF3D4245),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -712,7 +670,6 @@ class _HelpState extends State<Help> {
                             "ช่วยเหลือ",
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Icon(
@@ -727,7 +684,6 @@ class _HelpState extends State<Help> {
                         count.toString(),
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Color(0xFF3D4245),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -786,7 +742,6 @@ class _ForwardState extends State<Forward> {
                             "ส่งต่อ/รอรับ",
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Icon(
@@ -798,11 +753,9 @@ class _ForwardState extends State<Forward> {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        // count.toString(),
                         "$sender / $receiver",
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Color(0xFF3D4245),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -883,9 +836,11 @@ class StatisticsState extends State<Statistics> {
                           } else {
                             newType = "treatment";
                           }
-                          setState(() {
-                            type = newType;
-                          });
+                          if (mounted) {
+                            setState(() {
+                              type = newType;
+                            });
+                          }
                         },
                       ),
                     ],
@@ -1266,9 +1221,11 @@ class _StatPatientState extends State<StatPatient> {
   }
 
   void onTextTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
+    if (mounted) {
+      setState(() {
+        selectedIndex = index;
+      });
+    }
   }
 
   Widget buildSelectableText(String text, int index) {
@@ -1300,7 +1257,9 @@ class _StatPatientState extends State<StatPatient> {
             text,
             style: TextStyle(
               fontSize: 17,
-              color: isSelected ? Colors.black : Colors.black.withOpacity(0.5),
+              color: isSelected
+                  ? MainColors.text600
+                  : Colors.black.withOpacity(0.5),
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -1359,7 +1318,6 @@ class _StatPatientState extends State<StatPatient> {
                         "สถิติผู้ป่วย",
                         style: TextStyle(
                           fontSize: 20,
-                          color: Color(0xFF242B42),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -1380,7 +1338,7 @@ class _StatPatientState extends State<StatPatient> {
                             : newPatientMonth.toString(),
                         style: const TextStyle(
                           fontSize: 25,
-                          color: Color(0xFF242B42),
+                          color: MainColors.text600,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

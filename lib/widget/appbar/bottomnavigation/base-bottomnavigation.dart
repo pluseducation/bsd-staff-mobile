@@ -65,7 +65,7 @@ class _BaseBottomNavigationBarState extends State<BaseBottomNavigationBar> {
                                 size: 30,
                                 color: widget.selectedIndex == 0
                                     ? MainColors.primary500
-                                    : const Color(0xFF979797),
+                                    : Colors.black,
                                 weight: 20.5,
                               ),
                               Text(
@@ -73,7 +73,7 @@ class _BaseBottomNavigationBarState extends State<BaseBottomNavigationBar> {
                                 style: TextStyle(
                                   color: widget.selectedIndex == 0
                                       ? MainColors.primary500
-                                      : const Color(0xFF979797),
+                                      : Colors.black,
                                   fontSize: 12,
                                 ),
                               ),
@@ -92,14 +92,14 @@ class _BaseBottomNavigationBarState extends State<BaseBottomNavigationBar> {
                                 size: 30,
                                 color: widget.selectedIndex == 1
                                     ? MainColors.primary500
-                                    : const Color(0xFF979797),
+                                    : Colors.black,
                               ),
                               Text(
                                 _navItems[1].title,
                                 style: TextStyle(
                                   color: widget.selectedIndex == 1
                                       ? MainColors.primary500
-                                      : const Color(0xFF979797),
+                                      : Colors.black,
                                   fontSize: 12,
                                 ),
                               ),
@@ -118,14 +118,14 @@ class _BaseBottomNavigationBarState extends State<BaseBottomNavigationBar> {
                                 size: 30,
                                 color: widget.selectedIndex == 2
                                     ? MainColors.primary500
-                                    : const Color(0xFF979797),
+                                    : Colors.black,
                               ),
                               Text(
                                 _navItems[2].title,
                                 style: TextStyle(
                                   color: widget.selectedIndex == 2
                                       ? MainColors.primary500
-                                      : const Color(0xFF979797),
+                                      : Colors.black,
                                   fontSize: 12,
                                 ),
                               ),
@@ -144,14 +144,14 @@ class _BaseBottomNavigationBarState extends State<BaseBottomNavigationBar> {
                                 size: 30,
                                 color: widget.selectedIndex == 3
                                     ? MainColors.primary500
-                                    : const Color(0xFF979797),
+                                    : Colors.black,
                               ),
                               Text(
                                 _navItems[3].title,
                                 style: TextStyle(
                                   color: widget.selectedIndex == 3
                                       ? MainColors.primary500
-                                      : const Color(0xFF979797),
+                                      : Colors.black,
                                   fontSize: 12,
                                 ),
                               ),
@@ -170,14 +170,14 @@ class _BaseBottomNavigationBarState extends State<BaseBottomNavigationBar> {
                                 size: 30,
                                 color: widget.selectedIndex == 4
                                     ? MainColors.primary500
-                                    : const Color(0xFF979797),
+                                    : Colors.black,
                               ),
                               Text(
                                 _navItems[4].title,
                                 style: TextStyle(
                                   color: widget.selectedIndex == 4
                                       ? MainColors.primary500
-                                      : const Color(0xFF979797),
+                                      : Colors.black,
                                   fontSize: 12,
                                 ),
                               ),

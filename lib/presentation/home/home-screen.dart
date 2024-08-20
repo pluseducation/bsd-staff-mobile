@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/presentation/certificate/certificate-screen.dar
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-screen.dart';
+import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/appbar/bottomnavigation/base-bottomnavigation.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/material.dart';
