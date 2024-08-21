@@ -13,7 +13,8 @@ class Appointment with _$Appointment {
 class AppointmentEvent with _$AppointmentEvent {
   const factory AppointmentEvent({
     required DateTime appointmentDate, //** find on where /appointments */
-    required String appointmenTime, // ปี เดือน วัน
+    required String appointmenDate, // วัน เดือน ปี แยกมาจาก
+    required String appointmenTime, //เวลา
     required String roundText, //appointmentType + round roundText.where
     required String fullname, // ชื่อผู้ป่วย name +  surname // appointments
     required String phoneNo, // เบอร์โทร /appointments

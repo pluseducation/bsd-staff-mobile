@@ -176,16 +176,18 @@ abstract class _Appointment implements Appointment {
 /// @nodoc
 mixin _$AppointmentEvent {
   DateTime get appointmentDate =>
-      throw _privateConstructorUsedError; //** find on เวลา  /appointments */
-  String get appointmenTime => throw _privateConstructorUsedError;
+      throw _privateConstructorUsedError; //** find on where /appointments */
+  String get appointmenDate =>
+      throw _privateConstructorUsedError; // วัน เดือน ปี แยกมาจาก
+  String get appointmenTime => throw _privateConstructorUsedError; //เวลา
   String get roundText =>
-      throw _privateConstructorUsedError; //appointmentType + round
+      throw _privateConstructorUsedError; //appointmentType + round roundText.where
   String get fullname =>
       throw _privateConstructorUsedError; // ชื่อผู้ป่วย name +  surname // appointments
   String get phoneNo =>
       throw _privateConstructorUsedError; // เบอร์โทร /appointments
   String get guardianFullname =>
-      throw _privateConstructorUsedError; // ชื่อผู้ปกครอง guardianName + guardianSurname // /appointments
+      throw _privateConstructorUsedError; // ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
   String get guardianPhoneNo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -201,6 +203,7 @@ abstract class $AppointmentEventCopyWith<$Res> {
   @useResult
   $Res call(
       {DateTime appointmentDate,
+      String appointmenDate,
       String appointmenTime,
       String roundText,
       String fullname,
@@ -223,6 +226,7 @@ class _$AppointmentEventCopyWithImpl<$Res, $Val extends AppointmentEvent>
   @override
   $Res call({
     Object? appointmentDate = null,
+    Object? appointmenDate = null,
     Object? appointmenTime = null,
     Object? roundText = null,
     Object? fullname = null,
@@ -235,6 +239,10 @@ class _$AppointmentEventCopyWithImpl<$Res, $Val extends AppointmentEvent>
           ? _value.appointmentDate
           : appointmentDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      appointmenDate: null == appointmenDate
+          ? _value.appointmenDate
+          : appointmenDate // ignore: cast_nullable_to_non_nullable
+              as String,
       appointmenTime: null == appointmenTime
           ? _value.appointmenTime
           : appointmenTime // ignore: cast_nullable_to_non_nullable
@@ -273,6 +281,7 @@ abstract class _$$AppointmentEventImplCopyWith<$Res>
   @useResult
   $Res call(
       {DateTime appointmentDate,
+      String appointmenDate,
       String appointmenTime,
       String roundText,
       String fullname,
@@ -293,6 +302,7 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appointmentDate = null,
+    Object? appointmenDate = null,
     Object? appointmenTime = null,
     Object? roundText = null,
     Object? fullname = null,
@@ -305,6 +315,10 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
           ? _value.appointmentDate
           : appointmentDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      appointmenDate: null == appointmenDate
+          ? _value.appointmenDate
+          : appointmenDate // ignore: cast_nullable_to_non_nullable
+              as String,
       appointmenTime: null == appointmenTime
           ? _value.appointmenTime
           : appointmenTime // ignore: cast_nullable_to_non_nullable
@@ -338,6 +352,7 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
 class _$AppointmentEventImpl implements _AppointmentEvent {
   const _$AppointmentEventImpl(
       {required this.appointmentDate,
+      required this.appointmenDate,
       required this.appointmenTime,
       required this.roundText,
       required this.fullname,
@@ -347,12 +362,16 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
 
   @override
   final DateTime appointmentDate;
-//** find on เวลา  /appointments */
+//** find on where /appointments */
+  @override
+  final String appointmenDate;
+// วัน เดือน ปี แยกมาจาก
   @override
   final String appointmenTime;
+//เวลา
   @override
   final String roundText;
-//appointmentType + round
+//appointmentType + round roundText.where
   @override
   final String fullname;
 // ชื่อผู้ป่วย name +  surname // appointments
@@ -361,13 +380,13 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
 // เบอร์โทร /appointments
   @override
   final String guardianFullname;
-// ชื่อผู้ปกครอง guardianName + guardianSurname // /appointments
+// ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
   @override
   final String guardianPhoneNo;
 
   @override
   String toString() {
-    return 'AppointmentEvent(appointmentDate: $appointmentDate, appointmenTime: $appointmenTime, roundText: $roundText, fullname: $fullname, phoneNo: $phoneNo, guardianFullname: $guardianFullname, guardianPhoneNo: $guardianPhoneNo)';
+    return 'AppointmentEvent(appointmentDate: $appointmentDate, appointmenDate: $appointmenDate, appointmenTime: $appointmenTime, roundText: $roundText, fullname: $fullname, phoneNo: $phoneNo, guardianFullname: $guardianFullname, guardianPhoneNo: $guardianPhoneNo)';
   }
 
   @override
@@ -377,6 +396,8 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
             other is _$AppointmentEventImpl &&
             (identical(other.appointmentDate, appointmentDate) ||
                 other.appointmentDate == appointmentDate) &&
+            (identical(other.appointmenDate, appointmenDate) ||
+                other.appointmenDate == appointmenDate) &&
             (identical(other.appointmenTime, appointmenTime) ||
                 other.appointmenTime == appointmenTime) &&
             (identical(other.roundText, roundText) ||
@@ -391,8 +412,16 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, appointmentDate, appointmenTime,
-      roundText, fullname, phoneNo, guardianFullname, guardianPhoneNo);
+  int get hashCode => Object.hash(
+      runtimeType,
+      appointmentDate,
+      appointmenDate,
+      appointmenTime,
+      roundText,
+      fullname,
+      phoneNo,
+      guardianFullname,
+      guardianPhoneNo);
 
   @JsonKey(ignore: true)
   @override
@@ -405,6 +434,7 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
 abstract class _AppointmentEvent implements AppointmentEvent {
   const factory _AppointmentEvent(
       {required final DateTime appointmentDate,
+      required final String appointmenDate,
       required final String appointmenTime,
       required final String roundText,
       required final String fullname,
@@ -414,17 +444,19 @@ abstract class _AppointmentEvent implements AppointmentEvent {
 
   @override
   DateTime get appointmentDate;
-  @override //** find on เวลา  /appointments */
+  @override //** find on where /appointments */
+  String get appointmenDate;
+  @override // วัน เดือน ปี แยกมาจาก
   String get appointmenTime;
-  @override
+  @override //เวลา
   String get roundText;
-  @override //appointmentType + round
+  @override //appointmentType + round roundText.where
   String get fullname;
   @override // ชื่อผู้ป่วย name +  surname // appointments
   String get phoneNo;
   @override // เบอร์โทร /appointments
   String get guardianFullname;
-  @override // ชื่อผู้ปกครอง guardianName + guardianSurname // /appointments
+  @override // ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
   String get guardianPhoneNo;
   @override
   @JsonKey(ignore: true)
@@ -435,7 +467,7 @@ abstract class _AppointmentEvent implements AppointmentEvent {
 /// @nodoc
 mixin _$AppointmentCalendar {
   DateTime get appointmentDate =>
-      throw _privateConstructorUsedError; //** find on เวลา  /appointments */
+      throw _privateConstructorUsedError; //** find on  /appointments */
   List<String> get fullnames => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -528,9 +560,9 @@ class _$AppointmentCalendarImpl implements _AppointmentCalendar {
 
   @override
   final DateTime appointmentDate;
-//** find on เวลา  /appointments */
+//** find on  /appointments */
   final List<String> _fullnames;
-//** find on เวลา  /appointments */
+//** find on  /appointments */
   @override
   List<String> get fullnames {
     if (_fullnames is EqualUnmodifiableListView) return _fullnames;
@@ -573,7 +605,7 @@ abstract class _AppointmentCalendar implements AppointmentCalendar {
 
   @override
   DateTime get appointmentDate;
-  @override //** find on เวลา  /appointments */
+  @override //** find on  /appointments */
   List<String> get fullnames;
   @override
   @JsonKey(ignore: true)

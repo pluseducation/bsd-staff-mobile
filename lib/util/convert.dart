@@ -37,6 +37,8 @@ String convertToString(dynamic object) {
   }
 }
 
+// ----
+
 DateTime convertToDatetime(dynamic object) {
   try {
     final DateTime? value = object as DateTime?;
@@ -45,6 +47,34 @@ DateTime convertToDatetime(dynamic object) {
     rethrow;
   }
 }
+
+String convertToThaiDatetime(DateTime dateTime) {
+  final DateFormat formatter = DateFormat.yMMMMd('th_TH');
+  return formatter.format(dateTime);
+}
+
+String convertToThaiDatetimes(DateTime dateTime) {
+  final DateFormat formatter = DateFormat('d MMMM yyyy', 'th_TH');
+  String formattedDate = formatter.format(dateTime);
+
+  final int year = dateTime.year + 543;
+  // ignore: join_return_with_assignment
+  formattedDate =
+      formattedDate.replaceFirst(dateTime.year.toString(), year.toString());
+
+  return formattedDate;
+}
+
+// ---เวลา
+String convertToThaiTimes(DateTime dateTime) {
+  if (dateTime == null) {
+    return "";
+  }
+  final DateFormat formatter = DateFormat('HH:mm', 'th_TH');
+  return formatter.format(dateTime);
+}
+
+// ---
 
 String formatThaiDate(DateTime? date) {
   if (date == null) {
@@ -62,9 +92,7 @@ String formatThaiDateOfBirth(DateTime? date) {
   }
 
   final DateFormat dayMonthFormat = DateFormat('d MMM', 'th_TH');
-
   final int thaiYear = date.year + 543;
-
   final String dayMonth = dayMonthFormat.format(date);
 
   return '$dayMonth $thaiYear';
