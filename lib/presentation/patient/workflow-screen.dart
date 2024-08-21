@@ -14,19 +14,6 @@ class WorkflowScreen extends StatefulWidget {
 }
 
 class _WorkflowScreenState extends State<WorkflowScreen> {
-  // late final WorkflowdModel _model;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _model = WorkflowdModel(
-  //     log: Provider.of<Logger>(super.context, listen: false),
-  //     workflowRepository:
-  //         Provider.of<WorkflowRepository>(super.context, listen: false),
-  //     appService: Provider.of<AppService>(super.context, listen: false),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

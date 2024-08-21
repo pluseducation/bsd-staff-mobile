@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
+import 'package:bst_staff_mobile/data/network/api/appointments-api.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
 import 'package:bst_staff_mobile/data/network/api/master-api.dart';
@@ -10,6 +11,7 @@ import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
 import 'package:bst_staff_mobile/data/network/api/screenings-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
+import 'package:bst_staff_mobile/data/repository/Appointments-repository.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
@@ -99,6 +101,14 @@ Future<InitialData> _createData() async {
     screeningsApi: screeningsApi,
   );
 
+  final appointmentsApi = Appointments(baseUrl: config.baseUrl);
+
+  final appointmentsRepository = AppointmentsRepository(
+    appointmentsApi: appointmentsApi,
+    masterApi: masterApi,
+    networkMapper: networkMapper,
+  );
+
   // Create list of providers
   return InitialData(
     providers: [
@@ -107,6 +117,7 @@ Future<InitialData> _createData() async {
       Provider<DashboardRepository>.value(value: dashboardRepository),
       Provider<PatientRepository>.value(value: patientRepository),
       Provider<WorkflowRepository>.value(value: workflowRepository),
+      Provider<AppointmentsRepository>.value(value: appointmentsRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

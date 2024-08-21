@@ -37,6 +37,15 @@ String convertToString(dynamic object) {
   }
 }
 
+DateTime convertToDatetime(dynamic object) {
+  try {
+    final DateTime? value = object as DateTime?;
+    return value ?? DateTime.now();
+  } catch (e) {
+    rethrow;
+  }
+}
+
 String formatThaiDate(DateTime? date) {
   if (date == null) {
     return "";

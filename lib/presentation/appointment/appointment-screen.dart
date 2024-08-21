@@ -1,6 +1,11 @@
+import 'package:bst_staff_mobile/data/repository/Appointments-repository.dart';
+import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/presentation/appointment/appointment-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class AppointmentScreen extends StatelessWidget {
@@ -145,6 +150,21 @@ class AppointmentEvent extends StatefulWidget {
 }
 
 class _AppointmentEventState extends State<AppointmentEvent> {
+  late final AppointmentsModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = AppointmentsModel(
+      log: Provider.of<Logger>(super.context, listen: false),
+      appointmentsRepository:
+          Provider.of<AppointmentsRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+
+    model.findAppointments();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
