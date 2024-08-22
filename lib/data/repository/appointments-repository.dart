@@ -85,17 +85,19 @@ class AppointmentsRepository {
             .firstOrNull;
 
         if (existingCalendar != null) {
+          final index = appointmentCalendars.indexOf(existingCalendar);
+          appointmentCalendars[index].fullnames.add(fullname);
           // สร้างลิสต์ใหม่ที่มี fullnames ที่อัปเดต
-          final updatedFullnames = List<String>.from(existingCalendar.fullnames)
-            ..add(fullname);
+          // final updatedFullnames = List<String>.from(existingCalendar.fullnames)
+          //   ..add(fullname);
 
-          // สร้าง AppointmentCalendar ใหม่ด้วย fullnames ที่อัปเดต
-          final updatedCalendar =
-              existingCalendar.copyWith(fullnames: updatedFullnames);
+          // // สร้าง AppointmentCalendar ใหม่ด้วย fullnames ที่อัปเดต
+          // final updatedCalendar =
+          //     existingCalendar.copyWith(fullnames: updatedFullnames);
 
           // แทนที่ปฏิทินเก่าด้วยปฏิทินที่อัปเดต
-          final index = appointmentCalendars.indexOf(existingCalendar);
-          appointmentCalendars[index] = updatedCalendar;
+          // final index = appointmentCalendars.indexOf(existingCalendar);
+          // appointmentCalendars[index]. = updatedCalendar;
         } else {
           final List<String> fullnames = [fullname];
 
