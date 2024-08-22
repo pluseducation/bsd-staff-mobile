@@ -1,8 +1,10 @@
+import 'package:bst_staff_mobile/data/network/entity/appointments-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/dashboard-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/login-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/patient-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/usersession-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/mapper-exception.dart';
+import 'package:bst_staff_mobile/domain/model/appointments.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart' as modelDashboard;
 import 'package:bst_staff_mobile/domain/model/login.dart';
 import 'package:bst_staff_mobile/domain/model/patient.dart';
@@ -217,30 +219,29 @@ class NetworkMapper {
 
   // ------
 
-  // ignore: type_annotate_public_apis
-  // Registering toRegistering(QuestionChoicesEntity entity ) {
-  //   try {
-  //     return Registering(fullname: '',
-  //       // name: entity.name,
-  //     );
-  //   } catch (e) {
-  //     throw MapperException<QuestionChoicesEntity, Registering>(
-  //       e.toString(),
-  //     );
-  //   }
-  // }
-
-  // List<Registering> toGroups(List<QuestionChoicesEntity> entities) {
-  //   final List<Registering> registering = [];
-
-  //   for (final entity in entities) {
-  //     try {
-  //       registering.add(toRegistering(entity));
-  //     } catch (e) {
-  //       // log.w('Could not map entity ${entity.id}', error: e);
-  //     }
-  //   }
-
-  //   return registering;
-  // }
+  AppointmentEvent toAppointment({
+    required DateTime appointmentDate,
+    required String appointmenDate,
+    required String appointmenTime,
+    required String roundText,
+    required String fullname,
+    required String phoneNo,
+    required String guardianFullname,
+    required String guardianPhoneNo,
+  }) {
+    try {
+      return AppointmentEvent(
+        appointmentDate: appointmentDate,
+        appointmenDate: appointmenDate,
+        appointmenTime: appointmenTime,
+        roundText: roundText,
+        fullname: fullname,
+        phoneNo: phoneNo,
+        guardianFullname: guardianFullname,
+        guardianPhoneNo: guardianPhoneNo,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

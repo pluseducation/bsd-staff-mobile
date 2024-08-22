@@ -28,9 +28,8 @@ class AppointmentsRepository {
         final DateTime appointmentAt =
             convertToDatetime(appointmentEntity.appointmentAt);
 
-        final formattedDate = convertToThaiDatetimes(appointmentAt);
+        final formattedDate = convertThaiDate(appointmentAt);
         final String formattedTime = convertToThaiTimes(appointmentAt);
-        //
 
         final String roundText = _getappointmentStatus(
           appointmentEntity.appointmentType,
@@ -42,43 +41,19 @@ class AppointmentsRepository {
 
         final String phoneNo = convertToString(appointmentEntity.phoneNo);
 
-        final String guardianFullname =
-            "${convertToString(appointmentEntity.guardianName)} ${convertToString(appointmentEntity.guardianSurname)}";
+        final String guardianFullname = (appointmentEntity.guardianName !=
+                    null &&
+                appointmentEntity.guardianSurname != null)
+            ? "${convertToString(appointmentEntity.guardianName)} ${convertToString(appointmentEntity.guardianSurname)}"
+            : "-";
 
         final String guardianPhoneNo =
-            convertToString(appointmentEntity.guardianPhoneNo);
-
-        final AppointmentEvent appointmentModel = AppointmentEvent(
-          appointmentDate: appointmentAt,
-          appointmenDate: formattedDate,
-          appointmenTime: formattedTime,
-          roundText: roundText,
-          fullname: fullname,
-          phoneNo: phoneNo,
-          guardianFullname: guardianFullname,
-          guardianPhoneNo: guardianPhoneNo,
-        );
-        appointmentEvents.add(appointmentModel);
+            appointmentEntity.guardianPhoneNo != null &&
+                    appointmentEntity.guardianPhoneNo!.isNotEmpty
+                ? convertToString(appointmentEntity.guardianPhoneNo)
+                : "-";
 
         // group calendar
-
-        //     final first = appointmentCalendars
-        //         .where((t) => t.appointmentDate == appointmentAt)
-        //         .firstOrNull;
-        //     if (first != null) {
-        //       first.fullnames.add(fullname);
-        //     } else {
-        //       final List<String> fullnames = [];
-        //       fullnames.add(fullname);
-
-        //       final AppointmentCalendar appointmentCalendar = AppointmentCalendar(
-        //         appointmentDate: appointmentAt,
-        //         fullnames: fullnames,
-        //       );
-        //       appointmentCalendars.add(appointmentCalendar);
-        //     }
-        //   }
-        // }
 
         final existingCalendar = appointmentCalendars
             .where((calendar) => calendar.appointmentDate == appointmentAt)
@@ -87,17 +62,6 @@ class AppointmentsRepository {
         if (existingCalendar != null) {
           final index = appointmentCalendars.indexOf(existingCalendar);
           appointmentCalendars[index].fullnames.add(fullname);
-          // สร้างลิสต์ใหม่ที่มี fullnames ที่อัปเดต
-          // final updatedFullnames = List<String>.from(existingCalendar.fullnames)
-          //   ..add(fullname);
-
-          // // สร้าง AppointmentCalendar ใหม่ด้วย fullnames ที่อัปเดต
-          // final updatedCalendar =
-          //     existingCalendar.copyWith(fullnames: updatedFullnames);
-
-          // แทนที่ปฏิทินเก่าด้วยปฏิทินที่อัปเดต
-          // final index = appointmentCalendars.indexOf(existingCalendar);
-          // appointmentCalendars[index]. = updatedCalendar;
         } else {
           final List<String> fullnames = [fullname];
 
@@ -107,6 +71,32 @@ class AppointmentsRepository {
           );
           appointmentCalendars.add(appointmentCalendar);
         }
+
+        // final AppointmentEvent appointmentModel = AppointmentEvent(
+        //   appointmentDate: appointmentAt,
+        //   appointmenDate: formattedDate,
+        //   appointmenTime: formattedTime,
+        //   roundText: roundText,
+        //   fullname: fullname,
+        //   phoneNo: phoneNo,
+        //   guardianFullname: guardianFullname,
+        //   guardianPhoneNo: guardianPhoneNo,
+        // );
+
+        // appointmentEvents.add(appointmentModel);
+
+        final AppointmentEvent appointmentEvent = networkMapper.toAppointment(
+          appointmentDate: appointmentAt,
+          appointmenDate: formattedDate,
+          appointmenTime: formattedTime,
+          roundText: roundText,
+          fullname: fullname,
+          phoneNo: phoneNo,
+          guardianFullname: guardianFullname,
+          guardianPhoneNo: guardianPhoneNo,
+        );
+
+        appointmentEvents.add(appointmentEvent);
       }
     }
 
@@ -123,13 +113,13 @@ class AppointmentsRepository {
     int? round,
   ) {
     if (appointmentType == "MONITORING") {
-      const appointmentType = "ติดตาม";
+      const appointmentType = "นัดติดตาม";
       return convertToString("$appointmentTypeครั้งที่ $round");
     } else if (appointmentType == "TREATMENT") {
-      const appointmentType = "บำบัด";
+      const appointmentType = "นัดบำบัด";
       return convertToString("$appointmentTypeครั้งที่ $round");
     } else if (appointmentType == "ASSISTANCE") {
-      const appointmentType = "ช่วยเหลือ";
+      const appointmentType = "นัดช่วยเหลือ";
       return convertToString("$appointmentTypeครั้งที่ $round");
     } else {
       return "";

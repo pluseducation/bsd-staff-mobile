@@ -103,3 +103,45 @@ class BaseLayoutScrollViewPading extends StatelessWidget {
     );
   }
 }
+
+class BaseLayoutScrollViews extends StatelessWidget {
+  final Widget child;
+
+  const BaseLayoutScrollViews({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Container(
+            padding: EdgeInsets.zero,
+            child: child,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class BaseLayoutss extends StatelessWidget {
+  final Widget child;
+  final double maxWidth;
+
+  const BaseLayoutss({
+    required this.maxWidth,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(10.0),
+        constraints: BoxConstraints(maxWidth: maxWidth),
+        child: child,
+      ),
+    );
+  }
+}

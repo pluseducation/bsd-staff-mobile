@@ -466,9 +466,12 @@ abstract class _AppointmentEvent implements AppointmentEvent {
 
 /// @nodoc
 mixin _$AppointmentCalendar {
-  DateTime get appointmentDate =>
+  DateTime get appointmentDate => throw _privateConstructorUsedError;
+  set appointmentDate(DateTime value) =>
       throw _privateConstructorUsedError; //** find on  /appointments */
-  List<String> get fullnames => throw _privateConstructorUsedError;
+  List<String> get fullnames =>
+      throw _privateConstructorUsedError; //** find on  /appointments */
+  set fullnames(List<String> value) => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppointmentCalendarCopyWith<AppointmentCalendar> get copyWith =>
@@ -544,7 +547,7 @@ class __$$AppointmentCalendarImplCopyWithImpl<$Res>
           : appointmentDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
       fullnames: null == fullnames
-          ? _value._fullnames
+          ? _value.fullnames
           : fullnames // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
@@ -554,41 +557,19 @@ class __$$AppointmentCalendarImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppointmentCalendarImpl implements _AppointmentCalendar {
-  const _$AppointmentCalendarImpl(
-      {required this.appointmentDate, required final List<String> fullnames})
-      : _fullnames = fullnames;
+  _$AppointmentCalendarImpl(
+      {required this.appointmentDate, required this.fullnames});
 
   @override
-  final DateTime appointmentDate;
-//** find on  /appointments */
-  final List<String> _fullnames;
+  DateTime appointmentDate;
 //** find on  /appointments */
   @override
-  List<String> get fullnames {
-    if (_fullnames is EqualUnmodifiableListView) return _fullnames;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_fullnames);
-  }
+  List<String> fullnames;
 
   @override
   String toString() {
     return 'AppointmentCalendar(appointmentDate: $appointmentDate, fullnames: $fullnames)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AppointmentCalendarImpl &&
-            (identical(other.appointmentDate, appointmentDate) ||
-                other.appointmentDate == appointmentDate) &&
-            const DeepCollectionEquality()
-                .equals(other._fullnames, _fullnames));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, appointmentDate,
-      const DeepCollectionEquality().hash(_fullnames));
 
   @JsonKey(ignore: true)
   @override
@@ -599,14 +580,16 @@ class _$AppointmentCalendarImpl implements _AppointmentCalendar {
 }
 
 abstract class _AppointmentCalendar implements AppointmentCalendar {
-  const factory _AppointmentCalendar(
-      {required final DateTime appointmentDate,
-      required final List<String> fullnames}) = _$AppointmentCalendarImpl;
+  factory _AppointmentCalendar(
+      {required DateTime appointmentDate,
+      required List<String> fullnames}) = _$AppointmentCalendarImpl;
 
   @override
   DateTime get appointmentDate;
+  set appointmentDate(DateTime value);
   @override //** find on  /appointments */
-  List<String> get fullnames;
+  List<String> get fullnames; //** find on  /appointments */
+  set fullnames(List<String> value);
   @override
   @JsonKey(ignore: true)
   _$$AppointmentCalendarImplCopyWith<_$AppointmentCalendarImpl> get copyWith =>

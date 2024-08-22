@@ -271,3 +271,194 @@ class _BaseAppbarPatientState extends State<BaseAppbarPatient> {
     );
   }
 }
+
+// class AppointmentAppbar extends StatefulWidget {
+//   const AppointmentAppbar({super.key});
+
+//   @override
+//   State<AppointmentAppbar> createState() => _AppointmentAppbarState();
+//   Size get preferredSize => const Size.fromHeight(toolbarHeightPatient);
+// }
+
+// class _AppointmentAppbarState extends State<AppointmentAppbar> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Stack(
+//       children: [
+//         Container(
+//           decoration: const BoxDecoration(
+//             gradient: LinearGradient(
+//               colors: [MainColors.primary500, MainColors.primary500],
+//               stops: [-0.017, 1.2193],
+//               begin: Alignment.topLeft,
+//               end: Alignment.bottomRight,
+//             ),
+//           ),
+//           child: AppBar(
+//             toolbarHeight: toolbarHeight,
+//             backgroundColor: Colors.transparent,
+//             title: const Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 Text(
+//                   "นัดหมาย",
+//                   style: const TextStyle(
+//                     fontSize: 18,
+//                     color: Colors.white,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//         Positioned(
+//           top: -100,
+//           left: -70,
+//           child: Container(
+//             width: 280,
+//             height: 400,
+//             decoration: const BoxDecoration(
+//               shape: BoxShape.circle,
+//               gradient: LinearGradient(
+//                 begin: Alignment.topLeft,
+//                 end: Alignment.bottomRight,
+//                 stops: [0.1449, 0.9606],
+//                 colors: [
+//                   MainColors.primary500,
+//                   Colors.white,
+//                 ],
+//                 transform: GradientRotation(300.72 * (3.14159 / 180)),
+//               ),
+//               color: Colors.white12,
+//             ),
+//           ),
+//         ),
+//         Positioned(
+//           top: 60,
+//           right: -20,
+//           child: Container(
+//             width: 180,
+//             height: 280,
+//             decoration: const BoxDecoration(
+//               borderRadius: BorderRadius.only(
+//                 topRight: Radius.circular(100),
+//                 bottomRight: Radius.circular(100),
+//                 topLeft: Radius.circular(60),
+//               ),
+//               gradient: LinearGradient(
+//                 begin: Alignment.topRight,
+//                 end: Alignment.bottomRight,
+//                 stops: [0.1449, 0.9606],
+//                 colors: [
+//                   MainColors.primary500,
+//                   Colors.white,
+//                 ],
+//                 transform: GradientRotation(280 * (3.14159 / 50)),
+//               ),
+//               color: Colors.white12,
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+class AppointmentAppbar extends StatefulWidget implements PreferredSizeWidget {
+  const AppointmentAppbar({
+    super.key,
+  });
+
+  @override
+  _AppointmentAppbartState createState() => _AppointmentAppbartState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(toolbarHeightPatient);
+}
+
+class _AppointmentAppbartState extends State<AppointmentAppbar> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [MainColors.primary500, MainColors.primary500],
+              stops: [-0.017, 1.2193],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: AppBar(
+            toolbarHeight: toolbarHeight,
+            backgroundColor: Colors.transparent,
+            title: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 5),
+                Text(
+                  "นัดหมาย",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          top: -100,
+          left: -70,
+          child: Container(
+            width: 280,
+            height: 400,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.1449, 0.9606],
+                colors: [
+                  MainColors.primary500,
+                  Colors.white,
+                ],
+                transform: GradientRotation(300.72 * (3.14159 / 180)),
+              ),
+              color: Colors.white12,
+            ),
+          ),
+        ),
+        Positioned(
+          top: 60,
+          right: -20,
+          child: Container(
+            width: 180,
+            height: 280,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(100),
+                bottomRight: Radius.circular(100),
+                topLeft: Radius.circular(60),
+              ),
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomRight,
+                stops: [0.1449, 0.9606],
+                colors: [
+                  MainColors.primary500,
+                  Colors.white,
+                ],
+                transform: GradientRotation(280 * (3.14159 / 50)),
+              ),
+              color: Colors.white12,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

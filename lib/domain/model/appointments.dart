@@ -24,9 +24,9 @@ class AppointmentEvent with _$AppointmentEvent {
   }) = _AppointmentEvent;
 }
 
-@freezed
+@unfreezed
 class AppointmentCalendar with _$AppointmentCalendar {
-  const factory AppointmentCalendar({
+  factory AppointmentCalendar({
     required DateTime appointmentDate, //** find on  /appointments */
     required List<String> fullnames,
   }) = _AppointmentCalendar;

@@ -76,7 +76,7 @@ String convertToThaiTimes(DateTime dateTime) {
 
 // ---
 
-String formatThaiDate(DateTime? date) {
+String convertThaiDate(DateTime? date) {
   if (date == null) {
     return "";
   }
@@ -96,4 +96,13 @@ String formatThaiDateOfBirth(DateTime? date) {
   final String dayMonth = dayMonthFormat.format(date);
 
   return '$dayMonth $thaiYear';
+}
+
+String convertDateY(DateTime? date) {
+  if (date == null) {
+    return "";
+  }
+
+  final DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+  return dateFormat.format(date);
 }

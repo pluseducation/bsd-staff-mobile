@@ -334,7 +334,7 @@ class WorkflowRepository {
     );
 
     final String startDate = entityScreenings.startDate != null
-        ? formatThaiDate(entityScreenings.startDate)
+        ? convertThaiDate(entityScreenings.startDate)
         : '';
 
     final String isToBeNumberOneMember = _getChoiceDescription(
