@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
 import 'package:bst_staff_mobile/data/network/api/appointments-api.dart';
+import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
 import 'package:bst_staff_mobile/data/network/api/master-api.dart';
@@ -12,6 +13,7 @@ import 'package:bst_staff_mobile/data/network/api/screenings-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/Appointments-repository.dart';
+import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
@@ -109,6 +111,12 @@ Future<InitialData> _createData() async {
     networkMapper: networkMapper,
   );
 
+  final certificateApi = CertificateApi(baseUrl: config.baseUrl);
+  final certificateRepository = CertificateRepository(
+    certificateApi: certificateApi,
+    networkMapper: networkMapper,
+  );
+
   // Create list of providers
   return InitialData(
     providers: [
@@ -118,6 +126,7 @@ Future<InitialData> _createData() async {
       Provider<PatientRepository>.value(value: patientRepository),
       Provider<WorkflowRepository>.value(value: workflowRepository),
       Provider<AppointmentsRepository>.value(value: appointmentsRepository),
+      Provider<CertificateRepository>.value(value: certificateRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

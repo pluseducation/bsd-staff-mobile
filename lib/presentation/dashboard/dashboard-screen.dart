@@ -895,7 +895,7 @@ class _StatisticsLevelState extends State<StatisticsLevel> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "สถิติ (ปีงบประมาณ ${level.year})",
+              "สถิติ ฟหก (ปีงบประมาณ ${level.year})",
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
