@@ -1,10 +1,15 @@
+import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
+import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/domain/service/notifi_service.dart';
 import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
+import 'package:bst_staff_mobile/presentation/profile/profile-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -246,6 +251,20 @@ class ProfileParent extends StatefulWidget {
 }
 
 class _ProfileParentState extends State<ProfileParent> {
+  late ProfileModel _model;
+
+  @override
+  void initState() {
+    super.initState();
+    _model = ProfileModel(
+      log: Provider.of<Logger>(super.context, listen: false),
+      profileRepository:
+          Provider.of<ProfileRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+    _model.findProfile(9);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -8,6 +8,7 @@ import 'package:bst_staff_mobile/data/network/api/login-api.dart';
 import 'package:bst_staff_mobile/data/network/api/master-api.dart';
 import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
+import 'package:bst_staff_mobile/data/network/api/profile-api.dart';
 import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
 import 'package:bst_staff_mobile/data/network/api/screenings-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
@@ -18,8 +19,10 @@ import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
+import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
 import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
 import 'package:bst_staff_mobile/domain/model/config.dart';
+import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
 import 'package:bst_staff_mobile/presentation/app/app.dart';
@@ -117,6 +120,13 @@ Future<InitialData> _createData() async {
     networkMapper: networkMapper,
   );
 
+  // ----
+  final profileApi = ProfileApi(baseUrl: config.baseUrl);
+  final profileRepository = ProfileRepository(
+    profileApi: profileApi,
+    networkMapper: networkMapper,
+  );
+
   // Create list of providers
   return InitialData(
     providers: [
@@ -127,6 +137,7 @@ Future<InitialData> _createData() async {
       Provider<WorkflowRepository>.value(value: workflowRepository),
       Provider<AppointmentsRepository>.value(value: appointmentsRepository),
       Provider<CertificateRepository>.value(value: certificateRepository),
+      Provider<ProfileRepository>.value(value: profileRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );
