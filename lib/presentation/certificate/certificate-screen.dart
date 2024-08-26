@@ -14,17 +14,43 @@ class CertificateSearchProvider extends ChangeNotifier {
   final CertificateModel _model;
   Certificate certificate =
       const Certificate(alls: [], requests: [], completes: []);
+  bool isLoading = false;
+  String? errorMessage;
 
   CertificateSearchProvider(this._model);
 
   Future<void> loadData() async {
-    certificate = await _model.findByName("");
+    isLoading = true;
+    errorMessage = null;
     notifyListeners();
+
+    try {
+      certificate = await _model.findByName("");
+    } catch (e) {
+      errorMessage = e.toString();
+    } finally {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        isLoading = false;
+        notifyListeners();
+      });
+    }
   }
 
   Future<void> findByName(String name) async {
-    certificate = await _model.findByName(name);
+    isLoading = true;
+    errorMessage = null;
     notifyListeners();
+
+    try {
+      certificate = await _model.findByName(name);
+    } catch (e) {
+      errorMessage = e.toString();
+    } finally {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        isLoading = false;
+        notifyListeners();
+      });
+    }
   }
 }
 
@@ -121,15 +147,38 @@ class _CertificateSearchState extends State<CertificateSearch> {
   TextEditingController searchController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    searchController.addListener(_onSearchChanged);
+  }
+
+  @override
+  void dispose() {
+    searchController.removeListener(_onSearchChanged);
+    searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged() {
+    final provider =
+        Provider.of<CertificateSearchProvider>(context, listen: false);
+    final tabState = context.findAncestorStateOfType<_CertificateTabState>();
+
+    if (searchController.text.isEmpty) {
+      provider.loadData();
+    } else {
+      provider.findByName(searchController.text);
+    }
+
+    tabState?.switchToFirstTab();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextFormField(
           controller: searchController,
-          onChanged: (value) {
-            Provider.of<CertificateSearchProvider>(context, listen: false)
-                .findByName(value);
-          },
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.search),
             hintText: "ค้นหาจากชื่อ รอบบำบัด",
@@ -154,14 +203,19 @@ class _CertificateTabState extends State<CertificateTab>
 
   @override
   void initState() {
+    super.initState();
     tabController = TabController(length: 3, vsync: this);
     tabController.addListener(() {
       setState(() {});
     });
-    super.initState();
 
-    Provider.of<CertificateSearchProvider>(context, listen: false)
-        .findByName("");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<CertificateSearchProvider>(context, listen: false).loadData();
+    });
+  }
+
+  void switchToFirstTab() {
+    tabController.animateTo(0);
   }
 
   @override
@@ -174,58 +228,67 @@ class _CertificateTabState extends State<CertificateTab>
   Widget build(BuildContext context) {
     return Consumer<CertificateSearchProvider>(
       builder: (context, searchProvider, child) {
-        return Column(
-          children: [
-            TabBar(
-              controller: tabController,
-              dividerColor: const Color(0xFFf1f1f1),
-              indicatorColor: MainColors.primary700,
-              tabs: [
-                const Tab(text: 'ทั้งหมด'),
-                Tab(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('รายการขอ'),
-                      const SizedBox(width: 4),
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          shape: BoxShape.circle,
-                        ),
-                        child: Text(
-                          searchProvider.certificate.requests.length.toString(),
-                          style: const TextStyle(fontSize: 12),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Tab(text: 'จัดการ Sign off'),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Expanded(
-              child: TabBarView(
+        if (searchProvider.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (searchProvider.errorMessage != null) {
+          return Center(child: Text('Error: ${searchProvider.errorMessage}'));
+        } else if (searchProvider.certificate.alls.isEmpty) {
+          return const Center(child: Text('No data'));
+        } else {
+          return Column(
+            children: [
+              TabBar(
                 controller: tabController,
-                children: [
-                  CertificateListAll(
-                    certificates: searchProvider.certificate.alls,
+                dividerColor: const Color(0xFFf1f1f1),
+                indicatorColor: MainColors.primary700,
+                tabs: [
+                  const Tab(text: 'ทั้งหมด'),
+                  Tab(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('รายการขอ'),
+                        const SizedBox(width: 4),
+                        Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text(
+                            searchProvider.certificate.requests.length
+                                .toString(),
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  CertificateRequests(
-                    certificates: searchProvider.certificate.requests,
-                  ),
-                  CertificateCompletes(
-                    certificates: searchProvider.certificate.completes,
-                  ),
+                  const Tab(text: 'จัดการ Sign off'),
                 ],
               ),
-            ),
-          ],
-        );
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: TabBarView(
+                  controller: tabController,
+                  children: [
+                    CertificateListAll(
+                      certificates: searchProvider.certificate.alls,
+                    ),
+                    CertificateRequests(
+                      certificates: searchProvider.certificate.requests,
+                    ),
+                    CertificateCompletes(
+                      certificates: searchProvider.certificate.completes,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        }
       },
     );
   }

@@ -17,12 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    // _initNotificationService();
   }
-
-  // Future<void> _initNotificationService() async {
-  //   await NotificationService().initNotification();
-  // }
 
   bool light = false;
 
@@ -243,9 +238,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-class ProfileParent extends StatelessWidget {
+class ProfileParent extends StatefulWidget {
   const ProfileParent({super.key});
 
+  @override
+  _ProfileParentState createState() => _ProfileParentState();
+}
+
+class _ProfileParentState extends State<ProfileParent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
