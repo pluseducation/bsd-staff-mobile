@@ -3,7 +3,6 @@ import 'package:bst_staff_mobile/data/network/entity/certificate-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/certificate.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
-import 'package:intl/intl.dart';
 
 class CertificateRepository {
   final CertificateApi certificateApi;
@@ -14,12 +13,13 @@ class CertificateRepository {
     required this.networkMapper,
   });
 
-  Future<Certificate> findCertificateAll({
+  Future<Certificate> findCertificateByName({
     required String name,
   }) async {
     final CertificateEntity certificateEntity =
         await certificateApi.findCertificateAll(name: name);
 
+    List<CertificateRequest> certificateAlls = [];
     final List<CertificateRequest> certificateRequests = [];
     final List<CertificateRequest> certificateCompletes = [];
 
@@ -53,9 +53,11 @@ class CertificateRepository {
         certificateRequests.add(certificateRequest);
       }
     }
-    print("finish");
+
+    certificateAlls = certificateRequests + certificateCompletes;
 
     return Certificate(
+      alls: certificateAlls,
       requests: certificateRequests,
       completes: certificateCompletes,
     );

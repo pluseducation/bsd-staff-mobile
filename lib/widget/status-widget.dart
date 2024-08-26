@@ -83,7 +83,7 @@ Widget mentalEvalLevelWidget(String status) {
   }
 
   return Container(
-    padding: const EdgeInsets.all(8.0), // Padding inside the Chip
+    padding: const EdgeInsets.all(8.0),
     decoration: BoxDecoration(
       color: lightColor,
       borderRadius: BorderRadius.circular(8.0),
@@ -101,22 +101,26 @@ Widget mentalEvalLevelWidget(String status) {
 }
 
 Widget certificateStatusWidget(String status) {
-  Color lightColor;
+  Color lightColor = MainColors.secondaryLight;
   Color color;
   String text;
 
-  if (status == "1") {
+  if (status == "REQUEST") {
     lightColor = MainColors.secondaryLight;
     color = MainColors.secondary;
     text = "รายการขอ";
-  } else {
+  } else if (status == "COMPLETED") {
     lightColor = MainColors.warningLight;
     color = MainColors.warning;
     text = "จัดการ Sign off";
+  } else {
+    lightColor = MainColors.secondaryLight;
+    color = MainColors.secondary;
+    text = "";
   }
 
   return Container(
-    padding: const EdgeInsets.all(8.0), // Padding inside the Chip
+    padding: const EdgeInsets.all(8.0),
     decoration: BoxDecoration(
       color: lightColor,
       borderRadius: BorderRadius.circular(8.0),

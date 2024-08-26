@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Certificate {
+  List<CertificateRequest> get alls => throw _privateConstructorUsedError;
   List<CertificateRequest> get requests => throw _privateConstructorUsedError;
   List<CertificateRequest> get completes => throw _privateConstructorUsedError;
 
@@ -31,7 +32,9 @@ abstract class $CertificateCopyWith<$Res> {
       _$CertificateCopyWithImpl<$Res, Certificate>;
   @useResult
   $Res call(
-      {List<CertificateRequest> requests, List<CertificateRequest> completes});
+      {List<CertificateRequest> alls,
+      List<CertificateRequest> requests,
+      List<CertificateRequest> completes});
 }
 
 /// @nodoc
@@ -47,10 +50,15 @@ class _$CertificateCopyWithImpl<$Res, $Val extends Certificate>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? alls = null,
     Object? requests = null,
     Object? completes = null,
   }) {
     return _then(_value.copyWith(
+      alls: null == alls
+          ? _value.alls
+          : alls // ignore: cast_nullable_to_non_nullable
+              as List<CertificateRequest>,
       requests: null == requests
           ? _value.requests
           : requests // ignore: cast_nullable_to_non_nullable
@@ -72,7 +80,9 @@ abstract class _$$CertificateAllImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<CertificateRequest> requests, List<CertificateRequest> completes});
+      {List<CertificateRequest> alls,
+      List<CertificateRequest> requests,
+      List<CertificateRequest> completes});
 }
 
 /// @nodoc
@@ -86,10 +96,15 @@ class __$$CertificateAllImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? alls = null,
     Object? requests = null,
     Object? completes = null,
   }) {
     return _then(_$CertificateAllImpl(
+      alls: null == alls
+          ? _value._alls
+          : alls // ignore: cast_nullable_to_non_nullable
+              as List<CertificateRequest>,
       requests: null == requests
           ? _value._requests
           : requests // ignore: cast_nullable_to_non_nullable
@@ -106,10 +121,20 @@ class __$$CertificateAllImplCopyWithImpl<$Res>
 
 class _$CertificateAllImpl implements _CertificateAll {
   const _$CertificateAllImpl(
-      {required final List<CertificateRequest> requests,
+      {required final List<CertificateRequest> alls,
+      required final List<CertificateRequest> requests,
       required final List<CertificateRequest> completes})
-      : _requests = requests,
+      : _alls = alls,
+        _requests = requests,
         _completes = completes;
+
+  final List<CertificateRequest> _alls;
+  @override
+  List<CertificateRequest> get alls {
+    if (_alls is EqualUnmodifiableListView) return _alls;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_alls);
+  }
 
   final List<CertificateRequest> _requests;
   @override
@@ -129,7 +154,7 @@ class _$CertificateAllImpl implements _CertificateAll {
 
   @override
   String toString() {
-    return 'Certificate(requests: $requests, completes: $completes)';
+    return 'Certificate(alls: $alls, requests: $requests, completes: $completes)';
   }
 
   @override
@@ -137,6 +162,7 @@ class _$CertificateAllImpl implements _CertificateAll {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CertificateAllImpl &&
+            const DeepCollectionEquality().equals(other._alls, _alls) &&
             const DeepCollectionEquality().equals(other._requests, _requests) &&
             const DeepCollectionEquality()
                 .equals(other._completes, _completes));
@@ -145,6 +171,7 @@ class _$CertificateAllImpl implements _CertificateAll {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(_alls),
       const DeepCollectionEquality().hash(_requests),
       const DeepCollectionEquality().hash(_completes));
 
@@ -158,10 +185,13 @@ class _$CertificateAllImpl implements _CertificateAll {
 
 abstract class _CertificateAll implements Certificate {
   const factory _CertificateAll(
-          {required final List<CertificateRequest> requests,
+          {required final List<CertificateRequest> alls,
+          required final List<CertificateRequest> requests,
           required final List<CertificateRequest> completes}) =
       _$CertificateAllImpl;
 
+  @override
+  List<CertificateRequest> get alls;
   @override
   List<CertificateRequest> get requests;
   @override

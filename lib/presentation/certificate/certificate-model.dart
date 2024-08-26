@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/domain/model/certificate.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
 class CertificateModel {
@@ -14,12 +15,11 @@ class CertificateModel {
     required this.appService,
   });
 
-  late Certificate certificate;
-  String name = "";
-
-  Future<Certificate> loadDatas() async {
-    return certificate = await certificateRepository.findCertificateAll(
+  Future<Certificate> findByName(String name) async {
+    final temp = await certificateRepository.findCertificateByName(
       name: name,
     );
+
+    return temp;
   }
 }
