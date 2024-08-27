@@ -33,4 +33,8 @@ class ProfileModel {
   ) async {
     return profileRepository.findProfileUpdate(password, confirmPassword);
   }
+
+  Future<void> logout() async {
+    await appService.logout();
+  }
 }

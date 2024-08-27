@@ -220,6 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: double.infinity,
                           child: OutlinedButton(
                             onPressed: () {
+                              _model.logout();
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

@@ -1,9 +1,7 @@
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
-import 'package:bst_staff_mobile/presentation/layout/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-model.dart';
-import 'package:bst_staff_mobile/presentation/login/verifycode/verifycode-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
@@ -34,11 +32,18 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Center(
-                  child: Image.asset(
-                    "assets/images/logobst_2.png",
-                    width: 200,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "assets/images/logo_1.png",
+                      height: 100,
+                    ),
+                    Image.asset(
+                      "assets/images/logo_2.png",
+                      height: 100,
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 15),
                 Center(

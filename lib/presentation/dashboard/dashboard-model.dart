@@ -18,34 +18,6 @@ class DashboardModel {
     required this.appService,
   });
 
-  Future<Session> findUserSession() async {
-    try {
-      return dashboardRepository.findUserSession();
-    } catch (e) {
-      if (e is NetworkException) {
-        log.e('Network Error', error: e);
-        throw CustomException(e.message);
-      } else {
-        log.e('System Error', error: e);
-        throw CustomException(e.toString());
-      }
-    }
-  }
-
-  Future<void> updateUserSession(bool complete) async {
-    try {
-      return dashboardRepository.updateUserSession(complete);
-    } catch (e) {
-      if (e is NetworkException) {
-        log.e('Network Error', error: e);
-        throw CustomException(e.message);
-      } else {
-        log.e('System Error', error: e);
-        throw CustomException(e.toString());
-      }
-    }
-  }
-
   Future<int> findTotalRegistering() async {
     try {
       return dashboardRepository.findTotalRegistering();

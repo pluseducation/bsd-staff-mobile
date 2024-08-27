@@ -16,16 +16,7 @@ class DashboardRepository {
     required this.networkMapper,
   });
 
-  // TODO : user session
-  Future<Session> findUserSession() async {
-    final entity = await userSessionApi.findUsersession();
-    final model = networkMapper.toUserSession(entity);
-    return model;
-  }
 
-  Future<void> updateUserSession(bool complete) async {
-    await userSessionApi.updateUsersession(complete: complete);
-  }
 
   Future<int> findTotalRegistering() async {
     final value =

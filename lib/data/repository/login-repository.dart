@@ -1,19 +1,23 @@
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
 import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
+import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/login.dart';
+import 'package:bst_staff_mobile/domain/model/session.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 
 class LoginRepository {
   final LoginApi loginApi;
   final OfficerApi officerApi;
   final OtpApi otpApi;
+  final UserSessionApi userSessionApi;
   final NetworkMapper networkMapper;
 
   LoginRepository({
     required this.loginApi,
     required this.officerApi,
     required this.otpApi,
+    required this.userSessionApi,
     required this.networkMapper,
   });
 
@@ -57,5 +61,16 @@ class LoginRepository {
     final profilesOfficer = ProfilesOfficer(id: id, roleName: roleName);
 
     return profilesOfficer;
+  }
+
+  // for to authen
+  Future<Session> findUserSession() async {
+    final entity = await userSessionApi.findUsersession();
+    final model = networkMapper.toUserSession(entity);
+    return model;
+  }
+
+  Future<void> updateUserSession(bool complete) async {
+    await userSessionApi.updateUsersession(complete: complete);
   }
 }

@@ -65,25 +65,30 @@ Future<InitialData> _createData() async {
   // Load project configuration
   final config = await _loadConfig(log);
 
-  // Services
-  final preferences = Preferences(prefs: await SharedPreferences.getInstance());
-  final preferencesRepo = PreferencesRepository(preferences: preferences);
-  final appService = AppService(preferencesRepo: preferencesRepo);
-  await appService.load();
-
-  // Data
+  // Services & Data
   final networkMapper = NetworkMapper(log: log);
   final loginApi = LoginApi(baseUrl: config.baseAuthUrl);
   final officerApi = OfficerApi(baseUrl: config.baseUrl);
   final otpApi = OtpApi(baseUrl: config.baseAuthUrl);
+  final userSessionApi = UserSessionApi(baseUrl: config.baseAuthUrl);
+
   final loginRepository = LoginRepository(
     loginApi: loginApi,
     officerApi: officerApi,
     otpApi: otpApi,
+    userSessionApi: userSessionApi,
     networkMapper: networkMapper,
   );
+
+  final preferences = Preferences(prefs: await SharedPreferences.getInstance());
+  final preferencesRepo = PreferencesRepository(preferences: preferences);
+  final appService = AppService(
+    preferencesRepo: preferencesRepo,
+    loginRepository: loginRepository,
+  );
+  await appService.load();
+
   final dashboardApi = DashboardApi(baseUrl: config.baseUrl);
-  final userSessionApi = UserSessionApi(baseUrl: config.baseAuthUrl);
 
   final dashboardRepository = DashboardRepository(
     dashboardApi: dashboardApi,
