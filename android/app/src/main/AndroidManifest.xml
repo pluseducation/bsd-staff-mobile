@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:label="DMSc"
+        android:label="บสต"
         android:name="${applicationName}"
         android:theme="@style/LaunchTheme"
         android:allowBackup="true"

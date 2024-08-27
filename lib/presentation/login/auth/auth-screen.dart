@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-screen.dart';
+import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/layout/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/auth/auth-model.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
@@ -30,7 +31,7 @@ class AuthScreen extends StatelessWidget {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const LayoutScreen(),
+            builder: (context) => const HomeScreen(),
           ),
         );
       } on Exception catch (e) {
@@ -48,7 +49,7 @@ class AuthScreen extends StatelessWidget {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const LayoutScreen(),
+            builder: (context) => const HomeScreen(),
           ),
         );
       } on Exception catch (e) {

@@ -98,36 +98,51 @@ class _CertificateScreenGroupState extends State<CertificateScreenGroup> {
           appBar: BaseAppbarCertificate(
             certificateCount: searchProvider.certificate.alls.length,
           ),
-          body: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
+          body: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  MainColors.primary500,
+                  Colors.white,
+                ],
+                stops: [-0.017, 1.2193],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                transform: GradientRotation(280 * (3.14159 / 50)),
+              ),
+              color: Colors.white12,
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
                     ),
-                  ),
-                  child: const BaseLayout(
-                    maxWidth: 600,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CertificateSearch(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Expanded(
-                          child: CertificateTab(),
-                        ),
-                      ],
+                    child: const BaseLayout(
+                      maxWidth: 600,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CertificateSearch(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Expanded(
+                            child: CertificateTab(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
