@@ -5,6 +5,7 @@ import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
+import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
@@ -50,209 +51,212 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0.0,
-        backgroundColor: MainColors.primary500,
-        title: const Text(
-          "สุนิสา ใจดี (ผู้ปกครอง)",
-          style: TextStyle(
-            fontSize: 18,
-            color: MainColors.white,
-            fontWeight: FontWeight.bold,
+      appBar: BaseAppbarProfile(),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              MainColors.primary500,
+              Colors.white,
+            ],
+            stops: [-0.017, 1.2193],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            transform: GradientRotation(280 * (3.14159 / 50)),
           ),
+          color: Colors.white12,
         ),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
                 ),
-              ),
-              child: BaseLayout(
-                maxWidth: 600,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GestureDetector(
-                          onTap: () async {
-                            await personalInformation();
-                          },
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: Card(
-                              // elevation: 0,
-                              child: BaseLayoutPadding(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
+                child: BaseLayout(
+                  maxWidth: 600,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () async {
+                              await personalInformation();
+                            },
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Card(
+                                // elevation: 0,
+                                child: BaseLayoutPadding(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                color: MainColors.white,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
                                               color: MainColors.white,
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: MainColors.white,
-                                          ),
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(4.0),
-                                            child: Icon(
-                                              Icons.person_pin,
-                                              color: MainColors.primary500,
-                                              size: 35,
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(4.0),
+                                              child: Icon(
+                                                Icons.person_pin,
+                                                color: MainColors.primary500,
+                                                size: 35,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          width: 15,
-                                        ),
-                                        const Text(
-                                          "ข้อมูลส่วนตัว",
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold,
+                                          const SizedBox(
+                                            width: 15,
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    const Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Color(0xFF9CA3AF),
-                                      size: 20,
-                                    ),
-                                  ],
+                                          const Text(
+                                            "ข้อมูลส่วนตัว",
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Color(0xFF9CA3AF),
+                                        size: 20,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        const Text(
-                          "การตั้งค่า",
-                          style:
-                              TextStyle(fontSize: 17, color: Color(0xFF9CA3AF)),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const NotificationSetting(),
-                              ),
-                            );
-                          },
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: Card(
-                              // elevation: 0,
-                              // color: const Color(0xFFF6F6F6),
-                              child: BaseLayoutPadding(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: MainColors.white,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: MainColors.white,
-                                          ),
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(4.0),
-                                            child: Icon(
-                                              Icons.notifications_none,
-                                              color: MainColors.primary500,
-                                              size: 35,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 15,
-                                        ),
-                                        const Text(
-                                          "แจ้งเตือน",
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Color(0xFF9CA3AF),
-                                      size: 20,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                          const SizedBox(
+                            height: 25,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
+                          const Text(
+                            "การตั้งค่า",
+                            style: TextStyle(
+                                fontSize: 17, color: Color(0xFF9CA3AF)),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => LoginScreen(),
+                                  builder: (context) =>
+                                      const NotificationSetting(),
                                 ),
                               );
                             },
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(
-                                color: Color(0xFFBDBDBD),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            child: const Text(
-                              'ออกจากระบบ',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red,
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Card(
+                                // elevation: 0,
+                                // color: const Color(0xFFF6F6F6),
+                                child: BaseLayoutPadding(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                color: MainColors.white,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: MainColors.white,
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(4.0),
+                                              child: Icon(
+                                                Icons.notifications_none,
+                                                color: MainColors.primary500,
+                                                size: 35,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 15,
+                                          ),
+                                          const Text(
+                                            "แจ้งเตือน",
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Color(0xFF9CA3AF),
+                                        size: 20,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: OutlinedButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ),
+                                );
+                              },
+                              style: OutlinedButton.styleFrom(
+                                side: const BorderSide(
+                                  color: Color(0xFFBDBDBD),
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: const Text(
+                                'ออกจากระบบ',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
