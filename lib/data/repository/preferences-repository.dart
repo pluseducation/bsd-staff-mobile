@@ -51,4 +51,21 @@ class PreferencesRepository {
   Future<void> setPhoneNo(String value) async {
     await preferences.setPhoneNo(value);
   }
+
+  Future<String?> getRoleName() async {
+    return preferences.getRoleName();
+  }
+
+  Future<void> setRoleName(String value) async {
+    await preferences.setRoleName(value);
+  }
+// ----
+
+  Future<int?> getOfficerId() async {
+    return preferences.getOfficerId();
+  }
+
+  Future<void> setOfficerId(int value) async {
+    await preferences.setOfficerId(value);
+  }
 }

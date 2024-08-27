@@ -4,6 +4,7 @@ import 'package:bst_staff_mobile/main.dart';
 import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/layout/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
+import 'package:bst_staff_mobile/presentation/profile/profile-screen.dart';
 import 'package:bst_staff_mobile/theme/dark-theme.dart';
 import 'package:bst_staff_mobile/theme/light-theme.dart';
 import 'package:bst_staff_mobile/util/l10n/app-localizations.dart';
@@ -42,6 +43,8 @@ class App extends StatelessWidget {
           // home: LayoutScreen(),
           // home: BaseBottomNavigationBar(),
           home: const HomeScreen(),
+
+          // home: ProfileScreen(),
 
           initialRoute: '/',
           routes: {

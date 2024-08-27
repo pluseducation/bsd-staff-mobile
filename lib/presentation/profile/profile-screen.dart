@@ -1,12 +1,12 @@
+import 'dart:async';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
+import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/domain/service/notifi_service.dart';
-import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -19,10 +19,30 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  late ProfileModel _model;
+
   @override
   void initState() {
     super.initState();
+    _model = ProfileModel(
+      log: Provider.of<Logger>(super.context, listen: false),
+      profileRepository:
+          Provider.of<ProfileRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+
+    loadProfile();
   }
+
+  Future<void> loadProfile() async {
+    final findOfficerId = await _model.findOfficerId();
+    print("findOfficerId ===>>> $findOfficerId");
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
   bool light = false;
 
@@ -64,13 +84,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ProfileParent(),
-                              ),
-                            );
+                          onTap: () async {
+                            await personalInformation();
                           },
                           child: SizedBox(
                             width: double.infinity,
@@ -241,10 +256,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
+  Future<void> personalInformation() async {
+    try {
+      final officerId = await _model.findOfficerId();
+
+      if (officerId != null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProfileParent(officerId: officerId),
+          ),
+        );
+      } else {
+        throw Exception('Officer ID not found');
+        // Officer ID not found
+      }
+    } on Exception catch (e) {
+      showInfoDialog(
+        context: context,
+        message: e.toString(),
+      );
+    }
+  }
 }
 
 class ProfileParent extends StatefulWidget {
-  const ProfileParent({super.key});
+  final int officerId;
+
+  const ProfileParent({super.key, required this.officerId});
 
   @override
   _ProfileParentState createState() => _ProfileParentState();
@@ -252,6 +292,7 @@ class ProfileParent extends StatefulWidget {
 
 class _ProfileParentState extends State<ProfileParent> {
   late ProfileModel _model;
+  late Future<Profile> _profileFuture;
 
   @override
   void initState() {
@@ -262,7 +303,8 @@ class _ProfileParentState extends State<ProfileParent> {
           Provider.of<ProfileRepository>(super.context, listen: false),
       appService: Provider.of<AppService>(super.context, listen: false),
     );
-    _model.findProfile(9);
+    // _profileFuture = _model.findProfile(9);
+    _profileFuture = _model.findProfile(widget.officerId);
   }
 
   @override
@@ -276,159 +318,208 @@ class _ProfileParentState extends State<ProfileParent> {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
-      body: BaseLayoutScrollView(
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
+      body: FutureBuilder<Profile>(
+        future: _profileFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData) {
+            return const Center(child: Text('ไม่มีข้อมูลส่วนตัว'));
+          } else {
+            final profile = snapshot.data!;
+            return BaseLayoutScrollView(
+              child: SizedBox(
                 width: double.infinity,
-                child: Card(
-                  elevation: 0,
-                  color: const Color(0xFFF6F6F6),
-                  child: BaseLayoutPadding(
-                    child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: Card(
+                        elevation: 0,
+                        color: const Color(0xFFF6F6F6),
+                        child: BaseLayoutPadding(
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.error_outline,
+                                color: MainColors.text,
+                                size: 20,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Expanded(
+                                child: RichText(
+                                  text: const TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text:
+                                            'หากต้องการแก้ไขข้อมูล กรุณาติดต่อโทร ',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: MainColors.text,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: '02-222-2222',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: MainColors.text,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(
-                          Icons.error_outline,
-                          color: MainColors.text,
-                          size: 20,
+                        const Text(
+                          "ชื่อ-สกุล",
+                          style:
+                              TextStyle(fontSize: 17, color: MainColors.text),
                         ),
-                        const SizedBox(
-                          width: 5,
+                        Text(
+                          profile.fullname,
+                          style: const TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
                         ),
-                        Expanded(
-                          child: RichText(
-                            text: const TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'หากต้องการแก้ไขข้อมูล กรุณาติดต่อโทร ',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: MainColors.text,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: '02-222-2222',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: MainColors.text,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
-                              ],
-                            ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "เบอร์โทรศัพท์",
+                          style:
+                              TextStyle(fontSize: 17, color: MainColors.text),
+                        ),
+                        Text(
+                          profile.phoneNo,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "ชื่อ-สกุล",
-                    style: TextStyle(fontSize: 17, color: MainColors.text),
-                  ),
-                  Text(
-                    "สุนิสา ใจดี",
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "เบอร์โทรศัพท์",
-                    style: TextStyle(fontSize: 17, color: MainColors.text),
-                  ),
-                  Text(
-                    "085-036-xxxx",
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "ชื่อบัญชีเข้าใช้งาน",
-                    style: TextStyle(fontSize: 17, color: MainColors.text),
-                  ),
-                  Text(
-                    "Sunisa",
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProfileChangePassword(),
-                      ),
-                    );
-                  },
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(
-                      color: MainColors.primary500,
+                    const SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'เปลี่ยนรหัสผ่าน',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: MainColors.primary500,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "ชื่อบัญชีเข้าใช้งาน",
+                          style:
+                              TextStyle(fontSize: 17, color: MainColors.text),
+                        ),
+                        Text(
+                          profile.username,
+                          style: const TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileChangePassword(),
+                            ),
+                          );
+                        },
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(
+                            color: MainColors.primary500,
+                          ),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'เปลี่ยนรหัสผ่าน',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: MainColors.primary500,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              Icons.lock_outline,
+                              color: MainColors.primary500,
+                              size: 30,
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Icon(
-                        Icons.lock_outline,
-                        color: MainColors.primary500,
-                        size: 30,
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-            ],
-          ),
-        ),
+            );
+          }
+        },
       ),
     );
   }
 }
 
-class ProfileChangePassword extends StatelessWidget {
+class ProfileChangePassword extends StatefulWidget {
+  @override
+  _ProfileChangePasswordState createState() => _ProfileChangePasswordState();
+}
+
+class _ProfileChangePasswordState extends State<ProfileChangePassword> {
+  late ProfileModel _model;
   final _formKey = GlobalKey<FormState>();
+  // final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = ProfileModel(
+      log: Provider.of<Logger>(super.context, listen: false),
+      profileRepository:
+          Provider.of<ProfileRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
+  @override
+  void dispose() {
+    _model.passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -450,28 +541,6 @@ class ProfileChangePassword extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'รหัสผ่านเดิม',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'รหัสผ่านเดิม',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'กรุณากรอกรหัสผ่านเดิม';
-                    }
-                    return null;
-                  },
-                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -486,9 +555,23 @@ class ProfileChangePassword extends StatelessWidget {
                   height: 20,
                 ),
                 TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'รหัสผ่าน',
+                  controller: _model.passwordController,
+                  obscureText: _model.obscureNewPassword,
+                  decoration: InputDecoration(
+                    hintText: "รหัสผ่านใหม่",
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _model.obscureNewPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _model.obscureNewPassword =
+                              !_model.obscureNewPassword;
+                        });
+                      },
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -501,9 +584,23 @@ class ProfileChangePassword extends StatelessWidget {
                   height: 20,
                 ),
                 TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'ยืนยันรหัสผ่าน',
+                  controller: _confirmPasswordController,
+                  obscureText: _model.obscureConfirmPassword,
+                  decoration: InputDecoration(
+                    hintText: "ยืนยันรหัสผ่านใหม่",
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _model.obscureConfirmPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _model.obscureConfirmPassword =
+                              !_model.obscureConfirmPassword;
+                        });
+                      },
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -518,14 +615,9 @@ class ProfileChangePassword extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const HomeScreen(),
-                        //   ),
-                        // );
+                        await newPasswordOnClick();
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -539,13 +631,42 @@ class ProfileChangePassword extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Future<void> newPasswordOnClick() async {
+    try {
+      final password = _model.passwordController.text;
+      final confirmPassword = _confirmPasswordController.text;
+
+      if (password.isNotEmpty && confirmPassword.isNotEmpty) {
+        final profileUpdate =
+            await _model.findProfileUpdate(password, confirmPassword);
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ),
+        );
+      } else {
+        showInfoDialog(
+          context: context,
+          message: "กรุณาระบุรหัสผ่านและยืนยันรหัสผ่าน",
+        );
+      }
+    } on Exception catch (e) {
+      showInfoDialog(
+        context: context,
+        message: e.toString(),
+      );
+    }
   }
 }
 

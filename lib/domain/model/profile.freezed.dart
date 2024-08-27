@@ -471,6 +471,12 @@ class _$ProfileUpdateImpl implements _ProfileUpdate {
   @pragma('vm:prefer-inline')
   _$$ProfileUpdateImplCopyWith<_$ProfileUpdateImpl> get copyWith =>
       __$$ProfileUpdateImplCopyWithImpl<_$ProfileUpdateImpl>(this, _$identity);
+
+  @override
+  Object? toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }
 
 abstract class _ProfileUpdate implements ProfileUpdate {

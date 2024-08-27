@@ -65,6 +65,7 @@ class ProfileUpdateEntity {
     required this.phoneNo,
     required this.email,
   });
+
   factory ProfileUpdateEntity.fromJson(Map<String, dynamic> json) =>
       _$ProfileUpdateEntityFromJson(json);
   Map<String, dynamic> toJson() => _$ProfileUpdateEntityToJson(this);

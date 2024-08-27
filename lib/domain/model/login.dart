@@ -12,3 +12,11 @@ class Login with _$Login {
     required String phoneNo,
   }) = _Login;
 }
+
+@freezed
+class ProfilesOfficer with _$ProfilesOfficer {
+  const factory ProfilesOfficer({
+    required int id,
+    required String roleName,
+  }) = _ProfilesOfficer;
+}

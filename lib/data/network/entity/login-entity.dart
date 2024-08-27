@@ -22,3 +22,27 @@ class LoginEntity {
 
   Map<String, dynamic> toJson() => _$LoginEntityToJson(this);
 }
+
+@JsonSerializable()
+class ProfilesOfficerEntity {
+  int? id;
+  String? name;
+  String? surname;
+  String? subDivisionName;
+  String? roleName;
+  List<String>? roleScopes;
+
+  ProfilesOfficerEntity({
+    required this.id,
+    required this.name,
+    required this.surname,
+    required this.subDivisionName,
+    required this.roleName,
+    required this.roleScopes,
+  });
+
+  factory ProfilesOfficerEntity.fromJson(Map<String, dynamic> json) =>
+      _$ProfilesOfficerEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProfilesOfficerEntityToJson(this);
+}

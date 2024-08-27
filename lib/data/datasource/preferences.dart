@@ -7,6 +7,8 @@ class Preferences {
   static const keyRefreshToken = 'refreshToken';
   static const keyLoggedTooLong = 'loggedTooLong';
   static const keyPhoneNo = 'phoneNo';
+  static const keyRoleName = 'roleName';
+  static const keyOfficerId = 'officerId';
 
   final defThemeMode = ThemeMode.light.index;
 
@@ -52,5 +54,21 @@ class Preferences {
 
   Future<void> setPhoneNo(String value) async {
     await prefs.setString(keyPhoneNo, value);
+  }
+
+  Future<String?> getRoleName() async {
+    return prefs.getString(keyRoleName);
+  }
+
+  Future<void> setRoleName(String value) async {
+    await prefs.setString(keyRoleName, value);
+  }
+
+  Future<int?> getOfficerId() async {
+    return prefs.getInt(keyOfficerId);
+  }
+
+  Future<void> setOfficerId(int value) async {
+    await prefs.setInt(keyOfficerId, value);
   }
 }

@@ -74,9 +74,11 @@ Future<InitialData> _createData() async {
   // Data
   final networkMapper = NetworkMapper(log: log);
   final loginApi = LoginApi(baseUrl: config.baseAuthUrl);
+  final officerApi = OfficerApi(baseUrl: config.baseUrl);
   final otpApi = OtpApi(baseUrl: config.baseAuthUrl);
   final loginRepository = LoginRepository(
     loginApi: loginApi,
+    officerApi: officerApi,
     otpApi: otpApi,
     networkMapper: networkMapper,
   );

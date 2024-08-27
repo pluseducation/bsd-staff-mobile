@@ -216,3 +216,140 @@ abstract class _Login implements Login {
   _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$ProfilesOfficer {
+  int get id => throw _privateConstructorUsedError;
+  String get roleName => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ProfilesOfficerCopyWith<ProfilesOfficer> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProfilesOfficerCopyWith<$Res> {
+  factory $ProfilesOfficerCopyWith(
+          ProfilesOfficer value, $Res Function(ProfilesOfficer) then) =
+      _$ProfilesOfficerCopyWithImpl<$Res, ProfilesOfficer>;
+  @useResult
+  $Res call({int id, String roleName});
+}
+
+/// @nodoc
+class _$ProfilesOfficerCopyWithImpl<$Res, $Val extends ProfilesOfficer>
+    implements $ProfilesOfficerCopyWith<$Res> {
+  _$ProfilesOfficerCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? roleName = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      roleName: null == roleName
+          ? _value.roleName
+          : roleName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProfilesOfficerImplCopyWith<$Res>
+    implements $ProfilesOfficerCopyWith<$Res> {
+  factory _$$ProfilesOfficerImplCopyWith(_$ProfilesOfficerImpl value,
+          $Res Function(_$ProfilesOfficerImpl) then) =
+      __$$ProfilesOfficerImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int id, String roleName});
+}
+
+/// @nodoc
+class __$$ProfilesOfficerImplCopyWithImpl<$Res>
+    extends _$ProfilesOfficerCopyWithImpl<$Res, _$ProfilesOfficerImpl>
+    implements _$$ProfilesOfficerImplCopyWith<$Res> {
+  __$$ProfilesOfficerImplCopyWithImpl(
+      _$ProfilesOfficerImpl _value, $Res Function(_$ProfilesOfficerImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? roleName = null,
+  }) {
+    return _then(_$ProfilesOfficerImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      roleName: null == roleName
+          ? _value.roleName
+          : roleName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProfilesOfficerImpl implements _ProfilesOfficer {
+  const _$ProfilesOfficerImpl({required this.id, required this.roleName});
+
+  @override
+  final int id;
+  @override
+  final String roleName;
+
+  @override
+  String toString() {
+    return 'ProfilesOfficer(id: $id, roleName: $roleName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProfilesOfficerImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.roleName, roleName) ||
+                other.roleName == roleName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, roleName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProfilesOfficerImplCopyWith<_$ProfilesOfficerImpl> get copyWith =>
+      __$$ProfilesOfficerImplCopyWithImpl<_$ProfilesOfficerImpl>(
+          this, _$identity);
+}
+
+abstract class _ProfilesOfficer implements ProfilesOfficer {
+  const factory _ProfilesOfficer(
+      {required final int id,
+      required final String roleName}) = _$ProfilesOfficerImpl;
+
+  @override
+  int get id;
+  @override
+  String get roleName;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProfilesOfficerImplCopyWith<_$ProfilesOfficerImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
