@@ -110,9 +110,9 @@ Widget certificateStatusWidget(String status) {
     color = MainColors.secondary;
     text = "รายการขอ";
   } else if (status == "COMPLETED") {
-    lightColor = MainColors.warningLight;
-    color = MainColors.warning;
-    text = "จัดการ Sign off";
+    lightColor = Color(0xFFdbf5ee);
+    color = Color(0xFF4cceac);
+    text = "ออกใบรับรอง";
   } else {
     lightColor = MainColors.secondaryLight;
     color = MainColors.secondary;

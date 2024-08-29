@@ -264,22 +264,22 @@ class _CertificateTabState extends State<CertificateTab>
                       children: [
                         const Text('รายการขอ'),
                         const SizedBox(width: 4),
-                        Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            shape: BoxShape.circle,
-                          ),
-                          child: Text(
-                            searchProvider.certificate.requests.length
-                                .toString(),
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        ),
+                        // Container(
+                        //   padding: const EdgeInsets.all(6),
+                        //   decoration: BoxDecoration(
+                        //     color: Colors.grey[300],
+                        //     shape: BoxShape.circle,
+                        //   ),
+                        //   child: Text(
+                        //     searchProvider.certificate.requests.length
+                        //         .toString(),
+                        //     style: const TextStyle(fontSize: 12),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
-                  const Tab(text: 'จัดการ Sign off'),
+                  const Tab(text: 'ออกใบรับรอง'),
                 ],
               ),
               const SizedBox(
