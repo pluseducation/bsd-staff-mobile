@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pluseducation.eit.mobile"
+    package="com.osnarc.antidrug"
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Permissions -->
