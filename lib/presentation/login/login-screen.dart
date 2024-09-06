@@ -178,7 +178,7 @@ class _LoginFormState extends State<_LoginForm> {
               return null;
             },
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 25),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -207,17 +207,12 @@ class _LoginFormState extends State<_LoginForm> {
     try {
       await _model.login();
 
-      // Navigator.of(context).push(
-      //   MaterialPageRoute(
-      //     builder: (context) => const VerifycodeScreen(),
-      //   ),
-      // );
-
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => const HomeScreen(),
         ),
+        (route) => false,
       );
     } on Exception catch (e) {
       showInfoDialog(

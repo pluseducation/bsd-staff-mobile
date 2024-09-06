@@ -54,7 +54,6 @@ Widget patientStatusWidget(String status) {
   );
 }
 
-// เปลี่ยนจาก Widget เป็น Object เนื่องจากต้อง return "" เมื่อไม่เข้าเงื่อนไข
 Widget mentalEvalLevelWidget(String status) {
   Color lightColor;
   Color color;

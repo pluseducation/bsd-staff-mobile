@@ -16,7 +16,7 @@ class ProfileRepository {
 
   Future<Profile> findProfileByOfficerId(int officerId) async {
     final entityProfile = await profileApi.findProfile(officerId: officerId);
-    _entityProfile = entityProfile; // Store the entityProfile
+    _entityProfile = entityProfile;
 
     final String fullname =
         "${convertToString(entityProfile.nameTh)} ${convertToString(entityProfile.surnameTh)}";

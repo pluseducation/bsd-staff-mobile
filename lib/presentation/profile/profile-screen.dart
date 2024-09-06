@@ -1,9 +1,15 @@
 import 'dart:async';
+
+import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
+import 'package:bst_staff_mobile/domain/model/notification.dart'
+    // ignore: library_prefixes
+    as AppNotification;
 import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
-import 'package:bst_staff_mobile/presentation/profile/profile-model.dart';
+import 'package:bst_staff_mobile/presentation/profile/profile-provider.dart';
+import 'package:bst_staff_mobile/presentation/profile/screen/notification-setting-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
@@ -40,18 +46,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     print("findOfficerId ===>>> $findOfficerId");
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-
   bool light = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      appBar: BaseAppbarProfile(),
+      appBar: const BaseAppbarProfile(),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -148,7 +149,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           const Text(
                             "การตั้งค่า",
                             style: TextStyle(
-                                fontSize: 17, color: Color(0xFF9CA3AF)),
+                              fontSize: 17,
+                              color: Color(0xFF9CA3AF),
+                            ),
                           ),
                           const SizedBox(
                             height: 25,
@@ -159,7 +162,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      const NotificationSetting(),
+                                      const NotificationSettingScreen(),
                                 ),
                               );
                             },
@@ -308,7 +311,6 @@ class _ProfileParentState extends State<ProfileParent> {
           Provider.of<ProfileRepository>(super.context, listen: false),
       appService: Provider.of<AppService>(super.context, listen: false),
     );
-    // _profileFuture = _model.findProfile(9);
     _profileFuture = _model.findProfile(widget.officerId);
   }
 
@@ -672,181 +674,5 @@ class _ProfileChangePasswordState extends State<ProfileChangePassword> {
         message: e.toString(),
       );
     }
-  }
-}
-
-class NotificationSetting extends StatefulWidget {
-  const NotificationSetting({super.key});
-
-  @override
-  _NotificationSettingState createState() => _NotificationSettingState();
-}
-
-class _NotificationSettingState extends State<NotificationSetting> {
-  bool light = false;
-  bool tracking = true;
-  bool forward = true;
-  bool help = true;
-  bool onlogin = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: MainColors.background,
-        title: const Text(
-          "ตั้งค่าการแจ้งเตือน",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-      ),
-      // BaseLayoutScrollViewNotification
-      // BaseLayoutScrollView
-      body: BaseLayoutScrollView(
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "ตารางนัดหมาย",
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                        Switch(
-                          value: light,
-                          onChanged: (bool value) {
-                            setState(() {
-                              light = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    color: Color(0xFFDEE2E4),
-                    thickness: 0.8,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "การติดตาม",
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                        Switch(
-                          value: tracking,
-                          onChanged: (bool value) {
-                            setState(() {
-                              tracking = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    color: Color(0xFFDEE2E4),
-                    thickness: 0.8,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "เคสส่งต่อ/รอรับ",
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                        Switch(
-                          value: forward,
-                          onChanged: (bool value) {
-                            setState(() {
-                              forward = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    color: Color(0xFFDEE2E4),
-                    thickness: 0.8,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "ช่วยเหลือ",
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                        Switch(
-                          value: help,
-                          onChanged: (bool value) {
-                            setState(() {
-                              help = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    color: Color(0xFFDEE2E4),
-                    thickness: 0.8,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "เมื่อมีการ login web",
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                        Switch(
-                          value: onlogin,
-                          onChanged: (bool value) {
-                            setState(() {
-                              onlogin = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    color: Color(0xFFDEE2E4),
-                    thickness: 0.8,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

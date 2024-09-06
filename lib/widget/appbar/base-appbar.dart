@@ -510,53 +510,39 @@ class _BaseAppbarProfileState extends State<BaseAppbarProfile> {
             ),
           ),
           child: AppBar(
-              toolbarHeight: toolbarHeight,
-              backgroundColor: Colors.transparent,
-              title: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "สุนิสา ใจดี (ผู้ปกครอง)",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text("สำนักงานสาธารณสุขจังหวัดเชียงใหม่",
+            toolbarHeight: toolbarHeight,
+            backgroundColor: Colors.transparent,
+            title: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "สุนิสา ใจดี (ผู้ปกครอง)",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         color: Colors.white,
-                      )),
-                ],
-              )
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text(
-              //       "ใบรับรอง",
-              //       style: TextStyle(
-              //         fontSize: 18,
-              //         color: Colors.white,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 5,
-              //     ),
-              //   ],
-              // ),
-              ),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "สำนักงานสาธารณสุขจังหวัดเชียงใหม่",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
         Positioned(
           top: -100,
