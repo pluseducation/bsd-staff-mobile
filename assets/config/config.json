@@ -1,4 +1,4 @@
 {
-  "baseUrl": "http://k8s-bstproxy-414e7603aa-467939501.ap-southeast-1.elb.amazonaws.com/bst-admin-service",
-  "baseAuthUrl": "http://k8s-bstproxy-414e7603aa-467939501.ap-southeast-1.elb.amazonaws.com/bst-auth-service"
+  "baseUrl": "https://antidrug.moph.go.th/bst-admin-service",
+  "baseAuthUrl": "https://antidrug.moph.go.th/bst-auth-service"
 }

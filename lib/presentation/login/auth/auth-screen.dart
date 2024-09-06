@@ -89,7 +89,11 @@ class AuthScreen extends StatelessWidget {
               ),
               const SizedBox(height: 35),
               Text(
-                'ยืนยันตัวตน 2 ระดับเพื่อเข้าใช้งานเว็บไซต์',
+                'ยืนยันตัวตน 2 ระดับ',
+                style: textTheme.headlineSmall,
+              ),
+              Text(
+                'เพื่อเข้าใช้งานเว็บไซต์',
                 style: textTheme.headlineSmall,
               ),
               const SizedBox(height: 35),
