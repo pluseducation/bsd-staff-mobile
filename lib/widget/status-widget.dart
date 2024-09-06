@@ -76,9 +76,7 @@ Widget mentalEvalLevelWidget(String status) {
     color = const Color(0xFFD82E22);
     text = "ฉุกเฉิน";
   } else {
-    lightColor = MainColors.secondaryLight;
-    color = MainColors.secondary;
-    text = "";
+    return const SizedBox.shrink();
   }
 
   return Container(
