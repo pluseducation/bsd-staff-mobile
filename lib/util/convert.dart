@@ -66,7 +66,7 @@ String convertToThaiDatetimes(DateTime dateTime) {
 }
 
 // ---เวลา
-String convertToThaiTimes(DateTime dateTime) {
+String convertToThaiTimes(DateTime? dateTime) {
   if (dateTime == null) {
     return "";
   }
