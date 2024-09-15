@@ -24,7 +24,8 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+// apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.kotlin.android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 // def keystorePropertiesFile = rootProject.file("key.properties")

@@ -20,7 +20,9 @@ mixin _$Certificate {
   List<CertificateRequest> get requests => throw _privateConstructorUsedError;
   List<CertificateRequest> get completes => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Certificate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CertificateCopyWith<Certificate> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +49,8 @@ class _$CertificateCopyWithImpl<$Res, $Val extends Certificate>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Certificate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$CertificateAllImplCopyWithImpl<$Res>
       _$CertificateAllImpl _value, $Res Function(_$CertificateAllImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Certificate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -175,7 +181,9 @@ class _$CertificateAllImpl implements _CertificateAll {
       const DeepCollectionEquality().hash(_requests),
       const DeepCollectionEquality().hash(_completes));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Certificate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CertificateAllImplCopyWith<_$CertificateAllImpl> get copyWith =>
@@ -196,8 +204,11 @@ abstract class _CertificateAll implements Certificate {
   List<CertificateRequest> get requests;
   @override
   List<CertificateRequest> get completes;
+
+  /// Create a copy of Certificate
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CertificateAllImplCopyWith<_$CertificateAllImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -210,7 +221,9 @@ mixin _$CertificateRequest {
       throw _privateConstructorUsedError; // วันที่ขอ
   String get status => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CertificateRequestCopyWith<CertificateRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -238,6 +251,8 @@ class _$CertificateRequestCopyWithImpl<$Res, $Val extends CertificateRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CertificateRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -290,6 +305,8 @@ class __$$CertificateRequestImplCopyWithImpl<$Res>
       $Res Function(_$CertificateRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CertificateRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -363,7 +380,9 @@ class _$CertificateRequestImpl implements _CertificateRequest {
   int get hashCode =>
       Object.hash(runtimeType, fullName, nationalId, requestedDateText, status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CertificateRequestImplCopyWith<_$CertificateRequestImpl> get copyWith =>
@@ -379,15 +398,18 @@ abstract class _CertificateRequest implements CertificateRequest {
       required final String status}) = _$CertificateRequestImpl;
 
   @override
-  String get fullName;
-  @override //  name + surname
-  String get nationalId;
-  @override // เลขบัตร
-  String get requestedDateText;
-  @override // วันที่ขอ
-  String get status;
+  String get fullName; //  name + surname
   @override
-  @JsonKey(ignore: true)
+  String get nationalId; // เลขบัตร
+  @override
+  String get requestedDateText; // วันที่ขอ
+  @override
+  String get status;
+
+  /// Create a copy of CertificateRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CertificateRequestImplCopyWith<_$CertificateRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

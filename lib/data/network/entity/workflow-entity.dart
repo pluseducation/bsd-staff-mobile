@@ -17,7 +17,7 @@ class RegisteringEntity {
   int? hometownProvinceId;
   String? registeredHouseNo;
   String? registeredHouseMoo;
-  int registeredVillageId;
+  int? registeredVillageId;
   String? registeredHouseRoad;
   int? registeredProvinceId;
   int? registeredDistrictId;

@@ -20,7 +20,9 @@ mixin _$Appointment {
       throw _privateConstructorUsedError; //**  /appointments */
   List<AppointmentCalendar> get calendars => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Appointment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppointmentCopyWith<Appointment> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Appointment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,6 +88,8 @@ class __$$AppointmentImplCopyWithImpl<$Res>
       _$AppointmentImpl _value, $Res Function(_$AppointmentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Appointment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,7 +157,9 @@ class _$AppointmentImpl implements _Appointment {
       const DeepCollectionEquality().hash(_events),
       const DeepCollectionEquality().hash(_calendars));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Appointment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppointmentImplCopyWith<_$AppointmentImpl> get copyWith =>
@@ -164,11 +172,14 @@ abstract class _Appointment implements Appointment {
       required final List<AppointmentCalendar> calendars}) = _$AppointmentImpl;
 
   @override
-  List<AppointmentEvent> get events;
-  @override //**  /appointments */
-  List<AppointmentCalendar> get calendars;
+  List<AppointmentEvent> get events; //**  /appointments */
   @override
-  @JsonKey(ignore: true)
+  List<AppointmentCalendar> get calendars;
+
+  /// Create a copy of Appointment
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppointmentImplCopyWith<_$AppointmentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -190,7 +201,9 @@ mixin _$AppointmentEvent {
       throw _privateConstructorUsedError; // ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
   String get guardianPhoneNo => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppointmentEventCopyWith<AppointmentEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -222,6 +235,8 @@ class _$AppointmentEventCopyWithImpl<$Res, $Val extends AppointmentEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -298,6 +313,8 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
       $Res Function(_$AppointmentEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -423,7 +440,9 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
       guardianFullname,
       guardianPhoneNo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppointmentEventImplCopyWith<_$AppointmentEventImpl> get copyWith =>
@@ -443,23 +462,27 @@ abstract class _AppointmentEvent implements AppointmentEvent {
       required final String guardianPhoneNo}) = _$AppointmentEventImpl;
 
   @override
-  DateTime get appointmentDate;
-  @override //** find on where /appointments */
-  String get appointmenDate;
-  @override // วัน เดือน ปี แยกมาจาก
-  String get appointmenTime;
-  @override //เวลา
-  String get roundText;
-  @override //appointmentType + round roundText.where
-  String get fullname;
-  @override // ชื่อผู้ป่วย name +  surname // appointments
-  String get phoneNo;
-  @override // เบอร์โทร /appointments
-  String get guardianFullname;
-  @override // ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
-  String get guardianPhoneNo;
+  DateTime get appointmentDate; //** find on where /appointments */
   @override
-  @JsonKey(ignore: true)
+  String get appointmenDate; // วัน เดือน ปี แยกมาจาก
+  @override
+  String get appointmenTime; //เวลา
+  @override
+  String get roundText; //appointmentType + round roundText.where
+  @override
+  String get fullname; // ชื่อผู้ป่วย name +  surname // appointments
+  @override
+  String get phoneNo; // เบอร์โทร /appointments
+  @override
+  String
+      get guardianFullname; // ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
+  @override
+  String get guardianPhoneNo;
+
+  /// Create a copy of AppointmentEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppointmentEventImplCopyWith<_$AppointmentEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -473,7 +496,9 @@ mixin _$AppointmentCalendar {
       throw _privateConstructorUsedError; //** find on  /appointments */
   set fullnames(List<String> value) => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppointmentCalendar
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppointmentCalendarCopyWith<AppointmentCalendar> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -497,6 +522,8 @@ class _$AppointmentCalendarCopyWithImpl<$Res, $Val extends AppointmentCalendar>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppointmentCalendar
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -535,6 +562,8 @@ class __$$AppointmentCalendarImplCopyWithImpl<$Res>
       $Res Function(_$AppointmentCalendarImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppointmentCalendar
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -571,7 +600,9 @@ class _$AppointmentCalendarImpl implements _AppointmentCalendar {
     return 'AppointmentCalendar(appointmentDate: $appointmentDate, fullnames: $fullnames)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppointmentCalendar
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppointmentCalendarImplCopyWith<_$AppointmentCalendarImpl> get copyWith =>
@@ -586,12 +617,15 @@ abstract class _AppointmentCalendar implements AppointmentCalendar {
 
   @override
   DateTime get appointmentDate;
-  set appointmentDate(DateTime value);
-  @override //** find on  /appointments */
+  set appointmentDate(DateTime value); //** find on  /appointments */
+  @override
   List<String> get fullnames; //** find on  /appointments */
   set fullnames(List<String> value);
+
+  /// Create a copy of AppointmentCalendar
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppointmentCalendarImplCopyWith<_$AppointmentCalendarImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

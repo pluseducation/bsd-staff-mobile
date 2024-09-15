@@ -22,7 +22,9 @@ mixin _$Login {
   bool get loggedTooLong => throw _privateConstructorUsedError;
   String get phoneNo => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Login
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginCopyWith<Login> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -49,6 +51,8 @@ class _$LoginCopyWithImpl<$Res, $Val extends Login>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Login
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +110,8 @@ class __$$LoginImplCopyWithImpl<$Res>
       _$LoginImpl _value, $Res Function(_$LoginImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Login
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -186,7 +192,9 @@ class _$LoginImpl implements _Login {
   int get hashCode => Object.hash(runtimeType, accessToken, refreshToken,
       reqAuthenToken, loggedTooLong, phoneNo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Login
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
@@ -211,8 +219,11 @@ abstract class _Login implements Login {
   bool get loggedTooLong;
   @override
   String get phoneNo;
+
+  /// Create a copy of Login
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -222,7 +233,9 @@ mixin _$ProfilesOfficer {
   int get id => throw _privateConstructorUsedError;
   String get roleName => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfilesOfficer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProfilesOfficerCopyWith<ProfilesOfficer> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -246,6 +259,8 @@ class _$ProfilesOfficerCopyWithImpl<$Res, $Val extends ProfilesOfficer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProfilesOfficer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -284,6 +299,8 @@ class __$$ProfilesOfficerImplCopyWithImpl<$Res>
       _$ProfilesOfficerImpl _value, $Res Function(_$ProfilesOfficerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfilesOfficer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -331,7 +348,9 @@ class _$ProfilesOfficerImpl implements _ProfilesOfficer {
   @override
   int get hashCode => Object.hash(runtimeType, id, roleName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfilesOfficer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfilesOfficerImplCopyWith<_$ProfilesOfficerImpl> get copyWith =>
@@ -348,8 +367,11 @@ abstract class _ProfilesOfficer implements ProfilesOfficer {
   int get id;
   @override
   String get roleName;
+
+  /// Create a copy of ProfilesOfficer
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProfilesOfficerImplCopyWith<_$ProfilesOfficerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

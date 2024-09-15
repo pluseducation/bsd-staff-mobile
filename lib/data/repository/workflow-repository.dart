@@ -112,8 +112,32 @@ class WorkflowRepository {
             ),
       );
 
-      final String registereText =
-          "${entityPatient.registeredHouseNo} ${entityPatient.registeredHouseMoo} $villages ${entityPatient.registeredHouseRoad} $province $districts $subdistricts ${entityPatient.registeredPostalCode}";
+      String registereText = "";
+
+      if (entityPatient.registeredHouseNo != null) {
+        registereText += "${entityPatient.registeredHouseNo} ";
+      }
+      if (entityPatient.registeredHouseMoo != null) {
+        registereText += "${entityPatient.registeredHouseMoo} ";
+      }
+      if (villages.isNotEmpty) {
+        registereText += "$villages ";
+      }
+      if (entityPatient.registeredHouseRoad != null) {
+        registereText += "${entityPatient.registeredHouseRoad} ";
+      }
+      if (province.isNotEmpty) {
+        registereText += "$province ";
+      }
+      if (districts.isNotEmpty) {
+        registereText += "$districts ";
+      }
+      if (subdistricts.isNotEmpty) {
+        registereText += "$subdistricts ";
+      }
+      if (entityPatient.registeredPostalCode != null) {
+        registereText += "${entityPatient.registeredPostalCode}";
+      }
 
       // -----หมู่บ้าน/ชุมชน
       final String currentVillageText = convertToString(
@@ -157,9 +181,31 @@ class WorkflowRepository {
             ),
       );
 
-// ${entityPatient.currentAddrAsRegistered}
-      final String currentAddrText =
-          "${entityPatient.currentHouseNo} ${entityPatient.currentHouseMoo} ${entityPatient.currentHouseMoo} $currentVillageText ${entityPatient.currentHouseRoad} $currentProvinceText $currentDistrictText  $currentSubDistrictText ${entityPatient.currentPostalCode}";
+      String currentAddrText = "";
+      if (entityPatient.currentHouseNo != null) {
+        currentAddrText += "${entityPatient.currentHouseNo} ";
+      }
+      if (entityPatient.currentHouseMoo != null) {
+        currentAddrText += "${entityPatient.currentHouseMoo} ";
+      }
+      if (currentVillageText.isNotEmpty) {
+        currentAddrText += "$currentVillageText ";
+      }
+      if (entityPatient.currentHouseRoad != null) {
+        currentAddrText += "${entityPatient.currentHouseRoad} ";
+      }
+      if (currentProvinceText.isNotEmpty) {
+        currentAddrText += "$currentProvinceText ";
+      }
+      if (currentDistrictText.isNotEmpty) {
+        currentAddrText += "$currentDistrictText ";
+      }
+      if (currentSubDistrictText.isNotEmpty) {
+        currentAddrText += "$currentSubDistrictText ";
+      }
+      if (entityPatient.currentPostalCode != null) {
+        currentAddrText += "${entityPatient.currentPostalCode}";
+      }
 
       String guardianfullNameText = "";
       final String tmpGuardianName =

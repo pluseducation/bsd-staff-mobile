@@ -23,7 +23,7 @@ RegisteringEntity _$RegisteringEntityFromJson(Map<String, dynamic> json) =>
       hometownProvinceId: (json['hometownProvinceId'] as num?)?.toInt(),
       registeredHouseNo: json['registeredHouseNo'] as String?,
       registeredHouseMoo: json['registeredHouseMoo'] as String?,
-      registeredVillageId: (json['registeredVillageId'] as num).toInt(),
+      registeredVillageId: (json['registeredVillageId'] as num?)?.toInt(),
       registeredHouseRoad: json['registeredHouseRoad'] as String?,
       registeredProvinceId: (json['registeredProvinceId'] as num?)?.toInt(),
       registeredDistrictId: (json['registeredDistrictId'] as num?)?.toInt(),
