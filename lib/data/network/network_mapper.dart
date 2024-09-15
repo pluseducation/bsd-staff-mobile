@@ -1,4 +1,3 @@
-import 'package:bst_staff_mobile/data/network/entity/appointments-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/dashboard-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/login-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/patient-entity.dart';

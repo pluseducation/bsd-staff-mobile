@@ -2,7 +2,6 @@ import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
-import 'package:bst_staff_mobile/domain/model/session.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 
 class DashboardRepository {

@@ -255,8 +255,8 @@ class NewFileEntity {
 class TreatmentEntity {
   int? patientId;
   DateTime? startDate;
-  dynamic? refFilePath;
-  dynamic? refFileName;
+  String? refFilePath;
+  String? refFileName;
   int? firstAgeUsage;
   int? firstDrugUsageId;
   int? yearOfUsage;
@@ -270,7 +270,7 @@ class TreatmentEntity {
   List<CurrentDrugUsageEntity>? joinReasons;
   List<DrugUsageBeforeEntity>? drugUsageBefores;
   String? hadDosing;
-  dynamic? otherDosing;
+  String? otherDosing;
   List<dynamic>? dosings;
   List<CurrentDrugUsageEntity>? techniques;
   List<CurrentDrugUsageEntity>? programmes;
@@ -289,9 +289,9 @@ class TreatmentEntity {
   String? mentalEvalLevel;
   DateTime? latestTreatmentEvalDate;
   String? evaluationResult;
-  dynamic? monitoringReportMentalTo;
+  String? monitoringReportMentalTo;
   int? monitoringReportMentalReferId;
-  dynamic? monitoringReportSocialTo;
+  String? monitoringReportSocialTo;
   int? monitoringReportSocialReferId;
   String? incompletedReason;
   String? mentalTreatmentResult;
@@ -421,9 +421,9 @@ class PlanEntity {
   int? order;
   String? planType;
   DateTime? endDate;
-  dynamic? other;
-  dynamic? subDistrictId;
-  dynamic? villageId;
+  String? other;
+  int? subDistrictId;
+  int? villageId;
   List<PlanEvalResultEntity>? planEvalResults;
 
   PlanEntity({
