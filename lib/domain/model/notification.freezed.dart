@@ -29,7 +29,9 @@ mixin _$Notification {
   bool get login => throw _privateConstructorUsedError; // การช่วยเหลือ
   set login(bool value) => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Notification
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NotificationCopyWith<Notification> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +60,8 @@ class _$NotificationCopyWithImpl<$Res, $Val extends Notification>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Notification
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -116,6 +120,8 @@ class __$$NotificationImplCopyWithImpl<$Res>
       _$NotificationImpl _value, $Res Function(_$NotificationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Notification
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -180,7 +186,9 @@ class _$NotificationImpl implements _Notification {
     return 'Notification(appointment: $appointment, monitoring: $monitoring, refer: $refer, assistant: $assistant, login: $login)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Notification
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NotificationImplCopyWith<_$NotificationImpl> get copyWith =>
@@ -197,21 +205,24 @@ abstract class _Notification implements Notification {
 
   @override
   bool get appointment;
-  set appointment(bool value);
-  @override // การนัดหมาย
+  set appointment(bool value); // การนัดหมาย
+  @override
   bool get monitoring; // การนัดหมาย
-  set monitoring(bool value);
-  @override // การติดตาม
+  set monitoring(bool value); // การติดตาม
+  @override
   bool get refer; // การติดตาม
-  set refer(bool value);
-  @override // การส่งต่อ
+  set refer(bool value); // การส่งต่อ
+  @override
   bool get assistant; // การส่งต่อ
-  set assistant(bool value);
-  @override // การช่วยเหลือ
+  set assistant(bool value); // การช่วยเหลือ
+  @override
   bool get login; // การช่วยเหลือ
   set login(bool value);
+
+  /// Create a copy of Notification
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NotificationImplCopyWith<_$NotificationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
