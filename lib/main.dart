@@ -24,7 +24,6 @@ import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
 import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
 import 'package:bst_staff_mobile/domain/model/config.dart';
-import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
 import 'package:bst_staff_mobile/presentation/app/app.dart';
@@ -49,7 +48,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // ignore: avoid_redundant_argument_values,  deprecated_member_use
-  // await Sqflite.devSetDebugModeOn(kDebugMode);
+  await Sqflite.devSetDebugModeOn(kDebugMode);
   getIt.registerSingleton<NavigationService>(NavigationService());
 
   final data = await _createData();

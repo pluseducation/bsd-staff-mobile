@@ -1,10 +1,6 @@
 import 'dart:async';
 
-import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
-import 'package:bst_staff_mobile/domain/model/notification.dart'
-    // ignore: library_prefixes
-    as AppNotification;
 import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';

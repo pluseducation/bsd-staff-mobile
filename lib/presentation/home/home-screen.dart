@@ -3,9 +3,7 @@ import 'package:bst_staff_mobile/presentation/certificate/certificate-screen.dar
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-screen.dart';
-import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/appbar/bottomnavigation/base-bottomnavigation.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -52,25 +50,23 @@ class _HomeScreenState extends State<HomeScreen> {
         onNavItemTapped: _onNavItemTapped,
         selectedIndex: currentPageIndex,
       ),
-      body: _pageController == null
-          ? const Center(child: CircularProgressIndicator())
-          : PageView(
-              controller: _pageController,
-              onPageChanged: (int index) {
-                setState(() {
-                  currentPageIndex = index;
-                });
-              },
-              children: const <Widget>[
-                /// Home page
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        children: const <Widget>[
+          /// Home page
 
-                DashboardScreen(),
-                PatientScreen(),
-                AppointmentScreen(),
-                CertificateScreen(),
-                ProfileScreen(),
-              ],
-            ),
+          DashboardScreen(),
+          PatientScreen(),
+          AppointmentScreen(),
+          CertificateScreen(),
+          ProfileScreen(),
+        ],
+      ),
     );
   }
 }
