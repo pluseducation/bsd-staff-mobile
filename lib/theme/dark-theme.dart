@@ -5,18 +5,82 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData darkTheme = ThemeData(
   useMaterial3: true,
-  brightness: Brightness.dark,
-  scaffoldBackgroundColor: Colors.black,
-  textTheme: TextThemeColor.nullFontColor(GoogleFonts.notoSansThaiTextTheme()),
+  brightness: Brightness.light,
+  scaffoldBackgroundColor: MainColors.background,
   primaryTextTheme:
       TextThemeColor.nullFontColor(GoogleFonts.notoSansThaiTextTheme()),
+  textTheme: TextThemeColor.nullFontColor(
+    applyDefaultFontSize(GoogleFonts.notoSansThaiTextTheme(), 16.0),
+  ),
   appBarTheme: const AppBarTheme(
     backgroundColor: MainColors.primary700,
   ),
-  colorScheme: const ColorScheme.dark(
+  cardTheme: CardTheme(
+    color: Colors.white,
+    elevation: 4,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0),
+      side: const BorderSide(color: Color(0xFFf1f1f1)),
+    ),
+    clipBehavior: Clip.antiAliasWithSaveLayer,
+    shadowColor: Colors.grey.withOpacity(0.1),
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: const BorderSide(
+        color: MainColors.primary500,
+      ),
+    ),
+    labelStyle: const TextStyle(color: MainColors.text),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      foregroundColor: MainColors.white,
+      backgroundColor: MainColors.primary500,
+      padding: const EdgeInsets.all(14),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      side: const BorderSide(color: MainColors.primary500),
+      padding: const EdgeInsets.all(14),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
+  ),
+  colorScheme: ColorScheme.light(
     primary: MainColors.primary500,
     secondary: MainColors.secondary,
-    outline: MainColors.primary700,
-    surface: MainColors.primary900,
+    outline: Colors.grey[300],
+    surface: Colors.grey[100]!,
   ),
 );
+
+
+// ThemeData darkTheme = ThemeData(
+//   useMaterial3: true,
+//   brightness: Brightness.dark,
+//   scaffoldBackgroundColor: Colors.black,
+//   primaryTextTheme:
+//       TextThemeColor.nullFontColor(GoogleFonts.notoSansThaiTextTheme()),
+//   textTheme: TextThemeColor.nullFontColor(
+//     applyDefaultFontSize(GoogleFonts.notoSansThaiTextTheme(), 16.0),
+//   ),
+//   appBarTheme: const AppBarTheme(
+//     backgroundColor: MainColors.primary700,
+//   ),
+//   colorScheme: const ColorScheme.dark(
+//     primary: MainColors.primary500,
+//     secondary: MainColors.secondary,
+//     outline: MainColors.primary700,
+//     surface: MainColors.primary900,
+//   ),
+// );

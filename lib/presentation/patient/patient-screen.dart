@@ -482,6 +482,7 @@ class _PatientListState extends State<PatientList> {
                             MaterialPageRoute(
                               builder: (context) => WorkflowScreen(
                                 patientId: patient.patientId,
+                                status: patient.status,
                               ),
                             ),
                           );
@@ -495,21 +496,21 @@ class _PatientListState extends State<PatientList> {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    alignment: Alignment.topLeft,
-                                    child: CircleAvatar(
-                                      radius: 30,
-                                      backgroundColor: MainColors.background,
-                                      child: ClipOval(
-                                        child: Image.asset(
-                                          "assets/images/profile2.png",
-                                          width: 50,
-                                          height: 50,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   alignment: Alignment.topLeft,
+                                  //   child: CircleAvatar(
+                                  //     radius: 30,
+                                  //     backgroundColor: MainColors.background,
+                                  //     child: ClipOval(
+                                  //       child: Image.asset(
+                                  //         "assets/images/profile2.png",
+                                  //         width: 50,
+                                  //         height: 50,
+                                  //         fit: BoxFit.cover,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(
                                       15,
@@ -571,59 +572,5 @@ class _PatientListState extends State<PatientList> {
         ),
       ],
     );
-  }
-
-  Widget _buildStatusContainer(String status) {
-    return SizedBox(
-      width: 90,
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: _getColorForStatus(status),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                _getTextForStatus(status),
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: _getTextColorForStatus(status),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Color _getColorForStatus(String status) {
-    switch (status) {
-      case "คัดกรอง":
-        return const Color.fromARGB(255, 240, 221, 191);
-      default:
-        return const Color(0xFFF9F9F9);
-    }
-  }
-
-  String _getTextForStatus(String status) {
-    switch (status) {
-      case "ลงทะเบียน":
-        return "ลงทะเบียน";
-      case "คัดกรอง":
-        return "คัดกรอง";
-      case "รายการขอ":
-        return "รายการขอ";
-      default:
-        return "";
-    }
-  }
-
-  Color _getTextColorForStatus(String status) {
-    return status == "คัดกรอง" ? const Color(0xFFB76E00) : Colors.black;
   }
 }

@@ -37,6 +37,14 @@ class WorkflowRepository {
       final entitySubdistricts = await masterApi.findSubdistricts();
 
       final entityQuestion = await questionApi.findRegisteringQuestionChoices();
+      String imagePath = "";
+      if (entityPatient.gender == "MALE") {
+        imagePath = "assets/images/male.png";
+      } else if (entityPatient.gender == "FEMALE") {
+        imagePath = "assets/images/female.png";
+      } else {
+        imagePath = "assets/images/female.png";
+      }
 
       final String fullname =
           "${convertToString(entityPatient.name)} ${convertToString(entityPatient.surname)}";
@@ -283,6 +291,7 @@ class WorkflowRepository {
       }
 
       final model = Registering(
+        imagePath: imagePath,
         fullname: fullname,
         patientStatus: patientStatus,
         level: level,
@@ -305,7 +314,7 @@ class WorkflowRepository {
     }
   }
 
-  Future<void> findScreenings(int id) async {
+  Future<Screening> findScreening(int id) async {
     final entityScreenings =
         await screeningsApi.findScreenings(id, patientsid: id);
 
@@ -318,12 +327,11 @@ class WorkflowRepository {
     final entityMentaltreatments = await masterApi.findMentaltreatments();
     final entityCriminalcases = await masterApi.findcriminalcases();
     final entityChroniccontagiouses = await masterApi.findChroniccontagiouses();
-
     final entityQuestion = await questionApi.findScreeningsQuestionChoices();
 
     // final String startDate = convertToString(entityScreenings.startDate);
 
-    final String maritalstatusesText = convertToString(
+    final String maritalStatusText = convertToString(
       entityMaritalstatuses
           .where((t) => t.id == entityScreenings.maritalStatusId)
           .map((t) => t.name)
@@ -333,7 +341,7 @@ class WorkflowRepository {
           ),
     );
 
-    final String educationsText = convertToString(
+    final String educationText = convertToString(
       entityEducations
           .where((t) => t.id == entityScreenings.educationId)
           .map((t) => t.name)
@@ -343,7 +351,7 @@ class WorkflowRepository {
           ),
     );
 
-    final String occupationsText = convertToString(
+    final String occupationText = convertToString(
       entityOccupations
           .where((t) => t.id == entityScreenings.occupationId)
           .map((t) => t.name)
@@ -353,7 +361,7 @@ class WorkflowRepository {
           ),
     );
 
-    final String incomesText = convertToString(
+    final String incomeText = convertToString(
       entityIncomes
           .where((t) => t.id == entityScreenings.incomeId)
           .map((t) => t.name)
@@ -369,7 +377,7 @@ class WorkflowRepository {
       entityScreenings.livingWithLast30days ?? [],
     );
 
-    final String relationshipsvalueText = convertToString(
+    final String parentRelationshipText = convertToString(
       entityRelationshipsvalue
           .where((t) => t.id == entityScreenings.parentRelationshipId)
           .map((t) => t.name)
@@ -395,7 +403,7 @@ class WorkflowRepository {
       entityScreenings.drugUsageApproach ?? "",
     );
 
-    String mainDrugsText = _getDrugDescriptionList(
+    final mainDrugsTexts = _getDrugDescriptionList(
       entityDrugs,
       entityScreenings.mainDrugs ?? [],
     );
@@ -442,17 +450,12 @@ class WorkflowRepository {
       entityScreenings.stopUsingButNotSuccess,
     );
 
-    final String DrugsText = _getChoiceDescriptionList(
-      entityQuestion,
-      "screening_info_last_30_days_answer",
-      entityScreenings.livingWithLast30days ?? [],
-    );
     //  ผลการคัดกรอง
 
     final String levelOfAddicted =
         convertToString(entityScreenings.levelOfAddicted);
 
-    final int mentalEvalScore = convertToInt(entityScreenings.mentalEvalScore);
+    final int drugEvalScore = convertToInt(entityScreenings.drugEvalScore);
 
     final String screeningResult =
         convertToString(entityScreenings.screeningResult);
@@ -475,7 +478,7 @@ class WorkflowRepository {
       entityScreenings.hadMentalTreatment,
     );
 
-    final String? mentalTreatmentText = convertToString(
+    final mentalTreatmentText = convertToString(
       entityMentaltreatments
           .where((t) => t.id == entityScreenings.mentalTreatmentId)
           .map((t) => t.name)
@@ -485,7 +488,7 @@ class WorkflowRepository {
           ),
     );
 
-    final String hadCriminalCase = _getChoiceDescription(
+    final hadCriminalCase = _getChoiceDescription(
       entityQuestion,
       "had_criminal_case",
       entityScreenings.hadCriminalCase,
@@ -523,7 +526,41 @@ class WorkflowRepository {
           ),
     );
 
-    print('finish');
+    final model = Screening(
+      maritalStatusText: maritalStatusText,
+      educationText: "",
+      occupationText: "",
+      incomeText: "",
+      livingWithLast30days: "",
+      parentRelationshipText: "",
+      startDate: startDate,
+      isToBeNumberOneMember: isToBeNumberOneMember,
+      drugUsageApproach: drugUsageApproach,
+      mainDrugText: mainDrugsTexts,
+      mentalEvalLevel: mentalEvalLevel,
+      drugEvalScore: drugEvalScore,
+      levelOfAddicted: levelOfAddicted,
+      screeningResult: screeningResult,
+      frequencyOfUse: "",
+      feelingAddicted: "",
+      irresponsible: "",
+      frequencyOfProblem: "",
+      beNoticed: "",
+      stopUsingButNotSuccess: "",
+      injectableDrug: "",
+      last3monthUsage: "",
+      hadMentalTreatment: "",
+      mentalTreatmentText: "",
+      hadChronicContagious: "",
+      chronicContagiousText: "",
+      hadCriminalCase: "",
+      criminalCaseText: "",
+      homeless: "",
+      disabledPerson: "",
+      disabledCertificateNo: "",
+    );
+
+    return model;
   }
 
   String _getDrugDescriptionList(

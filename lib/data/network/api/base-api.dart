@@ -37,7 +37,7 @@ class BaseApi {
           if (error.response?.statusCode == 401 ||
               error.response?.statusCode == 403) {
             // Navigate to login screen if 401 error occurs
-            getIt<NavigationService>().navigateToReplacement('/login');
+            //getIt<NavigationService>().navigateToReplacement('/login');
           }
           return handler.next(error);
         },

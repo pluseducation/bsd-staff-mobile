@@ -22,7 +22,9 @@ mixin _$Profile {
       throw _privateConstructorUsedError; // เบอร์โทร / officers${data}
   String get username => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Profile
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -44,6 +46,8 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Profile
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +90,8 @@ class __$$ProfileImplCopyWithImpl<$Res>
       _$ProfileImpl _value, $Res Function(_$ProfileImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Profile
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,7 +151,9 @@ class _$ProfileImpl implements _Profile {
   @override
   int get hashCode => Object.hash(runtimeType, fullname, phoneNo, username);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Profile
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
@@ -159,13 +167,16 @@ abstract class _Profile implements Profile {
       required final String username}) = _$ProfileImpl;
 
   @override
-  String get fullname;
-  @override // ชื่อ-สกุล nameTh +  surnameTh  /officers${data}
-  String get phoneNo;
-  @override // เบอร์โทร / officers${data}
-  String get username;
+  String get fullname; // ชื่อ-สกุล nameTh +  surnameTh  /officers${data}
   @override
-  @JsonKey(ignore: true)
+  String get phoneNo; // เบอร์โทร / officers${data}
+  @override
+  String get username;
+
+  /// Create a copy of Profile
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -199,7 +210,9 @@ mixin _$ProfileUpdate {
   bool get resetPassword => throw _privateConstructorUsedError;
   set resetPassword(bool value) => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileUpdate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProfileUpdateCopyWith<ProfileUpdate> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -236,6 +249,8 @@ class _$ProfileUpdateCopyWithImpl<$Res, $Val extends ProfileUpdate>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProfileUpdate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -342,6 +357,8 @@ class __$$ProfileUpdateImplCopyWithImpl<$Res>
       _$ProfileUpdateImpl _value, $Res Function(_$ProfileUpdateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfileUpdate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -466,7 +483,9 @@ class _$ProfileUpdateImpl implements _ProfileUpdate {
     return 'ProfileUpdate(username: $username, password: $password, confirmPassword: $confirmPassword, name: $name, surname: $surname, nationalId: $nationalId, email: $email, phoneNo: $phoneNo, roleId: $roleId, subDivisionId: $subDivisionId, officerId: $officerId, active: $active, resetPassword: $resetPassword)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileUpdate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfileUpdateImplCopyWith<_$ProfileUpdateImpl> get copyWith =>
@@ -528,8 +547,11 @@ abstract class _ProfileUpdate implements ProfileUpdate {
   @override
   bool get resetPassword;
   set resetPassword(bool value);
+
+  /// Create a copy of ProfileUpdate
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProfileUpdateImplCopyWith<_$ProfileUpdateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

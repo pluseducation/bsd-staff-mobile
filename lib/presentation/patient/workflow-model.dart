@@ -30,8 +30,53 @@ class WorkflowdModel {
     }
   }
 
-  Future<void> testvalue() async {
-    workflowRepository.findRegistering(1190);
-    workflowRepository.findScreenings(1191);
+  Future<Screening> findScreening(int patientId) async {
+    try {
+      return workflowRepository.findScreening(patientId);
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
+  bool isHaveRegistering(String status) {
+    bool isHave = false;
+    if ([
+      "REGISTERING",
+      "SCREENING",
+      "TREATMENT",
+      "MONITORING",
+      "ASSISTANCE",
+      "DISCHARGED"
+    ].contains(status)) {
+      isHave = true;
+    }
+
+    return isHave;
+  }
+
+  bool isHaveScreening(String status) {
+    bool isHave = false;
+    if (["SCREENING", "TREATMENT", "MONITORING", "ASSISTANCE", "DISCHARGED"]
+        .contains(status)) {
+      isHave = true;
+    }
+
+    return isHave;
+  }
+
+  bool isHaveTreatment(String status) {
+    bool isHave = false;
+    if (["TREATMENT", "MONITORING", "ASSISTANCE", "DISCHARGED"]
+        .contains(status)) {
+      isHave = true;
+    }
+
+    return isHave;
   }
 }

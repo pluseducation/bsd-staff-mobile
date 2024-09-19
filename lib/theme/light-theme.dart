@@ -9,7 +9,9 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: MainColors.background,
   primaryTextTheme:
       TextThemeColor.nullFontColor(GoogleFonts.notoSansThaiTextTheme()),
-  textTheme: TextThemeColor.nullFontColor(GoogleFonts.notoSansThaiTextTheme()),
+  textTheme: TextThemeColor.nullFontColor(
+    applyDefaultFontSize(GoogleFonts.notoSansThaiTextTheme(), 16.0),
+  ),
   appBarTheme: const AppBarTheme(
     backgroundColor: MainColors.primary700,
   ),

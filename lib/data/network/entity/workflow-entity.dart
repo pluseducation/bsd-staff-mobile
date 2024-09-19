@@ -202,54 +202,6 @@ class ScreeningEntity {
   Map<String, dynamic> toJson() => _$ScreeningEntityToJson(this);
 }
 
-@JsonSerializable()
-class AnswerEntity {
-  String? answer;
-  String? other;
-
-  AnswerEntity({
-    this.answer,
-    this.other,
-  });
-
-  factory AnswerEntity.fromJson(Map<String, dynamic> json) =>
-      _$AnswerEntityFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AnswerEntityToJson(this);
-}
-
-@JsonSerializable()
-class FileElementdataEntityEntity {
-  int? documentId;
-  String? fileNameOrg;
-
-  FileElementdataEntityEntity({
-    this.documentId,
-    this.fileNameOrg,
-  });
-
-  factory FileElementdataEntityEntity.fromJson(Map<String, dynamic> json) =>
-      _$FileElementdataEntityEntityFromJson(json);
-
-  Map<String, dynamic> toJson() => _$FileElementdataEntityEntityToJson(this);
-}
-
-@JsonSerializable()
-class NewFileEntity {
-  String? fileNameOrg;
-  String? content;
-
-  NewFileEntity({
-    this.fileNameOrg,
-    this.content,
-  });
-
-  factory NewFileEntity.fromJson(Map<String, dynamic> json) =>
-      _$NewFileEntityFromJson(json);
-
-  Map<String, dynamic> toJson() => _$NewFileEntityToJson(this);
-}
-
 // ---------------treatments------------------
 @JsonSerializable()
 class TreatmentEntity {
@@ -264,16 +216,16 @@ class TreatmentEntity {
   int? dayOfUsage;
   double? totalUsage;
   String? hadTreatment;
-  List<dynamic>? histories;
-  List<CurrentDrugUsageEntity>? usageReasons;
-  List<CurrentDrugUsageEntity>? currentDrugUsages;
-  List<CurrentDrugUsageEntity>? joinReasons;
+  List<HistoryEntity>? histories;
+  List<AnswerEntity>? usageReasons;
+  List<AnswerEntity>? currentDrugUsages;
+  List<AnswerEntity>? joinReasons;
   List<DrugUsageBeforeEntity>? drugUsageBefores;
   String? hadDosing;
   String? otherDosing;
-  List<dynamic>? dosings;
-  List<CurrentDrugUsageEntity>? techniques;
-  List<CurrentDrugUsageEntity>? programmes;
+  List<String>? dosings;
+  List<AnswerEntity>? techniques;
+  List<AnswerEntity>? programmes;
   List<PlanEntity>? plans;
   String? frequencyOfUse;
   String? feelingAddicted;
@@ -297,8 +249,8 @@ class TreatmentEntity {
   String? mentalTreatmentResult;
   String? physicalTreatmentResult;
   List<FileElementdataEntity>? files;
-  List<dynamic>? newFiles;
-  List<dynamic>? removeFiles;
+  List<NewFileEntity>? newFiles;
+  List<int>? removeFiles;
 
   TreatmentEntity({
     required this.patientId,
@@ -353,22 +305,6 @@ class TreatmentEntity {
       _$TreatmentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$TreatmentEntityToJson(this);
-}
-
-@JsonSerializable()
-class CurrentDrugUsageEntity {
-  String? answer;
-  String? other;
-
-  CurrentDrugUsageEntity({
-    required this.answer,
-    required this.other,
-  });
-
-  factory CurrentDrugUsageEntity.fromJson(Map<String, dynamic> json) =>
-      _$CurrentDrugUsageEntityFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CurrentDrugUsageEntityToJson(this);
 }
 
 @JsonSerializable()
@@ -457,4 +393,71 @@ class PlanEvalResultEntity {
       _$PlanEvalResultEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$PlanEvalResultEntityToJson(this);
+}
+
+@JsonSerializable()
+class HistoryEntity {
+  int? subDivisionId;
+  int? times;
+  DateTime? lastestUsedDate;
+
+  HistoryEntity({
+    required this.subDivisionId,
+    required this.times,
+    required this.lastestUsedDate,
+  });
+  factory HistoryEntity.fromJson(Map<String, dynamic> json) =>
+      _$HistoryEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HistoryEntityToJson(this);
+}
+
+//  -------- master -------
+
+@JsonSerializable()
+class AnswerEntity {
+  String? answer;
+  String? other;
+
+  AnswerEntity({
+    this.answer,
+    this.other,
+  });
+
+  factory AnswerEntity.fromJson(Map<String, dynamic> json) =>
+      _$AnswerEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AnswerEntityToJson(this);
+}
+
+@JsonSerializable()
+class FileElementdataEntityEntity {
+  int? documentId;
+  String? fileNameOrg;
+
+  FileElementdataEntityEntity({
+    this.documentId,
+    this.fileNameOrg,
+  });
+
+  factory FileElementdataEntityEntity.fromJson(Map<String, dynamic> json) =>
+      _$FileElementdataEntityEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FileElementdataEntityEntityToJson(this);
+}
+
+@JsonSerializable()
+class NewFileEntity {
+  String? fileNameOrg;
+  String? content;
+
+  NewFileEntity({
+    this.fileNameOrg,
+    this.content,
+  });
+
+  factory NewFileEntity.fromJson(Map<String, dynamic> json) =>
+      _$NewFileEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NewFileEntityToJson(this);
 }

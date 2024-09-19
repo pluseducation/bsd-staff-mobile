@@ -56,7 +56,7 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                         Row(
                           children: [
                             Image.asset(
-                              "assets/images/profile2.png",
+                              data.imagePath,
                               width: 100,
                               fit: BoxFit.cover,
                               filterQuality: FilterQuality.high,
@@ -75,7 +75,7 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                                   ),
                                 ),
                                 const SizedBox(
-                                  height: 10,
+                                  height: 8,
                                 ),
                                 Row(
                                   children: [
@@ -91,14 +91,14 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         const Divider(
                           color: Color(0xFFF1F1F1),
                           thickness: 1,
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 16,
                         ),
                         const Text(
                           "ข้อมูลส่วนบุคคล",
@@ -108,19 +108,18 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           ),
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 16,
                         ),
                         Row(
                           children: [
-                            const Text(
-                              "วันเดือนปีเกิด",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF848484),
-                              ),
-                            ),
                             const SizedBox(
-                              width: 30,
+                              width: 150,
+                              child: Text(
+                                "วันเดือนปีเกิด",
+                                style: TextStyle(
+                                  color: Color(0xFF434343),
+                                ),
+                              ),
                             ),
                             Text(
                               data.dateOfBirthText,
@@ -131,19 +130,18 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         Row(
                           children: [
-                            const Text(
-                              "เพศ",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF848484),
-                              ),
-                            ),
                             const SizedBox(
-                              width: 100,
+                              width: 150,
+                              child: Text(
+                                "เพศ",
+                                style: TextStyle(
+                                  color: Color(0xFF434343),
+                                ),
+                              ),
                             ),
                             Text(
                               data.gender,
@@ -154,19 +152,18 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         Row(
                           children: [
-                            const Text(
-                              "สัญชาติ",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF848484),
-                              ),
-                            ),
                             const SizedBox(
-                              width: 74,
+                              width: 150,
+                              child: Text(
+                                "สัญชาติ",
+                                style: TextStyle(
+                                  color: Color(0xFF434343),
+                                ),
+                              ),
                             ),
                             Text(
                               data.nationalityText,
@@ -177,19 +174,18 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         Row(
                           children: [
-                            const Text(
-                              "ศาสนา",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF848484),
-                              ),
-                            ),
                             const SizedBox(
-                              width: 82,
+                              width: 150,
+                              child: Text(
+                                "ศาสนา",
+                                style: TextStyle(
+                                  color: Color(0xFF434343),
+                                ),
+                              ),
                             ),
                             Text(
                               data.religionText,
@@ -200,7 +196,7 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           ],
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 16,
                         ),
                         const Text(
                           "ที่อยู่",
@@ -210,15 +206,14 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           ),
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 16,
                         ),
                         const Text(
                           "ที่อยู่ตามทะเบียนราษฎร์",
-                          style:
-                              TextStyle(fontSize: 18, color: Color(0xFF434343)),
+                          style: TextStyle(color: Color(0xFF434343)),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         Text(
                           data.registereText,
@@ -227,15 +222,14 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           ),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         const Text(
                           "ที่อยู่ปัจจุบัน",
-                          style:
-                              TextStyle(fontSize: 18, color: Color(0xFF434343)),
+                          style: TextStyle(color: Color(0xFF434343)),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         Text(
                           data.currentAddrText,
@@ -244,33 +238,21 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           ),
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 16,
                         ),
                         const Text(
                           "ข้อมูลผู้ปกครอง",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(color: Color(0xFF434343)),
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 16,
                         ),
                         if (data.guardianfullNameText.isNotEmpty &&
                             data.guardianPhoneNo.isNotEmpty)
                           Column(
                             children: [
                               Text(
-                                data.guardianfullNameText,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                data.guardianPhoneNo,
+                                "${data.guardianfullNameText} ${data.guardianPhoneNo}",
                                 style: const TextStyle(
                                   fontSize: 18,
                                 ),
@@ -285,17 +267,14 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                             ),
                           ),
                         const SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
                         const Text(
                           "การเข้าสู่ระบบมาตรการบำบัด",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(color: Color(0xFF434343)),
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 16,
                         ),
                         Text(
                           data.joinTreatmentByText,
