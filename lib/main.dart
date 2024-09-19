@@ -11,7 +11,8 @@ import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/api/profile-api.dart';
 import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
-import 'package:bst_staff_mobile/data/network/api/screenings-api.dart';
+import 'package:bst_staff_mobile/data/network/api/screening-api.dart';
+import 'package:bst_staff_mobile/data/network/api/treatment-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/Appointments-repository.dart';
@@ -104,15 +105,16 @@ Future<InitialData> _createData() async {
 
   final masterApi = MasterApi(baseUrl: config.baseUrl);
   final questionApi = Question(baseUrl: config.baseUrl);
-  final screeningsApi = Screenings(baseUrl: config.baseUrl);
+  final screeningsApi = ScreeningApi(baseUrl: config.baseUrl);
+  final treatmentApi = TreatmentApi(baseUrl: config.baseUrl);
 
   final workflowRepository = WorkflowRepository(
-    patientApi: patientApi,
-    masterApi: masterApi,
-    questionApi: questionApi,
-    networkMapper: networkMapper,
-    screeningsApi: screeningsApi,
-  );
+      patientApi: patientApi,
+      masterApi: masterApi,
+      questionApi: questionApi,
+      networkMapper: networkMapper,
+      screeningApi: screeningsApi,
+      treatmentApi: treatmentApi);
 
   final appointmentsApi = Appointments(baseUrl: config.baseUrl);
 

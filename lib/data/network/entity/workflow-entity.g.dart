@@ -113,6 +113,9 @@ ScreeningEntity _$ScreeningEntityFromJson(Map<String, dynamic> json) =>
       startDate: json['startDate'] == null
           ? null
           : DateTime.parse(json['startDate'] as String),
+      screeningDate: json['screeningDate'] == null
+          ? null
+          : DateTime.parse(json['screeningDate'] as String),
       refFilePath: json['refFilePath'] as String?,
       refFileName: json['refFileName'] as String?,
       maritalStatusId: (json['maritalStatusId'] as num?)?.toInt(),
@@ -173,6 +176,7 @@ Map<String, dynamic> _$ScreeningEntityToJson(ScreeningEntity instance) =>
     <String, dynamic>{
       'patientId': instance.patientId,
       'startDate': instance.startDate?.toIso8601String(),
+      'screeningDate': instance.screeningDate?.toIso8601String(),
       'refFilePath': instance.refFilePath,
       'refFileName': instance.refFileName,
       'maritalStatusId': instance.maritalStatusId,
@@ -275,6 +279,9 @@ TreatmentEntity _$TreatmentEntityFromJson(Map<String, dynamic> json) =>
       latestTreatmentEvalDate: json['latestTreatmentEvalDate'] == null
           ? null
           : DateTime.parse(json['latestTreatmentEvalDate'] as String),
+      evaluationDate: json['evaluationDate'] == null
+          ? null
+          : DateTime.parse(json['evaluationDate'] as String),
       evaluationResult: json['evaluationResult'] as String?,
       monitoringReportMentalTo: json['monitoringReportMentalTo'] as String?,
       monitoringReportMentalReferId:
@@ -295,12 +302,15 @@ TreatmentEntity _$TreatmentEntityFromJson(Map<String, dynamic> json) =>
       removeFiles: (json['removeFiles'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
           .toList(),
-    );
+    )..treatmentDate = json['treatmentDate'] == null
+        ? null
+        : DateTime.parse(json['treatmentDate'] as String);
 
 Map<String, dynamic> _$TreatmentEntityToJson(TreatmentEntity instance) =>
     <String, dynamic>{
       'patientId': instance.patientId,
       'startDate': instance.startDate?.toIso8601String(),
+      'treatmentDate': instance.treatmentDate?.toIso8601String(),
       'refFilePath': instance.refFilePath,
       'refFileName': instance.refFileName,
       'firstAgeUsage': instance.firstAgeUsage,
@@ -335,6 +345,7 @@ Map<String, dynamic> _$TreatmentEntityToJson(TreatmentEntity instance) =>
       'mentalEvalLevel': instance.mentalEvalLevel,
       'latestTreatmentEvalDate':
           instance.latestTreatmentEvalDate?.toIso8601String(),
+      'evaluationDate': instance.evaluationDate?.toIso8601String(),
       'evaluationResult': instance.evaluationResult,
       'monitoringReportMentalTo': instance.monitoringReportMentalTo,
       'monitoringReportMentalReferId': instance.monitoringReportMentalReferId,

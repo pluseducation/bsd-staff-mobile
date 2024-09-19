@@ -38,7 +38,7 @@ class _WorkflowScreenState extends State<WorkflowScreen> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 0,
-      length: 3,
+      length: _model.getLength(widget.status),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: MainColors.background,
@@ -105,9 +105,11 @@ class _WorkflowScreenState extends State<WorkflowScreen> {
                     ),
                   ],
                   if (_model.isHaveTreatment(widget.status) == true) ...[
-                    const BaseLayoutScrollView(
+                    BaseLayoutScrollView(
                       child: Column(
-                        children: [TreatmentScreen()],
+                        children: [
+                          TreatmentScreen(patientId: widget.patientId)
+                        ],
                       ),
                     ),
                   ],

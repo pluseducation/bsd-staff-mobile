@@ -69,7 +69,7 @@ class _ScreeningScreenState extends State<ScreeningScreen> {
             ),
             const SizedBox(height: 16),
             Text(
-              data.startDate,
+              data.screeningDate,
               style: const TextStyle(
                 fontSize: 18,
               ),
@@ -143,6 +143,7 @@ class _ScreeningScreenState extends State<ScreeningScreen> {
       ),
     );
   }
+
 }
 
 // import 'package:bst_staff_mobile/widget/layout/base-layout.dart';

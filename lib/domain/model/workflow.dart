@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'workflow.freezed.dart';
@@ -39,7 +40,7 @@ class Screening with _$Screening {
     required String livingWithLast30days, // /screenings/${patientId} */
     required String
         parentRelationshipText, //**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
-    required String startDate, // ว/ด/ป  /screenings/${patientId}
+    required String screeningDate, // ว/ด/ป  /screenings/${patientId}
     required String
         isToBeNumberOneMember, //การใช้ยาเสพติด  /screenings/${patientId}
     required String
@@ -85,4 +86,20 @@ class Screening with _$Screening {
     required String
         disabledCertificateNo, //**ผู้พิการ   disabledPerson == "PHYSICAL_DISABILITY" && show  ui เพิ่ม Text to ui  find on  /screenings/${patientId} */
   }) = _Screening;
+}
+
+// --------Screening----------
+@freezed
+class Treatment with _$Treatment {
+  const factory Treatment({
+    required String treatmentDate,
+    required String mentalEvalLevel,
+    required int drugEvalScore,
+    required String levelOfAddicted,
+    required String treatmentResult,
+    required String evaluationDate,
+    required String evaluationResult,
+    required String mentalTreatmentResult,
+    required String physicalTreatmentResult,
+  }) = _Treatment;
 }

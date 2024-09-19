@@ -112,6 +112,7 @@ class ProfileEntity {
 class ScreeningEntity {
   int? patientId;
   DateTime? startDate;
+  DateTime? screeningDate;
   String? refFilePath;
   String? refFileName;
   int? maritalStatusId;
@@ -155,6 +156,7 @@ class ScreeningEntity {
   ScreeningEntity({
     required this.patientId,
     required this.startDate,
+    required this.screeningDate,
     required this.refFilePath,
     required this.refFileName,
     required this.maritalStatusId,
@@ -207,6 +209,7 @@ class ScreeningEntity {
 class TreatmentEntity {
   int? patientId;
   DateTime? startDate;
+  DateTime? treatmentDate;
   String? refFilePath;
   String? refFileName;
   int? firstAgeUsage;
@@ -240,6 +243,7 @@ class TreatmentEntity {
   int? mentalScore;
   String? mentalEvalLevel;
   DateTime? latestTreatmentEvalDate;
+  DateTime? evaluationDate;
   String? evaluationResult;
   String? monitoringReportMentalTo;
   int? monitoringReportMentalReferId;
@@ -288,6 +292,7 @@ class TreatmentEntity {
     required this.mentalScore,
     required this.mentalEvalLevel,
     required this.latestTreatmentEvalDate,
+    required this.evaluationDate,
     required this.evaluationResult,
     required this.monitoringReportMentalTo,
     required this.monitoringReportMentalReferId,

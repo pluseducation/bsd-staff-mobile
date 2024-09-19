@@ -44,6 +44,37 @@ class WorkflowdModel {
     }
   }
 
+  Future<Treatment> findTreatment(int patientId) async {
+    try {
+      return workflowRepository.findTreatment(patientId);
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
+  int getLength(String status) {
+    int length = 0;
+    if (isHaveRegistering(status)) {
+      length = 1;
+    }
+
+    if (isHaveScreening(status)) {
+      length = 2;
+    }
+
+    if (isHaveTreatment(status)) {
+      length = 3;
+    }
+
+    return length;
+  }
+
   bool isHaveRegistering(String status) {
     bool isHave = false;
     if ([

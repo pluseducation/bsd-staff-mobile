@@ -1,7 +1,8 @@
 import 'package:bst_staff_mobile/data/network/api/master-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
-import 'package:bst_staff_mobile/data/network/api/screenings-api.dart';
+import 'package:bst_staff_mobile/data/network/api/screening-api.dart';
+import 'package:bst_staff_mobile/data/network/api/treatment-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/master-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/questionchoices-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/workflow-entity.dart';
@@ -11,14 +12,16 @@ import 'package:bst_staff_mobile/util/convert.dart';
 
 class WorkflowRepository {
   final PatientApi patientApi;
-  final Screenings screeningsApi;
+  final ScreeningApi screeningApi;
+  final TreatmentApi treatmentApi;
   final MasterApi masterApi;
   final Question questionApi;
   final NetworkMapper networkMapper;
 
   WorkflowRepository({
     required this.patientApi,
-    required this.screeningsApi,
+    required this.screeningApi,
+    required this.treatmentApi,
     required this.masterApi,
     required this.questionApi,
     required this.networkMapper,
@@ -316,7 +319,7 @@ class WorkflowRepository {
 
   Future<Screening> findScreening(int id) async {
     final entityScreenings =
-        await screeningsApi.findScreenings(id, patientsid: id);
+        await screeningApi.findScreenings(id, patientsid: id);
 
     final entityMaritalstatuses = await masterApi.findMaritalstatuses();
     final entityEducations = await masterApi.findEducations();
@@ -328,8 +331,6 @@ class WorkflowRepository {
     final entityCriminalcases = await masterApi.findcriminalcases();
     final entityChroniccontagiouses = await masterApi.findChroniccontagiouses();
     final entityQuestion = await questionApi.findScreeningsQuestionChoices();
-
-    // final String startDate = convertToString(entityScreenings.startDate);
 
     final String maritalStatusText = convertToString(
       entityMaritalstatuses
@@ -387,8 +388,8 @@ class WorkflowRepository {
           ),
     );
 
-    final String startDate = entityScreenings.startDate != null
-        ? convertThaiDate(entityScreenings.startDate)
+    final String screeningDate = entityScreenings.screeningDate != null
+        ? convertThaiDate(entityScreenings.screeningDate)
         : '';
 
     final String isToBeNumberOneMember = _getChoiceDescription(
@@ -533,7 +534,7 @@ class WorkflowRepository {
       incomeText: "",
       livingWithLast30days: "",
       parentRelationshipText: "",
-      startDate: startDate,
+      screeningDate: screeningDate,
       isToBeNumberOneMember: isToBeNumberOneMember,
       drugUsageApproach: drugUsageApproach,
       mainDrugText: mainDrugsTexts,
@@ -558,6 +559,55 @@ class WorkflowRepository {
       homeless: "",
       disabledPerson: "",
       disabledCertificateNo: "",
+    );
+
+    return model;
+  }
+
+  Future<Treatment> findTreatment(int id) async {
+    final entity = await treatmentApi.findScreenings(id, patientsid: id);
+    final entityQuestion = await questionApi.findTreatmentQuestionChoices();
+
+    final String treatmentDate = entity.treatmentDate != null
+        ? convertThaiDate(entity.treatmentDate)
+        : '';
+    final String mentalEvalLevel = convertToString(entity.mentalEvalLevel);
+    final String levelOfAddicted = convertToString(entity.levelOfAddicted);
+    final int drugEvalScore = convertToInt(entity.drugEvalScore);
+    final String treatmentResult = convertToString(entity.treatmentResult);
+    final String evaluationDate = entity.evaluationDate != null
+        ? convertThaiDate(entity.evaluationDate)
+        : '';
+
+    String evaluationResult = "";
+    if (entity.evaluationResult == "COMPLETED") {
+      evaluationResult = "ครบโปรแกรม";
+    } else if (entity.evaluationResult == "INCOMPLETED") {
+      evaluationResult = "ไม่ครบโปรแกรม (หยุดรับการบำบัดฟื้นฟู)";
+    }
+
+    final String mentalTreatmentResult = _getChoiceDescription(
+      entityQuestion,
+      "mental_treatment_result",
+      entity.mentalTreatmentResult,
+    );
+
+    final String physicalTreatmentResult = _getChoiceDescription(
+      entityQuestion,
+      "phisical_treatment_result",
+      entity.physicalTreatmentResult,
+    );
+
+    final model = Treatment(
+      treatmentDate: treatmentDate,
+      mentalEvalLevel: mentalEvalLevel,
+      drugEvalScore: drugEvalScore,
+      levelOfAddicted: levelOfAddicted,
+      treatmentResult: treatmentResult,
+      evaluationDate: evaluationDate,
+      evaluationResult: evaluationResult,
+      mentalTreatmentResult: mentalTreatmentResult,
+      physicalTreatmentResult: physicalTreatmentResult,
     );
 
     return model;

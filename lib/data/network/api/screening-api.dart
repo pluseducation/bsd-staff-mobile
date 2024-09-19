@@ -5,8 +5,8 @@ import 'package:bst_staff_mobile/data/network/entity/workflow-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:dio/dio.dart';
 
-class Screenings extends BaseApi {
-  Screenings({required super.baseUrl});
+class ScreeningApi extends BaseApi {
+  ScreeningApi({required super.baseUrl});
 
   Future<ScreeningEntity> findScreenings(
     int id, {

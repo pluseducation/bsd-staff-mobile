@@ -497,7 +497,7 @@ mixin _$Screening {
       throw _privateConstructorUsedError; // /screenings/${patientId} */
   String get parentRelationshipText =>
       throw _privateConstructorUsedError; //**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
-  String get startDate =>
+  String get screeningDate =>
       throw _privateConstructorUsedError; // ว/ด/ป  /screenings/${patientId}
   String get isToBeNumberOneMember =>
       throw _privateConstructorUsedError; //การใช้ยาเสพติด  /screenings/${patientId}
@@ -562,7 +562,7 @@ abstract class $ScreeningCopyWith<$Res> {
       String incomeText,
       String livingWithLast30days,
       String parentRelationshipText,
-      String startDate,
+      String screeningDate,
       String isToBeNumberOneMember,
       String drugUsageApproach,
       String mainDrugText,
@@ -610,7 +610,7 @@ class _$ScreeningCopyWithImpl<$Res, $Val extends Screening>
     Object? incomeText = null,
     Object? livingWithLast30days = null,
     Object? parentRelationshipText = null,
-    Object? startDate = null,
+    Object? screeningDate = null,
     Object? isToBeNumberOneMember = null,
     Object? drugUsageApproach = null,
     Object? mainDrugText = null,
@@ -661,9 +661,9 @@ class _$ScreeningCopyWithImpl<$Res, $Val extends Screening>
           ? _value.parentRelationshipText
           : parentRelationshipText // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
+      screeningDate: null == screeningDate
+          ? _value.screeningDate
+          : screeningDate // ignore: cast_nullable_to_non_nullable
               as String,
       isToBeNumberOneMember: null == isToBeNumberOneMember
           ? _value.isToBeNumberOneMember
@@ -780,7 +780,7 @@ abstract class _$$ScreeningImplCopyWith<$Res>
       String incomeText,
       String livingWithLast30days,
       String parentRelationshipText,
-      String startDate,
+      String screeningDate,
       String isToBeNumberOneMember,
       String drugUsageApproach,
       String mainDrugText,
@@ -826,7 +826,7 @@ class __$$ScreeningImplCopyWithImpl<$Res>
     Object? incomeText = null,
     Object? livingWithLast30days = null,
     Object? parentRelationshipText = null,
-    Object? startDate = null,
+    Object? screeningDate = null,
     Object? isToBeNumberOneMember = null,
     Object? drugUsageApproach = null,
     Object? mainDrugText = null,
@@ -877,9 +877,9 @@ class __$$ScreeningImplCopyWithImpl<$Res>
           ? _value.parentRelationshipText
           : parentRelationshipText // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
+      screeningDate: null == screeningDate
+          ? _value.screeningDate
+          : screeningDate // ignore: cast_nullable_to_non_nullable
               as String,
       isToBeNumberOneMember: null == isToBeNumberOneMember
           ? _value.isToBeNumberOneMember
@@ -991,7 +991,7 @@ class _$ScreeningImpl implements _Screening {
       required this.incomeText,
       required this.livingWithLast30days,
       required this.parentRelationshipText,
-      required this.startDate,
+      required this.screeningDate,
       required this.isToBeNumberOneMember,
       required this.drugUsageApproach,
       required this.mainDrugText,
@@ -1036,7 +1036,7 @@ class _$ScreeningImpl implements _Screening {
   final String parentRelationshipText;
 //**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
   @override
-  final String startDate;
+  final String screeningDate;
 // ว/ด/ป  /screenings/${patientId}
   @override
   final String isToBeNumberOneMember;
@@ -1108,7 +1108,7 @@ class _$ScreeningImpl implements _Screening {
 
   @override
   String toString() {
-    return 'Screening(maritalStatusText: $maritalStatusText, educationText: $educationText, occupationText: $occupationText, incomeText: $incomeText, livingWithLast30days: $livingWithLast30days, parentRelationshipText: $parentRelationshipText, startDate: $startDate, isToBeNumberOneMember: $isToBeNumberOneMember, drugUsageApproach: $drugUsageApproach, mainDrugText: $mainDrugText, mentalEvalLevel: $mentalEvalLevel, drugEvalScore: $drugEvalScore, levelOfAddicted: $levelOfAddicted, screeningResult: $screeningResult, frequencyOfUse: $frequencyOfUse, feelingAddicted: $feelingAddicted, irresponsible: $irresponsible, frequencyOfProblem: $frequencyOfProblem, beNoticed: $beNoticed, stopUsingButNotSuccess: $stopUsingButNotSuccess, injectableDrug: $injectableDrug, last3monthUsage: $last3monthUsage, hadMentalTreatment: $hadMentalTreatment, mentalTreatmentText: $mentalTreatmentText, hadChronicContagious: $hadChronicContagious, chronicContagiousText: $chronicContagiousText, hadCriminalCase: $hadCriminalCase, criminalCaseText: $criminalCaseText, homeless: $homeless, disabledPerson: $disabledPerson, disabledCertificateNo: $disabledCertificateNo)';
+    return 'Screening(maritalStatusText: $maritalStatusText, educationText: $educationText, occupationText: $occupationText, incomeText: $incomeText, livingWithLast30days: $livingWithLast30days, parentRelationshipText: $parentRelationshipText, screeningDate: $screeningDate, isToBeNumberOneMember: $isToBeNumberOneMember, drugUsageApproach: $drugUsageApproach, mainDrugText: $mainDrugText, mentalEvalLevel: $mentalEvalLevel, drugEvalScore: $drugEvalScore, levelOfAddicted: $levelOfAddicted, screeningResult: $screeningResult, frequencyOfUse: $frequencyOfUse, feelingAddicted: $feelingAddicted, irresponsible: $irresponsible, frequencyOfProblem: $frequencyOfProblem, beNoticed: $beNoticed, stopUsingButNotSuccess: $stopUsingButNotSuccess, injectableDrug: $injectableDrug, last3monthUsage: $last3monthUsage, hadMentalTreatment: $hadMentalTreatment, mentalTreatmentText: $mentalTreatmentText, hadChronicContagious: $hadChronicContagious, chronicContagiousText: $chronicContagiousText, hadCriminalCase: $hadCriminalCase, criminalCaseText: $criminalCaseText, homeless: $homeless, disabledPerson: $disabledPerson, disabledCertificateNo: $disabledCertificateNo)';
   }
 
   @override
@@ -1128,8 +1128,8 @@ class _$ScreeningImpl implements _Screening {
                 other.livingWithLast30days == livingWithLast30days) &&
             (identical(other.parentRelationshipText, parentRelationshipText) ||
                 other.parentRelationshipText == parentRelationshipText) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
+            (identical(other.screeningDate, screeningDate) ||
+                other.screeningDate == screeningDate) &&
             (identical(other.isToBeNumberOneMember, isToBeNumberOneMember) ||
                 other.isToBeNumberOneMember == isToBeNumberOneMember) &&
             (identical(other.drugUsageApproach, drugUsageApproach) ||
@@ -1189,7 +1189,7 @@ class _$ScreeningImpl implements _Screening {
         incomeText,
         livingWithLast30days,
         parentRelationshipText,
-        startDate,
+        screeningDate,
         isToBeNumberOneMember,
         drugUsageApproach,
         mainDrugText,
@@ -1233,7 +1233,7 @@ abstract class _Screening implements Screening {
       required final String incomeText,
       required final String livingWithLast30days,
       required final String parentRelationshipText,
-      required final String startDate,
+      required final String screeningDate,
       required final String isToBeNumberOneMember,
       required final String drugUsageApproach,
       required final String mainDrugText,
@@ -1273,7 +1273,7 @@ abstract class _Screening implements Screening {
   String
       get parentRelationshipText; //**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
   @override
-  String get startDate; // ว/ด/ป  /screenings/${patientId}
+  String get screeningDate; // ว/ด/ป  /screenings/${patientId}
   @override
   String get isToBeNumberOneMember; //การใช้ยาเสพติด  /screenings/${patientId}
   @override
@@ -1344,5 +1344,316 @@ abstract class _Screening implements Screening {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ScreeningImplCopyWith<_$ScreeningImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$Treatment {
+  String get treatmentDate => throw _privateConstructorUsedError;
+  String get mentalEvalLevel => throw _privateConstructorUsedError;
+  int get drugEvalScore => throw _privateConstructorUsedError;
+  String get levelOfAddicted => throw _privateConstructorUsedError;
+  String get treatmentResult => throw _privateConstructorUsedError;
+  String get evaluationDate => throw _privateConstructorUsedError;
+  String get evaluationResult => throw _privateConstructorUsedError;
+  String get mentalTreatmentResult => throw _privateConstructorUsedError;
+  String get physicalTreatmentResult => throw _privateConstructorUsedError;
+
+  /// Create a copy of Treatment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $TreatmentCopyWith<Treatment> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TreatmentCopyWith<$Res> {
+  factory $TreatmentCopyWith(Treatment value, $Res Function(Treatment) then) =
+      _$TreatmentCopyWithImpl<$Res, Treatment>;
+  @useResult
+  $Res call(
+      {String treatmentDate,
+      String mentalEvalLevel,
+      int drugEvalScore,
+      String levelOfAddicted,
+      String treatmentResult,
+      String evaluationDate,
+      String evaluationResult,
+      String mentalTreatmentResult,
+      String physicalTreatmentResult});
+}
+
+/// @nodoc
+class _$TreatmentCopyWithImpl<$Res, $Val extends Treatment>
+    implements $TreatmentCopyWith<$Res> {
+  _$TreatmentCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Treatment
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? treatmentDate = null,
+    Object? mentalEvalLevel = null,
+    Object? drugEvalScore = null,
+    Object? levelOfAddicted = null,
+    Object? treatmentResult = null,
+    Object? evaluationDate = null,
+    Object? evaluationResult = null,
+    Object? mentalTreatmentResult = null,
+    Object? physicalTreatmentResult = null,
+  }) {
+    return _then(_value.copyWith(
+      treatmentDate: null == treatmentDate
+          ? _value.treatmentDate
+          : treatmentDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalEvalLevel: null == mentalEvalLevel
+          ? _value.mentalEvalLevel
+          : mentalEvalLevel // ignore: cast_nullable_to_non_nullable
+              as String,
+      drugEvalScore: null == drugEvalScore
+          ? _value.drugEvalScore
+          : drugEvalScore // ignore: cast_nullable_to_non_nullable
+              as int,
+      levelOfAddicted: null == levelOfAddicted
+          ? _value.levelOfAddicted
+          : levelOfAddicted // ignore: cast_nullable_to_non_nullable
+              as String,
+      treatmentResult: null == treatmentResult
+          ? _value.treatmentResult
+          : treatmentResult // ignore: cast_nullable_to_non_nullable
+              as String,
+      evaluationDate: null == evaluationDate
+          ? _value.evaluationDate
+          : evaluationDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      evaluationResult: null == evaluationResult
+          ? _value.evaluationResult
+          : evaluationResult // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalTreatmentResult: null == mentalTreatmentResult
+          ? _value.mentalTreatmentResult
+          : mentalTreatmentResult // ignore: cast_nullable_to_non_nullable
+              as String,
+      physicalTreatmentResult: null == physicalTreatmentResult
+          ? _value.physicalTreatmentResult
+          : physicalTreatmentResult // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TreatmentImplCopyWith<$Res>
+    implements $TreatmentCopyWith<$Res> {
+  factory _$$TreatmentImplCopyWith(
+          _$TreatmentImpl value, $Res Function(_$TreatmentImpl) then) =
+      __$$TreatmentImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String treatmentDate,
+      String mentalEvalLevel,
+      int drugEvalScore,
+      String levelOfAddicted,
+      String treatmentResult,
+      String evaluationDate,
+      String evaluationResult,
+      String mentalTreatmentResult,
+      String physicalTreatmentResult});
+}
+
+/// @nodoc
+class __$$TreatmentImplCopyWithImpl<$Res>
+    extends _$TreatmentCopyWithImpl<$Res, _$TreatmentImpl>
+    implements _$$TreatmentImplCopyWith<$Res> {
+  __$$TreatmentImplCopyWithImpl(
+      _$TreatmentImpl _value, $Res Function(_$TreatmentImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Treatment
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? treatmentDate = null,
+    Object? mentalEvalLevel = null,
+    Object? drugEvalScore = null,
+    Object? levelOfAddicted = null,
+    Object? treatmentResult = null,
+    Object? evaluationDate = null,
+    Object? evaluationResult = null,
+    Object? mentalTreatmentResult = null,
+    Object? physicalTreatmentResult = null,
+  }) {
+    return _then(_$TreatmentImpl(
+      treatmentDate: null == treatmentDate
+          ? _value.treatmentDate
+          : treatmentDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalEvalLevel: null == mentalEvalLevel
+          ? _value.mentalEvalLevel
+          : mentalEvalLevel // ignore: cast_nullable_to_non_nullable
+              as String,
+      drugEvalScore: null == drugEvalScore
+          ? _value.drugEvalScore
+          : drugEvalScore // ignore: cast_nullable_to_non_nullable
+              as int,
+      levelOfAddicted: null == levelOfAddicted
+          ? _value.levelOfAddicted
+          : levelOfAddicted // ignore: cast_nullable_to_non_nullable
+              as String,
+      treatmentResult: null == treatmentResult
+          ? _value.treatmentResult
+          : treatmentResult // ignore: cast_nullable_to_non_nullable
+              as String,
+      evaluationDate: null == evaluationDate
+          ? _value.evaluationDate
+          : evaluationDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      evaluationResult: null == evaluationResult
+          ? _value.evaluationResult
+          : evaluationResult // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalTreatmentResult: null == mentalTreatmentResult
+          ? _value.mentalTreatmentResult
+          : mentalTreatmentResult // ignore: cast_nullable_to_non_nullable
+              as String,
+      physicalTreatmentResult: null == physicalTreatmentResult
+          ? _value.physicalTreatmentResult
+          : physicalTreatmentResult // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TreatmentImpl implements _Treatment {
+  const _$TreatmentImpl(
+      {required this.treatmentDate,
+      required this.mentalEvalLevel,
+      required this.drugEvalScore,
+      required this.levelOfAddicted,
+      required this.treatmentResult,
+      required this.evaluationDate,
+      required this.evaluationResult,
+      required this.mentalTreatmentResult,
+      required this.physicalTreatmentResult});
+
+  @override
+  final String treatmentDate;
+  @override
+  final String mentalEvalLevel;
+  @override
+  final int drugEvalScore;
+  @override
+  final String levelOfAddicted;
+  @override
+  final String treatmentResult;
+  @override
+  final String evaluationDate;
+  @override
+  final String evaluationResult;
+  @override
+  final String mentalTreatmentResult;
+  @override
+  final String physicalTreatmentResult;
+
+  @override
+  String toString() {
+    return 'Treatment(treatmentDate: $treatmentDate, mentalEvalLevel: $mentalEvalLevel, drugEvalScore: $drugEvalScore, levelOfAddicted: $levelOfAddicted, treatmentResult: $treatmentResult, evaluationDate: $evaluationDate, evaluationResult: $evaluationResult, mentalTreatmentResult: $mentalTreatmentResult, physicalTreatmentResult: $physicalTreatmentResult)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TreatmentImpl &&
+            (identical(other.treatmentDate, treatmentDate) ||
+                other.treatmentDate == treatmentDate) &&
+            (identical(other.mentalEvalLevel, mentalEvalLevel) ||
+                other.mentalEvalLevel == mentalEvalLevel) &&
+            (identical(other.drugEvalScore, drugEvalScore) ||
+                other.drugEvalScore == drugEvalScore) &&
+            (identical(other.levelOfAddicted, levelOfAddicted) ||
+                other.levelOfAddicted == levelOfAddicted) &&
+            (identical(other.treatmentResult, treatmentResult) ||
+                other.treatmentResult == treatmentResult) &&
+            (identical(other.evaluationDate, evaluationDate) ||
+                other.evaluationDate == evaluationDate) &&
+            (identical(other.evaluationResult, evaluationResult) ||
+                other.evaluationResult == evaluationResult) &&
+            (identical(other.mentalTreatmentResult, mentalTreatmentResult) ||
+                other.mentalTreatmentResult == mentalTreatmentResult) &&
+            (identical(
+                    other.physicalTreatmentResult, physicalTreatmentResult) ||
+                other.physicalTreatmentResult == physicalTreatmentResult));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      treatmentDate,
+      mentalEvalLevel,
+      drugEvalScore,
+      levelOfAddicted,
+      treatmentResult,
+      evaluationDate,
+      evaluationResult,
+      mentalTreatmentResult,
+      physicalTreatmentResult);
+
+  /// Create a copy of Treatment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TreatmentImplCopyWith<_$TreatmentImpl> get copyWith =>
+      __$$TreatmentImplCopyWithImpl<_$TreatmentImpl>(this, _$identity);
+}
+
+abstract class _Treatment implements Treatment {
+  const factory _Treatment(
+      {required final String treatmentDate,
+      required final String mentalEvalLevel,
+      required final int drugEvalScore,
+      required final String levelOfAddicted,
+      required final String treatmentResult,
+      required final String evaluationDate,
+      required final String evaluationResult,
+      required final String mentalTreatmentResult,
+      required final String physicalTreatmentResult}) = _$TreatmentImpl;
+
+  @override
+  String get treatmentDate;
+  @override
+  String get mentalEvalLevel;
+  @override
+  int get drugEvalScore;
+  @override
+  String get levelOfAddicted;
+  @override
+  String get treatmentResult;
+  @override
+  String get evaluationDate;
+  @override
+  String get evaluationResult;
+  @override
+  String get mentalTreatmentResult;
+  @override
+  String get physicalTreatmentResult;
+
+  /// Create a copy of Treatment
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TreatmentImplCopyWith<_$TreatmentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
