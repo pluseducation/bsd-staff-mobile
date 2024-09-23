@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
 import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
@@ -5,6 +7,7 @@ import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/notification.dart' as noti;
 import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
@@ -27,15 +30,33 @@ class ProfileModel {
     return profileRepository.findProfileByOfficerId(officerId);
   }
 
-  Future<int?> findOfficerId() async {
-    return appService.preferencesRepo.getOfficerId();
+  Future<int> findOfficerId() async {
+    final result = await appService.preferencesRepo.getOfficerId();
+    return convertToInt(result);
   }
 
-  Future<ProfileUpdate> findProfileUpdate(
+  Future<bool> findProfileUpdate(
+    int officerId,
     String password,
     String confirmPassword,
   ) async {
-    return profileRepository.findProfileUpdate(password, confirmPassword);
+    return profileRepository.updateProfile(
+        officerId, password, confirmPassword);
+  }
+
+  Future<String> updateProfileImage(File image) async {
+    try {
+      final imageUrl = await profileRepository.updateProfileImage(image);
+      return imageUrl;
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
   }
 
   Future<void> logout() async {

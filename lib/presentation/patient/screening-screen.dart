@@ -42,13 +42,16 @@ class _ScreeningScreenState extends State<ScreeningScreen> {
           return const Center(child: Text('No data'));
         } else {
           final data = snapshot.data!;
-          return renderScreeningData(data);
+          if (data.screeningDate.isEmpty) {
+            return renderEmptyData();
+          }
+          return renderScreening(data);
         }
       },
     );
   }
 
-  Widget renderScreeningData(Screening data) {
+  Widget renderScreening(Screening data) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -144,6 +147,11 @@ class _ScreeningScreenState extends State<ScreeningScreen> {
     );
   }
 
+  Widget renderEmptyData() {
+    return const Center(
+      child: Text('ไม่พบข้อมูลการบำบัด'),
+    );
+  }
 }
 
 // import 'package:bst_staff_mobile/widget/layout/base-layout.dart';

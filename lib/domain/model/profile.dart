@@ -7,6 +7,7 @@ class Profile with _$Profile {
     required String fullname, // ชื่อ-สกุล nameTh +  surnameTh  /officers${data}
     required String phoneNo, // เบอร์โทร / officers${data}
     required String username, // ชื่อบัญชีเข้าใช้งาน  /officers${data}
+    required String imageUrl,
   }) = _Profile;
 }
 

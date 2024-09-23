@@ -134,6 +134,7 @@ Future<InitialData> _createData() async {
   final profileRepository = ProfileRepository(
     profileApi: profileApi,
     networkMapper: networkMapper,
+    baseUrl: config.baseUrl,
   );
 
   final notificationApi = NotificationApi(baseUrl: config.baseUrl);

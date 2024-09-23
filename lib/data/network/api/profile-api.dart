@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/profile-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
@@ -38,46 +41,102 @@ class ProfileApi extends BaseApi {
     }
   }
 
-  Future<ProfileUpdateEntity> findProfileUpdate({
-    required String username,
+  Future<bool> updateProfile({
+    required ProfileEntity entityProfile,
     required String password,
     required String confirmPassword,
-    required String name,
-    required String surname,
-    required String nationalId,
-    required String email,
-    required String phoneNo,
-    required int roleId,
-    required int subDivisionId,
-    required int officerId,
-    required bool active,
-    required bool resetPassword,
   }) async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.put(
         '/api/v1/officers',
         data: {
-          'username': username,
+          'username': entityProfile.username,
           'password': password,
           'confirmPassword': confirmPassword,
-          'name': name,
-          'surname': surname,
-          'nationalId': nationalId,
-          'email': email,
-          'phoneNo': phoneNo,
-          'roleId': roleId,
-          'subDivisionId': subDivisionId,
-          'officerId': officerId,
-          'active': active,
-          'resetPassword': resetPassword,
+          'name': entityProfile.nameTh,
+          'surname': entityProfile.surnameTh,
+          'nationalId': entityProfile.nationalId,
+          'email': entityProfile.email,
+          'phoneNo': entityProfile.phoneNo,
+          'roleId': entityProfile.roleId,
+          'subDivisionId': entityProfile.subDivisionId,
+          'officerId': entityProfile.officerId,
+          'active': entityProfile.active,
         },
       );
 
       if (response.statusCode == 200) {
-        return ProfileUpdateEntity.fromJson(
+        return response.data as bool;
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data.toString(),
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
+  Future<ProfileOfficerEntity> findProfileOfficer() async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get(
+        '/api/v1/profiles/officer',
+      );
+      if (response.statusCode == 200) {
+        return ProfileOfficerEntity.fromJson(
           response.data as Map<String, dynamic>,
         );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data.toString(),
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
+  Future<bool> uploadImage({
+    required File file,
+  }) async {
+    try {
+      final fileNameOrg = file.path.split('/').last;
+      final bytes = await file.readAsBytes();
+      final contentBase64 = base64Encode(bytes);
+
+      final Dio dio = await getPrivateDio();
+      final response = await dio.post(
+        "/api/v1/profiles/image",
+        data: {
+          'fileNameOrg': fileNameOrg,
+          'content': contentBase64,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return response.data as bool;
       } else {
         throw Exception('Unknown error');
       }

@@ -69,3 +69,33 @@ class ProfileUpdateEntity {
       _$ProfileUpdateEntityFromJson(json);
   Map<String, dynamic> toJson() => _$ProfileUpdateEntityToJson(this);
 }
+
+// profile officer
+@JsonSerializable()
+class ProfileOfficerEntity {
+  int? id;
+  String? name;
+  String? surname;
+  String? imageUrl;
+  int? subDivisionId;
+  String? subDivisionName;
+  String? subDivisionLevel;
+  String? roleName;
+  List<String?> roleScopes;
+
+  ProfileOfficerEntity({
+    required this.id,
+    required this.name,
+    required this.surname,
+    required this.imageUrl,
+    required this.subDivisionId,
+    required this.subDivisionName,
+    required this.subDivisionLevel,
+    required this.roleName,
+    required this.roleScopes,
+  });
+
+  factory ProfileOfficerEntity.fromJson(Map<String, dynamic> json) =>
+      _$ProfileOfficerEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$ProfileOfficerEntityToJson(this);
+}

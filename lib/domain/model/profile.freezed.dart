@@ -20,7 +20,9 @@ mixin _$Profile {
       throw _privateConstructorUsedError; // ชื่อ-สกุล nameTh +  surnameTh  /officers${data}
   String get phoneNo =>
       throw _privateConstructorUsedError; // เบอร์โทร / officers${data}
-  String get username => throw _privateConstructorUsedError;
+  String get username =>
+      throw _privateConstructorUsedError; // ชื่อบัญชีเข้าใช้งาน  /officers${data}
+  String get imageUrl => throw _privateConstructorUsedError;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +35,8 @@ abstract class $ProfileCopyWith<$Res> {
   factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
-  $Res call({String fullname, String phoneNo, String username});
+  $Res call(
+      {String fullname, String phoneNo, String username, String imageUrl});
 }
 
 /// @nodoc
@@ -54,6 +57,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? fullname = null,
     Object? phoneNo = null,
     Object? username = null,
+    Object? imageUrl = null,
   }) {
     return _then(_value.copyWith(
       fullname: null == fullname
@@ -68,6 +72,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -79,7 +87,8 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       __$$ProfileImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String fullname, String phoneNo, String username});
+  $Res call(
+      {String fullname, String phoneNo, String username, String imageUrl});
 }
 
 /// @nodoc
@@ -98,6 +107,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? fullname = null,
     Object? phoneNo = null,
     Object? username = null,
+    Object? imageUrl = null,
   }) {
     return _then(_$ProfileImpl(
       fullname: null == fullname
@@ -112,6 +122,10 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -120,7 +134,10 @@ class __$$ProfileImplCopyWithImpl<$Res>
 
 class _$ProfileImpl implements _Profile {
   const _$ProfileImpl(
-      {required this.fullname, required this.phoneNo, required this.username});
+      {required this.fullname,
+      required this.phoneNo,
+      required this.username,
+      required this.imageUrl});
 
   @override
   final String fullname;
@@ -130,10 +147,13 @@ class _$ProfileImpl implements _Profile {
 // เบอร์โทร / officers${data}
   @override
   final String username;
+// ชื่อบัญชีเข้าใช้งาน  /officers${data}
+  @override
+  final String imageUrl;
 
   @override
   String toString() {
-    return 'Profile(fullname: $fullname, phoneNo: $phoneNo, username: $username)';
+    return 'Profile(fullname: $fullname, phoneNo: $phoneNo, username: $username, imageUrl: $imageUrl)';
   }
 
   @override
@@ -145,11 +165,14 @@ class _$ProfileImpl implements _Profile {
                 other.fullname == fullname) &&
             (identical(other.phoneNo, phoneNo) || other.phoneNo == phoneNo) &&
             (identical(other.username, username) ||
-                other.username == username));
+                other.username == username) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, fullname, phoneNo, username);
+  int get hashCode =>
+      Object.hash(runtimeType, fullname, phoneNo, username, imageUrl);
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -164,14 +187,17 @@ abstract class _Profile implements Profile {
   const factory _Profile(
       {required final String fullname,
       required final String phoneNo,
-      required final String username}) = _$ProfileImpl;
+      required final String username,
+      required final String imageUrl}) = _$ProfileImpl;
 
   @override
   String get fullname; // ชื่อ-สกุล nameTh +  surnameTh  /officers${data}
   @override
   String get phoneNo; // เบอร์โทร / officers${data}
   @override
-  String get username;
+  String get username; // ชื่อบัญชีเข้าใช้งาน  /officers${data}
+  @override
+  String get imageUrl;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.

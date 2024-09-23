@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
 import 'package:bst_staff_mobile/main.dart';
+import 'package:bst_staff_mobile/presentation/Splash/splash-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/auth/auth-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
 import 'package:bst_staff_mobile/theme/dark-theme.dart';
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
       child: Consumer<AppService>(
         builder: (context, service, child) => MaterialApp(
           navigatorKey: getIt<NavigationService>().navigatorKey,
+          debugShowCheckedModeBanner: false,
           theme: lightTheme,
           darkTheme: darkTheme,
           themeMode: service.themeMode,
@@ -38,9 +40,9 @@ class App extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
 
-          // home: LayoutScreen(),
+          home: SplashScreen(),
           // home: BaseBottomNavigationBar(),
-          home: LoginScreen(),
+          // home: LoginScreen(),
 
           // home: ProfileScreen(),
 

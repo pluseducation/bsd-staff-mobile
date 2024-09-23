@@ -2,7 +2,6 @@ import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
 import 'package:bst_staff_mobile/domain/model/workflow.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/patient/workflow-model.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:bst_staff_mobile/widget/status-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';

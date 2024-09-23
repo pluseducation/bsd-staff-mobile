@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
 import 'package:bst_staff_mobile/domain/model/profile.dart';
@@ -10,8 +11,11 @@ import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -39,7 +43,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> loadProfile() async {
     final findOfficerId = await _model.findOfficerId();
-    print("findOfficerId ===>>> $findOfficerId");
   }
 
   bool light = false;
@@ -338,49 +341,9 @@ class _ProfileParentState extends State<ProfileParent> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        elevation: 0,
-                        color: const Color(0xFFF6F6F6),
-                        child: BaseLayoutPadding(
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.error_outline,
-                                color: MainColors.text,
-                                size: 20,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                child: RichText(
-                                  text: const TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text:
-                                            'หากต้องการแก้ไขข้อมูล กรุณาติดต่อโทร ',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: MainColors.text,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: '02-222-2222',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: MainColors.text,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                    Center(
+                      child: UploadImage(
+                        profile.imageUrl,
                       ),
                     ),
                     const SizedBox(
@@ -505,6 +468,7 @@ class _ProfileChangePasswordState extends State<ProfileChangePassword> {
   final _formKey = GlobalKey<FormState>();
   // final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  int officerId = 0;
 
   @override
   void initState() {
@@ -515,6 +479,11 @@ class _ProfileChangePasswordState extends State<ProfileChangePassword> {
           Provider.of<ProfileRepository>(super.context, listen: false),
       appService: Provider.of<AppService>(super.context, listen: false),
     );
+    initData();
+  }
+
+  Future<void> initData() async {
+    officerId = await _model.findOfficerId();
   }
 
   @override
@@ -649,8 +618,8 @@ class _ProfileChangePasswordState extends State<ProfileChangePassword> {
       final confirmPassword = _confirmPasswordController.text;
 
       if (password.isNotEmpty && confirmPassword.isNotEmpty) {
-        final profileUpdate =
-            await _model.findProfileUpdate(password, confirmPassword);
+        final profileUpdate = await _model.findProfileUpdate(
+            officerId, password, confirmPassword);
 
         Navigator.pushReplacement(
           context,
@@ -669,6 +638,125 @@ class _ProfileChangePasswordState extends State<ProfileChangePassword> {
         context: context,
         message: e.toString(),
       );
+    }
+  }
+}
+
+class UploadImage extends StatefulWidget {
+  final String imageUrl;
+  const UploadImage(this.imageUrl);
+
+  @override
+  State<UploadImage> createState() => _UploadImageState();
+}
+
+class _UploadImageState extends State<UploadImage> {
+  late ProfileModel _model;
+  late int officerId = 0;
+  late String imageUrl;
+
+  Future<void> initData() async {
+    officerId = await _model.findOfficerId();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = ProfileModel(
+      log: Provider.of<Logger>(super.context, listen: false),
+      profileRepository:
+          Provider.of<ProfileRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+    imageUrl = widget.imageUrl;
+    initData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        GestureDetector(
+          child: CircleAvatar(
+            backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+            radius: 50,
+            backgroundImage: imageUrl.isNotEmpty
+                ? NetworkImage(imageUrl)
+                : imageUrl.isNotEmpty
+                    ? NetworkImage(
+                        imageUrl,
+                      )
+                    : null,
+            child: imageUrl.isNotEmpty
+                ? null
+                : const Icon(
+                    Icons.person,
+                    size: 80,
+                    color: Colors.grey,
+                  ),
+          ),
+        ),
+        Positioned(
+          right: 0,
+          bottom: 0,
+          child: GestureDetector(
+            onTap: () {
+              _getFromGallery(context);
+            },
+            child: Container(
+              padding: const EdgeInsets.all(3),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child: const Icon(
+                Icons.camera_alt_outlined,
+                size: 20,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Get from gallery
+  Future<void> _getFromGallery(BuildContext context) async {
+    try {
+      final pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        final File imageFile = File(pickedFile.path);
+        final updateImageUrl = await _model.updateProfileImage(imageFile);
+        setState(() {
+          imageUrl = updateImageUrl;
+        });
+      }
+    } catch (e) {
+      if (!context.mounted) return;
+      final status = await Permission.photos.status;
+      if (status.isDenied) {
+        showCupertinoDialog<void>(
+          context: context,
+          builder: (BuildContext context) => CupertinoAlertDialog(
+            title: const Text('Permission Denied'),
+            content: const Text('Allow access to gallery and photos'),
+            actions: <CupertinoDialogAction>[
+              CupertinoDialogAction(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('Cancel'),
+              ),
+              CupertinoDialogAction(
+                isDefaultAction: true,
+                onPressed: () => openAppSettings(),
+                child: const Text('Settings'),
+              ),
+            ],
+          ),
+        );
+      } else {}
     }
   }
 }

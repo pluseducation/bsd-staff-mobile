@@ -66,3 +66,33 @@ Map<String, dynamic> _$ProfileUpdateEntityToJson(
       'phoneNo': instance.phoneNo,
       'email': instance.email,
     };
+
+ProfileOfficerEntity _$ProfileOfficerEntityFromJson(
+        Map<String, dynamic> json) =>
+    ProfileOfficerEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      surname: json['surname'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      subDivisionId: (json['subDivisionId'] as num?)?.toInt(),
+      subDivisionName: json['subDivisionName'] as String?,
+      subDivisionLevel: json['subDivisionLevel'] as String?,
+      roleName: json['roleName'] as String?,
+      roleScopes: (json['roleScopes'] as List<dynamic>)
+          .map((e) => e as String?)
+          .toList(),
+    );
+
+Map<String, dynamic> _$ProfileOfficerEntityToJson(
+        ProfileOfficerEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'surname': instance.surname,
+      'imageUrl': instance.imageUrl,
+      'subDivisionId': instance.subDivisionId,
+      'subDivisionName': instance.subDivisionName,
+      'subDivisionLevel': instance.subDivisionLevel,
+      'roleName': instance.roleName,
+      'roleScopes': instance.roleScopes,
+    };
