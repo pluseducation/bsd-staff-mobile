@@ -2,13 +2,6 @@
     package="com.osnarc.antidrug"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permissions -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
     <application
         android:label="บสต"
         android:name="${applicationName}"
@@ -23,6 +16,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
+            android:taskAffinity=""
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
@@ -38,16 +32,17 @@
             </intent-filter>
         </activity>
 
-        <!-- Other Activities -->
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
         <!-- Meta-data -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+
+        <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 </manifest>
