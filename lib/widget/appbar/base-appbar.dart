@@ -518,7 +518,7 @@ class _BaseAppbarProfileState extends State<BaseAppbarProfile> {
                 Row(
                   children: [
                     Text(
-                      "สุนิสา ใจดี (ผู้ปกครอง)",
+                      "ตั้งค่าโปรไฟล์",
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
@@ -534,7 +534,7 @@ class _BaseAppbarProfileState extends State<BaseAppbarProfile> {
                   height: 5,
                 ),
                 Text(
-                  "สำนักงานสาธารณสุขจังหวัดเชียงใหม่",
+                  "เปลี่ยนรหัสผ่าน, แจ้งเตือน",
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,

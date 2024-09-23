@@ -268,17 +268,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     try {
       final officerId = await _model.findOfficerId();
 
-      if (officerId != null) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProfileParent(officerId: officerId),
-          ),
-        );
-      } else {
-        throw Exception('Officer ID not found');
-        // Officer ID not found
-      }
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ProfileParent(officerId: officerId),
+        ),
+      );
     } on Exception catch (e) {
       showInfoDialog(
         context: context,
