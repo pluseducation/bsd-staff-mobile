@@ -232,6 +232,7 @@ abstract class _Login implements Login {
 mixin _$ProfilesOfficer {
   int get id => throw _privateConstructorUsedError;
   String get roleName => throw _privateConstructorUsedError;
+  List<String> get roleScopes => throw _privateConstructorUsedError;
 
   /// Create a copy of ProfilesOfficer
   /// with the given fields replaced by the non-null parameter values.
@@ -246,7 +247,7 @@ abstract class $ProfilesOfficerCopyWith<$Res> {
           ProfilesOfficer value, $Res Function(ProfilesOfficer) then) =
       _$ProfilesOfficerCopyWithImpl<$Res, ProfilesOfficer>;
   @useResult
-  $Res call({int id, String roleName});
+  $Res call({int id, String roleName, List<String> roleScopes});
 }
 
 /// @nodoc
@@ -266,6 +267,7 @@ class _$ProfilesOfficerCopyWithImpl<$Res, $Val extends ProfilesOfficer>
   $Res call({
     Object? id = null,
     Object? roleName = null,
+    Object? roleScopes = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -276,6 +278,10 @@ class _$ProfilesOfficerCopyWithImpl<$Res, $Val extends ProfilesOfficer>
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
               as String,
+      roleScopes: null == roleScopes
+          ? _value.roleScopes
+          : roleScopes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -288,7 +294,7 @@ abstract class _$$ProfilesOfficerImplCopyWith<$Res>
       __$$ProfilesOfficerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String roleName});
+  $Res call({int id, String roleName, List<String> roleScopes});
 }
 
 /// @nodoc
@@ -306,6 +312,7 @@ class __$$ProfilesOfficerImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? roleName = null,
+    Object? roleScopes = null,
   }) {
     return _then(_$ProfilesOfficerImpl(
       id: null == id
@@ -316,6 +323,10 @@ class __$$ProfilesOfficerImplCopyWithImpl<$Res>
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
               as String,
+      roleScopes: null == roleScopes
+          ? _value._roleScopes
+          : roleScopes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -323,16 +334,27 @@ class __$$ProfilesOfficerImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfilesOfficerImpl implements _ProfilesOfficer {
-  const _$ProfilesOfficerImpl({required this.id, required this.roleName});
+  const _$ProfilesOfficerImpl(
+      {required this.id,
+      required this.roleName,
+      required final List<String> roleScopes})
+      : _roleScopes = roleScopes;
 
   @override
   final int id;
   @override
   final String roleName;
+  final List<String> _roleScopes;
+  @override
+  List<String> get roleScopes {
+    if (_roleScopes is EqualUnmodifiableListView) return _roleScopes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_roleScopes);
+  }
 
   @override
   String toString() {
-    return 'ProfilesOfficer(id: $id, roleName: $roleName)';
+    return 'ProfilesOfficer(id: $id, roleName: $roleName, roleScopes: $roleScopes)';
   }
 
   @override
@@ -342,11 +364,14 @@ class _$ProfilesOfficerImpl implements _ProfilesOfficer {
             other is _$ProfilesOfficerImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.roleName, roleName) ||
-                other.roleName == roleName));
+                other.roleName == roleName) &&
+            const DeepCollectionEquality()
+                .equals(other._roleScopes, _roleScopes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, roleName);
+  int get hashCode => Object.hash(runtimeType, id, roleName,
+      const DeepCollectionEquality().hash(_roleScopes));
 
   /// Create a copy of ProfilesOfficer
   /// with the given fields replaced by the non-null parameter values.
@@ -361,12 +386,15 @@ class _$ProfilesOfficerImpl implements _ProfilesOfficer {
 abstract class _ProfilesOfficer implements ProfilesOfficer {
   const factory _ProfilesOfficer(
       {required final int id,
-      required final String roleName}) = _$ProfilesOfficerImpl;
+      required final String roleName,
+      required final List<String> roleScopes}) = _$ProfilesOfficerImpl;
 
   @override
   int get id;
   @override
   String get roleName;
+  @override
+  List<String> get roleScopes;
 
   /// Create a copy of ProfilesOfficer
   /// with the given fields replaced by the non-null parameter values.

@@ -186,46 +186,40 @@ class DashboardModel {
   }
 }
 
-class Indicator extends StatelessWidget {
-  final Color color;
-  final String text;
-  final bool isSquare;
-  final double size;
-  final Color textColor;
+class ReportDataProvider extends ChangeNotifier {
+  final lg.Logger log;
+  final DashboardRepository dashboardRepository;
+  final AppService appService;
 
-  const Indicator({
-    super.key,
-    required this.color,
-    required this.text,
-    this.isSquare = false,
-    this.size = 16,
-    this.textColor = const Color(0xff505050),
+  // condition
+  String name = "";
+  int districtId = 0;
+  int healthServiceId = 0;
+
+  List<ReportData> reportDatas = [];
+
+  ReportDataProvider({
+    required this.log,
+    required this.dashboardRepository,
+    required this.appService,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Container(
-          width: size,
-          height: size,
-          decoration: BoxDecoration(
-            shape: isSquare ? BoxShape.rectangle : BoxShape.circle,
-            color: color,
-          ),
-        ),
-        const SizedBox(
-          width: 4,
-        ),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: textColor,
-          ),
-        ),
-      ],
-    );
+  Future<bool> findReportData() async {
+    try {
+      reportDatas = await dashboardRepository.findReportData(
+        name: name,
+        districtId: districtId,
+        healthServiceId: healthServiceId,
+      );
+      return true;
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
   }
 }

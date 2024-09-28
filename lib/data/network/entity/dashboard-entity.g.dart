@@ -151,3 +151,27 @@ Map<String, dynamic> _$LevelDataEntityToJson(LevelDataEntity instance) =>
       'percentage': instance.percentage,
       'count': instance.count,
     };
+
+ReportDataEntity _$ReportDataEntityFromJson(Map<String, dynamic> json) =>
+    ReportDataEntity(
+      name: json['name'] as String?,
+      register: (json['register'] as num?)?.toInt(),
+      screening: (json['screening'] as num?)?.toInt(),
+      treatment: (json['treatment'] as num?)?.toInt(),
+      monitoring: (json['monitoring'] as num?)?.toInt(),
+      retentionRate: (json['retentionRate'] as num?)?.toDouble(),
+      districtId: (json['districtId'] as num?)?.toInt(),
+      healthServiceId: (json['healthServiceId'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$ReportDataEntityToJson(ReportDataEntity instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'register': instance.register,
+      'screening': instance.screening,
+      'treatment': instance.treatment,
+      'monitoring': instance.monitoring,
+      'retentionRate': instance.retentionRate,
+      'districtId': instance.districtId,
+      'healthServiceId': instance.healthServiceId,
+    };

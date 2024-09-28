@@ -57,8 +57,10 @@ class LoginRepository {
 
     final int id = entityProfileOfficer.id ?? 0;
     final String roleName = convertToString(entityProfileOfficer.roleName);
+    final List<String> roleScopes = entityProfileOfficer.roleScopes ?? [];
 
-    final profilesOfficer = ProfilesOfficer(id: id, roleName: roleName);
+    final profilesOfficer =
+        ProfilesOfficer(id: id, roleName: roleName, roleScopes: roleScopes);
 
     return profilesOfficer;
   }

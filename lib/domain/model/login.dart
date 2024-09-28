@@ -18,5 +18,6 @@ class ProfilesOfficer with _$ProfilesOfficer {
   const factory ProfilesOfficer({
     required int id,
     required String roleName,
+    required List<String> roleScopes,
   }) = _ProfilesOfficer;
 }

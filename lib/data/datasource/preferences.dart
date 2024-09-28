@@ -9,6 +9,7 @@ class Preferences {
   static const keyPhoneNo = 'phoneNo';
   static const keyRoleName = 'roleName';
   static const keyOfficerId = 'officerId';
+  static const keyRoleScopes = 'RoleScopes';
 
   final defThemeMode = ThemeMode.light.index;
 
@@ -70,5 +71,15 @@ class Preferences {
 
   Future<void> setOfficerId(int value) async {
     await prefs.setInt(keyOfficerId, value);
+  }
+
+  Future<List<String>> getRoleScopes() async {
+    return prefs.get(keyRoleScopes) != null
+        ? prefs.get(keyRoleScopes)! as List<String>
+        : [];
+  }
+
+  Future<void> setRoleScopes(List<String> values) async {
+    await prefs.setStringList(keyRoleScopes, values);
   }
 }

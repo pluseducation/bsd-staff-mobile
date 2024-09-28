@@ -39,10 +39,7 @@ class LoginModel {
       final profilesOfficer = await loginRepository.findProfilesOfficer();
       appService.preferencesRepo.setRoleName(profilesOfficer.roleName);
       appService.preferencesRepo.setOfficerId(profilesOfficer.id);
-
-      int? id = await appService.preferencesRepo.getOfficerId();
-      String? role = await appService.preferencesRepo.getRoleName();
-      // appService.preferencesRepo.getRoleName();
+      appService.preferencesRepo.setRoleScopes(profilesOfficer.roleScopes);
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);

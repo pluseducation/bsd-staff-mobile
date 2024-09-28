@@ -15,8 +15,6 @@ class DashboardRepository {
     required this.networkMapper,
   });
 
-
-
   Future<int> findTotalRegistering() async {
     final value =
         await dashboardApi.findTotalPatient(workFlowType: "REGISTERING");
@@ -117,5 +115,33 @@ class DashboardRepository {
     final entity = await dashboardApi.findLevel();
     final model = networkMapper.toLevel(entity);
     return model;
+  }
+
+  Future<List<ReportData>> findReportData({
+    required String name,
+    required int districtId,
+    required int healthServiceId,
+  }) async {
+    final entitys = await dashboardApi.findReportData(
+      name: name,
+      districtId: districtId,
+      healthServiceId: healthServiceId,
+    );
+
+    final models = entitys.map((entity) {
+      final model = ReportData(
+        name: convertToString(entity.name),
+        register: convertToInt(entity.register),
+        screening: convertToInt(entity.screening),
+        treatment: convertToInt(entity.treatment),
+        monitoring: convertToInt(entity.monitoring),
+        retentionRate: convertToDouble(entity.retentionRate),
+        districtId: convertToInt(entity.districtId),
+        healthServiceId: convertToInt(entity.healthServiceId),
+      );
+      return model;
+    }).toList();
+
+    return models;
   }
 }

@@ -84,4 +84,5 @@ class _LayoutScreenState extends State<LayoutScreen> {
       ][currentPageIndex],
     );
   }
+
 }

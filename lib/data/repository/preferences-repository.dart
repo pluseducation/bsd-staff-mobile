@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
+import 'package:flutter/material.dart';
 
 class PreferencesRepository {
   final Preferences preferences;
@@ -67,5 +67,13 @@ class PreferencesRepository {
 
   Future<void> setOfficerId(int value) async {
     await preferences.setOfficerId(value);
+  }
+
+  Future<List<String>> getRoleScopes() async {
+    return preferences.getRoleScopes();
+  }
+
+  Future<void> setRoleScopes(List<String> values) async {
+    await preferences.setRoleScopes(values);
   }
 }

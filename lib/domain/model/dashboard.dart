@@ -63,3 +63,17 @@ class Level with _$Level {
     required double treatmentNormalPercent,
   }) = _Level;
 }
+
+@freezed
+class ReportData with _$ReportData {
+  const factory ReportData({
+    required String name,
+    required int register,
+    required int screening,
+    required int treatment,
+    required int monitoring,
+    required double retentionRate,
+    required int districtId,
+    required int healthServiceId,
+  }) = _ReportData;
+}
