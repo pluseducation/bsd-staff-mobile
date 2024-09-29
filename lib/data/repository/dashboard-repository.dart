@@ -131,11 +131,11 @@ class DashboardRepository {
     final models = entitys.map((entity) {
       final model = ReportData(
         name: convertToString(entity.name),
-        register: convertToInt(entity.register),
-        screening: convertToInt(entity.screening),
-        treatment: convertToInt(entity.treatment),
-        monitoring: convertToInt(entity.monitoring),
-        retentionRate: convertToDouble(entity.retentionRate),
+        register: convertToInt(entity.register).toString(),
+        screening: convertToInt(entity.screening).toString(),
+        treatment: convertToInt(entity.treatment).toString(),
+        monitoring: convertToInt(entity.monitoring).toString(),
+        retentionRate: convertToDouble(entity.retentionRate).toStringAsFixed(2),
         districtId: convertToInt(entity.districtId),
         healthServiceId: convertToInt(entity.healthServiceId),
       );

@@ -10,6 +10,8 @@ class AppService extends ChangeNotifier {
   final PreferencesRepository preferencesRepo;
   final LoginRepository loginRepository;
   late ThemeMode _themeMode;
+  late bool _reportPermission = false;
+  late String roleName = "";
 
   ThemeMode get themeMode => _themeMode;
 
@@ -52,5 +54,37 @@ class AppService extends ChangeNotifier {
         }
       }
     });
+  }
+
+  Future<bool> loadPermission() async {
+    roleName = await preferencesRepo.getRoleName() ?? "";
+    if (roleName == "") {
+      // all false
+      _reportPermission = false;
+      return true;
+    }
+
+    if (roleName == "SUPER_ADMIN" ||
+        roleName == "ADMIN_CENTER" ||
+        roleName == "ADMIN_PRISON" ||
+        roleName == "ADMIN_DJOP" ||
+        roleName == "ADMIN_HOSPITAL" ||
+        roleName == "ADMIN_PROVINCE" ||
+        roleName == "ADMIN_PPHO" ||
+        roleName == "ADMIN_DISTRICT" ||
+        roleName == "ADMIN_DPHO" ||
+        roleName == "ADMIN_NCMC" ||
+        roleName == "ONCB" ||
+        roleName == "ONCB_DISTRICT") {
+      _reportPermission = true;
+    } else {
+      _reportPermission = false;
+    }
+
+    return true;
+  }
+
+  bool getReportPermission() {
+    return _reportPermission;
   }
 }

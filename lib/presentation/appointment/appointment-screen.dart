@@ -152,8 +152,7 @@ class _AppointmentMonthState extends State<AppointmentMonth> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        BaseLayoutss(
-          maxWidth: 600,
+        SingleChildScrollView(
           child: TableCalendar(
             firstDay: DateTime.utc(2010, 10, 16),
             lastDay: DateTime.utc(2030, 3, 14),
@@ -201,11 +200,8 @@ class _AppointmentMonthState extends State<AppointmentMonth> {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                width: 600,
-                child: AppointmentEvent(
-                  events: _selectedEvents,
-                ),
+              child: AppointmentEvent(
+                events: _selectedEvents,
               ),
             ),
           ),

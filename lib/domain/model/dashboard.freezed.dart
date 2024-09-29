@@ -1261,11 +1261,11 @@ abstract class _Level implements Level {
 /// @nodoc
 mixin _$ReportData {
   String get name => throw _privateConstructorUsedError;
-  int get register => throw _privateConstructorUsedError;
-  int get screening => throw _privateConstructorUsedError;
-  int get treatment => throw _privateConstructorUsedError;
-  int get monitoring => throw _privateConstructorUsedError;
-  double get retentionRate => throw _privateConstructorUsedError;
+  String get register => throw _privateConstructorUsedError;
+  String get screening => throw _privateConstructorUsedError;
+  String get treatment => throw _privateConstructorUsedError;
+  String get monitoring => throw _privateConstructorUsedError;
+  String get retentionRate => throw _privateConstructorUsedError;
   int get districtId => throw _privateConstructorUsedError;
   int get healthServiceId => throw _privateConstructorUsedError;
 
@@ -1284,11 +1284,11 @@ abstract class $ReportDataCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      int register,
-      int screening,
-      int treatment,
-      int monitoring,
-      double retentionRate,
+      String register,
+      String screening,
+      String treatment,
+      String monitoring,
+      String retentionRate,
       int districtId,
       int healthServiceId});
 }
@@ -1325,23 +1325,23 @@ class _$ReportDataCopyWithImpl<$Res, $Val extends ReportData>
       register: null == register
           ? _value.register
           : register // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       screening: null == screening
           ? _value.screening
           : screening // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       treatment: null == treatment
           ? _value.treatment
           : treatment // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       monitoring: null == monitoring
           ? _value.monitoring
           : monitoring // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       retentionRate: null == retentionRate
           ? _value.retentionRate
           : retentionRate // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       districtId: null == districtId
           ? _value.districtId
           : districtId // ignore: cast_nullable_to_non_nullable
@@ -1364,11 +1364,11 @@ abstract class _$$ReportDataImplCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
-      int register,
-      int screening,
-      int treatment,
-      int monitoring,
-      double retentionRate,
+      String register,
+      String screening,
+      String treatment,
+      String monitoring,
+      String retentionRate,
       int districtId,
       int healthServiceId});
 }
@@ -1403,23 +1403,23 @@ class __$$ReportDataImplCopyWithImpl<$Res>
       register: null == register
           ? _value.register
           : register // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       screening: null == screening
           ? _value.screening
           : screening // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       treatment: null == treatment
           ? _value.treatment
           : treatment // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       monitoring: null == monitoring
           ? _value.monitoring
           : monitoring // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       retentionRate: null == retentionRate
           ? _value.retentionRate
           : retentionRate // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       districtId: null == districtId
           ? _value.districtId
           : districtId // ignore: cast_nullable_to_non_nullable
@@ -1448,15 +1448,15 @@ class _$ReportDataImpl implements _ReportData {
   @override
   final String name;
   @override
-  final int register;
+  final String register;
   @override
-  final int screening;
+  final String screening;
   @override
-  final int treatment;
+  final String treatment;
   @override
-  final int monitoring;
+  final String monitoring;
   @override
-  final double retentionRate;
+  final String retentionRate;
   @override
   final int districtId;
   @override
@@ -1505,26 +1505,26 @@ class _$ReportDataImpl implements _ReportData {
 abstract class _ReportData implements ReportData {
   const factory _ReportData(
       {required final String name,
-      required final int register,
-      required final int screening,
-      required final int treatment,
-      required final int monitoring,
-      required final double retentionRate,
+      required final String register,
+      required final String screening,
+      required final String treatment,
+      required final String monitoring,
+      required final String retentionRate,
       required final int districtId,
       required final int healthServiceId}) = _$ReportDataImpl;
 
   @override
   String get name;
   @override
-  int get register;
+  String get register;
   @override
-  int get screening;
+  String get screening;
   @override
-  int get treatment;
+  String get treatment;
   @override
-  int get monitoring;
+  String get monitoring;
   @override
-  double get retentionRate;
+  String get retentionRate;
   @override
   int get districtId;
   @override

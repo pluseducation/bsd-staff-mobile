@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
@@ -129,20 +131,6 @@ class DashboardModel {
     }
   }
 
-  // Future<StatYear> findStatYear() async {
-  //   try {
-  //     return await dashboardRepository.findStatYear();
-  //   } catch (e) {
-  //     if (e is NetworkException) {
-  //       log.e('Network Error', error: e);
-  //       throw CustomException(e.message);
-  //     } else {
-  //       log.e('System Error', error: e);
-  //       throw CustomException(e.toString());
-  //     }
-  //   }
-  // }
-
   Future<Level> findLevel() async {
     try {
       return await dashboardRepository.findLevel();
@@ -204,6 +192,14 @@ class ReportDataProvider extends ChangeNotifier {
     required this.appService,
   });
 
+  Future<void> initData(
+    int searchDistrictId,
+    int searchHealthServiceId,
+  ) async {
+    districtId = searchDistrictId;
+    healthServiceId = searchHealthServiceId;
+  }
+
   Future<bool> findReportData() async {
     try {
       reportDatas = await dashboardRepository.findReportData(
@@ -221,5 +217,11 @@ class ReportDataProvider extends ChangeNotifier {
         throw CustomException(e.toString());
       }
     }
+  }
+
+  Future<void> search(String searchName) async {
+    name = searchName;
+    await findReportData();
+    notifyListeners();
   }
 }

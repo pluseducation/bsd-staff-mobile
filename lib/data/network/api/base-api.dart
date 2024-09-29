@@ -12,8 +12,8 @@ class BaseApi {
   BaseApi({required this.baseUrl}) {
     final options = BaseOptions(
       baseUrl: baseUrl,
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 3),
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 5),
     );
 
     _dio = Dio(options);
@@ -57,8 +57,8 @@ class BaseApi {
     final token = await preferences.getAccessToken();
     final options = BaseOptions(
       baseUrl: baseUrl,
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 3),
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 5),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -98,8 +98,8 @@ class BaseApi {
   Future<Dio> getPrivateWithTokenDio(String token) async {
     final options = BaseOptions(
       baseUrl: baseUrl,
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 3),
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 5),
     );
     return Dio(options)
       ..options.headers = {

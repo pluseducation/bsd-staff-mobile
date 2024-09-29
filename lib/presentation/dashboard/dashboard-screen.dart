@@ -2,53 +2,15 @@ import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-model.dart';
+import 'package:bst_staff_mobile/presentation/dashboard/screen/report-data-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart' as lg;
 import 'package:provider/provider.dart';
-
-Future<bool?> show2AuthDialog({
-  required BuildContext context,
-}) {
-  final textTheme = Theme.of(context)
-      .textTheme
-      .apply(displayColor: Theme.of(context).colorScheme.onSurface);
-
-  return showDialog<bool>(
-    context: context,
-    builder: (BuildContext context) => AlertDialog(
-      title: const Text('ข้อความแจ้งเตือน'),
-      titleTextStyle: textTheme.titleMedium,
-      icon: const Icon(
-        Icons.info,
-        size: 36,
-      ),
-      content: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Text("มีการยืนยัน 2 ระดับกรุณาเลือกการยินยันด้านล่าง"),
-          ),
-        ],
-      ),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () => Navigator.pop(context, true),
-          child: const Text('ยืนยัน'),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pop(context, false),
-          child: const Text('ปิด'),
-        ),
-      ],
-    ),
-  );
-}
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -61,6 +23,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DateTime selectedDate = DateTime.now();
+    final appService = Provider.of<AppService>(context, listen: false);
 
     return Scaffold(
       backgroundColor: MainColors.primary500,
@@ -91,83 +54,96 @@ class DashboardScreen extends StatelessWidget {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: BaseLayoutScrollView(
-                  child: Column(
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFF9F9F9),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  _formatDate(selectedDate),
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20.0),
+                  scrollDirection: Axis.vertical,
+                  child: FutureBuilder(
+                    future: appService.loadPermission(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Container();
+                      } else if (snapshot.hasError) {
+                        return Container();
+                      } else {
+                        return Column(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF9F9F9),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    _formatDate(selectedDate),
+                                    style: const TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            Column(
+                              children: [
+                                const Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Allpatients(),
+                                    RetentionRate(),
+                                  ],
                                 ),
+                                const SizedBox(height: 16),
+                                const Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Register(),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Expanded(
+                                      child: Screening(),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                const Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(child: Therapy()),
+                                    SizedBox(width: 5),
+                                    Expanded(child: Keeptrack()),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                const Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(child: Help()),
+                                    SizedBox(width: 5),
+                                    Expanded(child: Forward()),
+                                  ],
+                                ),
+                                const SizedBox(height: 16),
+                                const Statistics(),
+                                const StatPatient(),
+                                const SizedBox(height: 16),
+                                if (appService.getReportPermission()) ...[
+                                  const ReportDataTable(),
+                                ],
                               ],
                             ),
-                          ),
-                          const SizedBox(height: 20),
-                          const Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(child: Allpatients()),
-                                  Expanded(child: RetentionRate()),
-                                ],
-                              ),
-                              SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Register(),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Expanded(
-                                    child: Screening(),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(child: Therapy()),
-                                  SizedBox(width: 5),
-                                  Expanded(child: Keeptrack()),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(child: Help()),
-                                  SizedBox(width: 5),
-                                  Expanded(child: Forward()),
-                                ],
-                              ),
-                              SizedBox(height: 20),
-                              Statistics(),
-                              StatPatient(),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        );
+                      }
+                    },
                   ),
                 ),
               ),
@@ -365,11 +341,6 @@ class _RegisterState extends State<Register> {
                               fontSize: 18,
                             ),
                           ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 20,
-                            color: MainColors.primary500,
-                          ),
                         ],
                       ),
                       const SizedBox(height: 5),
@@ -445,11 +416,6 @@ class _ScreeningState extends State<Screening> {
                             style: TextStyle(
                               fontSize: 18,
                             ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 20,
-                            color: MainColors.primary500,
                           ),
                         ],
                       ),
@@ -530,11 +496,6 @@ class _TherapyState extends State<Therapy> {
                               fontSize: 18,
                             ),
                           ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 20,
-                            color: MainColors.primary500,
-                          ),
                         ],
                       ),
                       const SizedBox(height: 5),
@@ -613,11 +574,6 @@ class _KeeptrackState extends State<Keeptrack> {
                             style: TextStyle(
                               fontSize: 18,
                             ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 20,
-                            color: MainColors.primary500,
                           ),
                         ],
                       ),
@@ -699,11 +655,6 @@ class _HelpState extends State<Help> {
                               fontSize: 18,
                             ),
                           ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 20,
-                            color: MainColors.primary500,
-                          ),
                         ],
                       ),
                       const SizedBox(height: 5),
@@ -784,11 +735,6 @@ class _ForwardState extends State<Forward> {
                             style: TextStyle(
                               fontSize: 18,
                             ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 20,
-                            color: MainColors.primary500,
                           ),
                         ],
                       ),
@@ -1142,7 +1088,6 @@ class _StatisticsLevelState extends State<StatisticsLevel> {
   }
 }
 
-// ---------
 class StatPatient extends StatefulWidget {
   const StatPatient({
     super.key,
@@ -1499,4 +1444,186 @@ class _StatPatientState extends State<StatPatient> {
       );
     });
   }
+}
+
+// ---------
+
+class ReportDataTable extends StatefulWidget {
+  const ReportDataTable({super.key});
+
+  @override
+  State<ReportDataTable> createState() => _ReportDataTableState();
+}
+
+class _ReportDataTableState extends State<ReportDataTable> {
+  late ReportDataProvider _model;
+
+  @override
+  void initState() {
+    super.initState();
+    _model = ReportDataProvider(
+      log: Provider.of<lg.Logger>(super.context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(super.context, listen: false),
+      appService: Provider.of<AppService>(super.context, listen: false),
+    );
+  }
+
+  void _onSearchNameChanged(String value) {
+    _model.search(value);
+  }
+
+  void _onClickRow(ReportData data) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ReportDataScreen(
+          parentName: data.name,
+          districtId: data.districtId,
+          healthServiceId: data.healthServiceId,
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<ReportDataProvider>.value(
+      value: _model,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'รายงาน',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Container(
+            constraints: const BoxConstraints(
+              maxWidth: 600,
+            ), // Set the maximum width here
+            child: TextFormField(
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                hintText: "ค้นหาจากชื่อ",
+              ),
+              onChanged: _onSearchNameChanged,
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          FutureBuilder<bool>(
+            future: _model.findReportData(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (!snapshot.hasData) {
+                return const Center(child: Text('No data'));
+              } else {
+                return Consumer<ReportDataProvider>(
+                  builder: (context, model, child) {
+                    final data = model.reportDatas;
+                    return ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minWidth: MediaQuery.of(context).size.width,
+                      ),
+                      child: PaginatedDataTable(
+                        columns: const [
+                          DataColumn(
+                            label: Flexible(
+                              child: Text('ชื่อ'),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Flexible(
+                              child: Text('ลงทะเบียน'),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Flexible(
+                              child: Text('คัดกรอง'),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Flexible(
+                              child: Text('บำบัด'),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Flexible(
+                              child: Text('ติดตาม'),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Flexible(
+                              child: Text('Retention Rate %'),
+                            ),
+                          ),
+                        ],
+                        source: ReportDataTableSource(data, _onClickRow),
+                        rowsPerPage: 10, // Set pagination to 10 rows per page
+                        showCheckboxColumn: false,
+                      ),
+                    );
+                  },
+                );
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ReportDataTableSource extends DataTableSource {
+  final List<ReportData> data;
+  final void Function(ReportData) onClickRow;
+
+  ReportDataTableSource(this.data, this.onClickRow);
+
+  @override
+  DataRow getRow(int index) {
+    final item = data[index];
+    return DataRow.byIndex(
+      index: index,
+      cells: [
+        DataCell(
+          (item.districtId > 0 || item.healthServiceId > 0)
+              ? TextButton.icon(
+                  onPressed: () {
+                    onClickRow(item);
+                  },
+                  icon: const Icon(
+                    Icons.visibility,
+                  ), // Add your desired icon here
+                  label: Text(item.name),
+                )
+              : Text(item.name),
+        ),
+        DataCell(Text(item.register)),
+        DataCell(Text(item.screening)),
+        DataCell(Text(item.treatment)),
+        DataCell(Text(item.monitoring)),
+        DataCell(Text(item.retentionRate)),
+      ],
+    );
+  }
+
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get rowCount => data.length;
+
+  @override
+  int get selectedRowCount => 0;
 }

@@ -68,11 +68,11 @@ class Level with _$Level {
 class ReportData with _$ReportData {
   const factory ReportData({
     required String name,
-    required int register,
-    required int screening,
-    required int treatment,
-    required int monitoring,
-    required double retentionRate,
+    required String register,
+    required String screening,
+    required String treatment,
+    required String monitoring,
+    required String retentionRate,
     required int districtId,
     required int healthServiceId,
   }) = _ReportData;

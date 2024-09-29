@@ -125,7 +125,7 @@ class _CertificateScreenGroupState extends State<CertificateScreenGroup> {
                       ),
                     ),
                     child: const BaseLayout(
-                      maxWidth: 600,
+                      maxWidth: double.infinity,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
