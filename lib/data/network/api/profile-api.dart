@@ -156,4 +156,5 @@ class ProfileApi extends BaseApi {
       throw Exception('Unknown error : $error');
     }
   }
+
 }
