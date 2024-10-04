@@ -34,7 +34,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               SizedBox(height: 2),
               Text(
-                'ระบุเบอร์โทรศัพท์ผู้ป่วยหรือผู้ปกครอง',
+                'ระบุเบอร์โทรศัพท์ที่ลงทะเบียน',
                 style: TextStyle(
                   fontSize: 18,
                 ),

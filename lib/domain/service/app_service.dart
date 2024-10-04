@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:bst_staff_mobile/data/repository/config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
+import 'package:bst_staff_mobile/domain/model/config-server.dart';
 import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
 import 'package:bst_staff_mobile/main.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +12,11 @@ import 'package:flutter/material.dart';
 class AppService extends ChangeNotifier {
   final PreferencesRepository preferencesRepo;
   final LoginRepository loginRepository;
+  final ConfigRepository configRepository;
   late ThemeMode _themeMode;
   late bool _reportPermission = false;
   late String roleName = "";
+  late ConfigServer config;
 
   ThemeMode get themeMode => _themeMode;
 
@@ -26,10 +31,13 @@ class AppService extends ChangeNotifier {
   AppService({
     required this.preferencesRepo,
     required this.loginRepository,
+    required this.configRepository,
   });
 
   Future<void> load() async {
     _themeMode = await preferencesRepo.getThemeMode();
+    config = await configRepository.loadConfig();
+
     intervalWebAuth();
   }
 
@@ -86,5 +94,15 @@ class AppService extends ChangeNotifier {
 
   bool getReportPermission() {
     return _reportPermission;
+  }
+
+  bool isDeploy() {
+    if (Platform.isIOS) {
+      return config.iosIsDeploy == "Y";
+    } else if (Platform.isAndroid) {
+      return config.androidIsDeploy == "Y";
+    } else {
+      return false;
+    }
   }
 }

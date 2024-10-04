@@ -2,6 +2,7 @@ import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-model.dart';
+import 'package:bst_staff_mobile/presentation/login/register-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
@@ -109,6 +110,7 @@ class _LoginForm extends StatefulWidget {
 class _LoginFormState extends State<_LoginForm> {
   final _formKey = GlobalKey<FormState>();
   late final LoginModel _model;
+  late AppService appService;
 
   @override
   void initState() {
@@ -120,6 +122,8 @@ class _LoginFormState extends State<_LoginForm> {
           Provider.of<LoginRepository>(super.context, listen: false),
       appService: Provider.of<AppService>(super.context, listen: false),
     );
+
+    appService = Provider.of<AppService>(context, listen: false);
   }
 
   @override
@@ -129,15 +133,6 @@ class _LoginFormState extends State<_LoginForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Row(
-          //   children: [
-          //     statusWidget("REGISTERING"),
-          //     statusWidget("SCREENING"),
-          //     statusWidget("TREATMENT"),
-          //     statusWidget("MONITORING"),
-          //     statusWidget("DISCHARGED"),
-          //   ],
-          // ),
           TextFormField(
             controller: _model.usernameController,
             decoration: const InputDecoration(
@@ -198,6 +193,49 @@ class _LoginFormState extends State<_LoginForm> {
               ),
             ),
           ),
+          const SizedBox(height: 20),
+          if (appService.isDeploy()) ...[
+            const Padding(
+              padding: EdgeInsets.only(right: 20, left: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    "ยังไม่มีบัญชีใช้งาน",
+                    style: TextStyle(fontSize: 15, color: MainColors.text),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: Divider(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () {
+                  registerOnClick();
+                },
+                child: const Text(
+                  'สมัครสมาชิก',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ]
         ],
       ),
     );
@@ -220,5 +258,18 @@ class _LoginFormState extends State<_LoginForm> {
         message: e.toString(),
       );
     }
+  }
+
+  Future<void> registerOnClick() async {
+    gotoRegisterScreen();
+  }
+
+  void gotoRegisterScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RegisterScreen(),
+      ),
+    );
   }
 }

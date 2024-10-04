@@ -295,6 +295,7 @@ class ProfileParent extends StatefulWidget {
 class _ProfileParentState extends State<ProfileParent> {
   late ProfileModel _model;
   late Future<Profile> _profileFuture;
+  late AppService appService;
 
   @override
   void initState() {
@@ -306,6 +307,7 @@ class _ProfileParentState extends State<ProfileParent> {
       appService: Provider.of<AppService>(super.context, listen: false),
     );
     _profileFuture = _model.findProfile(widget.officerId);
+    appService = Provider.of<AppService>(context, listen: false);
   }
 
   @override
@@ -439,9 +441,45 @@ class _ProfileParentState extends State<ProfileParent> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    if (appService.isDeploy()) ...[
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                MainColors.error, // Set the background color
+                            side: BorderSide.none, // Remove the border
+                          ),
+                          onPressed: () {
+                            _onDelteUser();
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'ลบบัญชี',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: MainColors.white,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Icon(
+                                Icons.person,
+                                color: MainColors.white,
+                                size: 30,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -450,6 +488,58 @@ class _ProfileParentState extends State<ProfileParent> {
         },
       ),
     );
+  }
+
+  // event
+  Future<void> _onDelteUser() async {
+    try {
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('แจ้งเตือน'),
+            content: const Text('คุณต้องการลบ บัญชีผู้ใช้ ?'),
+            actions: <Widget>[
+              TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: MainColors.secondary, // Set the text color
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: const Text('ยกเลิก'),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: MainColors.error, // Set the text color
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: const Text('ยืนยัน'),
+              ),
+            ],
+          );
+        },
+      );
+
+      if (confirmed == true) {
+        // call deleted user
+        await _model.deleteUser();
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ),
+          (route) => false,
+        );
+      }
+    } catch (e) {
+      showInfoDialog(
+        context: context,
+        message: e.toString(),
+      );
+    }
   }
 }
 

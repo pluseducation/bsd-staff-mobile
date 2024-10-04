@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
 import 'package:bst_staff_mobile/data/network/api/appointments-api.dart';
 import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
+import 'package:bst_staff_mobile/data/network/api/config-api.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
 import 'package:bst_staff_mobile/data/network/api/master-api.dart';
@@ -19,6 +20,7 @@ import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/Appointments-repository.dart';
 import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
+import 'package:bst_staff_mobile/data/repository/config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
@@ -72,12 +74,18 @@ Future<InitialData> _createData() async {
 
   // Services & Data
   final networkMapper = NetworkMapper(log: log);
+  final configApi = ConfigApi(baseUrl: config.baseUrl);
   final loginApi = LoginApi(baseUrl: config.baseAuthUrl);
   final userApi = UserApi(baseUrl: config.baseAuthUrl);
   final registerApi = RegisterApi(baseUrl: config.baseAuthUrl);
   final officerApi = OfficerApi(baseUrl: config.baseUrl);
   final otpApi = OtpApi(baseUrl: config.baseAuthUrl);
   final userSessionApi = UserSessionApi(baseUrl: config.baseAuthUrl);
+
+  final configRepository = ConfigRepository(
+    configApi: configApi,
+    networkMapper: networkMapper,
+  );
 
   final loginRepository = LoginRepository(
     loginApi: loginApi,
@@ -97,6 +105,7 @@ Future<InitialData> _createData() async {
   final appService = AppService(
     preferencesRepo: preferencesRepo,
     loginRepository: loginRepository,
+    configRepository: configRepository,
   );
   await appService.load();
 
@@ -158,6 +167,7 @@ Future<InitialData> _createData() async {
   return InitialData(
     providers: [
       Provider<Logger>.value(value: log),
+      Provider<ConfigRepository>.value(value: configRepository),
       Provider<LoginRepository>.value(value: loginRepository),
       Provider<RegisterRepository>.value(value: registerRepository),
       Provider<DashboardRepository>.value(value: dashboardRepository),

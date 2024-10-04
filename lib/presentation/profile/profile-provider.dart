@@ -62,6 +62,23 @@ class ProfileModel {
   Future<void> logout() async {
     await appService.logout();
   }
+
+  Future<bool> deleteUser() async {
+    try {
+      final result = await profileRepository.deleteUser();
+      logout();
+
+      return result;
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
 }
 
 // -----
