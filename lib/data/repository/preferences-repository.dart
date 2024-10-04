@@ -76,4 +76,12 @@ class PreferencesRepository {
   Future<void> setRoleScopes(List<String> values) async {
     await preferences.setRoleScopes(values);
   }
+
+  Future<String?> getFullname() async {
+    return preferences.getFullname();
+  }
+
+  Future<void> setFullname(String value) async {
+    await preferences.setFullname(value);
+  }
 }

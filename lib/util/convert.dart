@@ -106,3 +106,10 @@ String convertDateY(DateTime? date) {
   final DateFormat dateFormat = DateFormat('yyyy-MM-dd');
   return dateFormat.format(date);
 }
+
+String formatPhoneNumber(String phoneNumber) {
+  if (phoneNumber.length < 10) {
+    return phoneNumber;
+  }
+  return 'xxx-xxx-x${phoneNumber.substring(phoneNumber.length - 3)}';
+}

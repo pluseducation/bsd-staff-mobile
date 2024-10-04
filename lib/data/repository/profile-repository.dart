@@ -1,18 +1,20 @@
 import 'dart:io';
 
 import 'package:bst_staff_mobile/data/network/api/profile-api.dart';
-import 'package:bst_staff_mobile/data/network/entity/profile-entity.dart';
+import 'package:bst_staff_mobile/data/network/api/user-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 
 class ProfileRepository {
   final ProfileApi profileApi;
+  final UserApi userApi;
   final NetworkMapper networkMapper;
   final String baseUrl;
 
   ProfileRepository({
     required this.profileApi,
+    required this.userApi,
     required this.networkMapper,
     required this.baseUrl,
   });
@@ -75,5 +77,10 @@ class ProfileRepository {
         : '';
 
     return imageUrl;
+  }
+
+  Future<bool> deleteUser() async {
+    final result = await userApi.deleteUser();
+    return result;
   }
 }

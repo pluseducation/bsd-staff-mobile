@@ -11,8 +11,10 @@ import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/api/profile-api.dart';
 import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
+import 'package:bst_staff_mobile/data/network/api/register-api.dart';
 import 'package:bst_staff_mobile/data/network/api/screening-api.dart';
 import 'package:bst_staff_mobile/data/network/api/treatment-api.dart';
+import 'package:bst_staff_mobile/data/network/api/user-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/Appointments-repository.dart';
@@ -23,6 +25,7 @@ import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
+import 'package:bst_staff_mobile/data/repository/register-repository.dart';
 import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
 import 'package:bst_staff_mobile/domain/model/config.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
@@ -70,6 +73,8 @@ Future<InitialData> _createData() async {
   // Services & Data
   final networkMapper = NetworkMapper(log: log);
   final loginApi = LoginApi(baseUrl: config.baseAuthUrl);
+  final userApi = UserApi(baseUrl: config.baseAuthUrl);
+  final registerApi = RegisterApi(baseUrl: config.baseAuthUrl);
   final officerApi = OfficerApi(baseUrl: config.baseUrl);
   final otpApi = OtpApi(baseUrl: config.baseAuthUrl);
   final userSessionApi = UserSessionApi(baseUrl: config.baseAuthUrl);
@@ -80,6 +85,11 @@ Future<InitialData> _createData() async {
     otpApi: otpApi,
     userSessionApi: userSessionApi,
     networkMapper: networkMapper,
+  );
+
+  final registerRepository = RegisterRepository(
+    registerApi: registerApi,
+    otpApi: otpApi,
   );
 
   final preferences = Preferences(prefs: await SharedPreferences.getInstance());
@@ -133,6 +143,7 @@ Future<InitialData> _createData() async {
   final profileApi = ProfileApi(baseUrl: config.baseUrl);
   final profileRepository = ProfileRepository(
     profileApi: profileApi,
+    userApi: userApi,
     networkMapper: networkMapper,
     baseUrl: config.baseUrl,
   );
@@ -148,6 +159,7 @@ Future<InitialData> _createData() async {
     providers: [
       Provider<Logger>.value(value: log),
       Provider<LoginRepository>.value(value: loginRepository),
+      Provider<RegisterRepository>.value(value: registerRepository),
       Provider<DashboardRepository>.value(value: dashboardRepository),
       Provider<PatientRepository>.value(value: patientRepository),
       Provider<WorkflowRepository>.value(value: workflowRepository),
