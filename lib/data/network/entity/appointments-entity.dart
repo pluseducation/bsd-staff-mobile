@@ -14,7 +14,7 @@ class AppointmentsEntity {
   String? guardianPhoneNo;
   String? phoneNo;
   int? appointmentId;
-  DateTime? appointmentAt;
+  String? appointmentAt;
   String? appointmentType;
   String? note;
   String? appointmentWithName;

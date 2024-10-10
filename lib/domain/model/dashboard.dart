@@ -3,6 +3,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'dashboard.freezed.dart';
 
 @freezed
+class WorkFlowTotal with _$WorkFlowTotal {
+  const factory WorkFlowTotal({
+    required int countRegistering,
+    required int countScreening,
+    required int countTreatment,
+    required int countMonitoring,
+    required int countAssistance,
+    required int countDischarged,
+  }) = _WorkFlowTotal;
+}
+
+@freezed
 class StatYear with _$StatYear {
   const factory StatYear({
     required int year,

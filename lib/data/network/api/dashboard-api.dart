@@ -7,26 +7,16 @@ import 'package:dio/dio.dart';
 class DashboardApi extends BaseApi {
   DashboardApi({required super.baseUrl});
 
-  Future<int> findTotalPatient({
-    required String workFlowType,
-  }) async {
-    // final Dio dio = await getPrivateDio();
-    // final response = await dio.get(
-    //   '/api/v1/dashboards/workflow/$workFlowType',
-    // );
-    // if (response.statusCode == 200) {
-    //   return convertToInt(response.data);
-    // } else {
-    //   throw Exception('Unknown error');
-    // }
-
+  Future<List<WorkflowTotalEntity>> findWorkFlowTotal() async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/workflow/$workFlowType',
+        '/api/v1/dashboards/workflow',
       );
       if (response.statusCode == 200) {
-        return convertToInt(response.data);
+        return workflowTotalFromJson(
+          response.data as List,
+        );
       } else {
         throw Exception('Unknown error');
       }

@@ -15,6 +15,245 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
+mixin _$WorkFlowTotal {
+  int get countRegistering => throw _privateConstructorUsedError;
+  int get countScreening => throw _privateConstructorUsedError;
+  int get countTreatment => throw _privateConstructorUsedError;
+  int get countMonitoring => throw _privateConstructorUsedError;
+  int get countAssistance => throw _privateConstructorUsedError;
+  int get countDischarged => throw _privateConstructorUsedError;
+
+  /// Create a copy of WorkFlowTotal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $WorkFlowTotalCopyWith<WorkFlowTotal> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorkFlowTotalCopyWith<$Res> {
+  factory $WorkFlowTotalCopyWith(
+          WorkFlowTotal value, $Res Function(WorkFlowTotal) then) =
+      _$WorkFlowTotalCopyWithImpl<$Res, WorkFlowTotal>;
+  @useResult
+  $Res call(
+      {int countRegistering,
+      int countScreening,
+      int countTreatment,
+      int countMonitoring,
+      int countAssistance,
+      int countDischarged});
+}
+
+/// @nodoc
+class _$WorkFlowTotalCopyWithImpl<$Res, $Val extends WorkFlowTotal>
+    implements $WorkFlowTotalCopyWith<$Res> {
+  _$WorkFlowTotalCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of WorkFlowTotal
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? countRegistering = null,
+    Object? countScreening = null,
+    Object? countTreatment = null,
+    Object? countMonitoring = null,
+    Object? countAssistance = null,
+    Object? countDischarged = null,
+  }) {
+    return _then(_value.copyWith(
+      countRegistering: null == countRegistering
+          ? _value.countRegistering
+          : countRegistering // ignore: cast_nullable_to_non_nullable
+              as int,
+      countScreening: null == countScreening
+          ? _value.countScreening
+          : countScreening // ignore: cast_nullable_to_non_nullable
+              as int,
+      countTreatment: null == countTreatment
+          ? _value.countTreatment
+          : countTreatment // ignore: cast_nullable_to_non_nullable
+              as int,
+      countMonitoring: null == countMonitoring
+          ? _value.countMonitoring
+          : countMonitoring // ignore: cast_nullable_to_non_nullable
+              as int,
+      countAssistance: null == countAssistance
+          ? _value.countAssistance
+          : countAssistance // ignore: cast_nullable_to_non_nullable
+              as int,
+      countDischarged: null == countDischarged
+          ? _value.countDischarged
+          : countDischarged // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WorkFlowTotalImplCopyWith<$Res>
+    implements $WorkFlowTotalCopyWith<$Res> {
+  factory _$$WorkFlowTotalImplCopyWith(
+          _$WorkFlowTotalImpl value, $Res Function(_$WorkFlowTotalImpl) then) =
+      __$$WorkFlowTotalImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int countRegistering,
+      int countScreening,
+      int countTreatment,
+      int countMonitoring,
+      int countAssistance,
+      int countDischarged});
+}
+
+/// @nodoc
+class __$$WorkFlowTotalImplCopyWithImpl<$Res>
+    extends _$WorkFlowTotalCopyWithImpl<$Res, _$WorkFlowTotalImpl>
+    implements _$$WorkFlowTotalImplCopyWith<$Res> {
+  __$$WorkFlowTotalImplCopyWithImpl(
+      _$WorkFlowTotalImpl _value, $Res Function(_$WorkFlowTotalImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of WorkFlowTotal
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? countRegistering = null,
+    Object? countScreening = null,
+    Object? countTreatment = null,
+    Object? countMonitoring = null,
+    Object? countAssistance = null,
+    Object? countDischarged = null,
+  }) {
+    return _then(_$WorkFlowTotalImpl(
+      countRegistering: null == countRegistering
+          ? _value.countRegistering
+          : countRegistering // ignore: cast_nullable_to_non_nullable
+              as int,
+      countScreening: null == countScreening
+          ? _value.countScreening
+          : countScreening // ignore: cast_nullable_to_non_nullable
+              as int,
+      countTreatment: null == countTreatment
+          ? _value.countTreatment
+          : countTreatment // ignore: cast_nullable_to_non_nullable
+              as int,
+      countMonitoring: null == countMonitoring
+          ? _value.countMonitoring
+          : countMonitoring // ignore: cast_nullable_to_non_nullable
+              as int,
+      countAssistance: null == countAssistance
+          ? _value.countAssistance
+          : countAssistance // ignore: cast_nullable_to_non_nullable
+              as int,
+      countDischarged: null == countDischarged
+          ? _value.countDischarged
+          : countDischarged // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$WorkFlowTotalImpl implements _WorkFlowTotal {
+  const _$WorkFlowTotalImpl(
+      {required this.countRegistering,
+      required this.countScreening,
+      required this.countTreatment,
+      required this.countMonitoring,
+      required this.countAssistance,
+      required this.countDischarged});
+
+  @override
+  final int countRegistering;
+  @override
+  final int countScreening;
+  @override
+  final int countTreatment;
+  @override
+  final int countMonitoring;
+  @override
+  final int countAssistance;
+  @override
+  final int countDischarged;
+
+  @override
+  String toString() {
+    return 'WorkFlowTotal(countRegistering: $countRegistering, countScreening: $countScreening, countTreatment: $countTreatment, countMonitoring: $countMonitoring, countAssistance: $countAssistance, countDischarged: $countDischarged)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorkFlowTotalImpl &&
+            (identical(other.countRegistering, countRegistering) ||
+                other.countRegistering == countRegistering) &&
+            (identical(other.countScreening, countScreening) ||
+                other.countScreening == countScreening) &&
+            (identical(other.countTreatment, countTreatment) ||
+                other.countTreatment == countTreatment) &&
+            (identical(other.countMonitoring, countMonitoring) ||
+                other.countMonitoring == countMonitoring) &&
+            (identical(other.countAssistance, countAssistance) ||
+                other.countAssistance == countAssistance) &&
+            (identical(other.countDischarged, countDischarged) ||
+                other.countDischarged == countDischarged));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, countRegistering, countScreening,
+      countTreatment, countMonitoring, countAssistance, countDischarged);
+
+  /// Create a copy of WorkFlowTotal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorkFlowTotalImplCopyWith<_$WorkFlowTotalImpl> get copyWith =>
+      __$$WorkFlowTotalImplCopyWithImpl<_$WorkFlowTotalImpl>(this, _$identity);
+}
+
+abstract class _WorkFlowTotal implements WorkFlowTotal {
+  const factory _WorkFlowTotal(
+      {required final int countRegistering,
+      required final int countScreening,
+      required final int countTreatment,
+      required final int countMonitoring,
+      required final int countAssistance,
+      required final int countDischarged}) = _$WorkFlowTotalImpl;
+
+  @override
+  int get countRegistering;
+  @override
+  int get countScreening;
+  @override
+  int get countTreatment;
+  @override
+  int get countMonitoring;
+  @override
+  int get countAssistance;
+  @override
+  int get countDischarged;
+
+  /// Create a copy of WorkFlowTotal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$WorkFlowTotalImplCopyWith<_$WorkFlowTotalImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$StatYear {
   int get year => throw _privateConstructorUsedError;
   int get total => throw _privateConstructorUsedError;

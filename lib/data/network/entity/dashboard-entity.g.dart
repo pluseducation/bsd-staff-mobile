@@ -6,6 +6,19 @@ part of 'dashboard-entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+WorkflowTotalEntity _$WorkflowTotalEntityFromJson(Map<String, dynamic> json) =>
+    WorkflowTotalEntity(
+      workflow: json['workflow'] as String,
+      count: (json['count'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$WorkflowTotalEntityToJson(
+        WorkflowTotalEntity instance) =>
+    <String, dynamic>{
+      'workflow': instance.workflow,
+      'count': instance.count,
+    };
+
 StatYearEntity _$StatYearEntityFromJson(Map<String, dynamic> json) =>
     StatYearEntity(
       year: (json['year'] as num).toInt(),

@@ -15,44 +15,75 @@ class DashboardRepository {
     required this.networkMapper,
   });
 
-  Future<int> findTotalRegistering() async {
-    final value =
-        await dashboardApi.findTotalPatient(workFlowType: "REGISTERING");
-    return value;
+  Future<WorkFlowTotal> findWorkFlowTotal() async {
+    final entities = await dashboardApi.findWorkFlowTotal();
+    int countRegistering = 0;
+    int countScreening = 0;
+    int countTreatment = 0;
+    int countMonitoring = 0;
+    int countAssistance = 0;
+    int countDischarged = 0;
+
+    for (final entity in entities) {
+      if (entity.workflow == "REGISTERING") {
+        countRegistering = convertToInt(entity.count);
+      } else if (entity.workflow == "SCREENING") {
+        countScreening = convertToInt(entity.count);
+      } else if (entity.workflow == "TREATMENT") {
+        countTreatment = convertToInt(entity.count);
+      } else if (entity.workflow == "MONITORING") {
+        countMonitoring = convertToInt(entity.count);
+      } else if (entity.workflow == "ASSISTANCE") {
+        countAssistance = convertToInt(entity.count);
+      } else if (entity.workflow == "DISCHARGED") {
+        countDischarged = convertToInt(entity.count);
+      }
+    }
+
+    final model = WorkFlowTotal(
+      countRegistering: countRegistering,
+      countScreening: countScreening,
+      countTreatment: countTreatment,
+      countMonitoring: countMonitoring,
+      countAssistance: countAssistance,
+      countDischarged: countDischarged,
+    );
+
+    return model;
   }
 
-  Future<int> findTotalScreening({
-    required String username,
-    required String password,
-  }) async {
-    final value =
-        await dashboardApi.findTotalPatient(workFlowType: "SCREENING");
-    return value;
-  }
+  // Future<int> findTotalScreening({
+  //   required String username,
+  //   required String password,
+  // }) async {
+  //   final value =
+  //       await dashboardApi.findTotalPatient(workFlowType: "SCREENING");
+  //   return value;
+  // }
 
-  Future<int> findTotalTreatment() async {
-    final value =
-        await dashboardApi.findTotalPatient(workFlowType: "TREATMENT");
-    return value;
-  }
+  // Future<int> findTotalTreatment() async {
+  //   final value =
+  //       await dashboardApi.findTotalPatient(workFlowType: "TREATMENT");
+  //   return value;
+  // }
 
-  Future<int> findTotalMonitoring() async {
-    final value =
-        await dashboardApi.findTotalPatient(workFlowType: "MONITORING");
-    return value;
-  }
+  // Future<int> findTotalMonitoring() async {
+  //   final value =
+  //       await dashboardApi.findTotalPatient(workFlowType: "MONITORING");
+  //   return value;
+  // }
 
-  Future<int> findTotalAssistance() async {
-    final value =
-        await dashboardApi.findTotalPatient(workFlowType: "ASSISTANCE");
-    return value;
-  }
+  // Future<int> findTotalAssistance() async {
+  //   final value =
+  //       await dashboardApi.findTotalPatient(workFlowType: "ASSISTANCE");
+  //   return value;
+  // }
 
-  Future<int> findTotalDischarged() async {
-    final value =
-        await dashboardApi.findTotalPatient(workFlowType: "DISCHARGED");
-    return value;
-  }
+  // Future<int> findTotalDischarged() async {
+  //   final value =
+  //       await dashboardApi.findTotalPatient(workFlowType: "DISCHARGED");
+  //   return value;
+  // }
 
   Future<StatYear> findStatYear() async {
     final entity = await dashboardApi.findStatYear();

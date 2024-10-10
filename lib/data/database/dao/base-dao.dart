@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 abstract class BaseDao {
   static const databaseVersion = 1;
 
-  static const _databaseName = 'com.my.app.db';
+  static const _databaseName = 'com.osnarc.antidrug.db';
 
   static const moviesTableName = 'movies';
 

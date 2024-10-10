@@ -55,11 +55,8 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const Center(
                   child: Text(
-                    "สำหรับเจ้าหน้าที่",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Color(0xFF797979),
-                    ),
+                    "บำบัดรักษาและฟื้นฟู ผู้ติดยายเสพติดของประเทศ",
+                    style: TextStyle(),
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -193,49 +190,6 @@ class _LoginFormState extends State<_LoginForm> {
               ),
             ),
           ),
-          const SizedBox(height: 20),
-          if (appService.isDeploy()) ...[
-            const Padding(
-              padding: EdgeInsets.only(right: 20, left: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Divider(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    "ยังไม่มีบัญชีใช้งาน",
-                    style: TextStyle(fontSize: 15, color: MainColors.text),
-                  ),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Divider(
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                onPressed: () {
-                  registerOnClick();
-                },
-                child: const Text(
-                  'สมัครสมาชิก',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ]
         ],
       ),
     );

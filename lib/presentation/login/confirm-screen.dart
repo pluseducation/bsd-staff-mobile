@@ -2,7 +2,6 @@ import 'package:bst_staff_mobile/data/repository/register-repository.dart';
 import 'package:bst_staff_mobile/domain/model/register.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/login/confirm-model.dart';
-import 'package:bst_staff_mobile/presentation/login/login-model.dart';
 import 'package:bst_staff_mobile/presentation/login/create-accoount-screen.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
@@ -58,6 +57,8 @@ class _ConfirmNumberState extends State<ConfirmNumber> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  
+                 
                   const Text(
                     'ยืนยันเบอร์โทรศัพท์',
                     style: TextStyle(

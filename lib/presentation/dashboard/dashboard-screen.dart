@@ -98,39 +98,7 @@ class DashboardScreen extends StatelessWidget {
                                   ],
                                 ),
                                 const SizedBox(height: 16),
-                                const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Register(),
-                                    ),
-                                    SizedBox(width: 5),
-                                    Expanded(
-                                      child: Screening(),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 8),
-                                const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(child: Therapy()),
-                                    SizedBox(width: 5),
-                                    Expanded(child: Keeptrack()),
-                                  ],
-                                ),
-                                const SizedBox(height: 8),
-                                const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(child: Help()),
-                                    SizedBox(width: 5),
-                                    Expanded(child: Forward()),
-                                  ],
-                                ),
+                                const WorkflowTotalContent(),
                                 const SizedBox(height: 16),
                                 const Statistics(),
                                 const StatPatient(),
@@ -273,7 +241,6 @@ class _RetentionRateState extends State<RetentionRate> {
                 "$count%",
                 style: const TextStyle(
                   fontSize: 25,
-                  color: MainColors.primary500,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -284,18 +251,19 @@ class _RetentionRateState extends State<RetentionRate> {
     );
   }
 }
+
 // 3
 
-class Register extends StatefulWidget {
-  const Register({
+class WorkflowTotalContent extends StatefulWidget {
+  const WorkflowTotalContent({
     super.key,
   });
 
   @override
-  _RegisterState createState() => _RegisterState();
+  _WorkflowTotalContentState createState() => _WorkflowTotalContentState();
 }
 
-class _RegisterState extends State<Register> {
+class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
   late final DashboardModel model;
 
   @override
@@ -311,8 +279,8 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<int>(
-      future: model.findTotalRegistering(),
+    return FutureBuilder<WorkFlowTotal>(
+      future: model.findWorkFlowTotal(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -321,373 +289,294 @@ class _RegisterState extends State<Register> {
         } else if (!snapshot.hasData) {
           return const Center(child: Text('No data'));
         } else {
-          final count = snapshot.data!;
-          return SizedBox(
-            width: double.infinity,
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "ลงทะเบียน",
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        count.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+          final data = snapshot.data!;
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: registering(data.countRegistering),
                   ),
-                ),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: screening(data.countScreening),
+                  ),
+                ],
               ),
-            ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: treatment(data.countTreatment),
+                  ),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: monitoring(data.countMonitoring),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: assistance(data.countAssistance),
+                  ),
+                  const SizedBox(width: 5),
+                  const Expanded(
+                    child: ReferContent(),
+                  ),
+                ],
+              ),
+            ],
           );
         }
       },
     );
   }
-}
 
-// 4
-class Screening extends StatefulWidget {
-  const Screening({super.key});
-
-  @override
-  State<Screening> createState() => _ScreeningState();
-}
-
-class _ScreeningState extends State<Screening> {
-  late final DashboardModel model;
-
-  @override
-  void initState() {
-    super.initState();
-    model = DashboardModel(
-      log: Provider.of<lg.Logger>(super.context, listen: false),
-      dashboardRepository:
-          Provider.of<DashboardRepository>(super.context, listen: false),
-      appService: Provider.of<AppService>(super.context, listen: false),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<int>(
-      future: model.findTotalScreening(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
-        } else {
-          final count = snapshot.data!;
-          return SizedBox(
+  Widget registering(int count) {
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: SizedBox(
             width: double.infinity,
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "คัดกรอง",
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "ลงทะเบียน",
+                      style: TextStyle(
+                        fontSize: 18,
                       ),
-                      const SizedBox(height: 5),
-                      Text(
-                        count.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  count.toString(),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
+              ],
             ),
-          );
-        }
-      },
-    );
-  }
-}
-
-// 5
-
-class Therapy extends StatefulWidget {
-  const Therapy({
-    super.key,
-  });
-
-  @override
-  State<Therapy> createState() => _TherapyState();
-}
-
-class _TherapyState extends State<Therapy> {
-  late final DashboardModel model;
-
-  @override
-  void initState() {
-    super.initState();
-    model = DashboardModel(
-      log: Provider.of<lg.Logger>(super.context, listen: false),
-      dashboardRepository:
-          Provider.of<DashboardRepository>(super.context, listen: false),
-      appService: Provider.of<AppService>(super.context, listen: false),
+          ),
+        ),
+      ),
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<int>(
-      future: model.findTotalTreatment(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
-        } else {
-          final count = snapshot.data!;
-          return SizedBox(
+  Widget screening(int count) {
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: SizedBox(
             width: double.infinity,
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "บำบัด",
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "คัดกรอง",
+                      style: TextStyle(
+                        fontSize: 18,
                       ),
-                      const SizedBox(height: 5),
-                      Text(
-                        count.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  count.toString(),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
+              ],
             ),
-          );
-        }
-      },
-    );
-  }
-}
-//
-
-// 6
-class Keeptrack extends StatefulWidget {
-  const Keeptrack({
-    super.key,
-  });
-
-  @override
-  State<Keeptrack> createState() => _KeeptrackState();
-}
-
-class _KeeptrackState extends State<Keeptrack> {
-  late final DashboardModel model;
-
-  @override
-  void initState() {
-    super.initState();
-    model = DashboardModel(
-      log: Provider.of<lg.Logger>(super.context, listen: false),
-      dashboardRepository:
-          Provider.of<DashboardRepository>(super.context, listen: false),
-      appService: Provider.of<AppService>(super.context, listen: false),
+          ),
+        ),
+      ),
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<int>(
-      future: model.findTotalMonitoring(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
-        } else {
-          final count = snapshot.data!;
-          return SizedBox(
+  Widget treatment(int count) {
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: SizedBox(
             width: double.infinity,
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "ติดตาม",
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "บำบัด",
+                      style: TextStyle(
+                        fontSize: 18,
                       ),
-                      const SizedBox(height: 5),
-                      Text(
-                        count.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  count.toString(),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
+              ],
             ),
-          );
-        }
-      },
-    );
-  }
-}
-
-// findTotalAssistance
-// 7
-
-class Help extends StatefulWidget {
-  const Help({
-    super.key,
-  });
-
-  @override
-  State<Help> createState() => _HelpState();
-}
-
-class _HelpState extends State<Help> {
-  late final DashboardModel model;
-
-  @override
-  void initState() {
-    super.initState();
-    model = DashboardModel(
-      log: Provider.of<lg.Logger>(super.context, listen: false),
-      dashboardRepository:
-          Provider.of<DashboardRepository>(super.context, listen: false),
-      appService: Provider.of<AppService>(super.context, listen: false),
+          ),
+        ),
+      ),
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<int>(
-      future: model.findTotalAssistance(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
-        } else {
-          final count = snapshot.data!;
-          return SizedBox(
+  Widget monitoring(int count) {
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: SizedBox(
             width: double.infinity,
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "ช่วยเหลือ",
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "ติดตาม",
+                      style: TextStyle(
+                        fontSize: 18,
                       ),
-                      const SizedBox(height: 5),
-                      Text(
-                        count.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  count.toString(),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
+              ],
             ),
-          );
-        }
-      },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget assistance(int count) {
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "ช่วยเหลือ",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  count.toString(),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget discharged(int count) {
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "ลงทะเบียน",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  count.toString(),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
 
 // 7
-class Forward extends StatefulWidget {
-  const Forward({
+class ReferContent extends StatefulWidget {
+  const ReferContent({
     super.key,
   });
 
   @override
-  State<Forward> createState() => _ForwardState();
+  State<ReferContent> createState() => _ReferContentState();
 }
 
-class _ForwardState extends State<Forward> {
+class _ReferContentState extends State<ReferContent> {
   late final DashboardModel model;
 
   @override

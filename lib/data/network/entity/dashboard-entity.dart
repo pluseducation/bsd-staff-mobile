@@ -1,6 +1,27 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'dashboard-entity.g.dart';
 
+List<WorkflowTotalEntity> workflowTotalFromJson(List data) =>
+    List<WorkflowTotalEntity>.from(
+      data.map((x) => WorkflowTotalEntity.fromJson(x as Map<String, dynamic>)),
+    );
+
+@JsonSerializable()
+class WorkflowTotalEntity {
+  String workflow;
+  int count;
+
+  WorkflowTotalEntity({
+    required this.workflow,
+    required this.count,
+  });
+
+  factory WorkflowTotalEntity.fromJson(Map<String, dynamic> json) =>
+      _$WorkflowTotalEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$WorkflowTotalEntityToJson(this);
+}
+
 @JsonSerializable()
 class StatYearEntity {
   int year;

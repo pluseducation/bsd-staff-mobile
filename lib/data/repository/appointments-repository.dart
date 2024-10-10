@@ -24,7 +24,8 @@ class AppointmentsRepository {
     final List<AppointmentCalendar> appointmentCalendars = [];
 
     for (final appointmentEntity in appointmentEntitys) {
-      if (appointmentEntity.appointmentAt != null) {
+      if (appointmentEntity.appointmentAt != null &&
+          appointmentEntity.reason == null) {
         final DateTime appointmentAt =
             convertToDatetime(appointmentEntity.appointmentAt);
 

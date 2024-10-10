@@ -19,65 +19,9 @@ class DashboardModel {
     required this.appService,
   });
 
-  Future<int> findTotalRegistering() async {
+  Future<WorkFlowTotal> findWorkFlowTotal() async {
     try {
-      return dashboardRepository.findTotalRegistering();
-    } catch (e) {
-      if (e is NetworkException) {
-        log.e('Network Error', error: e);
-        throw CustomException(e.message);
-      } else {
-        log.e('System Error', error: e);
-        throw CustomException(e.toString());
-      }
-    }
-  }
-
-  Future<int> findTotalScreening() async {
-    try {
-      return dashboardRepository.findTotalScreening(username: '', password: '');
-    } catch (e) {
-      if (e is NetworkException) {
-        log.e('Network Error', error: e);
-        throw CustomException(e.message);
-      } else {
-        log.e('System Error', error: e);
-        throw CustomException(e.toString());
-      }
-    }
-  }
-
-  Future<int> findTotalTreatment() async {
-    try {
-      return dashboardRepository.findTotalTreatment();
-    } catch (e) {
-      if (e is NetworkException) {
-        log.e('Network Error', error: e);
-        throw CustomException(e.message);
-      } else {
-        log.e('System Error', error: e);
-        throw CustomException(e.toString());
-      }
-    }
-  }
-
-  Future<int> findTotalMonitoring() async {
-    try {
-      return dashboardRepository.findTotalMonitoring();
-    } catch (e) {
-      if (e is NetworkException) {
-        log.e('Network Error', error: e);
-        throw CustomException(e.message);
-      } else {
-        log.e('System Error', error: e);
-        throw CustomException(e.toString());
-      }
-    }
-  }
-
-  Future<int> findTotalAssistance() async {
-    try {
-      return dashboardRepository.findTotalAssistance();
+      return dashboardRepository.findWorkFlowTotal();
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -105,11 +49,12 @@ class DashboardModel {
 
   Future<int> findTotalRetention() async {
     try {
-      return dashboardRepository.findTotalRetention();
+      final result = await dashboardRepository.findTotalRetention();
+      return result;
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
-        throw CustomException(e.message);
+        return 0; //throw CustomException(e.message);
       } else {
         log.e('System Error', error: e);
         throw CustomException(e.toString());

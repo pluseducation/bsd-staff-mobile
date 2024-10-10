@@ -1,4 +1,6 @@
 import 'package:intl/intl.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 int convertToInt(dynamic object) {
   try {
@@ -39,10 +41,17 @@ String convertToString(dynamic object) {
 
 // ----
 
-DateTime convertToDatetime(dynamic object) {
+DateTime convertToDatetime(String? object) {
   try {
-    final DateTime? value = object as DateTime?;
-    return value ?? DateTime.now();
+    if (object == null) {
+      return DateTime.now();
+    }
+    tz.initializeTimeZones();
+    final DateTime utcDateTime = DateTime.parse(object.toString()).toUtc();
+    final tz.Location thailand = tz.getLocation('Asia/Bangkok');
+    final tz.TZDateTime thailandDateTime =
+        tz.TZDateTime.from(utcDateTime, thailand);
+    return thailandDateTime;
   } catch (e) {
     rethrow;
   }

@@ -40,6 +40,7 @@ class LoginModel {
       appService.preferencesRepo.setRoleName(profilesOfficer.roleName);
       appService.preferencesRepo.setOfficerId(profilesOfficer.id);
       appService.preferencesRepo.setRoleScopes(profilesOfficer.roleScopes);
+      appService.login();
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);

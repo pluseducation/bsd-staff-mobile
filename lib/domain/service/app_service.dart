@@ -37,13 +37,15 @@ class AppService extends ChangeNotifier {
   Future<void> load() async {
     _themeMode = await preferencesRepo.getThemeMode();
     config = await configRepository.loadConfig();
-
-    intervalWebAuth();
   }
 
   Future<void> logout() async {
     preferencesRepo.setAccessToken("");
     preferencesRepo.setRefreshToken("");
+  }
+
+  Future<void> login() async {
+    intervalWebAuth();
   }
 
   Future<void> intervalWebAuth() async {
@@ -60,6 +62,8 @@ class AppService extends ChangeNotifier {
           timer.cancel();
           getIt<NavigationService>().navigateToReplacement('/login');
         }
+      } else {
+        timer.cancel();
       }
     });
   }
