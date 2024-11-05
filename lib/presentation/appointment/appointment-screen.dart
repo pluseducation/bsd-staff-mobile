@@ -5,7 +5,6 @@ import 'package:bst_staff_mobile/presentation/appointment/appointment-model.dart
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
@@ -39,7 +38,6 @@ class AppointmentScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  // width: 600,
                   width: double.infinity,
                   decoration: const BoxDecoration(
                     color: Colors.white,
@@ -122,11 +120,9 @@ class _AppointmentMonthState extends State<AppointmentMonth> {
   @override
   void initState() {
     super.initState();
-
     _events = {};
     for (final event in widget.appointment.events) {
       final appointmentDate = event.appointmentDate;
-
       final dateString = convertDateY(appointmentDate);
       if (_events[dateString] == null) {
         _events[dateString] = [];
@@ -188,11 +184,13 @@ class _AppointmentMonthState extends State<AppointmentMonth> {
                 shape: BoxShape.circle,
               ),
               markersMaxCount: 2,
-              markerSizeScale: 0.2,
             ),
-            headerStyle: const HeaderStyle(
+            headerStyle: HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,
+              titleTextFormatter: (date, locale) {
+                return formatheader(date);
+              },
             ),
           ),
         ),
@@ -222,8 +220,6 @@ class AppointmentEvent extends StatefulWidget {
 class _AppointmentEventState extends State<AppointmentEvent> {
   @override
   Widget build(BuildContext context) {
-    print("Events=======> : ${widget.events}");
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -329,7 +325,6 @@ class _AppointmentEventState extends State<AppointmentEvent> {
                       ),
                     ),
                   ),
-                  // Text("data")
                   const SizedBox(
                     height: 10,
                   ),

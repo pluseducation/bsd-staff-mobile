@@ -29,15 +29,11 @@ class WorkflowRepository {
 
   Future<Registering> findRegistering(int id) async {
     try {
-      final entityPatient = await patientApi.findPatient(id, patientsid: id);
-      final entityProfile = await patientApi.findProfile(id, patientsid: id);
-      final entityNationallity = await masterApi.findNationality();
-      final entityReligion = await masterApi.findReligions();
-      final entityRelationShip = await masterApi.findRelationships();
-      final entityVillages = await masterApi.findVillages();
-      final entityProvinces = await masterApi.findProvinces();
-      final entityDistricts = await masterApi.findDistricts();
-      final entitySubdistricts = await masterApi.findSubdistricts();
+      final entityPatient =
+          await patientApi.findPatient(id, patientsid: id); // print
+
+      final entityProfile =
+          await patientApi.findProfile(id, patientsid: id); //ใช่
 
       final entityQuestion = await questionApi.findRegisteringQuestionChoices();
       String imagePath = "";
@@ -55,73 +51,27 @@ class WorkflowRepository {
       final String level = convertToString(entityProfile.level);
 
       final String dateOfBirthText =
-          formatThaiDateOfBirth(entityPatient.dateOfBirth);
+          formatThaiDateOfBirth(parseDate(entityPatient.dateOfBirth));
 
-      final String nationalityText = convertToString(
-        entityNationallity
-            .where((t) => t.id == entityPatient.nationalityId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String nationalityText = convertToString(entityPatient.nationality);
 
-      final String religionText = convertToString(
-        entityReligion
-            .where((t) => t.id == entityPatient.religionId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String religionText = convertToString(entityPatient.religion);
 
       // -----หมู่บ้าน/ชุมชน
-      final String villages = convertToString(
-        entityVillages
-            .where((t) => t.id == entityPatient.registeredVillageId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String villages = convertToString(entityPatient.registeredVillage);
 
       // ----จังหวัด
 
-      final String province = convertToString(
-        entityProvinces
-            .where((t) => t.id == entityPatient.registeredProvinceId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String province = convertToString(entityPatient.registeredProvince);
 
       // ----เขต
 
-      final String districts = convertToString(
-        entityDistricts
-            .where((t) => t.id == entityPatient.registeredDistrictId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String districts =
+          convertToString(entityPatient.registeredDistrict);
 
       // ตำบล
-      final String subdistricts = convertToString(
-        entitySubdistricts
-            .where((t) => t.id == entityPatient.registeredSubDistrictId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String subdistricts =
+          convertToString(entityPatient.registeredSubDistrict);
 
       String registereText = "";
 
@@ -146,51 +96,23 @@ class WorkflowRepository {
       if (subdistricts.isNotEmpty) {
         registereText += "$subdistricts ";
       }
-      if (entityPatient.registeredPostalCode != null) {
-        registereText += "${entityPatient.registeredPostalCode}";
-      }
+      // if (entityPatient.registeredPostalCode != null) {
+      //   registereText += "${entityPatient.registeredPostalCode}"; //ไม่มี field
+      // }
 
       // -----หมู่บ้าน/ชุมชน
-      final String currentVillageText = convertToString(
-        entityVillages
-            .where((t) => t.id == entityPatient.currentVillageId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String currentVillageText =
+          convertToString(entityPatient.currentVillage);
 
-      final String currentProvinceText = convertToString(
-        entityProvinces
-            .where((t) => t.id == entityPatient.currentProvinceId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String currentProvinceText =
+          convertToString(entityPatient.currentProvince);
 
-      final String currentDistrictText = convertToString(
-        entityDistricts
-            .where((t) => t.id == entityPatient.currentDistrictId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String currentDistrictText =
+          convertToString(entityPatient.currentDistrict);
 
       // ตำบล
-      final String currentSubDistrictText = convertToString(
-        entitySubdistricts
-            .where((t) => t.id == entityPatient.currentSubDistrictId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String currentSubDistrictText =
+          convertToString(entityPatient.currentSubDistrict);
 
       String currentAddrText = "";
       if (entityPatient.currentHouseNo != null) {
@@ -214,9 +136,9 @@ class WorkflowRepository {
       if (currentSubDistrictText.isNotEmpty) {
         currentAddrText += "$currentSubDistrictText ";
       }
-      if (entityPatient.currentPostalCode != null) {
-        currentAddrText += "${entityPatient.currentPostalCode}";
-      }
+      // if (entityPatient.currentPostalCode != null) {
+      //   currentAddrText += "${entityPatient.currentPostalCode}";
+      // }
 
       String guardianfullNameText = "";
       final String tmpGuardianName =
@@ -228,15 +150,8 @@ class WorkflowRepository {
         guardianfullNameText = "$tmpGuardianName $tmpGuardianSurName";
       }
 
-      final String relationShipText = convertToString(
-        entityRelationShip
-            .where((t) => t.id == entityPatient.relationShipId)
-            .map((t) => t.name)
-            .firstWhere(
-              (name) => name != null,
-              orElse: () => "",
-            ),
-      );
+      final String relationShipText =
+          convertToString(entityPatient.guardianRelationShip);
 
       final String guardianPhoneNo = "${entityPatient.guardianPhoneNo}";
 
@@ -300,7 +215,7 @@ class WorkflowRepository {
         level: level,
         dateOfBirthText: dateOfBirthText,
         gender: gender,
-        nationalityText: nationalityText,
+        nationalityText: nationalityText, //
         religionText: religionText,
         registereText: registereText,
         currentAddrText: currentAddrText,
@@ -330,6 +245,7 @@ class WorkflowRepository {
     final entityMentaltreatments = await masterApi.findMentaltreatments();
     final entityCriminalcases = await masterApi.findcriminalcases();
     final entityChroniccontagiouses = await masterApi.findChroniccontagiouses();
+
     final entityQuestion = await questionApi.findScreeningsQuestionChoices();
 
     final String maritalStatusText = convertToString(

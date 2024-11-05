@@ -95,6 +95,13 @@ String convertThaiDate(DateTime? date) {
   return thaiDateFormat.format(date);
 }
 
+DateTime? parseDate(String? dateString) {
+  if (dateString == null) {
+    return null;
+  }
+  return DateTime.tryParse(dateString);
+}
+
 String formatThaiDateOfBirth(DateTime? date) {
   if (date == null) {
     return "";
@@ -114,6 +121,18 @@ String convertDateY(DateTime? date) {
 
   final DateFormat dateFormat = DateFormat('yyyy-MM-dd');
   return dateFormat.format(date);
+}
+
+String formatheader(DateTime dateTime) {
+  final DateFormat formatter = DateFormat('MMMM yyyy', 'th_TH');
+  String formattedDate = formatter.format(dateTime);
+
+  final int year = dateTime.year + 543;
+  // ignore: join_return_with_assignment
+  formattedDate =
+      formattedDate.replaceFirst(dateTime.year.toString(), year.toString());
+
+  return formattedDate;
 }
 
 String formatPhoneNumber(String phoneNumber) {

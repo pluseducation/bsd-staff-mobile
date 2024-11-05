@@ -27,10 +27,23 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset(
-                      "assets/images/snapedit.png",
-                      width: 115,
-                      fit: BoxFit.cover,
+                    // Image.asset(
+                    //   "assets/images/snapedit.png",
+                    //   width: 115,
+                    //   fit: BoxFit.cover,
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/images/logo_1.png",
+                          height: 55,
+                        ),
+                        Image.asset(
+                          "assets/images/logo_2.png",
+                          height: 55,
+                        ),
+                      ],
                     ),
                     const SizedBox(width: 8),
                     const Column(

@@ -32,6 +32,7 @@ class WorkflowdModel {
 
   Future<Screening> findScreening(int patientId) async {
     try {
+      log.i('findScreening=====>>>>> $patientId');
       return workflowRepository.findScreening(patientId);
     } catch (e) {
       if (e is NetworkException) {

@@ -47,7 +47,7 @@ class PatientApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/patients/$patientsid',
+        '/api/v1/patients/$patientsid/print',
       );
       if (response.statusCode == 200) {
         return RegisteringEntity.fromJson(
