@@ -40,7 +40,7 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
+          return const Center(child: Text('ไม่พบข้อมูล'));
         } else {
           final data = snapshot.data!;
 
@@ -101,7 +101,7 @@ class _RegisteringScreenState extends State<RegisteringScreen> {
                           height: 16,
                         ),
                         const Text(
-                          "ข้อมูลส่วนบุคคล",
+                          "ข้อมูลลงทะเบียน",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

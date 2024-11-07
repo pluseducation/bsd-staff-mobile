@@ -42,7 +42,7 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
+          return const Center(child: Text('ไม่พบข้อมูล'));
         } else {
           final data = snapshot.data!;
           if (data.treatmentDate.isEmpty) {
@@ -219,7 +219,7 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
   //                     Text(
   //                       _treatmentData.isNotEmpty
   //                           ? _treatmentData.join(', ')
-  //                           : 'No data',
+  //                           : '',
   //                       style: const TextStyle(
   //                         fontSize: 18,
   //                       ),

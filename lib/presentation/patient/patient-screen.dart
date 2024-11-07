@@ -217,7 +217,8 @@ class _SearchPatientState extends State<SearchPatient> {
           controller: _searchController,
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.search),
-            hintText: "ค้นหาจากชื่อ รอบบำบัด",
+            hintText:
+                "ค้นหาชื่อ-นามสกุล, เลขบัตร ปชช/เลขแทนบัตร ปชช, เลขรอบบำบัด",
           ),
           onChanged: _onSearchChanged,
         ),

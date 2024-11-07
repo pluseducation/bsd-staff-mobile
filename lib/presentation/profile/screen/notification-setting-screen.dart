@@ -52,7 +52,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData) {
-              return const Center(child: Text('No data'));
+              return const Center(child: Text('ไม่พบข้อมูล'));
             } else {
               return Consumer<NotificationProvider>(
                 builder: (context, model, child) {

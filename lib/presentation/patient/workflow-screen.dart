@@ -59,7 +59,7 @@ class _WorkflowScreenState extends State<WorkflowScreen> {
                 if (_model.isHaveRegistering(widget.status) == true) ...[
                   const Tab(
                     child: Text(
-                      "ข้อมูลส่วนบุคคล",
+                      "ข้อมูลลงทะเบียน",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

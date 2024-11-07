@@ -157,7 +157,7 @@ class _AllpatientsState extends State<Allpatients> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
+          return const Center(child: Text('ไม่พบข้อมูล'));
         } else {
           final count = snapshot.data!;
           return Column(
@@ -222,7 +222,7 @@ class _RetentionRateState extends State<RetentionRate> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
+          return const Center(child: Text('ไม่พบข้อมูล'));
         } else {
           final count = snapshot.data!;
           return Column(
@@ -287,7 +287,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
+          return const Center(child: Text('ไม่พบข้อมูล'));
         } else {
           final data = snapshot.data!;
           return Column(
@@ -600,7 +600,7 @@ class _ReferContentState extends State<ReferContent> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
+          return const Center(child: Text('ไม่พบข้อมูล'));
         } else {
           final refer = snapshot.data!;
           final sender = refer.sender.toString();
@@ -680,7 +680,7 @@ class StatisticsState extends State<Statistics> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData) {
-          return const Center(child: Text('No data'));
+          return const Center(child: Text('ไม่พบข้อมูล'));
         } else {
           final level = snapshot.data!;
 
@@ -1415,7 +1415,7 @@ class _ReportDataTableState extends State<ReportDataTable> {
               } else if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else if (!snapshot.hasData) {
-                return const Center(child: Text('No data'));
+                return const Center(child: Text('ไม่พบข้อมูล'));
               } else {
                 return Consumer<ReportDataProvider>(
                   builder: (context, model, child) {

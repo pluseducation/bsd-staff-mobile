@@ -248,7 +248,7 @@ class _CertificateTabState extends State<CertificateTab>
         } else if (searchProvider.errorMessage != null) {
           return Center(child: Text('Error: ${searchProvider.errorMessage}'));
         } else if (searchProvider.certificate.alls.isEmpty) {
-          return const Center(child: Text('No data'));
+          return const Center(child: Text('ไม่พบข้อมูล'));
         } else {
           return Column(
             children: [
