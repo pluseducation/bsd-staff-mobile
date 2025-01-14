@@ -9,9 +9,8 @@ environment:
 
 dependencies:
   cached_network_image: ^3.2.3
-  device_info_plus: ^10.1.2
   dio: ^5.1.1
-  timezone: ^0.7.0
+  timezone: ^0.10.0
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -30,9 +29,9 @@ dependencies:
   sqflite: ^2.2.6
   sqflite_common_ffi: ^2.2.6
   pinput: ^5.0.0
-  fl_chart: ^0.69.0
+  fl_chart: ^0.70.1
   font_awesome_flutter: ^10.0.0
-  get_it: ^7.0.0
+  get_it: ^8.0.3
   table_calendar: ^3.1.2
   image_picker: ^1.0.7
 

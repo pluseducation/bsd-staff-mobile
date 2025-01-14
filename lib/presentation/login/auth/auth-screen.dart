@@ -2,7 +2,7 @@ import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/auth/auth-model.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
+import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -66,54 +66,58 @@ class AuthScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: BaseLayouts(
-          maxWidth: 600,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
+        child: SingleChildScrollView(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/images/logo_1.png",
-                    height: 100,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/images/logo_1.png",
+                        height: 100,
+                      ),
+                      Image.asset(
+                        "assets/images/logo_2.png",
+                        height: 100,
+                      ),
+                    ],
                   ),
-                  Image.asset(
-                    "assets/images/logo_2.png",
-                    height: 100,
+                  const SizedBox(height: 35),
+                  Text(
+                    'ยืนยันตัวตน 2 ระดับ',
+                    style: textTheme.headlineSmall,
+                  ),
+                  Text(
+                    'เพื่อเข้าใช้งานเว็บไซต์',
+                    style: textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 35),
+                  SizedBox(
+                    width: 150,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        handleAuth();
+                      },
+                      child: const Text("ยืนยันตัวตน"),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  SizedBox(
+                    width: 150,
+                    child: TextButton(
+                      onPressed: () {
+                        handleCancel();
+                      },
+                      child: const Text("ยกเลิก"),
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 35),
-              Text(
-                'ยืนยันตัวตน 2 ระดับ',
-                style: textTheme.headlineSmall,
-              ),
-              Text(
-                'เพื่อเข้าใช้งานเว็บไซต์',
-                style: textTheme.headlineSmall,
-              ),
-              const SizedBox(height: 35),
-              SizedBox(
-                width: 150,
-                child: ElevatedButton(
-                  onPressed: () {
-                    handleAuth();
-                  },
-                  child: const Text("ยืนยันตัวตน"),
-                ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                width: 150,
-                child: TextButton(
-                  onPressed: () {
-                    handleCancel();
-                  },
-                  child: const Text("ยกเลิก"),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

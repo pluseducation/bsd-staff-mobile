@@ -34,7 +34,7 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Treatment>(
+    return FutureBuilder<Treatment?>(
       future: _model.findTreatment(widget.patientId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

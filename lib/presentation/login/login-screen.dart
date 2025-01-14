@@ -4,7 +4,7 @@ import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-model.dart';
 import 'package:bst_staff_mobile/presentation/login/register-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
+import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -26,67 +26,74 @@ class LoginScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: BaseLayouts(
-          maxWidth: 600,
+        child: SingleChildScrollView(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "assets/images/logo_1.png",
-                      height: 100,
-                    ),
-                    Image.asset(
-                      "assets/images/logo_2.png",
-                      height: 100,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 15),
-                Center(
-                  child: Text(
-                    'เข้าสู่ระบบ',
-                    style: textTheme.headlineSmall,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/logo_1.png",
+                            height: 100,
+                          ),
+                          Image.asset(
+                            "assets/images/logo_2.png",
+                            height: 100,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      Center(
+                        child: Text(
+                          'เข้าสู่ระบบ',
+                          style: textTheme.headlineSmall,
+                        ),
+                      ),
+                      const Center(
+                        child: Text(
+                          "บำบัดรักษาและฟื้นฟู ผู้ติดยาเสพติดของประเทศ",
+                          style: TextStyle(),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      const _LoginForm(),
+                      // const SizedBox(height: 70),
+                      // Text('ยังไม่มีบัญชีใช้งาน', style: textTheme.titleMedium),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     GestureDetector(
+                      //       onTap: () {
+                      //         Navigator.of(context).push(
+                      //           MaterialPageRoute(
+                      //             builder: (context) => const VerifycodeScreen(),
+                      //           ),
+                      //         );
+                      //       },
+                      //       child: const Text(
+                      //         'ลงทะเบียน',
+                      //         style: TextStyle(
+                      //           color: MainColors.primary500,
+                      //           decoration: TextDecoration.underline,
+                      //           decorationColor: MainColors.primary300,
+                      //           decorationThickness: 1,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                    ],
                   ),
                 ),
-                const Center(
-                  child: Text(
-                    "บำบัดรักษาและฟื้นฟู ผู้ติดยายเสพติดของประเทศ",
-                    style: TextStyle(),
-                  ),
-                ),
-                const SizedBox(height: 15),
-                const _LoginForm(),
-                // const SizedBox(height: 70),
-                // Text('ยังไม่มีบัญชีใช้งาน', style: textTheme.titleMedium),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     GestureDetector(
-                //       onTap: () {
-                //         Navigator.of(context).push(
-                //           MaterialPageRoute(
-                //             builder: (context) => const VerifycodeScreen(),
-                //           ),
-                //         );
-                //       },
-                //       child: const Text(
-                //         'ลงทะเบียน',
-                //         style: TextStyle(
-                //           color: MainColors.primary500,
-                //           decoration: TextDecoration.underline,
-                //           decorationColor: MainColors.primary300,
-                //           decorationThickness: 1,
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-              ],
+              ),
             ),
           ),
         ),

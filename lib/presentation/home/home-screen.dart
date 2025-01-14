@@ -60,11 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
         children: const <Widget>[
           /// Home page
 
-          DashboardScreen(),
-          PatientScreen(),
-          AppointmentScreen(),
-          CertificateScreen(),
-          ProfileScreen(),
+          // DashboardScreen(),
+          // PatientScreen(),
+          // AppointmentScreen(),
+          // CertificateScreen(),
+          // ProfileScreen(),
         ],
       ),
     );

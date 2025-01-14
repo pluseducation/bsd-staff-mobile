@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/verifycode/verifycode-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
+import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,153 +36,163 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
       ),
-      body: BaseLayout(
-        maxWidth: 600,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const Text(
-              "ระบุรหัสยืนยัน",
-              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            const Row(
-              children: [
-                Text(
-                  "รหัสยืนยันได้ส่งไปหมายเลขโทรศัพท์",
-                  style: TextStyle(fontSize: 15, color: MainColors.primary500),
-                ),
-                SizedBox(
-                  width: 3,
-                ),
-                Text(
-                  "098-738-xxxx",
-                  style: TextStyle(fontSize: 15, color: MainColors.primary500),
-                ),
-                SizedBox(
-                  width: 3,
-                ),
-                Text(
-                  "แล้ว",
-                  style: TextStyle(fontSize: 15, color: MainColors.primary500),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                _model.otpLength,
-                (index) => Container(
-                  height: 50,
-                  width: 48,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(
-                      color: Colors.grey,
-                    ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 600),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 20),
+                  const Text(
+                    "ระบุรหัสยืนยัน",
+                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
                   ),
-                  child: TextFormField(
-                    controller: _model.otpControllers[index],
-                    focusNode: _model.focusNodes[index],
-                    autofocus: true,
-                    onChanged: (value) {
-                      _onDigitEntered(value, index);
-                      if (value.length == 1) {
-                        if (index < _model.otpLength - 1) {
-                          _model.focusNodes[index + 1].requestFocus();
-                        } else {
-                          _model.focusNodes[index].unfocus();
-                        }
-                      } else if (value.isEmpty && index > 0) {
-                        _model.focusNodes[index - 1].requestFocus();
-                      }
-                    },
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                    ),
-                    style: Theme.of(context).textTheme.titleLarge,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(1),
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (_model.currentTimerValue.inSeconds == 0)
-                  Row(
+                  const SizedBox(height: 10),
+                  const Row(
                     children: [
-                      const Text(
-                        "OTP หมดอายุแล้ว",
+                      Text(
+                        "รหัสยืนยันได้ส่งไปหมายเลขโทรศัพท์",
                         style: TextStyle(
-                          fontSize: 15,
-                          color: MainColors.primary500,
-                        ),
+                            fontSize: 15, color: MainColors.primary500),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 3,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          _onResend();
-                        },
-                        child: const Text(
-                          'ส่งอีกครั้ง',
-                          style: TextStyle(
+                      Text(
+                        "098-738-xxxx",
+                        style: TextStyle(
+                            fontSize: 15, color: MainColors.primary500),
+                      ),
+                      SizedBox(
+                        width: 3,
+                      ),
+                      Text(
+                        "แล้ว",
+                        style: TextStyle(
+                            fontSize: 15, color: MainColors.primary500),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(
+                      _model.otpLength,
+                      (index) => Container(
+                        height: 50,
+                        width: 48,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        child: TextFormField(
+                          controller: _model.otpControllers[index],
+                          focusNode: _model.focusNodes[index],
+                          autofocus: true,
+                          onChanged: (value) {
+                            _onDigitEntered(value, index);
+                            if (value.length == 1) {
+                              if (index < _model.otpLength - 1) {
+                                _model.focusNodes[index + 1].requestFocus();
+                              } else {
+                                _model.focusNodes[index].unfocus();
+                              }
+                            } else if (value.isEmpty && index > 0) {
+                              _model.focusNodes[index - 1].requestFocus();
+                            }
+                          },
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                          ),
+                          style: Theme.of(context).textTheme.titleLarge,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      if (_model.currentTimerValue.inSeconds == 0)
+                        Row(
+                          children: [
+                            const Text(
+                              "OTP หมดอายุแล้ว",
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: MainColors.primary500,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 3,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                _onResend();
+                              },
+                              child: const Text(
+                                'ส่งอีกครั้ง',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: MainColors.secondary,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: MainColors.secondaryLight,
+                                  decorationThickness: 1,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      if (_model.currentTimerValue.inSeconds != 0)
+                        Text(
+                          'Resend code in ${_model.currentTimerValue.inMinutes.toString().padLeft(2, '0')}:${(_model.currentTimerValue.inSeconds % 60).toString().padLeft(2, '0')}',
+                          style: const TextStyle(
                             fontSize: 15,
-                            color: MainColors.secondary,
-                            decoration: TextDecoration.underline,
-                            decorationColor: MainColors.secondaryLight,
-                            decorationThickness: 1,
+                            color: MainColors.primary500,
+                          ),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 70),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _model.isButtonEnabled ? _onSubmit : null,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: MainColors.primary500,
+                          padding: const EdgeInsets.all(15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'ตกลง',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                if (_model.currentTimerValue.inSeconds != 0)
-                  Text(
-                    'Resend code in ${_model.currentTimerValue.inMinutes.toString().padLeft(2, '0')}:${(_model.currentTimerValue.inSeconds % 60).toString().padLeft(2, '0')}',
-                    style: const TextStyle(
-                      fontSize: 15,
-                      color: MainColors.primary500,
                     ),
                   ),
-              ],
-            ),
-            const SizedBox(height: 70),
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _model.isButtonEnabled ? _onSubmit : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: MainColors.primary500,
-                    padding: const EdgeInsets.all(15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: const Text(
-                    'ตกลง',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

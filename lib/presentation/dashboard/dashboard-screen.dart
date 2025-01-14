@@ -1108,7 +1108,7 @@ class _StatPatientState extends State<StatPatient> {
       text = yearTexts[value.toInt()];
     }
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       space: 12,
       child: Text(
         text,
@@ -1120,7 +1120,7 @@ class _StatPatientState extends State<StatPatient> {
   Widget leftTitles(double value, TitleMeta meta) {
     const style = TextStyle(fontSize: 12);
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       space: 12,
       child: Text(
         meta.formattedValue,

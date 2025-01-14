@@ -14,7 +14,7 @@ class RegisteringModel {
     required this.appService,
   });
 
-  Future<Registering> findRegistering(int patientId) async {
-    return workflowRepository.findRegistering(patientId);
-  }
+  // Future<Registering> findRegistering(int patientId) async {
+  //   return workflowRepository.findRegistering(patientId);
+  // }
 }

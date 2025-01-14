@@ -9,7 +9,7 @@ import 'package:bst_staff_mobile/presentation/profile/profile-provider.dart';
 import 'package:bst_staff_mobile/presentation/profile/screen/notification-setting-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
+import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -78,182 +78,197 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: BaseLayout(
-                  maxWidth: 600,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () async {
-                              await personalInformation();
-                            },
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: Card(
-                                // elevation: 0,
-                                child: BaseLayoutPadding(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: MainColors.white,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: MainColors.white,
+                child: SingleChildScrollView(
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 600),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                GestureDetector(
+                                  onTap: () async {
+                                    await personalInformation();
+                                  },
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    child: Card(
+                                      // elevation: 0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: MainColors.white,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    color: MainColors.white,
+                                                  ),
+                                                  child: const Padding(
+                                                    padding:
+                                                        EdgeInsets.all(4.0),
+                                                    child: Icon(
+                                                      Icons.person_pin,
+                                                      color:
+                                                          MainColors.primary500,
+                                                      size: 35,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 15,
+                                                ),
+                                                const Text(
+                                                  "ข้อมูลส่วนตัว",
+                                                  style: TextStyle(
+                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(4.0),
-                                              child: Icon(
-                                                Icons.person_pin,
-                                                color: MainColors.primary500,
-                                                size: 35,
-                                              ),
+                                            const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Color(0xFF9CA3AF),
+                                              size: 20,
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 15,
-                                          ),
-                                          const Text(
-                                            "ข้อมูลส่วนตัว",
-                                            style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                      const Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Color(0xFF9CA3AF),
-                                        size: 20,
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          const Text(
-                            "การตั้งค่า",
-                            style: TextStyle(
-                              fontSize: 17,
-                              color: Color(0xFF9CA3AF),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const NotificationSettingScreen(),
+                                const SizedBox(
+                                  height: 25,
                                 ),
-                              );
-                            },
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: Card(
-                                // elevation: 0,
-                                // color: const Color(0xFFF6F6F6),
-                                child: BaseLayoutPadding(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: MainColors.white,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: MainColors.white,
-                                            ),
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(4.0),
-                                              child: Icon(
-                                                Icons.notifications_none,
-                                                color: MainColors.primary500,
-                                                size: 35,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 15,
-                                          ),
-                                          const Text(
-                                            "แจ้งเตือน",
-                                            style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Color(0xFF9CA3AF),
-                                        size: 20,
-                                      ),
-                                    ],
+                                const Text(
+                                  "การตั้งค่า",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    color: Color(0xFF9CA3AF),
                                   ),
                                 ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: OutlinedButton(
-                              onPressed: () {
-                                _model.logout();
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
+                                const SizedBox(
+                                  height: 25,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const NotificationSettingScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    child: Card(
+                                      // elevation: 0,
+                                      // color: const Color(0xFFF6F6F6),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: MainColors.white,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    color: MainColors.white,
+                                                  ),
+                                                  child: const Padding(
+                                                    padding:
+                                                        EdgeInsets.all(4.0),
+                                                    child: Icon(
+                                                      Icons.notifications_none,
+                                                      color:
+                                                          MainColors.primary500,
+                                                      size: 35,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 15,
+                                                ),
+                                                const Text(
+                                                  "แจ้งเตือน",
+                                                  style: TextStyle(
+                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Color(0xFF9CA3AF),
+                                              size: 20,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                );
-                              },
-                              style: OutlinedButton.styleFrom(
-                                side: const BorderSide(
-                                  color: Color(0xFFBDBDBD),
                                 ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                                const SizedBox(
+                                  height: 25,
                                 ),
-                              ),
-                              child: const Text(
-                                'ออกจากระบบ',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.red,
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: OutlinedButton(
+                                    onPressed: () {
+                                      _model.logout();
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => LoginScreen(),
+                                        ),
+                                      );
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                      side: const BorderSide(
+                                        color: Color(0xFFBDBDBD),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    child: const Text(
+                                      'ออกจากระบบ',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -332,77 +347,85 @@ class _ProfileParentState extends State<ProfileParent> {
             return const Center(child: Text('ไม่มีข้อมูลส่วนตัว'));
           } else {
             final profile = snapshot.data!;
-            return BaseLayoutScrollView(
-              child: SizedBox(
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: UploadImage(
-                        profile.imageUrl,
+            return SingleChildScrollView(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: UploadImage(
+                              profile.imageUrl,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "ชื่อ-สกุล",
+                                style: TextStyle(
+                                    fontSize: 17, color: MainColors.text),
+                              ),
+                              Text(
+                                profile.fullname,
+                                style: const TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "เบอร์โทรศัพท์",
+                                style: TextStyle(
+                                    fontSize: 17, color: MainColors.text),
+                              ),
+                              Text(
+                                profile.phoneNo,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "ชื่อบัญชีเข้าใช้งาน",
+                                style: TextStyle(
+                                    fontSize: 17, color: MainColors.text),
+                              ),
+                              Text(
+                                profile.username,
+                                style: const TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "ชื่อ-สกุล",
-                          style:
-                              TextStyle(fontSize: 17, color: MainColors.text),
-                        ),
-                        Text(
-                          profile.fullname,
-                          style: const TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "เบอร์โทรศัพท์",
-                          style:
-                              TextStyle(fontSize: 17, color: MainColors.text),
-                        ),
-                        Text(
-                          profile.phoneNo,
-                          style: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "ชื่อบัญชีเข้าใช้งาน",
-                          style:
-                              TextStyle(fontSize: 17, color: MainColors.text),
-                        ),
-                        Text(
-                          profile.username,
-                          style: const TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
+                  ),
                 ),
               ),
             );
@@ -513,105 +536,112 @@ class _ProfileChangePasswordState extends State<ProfileChangePassword> {
       ),
       body: Form(
         key: _formKey,
-        child: BaseLayout(
-          maxWidth: 600,
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'ตั้งรหัสผ่านใหม่',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: _model.passwordController,
-                  obscureText: _model.obscureNewPassword,
-                  decoration: InputDecoration(
-                    hintText: "รหัสผ่านใหม่",
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _model.obscureNewPassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _model.obscureNewPassword =
-                              !_model.obscureNewPassword;
-                        });
-                      },
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'กรุณาระบุรหัสผ่าน';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  controller: _confirmPasswordController,
-                  obscureText: _model.obscureConfirmPassword,
-                  decoration: InputDecoration(
-                    hintText: "ยืนยันรหัสผ่านใหม่",
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _model.obscureConfirmPassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _model.obscureConfirmPassword =
-                              !_model.obscureConfirmPassword;
-                        });
-                      },
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'กรุณายืนยันรหัสผ่าน';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
+        child: SingleChildScrollView(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        await newPasswordOnClick();
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: MainColors.primary500,
-                    ),
-                    child: const Text(
-                      'ยืนยัน',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
+                      const Text(
+                        'ตั้งรหัสผ่านใหม่',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: _model.passwordController,
+                        obscureText: _model.obscureNewPassword,
+                        decoration: InputDecoration(
+                          hintText: "รหัสผ่านใหม่",
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _model.obscureNewPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _model.obscureNewPassword =
+                                    !_model.obscureNewPassword;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'กรุณาระบุรหัสผ่าน';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: _confirmPasswordController,
+                        obscureText: _model.obscureConfirmPassword,
+                        decoration: InputDecoration(
+                          hintText: "ยืนยันรหัสผ่านใหม่",
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _model.obscureConfirmPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _model.obscureConfirmPassword =
+                                    !_model.obscureConfirmPassword;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'กรุณายืนยันรหัสผ่าน';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              await newPasswordOnClick();
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: MainColors.primary500,
+                          ),
+                          child: const Text(
+                            'ยืนยัน',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         ),

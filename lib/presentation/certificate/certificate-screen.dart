@@ -4,7 +4,7 @@ import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/certificate/certificate-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
+import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:bst_staff_mobile/widget/status-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -124,19 +124,27 @@ class _CertificateScreenGroupState extends State<CertificateScreenGroup> {
                         topRight: Radius.circular(30),
                       ),
                     ),
-                    child: const BaseLayout(
-                      maxWidth: double.infinity,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CertificateSearch(),
-                          SizedBox(
-                            height: 10,
+                    child: SingleChildScrollView(
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints:
+                              const BoxConstraints(maxWidth: double.infinity),
+                          child: const Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CertificateSearch(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Expanded(
+                                  child: CertificateTab(),
+                                ),
+                              ],
+                            ),
                           ),
-                          Expanded(
-                            child: CertificateTab(),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),

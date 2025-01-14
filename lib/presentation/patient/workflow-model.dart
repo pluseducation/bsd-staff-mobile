@@ -16,9 +16,9 @@ class WorkflowdModel {
     required this.appService,
   });
 
-  Future<Registering> findRegistering(int patientId) async {
+  Future<Registering?> findRegistering(int patientId) async {
     try {
-      return workflowRepository.findRegistering(patientId);
+      return null; //workflowRepository.findRegistering(patientId);
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -30,10 +30,9 @@ class WorkflowdModel {
     }
   }
 
-  Future<Screening> findScreening(int patientId) async {
+  Future<Screening?> findScreening(int patientId) async {
     try {
-      log.i('findScreening=====>>>>> $patientId');
-      return workflowRepository.findScreening(patientId);
+      return null; //workflowRepository.findScreening(patientId);
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -45,9 +44,9 @@ class WorkflowdModel {
     }
   }
 
-  Future<Treatment> findTreatment(int patientId) async {
+  Future<Treatment?> findTreatment(int patientId) async {
     try {
-      return workflowRepository.findTreatment(patientId);
+      return null; //workflowRepository.findTreatment(patientId);
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);

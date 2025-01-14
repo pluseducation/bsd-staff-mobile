@@ -2,7 +2,7 @@ import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-provider.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/layout/base-layout.dart';
+import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -57,58 +57,63 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
               return Consumer<NotificationProvider>(
                 builder: (context, model, child) {
                   final notification = model.notification;
-                  return BaseLayoutScrollView(
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildSwitchRow(
-                            "ตารางนัดหมาย",
-                            notification.appointment,
-                            (value) => model.updateAppointment(value),
+                  return SingleChildScrollView(
+                    child: Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 600),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildSwitchRow(
+                                "ตารางนัดหมาย",
+                                notification.appointment,
+                                (value) => model.updateAppointment(value),
+                              ),
+                              const Divider(
+                                color: Color(0xFFDEE2E4),
+                                thickness: 0.8,
+                              ),
+                              _buildSwitchRow(
+                                "การติดตาม",
+                                notification.monitoring,
+                                (value) => model.updateMonitoring(value),
+                              ),
+                              const Divider(
+                                color: Color(0xFFDEE2E4),
+                                thickness: 0.8,
+                              ),
+                              _buildSwitchRow(
+                                "เคสส่งต่อ/รอรับ",
+                                notification.refer,
+                                (value) => model.updateRefer(value),
+                              ),
+                              const Divider(
+                                color: Color(0xFFDEE2E4),
+                                thickness: 0.8,
+                              ),
+                              _buildSwitchRow(
+                                "ช่วยเหลือ",
+                                notification.assistant,
+                                (value) => model.updateAssistant(value),
+                              ),
+                              const Divider(
+                                color: Color(0xFFDEE2E4),
+                                thickness: 0.8,
+                              ),
+                              _buildSwitchRow(
+                                "เมื่อมีการ login web",
+                                notification.login,
+                                (value) => model.updateLogin(value),
+                              ),
+                              const Divider(
+                                color: Color(0xFFDEE2E4),
+                                thickness: 0.8,
+                              ),
+                            ],
                           ),
-                          const Divider(
-                            color: Color(0xFFDEE2E4),
-                            thickness: 0.8,
-                          ),
-                          _buildSwitchRow(
-                            "การติดตาม",
-                            notification.monitoring,
-                            (value) => model.updateMonitoring(value),
-                          ),
-                          const Divider(
-                            color: Color(0xFFDEE2E4),
-                            thickness: 0.8,
-                          ),
-                          _buildSwitchRow(
-                            "เคสส่งต่อ/รอรับ",
-                            notification.refer,
-                            (value) => model.updateRefer(value),
-                          ),
-                          const Divider(
-                            color: Color(0xFFDEE2E4),
-                            thickness: 0.8,
-                          ),
-                          _buildSwitchRow(
-                            "ช่วยเหลือ",
-                            notification.assistant,
-                            (value) => model.updateAssistant(value),
-                          ),
-                          const Divider(
-                            color: Color(0xFFDEE2E4),
-                            thickness: 0.8,
-                          ),
-                          _buildSwitchRow(
-                            "เมื่อมีการ login web",
-                            notification.login,
-                            (value) => model.updateLogin(value),
-                          ),
-                          const Divider(
-                            color: Color(0xFFDEE2E4),
-                            thickness: 0.8,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   );

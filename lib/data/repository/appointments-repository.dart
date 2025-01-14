@@ -1,5 +1,4 @@
 import 'package:bst_staff_mobile/data/network/api/appointments-api.dart';
-import 'package:bst_staff_mobile/data/network/api/master-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/appointments-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/appointments.dart';
@@ -7,12 +6,10 @@ import 'package:bst_staff_mobile/util/convert.dart';
 
 class AppointmentsRepository {
   final Appointments appointmentsApi;
-  final MasterApi masterApi;
   final NetworkMapper networkMapper;
 
   AppointmentsRepository({
     required this.appointmentsApi,
-    required this.masterApi,
     required this.networkMapper,
   });
 
@@ -100,8 +97,6 @@ class AppointmentsRepository {
         appointmentEvents.add(appointmentEvent);
       }
     }
-
-    print("finish");
 
     return Appointment(
       calendars: appointmentCalendars,

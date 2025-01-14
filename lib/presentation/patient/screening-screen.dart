@@ -31,7 +31,7 @@ class _ScreeningScreenState extends State<ScreeningScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Screening>(
+    return FutureBuilder<Screening?>(
       future: _model.findScreening(widget.patientId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
