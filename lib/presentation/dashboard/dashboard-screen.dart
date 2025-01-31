@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-model.dart';
 import 'package:bst_staff_mobile/presentation/dashboard/screen/report-data-screen.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -79,7 +80,7 @@ class DashboardScreen extends StatelessWidget {
                                   Text(
                                     _formatDate(selectedDate),
                                     style: const TextStyle(
-                                      fontSize: 17,
+                                      fontSize: FontSizes.medium,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -166,7 +167,7 @@ class _AllpatientsState extends State<Allpatients> {
               const Text(
                 "ผู้ป่วยทั้งหมด",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: FontSizes.medium,
                 ),
               ),
               const SizedBox(
@@ -175,7 +176,7 @@ class _AllpatientsState extends State<Allpatients> {
               Text(
                 count.toString(),
                 style: const TextStyle(
-                  fontSize: 25,
+                  fontSize: FontSizes.large,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -231,7 +232,7 @@ class _RetentionRateState extends State<RetentionRate> {
               const Text(
                 "Retention Rate",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: FontSizes.medium,
                 ),
               ),
               const SizedBox(
@@ -240,7 +241,7 @@ class _RetentionRateState extends State<RetentionRate> {
               Text(
                 "$count%",
                 style: const TextStyle(
-                  fontSize: 25,
+                  fontSize: FontSizes.large,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -354,7 +355,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                     Text(
                       "ลงทะเบียน",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: FontSizes.medium,
                       ),
                     ),
                   ],
@@ -363,7 +364,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                 Text(
                   count.toString(),
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -392,7 +393,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                     Text(
                       "คัดกรอง",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: FontSizes.medium,
                       ),
                     ),
                   ],
@@ -401,7 +402,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                 Text(
                   count.toString(),
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -430,7 +431,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                     Text(
                       "บำบัด",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: FontSizes.medium,
                       ),
                     ),
                   ],
@@ -439,7 +440,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                 Text(
                   count.toString(),
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -468,7 +469,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                     Text(
                       "ติดตาม",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: FontSizes.medium,
                       ),
                     ),
                   ],
@@ -477,7 +478,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                 Text(
                   count.toString(),
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -506,7 +507,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                     Text(
                       "ช่วยเหลือ",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: FontSizes.medium,
                       ),
                     ),
                   ],
@@ -515,7 +516,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                 Text(
                   count.toString(),
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -544,7 +545,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                     Text(
                       "ลงทะเบียน",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: FontSizes.medium,
                       ),
                     ),
                   ],
@@ -553,7 +554,7 @@ class _WorkflowTotalContentState extends State<WorkflowTotalContent> {
                 Text(
                   count.toString(),
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -622,7 +623,7 @@ class _ReferContentState extends State<ReferContent> {
                           Text(
                             "ส่งต่อ/รอรับ",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: FontSizes.medium,
                             ),
                           ),
                         ],
@@ -631,7 +632,7 @@ class _ReferContentState extends State<ReferContent> {
                       Text(
                         "$sender / $receiver",
                         style: const TextStyle(
-                          fontSize: 18,
+                          fontSize: FontSizes.medium,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -732,7 +733,7 @@ class _StatisticsLevelState extends State<StatisticsLevel> {
             Text(
               "สถิติ(ปีงบประมาณ ${level.year})",
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: FontSizes.large,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -742,7 +743,7 @@ class _StatisticsLevelState extends State<StatisticsLevel> {
                 Text(
                   type == "screening" ? 'คัดกรอง' : 'บำบัด',
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                   ),
                 ),
                 const SizedBox(
@@ -783,7 +784,7 @@ class _StatisticsLevelState extends State<StatisticsLevel> {
                           ? level.screeningTotal.toString()
                           : level.treatmentTotal.toString(),
                       style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: FontSizes.large,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF333333),
                       ),
@@ -791,7 +792,7 @@ class _StatisticsLevelState extends State<StatisticsLevel> {
                     const Text(
                       'ผู้ป่วยทั้งหมด',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: FontSizes.medium,
                         color: Color(0xFF6A7180),
                       ),
                     ),
@@ -1084,7 +1085,7 @@ class _StatPatientState extends State<StatPatient> {
           child: Text(
             text,
             style: TextStyle(
-              fontSize: 17,
+              fontSize: FontSizes.medium,
               color: isSelected
                   ? MainColors.text600
                   : Colors.black.withOpacity(0.5),
@@ -1145,7 +1146,7 @@ class _StatPatientState extends State<StatPatient> {
                       const Text(
                         "สถิติผู้ป่วย",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: FontSizes.large,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -1165,7 +1166,7 @@ class _StatPatientState extends State<StatPatient> {
                             ? newPatientWeek.toString()
                             : newPatientMonth.toString(),
                         style: const TextStyle(
-                          fontSize: 25,
+                          fontSize: FontSizes.large,
                           color: MainColors.text600,
                           fontWeight: FontWeight.bold,
                         ),
@@ -1385,7 +1386,7 @@ class _ReportDataTableState extends State<ReportDataTable> {
           const Text(
             'รายงาน',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: FontSizes.large,
               fontWeight: FontWeight.bold,
             ),
           ),

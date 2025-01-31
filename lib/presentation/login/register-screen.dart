@@ -1,7 +1,8 @@
 import 'package:bst_staff_mobile/data/repository/register-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/login/register-model.dart';
 import 'package:bst_staff_mobile/presentation/login/confirm-screen.dart';
+import 'package:bst_staff_mobile/presentation/login/register-model.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
@@ -29,14 +30,14 @@ class RegisterScreen extends StatelessWidget {
                 'ลงทะเบียน',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: FontSizes.large,
                 ),
               ),
               SizedBox(height: 2),
               Text(
                 'ระบุเบอร์โทรศัพท์ที่ลงทะเบียน',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: FontSizes.medium,
                 ),
               ),
               SizedBox(height: 25),
@@ -123,7 +124,7 @@ class _RegisterFormState extends State<_RegisterForm> {
                 child: const Text(
                   'ดำเนินการต่อ',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                     fontWeight: FontWeight.bold,
                     color: MainColors.white,
                   ),

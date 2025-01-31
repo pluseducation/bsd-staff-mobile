@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-provider.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,10 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
           backgroundColor: MainColors.background,
           title: const Text(
             "ตั้งค่าการแจ้งเตือน",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: FontSizes.medium,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         body: FutureBuilder<bool>(
@@ -135,7 +139,9 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 18),
+            style: const TextStyle(
+              fontSize: FontSizes.medium,
+            ),
           ),
           Switch(
             value: value,

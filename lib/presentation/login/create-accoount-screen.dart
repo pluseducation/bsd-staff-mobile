@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/domain/model/register.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/create-account-model.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +78,7 @@ class _CreateAccounFormState extends State<_CreateAccounForm> {
                   'สร้างบัญชีสำหรับเข้าใช้งาน',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: FontSizes.large,
                   ),
                 ),
                 const SizedBox(height: 25),
@@ -125,7 +126,7 @@ class _CreateAccounFormState extends State<_CreateAccounForm> {
                   'ข้อมูลส่วนตัว',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: FontSizes.large,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -169,7 +170,7 @@ class _CreateAccounFormState extends State<_CreateAccounForm> {
                             'ยืนยันแล้ว',
                             style: TextStyle(
                               color: MainColors.primary500,
-                              fontSize: 15,
+                              fontSize: FontSizes.medium,
                             ),
                           ),
                         ],
@@ -210,7 +211,7 @@ class _CreateAccounFormState extends State<_CreateAccounForm> {
                     child: const Text(
                       'ยืนยันข้อมูล',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: FontSizes.medium,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

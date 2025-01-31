@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/domain/model/register.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/login/confirm-model.dart';
 import 'package:bst_staff_mobile/presentation/login/create-accoount-screen.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
@@ -57,13 +58,11 @@ class _ConfirmNumberState extends State<ConfirmNumber> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  
-                 
                   const Text(
                     'ยืนยันเบอร์โทรศัพท์',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: FontSizes.large,
                     ),
                   ),
                   const SizedBox(
@@ -72,13 +71,13 @@ class _ConfirmNumberState extends State<ConfirmNumber> {
                   Text(
                     'กรอกรหัส OTP 6 หลัก ที่ส่งไปยัง ${formatPhoneNumber(_model.register.phone)}',
                     style: const TextStyle(
-                      fontSize: 17,
+                      fontSize: FontSizes.medium,
                     ),
                   ),
                   const Text(
                     'หากยังไม่ได้รับกรุณากดขอรหัสใหม่',
                     style: TextStyle(
-                      fontSize: 17,
+                      fontSize: FontSizes.medium,
                     ),
                   ),
                   const SizedBox(
@@ -114,7 +113,7 @@ class _ConfirmNumberFormState extends State<_ConfirmNumberForm> {
       width: 56,
       height: 60,
       textStyle: const TextStyle(
-        fontSize: 22,
+        fontSize: FontSizes.large,
         color: Colors.black,
       ),
       decoration: BoxDecoration(
@@ -164,7 +163,7 @@ class _ConfirmNumberFormState extends State<_ConfirmNumberForm> {
                     "ขอรหัสอีกครั้งได้อีกใน  ${model.start ~/ 60}:${(model.start % 60).toString().padLeft(2, '0')}",
                     style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 16,
+                      fontSize: FontSizes.medium,
                     ),
                   );
                 },

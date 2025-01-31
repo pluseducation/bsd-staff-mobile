@@ -1,4 +1,5 @@
 import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +53,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
                         Text(
                           "Drug Treatment",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: FontSizes.large,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -61,7 +62,7 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
                         Text(
                           "Network",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: FontSizes.medium,
                             color: Colors.white,
                           ),
                         ),
@@ -196,8 +197,8 @@ class _AppointmentAppbartState extends State<AppointmentAppbar> {
               children: [
                 Text(
                   "นัดหมาย",
-                  style: const TextStyle(
-                    fontSize: 18,
+                  style: TextStyle(
+                    fontSize: FontSizes.medium,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
@@ -298,7 +299,7 @@ class _BaseAppbarCertificateState extends State<BaseAppbarCertificate> {
                 const Text(
                   "ใบรับรอง",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
@@ -309,7 +310,7 @@ class _BaseAppbarCertificateState extends State<BaseAppbarCertificate> {
                 Text(
                   "(${widget.certificateCount}) รายการ",
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: FontSizes.medium,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
@@ -410,7 +411,7 @@ class _BaseAppbarProfileState extends State<BaseAppbarProfile> {
                     Text(
                       "ตั้งค่าโปรไฟล์",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: FontSizes.medium,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -426,7 +427,7 @@ class _BaseAppbarProfileState extends State<BaseAppbarProfile> {
                 Text(
                   "เปลี่ยนรหัสผ่าน, แจ้งเตือน",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: FontSizes.medium,
                     color: Colors.white,
                   ),
                 ),

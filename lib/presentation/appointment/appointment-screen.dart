@@ -2,6 +2,7 @@ import 'package:bst_staff_mobile/data/repository/Appointments-repository.dart';
 import 'package:bst_staff_mobile/domain/model/appointments.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/appointment/appointment-model.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
@@ -247,12 +248,14 @@ class _AppointmentEventState extends State<AppointmentEvent> {
                             event['appointmenTime'] ?? '',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: FontSizes.medium,
                             ),
                           ),
                           Text(
                             event['roundText'] ?? '',
-                            style: const TextStyle(fontSize: 16),
+                            style: const TextStyle(
+                              fontSize: FontSizes.medium,
+                            ),
                           ),
                           const Divider(
                             color: Color(0xFFDEE2E4),
@@ -267,7 +270,7 @@ class _AppointmentEventState extends State<AppointmentEvent> {
                                   'ผู้ป่วย:',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                    fontSize: FontSizes.medium,
                                   ),
                                 ),
                               ),
@@ -278,12 +281,14 @@ class _AppointmentEventState extends State<AppointmentEvent> {
                                     Text(
                                       event['fullname'] ?? '',
                                       style: const TextStyle(
-                                        fontSize: 16,
+                                        fontSize: FontSizes.medium,
                                       ),
                                     ),
                                     Text(
                                       event['phoneNo'] ?? '',
-                                      style: const TextStyle(fontSize: 16),
+                                      style: const TextStyle(
+                                        fontSize: FontSizes.medium,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -298,8 +303,9 @@ class _AppointmentEventState extends State<AppointmentEvent> {
                                 child: Text(
                                   'ผู้ปกครอง:',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: FontSizes.medium,
+                                  ),
                                 ),
                               ),
                               Expanded(
@@ -309,7 +315,7 @@ class _AppointmentEventState extends State<AppointmentEvent> {
                                     Text(
                                       event['guardianFullname'] ?? '',
                                       style: const TextStyle(
-                                        fontSize: 16,
+                                        fontSize: FontSizes.medium,
                                       ),
                                     ),
                                     Text(

@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-model.dart';
 import 'package:bst_staff_mobile/presentation/login/register-screen.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
@@ -13,10 +14,6 @@ import 'package:provider/provider.dart';
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context)
-        .textTheme
-        .apply(displayColor: Theme.of(context).colorScheme.onSurface);
-
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -26,72 +23,50 @@ class LoginScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: SingleChildScrollView(
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 600),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 600),
+            child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/images/logo_1.png",
-                            height: 100,
-                          ),
-                          Image.asset(
-                            "assets/images/logo_2.png",
-                            height: 100,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 15),
-                      Center(
-                        child: Text(
-                          'เข้าสู่ระบบ',
-                          style: textTheme.headlineSmall,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/images/logo_1.png",
+                          height: 100,
+                        ),
+                        Image.asset(
+                          "assets/images/logo_2.png",
+                          height: 100,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    const Center(
+                      child: Text(
+                        'เข้าสู่ระบบ',
+                        style: TextStyle(
+                          fontSize: FontSizes.medium,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const Center(
-                        child: Text(
-                          "บำบัดรักษาและฟื้นฟู ผู้ติดยาเสพติดของประเทศ",
-                          style: TextStyle(),
+                    ),
+                    const Center(
+                      child: Text(
+                        "บำบัดรักษาและฟื้นฟู ผู้ติดยาเสพติดของประเทศ",
+                        style: TextStyle(
+                          fontSize: FontSizes.medium,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 15),
-                      const _LoginForm(),
-                      // const SizedBox(height: 70),
-                      // Text('ยังไม่มีบัญชีใช้งาน', style: textTheme.titleMedium),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     GestureDetector(
-                      //       onTap: () {
-                      //         Navigator.of(context).push(
-                      //           MaterialPageRoute(
-                      //             builder: (context) => const VerifycodeScreen(),
-                      //           ),
-                      //         );
-                      //       },
-                      //       child: const Text(
-                      //         'ลงทะเบียน',
-                      //         style: TextStyle(
-                      //           color: MainColors.primary500,
-                      //           decoration: TextDecoration.underline,
-                      //           decorationColor: MainColors.primary300,
-                      //           decorationThickness: 1,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 16),
+                    const LoginContent(),
+                  ],
                 ),
               ),
             ),
@@ -102,16 +77,16 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class _LoginForm extends StatefulWidget {
-  const _LoginForm();
+class LoginContent extends StatefulWidget {
+  const LoginContent();
 
   @override
-  State<_LoginForm> createState() {
-    return _LoginFormState();
+  State<LoginContent> createState() {
+    return _LoginContentState();
   }
 }
 
-class _LoginFormState extends State<_LoginForm> {
+class _LoginContentState extends State<LoginContent> {
   final _formKey = GlobalKey<FormState>();
   late final LoginModel _model;
   late AppService appService;
@@ -191,7 +166,7 @@ class _LoginFormState extends State<_LoginForm> {
               child: const Text(
                 'เข้าสู่ระบบ',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: FontSizes.medium,
                   fontWeight: FontWeight.bold,
                 ),
               ),

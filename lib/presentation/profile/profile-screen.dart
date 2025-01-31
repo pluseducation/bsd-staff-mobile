@@ -7,6 +7,7 @@ import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-provider.dart';
 import 'package:bst_staff_mobile/presentation/profile/screen/notification-setting-screen.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
@@ -133,7 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 const Text(
                                                   "ข้อมูลส่วนตัว",
                                                   style: TextStyle(
-                                                    fontSize: 17,
+                                                    fontSize: FontSizes.medium,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -156,7 +157,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 const Text(
                                   "การตั้งค่า",
                                   style: TextStyle(
-                                    fontSize: 17,
+                                    fontSize: FontSizes.medium,
                                     color: Color(0xFF9CA3AF),
                                   ),
                                 ),
@@ -213,7 +214,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 const Text(
                                                   "แจ้งเตือน",
                                                   style: TextStyle(
-                                                    fontSize: 17,
+                                                    fontSize: FontSizes.medium,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -256,7 +257,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: const Text(
                                       'ออกจากระบบ',
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: FontSizes.medium,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.red,
                                       ),
@@ -333,7 +334,10 @@ class _ProfileParentState extends State<ProfileParent> {
         backgroundColor: MainColors.background,
         title: const Text(
           "ข้อมูลส่วนตัว",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: FontSizes.medium,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: FutureBuilder<Profile>(
@@ -372,12 +376,16 @@ class _ProfileParentState extends State<ProfileParent> {
                               const Text(
                                 "ชื่อ-สกุล",
                                 style: TextStyle(
-                                    fontSize: 17, color: MainColors.text),
+                                  fontSize: FontSizes.medium,
+                                  color: MainColors.text,
+                                ),
                               ),
                               Text(
                                 profile.fullname,
                                 style: const TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold),
+                                  fontSize: FontSizes.medium,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
                           ),
@@ -390,12 +398,14 @@ class _ProfileParentState extends State<ProfileParent> {
                               const Text(
                                 "เบอร์โทรศัพท์",
                                 style: TextStyle(
-                                    fontSize: 17, color: MainColors.text),
+                                  fontSize: FontSizes.medium,
+                                  color: MainColors.text,
+                                ),
                               ),
                               Text(
                                 profile.phoneNo,
                                 style: const TextStyle(
-                                  fontSize: 17,
+                                  fontSize: FontSizes.medium,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -410,12 +420,16 @@ class _ProfileParentState extends State<ProfileParent> {
                               const Text(
                                 "ชื่อบัญชีเข้าใช้งาน",
                                 style: TextStyle(
-                                    fontSize: 17, color: MainColors.text),
+                                  fontSize: FontSizes.medium,
+                                  color: MainColors.text,
+                                ),
                               ),
                               Text(
                                 profile.username,
                                 style: const TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold),
+                                  fontSize: FontSizes.medium,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ],
                           ),
@@ -531,7 +545,10 @@ class _ProfileChangePasswordState extends State<ProfileChangePassword> {
         backgroundColor: MainColors.background,
         title: const Text(
           "เปลี่ยนรหัสผ่าน",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: FontSizes.medium,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: Form(

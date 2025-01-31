@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/verifycode/verifycode-model.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
@@ -48,7 +49,10 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                   const SizedBox(height: 20),
                   const Text(
                     "ระบุรหัสยืนยัน",
-                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: FontSizes.large,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   const Row(
@@ -56,7 +60,9 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                       Text(
                         "รหัสยืนยันได้ส่งไปหมายเลขโทรศัพท์",
                         style: TextStyle(
-                            fontSize: 15, color: MainColors.primary500),
+                          fontSize: FontSizes.medium,
+                          color: MainColors.primary500,
+                        ),
                       ),
                       SizedBox(
                         width: 3,
@@ -64,7 +70,9 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                       Text(
                         "098-738-xxxx",
                         style: TextStyle(
-                            fontSize: 15, color: MainColors.primary500),
+                          fontSize: FontSizes.medium,
+                          color: MainColors.primary500,
+                        ),
                       ),
                       SizedBox(
                         width: 3,
@@ -72,7 +80,9 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                       Text(
                         "แล้ว",
                         style: TextStyle(
-                            fontSize: 15, color: MainColors.primary500),
+                          fontSize: FontSizes.medium,
+                          color: MainColors.primary500,
+                        ),
                       ),
                     ],
                   ),
@@ -130,7 +140,7 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                             const Text(
                               "OTP หมดอายุแล้ว",
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: FontSizes.medium,
                                 color: MainColors.primary500,
                               ),
                             ),
@@ -144,7 +154,7 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                               child: const Text(
                                 'ส่งอีกครั้ง',
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: FontSizes.medium,
                                   color: MainColors.secondary,
                                   decoration: TextDecoration.underline,
                                   decorationColor: MainColors.secondaryLight,
@@ -158,7 +168,7 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                         Text(
                           'Resend code in ${_model.currentTimerValue.inMinutes.toString().padLeft(2, '0')}:${(_model.currentTimerValue.inSeconds % 60).toString().padLeft(2, '0')}',
                           style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: FontSizes.medium,
                             color: MainColors.primary500,
                           ),
                         ),
@@ -181,7 +191,7 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                         child: const Text(
                           'ตกลง',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: FontSizes.medium,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),

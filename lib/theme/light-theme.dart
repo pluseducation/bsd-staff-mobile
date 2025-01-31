@@ -7,8 +7,9 @@ ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,
   scaffoldBackgroundColor: MainColors.background,
-  primaryTextTheme:
-      TextThemeColor.nullFontColor(GoogleFonts.notoSansThaiTextTheme()),
+  primaryTextTheme: TextThemeColor.nullFontColor(
+    applyDefaultFontSize(GoogleFonts.notoSansThaiTextTheme(), 16.0),
+  ),
   textTheme: TextThemeColor.nullFontColor(
     applyDefaultFontSize(GoogleFonts.notoSansThaiTextTheme(), 16.0),
   ),

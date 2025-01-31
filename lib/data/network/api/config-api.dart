@@ -10,7 +10,7 @@ class ConfigApi extends BaseApi {
     try {
       final Dio dio = await getDio();
       final response = await dio.get(
-        '/api/public/mobile/configs',
+        '/api/public/staff/mobile/configs',
       );
 
       if (response.statusCode == 200) {

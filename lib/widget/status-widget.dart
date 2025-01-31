@@ -1,3 +1,4 @@
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 
@@ -188,7 +189,7 @@ Widget mentalEvalLevelResultWidget(String status) {
         Text(
           title,
           style: TextStyle(
-            fontSize: 18,
+            fontSize: FontSizes.medium,
             color: color,
             fontWeight: FontWeight.bold,
           ),
@@ -257,7 +258,10 @@ Widget drugEvalScrollResultWidget(
             const SizedBox(height: 8.0),
             Text(
               drugEvalScore.toString(),
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: FontSizes.medium,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),
@@ -271,7 +275,10 @@ Widget drugEvalScrollResultWidget(
             const SizedBox(height: 8.0),
             Text(
               levelOfAddictedText,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: FontSizes.medium,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),
@@ -286,7 +293,10 @@ Widget drugEvalScrollResultWidget(
             Text(
               title,
               style: TextStyle(
-                  fontSize: 18, color: color, fontWeight: FontWeight.bold),
+                fontSize: FontSizes.medium,
+                color: color,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),

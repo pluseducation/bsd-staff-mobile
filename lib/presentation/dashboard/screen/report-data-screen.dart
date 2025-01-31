@@ -2,6 +2,7 @@ import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-model.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart' as lg;
@@ -29,7 +30,7 @@ class ReportDataScreen extends StatelessWidget {
         title: Text(
           'ชื่อ : $parentName',
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: FontSizes.medium,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -96,7 +97,7 @@ class _ReportDataTableState extends State<ReportDataTable> {
           const Text(
             'รายงาน',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: FontSizes.large,
               fontWeight: FontWeight.bold,
             ),
           ),
