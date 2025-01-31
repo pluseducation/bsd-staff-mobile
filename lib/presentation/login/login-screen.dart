@@ -184,7 +184,7 @@ class _LoginContentState extends State<LoginContent> {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => HomeScreen(),
         ),
         (route) => false,
       );

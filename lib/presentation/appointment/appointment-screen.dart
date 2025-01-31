@@ -19,7 +19,7 @@ class AppointmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      appBar: const AppointmentAppbar(),
+      //   appBar: const AppointmentAppbar(),
       body: Stack(children: [
         Container(
           decoration: const BoxDecoration(

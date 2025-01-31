@@ -28,7 +28,7 @@ class DashboardScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      appBar: BaseAppbar(),
+      // appBar: BaseAppbar(),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

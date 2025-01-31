@@ -95,9 +95,9 @@ class _CertificateScreenGroupState extends State<CertificateScreenGroup> {
       builder: (context, searchProvider, child) {
         return Scaffold(
           backgroundColor: MainColors.primary500,
-          appBar: BaseAppbarCertificate(
-            certificateCount: searchProvider.certificate.alls.length,
-          ),
+          // appBar: BaseAppbarCertificate(
+          //   certificateCount: searchProvider.certificate.alls.length,
+          // ),
           body: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(

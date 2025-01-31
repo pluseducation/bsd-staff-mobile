@@ -1,205 +1,132 @@
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 
-class MainBottomNavigationBar extends StatefulWidget {
-  final Function(int) onNavItemTapped;
-  final int selectedIndex;
+class MainBottomNavigationBar extends StatelessWidget {
+  final int currentIndex;
+  final Function(int) onTap;
 
-  MainBottomNavigationBar({
-    required this.onNavItemTapped,
-    required this.selectedIndex,
+  const MainBottomNavigationBar({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
   });
-
-  @override
-  _BaseBottomNavigationBarState createState() =>
-      _BaseBottomNavigationBarState();
-}
-
-class _BaseBottomNavigationBarState extends State<BottomNavigationBar> {
-  final List<NavItem> _navItems = [
-    NavItem(Icons.home_outlined, "หน้าแรก"),
-    NavItem(Icons.person_outline, "ผู้ป่วย"),
-    NavItem(Icons.date_range_outlined, "นัดหมาย"),
-    NavItem(Icons.description_outlined, "ใบรับรอง"),
-    NavItem(Icons.account_circle_outlined, "โปรไฟล์"),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          decoration: const BoxDecoration(
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: Color.fromARGB(66, 158, 158, 158),
-                blurRadius: 10,
+        BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: onTap,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: MainColors.primary500,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white,
+          selectedLabelStyle: const TextStyle(fontSize: 13),
+          unselectedLabelStyle: const TextStyle(fontSize: 13),
+          items: [
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage(
+                  currentIndex == 0
+                      ? 'assets/images/icon_home1.png'
+                      : 'assets/images/icon_home.png',
+                ),
+                size: 24,
               ),
-            ],
-          ),
-          child: Flex(
-            direction: Axis.horizontal,
-            children: [
-              Expanded(
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
+              label: 'หน้าแรก',
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage(
+                  currentIndex == 1
+                      ? 'assets/images/icon_search1.png'
+                      : 'assets/images/icon_search.png',
+                ),
+                size: 24,
+              ),
+              label: 'ค้นหา',
+            ),
+            const BottomNavigationBarItem(
+              icon: SizedBox.shrink(),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage(
+                  currentIndex == 3
+                      ? 'assets/images/icon_notification1.png'
+                      : 'assets/images/icon_notification.png',
+                ),
+                size: 24,
+              ),
+              label: 'แจ้งเตือน',
+            ),
+            // icon_notification.png
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage(
+                  currentIndex == 4
+                      ? 'assets/images/icon_profile1.png'
+                      : 'assets/images/icon_profile.png',
+                ),
+                size: 24,
+              ),
+              label: 'แจ้งเตือน',
+            ),
+          ],
+        ),
+        Positioned(
+          top: -50, //35
+          left: MediaQuery.of(context).size.width / 2 - 35,
+          child: GestureDetector(
+            onTap: () {
+              onTap(2);
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 85,
+                  height: 85,
+                  decoration: BoxDecoration(
                     color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.1),
+                        blurRadius: 5,
+                        spreadRadius: 2,
+                      ),
+                    ],
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.zero,
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                ),
+                Transform.scale(
+                  scale: 1.3,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      onTap(2);
+                    },
+                    backgroundColor: MainColors.primary500,
+                    shape: const CircleBorder(),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        InkWell(
-                          onTap: () {
-                            widget.onNavItemTapped(0);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                _navItems[0].icon,
-                                size: 30,
-                                color: widget.selectedIndex == 0
-                                    ? MainColors.primary500
-                                    : Colors.black,
-                                weight: 20.5,
-                              ),
-                              Text(
-                                _navItems[0].title,
-                                style: TextStyle(
-                                  color: widget.selectedIndex == 0
-                                      ? MainColors.primary500
-                                      : Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            widget.onNavItemTapped(1);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                _navItems[1].icon,
-                                size: 30,
-                                color: widget.selectedIndex == 1
-                                    ? MainColors.primary500
-                                    : Colors.black,
-                              ),
-                              Text(
-                                _navItems[1].title,
-                                style: TextStyle(
-                                  color: widget.selectedIndex == 1
-                                      ? MainColors.primary500
-                                      : Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            widget.onNavItemTapped(2);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                _navItems[2].icon,
-                                size: 30,
-                                color: widget.selectedIndex == 2
-                                    ? MainColors.primary500
-                                    : Colors.black,
-                              ),
-                              Text(
-                                _navItems[2].title,
-                                style: TextStyle(
-                                  color: widget.selectedIndex == 2
-                                      ? MainColors.primary500
-                                      : Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            widget.onNavItemTapped(3);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                _navItems[3].icon,
-                                size: 30,
-                                color: widget.selectedIndex == 3
-                                    ? MainColors.primary500
-                                    : Colors.black,
-                              ),
-                              Text(
-                                _navItems[3].title,
-                                style: TextStyle(
-                                  color: widget.selectedIndex == 3
-                                      ? MainColors.primary500
-                                      : Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            widget.onNavItemTapped(4);
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                _navItems[4].icon,
-                                size: 30,
-                                color: widget.selectedIndex == 4
-                                    ? MainColors.primary500
-                                    : Colors.black,
-                              ),
-                              Text(
-                                _navItems[4].title,
-                                style: TextStyle(
-                                  color: widget.selectedIndex == 4
-                                      ? MainColors.primary500
-                                      : Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
+                        Icon(Icons.grid_view, color: Colors.white, size: 28),
+                        Text(
+                          'เมนูทั้งหมด',
+                          style: TextStyle(color: Colors.white, fontSize: 10),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
     );
   }
-}
-
-class NavItem {
-  IconData icon;
-  String title;
-
-  NavItem(this.icon, this.title);
 }

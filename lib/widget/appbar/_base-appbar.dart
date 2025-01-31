@@ -163,6 +163,8 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(toolbarHeight);
 }
 
+// ---------------------------------
+
 class AppointmentAppbar extends StatefulWidget implements PreferredSizeWidget {
   const AppointmentAppbar({
     super.key,

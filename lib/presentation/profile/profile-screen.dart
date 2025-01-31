@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      appBar: const BaseAppbarProfile(),
+      // appBar: BaseAppbar(),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

@@ -40,7 +40,7 @@ class App extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
 
-          home: SplashScreen(),
+          home: const SplashScreen(),
           // home: BaseBottomNavigationBar(),
           // home: LoginScreen(),
 
