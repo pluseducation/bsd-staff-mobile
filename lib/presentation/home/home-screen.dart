@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const BaseAppBarHome(),
+      appBar: const BaseAppBarMain(),
       body: Center(child: Text('Selected Index: $_selectedIndex')),
       bottomNavigationBar: MainBottomNavigationBar(
         currentIndex: _selectedIndex,

@@ -250,7 +250,7 @@ class BaseAppBarHome extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-class BaseAppBarContent extends StatefulWidget implements PreferredSizeWidget {
+class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
   final int? count;
   final String title;
 
@@ -264,15 +264,9 @@ class BaseAppBarContent extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
-  State<BaseAppBarContent> createState() => _BaseAppBarContentState();
-}
-
-class _BaseAppBarContentState extends State<BaseAppBarContent> {
-  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Background Gradient
         Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -287,9 +281,7 @@ class _BaseAppBarContentState extends State<BaseAppBarContent> {
             centerTitle: true,
             backgroundColor: Colors.transparent,
             title: Text(
-              widget.count != null
-                  ? "${widget.title} (${widget.count})"
-                  : widget.title, // แสดงเฉพาะ title ถ้าไม่มี count
+              count != null ? "$title ($count)" : title,
               style: const TextStyle(
                 fontSize: FontSizes.medium,
                 color: Colors.white,
@@ -300,13 +292,11 @@ class _BaseAppBarContentState extends State<BaseAppBarContent> {
         ),
 
         // Positioned Circle Decoration (Top Left)
-        Positioned(
+        const Positioned(
           top: -100,
           left: -70,
-          child: Container(
-            width: 300,
-            height: 400,
-            decoration: const BoxDecoration(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -320,17 +310,15 @@ class _BaseAppBarContentState extends State<BaseAppBarContent> {
               ),
               color: Colors.white12,
             ),
+            child: SizedBox(width: 300, height: 400),
           ),
         ),
 
-        // Positioned Rectangle Decoration (Top Right)
-        Positioned(
+        const Positioned(
           top: 60,
           right: -20,
-          child: Container(
-            width: 180,
-            height: 280,
-            decoration: const BoxDecoration(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(100),
                 bottomRight: Radius.circular(100),
@@ -348,6 +336,7 @@ class _BaseAppBarContentState extends State<BaseAppBarContent> {
               ),
               color: Colors.white12,
             ),
+            child: SizedBox(width: 180, height: 280),
           ),
         ),
       ],
