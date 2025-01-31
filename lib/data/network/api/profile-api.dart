@@ -15,7 +15,7 @@ class ProfileApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/officers/$officerId',
+        '/api/v1/staff/officers/$officerId',
       );
       if (response.statusCode == 200) {
         return ProfileEntity.fromJson(
@@ -49,7 +49,7 @@ class ProfileApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.put(
-        '/api/v1/officers',
+        '/api/v1/staff/officers',
         data: {
           'username': entityProfile.username,
           'password': password,
@@ -92,7 +92,7 @@ class ProfileApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/profiles/officer',
+        '/api/v1/staff/profiles/officer',
       );
       if (response.statusCode == 200) {
         return ProfileOfficerEntity.fromJson(
@@ -128,7 +128,7 @@ class ProfileApi extends BaseApi {
 
       final Dio dio = await getPrivateDio();
       final response = await dio.post(
-        "/api/v1/profiles/image",
+        "/api/v1/staff/profiles/image",
         data: {
           'fileNameOrg': fileNameOrg,
           'content': contentBase64,
@@ -156,5 +156,4 @@ class ProfileApi extends BaseApi {
       throw Exception('Unknown error : $error');
     }
   }
-
 }

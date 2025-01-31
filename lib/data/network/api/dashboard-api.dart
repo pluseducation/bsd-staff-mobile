@@ -11,7 +11,7 @@ class DashboardApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/workflow',
+        '/api/v1/staff/dashboards/workflow',
       );
       if (response.statusCode == 200) {
         return workflowTotalFromJson(
@@ -41,7 +41,7 @@ class DashboardApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/stat/year',
+        '/api/v1/staff/dashboards/stat/year',
       );
       if (response.statusCode == 200) {
         return StatYearEntity.fromJson(
@@ -71,7 +71,7 @@ class DashboardApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/stat/patient/week',
+        '/api/v1/staff/dashboards/stat/patient/week',
       );
       if (response.statusCode == 200) {
         return StatPatientWeekEntity.fromJson(
@@ -101,7 +101,7 @@ class DashboardApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/stat/patient/month',
+        '/api/v1/staff/dashboards/stat/patient/month',
       );
       if (response.statusCode == 200) {
         return StatPatientMonthEntity.fromJson(
@@ -131,7 +131,7 @@ class DashboardApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/retentions',
+        '/api/v1/staff/dashboards/retentions',
       );
       if (response.statusCode == 200) {
         return convertToInt(response.data);
@@ -159,7 +159,7 @@ class DashboardApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/patients',
+        '/api/v1/staff/dashboards/patients',
       );
       if (response.statusCode == 200) {
         return convertToInt(response.data);
@@ -187,7 +187,7 @@ class DashboardApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/refer',
+        '/api/v1/staff/dashboards/refer',
       );
       if (response.statusCode == 200) {
         return ReferEntity.fromJson(response.data as Map<String, dynamic>);
@@ -215,7 +215,7 @@ class DashboardApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/stat/level',
+        '/api/v1/staff/dashboards/stat/level',
       );
       if (response.statusCode == 200) {
         return LevelEntity.fromJson(response.data as Map<String, dynamic>);
@@ -260,7 +260,7 @@ class DashboardApi extends BaseApi {
 
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/dashboards/report',
+        '/api/v1/staff/dashboards/report',
         queryParameters: queryParams,
       );
       if (response.statusCode == 200) {

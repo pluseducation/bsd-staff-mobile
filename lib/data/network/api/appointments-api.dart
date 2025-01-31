@@ -9,7 +9,7 @@ class Appointments extends BaseApi {
   Future<List<AppointmentsEntity>> findAppointments() async {
     try {
       final Dio dio = await getPrivateDio();
-      final response = await dio.get('/api/v1/appointments');
+      final response = await dio.get('/api/v1/staff/appointments');
 
       if (response.statusCode == 200) {
         final List<dynamic> data = response.data as List<dynamic>;

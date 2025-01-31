@@ -90,7 +90,7 @@ class OfficerApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/profiles/officer',
+        '/api/v1/staff/profiles/officer',
       );
       if (response.statusCode == 200) {
         return ProfilesOfficerEntity.fromJson(

@@ -1,11 +1,11 @@
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 
-class BaseBottomNavigationBar extends StatefulWidget {
+class MainBottomNavigationBar extends StatefulWidget {
   final Function(int) onNavItemTapped;
   final int selectedIndex;
 
-  BaseBottomNavigationBar({
+  MainBottomNavigationBar({
     required this.onNavItemTapped,
     required this.selectedIndex,
   });
@@ -15,7 +15,7 @@ class BaseBottomNavigationBar extends StatefulWidget {
       _BaseBottomNavigationBarState();
 }
 
-class _BaseBottomNavigationBarState extends State<BaseBottomNavigationBar> {
+class _BaseBottomNavigationBarState extends State<BottomNavigationBar> {
   final List<NavItem> _navItems = [
     NavItem(Icons.home_outlined, "หน้าแรก"),
     NavItem(Icons.person_outline, "ผู้ป่วย"),

@@ -10,7 +10,8 @@ class Registering with _$Registering {
         fullname, //** find on profile name + surname /patients/${patientId}/profile */
     required String patientStatus, //**  /patients/${nationalityText}/profile */
     required String level, //**  /patients/${patientId}/profile */
-    required String dateOfBirthText, //ว/ด/ป ** '/api/v1/patients$patientsid' */
+    required String
+        dateOfBirthText, //ว/ด/ป ** '/api/v1/staff/patients$patientsid' */
     required String gender, // เพศ* "/questionchoices$REGISTERING */
     required String nationalityText, //สัญชาติ** /master/nationalities */
     required String religionText, //ศาสนา ** /master/religions

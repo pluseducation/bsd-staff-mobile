@@ -12,7 +12,7 @@ class Question extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/questionchoices/REGISTERING',
+        '/api/v1/staff/questionchoices/REGISTERING',
       );
       if (response.statusCode == 200) {
         return questionChoicesEntityFromJson(
@@ -42,7 +42,7 @@ class Question extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/questionchoices/SCREENING',
+        '/api/v1/staff/questionchoices/SCREENING',
       );
       if (response.statusCode == 200) {
         return questionChoicesEntityFromJson(
@@ -72,7 +72,7 @@ class Question extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/questionchoices/TREATMENT',
+        '/api/v1/staff/questionchoices/TREATMENT',
       );
       if (response.statusCode == 200) {
         return questionChoicesEntityFromJson(

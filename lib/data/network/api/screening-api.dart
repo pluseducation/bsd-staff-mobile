@@ -15,7 +15,7 @@ class ScreeningApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/screenings/$patientsid',
+        '/api/v1/staff/screenings/$patientsid',
       );
       if (response.statusCode == 200) {
         return ScreeningEntity.fromJson(

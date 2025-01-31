@@ -24,7 +24,7 @@ mixin _$Registering {
   String get level =>
       throw _privateConstructorUsedError; //**  /patients/${patientId}/profile */
   String get dateOfBirthText =>
-      throw _privateConstructorUsedError; //ว/ด/ป ** '/api/v1/patients$patientsid' */
+      throw _privateConstructorUsedError; //ว/ด/ป ** '/api/v1/staff/patients$patientsid' */
   String get gender =>
       throw _privateConstructorUsedError; // เพศ* "/questionchoices$REGISTERING */
   String get nationalityText =>
@@ -325,7 +325,7 @@ class _$RegisteringImpl implements _Registering {
 //**  /patients/${patientId}/profile */
   @override
   final String dateOfBirthText;
-//ว/ด/ป ** '/api/v1/patients$patientsid' */
+//ว/ด/ป ** '/api/v1/staff/patients$patientsid' */
   @override
   final String gender;
 // เพศ* "/questionchoices$REGISTERING */
@@ -452,7 +452,7 @@ abstract class _Registering implements Registering {
   @override
   String get level; //**  /patients/${patientId}/profile */
   @override
-  String get dateOfBirthText; //ว/ด/ป ** '/api/v1/patients$patientsid' */
+  String get dateOfBirthText; //ว/ด/ป ** '/api/v1/staff/patients$patientsid' */
   @override
   String get gender; // เพศ* "/questionchoices$REGISTERING */
   @override
