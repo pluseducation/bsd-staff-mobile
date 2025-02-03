@@ -9,7 +9,6 @@ class BaseAppBarMain extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
 
-  // ignore: avoid_field_initializers_in_const_classes
   const BaseAppBarMain({super.key})
       : preferredSize = const Size.fromHeight(150.0);
 
@@ -66,7 +65,7 @@ class BaseAppBarMain extends StatelessWidget implements PreferredSizeWidget {
                       height: 4,
                     ),
                     const Text(
-                      "ระบบบริหารจัดการข้อมูลผู้ป่วย",
+                      "ระบบข้อมูลการบำบัดรักษาและฟื้นฟู",
                       style: TextStyle(
                         fontSize: FontSizes.medium,
                         color: Colors.white,
@@ -280,6 +279,7 @@ class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
             toolbarHeight: kToolbarHeight,
             centerTitle: true,
             backgroundColor: Colors.transparent,
+            iconTheme: const IconThemeData(color: Colors.white),
             title: Text(
               count != null ? "$title ($count)" : title,
               style: const TextStyle(
@@ -290,53 +290,56 @@ class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ),
-
-        // Positioned Circle Decoration (Top Left)
-        const Positioned(
-          top: -100,
-          left: -70,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0.1449, 0.9606],
-                colors: [
-                  MainColors.primary500,
-                  Colors.white,
-                ],
-                transform: GradientRotation(300.72 * (3.14159 / 180)),
+        const IgnorePointer(
+          child: Stack(
+            children: [
+              Positioned(
+                top: -100,
+                left: -70,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.1449, 0.9606],
+                      colors: [
+                        MainColors.primary500,
+                        Colors.white,
+                      ],
+                      transform: GradientRotation(300.72 * (3.14159 / 180)),
+                    ),
+                    color: Colors.white12,
+                  ),
+                  child: SizedBox(width: 300, height: 400),
+                ),
               ),
-              color: Colors.white12,
-            ),
-            child: SizedBox(width: 300, height: 400),
-          ),
-        ),
-
-        const Positioned(
-          top: 60,
-          right: -20,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(100),
-                bottomRight: Radius.circular(100),
-                topLeft: Radius.circular(60),
+              Positioned(
+                top: 60,
+                right: -20,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(100),
+                      bottomRight: Radius.circular(100),
+                      topLeft: Radius.circular(60),
+                    ),
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomRight,
+                      stops: [0.1449, 0.9606],
+                      colors: [
+                        MainColors.primary500,
+                        Colors.white,
+                      ],
+                      transform: GradientRotation(280 * (3.14159 / 50)),
+                    ),
+                    color: Colors.white12,
+                  ),
+                  child: SizedBox(width: 180, height: 280),
+                ),
               ),
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomRight,
-                stops: [0.1449, 0.9606],
-                colors: [
-                  MainColors.primary500,
-                  Colors.white,
-                ],
-                transform: GradientRotation(280 * (3.14159 / 50)),
-              ),
-              color: Colors.white12,
-            ),
-            child: SizedBox(width: 180, height: 280),
+            ],
           ),
         ),
       ],
