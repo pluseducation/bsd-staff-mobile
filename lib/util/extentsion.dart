@@ -1,5 +1,6 @@
 import 'package:bst_staff_mobile/util/enum.dart';
 
+// patient
 extension WorkFlowStatusExtension on WorkFlowStatus {
   String get value {
     switch (this) {
@@ -85,6 +86,21 @@ extension SmivTypeExtension on SmivType {
     switch (this) {
       case SmivType.smiv:
         return "SMIV";
+    }
+  }
+}
+
+extension AppointmentTypeExtension on AppointmentType {
+  String get value {
+    switch (this) {
+      case AppointmentType.assistance:
+        return "ASSISTANCE";
+      case AppointmentType.monitoring:
+        return "MONITORING";
+      case AppointmentType.treatment:
+        return "TREATMENT";
+      case AppointmentType.reject:
+        return "REJECT";
     }
   }
 }

@@ -28,3 +28,5 @@ enum TreatmentType {
 }
 
 enum SmivType { smiv }
+
+enum AppointmentType { assistance, monitoring, treatment, reject }
