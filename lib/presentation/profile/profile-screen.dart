@@ -9,8 +9,6 @@ import 'package:bst_staff_mobile/presentation/profile/profile-provider.dart';
 import 'package:bst_staff_mobile/presentation/profile/screen/notification-setting-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
+import 'package:bst_staff_mobile/presentation/manu/manu-screen.dart';
 import 'package:bst_staff_mobile/widget/appbar/bottomnavigation/base-bottomnavigation.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const BaseAppBarMain(),
-      body: Center(child: Text('Selected Index: $_selectedIndex')),
+      body: Center(
+        child: _selectedIndex == 0
+            ? const ManuScreen()
+            : _selectedIndex == 1
+                ? ManuScreen()
+                : Text('Selected Index: $_selectedIndex'),
+      ),
       bottomNavigationBar: MainBottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
