@@ -70,19 +70,6 @@ class AppointmentsRepository {
           appointmentCalendars.add(appointmentCalendar);
         }
 
-        // final AppointmentEvent appointmentModel = AppointmentEvent(
-        //   appointmentDate: appointmentAt,
-        //   appointmenDate: formattedDate,
-        //   appointmenTime: formattedTime,
-        //   roundText: roundText,
-        //   fullname: fullname,
-        //   phoneNo: phoneNo,
-        //   guardianFullname: guardianFullname,
-        //   guardianPhoneNo: guardianPhoneNo,
-        // );
-
-        // appointmentEvents.add(appointmentModel);
-
         final AppointmentEvent appointmentEvent = networkMapper.toAppointment(
           appointmentDate: appointmentAt,
           appointmenDate: formattedDate,

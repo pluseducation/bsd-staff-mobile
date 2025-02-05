@@ -1,16 +1,10 @@
+import 'package:bst_staff_mobile/theme/font-size.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-class AppointmentsEvent extends StatefulWidget {
+class AppointmentsEvent extends StatelessWidget {
   final List<Map<String, String>> events;
   const AppointmentsEvent({super.key, this.events = const []});
-
-  @override
-  _AppointmentsEventState createState() => _AppointmentsEventState();
-}
-
-class _AppointmentsEventState extends State<AppointmentsEvent> {
-  final PageController _pageController = PageController(viewportFraction: 0.85);
-  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -18,34 +12,28 @@ class _AppointmentsEventState extends State<AppointmentsEvent> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(right: 16.0, left: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Text(
-            widget.events.isNotEmpty
-                ? widget.events[0]['appointmenDate'] ?? 'ไม่มีนัดหมาย'
+            events.isNotEmpty
+                ? events[0]['appointmenDate'] ?? 'ไม่มีนัดหมาย'
                 : 'ไม่มีนัดหมาย',
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: FontSizes.medium,
+            ),
           ),
         ),
-        if (widget.events.isNotEmpty)
-          SizedBox(
-            height: 240.0,
-            child: PageView.builder(
-              controller: _pageController,
-              itemCount: widget.events.length,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentPage = index;
-                });
-              },
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8.0), // Spacing
-                  child: _AppointmentCard(event: widget.events[index]),
-                );
-              },
+        if (events.isNotEmpty)
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 250.0,
+              viewportFraction: 0.95,
+              aspectRatio: 1.0,
+              enableInfiniteScroll: false,
             ),
-          )
+            items:
+                events.map((event) => _AppointmentCard(event: event)).toList(),
+          ),
       ],
     );
   }
@@ -57,28 +45,33 @@ class _AppointmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
-      child: Card(
-        elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildHeader(event['appointmenTime'], event['roundText']),
-              const Divider(color: Color(0xFFDEE2E4), thickness: 0.8),
-              _buildInfoRow('ผู้ป่วย:', event['fullname'], event['phoneNo']),
-              const SizedBox(height: 10),
-              _buildInfoRow(
-                'ผู้ปกครอง:',
-                event['guardianFullname'],
-                event['guardianPhoneNo'],
-              ),
-            ],
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            // ignore: deprecated_member_use
+            color: Colors.grey.shade400.withOpacity(0.2),
+            blurRadius: 8,
           ),
-        ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(event['appointmenTime'], event['roundText']),
+          const Divider(color: Color(0xFFDEE2E4), thickness: 0.8),
+          _buildInfoRow('ผู้ป่วย:', event['fullname'], event['phoneNo']),
+          const SizedBox(height: 8),
+          _buildInfoRow(
+            'ผู้ปกครอง:',
+            event['guardianFullname'],
+            event['guardianPhoneNo'],
+          ),
+        ],
       ),
     );
   }
@@ -89,20 +82,27 @@ class _AppointmentCard extends StatelessWidget {
       children: [
         Text(
           time ?? 'ไม่ระบุเวลา',
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-          decoration: BoxDecoration(
-            color: Colors.green.shade100,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Text(
-            roundText ?? '',
-            style: const TextStyle(
-                fontSize: 14, color: Colors.green, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: FontSizes.medium,
           ),
         ),
+        if (roundText != null && roundText.isNotEmpty)
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFFECFDF3),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              roundText,
+              style: const TextStyle(
+                fontSize: FontSizes.small,
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
       ],
     );
   }
@@ -112,17 +112,29 @@ class _AppointmentCard extends StatelessWidget {
       children: [
         SizedBox(
           width: 100,
-          child: Text(label,
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          child: Text(
+            label,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: FontSizes.medium,
+            ),
+          ),
         ),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(name ?? 'ไม่ระบุ', style: const TextStyle(fontSize: 16)),
-              Text(phone ?? '',
-                  style: const TextStyle(fontSize: 16, color: Colors.blue)),
+              Text(
+                name ?? 'ไม่ระบุ',
+                style: const TextStyle(fontSize: FontSizes.medium),
+              ),
+              if (phone != null && phone.isNotEmpty)
+                Text(
+                  phone,
+                  style: const TextStyle(
+                    fontSize: FontSizes.medium,
+                  ),
+                ),
             ],
           ),
         ),

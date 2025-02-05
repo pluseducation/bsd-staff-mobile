@@ -1,3 +1,4 @@
+// สถานะ
 enum WorkFlowStatus {
   registering,
   screening,
@@ -6,11 +7,15 @@ enum WorkFlowStatus {
   assistance,
   discharged
 }
+// ตัวกรอง ผู้ใช้ ผู้เสพ ผู้ติด
 
-enum DrugEvalResult { user, abuse, dependence }
-
+// OAS เขียว เหลือง ส้ม แดง
 enum LevelType { normal, semiUrgency, urgency, emergency }
 
+// V2
+enum DrugEvalResult { user, abuse, dependence }
+
+// ประเภท การบำบัดรักษาล่าสุด
 enum TreatmentType {
   opd,
   ipdTreatment,
@@ -27,6 +32,8 @@ enum TreatmentType {
   other
 }
 
+//สถานะเพิ่มเติม
 enum SmivType { smiv }
 
+//นัดหมาย
 enum AppointmentType { assistance, monitoring, treatment, reject }
