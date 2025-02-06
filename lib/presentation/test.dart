@@ -172,7 +172,7 @@ class TestStatusView extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SearchBarWidget(),
+            // SearchBarWidget(),
             const SizedBox(
               height: 16,
             ),
@@ -193,10 +193,10 @@ class TestPatiaSelectlScreen extends StatelessWidget {
       appBar: BaseAppBarContent(
         title: "Test Patia Selectl",
       ),
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: PatientSelectSearch(),
-      ),
+      // body: Padding(
+      //   padding: EdgeInsets.all(8.0),
+      //   child: PatientSelectSearch(),
+      // ),
     );
   }
 }

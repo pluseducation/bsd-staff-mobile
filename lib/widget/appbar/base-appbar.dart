@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 const double toolbarHeight = 150;
 const double toolbarHeightHome = 60;
@@ -264,6 +265,8 @@ class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formattedCount =
+        count != null ? NumberFormat.decimalPattern().format(count) : null;
     return Stack(
       children: [
         Container(
@@ -281,7 +284,7 @@ class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
             backgroundColor: Colors.transparent,
             iconTheme: const IconThemeData(color: Colors.white),
             title: Text(
-              count != null ? "$title ($count)" : title,
+              formattedCount != null ? "$title ($formattedCount)" : title,
               style: const TextStyle(
                 fontSize: FontSizes.medium,
                 color: Colors.white,

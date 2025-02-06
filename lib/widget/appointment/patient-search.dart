@@ -2,6 +2,13 @@ import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatefulWidget {
+  final Function() onClick;
+
+  const SearchBarWidget({
+    super.key,
+    required this.onClick,
+  });
+
   @override
   _SearchBarWidgetState createState() => _SearchBarWidgetState();
 }
@@ -43,17 +50,28 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                 ),
               ),
             ),
-            const Icon(
-              Icons.filter_alt_outlined,
-              color: Color(0xFFA0A6A9),
-            ),
-            const SizedBox(width: 4),
-            const Text(
-              "ตัวกรอง",
-              style: TextStyle(
-                color: Color(0xFFA0A6A9),
-                fontSize: FontSizes.small,
-              ),
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: widget.onClick,
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.filter_alt_outlined,
+                        color: Color(0xFFA0A6A9),
+                      ),
+                      SizedBox(width: 4),
+                      Text(
+                        "ตัวกรอง",
+                        style: TextStyle(
+                          color: Color(0xFFA0A6A9),
+                          fontSize: FontSizes.small,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ],
         ),
