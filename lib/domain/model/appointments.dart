@@ -1,3 +1,4 @@
+import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'appointments.freezed.dart';
 
@@ -12,22 +13,22 @@ class Appointment with _$Appointment {
 @freezed
 class AppointmentEvent with _$AppointmentEvent {
   const factory AppointmentEvent({
-    required DateTime appointmentDate, //** find on where /appointments */
-    required String appointmenDate, // วัน เดือน ปี แยกมาจาก
-    required String appointmenTime, //เวลา
-    required String roundText, //appointmentType + round roundText.where
-    required String fullname, // ชื่อผู้ป่วย name +  surname // appointments
-    required String phoneNo, // เบอร์โทร /appointments
-    required String
-        guardianFullname, // ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
-    required String guardianPhoneNo, //เบอร์โทรผู้ปกครอง /appointments
+    required DateTime appointmentDate,
+    required String appointmenDate,
+    required String appointmenTime,
+    required AppointmentType? appointmentType,
+    required int round,
+    required String fullname,
+    required String phoneNo,
+    required String guardianFullname,
+    required String guardianPhoneNo,
   }) = _AppointmentEvent;
 }
 
 @unfreezed
 class AppointmentCalendar with _$AppointmentCalendar {
   factory AppointmentCalendar({
-    required DateTime appointmentDate, //** find on  /appointments */
+    required DateTime appointmentDate,
     required List<String> fullnames,
   }) = _AppointmentCalendar;
 }

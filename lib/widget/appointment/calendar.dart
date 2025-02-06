@@ -76,9 +76,8 @@ class _AppointmentMonthState extends State<AppointmentMonth> {
             },
             eventLoader: _getEventsForDay,
             calendarStyle: const CalendarStyle(
-              isTodayHighlighted: true,
               selectedDecoration: BoxDecoration(
-                color: MainColors.primary300,
+                color: MainColors.primary500,
                 shape: BoxShape.circle,
               ),
               todayDecoration: BoxDecoration(
@@ -89,7 +88,7 @@ class _AppointmentMonthState extends State<AppointmentMonth> {
                 color: Colors.red,
                 shape: BoxShape.circle,
               ),
-              markersMaxCount: 2,
+              markersMaxCount: 1,
             ),
             headerStyle: HeaderStyle(
               formatButtonVisible: false,

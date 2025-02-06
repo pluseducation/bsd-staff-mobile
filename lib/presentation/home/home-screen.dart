@@ -1,4 +1,5 @@
 import 'package:bst_staff_mobile/presentation/manu/manu-screen.dart';
+import 'package:bst_staff_mobile/presentation/test.dart';
 import 'package:bst_staff_mobile/widget/appbar/bottomnavigation/base-bottomnavigation.dart';
 import 'package:flutter/material.dart';
 
@@ -24,8 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
         child: _selectedIndex == 0
             ? const ManuScreen()
             : _selectedIndex == 1
-                ? ManuScreen()
-                : Text('Selected Index: $_selectedIndex'),
+                ? const MyWidget()
+                : _selectedIndex == 3
+                    ? const TestStatusView()
+                    : _selectedIndex == 4
+                        ? const TestPatiaSelectlScreen()
+                        : Text('Selected Index: $_selectedIndex'),
       ),
       bottomNavigationBar: MainBottomNavigationBar(
         currentIndex: _selectedIndex,

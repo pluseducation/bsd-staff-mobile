@@ -186,19 +186,14 @@ abstract class _Appointment implements Appointment {
 
 /// @nodoc
 mixin _$AppointmentEvent {
-  DateTime get appointmentDate =>
-      throw _privateConstructorUsedError; //** find on where /appointments */
-  String get appointmenDate =>
-      throw _privateConstructorUsedError; // วัน เดือน ปี แยกมาจาก
-  String get appointmenTime => throw _privateConstructorUsedError; //เวลา
-  String get roundText =>
-      throw _privateConstructorUsedError; //appointmentType + round roundText.where
-  String get fullname =>
-      throw _privateConstructorUsedError; // ชื่อผู้ป่วย name +  surname // appointments
-  String get phoneNo =>
-      throw _privateConstructorUsedError; // เบอร์โทร /appointments
-  String get guardianFullname =>
-      throw _privateConstructorUsedError; // ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
+  DateTime get appointmentDate => throw _privateConstructorUsedError;
+  String get appointmenDate => throw _privateConstructorUsedError;
+  String get appointmenTime => throw _privateConstructorUsedError;
+  AppointmentType get appointmentType => throw _privateConstructorUsedError;
+  int get round => throw _privateConstructorUsedError;
+  String get fullname => throw _privateConstructorUsedError;
+  String get phoneNo => throw _privateConstructorUsedError;
+  String get guardianFullname => throw _privateConstructorUsedError;
   String get guardianPhoneNo => throw _privateConstructorUsedError;
 
   /// Create a copy of AppointmentEvent
@@ -218,7 +213,8 @@ abstract class $AppointmentEventCopyWith<$Res> {
       {DateTime appointmentDate,
       String appointmenDate,
       String appointmenTime,
-      String roundText,
+      AppointmentType appointmentType,
+      int round,
       String fullname,
       String phoneNo,
       String guardianFullname,
@@ -243,7 +239,8 @@ class _$AppointmentEventCopyWithImpl<$Res, $Val extends AppointmentEvent>
     Object? appointmentDate = null,
     Object? appointmenDate = null,
     Object? appointmenTime = null,
-    Object? roundText = null,
+    Object? appointmentType = null,
+    Object? round = null,
     Object? fullname = null,
     Object? phoneNo = null,
     Object? guardianFullname = null,
@@ -262,10 +259,14 @@ class _$AppointmentEventCopyWithImpl<$Res, $Val extends AppointmentEvent>
           ? _value.appointmenTime
           : appointmenTime // ignore: cast_nullable_to_non_nullable
               as String,
-      roundText: null == roundText
-          ? _value.roundText
-          : roundText // ignore: cast_nullable_to_non_nullable
-              as String,
+      appointmentType: null == appointmentType
+          ? _value.appointmentType
+          : appointmentType // ignore: cast_nullable_to_non_nullable
+              as AppointmentType,
+      round: null == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as int,
       fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -298,7 +299,8 @@ abstract class _$$AppointmentEventImplCopyWith<$Res>
       {DateTime appointmentDate,
       String appointmenDate,
       String appointmenTime,
-      String roundText,
+      AppointmentType appointmentType,
+      int round,
       String fullname,
       String phoneNo,
       String guardianFullname,
@@ -321,7 +323,8 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
     Object? appointmentDate = null,
     Object? appointmenDate = null,
     Object? appointmenTime = null,
-    Object? roundText = null,
+    Object? appointmentType = null,
+    Object? round = null,
     Object? fullname = null,
     Object? phoneNo = null,
     Object? guardianFullname = null,
@@ -340,10 +343,14 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
           ? _value.appointmenTime
           : appointmenTime // ignore: cast_nullable_to_non_nullable
               as String,
-      roundText: null == roundText
-          ? _value.roundText
-          : roundText // ignore: cast_nullable_to_non_nullable
-              as String,
+      appointmentType: null == appointmentType
+          ? _value.appointmentType
+          : appointmentType // ignore: cast_nullable_to_non_nullable
+              as AppointmentType,
+      round: null == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as int,
       fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -371,7 +378,8 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
       {required this.appointmentDate,
       required this.appointmenDate,
       required this.appointmenTime,
-      required this.roundText,
+      required this.appointmentType,
+      required this.round,
       required this.fullname,
       required this.phoneNo,
       required this.guardianFullname,
@@ -379,31 +387,26 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
 
   @override
   final DateTime appointmentDate;
-//** find on where /appointments */
   @override
   final String appointmenDate;
-// วัน เดือน ปี แยกมาจาก
   @override
   final String appointmenTime;
-//เวลา
   @override
-  final String roundText;
-//appointmentType + round roundText.where
+  final AppointmentType appointmentType;
+  @override
+  final int round;
   @override
   final String fullname;
-// ชื่อผู้ป่วย name +  surname // appointments
   @override
   final String phoneNo;
-// เบอร์โทร /appointments
   @override
   final String guardianFullname;
-// ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
   @override
   final String guardianPhoneNo;
 
   @override
   String toString() {
-    return 'AppointmentEvent(appointmentDate: $appointmentDate, appointmenDate: $appointmenDate, appointmenTime: $appointmenTime, roundText: $roundText, fullname: $fullname, phoneNo: $phoneNo, guardianFullname: $guardianFullname, guardianPhoneNo: $guardianPhoneNo)';
+    return 'AppointmentEvent(appointmentDate: $appointmentDate, appointmenDate: $appointmenDate, appointmenTime: $appointmenTime, appointmentType: $appointmentType, round: $round, fullname: $fullname, phoneNo: $phoneNo, guardianFullname: $guardianFullname, guardianPhoneNo: $guardianPhoneNo)';
   }
 
   @override
@@ -417,8 +420,9 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
                 other.appointmenDate == appointmenDate) &&
             (identical(other.appointmenTime, appointmenTime) ||
                 other.appointmenTime == appointmenTime) &&
-            (identical(other.roundText, roundText) ||
-                other.roundText == roundText) &&
+            (identical(other.appointmentType, appointmentType) ||
+                other.appointmentType == appointmentType) &&
+            (identical(other.round, round) || other.round == round) &&
             (identical(other.fullname, fullname) ||
                 other.fullname == fullname) &&
             (identical(other.phoneNo, phoneNo) || other.phoneNo == phoneNo) &&
@@ -434,7 +438,8 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
       appointmentDate,
       appointmenDate,
       appointmenTime,
-      roundText,
+      appointmentType,
+      round,
       fullname,
       phoneNo,
       guardianFullname,
@@ -455,27 +460,29 @@ abstract class _AppointmentEvent implements AppointmentEvent {
       {required final DateTime appointmentDate,
       required final String appointmenDate,
       required final String appointmenTime,
-      required final String roundText,
+      required final AppointmentType appointmentType,
+      required final int round,
       required final String fullname,
       required final String phoneNo,
       required final String guardianFullname,
       required final String guardianPhoneNo}) = _$AppointmentEventImpl;
 
   @override
-  DateTime get appointmentDate; //** find on where /appointments */
+  DateTime get appointmentDate;
   @override
-  String get appointmenDate; // วัน เดือน ปี แยกมาจาก
+  String get appointmenDate;
   @override
-  String get appointmenTime; //เวลา
+  String get appointmenTime;
   @override
-  String get roundText; //appointmentType + round roundText.where
+  AppointmentType get appointmentType;
   @override
-  String get fullname; // ชื่อผู้ป่วย name +  surname // appointments
+  int get round;
   @override
-  String get phoneNo; // เบอร์โทร /appointments
+  String get fullname;
   @override
-  String
-      get guardianFullname; // ชื่อผู้ปกครอง guardianName + guardianSurname/ / /appointments
+  String get phoneNo;
+  @override
+  String get guardianFullname;
   @override
   String get guardianPhoneNo;
 
@@ -490,10 +497,8 @@ abstract class _AppointmentEvent implements AppointmentEvent {
 /// @nodoc
 mixin _$AppointmentCalendar {
   DateTime get appointmentDate => throw _privateConstructorUsedError;
-  set appointmentDate(DateTime value) =>
-      throw _privateConstructorUsedError; //** find on  /appointments */
-  List<String> get fullnames =>
-      throw _privateConstructorUsedError; //** find on  /appointments */
+  set appointmentDate(DateTime value) => throw _privateConstructorUsedError;
+  List<String> get fullnames => throw _privateConstructorUsedError;
   set fullnames(List<String> value) => throw _privateConstructorUsedError;
 
   /// Create a copy of AppointmentCalendar
@@ -591,7 +596,6 @@ class _$AppointmentCalendarImpl implements _AppointmentCalendar {
 
   @override
   DateTime appointmentDate;
-//** find on  /appointments */
   @override
   List<String> fullnames;
 
@@ -617,9 +621,9 @@ abstract class _AppointmentCalendar implements AppointmentCalendar {
 
   @override
   DateTime get appointmentDate;
-  set appointmentDate(DateTime value); //** find on  /appointments */
+  set appointmentDate(DateTime value);
   @override
-  List<String> get fullnames; //** find on  /appointments */
+  List<String> get fullnames;
   set fullnames(List<String> value);
 
   /// Create a copy of AppointmentCalendar
