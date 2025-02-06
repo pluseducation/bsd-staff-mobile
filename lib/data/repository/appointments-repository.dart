@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/data/network/entity/appointments-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/appointments.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
+import 'package:bst_staff_mobile/util/enum.dart';
 
 class AppointmentsRepository {
   final Appointments appointmentsApi;
@@ -20,38 +21,13 @@ class AppointmentsRepository {
     final List<AppointmentEvent> appointmentEvents = [];
     final List<AppointmentCalendar> appointmentCalendars = [];
 
-    for (final appointmentEntity in appointmentEntitys) {
-      if (appointmentEntity.appointmentAt != null &&
+    for (final entity in appointmentEntitys) {
+      if (entity.entity != null &&
           appointmentEntity.reason == null) {
-        final DateTime appointmentAt =
-            convertToDatetime(appointmentEntity.appointmentAt);
-
-        final formattedDate = convertThaiDate(appointmentAt);
-        final String formattedTime = convertToThaiTimes(appointmentAt);
-
-        final String roundText = _getappointmentStatus(
-          appointmentEntity.appointmentType,
-          appointmentEntity.round,
-        );
-
-        final String fullname =
-            "${convertToString(appointmentEntity.name)} ${convertToString(appointmentEntity.surname)}";
-
-        final String phoneNo = convertToString(appointmentEntity.phoneNo);
-
-        final String guardianFullname = (appointmentEntity.guardianName !=
-                    null &&
-                appointmentEntity.guardianSurname != null)
-            ? "${convertToString(appointmentEntity.guardianName)} ${convertToString(appointmentEntity.guardianSurname)}"
-            : "-";
-
-        final String guardianPhoneNo =
-            appointmentEntity.guardianPhoneNo != null &&
-                    appointmentEntity.guardianPhoneNo!.isNotEmpty
-                ? convertToString(appointmentEntity.guardianPhoneNo)
-                : "-";
-
-        // group calendar
+        final appointmentAt =
+            convertToDatetime(entity.appointmentAt);
+        final name = "${convertToString(entity.name)} ${convertToString(entity.surname)}";
+        final phoneNo = convertToString(entity.phoneNo);
 
         final existingCalendar = appointmentCalendars
             .where((calendar) => calendar.appointmentDate == appointmentAt)
@@ -59,10 +35,9 @@ class AppointmentsRepository {
 
         if (existingCalendar != null) {
           final index = appointmentCalendars.indexOf(existingCalendar);
-          appointmentCalendars[index].fullnames.add(fullname);
+          appointmentCalendars[index].fullnames.add(name);
         } else {
-          final List<String> fullnames = [fullname];
-
+          final List<String> fullnames = [name];
           final AppointmentCalendar appointmentCalendar = AppointmentCalendar(
             appointmentDate: appointmentAt,
             fullnames: fullnames,
@@ -70,31 +45,28 @@ class AppointmentsRepository {
           appointmentCalendars.add(appointmentCalendar);
         }
 
-        // final AppointmentEvent appointmentModel = AppointmentEvent(
-        //   appointmentDate: appointmentAt,
-        //   appointmenDate: formattedDate,
-        //   appointmenTime: formattedTime,
-        //   roundText: roundText,
-        //   fullname: fullname,
-        //   phoneNo: phoneNo,
-        //   guardianFullname: guardianFullname,
-        //   guardianPhoneNo: guardianPhoneNo,
-        // );
+        AppointmentType appointmentType = AppointmentType.treatment;
+        AppointmentType.setValue(entity.appointmentType);
 
-        // appointmentEvents.add(appointmentModel);
-
-        final AppointmentEvent appointmentEvent = networkMapper.toAppointment(
+        final AppointmentEvent appointmentModel = AppointmentEvent(
           appointmentDate: appointmentAt,
-          appointmenDate: formattedDate,
-          appointmenTime: formattedTime,
-          roundText: roundText,
-          fullname: fullname,
-          phoneNo: phoneNo,
-          guardianFullname: guardianFullname,
-          guardianPhoneNo: guardianPhoneNo,
+          appointmenDate: formatDate(appointmentAt),
+          appointmenTime: formatTime(appointmentAt),
+          appointmentType: AppointmentType.setValue(entity.appointmentType),
+          round: convertToInt(appointmentEntity.round),
+          fullname: name,
+          phoneNo: convertToString(appointmentEntity.phoneNo),
+          guardianFullname: (appointmentEntity.guardianName != null &&
+                  appointmentEntity.guardianSurname != null)
+              ? "${convertToString(appointmentEntity.guardianName)} ${convertToString(appointmentEntity.guardianSurname)}"
+              : "-",
+          guardianPhoneNo: appointmentEntity.guardianPhoneNo != null &&
+                    appointmentEntity.guardianPhoneNo!.isNotEmpty
+                ? convertToString(appointmentEntity.guardianPhoneNo)
+                : "-";,
         );
 
-        appointmentEvents.add(appointmentEvent);
+        appointmentEvents.add(appointmentModel);
       }
     }
 
