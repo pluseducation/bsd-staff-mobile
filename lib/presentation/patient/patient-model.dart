@@ -14,12 +14,12 @@ class PatientModel {
     required this.appService,
   });
 
-  late PatientAll patients;
-  int page = 0;
-  String name = "";
+  // late PatientAll patients;
+  // int page = 0;
+  // String name = "";
 
-  Future<PatientAll> loadData() async {
-    return patients =
-        await patientRepository.findPatientAll(searchVal: name, page: page);
-  }
+  // Future<PatientAll> loadData() async {
+  //   return patients =
+  //       await patientRepository.findPatientAll(searchVal: name, page: page);
+  // }
 }
