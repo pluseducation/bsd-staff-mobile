@@ -39,8 +39,6 @@ String convertToString(dynamic object) {
   }
 }
 
-// ----
-
 DateTime convertToDatetime(String? object) {
   try {
     if (object == null) {
@@ -57,6 +55,24 @@ DateTime convertToDatetime(String? object) {
   }
 }
 
+// format
+String formatDate(DateTime? date) {
+  if (date == null) {
+    return "";
+  }
+  final DateFormat thaiDateFormat = DateFormat.yMMMd('th_TH');
+  return thaiDateFormat.format(date);
+}
+
+String formatTime(DateTime? dateTime) {
+  if (dateTime == null) {
+    return "";
+  }
+  final DateFormat formatter = DateFormat('HH:mm', 'th_TH');
+  return formatter.format(dateTime);
+}
+
+// delete
 String convertToThaiDatetime(DateTime dateTime) {
   final DateFormat formatter = DateFormat.yMMMMd('th_TH');
   return formatter.format(dateTime);
@@ -74,7 +90,6 @@ String convertToThaiDatetimes(DateTime dateTime) {
   return formattedDate;
 }
 
-// ---เวลา
 String convertToThaiTimes(DateTime? dateTime) {
   if (dateTime == null) {
     return "";
@@ -82,8 +97,6 @@ String convertToThaiTimes(DateTime? dateTime) {
   final DateFormat formatter = DateFormat('HH:mm', 'th_TH');
   return formatter.format(dateTime);
 }
-
-// ---
 
 String convertThaiDate(DateTime? date) {
   if (date == null) {

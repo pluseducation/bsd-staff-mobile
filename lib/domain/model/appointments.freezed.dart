@@ -189,7 +189,7 @@ mixin _$AppointmentEvent {
   DateTime get appointmentDate => throw _privateConstructorUsedError;
   String get appointmenDate => throw _privateConstructorUsedError;
   String get appointmenTime => throw _privateConstructorUsedError;
-  AppointmentType get appointmentType => throw _privateConstructorUsedError;
+  AppointmentType? get appointmentType => throw _privateConstructorUsedError;
   int get round => throw _privateConstructorUsedError;
   String get fullname => throw _privateConstructorUsedError;
   String get phoneNo => throw _privateConstructorUsedError;
@@ -213,7 +213,7 @@ abstract class $AppointmentEventCopyWith<$Res> {
       {DateTime appointmentDate,
       String appointmenDate,
       String appointmenTime,
-      AppointmentType appointmentType,
+      AppointmentType? appointmentType,
       int round,
       String fullname,
       String phoneNo,
@@ -239,7 +239,7 @@ class _$AppointmentEventCopyWithImpl<$Res, $Val extends AppointmentEvent>
     Object? appointmentDate = null,
     Object? appointmenDate = null,
     Object? appointmenTime = null,
-    Object? appointmentType = null,
+    Object? appointmentType = freezed,
     Object? round = null,
     Object? fullname = null,
     Object? phoneNo = null,
@@ -259,10 +259,10 @@ class _$AppointmentEventCopyWithImpl<$Res, $Val extends AppointmentEvent>
           ? _value.appointmenTime
           : appointmenTime // ignore: cast_nullable_to_non_nullable
               as String,
-      appointmentType: null == appointmentType
+      appointmentType: freezed == appointmentType
           ? _value.appointmentType
           : appointmentType // ignore: cast_nullable_to_non_nullable
-              as AppointmentType,
+              as AppointmentType?,
       round: null == round
           ? _value.round
           : round // ignore: cast_nullable_to_non_nullable
@@ -299,7 +299,7 @@ abstract class _$$AppointmentEventImplCopyWith<$Res>
       {DateTime appointmentDate,
       String appointmenDate,
       String appointmenTime,
-      AppointmentType appointmentType,
+      AppointmentType? appointmentType,
       int round,
       String fullname,
       String phoneNo,
@@ -323,7 +323,7 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
     Object? appointmentDate = null,
     Object? appointmenDate = null,
     Object? appointmenTime = null,
-    Object? appointmentType = null,
+    Object? appointmentType = freezed,
     Object? round = null,
     Object? fullname = null,
     Object? phoneNo = null,
@@ -343,10 +343,10 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
           ? _value.appointmenTime
           : appointmenTime // ignore: cast_nullable_to_non_nullable
               as String,
-      appointmentType: null == appointmentType
+      appointmentType: freezed == appointmentType
           ? _value.appointmentType
           : appointmentType // ignore: cast_nullable_to_non_nullable
-              as AppointmentType,
+              as AppointmentType?,
       round: null == round
           ? _value.round
           : round // ignore: cast_nullable_to_non_nullable
@@ -392,7 +392,7 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
   @override
   final String appointmenTime;
   @override
-  final AppointmentType appointmentType;
+  final AppointmentType? appointmentType;
   @override
   final int round;
   @override
@@ -460,7 +460,7 @@ abstract class _AppointmentEvent implements AppointmentEvent {
       {required final DateTime appointmentDate,
       required final String appointmenDate,
       required final String appointmenTime,
-      required final AppointmentType appointmentType,
+      required final AppointmentType? appointmentType,
       required final int round,
       required final String fullname,
       required final String phoneNo,
@@ -474,7 +474,7 @@ abstract class _AppointmentEvent implements AppointmentEvent {
   @override
   String get appointmenTime;
   @override
-  AppointmentType get appointmentType;
+  AppointmentType? get appointmentType;
   @override
   int get round;
   @override
