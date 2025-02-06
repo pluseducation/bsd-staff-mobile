@@ -22,11 +22,10 @@ class AppointmentsRepository {
     final List<AppointmentCalendar> appointmentCalendars = [];
 
     for (final entity in appointmentEntitys) {
-      if (entity.entity != null &&
-          appointmentEntity.reason == null) {
-        final appointmentAt =
-            convertToDatetime(entity.appointmentAt);
-        final name = "${convertToString(entity.name)} ${convertToString(entity.surname)}";
+      if (entity.reason == null) {
+        final appointmentAt = convertToDatetime(entity.appointmentAt);
+        final name =
+            "${convertToString(entity.name)} ${convertToString(entity.surname)}";
         final phoneNo = convertToString(entity.phoneNo);
 
         final existingCalendar = appointmentCalendars
@@ -45,25 +44,22 @@ class AppointmentsRepository {
           appointmentCalendars.add(appointmentCalendar);
         }
 
-        AppointmentType appointmentType = AppointmentType.treatment;
-        AppointmentType.setValue(entity.appointmentType);
-
         final AppointmentEvent appointmentModel = AppointmentEvent(
           appointmentDate: appointmentAt,
           appointmenDate: formatDate(appointmentAt),
           appointmenTime: formatTime(appointmentAt),
           appointmentType: AppointmentType.setValue(entity.appointmentType),
-          round: convertToInt(appointmentEntity.round),
+          round: convertToInt(entity.round),
           fullname: name,
-          phoneNo: convertToString(appointmentEntity.phoneNo),
-          guardianFullname: (appointmentEntity.guardianName != null &&
-                  appointmentEntity.guardianSurname != null)
-              ? "${convertToString(appointmentEntity.guardianName)} ${convertToString(appointmentEntity.guardianSurname)}"
+          phoneNo: convertToString(entity.phoneNo),
+          guardianFullname: (entity.guardianName != null &&
+                  entity.guardianSurname != null)
+              ? "${convertToString(entity.guardianName)} ${convertToString(entity.guardianSurname)}"
               : "-",
-          guardianPhoneNo: appointmentEntity.guardianPhoneNo != null &&
-                    appointmentEntity.guardianPhoneNo!.isNotEmpty
-                ? convertToString(appointmentEntity.guardianPhoneNo)
-                : "-";,
+          guardianPhoneNo: entity.guardianPhoneNo != null &&
+                  entity.guardianPhoneNo!.isNotEmpty
+              ? convertToString(entity.guardianPhoneNo)
+              : "-",
         );
 
         appointmentEvents.add(appointmentModel);
