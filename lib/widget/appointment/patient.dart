@@ -211,7 +211,7 @@ class DrugEvalResultStatusType extends StatelessWidget {
     if (drugEvalResult == DrugEvalResult.user) {
       color = PatientDrugEvalResultColors.drugUser;
       lightColor = PatientDrugEvalResultColors.drugUserLight;
-      text = 'ผู้ป่วยใน (ระยะบำบัด)';
+      text = 'ผู้ใช้';
     } else if (drugEvalResult == DrugEvalResult.abuse) {
       color = PatientDrugEvalResultColors.drugAbuse;
       lightColor = PatientDrugEvalResultColors.drugAbuseLight;

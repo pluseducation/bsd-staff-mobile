@@ -4,9 +4,10 @@ import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/appointment/appointment-type.dart';
 import 'package:bst_staff_mobile/widget/appointment/card-partial.dart';
-import 'package:bst_staff_mobile/widget/appointment/patient-search.dart';
-import 'package:bst_staff_mobile/widget/appointment/patient-select-search.dart';
 import 'package:bst_staff_mobile/widget/appointment/patient.dart';
+import 'package:bst_staff_mobile/widget/certificate/certificate-card.dart';
+import 'package:bst_staff_mobile/widget/certificate/certificate-detail-card.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 class MyWidget extends StatelessWidget {
@@ -55,7 +56,9 @@ class _MyWidgetsState extends State<MyWidgets> {
             Text(
               "Patient - Test",
               style: TextStyle(
-                  fontSize: FontSizes.large, fontWeight: FontWeight.bold),
+                fontSize: FontSizes.large,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,16 +171,29 @@ class TestStatusView extends StatelessWidget {
           style: TextStyle(color: MainColors.white),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // SearchBarWidget(),
-            const SizedBox(
-              height: 16,
-            ),
-            const Cardpatient(),
-          ],
+      body: const SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              // SearchBarWidget(),
+              SizedBox(
+                height: 16,
+              ),
+              Cardpatient(),
+              SizedBox(
+                height: 16,
+              ),
+              CertificateCard(),
+              SizedBox(
+                height: 16,
+              ),
+              CertificateDetailCard(),
+              SizedBox(
+                height: 40,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -198,5 +214,78 @@ class TestPatiaSelectScreen extends StatelessWidget {
       //   child: PatientSelectSearch(),
       // ),
     );
+  }
+}
+
+class CameraTest extends StatefulWidget {
+  const CameraTest({super.key});
+
+  @override
+  State<CameraTest> createState() => _CameraTestState();
+}
+
+class _CameraTestState extends State<CameraTest> {
+  List<CameraDescription> cameras = [];
+  CameraController? cameraController;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeCamera();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("data"),
+      ),
+      body: Column(
+        children: [
+          _buildUI(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUI() {
+    if (cameraController == null ||
+        cameraController?.value.isInitialized == false) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("กล้อง"),
+        SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.30,
+          width: MediaQuery.sizeOf(context).width * 0.80,
+          child: CameraPreview(
+            cameraController!,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _initializeCamera() async {
+    cameras = await availableCameras();
+    if (cameras.isNotEmpty) {
+      cameraController = CameraController(
+        cameras.first,
+        ResolutionPreset.high,
+      );
+      print("11111");
+      await cameraController?.initialize().then((_) {
+        setState(() {});
+      });
+      print("22222");
+    } else {
+      setState(() {
+        cameras = [];
+      });
+    }
   }
 }
