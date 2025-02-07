@@ -1,3 +1,4 @@
+import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
@@ -5,11 +6,11 @@ import 'package:bst_staff_mobile/widget/appointment/patient-selectl.dart';
 import 'package:flutter/material.dart';
 
 class PatientSelectSearch extends StatefulWidget {
-  final Function() onClick;
+  final Function(Search) onSearch;
 
   const PatientSelectSearch({
     super.key,
-    required this.onClick,
+    required this.onSearch,
   });
 
   @override
@@ -18,6 +19,12 @@ class PatientSelectSearch extends StatefulWidget {
 
 class _PatientSelectSearchState extends State<PatientSelectSearch> {
   final TextEditingController _controller = TextEditingController();
+  WorkFlowStatus? _selectedStatus;
+  LevelType? _selectedOASStatus;
+  DrugEvalResult? _selectedDrugStatus;
+  TreatmentType? _selectedTreatmentStatus;
+  SmivType? _selectedSmivStatus;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -80,7 +87,6 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
                 ),
               ],
             ),
-
             const SizedBox(height: 16),
             const Text(
               "สถานะ",
@@ -91,8 +97,11 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
             const SizedBox(height: 4),
             PatiaStatusSelectl(
               onSelected: (WorkFlowStatus? status) {
-                print("สถานะที่เลือก:==>>> $status");
+                setState(() {
+                  _selectedStatus = status;
+                });
               },
+              initialSelectedStatus: _selectedStatus,
             ),
             const SizedBox(height: 4),
             const Text(
@@ -104,8 +113,11 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
             const SizedBox(height: 4),
             PatiaOASSelectl(
               onSelected: (LevelType? status) {
-                print("OAS ที่เลือก:==>>> $status");
+                setState(() {
+                  _selectedOASStatus = status;
+                });
               },
+              initialSelectedStatus: _selectedOASStatus,
             ),
             const SizedBox(height: 4),
             const Text(
@@ -116,8 +128,11 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
             ),
             DrugEvalResultSelectl(
               onSelected: (DrugEvalResult? status) {
-                print("DrugEvalResult ที่เลือก:==>>> $status");
+                setState(() {
+                  _selectedDrugStatus = status;
+                });
               },
+              initialSelectedStatus: _selectedDrugStatus,
             ),
             const SizedBox(height: 4),
             const Text(
@@ -129,8 +144,11 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
             const SizedBox(height: 4),
             TreatmentTypeSelectl(
               onSelected: (TreatmentType? status) {
-                print("TreatmentType ที่เลือก:==>>> $status");
+                setState(() {
+                  _selectedTreatmentStatus = status;
+                });
               },
+              initialSelectedStatus: _selectedTreatmentStatus,
             ),
             const SizedBox(height: 4),
             const Text(
@@ -142,10 +160,12 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
             const SizedBox(height: 4),
             SmivTypeSelectl(
               onSelected: (SmivType? status) {
-                print("SmivType ที่เลือก:==>>> $status");
+                setState(() {
+                  _selectedSmivStatus = status;
+                });
               },
+              initialSelectedStatus: _selectedSmivStatus,
             ),
-            // const Spacer(),
           ],
         ),
         const SizedBox(height: 16),
@@ -154,7 +174,7 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
             Expanded(
               child: OutlinedButton(
                 onPressed: () {
-                  print("ยกเลิก");
+                  Navigator.pop(context);
                 },
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 8),
@@ -178,7 +198,28 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  widget.onClick;
+                  final search = Search(
+                    searchVal: _controller.text,
+                    workFlowStatus:
+                        _selectedStatus != null ? [_selectedStatus!] : [],
+                    levelType:
+                        _selectedOASStatus != null ? [_selectedOASStatus!] : [],
+                    drugEvalResult: _selectedDrugStatus != null
+                        ? [_selectedDrugStatus!]
+                        : [],
+                    treatmentType: _selectedTreatmentStatus != null
+                        ? [_selectedTreatmentStatus!]
+                        : [],
+                    smivType: _selectedSmivStatus != null
+                        ? [_selectedSmivStatus!]
+                        : [],
+                    page: 0,
+                    totalPages: 0,
+                    totalElements: 0,
+                    size: 10,
+                  );
+                  widget.onSearch(search);
+                  // Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: MainColors.primary500,

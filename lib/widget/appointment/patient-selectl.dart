@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class PatiaStatusSelectl extends StatefulWidget {
   final Function(WorkFlowStatus?) onSelected;
+  final WorkFlowStatus? initialSelectedStatus;
 
   const PatiaStatusSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -16,6 +18,12 @@ class PatiaStatusSelectl extends StatefulWidget {
 
 class _PatiaStatusSelectlState extends State<PatiaStatusSelectl> {
   WorkFlowStatus? _selectedStatus;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedStatus = widget.initialSelectedStatus;
+  }
 
   final Map<WorkFlowStatus, String> statusLabels = {
     WorkFlowStatus.registering: "ลงทะเบียน",
@@ -78,10 +86,12 @@ class _PatiaStatusSelectlState extends State<PatiaStatusSelectl> {
 
 class PatiaOASSelectl extends StatefulWidget {
   final Function(LevelType?) onSelected;
+  final LevelType? initialSelectedStatus;
 
   const PatiaOASSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -90,6 +100,12 @@ class PatiaOASSelectl extends StatefulWidget {
 
 class _PatiaOASSelectlState extends State<PatiaOASSelectl> {
   LevelType? _selectedOASStatus;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedOASStatus = widget.initialSelectedStatus;
+  }
 
   final Map<LevelType, String> statusLabels = {
     LevelType.normal: "สีเขียว",
@@ -162,10 +178,12 @@ class _PatiaOASSelectlState extends State<PatiaOASSelectl> {
 
 class DrugEvalResultSelectl extends StatefulWidget {
   final Function(DrugEvalResult?) onSelected;
+  final DrugEvalResult? initialSelectedStatus;
 
   const DrugEvalResultSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -174,6 +192,12 @@ class DrugEvalResultSelectl extends StatefulWidget {
 
 class _DrugEvalResultSelectlState extends State<DrugEvalResultSelectl> {
   DrugEvalResult? _selectedDrugStatus;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedDrugStatus = widget.initialSelectedStatus;
+  }
 
   final Map<DrugEvalResult, String> statusLabels = {
     DrugEvalResult.user: "ผู้ใช้",
@@ -244,10 +268,12 @@ class _DrugEvalResultSelectlState extends State<DrugEvalResultSelectl> {
 
 class TreatmentTypeSelectl extends StatefulWidget {
   final Function(TreatmentType?) onSelected;
+  final TreatmentType? initialSelectedStatus;
 
   const TreatmentTypeSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -256,6 +282,12 @@ class TreatmentTypeSelectl extends StatefulWidget {
 
 class _TreatmentTypeSelectlState extends State<TreatmentTypeSelectl> {
   TreatmentType? _selectedTreatmentStatus;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedTreatmentStatus = widget.initialSelectedStatus;
+  }
 
   final Map<TreatmentType, String> statusLabels = {
     TreatmentType.opd: "ผู้ป่วยนอก",
@@ -334,10 +366,12 @@ class _TreatmentTypeSelectlState extends State<TreatmentTypeSelectl> {
 
 class SmivTypeSelectl extends StatefulWidget {
   final Function(SmivType?) onSelected;
+  final SmivType? initialSelectedStatus;
 
   const SmivTypeSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -346,6 +380,12 @@ class SmivTypeSelectl extends StatefulWidget {
 
 class _SmivTypeSelectlState extends State<SmivTypeSelectl> {
   SmivType? _selectedSmiStatus;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedSmiStatus = widget.initialSelectedStatus;
+  }
 
   final Map<SmivType, String> statusLabels = {
     SmivType.smiv: "SMI-V",

@@ -78,7 +78,10 @@ class _MyWidgetState extends State<PatientEelectSearchContent> {
     return Column(
       children: [
         PatientSelectSearch(
-          onClick: _onOpenSearch,
+          // onClick: _onOpenSearch,
+          onSearch: (Search) {
+            print("Search:===>>> $Search");
+          },
         ),
       ],
     );
