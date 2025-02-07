@@ -1,4 +1,5 @@
 import 'package:bst_staff_mobile/presentation/appointment/appointment-screen.dart';
+import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
@@ -137,7 +138,14 @@ class _ManuContentState extends State<ManuContent> {
           ),
         );
       } else if (id == 2) {
-        print("Clicked ID: $id for another menu item.");
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const PatientScreen(),
+          ),
+        );
+      } else if (id == 3) {
+        print("Help $id");
       }
     } on Exception catch (e) {
       if (!context.mounted) return;

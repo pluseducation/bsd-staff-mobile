@@ -37,7 +37,7 @@ class _AppointmentMonthState extends State<AppointmentMonth> {
       _events[dateString]!.add({
         'appointmenDate': convertToThaiDatetimes(appointmentDate),
         'appointmenTime': event.appointmenTime,
-        'roundText': event.roundText,
+        'round': event.round.toString(),
         'fullname': event.fullname,
         'phoneNo': event.phoneNo,
         'guardianFullname': event.guardianFullname,

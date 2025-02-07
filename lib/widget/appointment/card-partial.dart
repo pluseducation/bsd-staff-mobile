@@ -4,8 +4,8 @@ import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:bst_staff_mobile/widget/appointment/patient.dart';
 import 'package:flutter/material.dart';
 
-class Cardpartial extends StatelessWidget {
-  const Cardpartial({super.key});
+class Cardpatient extends StatelessWidget {
+  const Cardpatient({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +56,7 @@ class Cardpartial extends StatelessWidget {
                             Text(
                               "1579900499231 (แทน)",
                               style: TextStyle(
+                                color: MainColors.text,
                                 fontSize: FontSizes.small,
                               ),
                             ),
@@ -65,9 +66,7 @@ class Cardpartial extends StatelessWidget {
                           spacing: 8,
                           runSpacing: 4,
                           children: [
-                            // check สถานะ หากมีค่าส่งไป หากไม่มี ไม่ต้องการshow
                             LevelStatusType(levelType: LevelType.urgency),
-
                             DrugEvalResultStatusType(
                               drugEvalResult: DrugEvalResult.dependence,
                             ),
@@ -83,7 +82,7 @@ class Cardpartial extends StatelessWidget {
                           "รอบบำบัด : 653210",
                           style: TextStyle(
                             fontSize: FontSizes.small,
-                            color: Colors.grey,
+                            color: MainColors.text,
                           ),
                         ),
                         TreatmentStatusType(

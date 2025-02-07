@@ -17,55 +17,49 @@ class AppointmentStatusType extends StatelessWidget {
   Widget build(BuildContext context) {
     Color color;
     String text;
-    Color lightColor;
+    Color textcolor;
 
     if (appointmentType == AppointmentType.assistance) {
-      lightColor = MainColors.secondaryLight;
-      color = MainColors.primary500;
+      color = AppointmentMainColors.assistance;
+      textcolor = AppointmentMainColors.assistanceLight;
       text = 'ช่วยเหลือครั้งที่ $round';
     } else if (appointmentType == AppointmentType.monitoring) {
-      lightColor = MainColors.secondaryLight;
-      color = MainColors.success;
+      color = AppointmentMainColors.monitoring;
+      textcolor = AppointmentMainColors.monitoringLight;
       text = 'ติดตามครั้งที่ $round';
     } else if (appointmentType == AppointmentType.treatment) {
-      lightColor = MainColors.secondaryLight;
-      color = MainColors.warning;
+      color = AppointmentMainColors.treatment;
+      textcolor = AppointmentMainColors.treatmentLight;
       text = 'นัดบำบัดครั้งที่ $round';
     } else if (appointmentType == AppointmentType.reject) {
-      lightColor = MainColors.secondaryLight;
-      color = MainColors.error;
+      color = AppointmentMainColors.reject;
+      textcolor = AppointmentMainColors.rejectLight;
       text = 'ยกเลิก';
     } else {
-      lightColor = MainColors.secondaryLight;
+      textcolor = MainColors.secondaryLight;
       color = Colors.grey;
       text = 'unknown';
     }
 
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: color,
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: textcolor,
+              fontSize: FontSizes.small,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            child: Center(
-              child: Text(
-                text,
-                style: const TextStyle(
-                  fontSize: FontSizes.small,
-                  color: MainColors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

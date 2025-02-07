@@ -36,7 +36,7 @@ class MainColors {
 
 class PatientMainColors {
   static const Color normalbg = Color(0xFFEEFFF4);
-  static const Color normal = Color(0xFF3CA468);
+  static const Color normal = Color(0xff0EB366);
   static const Color semiurgencybg = Color(0x29919EAB);
   static const Color semiurgency = Color(0xFFF2994B);
   static const Color urgencybg = Color(0xFFFFF0E5);
@@ -45,31 +45,57 @@ class PatientMainColors {
   static const Color monitoring = Color(0xFFD82E22);
 }
 
-class PatientMainTextColors {
-  static const Color registering = Color(0xFF2563eb);
-  static const Color screening = Color(0xFF2563eb);
-  static const Color treatment = Color(0xFF2563eb);
-  static const Color monitoring = Color(0xFF2563eb);
-  static const Color assistance = Color(0XFFF04438);
-  static const Color unknown = Color(0xFF9E9E9E);
+//--------------------------------------------
+class AppointmentMainColors {
+  static const Color assistance = Color(0xFF2563eb);
+  static const Color monitoring = Color(0xFF3CA468);
+  static const Color treatment = Color(0xFFFBBB58);
+  static const Color reject = Color(0xFFD32F2F);
 
+  static const Color assistanceLight = Color(0xFF2563EB);
+  static const Color monitoringLight = Color(0xFF1B806A);
+  static const Color treatmentLight = Color(0xFFFFAB00);
+  static const Color rejectLight = Color(0xFFC00F0C);
+}
+
+//--------------------------------------------
+//1
+class PatientStatusColors {
+  static const Color registering = Color(0XFF333333);
+  static const Color screening = Color(0XFFcc9747);
+  static const Color treatment = Color(0XFF06AED4);
+  static const Color monitoring = Color(0XFF4cceac);
+  static const Color assistance = Color(0XFF333333);
+  static const Color discharged = Color(0XFFF04438);
+
+  static const Color registeringLight = Color(0XFFd6d6d6);
+  static const Color screeningLight = Color(0XFFfff2de);
+  static const Color treatmentLight = Color(0XFFECFDFF);
+  static const Color monitoringLight = Color(0XFFdbf5ee);
+  static const Color assistanceLight = Color(0XFFd6d6d6);
+  static const Color dischargedLight = Color(0XFFf8dcdb);
+}
+
+//2
+class PatientLevelTypeColors {
   static const Color normal = Color(0xff0EB366);
   static const Color semiUrgency = Color(0xFFFBBB58);
   static const Color urgency = Color(0xFFFF8F50);
   static const Color emergency = Color(0xFFEF5350);
 
+  static const Color normalLight = Color(0xFF0EB366);
+  static const Color semiUrgencyLight = Color(0xFFFFAB00);
+  static const Color urgencyLight = Color(0xFFFF8F50);
+  static const Color emergencyLight = Color(0xFFC00F0C);
+}
+//2
+
+class PatientDrugEvalResultColors {
   static const Color drugUser = Color(0xFFFBBB58);
   static const Color drugAbuse = Color(0xFFFF8F50);
   static const Color drugDependence = Color(0xFFEF5350);
 
-  static const Color opd = Color(0xFF2563eb);
-  static const Color ipdTreatment = Color(0xFF2563eb);
-  static const Color ipdRecover = Color(0xFF2563eb);
-  static const Color ipdMini = Color(0xFF2563eb);
-  static const Color cbtx = Color(0xFF2563eb);
-  static const Color network = Color(0xFF2563eb);
-  static const Color religious = Color(0xFF2563eb);
-  static const Color religiousAlternate = Color(0xFF2563eb);
-
-  static const Color smiv = Color(0xFFD32F2F);
+  static const Color drugUserLight = Color(0xFFFFAB00);
+  static const Color drugAbuseLight = Color(0xFFFF8F50);
+  static const Color drugDependenceLight = Color(0xFFC00F0C);
 }

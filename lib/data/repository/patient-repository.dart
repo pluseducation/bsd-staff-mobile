@@ -13,18 +13,18 @@ class PatientRepository {
     required this.networkMapper,
   });
 
-  Future<PatientAll> findPatientAll({
-    required String searchVal,
-    required int page,
-  }) async {
-    final entity = await patientApi.findPatientAll(
-      searchVal: searchVal,
-      page: page,
-      size: Constant.size,
-    );
+  // Future<PatientAll> findPatientAll({
+  //   required String searchVal,
+  //   required int page,
+  // }) async {
+  //   final entity = await patientApi.findPatientAll(
+  //     searchVal: searchVal,
+  //     page: page,
+  //     size: Constant.size,
+  //   );
 
-    final model = networkMapper.toPatientAll(entity);
-    return model;
-  }
+  //   final model = networkMapper.toPatientAll(entity);
+  //   return model;
+  // }
 // --------------------------
 }

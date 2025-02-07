@@ -3,11 +3,13 @@ import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 
 class PatiaStatusSelectl extends StatefulWidget {
-  final Function(WorkFlowStatus) onSelected;
+  final Function(WorkFlowStatus?) onSelected;
+  final WorkFlowStatus? initialSelectedStatus;
 
   const PatiaStatusSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -17,20 +19,28 @@ class PatiaStatusSelectl extends StatefulWidget {
 class _PatiaStatusSelectlState extends State<PatiaStatusSelectl> {
   WorkFlowStatus? _selectedStatus;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedStatus = widget.initialSelectedStatus;
+  }
+
   final Map<WorkFlowStatus, String> statusLabels = {
     WorkFlowStatus.registering: "ลงทะเบียน",
     WorkFlowStatus.screening: "คัดกรอง",
     WorkFlowStatus.treatment: "บำบัด",
     WorkFlowStatus.monitoring: "ติดตาม",
-    WorkFlowStatus.assistance: "จำหน่าย",
+    WorkFlowStatus.assistance: "ช่วยเหลือ",
+    WorkFlowStatus.discharged: "จำหน่าย",
   };
 
   final Map<WorkFlowStatus, Color> statusColors = {
-    WorkFlowStatus.registering: PatientMainTextColors.registering,
-    WorkFlowStatus.screening: PatientMainTextColors.screening,
-    WorkFlowStatus.treatment: PatientMainTextColors.treatment,
-    WorkFlowStatus.monitoring: PatientMainTextColors.monitoring,
-    WorkFlowStatus.assistance: PatientMainTextColors.assistance,
+    WorkFlowStatus.registering: PatientStatusColors.registering,
+    WorkFlowStatus.screening: PatientStatusColors.screening,
+    WorkFlowStatus.treatment: PatientStatusColors.treatment,
+    WorkFlowStatus.monitoring: PatientStatusColors.monitoring,
+    WorkFlowStatus.assistance: PatientStatusColors.assistance,
+    WorkFlowStatus.discharged: PatientStatusColors.discharged,
   };
 
   @override
@@ -43,9 +53,9 @@ class _PatiaStatusSelectlState extends State<PatiaStatusSelectl> {
         return GestureDetector(
           onTap: () {
             setState(() {
-              _selectedStatus = status;
+              _selectedStatus = isSelected ? null : status;
             });
-            widget.onSelected(status);
+            widget.onSelected(_selectedStatus);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -75,11 +85,13 @@ class _PatiaStatusSelectlState extends State<PatiaStatusSelectl> {
 }
 
 class PatiaOASSelectl extends StatefulWidget {
-  final Function(LevelType) onSelected;
+  final Function(LevelType?) onSelected;
+  final LevelType? initialSelectedStatus;
 
   const PatiaOASSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -89,6 +101,12 @@ class PatiaOASSelectl extends StatefulWidget {
 class _PatiaOASSelectlState extends State<PatiaOASSelectl> {
   LevelType? _selectedOASStatus;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedOASStatus = widget.initialSelectedStatus;
+  }
+
   final Map<LevelType, String> statusLabels = {
     LevelType.normal: "สีเขียว",
     LevelType.semiUrgency: "สีเหลือง",
@@ -97,10 +115,10 @@ class _PatiaOASSelectlState extends State<PatiaOASSelectl> {
   };
 
   final Map<LevelType, Color> statusColors = {
-    LevelType.normal: PatientMainTextColors.normal,
-    LevelType.semiUrgency: PatientMainTextColors.semiUrgency,
-    LevelType.urgency: PatientMainTextColors.urgency,
-    LevelType.emergency: PatientMainTextColors.emergency,
+    LevelType.normal: PatientLevelTypeColors.normal,
+    LevelType.semiUrgency: PatientLevelTypeColors.semiUrgency,
+    LevelType.urgency: PatientLevelTypeColors.urgency,
+    LevelType.emergency: PatientLevelTypeColors.emergency,
   };
 
   @override
@@ -113,9 +131,9 @@ class _PatiaOASSelectlState extends State<PatiaOASSelectl> {
         return GestureDetector(
           onTap: () {
             setState(() {
-              _selectedOASStatus = status;
+              _selectedOASStatus = isSelected ? null : status;
             });
-            widget.onSelected(status);
+            widget.onSelected(_selectedOASStatus);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -159,11 +177,13 @@ class _PatiaOASSelectlState extends State<PatiaOASSelectl> {
 }
 
 class DrugEvalResultSelectl extends StatefulWidget {
-  final Function(DrugEvalResult) onSelected;
+  final Function(DrugEvalResult?) onSelected;
+  final DrugEvalResult? initialSelectedStatus;
 
   const DrugEvalResultSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -173,6 +193,12 @@ class DrugEvalResultSelectl extends StatefulWidget {
 class _DrugEvalResultSelectlState extends State<DrugEvalResultSelectl> {
   DrugEvalResult? _selectedDrugStatus;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedDrugStatus = widget.initialSelectedStatus;
+  }
+
   final Map<DrugEvalResult, String> statusLabels = {
     DrugEvalResult.user: "ผู้ใช้",
     DrugEvalResult.abuse: "ผู้เสพ",
@@ -180,9 +206,9 @@ class _DrugEvalResultSelectlState extends State<DrugEvalResultSelectl> {
   };
 
   final Map<DrugEvalResult, Color> statusColors = {
-    DrugEvalResult.user: PatientMainTextColors.drugUser,
-    DrugEvalResult.abuse: PatientMainTextColors.drugAbuse,
-    DrugEvalResult.dependence: PatientMainTextColors.drugDependence,
+    DrugEvalResult.user: PatientDrugEvalResultColors.drugUser,
+    DrugEvalResult.abuse: PatientDrugEvalResultColors.drugAbuse,
+    DrugEvalResult.dependence: PatientDrugEvalResultColors.drugDependence,
   };
 
   @override
@@ -195,9 +221,9 @@ class _DrugEvalResultSelectlState extends State<DrugEvalResultSelectl> {
         return GestureDetector(
           onTap: () {
             setState(() {
-              _selectedDrugStatus = status;
+              _selectedDrugStatus = isSelected ? null : status;
             });
-            widget.onSelected(status);
+            widget.onSelected(_selectedDrugStatus);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -241,11 +267,13 @@ class _DrugEvalResultSelectlState extends State<DrugEvalResultSelectl> {
 }
 
 class TreatmentTypeSelectl extends StatefulWidget {
-  final Function(TreatmentType) onSelected;
+  final Function(TreatmentType?) onSelected;
+  final TreatmentType? initialSelectedStatus;
 
   const TreatmentTypeSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -255,6 +283,12 @@ class TreatmentTypeSelectl extends StatefulWidget {
 class _TreatmentTypeSelectlState extends State<TreatmentTypeSelectl> {
   TreatmentType? _selectedTreatmentStatus;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedTreatmentStatus = widget.initialSelectedStatus;
+  }
+
   final Map<TreatmentType, String> statusLabels = {
     TreatmentType.opd: "ผู้ป่วยนอก",
     TreatmentType.ipdTreatment: "ผู้ป่วยใน (ระยะบำบัด)",
@@ -263,21 +297,16 @@ class _TreatmentTypeSelectlState extends State<TreatmentTypeSelectl> {
     TreatmentType.cbtx: "CBTx",
     TreatmentType.network: "ภาคีเครือข่าย",
     TreatmentType.religious: "ศาสนสถาน",
-    // TreatmentType.rehabilitationTherapyTrainingCenter: "",
-    // TreatmentType.wiwatSchoolProject: "",
-    // TreatmentType.programInPrisons: "",
-    // TreatmentType.behaviorCamp: "",
-    // TreatmentType.other: "",
   };
 
   final Map<TreatmentType, Color> statusColors = {
-    TreatmentType.opd: PatientMainTextColors.opd,
-    TreatmentType.ipdTreatment: PatientMainTextColors.ipdTreatment,
-    TreatmentType.ipdRecover: PatientMainTextColors.ipdRecover,
-    TreatmentType.ipdMini: PatientMainTextColors.ipdMini,
-    TreatmentType.cbtx: PatientMainTextColors.cbtx,
-    TreatmentType.network: PatientMainTextColors.network,
-    TreatmentType.religious: PatientMainTextColors.religious,
+    TreatmentType.opd: MainColors.primary500,
+    TreatmentType.ipdTreatment: MainColors.primary500,
+    TreatmentType.ipdRecover: MainColors.primary500,
+    TreatmentType.ipdMini: MainColors.primary500,
+    TreatmentType.cbtx: MainColors.primary500,
+    TreatmentType.network: MainColors.primary500,
+    TreatmentType.religious: MainColors.primary500,
   };
 
   @override
@@ -290,9 +319,9 @@ class _TreatmentTypeSelectlState extends State<TreatmentTypeSelectl> {
         return GestureDetector(
           onTap: () {
             setState(() {
-              _selectedTreatmentStatus = status;
+              _selectedTreatmentStatus = isSelected ? null : status;
             });
-            widget.onSelected(status);
+            widget.onSelected(_selectedTreatmentStatus);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -334,14 +363,15 @@ class _TreatmentTypeSelectlState extends State<TreatmentTypeSelectl> {
     );
   }
 }
-// SmivTypeSelectl
 
 class SmivTypeSelectl extends StatefulWidget {
-  final Function(SmivType) onSelected;
+  final Function(SmivType?) onSelected;
+  final SmivType? initialSelectedStatus;
 
   const SmivTypeSelectl({
     super.key,
     required this.onSelected,
+    this.initialSelectedStatus,
   });
 
   @override
@@ -351,12 +381,18 @@ class SmivTypeSelectl extends StatefulWidget {
 class _SmivTypeSelectlState extends State<SmivTypeSelectl> {
   SmivType? _selectedSmiStatus;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedSmiStatus = widget.initialSelectedStatus;
+  }
+
   final Map<SmivType, String> statusLabels = {
     SmivType.smiv: "SMI-V",
   };
 
   final Map<SmivType, Color> statusColors = {
-    SmivType.smiv: PatientMainTextColors.smiv,
+    SmivType.smiv: MainColors.error,
   };
 
   @override
@@ -369,9 +405,9 @@ class _SmivTypeSelectlState extends State<SmivTypeSelectl> {
         return GestureDetector(
           onTap: () {
             setState(() {
-              _selectedSmiStatus = status;
+              _selectedSmiStatus = isSelected ? null : status;
             });
-            widget.onSelected(status);
+            widget.onSelected(_selectedSmiStatus);
           },
           child: Container(
             decoration: BoxDecoration(

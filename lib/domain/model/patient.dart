@@ -8,8 +8,8 @@ class Search with _$Search {
   factory Search({
     required String searchVal,
     required List<WorkFlowStatus> workFlowStatus,
-    required List<DrugEvalResult> drugEvalResult,
     required List<LevelType> levelType,
+    required List<DrugEvalResult> drugEvalResult,
     required List<TreatmentType> treatmentType,
     required List<SmivType> smivType,
     required int page,
