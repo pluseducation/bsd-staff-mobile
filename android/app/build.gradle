@@ -38,6 +38,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     compileSdkVersion flutter.compileSdkVersion
+    namespace 'com.osnarc.antidrug'
     ndkVersion flutter.ndkVersion
 
     compileOptions {
