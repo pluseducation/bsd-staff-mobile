@@ -34,30 +34,6 @@ class MainColors {
   static const Color semiurgencybg = Color(0x29919EAB);
 }
 
-class PatientMainColors {
-  static const Color normalbg = Color(0xFFEEFFF4);
-  static const Color normal = Color(0xff0EB366);
-  static const Color semiurgencybg = Color(0x29919EAB);
-  static const Color semiurgency = Color(0xFFF2994B);
-  static const Color urgencybg = Color(0xFFFFF0E5);
-  static const Color urgency = Color(0xFFFE6805);
-  static const Color monitoringbg = Color(0xFFFBE9E9);
-  static const Color monitoring = Color(0xFFD82E22);
-}
-
-//--------------------------------------------
-class AppointmentMainColors {
-  static const Color assistance = Color(0xFF2563eb);
-  static const Color monitoring = Color(0xFF3CA468);
-  static const Color treatment = Color(0xFFFBBB58);
-  static const Color reject = Color(0xFFD32F2F);
-
-  static const Color assistanceLight = Color(0xFF2563EB);
-  static const Color monitoringLight = Color(0xFF1B806A);
-  static const Color treatmentLight = Color(0xFFFFAB00);
-  static const Color rejectLight = Color(0xFFC00F0C);
-}
-
 //--------------------------------------------
 //1
 class PatientStatusColors {
