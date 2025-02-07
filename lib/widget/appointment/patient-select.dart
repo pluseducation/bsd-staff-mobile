@@ -2,21 +2,21 @@ import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 
-class PatiaStatusSelectl extends StatefulWidget {
+class PatiaStatusSelect extends StatefulWidget {
   final Function(WorkFlowStatus?) onSelected;
   final WorkFlowStatus? initialSelectedStatus;
 
-  const PatiaStatusSelectl({
+  const PatiaStatusSelect({
     super.key,
     required this.onSelected,
     this.initialSelectedStatus,
   });
 
   @override
-  State<PatiaStatusSelectl> createState() => _PatiaStatusSelectlState();
+  State<PatiaStatusSelect> createState() => _PatiaStatusSelectState();
 }
 
-class _PatiaStatusSelectlState extends State<PatiaStatusSelectl> {
+class _PatiaStatusSelectState extends State<PatiaStatusSelect> {
   WorkFlowStatus? _selectedStatus;
 
   @override
@@ -84,21 +84,21 @@ class _PatiaStatusSelectlState extends State<PatiaStatusSelectl> {
   }
 }
 
-class PatiaOASSelectl extends StatefulWidget {
+class PatiaOASSelect extends StatefulWidget {
   final Function(LevelType?) onSelected;
   final LevelType? initialSelectedStatus;
 
-  const PatiaOASSelectl({
+  const PatiaOASSelect({
     super.key,
     required this.onSelected,
     this.initialSelectedStatus,
   });
 
   @override
-  State<PatiaOASSelectl> createState() => _PatiaOASSelectlState();
+  State<PatiaOASSelect> createState() => _PatiaOASSelectState();
 }
 
-class _PatiaOASSelectlState extends State<PatiaOASSelectl> {
+class _PatiaOASSelectState extends State<PatiaOASSelect> {
   LevelType? _selectedOASStatus;
 
   @override
@@ -176,21 +176,21 @@ class _PatiaOASSelectlState extends State<PatiaOASSelectl> {
   }
 }
 
-class DrugEvalResultSelectl extends StatefulWidget {
+class DrugEvalResultSelect extends StatefulWidget {
   final Function(DrugEvalResult?) onSelected;
   final DrugEvalResult? initialSelectedStatus;
 
-  const DrugEvalResultSelectl({
+  const DrugEvalResultSelect({
     super.key,
     required this.onSelected,
     this.initialSelectedStatus,
   });
 
   @override
-  State<DrugEvalResultSelectl> createState() => _DrugEvalResultSelectlState();
+  State<DrugEvalResultSelect> createState() => _DrugEvalResultSelectState();
 }
 
-class _DrugEvalResultSelectlState extends State<DrugEvalResultSelectl> {
+class _DrugEvalResultSelectState extends State<DrugEvalResultSelect> {
   DrugEvalResult? _selectedDrugStatus;
 
   @override
@@ -266,21 +266,21 @@ class _DrugEvalResultSelectlState extends State<DrugEvalResultSelectl> {
   }
 }
 
-class TreatmentTypeSelectl extends StatefulWidget {
+class TreatmentTypeSelect extends StatefulWidget {
   final Function(TreatmentType?) onSelected;
   final TreatmentType? initialSelectedStatus;
 
-  const TreatmentTypeSelectl({
+  const TreatmentTypeSelect({
     super.key,
     required this.onSelected,
     this.initialSelectedStatus,
   });
 
   @override
-  State<TreatmentTypeSelectl> createState() => _TreatmentTypeSelectlState();
+  State<TreatmentTypeSelect> createState() => _TreatmentTypeSelectState();
 }
 
-class _TreatmentTypeSelectlState extends State<TreatmentTypeSelectl> {
+class _TreatmentTypeSelectState extends State<TreatmentTypeSelect> {
   TreatmentType? _selectedTreatmentStatus;
 
   @override
@@ -364,21 +364,21 @@ class _TreatmentTypeSelectlState extends State<TreatmentTypeSelectl> {
   }
 }
 
-class SmivTypeSelectl extends StatefulWidget {
+class SmivTypeSelect extends StatefulWidget {
   final Function(SmivType?) onSelected;
   final SmivType? initialSelectedStatus;
 
-  const SmivTypeSelectl({
+  const SmivTypeSelect({
     super.key,
     required this.onSelected,
     this.initialSelectedStatus,
   });
 
   @override
-  State<SmivTypeSelectl> createState() => _SmivTypeSelectlState();
+  State<SmivTypeSelect> createState() => _SmivTypeSelectState();
 }
 
-class _SmivTypeSelectlState extends State<SmivTypeSelectl> {
+class _SmivTypeSelectState extends State<SmivTypeSelect> {
   SmivType? _selectedSmiStatus;
 
   @override

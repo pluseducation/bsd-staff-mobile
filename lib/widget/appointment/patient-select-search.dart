@@ -2,7 +2,7 @@ import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
-import 'package:bst_staff_mobile/widget/appointment/patient-selectl.dart';
+import 'package:bst_staff_mobile/widget/appointment/patient-select.dart';
 import 'package:flutter/material.dart';
 
 class PatientSelectSearch extends StatefulWidget {
@@ -95,7 +95,7 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
               ),
             ),
             const SizedBox(height: 4),
-            PatiaStatusSelectl(
+            PatiaStatusSelect(
               onSelected: (WorkFlowStatus? status) {
                 setState(() {
                   _selectedStatus = status;
@@ -111,7 +111,7 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
               ),
             ),
             const SizedBox(height: 4),
-            PatiaOASSelectl(
+            PatiaOASSelect(
               onSelected: (LevelType? status) {
                 setState(() {
                   _selectedOASStatus = status;
@@ -126,7 +126,7 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
                 fontSize: FontSizes.medium,
               ),
             ),
-            DrugEvalResultSelectl(
+            DrugEvalResultSelect(
               onSelected: (DrugEvalResult? status) {
                 setState(() {
                   _selectedDrugStatus = status;
@@ -142,7 +142,7 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
               ),
             ),
             const SizedBox(height: 4),
-            TreatmentTypeSelectl(
+            TreatmentTypeSelect(
               onSelected: (TreatmentType? status) {
                 setState(() {
                   _selectedTreatmentStatus = status;
@@ -158,7 +158,7 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
               ),
             ),
             const SizedBox(height: 4),
-            SmivTypeSelectl(
+            SmivTypeSelect(
               onSelected: (SmivType? status) {
                 setState(() {
                   _selectedSmivStatus = status;

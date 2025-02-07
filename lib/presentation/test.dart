@@ -184,14 +184,14 @@ class TestStatusView extends StatelessWidget {
   }
 }
 
-class TestPatiaSelectlScreen extends StatelessWidget {
-  const TestPatiaSelectlScreen({super.key});
+class TestPatiaSelectScreen extends StatelessWidget {
+  const TestPatiaSelectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: BaseAppBarContent(
-        title: "Test Patia Selectl",
+        title: "Test Patia Select",
       ),
       // body: Padding(
       //   padding: EdgeInsets.all(8.0),

@@ -20,20 +20,20 @@ class AppointmentStatusType extends StatelessWidget {
     Color textcolor;
 
     if (appointmentType == AppointmentType.assistance) {
-      color = AppointmentMainColors.assistance;
-      textcolor = AppointmentMainColors.assistanceLight;
+      color = PatientStatusColors.assistance;
+      textcolor = PatientStatusColors.assistanceLight;
       text = 'ช่วยเหลือครั้งที่ $round';
     } else if (appointmentType == AppointmentType.monitoring) {
-      color = AppointmentMainColors.monitoring;
-      textcolor = AppointmentMainColors.monitoringLight;
+      color = PatientStatusColors.monitoring;
+      textcolor = PatientStatusColors.monitoringLight;
       text = 'ติดตามครั้งที่ $round';
     } else if (appointmentType == AppointmentType.treatment) {
-      color = AppointmentMainColors.treatment;
-      textcolor = AppointmentMainColors.treatmentLight;
+      color = PatientStatusColors.treatment;
+      textcolor = PatientStatusColors.treatmentLight;
       text = 'นัดบำบัดครั้งที่ $round';
     } else if (appointmentType == AppointmentType.reject) {
-      color = AppointmentMainColors.reject;
-      textcolor = AppointmentMainColors.rejectLight;
+      color = PatientStatusColors.discharged;
+      textcolor = PatientStatusColors.dischargedLight;
       text = 'ยกเลิก';
     } else {
       textcolor = MainColors.secondaryLight;

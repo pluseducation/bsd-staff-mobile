@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 : _selectedIndex == 3
                     ? const TestStatusView()
                     : _selectedIndex == 4
-                        ? const TestPatiaSelectlScreen()
+                        ? const TestPatiaSelectScreen()
                         : Text('Selected Index: $_selectedIndex'),
       ),
       bottomNavigationBar: MainBottomNavigationBar(
