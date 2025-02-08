@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'appointments-entity.g.dart';
+part 'appointment-entity.g.dart';
 
 @JsonSerializable()
-class AppointmentsEntity {
+class AppointmentEntity {
   String? name;
   int? patientId;
   int? round;
@@ -21,7 +21,7 @@ class AppointmentsEntity {
   String? appointmentWithSurname;
   String? reason;
 
-  AppointmentsEntity({
+  AppointmentEntity({
     required this.name,
     required this.patientId,
     required this.round,
@@ -39,7 +39,7 @@ class AppointmentsEntity {
     required this.appointmentWithSurname,
     required this.reason,
   });
-  factory AppointmentsEntity.fromJson(Map<String, dynamic> json) =>
-      _$AppointmentsEntityFromJson(json);
-  Map<String, dynamic> toJson() => _$AppointmentsEntityToJson(this);
+  factory AppointmentEntity.fromJson(Map<String, dynamic> json) =>
+      _$AppointmentEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$AppointmentEntityToJson(this);
 }

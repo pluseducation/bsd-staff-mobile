@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'appointments.dart';
+part of 'appointment.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Appointment {
   List<AppointmentEvent> get events =>
       throw _privateConstructorUsedError; //**  /appointments */
-  List<AppointmentCalendar> get calendars => throw _privateConstructorUsedError;
+  List<AppointmentDay> get days => throw _privateConstructorUsedError;
 
   /// Create a copy of Appointment
   /// with the given fields replaced by the non-null parameter values.
@@ -33,8 +33,7 @@ abstract class $AppointmentCopyWith<$Res> {
           Appointment value, $Res Function(Appointment) then) =
       _$AppointmentCopyWithImpl<$Res, Appointment>;
   @useResult
-  $Res call(
-      {List<AppointmentEvent> events, List<AppointmentCalendar> calendars});
+  $Res call({List<AppointmentEvent> events, List<AppointmentDay> days});
 }
 
 /// @nodoc
@@ -53,17 +52,17 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
   @override
   $Res call({
     Object? events = null,
-    Object? calendars = null,
+    Object? days = null,
   }) {
     return _then(_value.copyWith(
       events: null == events
           ? _value.events
           : events // ignore: cast_nullable_to_non_nullable
               as List<AppointmentEvent>,
-      calendars: null == calendars
-          ? _value.calendars
-          : calendars // ignore: cast_nullable_to_non_nullable
-              as List<AppointmentCalendar>,
+      days: null == days
+          ? _value.days
+          : days // ignore: cast_nullable_to_non_nullable
+              as List<AppointmentDay>,
     ) as $Val);
   }
 }
@@ -76,8 +75,7 @@ abstract class _$$AppointmentImplCopyWith<$Res>
       __$$AppointmentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<AppointmentEvent> events, List<AppointmentCalendar> calendars});
+  $Res call({List<AppointmentEvent> events, List<AppointmentDay> days});
 }
 
 /// @nodoc
@@ -94,17 +92,17 @@ class __$$AppointmentImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? events = null,
-    Object? calendars = null,
+    Object? days = null,
   }) {
     return _then(_$AppointmentImpl(
       events: null == events
           ? _value._events
           : events // ignore: cast_nullable_to_non_nullable
               as List<AppointmentEvent>,
-      calendars: null == calendars
-          ? _value._calendars
-          : calendars // ignore: cast_nullable_to_non_nullable
-              as List<AppointmentCalendar>,
+      days: null == days
+          ? _value._days
+          : days // ignore: cast_nullable_to_non_nullable
+              as List<AppointmentDay>,
     ));
   }
 }
@@ -114,9 +112,9 @@ class __$$AppointmentImplCopyWithImpl<$Res>
 class _$AppointmentImpl implements _Appointment {
   const _$AppointmentImpl(
       {required final List<AppointmentEvent> events,
-      required final List<AppointmentCalendar> calendars})
+      required final List<AppointmentDay> days})
       : _events = events,
-        _calendars = calendars;
+        _days = days;
 
   final List<AppointmentEvent> _events;
   @override
@@ -127,18 +125,18 @@ class _$AppointmentImpl implements _Appointment {
   }
 
 //**  /appointments */
-  final List<AppointmentCalendar> _calendars;
+  final List<AppointmentDay> _days;
 //**  /appointments */
   @override
-  List<AppointmentCalendar> get calendars {
-    if (_calendars is EqualUnmodifiableListView) return _calendars;
+  List<AppointmentDay> get days {
+    if (_days is EqualUnmodifiableListView) return _days;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_calendars);
+    return EqualUnmodifiableListView(_days);
   }
 
   @override
   String toString() {
-    return 'Appointment(events: $events, calendars: $calendars)';
+    return 'Appointment(events: $events, days: $days)';
   }
 
   @override
@@ -147,15 +145,14 @@ class _$AppointmentImpl implements _Appointment {
         (other.runtimeType == runtimeType &&
             other is _$AppointmentImpl &&
             const DeepCollectionEquality().equals(other._events, _events) &&
-            const DeepCollectionEquality()
-                .equals(other._calendars, _calendars));
+            const DeepCollectionEquality().equals(other._days, _days));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_events),
-      const DeepCollectionEquality().hash(_calendars));
+      const DeepCollectionEquality().hash(_days));
 
   /// Create a copy of Appointment
   /// with the given fields replaced by the non-null parameter values.
@@ -169,12 +166,12 @@ class _$AppointmentImpl implements _Appointment {
 abstract class _Appointment implements Appointment {
   const factory _Appointment(
       {required final List<AppointmentEvent> events,
-      required final List<AppointmentCalendar> calendars}) = _$AppointmentImpl;
+      required final List<AppointmentDay> days}) = _$AppointmentImpl;
 
   @override
   List<AppointmentEvent> get events; //**  /appointments */
   @override
-  List<AppointmentCalendar> get calendars;
+  List<AppointmentDay> get days;
 
   /// Create a copy of Appointment
   /// with the given fields replaced by the non-null parameter values.
@@ -495,39 +492,39 @@ abstract class _AppointmentEvent implements AppointmentEvent {
 }
 
 /// @nodoc
-mixin _$AppointmentCalendar {
+mixin _$AppointmentDay {
   DateTime get appointmentDate => throw _privateConstructorUsedError;
   set appointmentDate(DateTime value) => throw _privateConstructorUsedError;
   List<String> get fullnames => throw _privateConstructorUsedError;
   set fullnames(List<String> value) => throw _privateConstructorUsedError;
 
-  /// Create a copy of AppointmentCalendar
+  /// Create a copy of AppointmentDay
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AppointmentCalendarCopyWith<AppointmentCalendar> get copyWith =>
+  $AppointmentDayCopyWith<AppointmentDay> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AppointmentCalendarCopyWith<$Res> {
-  factory $AppointmentCalendarCopyWith(
-          AppointmentCalendar value, $Res Function(AppointmentCalendar) then) =
-      _$AppointmentCalendarCopyWithImpl<$Res, AppointmentCalendar>;
+abstract class $AppointmentDayCopyWith<$Res> {
+  factory $AppointmentDayCopyWith(
+          AppointmentDay value, $Res Function(AppointmentDay) then) =
+      _$AppointmentDayCopyWithImpl<$Res, AppointmentDay>;
   @useResult
   $Res call({DateTime appointmentDate, List<String> fullnames});
 }
 
 /// @nodoc
-class _$AppointmentCalendarCopyWithImpl<$Res, $Val extends AppointmentCalendar>
-    implements $AppointmentCalendarCopyWith<$Res> {
-  _$AppointmentCalendarCopyWithImpl(this._value, this._then);
+class _$AppointmentDayCopyWithImpl<$Res, $Val extends AppointmentDay>
+    implements $AppointmentDayCopyWith<$Res> {
+  _$AppointmentDayCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AppointmentCalendar
+  /// Create a copy of AppointmentDay
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -549,25 +546,25 @@ class _$AppointmentCalendarCopyWithImpl<$Res, $Val extends AppointmentCalendar>
 }
 
 /// @nodoc
-abstract class _$$AppointmentCalendarImplCopyWith<$Res>
-    implements $AppointmentCalendarCopyWith<$Res> {
-  factory _$$AppointmentCalendarImplCopyWith(_$AppointmentCalendarImpl value,
-          $Res Function(_$AppointmentCalendarImpl) then) =
-      __$$AppointmentCalendarImplCopyWithImpl<$Res>;
+abstract class _$$AppointmentDayImplCopyWith<$Res>
+    implements $AppointmentDayCopyWith<$Res> {
+  factory _$$AppointmentDayImplCopyWith(_$AppointmentDayImpl value,
+          $Res Function(_$AppointmentDayImpl) then) =
+      __$$AppointmentDayImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({DateTime appointmentDate, List<String> fullnames});
 }
 
 /// @nodoc
-class __$$AppointmentCalendarImplCopyWithImpl<$Res>
-    extends _$AppointmentCalendarCopyWithImpl<$Res, _$AppointmentCalendarImpl>
-    implements _$$AppointmentCalendarImplCopyWith<$Res> {
-  __$$AppointmentCalendarImplCopyWithImpl(_$AppointmentCalendarImpl _value,
-      $Res Function(_$AppointmentCalendarImpl) _then)
+class __$$AppointmentDayImplCopyWithImpl<$Res>
+    extends _$AppointmentDayCopyWithImpl<$Res, _$AppointmentDayImpl>
+    implements _$$AppointmentDayImplCopyWith<$Res> {
+  __$$AppointmentDayImplCopyWithImpl(
+      _$AppointmentDayImpl _value, $Res Function(_$AppointmentDayImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AppointmentCalendar
+  /// Create a copy of AppointmentDay
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -575,7 +572,7 @@ class __$$AppointmentCalendarImplCopyWithImpl<$Res>
     Object? appointmentDate = null,
     Object? fullnames = null,
   }) {
-    return _then(_$AppointmentCalendarImpl(
+    return _then(_$AppointmentDayImpl(
       appointmentDate: null == appointmentDate
           ? _value.appointmentDate
           : appointmentDate // ignore: cast_nullable_to_non_nullable
@@ -590,8 +587,8 @@ class __$$AppointmentCalendarImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AppointmentCalendarImpl implements _AppointmentCalendar {
-  _$AppointmentCalendarImpl(
+class _$AppointmentDayImpl implements _AppointmentDay {
+  _$AppointmentDayImpl(
       {required this.appointmentDate, required this.fullnames});
 
   @override
@@ -601,23 +598,23 @@ class _$AppointmentCalendarImpl implements _AppointmentCalendar {
 
   @override
   String toString() {
-    return 'AppointmentCalendar(appointmentDate: $appointmentDate, fullnames: $fullnames)';
+    return 'AppointmentDay(appointmentDate: $appointmentDate, fullnames: $fullnames)';
   }
 
-  /// Create a copy of AppointmentCalendar
+  /// Create a copy of AppointmentDay
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AppointmentCalendarImplCopyWith<_$AppointmentCalendarImpl> get copyWith =>
-      __$$AppointmentCalendarImplCopyWithImpl<_$AppointmentCalendarImpl>(
+  _$$AppointmentDayImplCopyWith<_$AppointmentDayImpl> get copyWith =>
+      __$$AppointmentDayImplCopyWithImpl<_$AppointmentDayImpl>(
           this, _$identity);
 }
 
-abstract class _AppointmentCalendar implements AppointmentCalendar {
-  factory _AppointmentCalendar(
+abstract class _AppointmentDay implements AppointmentDay {
+  factory _AppointmentDay(
       {required DateTime appointmentDate,
-      required List<String> fullnames}) = _$AppointmentCalendarImpl;
+      required List<String> fullnames}) = _$AppointmentDayImpl;
 
   @override
   DateTime get appointmentDate;
@@ -626,10 +623,10 @@ abstract class _AppointmentCalendar implements AppointmentCalendar {
   List<String> get fullnames;
   set fullnames(List<String> value);
 
-  /// Create a copy of AppointmentCalendar
+  /// Create a copy of AppointmentDay
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AppointmentCalendarImplCopyWith<_$AppointmentCalendarImpl> get copyWith =>
+  _$$AppointmentDayImplCopyWith<_$AppointmentDayImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

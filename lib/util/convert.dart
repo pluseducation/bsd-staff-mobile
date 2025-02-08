@@ -55,6 +55,10 @@ DateTime convertToDatetime(String? object) {
   }
 }
 
+DateTime convertToDateOnly(DateTime dateTime) {
+  return DateTime(dateTime.year, dateTime.month, dateTime.day);
+}
+
 // format
 String formatDate(DateTime? date) {
   if (date == null) {

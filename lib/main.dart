@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
-import 'package:bst_staff_mobile/data/network/api/appointments-api.dart';
+import 'package:bst_staff_mobile/data/network/api/appointment-api.dart';
 import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
 import 'package:bst_staff_mobile/data/network/api/config-api.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
@@ -17,7 +17,7 @@ import 'package:bst_staff_mobile/data/network/api/treatment-api.dart';
 import 'package:bst_staff_mobile/data/network/api/user-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
-import 'package:bst_staff_mobile/data/repository/Appointments-repository.dart';
+import 'package:bst_staff_mobile/data/repository/appointment-repository.dart';
 import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/data/repository/config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
@@ -132,9 +132,9 @@ Future<InitialData> _createData() async {
       screeningApi: screeningsApi,
       treatmentApi: treatmentApi);
 
-  final appointmentsApi = Appointments(baseUrl: config.baseUrl);
+  final appointmentsApi = AppointmentApi(baseUrl: config.baseUrl);
 
-  final appointmentsRepository = AppointmentsRepository(
+  final appointmentRepository = AppointmentRepository(
     appointmentsApi: appointmentsApi,
     networkMapper: networkMapper,
   );
@@ -169,7 +169,7 @@ Future<InitialData> _createData() async {
       Provider<DashboardRepository>.value(value: dashboardRepository),
       Provider<PatientRepository>.value(value: patientRepository),
       Provider<WorkflowRepository>.value(value: workflowRepository),
-      Provider<AppointmentsRepository>.value(value: appointmentsRepository),
+      Provider<AppointmentRepository>.value(value: appointmentRepository),
       Provider<CertificateRepository>.value(value: certificateRepository),
       Provider<ProfileRepository>.value(value: profileRepository),
       Provider<NotificationRepository>.value(value: notificationRepository),

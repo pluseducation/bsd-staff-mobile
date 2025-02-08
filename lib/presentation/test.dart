@@ -2,11 +2,11 @@ import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/appointment/appointment-type.dart';
-import 'package:bst_staff_mobile/widget/appointment/card-partial.dart';
-import 'package:bst_staff_mobile/widget/appointment/patient.dart';
+import 'package:bst_staff_mobile/widget/appointment/appointment-status.dart';
 import 'package:bst_staff_mobile/widget/certificate/certificate-card.dart';
 import 'package:bst_staff_mobile/widget/certificate/certificate-detail-card.dart';
+import 'package:bst_staff_mobile/widget/patient/patient-card.dart';
+import 'package:bst_staff_mobile/widget/patient/patient.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
@@ -69,7 +69,7 @@ class _MyWidgetsState extends State<MyWidgets> {
                     fontSize: FontSizes.medium,
                   ),
                 ),
-                AppointmentStatusType(
+                AppointmentStatus(
                   appointmentType: AppointmentType.assistance,
                   round: 1,
                 ),
@@ -85,7 +85,7 @@ class _MyWidgetsState extends State<MyWidgets> {
                     fontSize: FontSizes.medium,
                   ),
                 ),
-                AppointmentStatusType(
+                AppointmentStatus(
                   appointmentType: AppointmentType.monitoring,
                   round: 2,
                 ),
@@ -101,7 +101,7 @@ class _MyWidgetsState extends State<MyWidgets> {
                     fontSize: FontSizes.medium,
                   ),
                 ),
-                AppointmentStatusType(
+                AppointmentStatus(
                   appointmentType: AppointmentType.treatment,
                   round: 3,
                 ),
@@ -117,14 +117,14 @@ class _MyWidgetsState extends State<MyWidgets> {
                     fontSize: FontSizes.medium,
                   ),
                 ),
-                AppointmentStatusType(
+                AppointmentStatus(
                   appointmentType: AppointmentType.reject,
                   round: 4,
                 ),
               ],
             ),
             SizedBox(height: 8),
-            WorkFlowStatusType1(
+            WorkFlowStatusType(
               workFlowStatus: WorkFlowStatus.treatment,
             ),
             SizedBox(height: 8),
@@ -180,7 +180,7 @@ class TestStatusView extends StatelessWidget {
               SizedBox(
                 height: 16,
               ),
-              Cardpatient(),
+              PatientCard(),
               SizedBox(
                 height: 16,
               ),

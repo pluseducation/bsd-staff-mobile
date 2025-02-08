@@ -1,25 +1,25 @@
-import 'package:bst_staff_mobile/data/network/api/appointments-api.dart';
-import 'package:bst_staff_mobile/data/network/entity/appointments-entity.dart';
+import 'package:bst_staff_mobile/data/network/api/appointment-api.dart';
+import 'package:bst_staff_mobile/data/network/entity/appointment-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
-import 'package:bst_staff_mobile/domain/model/appointments.dart';
+import 'package:bst_staff_mobile/domain/model/appointment.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 
-class AppointmentsRepository {
-  final Appointments appointmentsApi;
+class AppointmentRepository {
+  final AppointmentApi appointmentsApi;
   final NetworkMapper networkMapper;
 
-  AppointmentsRepository({
+  AppointmentRepository({
     required this.appointmentsApi,
     required this.networkMapper,
   });
 
   Future<Appointment> findAppointments() async {
-    final List<AppointmentsEntity> appointmentEntitys =
-        await appointmentsApi.findAppointments();
+    final List<AppointmentEntity> appointmentEntitys =
+        await appointmentsApi.findAppointment();
 
     final List<AppointmentEvent> appointmentEvents = [];
-    final List<AppointmentCalendar> appointmentCalendars = [];
+    final List<AppointmentDay> appointmentDays = [];
 
     for (final entity in appointmentEntitys) {
       if (entity.reason == null) {
@@ -28,20 +28,23 @@ class AppointmentsRepository {
             "${convertToString(entity.name)} ${convertToString(entity.surname)}";
         final phoneNo = convertToString(entity.phoneNo);
 
-        final existingCalendar = appointmentCalendars
-            .where((calendar) => calendar.appointmentDate == appointmentAt)
+        final existingCalendar = appointmentDays
+            .where(
+              (calendar) =>
+                  calendar.appointmentDate == convertToDateOnly(appointmentAt),
+            )
             .firstOrNull;
 
         if (existingCalendar != null) {
-          final index = appointmentCalendars.indexOf(existingCalendar);
-          appointmentCalendars[index].fullnames.add(name);
+          final index = appointmentDays.indexOf(existingCalendar);
+          appointmentDays[index].fullnames.add(name);
         } else {
           final List<String> fullnames = [name];
-          final AppointmentCalendar appointmentCalendar = AppointmentCalendar(
-            appointmentDate: appointmentAt,
+          final AppointmentDay appointmentDay = AppointmentDay(
+            appointmentDate: convertToDateOnly(appointmentAt),
             fullnames: fullnames,
           );
-          appointmentCalendars.add(appointmentCalendar);
+          appointmentDays.add(appointmentDay);
         }
 
         final AppointmentEvent appointmentModel = AppointmentEvent(
@@ -67,26 +70,8 @@ class AppointmentsRepository {
     }
 
     return Appointment(
-      calendars: appointmentCalendars,
+      days: appointmentDays,
       events: appointmentEvents,
     );
-  }
-
-  String _getappointmentStatus(
-    String? appointmentType,
-    int? round,
-  ) {
-    if (appointmentType == "MONITORING") {
-      const appointmentType = "นัดติดตาม";
-      return convertToString("$appointmentTypeครั้งที่ $round");
-    } else if (appointmentType == "TREATMENT") {
-      const appointmentType = "นัดบำบัด";
-      return convertToString("$appointmentTypeครั้งที่ $round");
-    } else if (appointmentType == "ASSISTANCE") {
-      const appointmentType = "นัดช่วยเหลือ";
-      return convertToString("$appointmentTypeครั้งที่ $round");
-    } else {
-      return "";
-    }
   }
 }

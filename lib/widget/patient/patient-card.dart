@@ -1,11 +1,11 @@
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
-import 'package:bst_staff_mobile/widget/appointment/patient.dart';
+import 'package:bst_staff_mobile/widget/patient/patient.dart';
 import 'package:flutter/material.dart';
 
-class Cardpatient extends StatelessWidget {
-  const Cardpatient({super.key});
+class PatientCard extends StatelessWidget {
+  const PatientCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class Cardpatient extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        WorkFlowStatusType1(
+                        WorkFlowStatusType(
                           workFlowStatus: WorkFlowStatus.monitoring,
                         ),
                       ],

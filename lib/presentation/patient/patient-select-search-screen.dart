@@ -1,6 +1,6 @@
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/appointment/patient-select-search.dart';
+import 'package:bst_staff_mobile/widget/patient/patient-select-search.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 

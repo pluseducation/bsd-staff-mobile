@@ -2,7 +2,7 @@ import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
-import 'package:bst_staff_mobile/widget/appointment/patient-select.dart';
+import 'package:bst_staff_mobile/widget/patient/patient-select.dart';
 import 'package:flutter/material.dart';
 
 class PatientSelectSearch extends StatefulWidget {

@@ -1,12 +1,12 @@
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
-import 'package:bst_staff_mobile/data/network/entity/appointments-entity.dart';
+import 'package:bst_staff_mobile/data/network/entity/appointment-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:dio/dio.dart';
 
-class Appointments extends BaseApi {
-  Appointments({required super.baseUrl});
+class AppointmentApi extends BaseApi {
+  AppointmentApi({required super.baseUrl});
 
-  Future<List<AppointmentsEntity>> findAppointments() async {
+  Future<List<AppointmentEntity>> findAppointment() async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get('/api/v1/staff/appointments');
@@ -14,8 +14,10 @@ class Appointments extends BaseApi {
       if (response.statusCode == 200) {
         final List<dynamic> data = response.data as List<dynamic>;
         return data
-            .map((item) =>
-                AppointmentsEntity.fromJson(item as Map<String, dynamic>))
+            .map(
+              (item) =>
+                  AppointmentEntity.fromJson(item as Map<String, dynamic>),
+            )
             .toList();
       } else {
         throw Exception('Unknown error');

@@ -6,12 +6,9 @@ import 'package:intl/intl.dart';
 const double toolbarHeight = 150;
 const double toolbarHeightHome = 60;
 
-class BaseAppBarMain extends StatelessWidget implements PreferredSizeWidget {
+class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
-  final Size preferredSize;
-
-  const BaseAppBarMain({super.key})
-      : preferredSize = const Size.fromHeight(150.0);
+  final Size preferredSize = const Size.fromHeight(150.0);
 
   @override
   Widget build(BuildContext context) {

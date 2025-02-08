@@ -5,7 +5,6 @@ import 'package:bst_staff_mobile/presentation/login/login-model.dart';
 import 'package:bst_staff_mobile/presentation/login/register-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -57,10 +56,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const Center(
                       child: Text(
-                        "บำบัดรักษาและฟื้นฟู ผู้ติดยาเสพติดของประเทศ",
+                        "สำหรับเจ้าหน้าที่",
                         style: TextStyle(
                           fontSize: FontSizes.medium,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

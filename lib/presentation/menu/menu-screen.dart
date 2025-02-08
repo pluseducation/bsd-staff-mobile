@@ -3,18 +3,17 @@ import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/manu/manu.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 
-class ManuScreen extends StatelessWidget {
-  const ManuScreen({super.key});
+class MenuScreen extends StatelessWidget {
+  const MenuScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      appBar: const BaseAppBarMain(),
+      appBar: BaseAppBar(),
       body: Column(
         children: [
           Expanded(
@@ -33,7 +32,7 @@ class ManuScreen extends StatelessWidget {
                   child: Center(
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 600),
-                      child: const ManuContent(),
+                      child: const MenuContent(),
                     ),
                   ),
                 ),
@@ -46,14 +45,14 @@ class ManuScreen extends StatelessWidget {
   }
 }
 
-class ManuContent extends StatefulWidget {
-  const ManuContent({super.key});
+class MenuContent extends StatefulWidget {
+  const MenuContent({super.key});
 
   @override
-  State<ManuContent> createState() => _ManuContentState();
+  State<MenuContent> createState() => _MenuContentState();
 }
 
-class _ManuContentState extends State<ManuContent> {
+class _MenuContentState extends State<MenuContent> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -87,40 +86,47 @@ class _ManuContentState extends State<ManuContent> {
             crossAxisSpacing: 16,
           ),
           children: [
-            AppointmentMenu(
-              onTap: (id) => _onHandleItem(
-                id,
-              ),
+            _buildMenu(
+              name: "Appointment",
+              imagePath: "assets/images/icon_appointment.png",
+              label: "ตารางนัดหมาย",
+              onTap: _onTabMenu,
             ),
-            PatientMenu(
-              onTap: (id) => _onHandleItem(
-                id,
-              ),
+            _buildMenu(
+              name: "Patient",
+              imagePath: "assets/images/icon_patient.png",
+              label: "ข้อมูลผู้ป่วย",
+              onTap: _onTabMenu,
             ),
-            HelpMenu(
-              onTap: (id) => _onHandleItem(
-                id,
-              ),
+            _buildMenu(
+              name: "Assistance",
+              imagePath: "assets/images/icon_assistance.png",
+              label: "ช่วยเหลือ",
+              onTap: _onTabMenu,
             ),
-            CertificateMenu(
-              onTap: (id) => _onHandleItem(
-                id,
-              ),
+            _buildMenu(
+              name: "Certificate",
+              imagePath: "assets/images/icon_certificate.png",
+              label: "ใบรับรองแพทย์",
+              onTap: _onTabMenu,
             ),
-            ForwardMenu(
-              onTap: (id) => _onHandleItem(
-                id,
-              ),
+            _buildMenu(
+              name: "Refer",
+              imagePath: "assets/images/icon_refer.png",
+              label: "ส่งต่อ/รอรับ",
+              onTap: _onTabMenu,
             ),
-            DashboardMenu(
-              onTap: (id) => _onHandleItem(
-                id,
-              ),
+            _buildMenu(
+              name: "Dashboard",
+              imagePath: "assets/images/icon_dashboard.png",
+              label: "ส่งต่อ/รอรับ",
+              onTap: _onTabMenu,
             ),
-            SettingUserMenu(
-              onTap: (id) => _onHandleItem(
-                id,
-              ),
+            _buildMenu(
+              name: "User",
+              imagePath: "assets/images/icon_user.png",
+              label: "จัดการบัญชีผู้ใช้",
+              onTap: _onTabMenu,
             ),
           ],
         ),
@@ -128,28 +134,51 @@ class _ManuContentState extends State<ManuContent> {
     );
   }
 
-  Future<void> _onHandleItem(int id) async {
+  Widget _buildMenu({
+    required String name,
+    required String imagePath,
+    required String label,
+    required Function(String) onTap,
+  }) {
+    return GestureDetector(
+      onTap: () => onTap(name),
+      child: Column(
+        children: [
+          Image.asset(
+            imagePath,
+            width: 78,
+            fit: BoxFit.cover,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            style: const TextStyle(fontSize: FontSizes.small),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _onTabMenu(String name) async {
     try {
-      if (id == 1) {
+      if (name == "Appointment") {
         await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const AppointmentScreen(),
           ),
         );
-      } else if (id == 2) {
+      } else if (name == "Patient") {
         await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const PatientScreen(),
           ),
         );
-      } else if (id == 3) {
-        print("Help $id");
       }
     } on Exception catch (e) {
       if (!context.mounted) return;
-
       await showInfoDialog(
         context: context,
         message: e.toString(),

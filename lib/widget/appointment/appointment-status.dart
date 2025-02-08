@@ -3,11 +3,11 @@ import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 
-class AppointmentStatusType extends StatelessWidget {
+class AppointmentStatus extends StatelessWidget {
   final AppointmentType appointmentType;
   final int round;
 
-  const AppointmentStatusType({
+  const AppointmentStatus({
     super.key,
     required this.appointmentType,
     required this.round,

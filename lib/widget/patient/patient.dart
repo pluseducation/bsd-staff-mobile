@@ -67,66 +67,6 @@ class WorkFlowStatusType extends StatelessWidget {
   }
 }
 
-class WorkFlowStatusType1 extends StatelessWidget {
-  final WorkFlowStatus workFlowStatus;
-
-  const WorkFlowStatusType1({
-    super.key,
-    required this.workFlowStatus,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    Color color;
-    String text;
-    Color lightColor = Colors.black;
-
-    if (workFlowStatus == WorkFlowStatus.registering) {
-      color = PatientStatusColors.registering;
-      lightColor = PatientStatusColors.registeringLight;
-      text = 'ลงทะเบียน';
-    } else if (workFlowStatus == WorkFlowStatus.screening) {
-      color = PatientStatusColors.screening;
-      lightColor = PatientStatusColors.screeningLight;
-      text = 'คัดกรอง';
-    } else if (workFlowStatus == WorkFlowStatus.treatment) {
-      color = PatientStatusColors.treatment;
-      lightColor = PatientStatusColors.treatmentLight;
-      text = 'บำบัด';
-    } else if (workFlowStatus == WorkFlowStatus.monitoring) {
-      color = PatientStatusColors.monitoring;
-      lightColor = PatientStatusColors.monitoringLight;
-      text = 'ติดตาม';
-    } else if (workFlowStatus == WorkFlowStatus.assistance) {
-      color = PatientStatusColors.assistance;
-      lightColor = PatientStatusColors.assistanceLight;
-      text = 'ช่วยเหลือ';
-    } else if (workFlowStatus == WorkFlowStatus.discharged) {
-      color = PatientStatusColors.discharged;
-      lightColor = PatientStatusColors.dischargedLight;
-      text = 'จำหน่าย';
-    } else {
-      color = Colors.grey;
-      text = 'unknown';
-    }
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: lightColor,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: color,
-          fontWeight: FontWeight.bold,
-          fontSize: FontSizes.small,
-        ),
-      ),
-    );
-  }
-}
-
 class LevelStatusType extends StatelessWidget {
   final LevelType levelType;
 

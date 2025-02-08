@@ -21,11 +21,11 @@ mixin _$Search {
   List<WorkFlowStatus> get workFlowStatus => throw _privateConstructorUsedError;
   set workFlowStatus(List<WorkFlowStatus> value) =>
       throw _privateConstructorUsedError;
+  List<LevelType> get levelType => throw _privateConstructorUsedError;
+  set levelType(List<LevelType> value) => throw _privateConstructorUsedError;
   List<DrugEvalResult> get drugEvalResult => throw _privateConstructorUsedError;
   set drugEvalResult(List<DrugEvalResult> value) =>
       throw _privateConstructorUsedError;
-  List<LevelType> get levelType => throw _privateConstructorUsedError;
-  set levelType(List<LevelType> value) => throw _privateConstructorUsedError;
   List<TreatmentType> get treatmentType => throw _privateConstructorUsedError;
   set treatmentType(List<TreatmentType> value) =>
       throw _privateConstructorUsedError;
@@ -54,8 +54,8 @@ abstract class $SearchCopyWith<$Res> {
   $Res call(
       {String searchVal,
       List<WorkFlowStatus> workFlowStatus,
-      List<DrugEvalResult> drugEvalResult,
       List<LevelType> levelType,
+      List<DrugEvalResult> drugEvalResult,
       List<TreatmentType> treatmentType,
       List<SmivType> smivType,
       int page,
@@ -81,8 +81,8 @@ class _$SearchCopyWithImpl<$Res, $Val extends Search>
   $Res call({
     Object? searchVal = null,
     Object? workFlowStatus = null,
-    Object? drugEvalResult = null,
     Object? levelType = null,
+    Object? drugEvalResult = null,
     Object? treatmentType = null,
     Object? smivType = null,
     Object? page = null,
@@ -99,14 +99,14 @@ class _$SearchCopyWithImpl<$Res, $Val extends Search>
           ? _value.workFlowStatus
           : workFlowStatus // ignore: cast_nullable_to_non_nullable
               as List<WorkFlowStatus>,
-      drugEvalResult: null == drugEvalResult
-          ? _value.drugEvalResult
-          : drugEvalResult // ignore: cast_nullable_to_non_nullable
-              as List<DrugEvalResult>,
       levelType: null == levelType
           ? _value.levelType
           : levelType // ignore: cast_nullable_to_non_nullable
               as List<LevelType>,
+      drugEvalResult: null == drugEvalResult
+          ? _value.drugEvalResult
+          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+              as List<DrugEvalResult>,
       treatmentType: null == treatmentType
           ? _value.treatmentType
           : treatmentType // ignore: cast_nullable_to_non_nullable
@@ -145,8 +145,8 @@ abstract class _$$SearchImplCopyWith<$Res> implements $SearchCopyWith<$Res> {
   $Res call(
       {String searchVal,
       List<WorkFlowStatus> workFlowStatus,
-      List<DrugEvalResult> drugEvalResult,
       List<LevelType> levelType,
+      List<DrugEvalResult> drugEvalResult,
       List<TreatmentType> treatmentType,
       List<SmivType> smivType,
       int page,
@@ -170,8 +170,8 @@ class __$$SearchImplCopyWithImpl<$Res>
   $Res call({
     Object? searchVal = null,
     Object? workFlowStatus = null,
-    Object? drugEvalResult = null,
     Object? levelType = null,
+    Object? drugEvalResult = null,
     Object? treatmentType = null,
     Object? smivType = null,
     Object? page = null,
@@ -188,14 +188,14 @@ class __$$SearchImplCopyWithImpl<$Res>
           ? _value.workFlowStatus
           : workFlowStatus // ignore: cast_nullable_to_non_nullable
               as List<WorkFlowStatus>,
-      drugEvalResult: null == drugEvalResult
-          ? _value.drugEvalResult
-          : drugEvalResult // ignore: cast_nullable_to_non_nullable
-              as List<DrugEvalResult>,
       levelType: null == levelType
           ? _value.levelType
           : levelType // ignore: cast_nullable_to_non_nullable
               as List<LevelType>,
+      drugEvalResult: null == drugEvalResult
+          ? _value.drugEvalResult
+          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+              as List<DrugEvalResult>,
       treatmentType: null == treatmentType
           ? _value.treatmentType
           : treatmentType // ignore: cast_nullable_to_non_nullable
@@ -230,8 +230,8 @@ class _$SearchImpl implements _Search {
   _$SearchImpl(
       {required this.searchVal,
       required this.workFlowStatus,
-      required this.drugEvalResult,
       required this.levelType,
+      required this.drugEvalResult,
       required this.treatmentType,
       required this.smivType,
       required this.page,
@@ -244,9 +244,9 @@ class _$SearchImpl implements _Search {
   @override
   List<WorkFlowStatus> workFlowStatus;
   @override
-  List<DrugEvalResult> drugEvalResult;
-  @override
   List<LevelType> levelType;
+  @override
+  List<DrugEvalResult> drugEvalResult;
   @override
   List<TreatmentType> treatmentType;
   @override
@@ -262,7 +262,7 @@ class _$SearchImpl implements _Search {
 
   @override
   String toString() {
-    return 'Search(searchVal: $searchVal, workFlowStatus: $workFlowStatus, drugEvalResult: $drugEvalResult, levelType: $levelType, treatmentType: $treatmentType, smivType: $smivType, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
+    return 'Search(searchVal: $searchVal, workFlowStatus: $workFlowStatus, levelType: $levelType, drugEvalResult: $drugEvalResult, treatmentType: $treatmentType, smivType: $smivType, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
   }
 
   /// Create a copy of Search
@@ -278,8 +278,8 @@ abstract class _Search implements Search {
   factory _Search(
       {required String searchVal,
       required List<WorkFlowStatus> workFlowStatus,
-      required List<DrugEvalResult> drugEvalResult,
       required List<LevelType> levelType,
+      required List<DrugEvalResult> drugEvalResult,
       required List<TreatmentType> treatmentType,
       required List<SmivType> smivType,
       required int page,
@@ -294,11 +294,11 @@ abstract class _Search implements Search {
   List<WorkFlowStatus> get workFlowStatus;
   set workFlowStatus(List<WorkFlowStatus> value);
   @override
-  List<DrugEvalResult> get drugEvalResult;
-  set drugEvalResult(List<DrugEvalResult> value);
-  @override
   List<LevelType> get levelType;
   set levelType(List<LevelType> value);
+  @override
+  List<DrugEvalResult> get drugEvalResult;
+  set drugEvalResult(List<DrugEvalResult> value);
   @override
   List<TreatmentType> get treatmentType;
   set treatmentType(List<TreatmentType> value);

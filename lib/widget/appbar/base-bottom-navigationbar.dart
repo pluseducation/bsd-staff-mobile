@@ -1,11 +1,11 @@
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 
-class MainBottomNavigationBar extends StatelessWidget {
+class BaseBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const MainBottomNavigationBar({
+  const BaseBottomNavigationBar({
     super.key,
     required this.currentIndex,
     required this.onTap,

@@ -1,12 +1,12 @@
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'appointments.freezed.dart';
+part 'appointment.freezed.dart';
 
 @freezed
 class Appointment with _$Appointment {
   const factory Appointment({
     required List<AppointmentEvent> events, //**  /appointments */
-    required List<AppointmentCalendar> calendars, //**  /appointments
+    required List<AppointmentDay> days, //**  /appointments
   }) = _Appointment;
 }
 
@@ -26,9 +26,9 @@ class AppointmentEvent with _$AppointmentEvent {
 }
 
 @unfreezed
-class AppointmentCalendar with _$AppointmentCalendar {
-  factory AppointmentCalendar({
+class AppointmentDay with _$AppointmentDay {
+  factory AppointmentDay({
     required DateTime appointmentDate,
     required List<String> fullnames,
-  }) = _AppointmentCalendar;
+  }) = _AppointmentDay;
 }
