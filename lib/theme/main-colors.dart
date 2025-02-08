@@ -16,8 +16,8 @@ class MainColors {
   static const Color secondary = Color(0XFF333333);
   static const Color secondaryLight = Color(0XFFd6d6d6);
 
-  static const Color background = Color(0xFFFFFFFF);
-  static const Color backgroundProfile = Color.fromARGB(255, 239, 237, 237);
+  static const Color background = Color(0xFFfbfbfb);
+  static const Color backgroundProfile = Color.fromARGB(255, 226, 224, 224);
 
   static const Color text = Color(0xFF616161);
   static const Color text600 = Color(0xFF232323);

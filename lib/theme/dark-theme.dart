@@ -18,13 +18,13 @@ ThemeData darkTheme = ThemeData(
   ),
   cardTheme: CardTheme(
     color: Colors.white,
-    elevation: 4,
+    elevation: 0, //4,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.0),
-      side: const BorderSide(color: Color(0xFFf1f1f1)),
+      side: const BorderSide(color: MainColors.divider, width: 0.6),
     ),
     clipBehavior: Clip.antiAliasWithSaveLayer,
-    shadowColor: Colors.grey.withOpacity(0.1),
+    // shadowColor: Colors.grey.withOpacity(0.1),
   ),
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(

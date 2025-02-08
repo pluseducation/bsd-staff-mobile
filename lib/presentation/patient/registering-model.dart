@@ -1,5 +1,4 @@
 import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
-import 'package:bst_staff_mobile/domain/model/workflow.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:logger/logger.dart';
 

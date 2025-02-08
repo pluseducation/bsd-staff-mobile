@@ -14,39 +14,47 @@ class WorkFlowStatusType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color color;
+    Color lightColor;
     String text;
 
     if (workFlowStatus == WorkFlowStatus.registering) {
-      color = MainColors.secondaryLight;
-      text = 'ลงทะเบียน';
+      lightColor = MainColors.secondaryLight;
+      color = MainColors.secondary;
+      text = "ลงทะเบียน";
     } else if (workFlowStatus == WorkFlowStatus.screening) {
+      lightColor = MainColors.warningLight;
       color = MainColors.warning;
-      text = 'คัดกรอง';
+      text = "คัดกรอง";
     } else if (workFlowStatus == WorkFlowStatus.treatment) {
-      color = MainColors.primary300;
-      text = 'บำบัด';
+      lightColor = MainColors.infoLight;
+      color = MainColors.info;
+      text = "บำบัด";
     } else if (workFlowStatus == WorkFlowStatus.monitoring) {
+      lightColor = MainColors.successLight;
       color = MainColors.success;
-      text = 'ติดตาม';
+      text = "ติดตาม";
     } else if (workFlowStatus == WorkFlowStatus.assistance) {
-      color = MainColors.error;
-      text = 'จำหน่าย';
+      lightColor = MainColors.secondaryLight;
+      color = MainColors.secondary;
+      text = "ช่วยเหลือ";
     } else if (workFlowStatus == WorkFlowStatus.discharged) {
-      color = Colors.purple;
-      text = 'ออกจากโรงพยาบาล';
+      lightColor = MainColors.errorLight;
+      color = MainColors.error;
+      text = "จำหน่าย";
     } else {
+      lightColor = Colors.grey;
       color = Colors.grey;
-      text = 'unknown';
+      text = '-';
     }
 
     return Column(
       children: [
         Container(
           decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(16),
+            color: lightColor,
+            borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: color,
+              color: lightColor,
             ),
           ),
           child: Padding(
@@ -54,9 +62,10 @@ class WorkFlowStatusType extends StatelessWidget {
             child: Center(
               child: Text(
                 text,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 12,
-                  color: Colors.white,
+                  color: color,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -100,7 +109,7 @@ class LevelStatusType extends StatelessWidget {
       text = 'สีแดง';
     } else {
       color = Colors.grey;
-      text = 'unknown';
+      text = '-';
     }
 
     return Container(
@@ -162,7 +171,7 @@ class DrugEvalResultStatusType extends StatelessWidget {
       text = 'ผู้ติด';
     } else {
       color = Colors.grey;
-      text = 'unknown';
+      text = '-';
     }
 
     return Container(
@@ -239,7 +248,7 @@ class TreatmentStatusType extends StatelessWidget {
       text = 'ศาสนสถาน';
     } else {
       color = Colors.grey;
-      text = 'unknown';
+      text = '-';
     }
 
     return Container(
@@ -293,7 +302,7 @@ class MivStatusType extends StatelessWidget {
       text = 'SMIV';
     } else {
       color = Colors.grey;
-      text = 'unknown';
+      text = '-';
     }
 
     return Container(

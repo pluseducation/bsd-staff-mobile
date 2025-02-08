@@ -6,7 +6,7 @@ import 'package:bst_staff_mobile/widget/appointment/appointment-status.dart';
 import 'package:bst_staff_mobile/widget/certificate/certificate-card.dart';
 import 'package:bst_staff_mobile/widget/certificate/certificate-detail-card.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-card.dart';
-import 'package:bst_staff_mobile/widget/patient/patient.dart';
+import 'package:bst_staff_mobile/widget/patient/patient-status.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
