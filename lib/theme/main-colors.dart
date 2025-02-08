@@ -16,7 +16,7 @@ class MainColors {
   static const Color secondary = Color(0XFF333333);
   static const Color secondaryLight = Color(0XFFd6d6d6);
 
-  static const Color background = Color(0xFFfbfbfb);
+  static const Color background = Color(0xFFFFFFFF);
   static const Color backgroundProfile = Color.fromARGB(255, 239, 237, 237);
 
   static const Color text = Color(0xFF616161);
@@ -32,6 +32,8 @@ class MainColors {
   static const Color errorLight = Color(0XFFf8dcdb);
   static const Color error = Color(0XFFF04438);
   static const Color semiurgencybg = Color(0x29919EAB);
+
+  static const Color divider = Color(0xFFDEE2E4);
 }
 
 class PatientStatusColors {

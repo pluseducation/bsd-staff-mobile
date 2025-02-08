@@ -76,6 +76,20 @@ String formatTime(DateTime? dateTime) {
   return formatter.format(dateTime);
 }
 
+// Thai only
+String formatThaiFullDate(DateTime date) {
+  final year = date.year;
+  DateTime adjustedDate = date;
+  if (year < 2500) {
+    adjustedDate = DateTime(year + 543, date.month, date.day);
+  }
+
+  final DateFormat thaiDateFormat = DateFormat('d MMMM yyyy', 'th_TH');
+  final String formattedDate = thaiDateFormat.format(adjustedDate);
+
+  return formattedDate;
+}
+
 // delete
 String convertToThaiDatetime(DateTime dateTime) {
   final DateFormat formatter = DateFormat.yMMMMd('th_TH');
@@ -138,18 +152,6 @@ String convertDateY(DateTime? date) {
 
   final DateFormat dateFormat = DateFormat('yyyy-MM-dd');
   return dateFormat.format(date);
-}
-
-String formatheader(DateTime dateTime) {
-  final DateFormat formatter = DateFormat('MMMM yyyy', 'th_TH');
-  String formattedDate = formatter.format(dateTime);
-
-  final int year = dateTime.year + 543;
-  // ignore: join_return_with_assignment
-  formattedDate =
-      formattedDate.replaceFirst(dateTime.year.toString(), year.toString());
-
-  return formattedDate;
 }
 
 String formatPhoneNumber(String phoneNumber) {

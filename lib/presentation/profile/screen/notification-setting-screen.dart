@@ -76,8 +76,8 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                                 (value) => model.updateAppointment(value),
                               ),
                               const Divider(
-                                color: Color(0xFFDEE2E4),
-                                thickness: 0.8,
+                                color: MainColors.divider,
+                                thickness: 0.6,
                               ),
                               _buildSwitchRow(
                                 "การติดตาม",
@@ -85,8 +85,8 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                                 (value) => model.updateMonitoring(value),
                               ),
                               const Divider(
-                                color: Color(0xFFDEE2E4),
-                                thickness: 0.8,
+                                color: MainColors.divider,
+                                thickness: 0.6,
                               ),
                               _buildSwitchRow(
                                 "เคสส่งต่อ/รอรับ",
@@ -94,8 +94,8 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                                 (value) => model.updateRefer(value),
                               ),
                               const Divider(
-                                color: Color(0xFFDEE2E4),
-                                thickness: 0.8,
+                                color: MainColors.divider,
+                                thickness: 0.6,
                               ),
                               _buildSwitchRow(
                                 "ช่วยเหลือ",
@@ -103,8 +103,8 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                                 (value) => model.updateAssistant(value),
                               ),
                               const Divider(
-                                color: Color(0xFFDEE2E4),
-                                thickness: 0.8,
+                                color: MainColors.divider,
+                                thickness: 0.6,
                               ),
                               _buildSwitchRow(
                                 "เมื่อมีการ login web",
@@ -112,8 +112,8 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                                 (value) => model.updateLogin(value),
                               ),
                               const Divider(
-                                color: Color(0xFFDEE2E4),
-                                thickness: 0.8,
+                                color: MainColors.divider,
+                                thickness: 0.6,
                               ),
                             ],
                           ),

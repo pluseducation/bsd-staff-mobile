@@ -184,8 +184,8 @@ abstract class _Appointment implements Appointment {
 /// @nodoc
 mixin _$AppointmentEvent {
   DateTime get appointmentDate => throw _privateConstructorUsedError;
-  String get appointmenDate => throw _privateConstructorUsedError;
-  String get appointmenTime => throw _privateConstructorUsedError;
+  String get appointmentDateText => throw _privateConstructorUsedError;
+  String get appointmenTimeText => throw _privateConstructorUsedError;
   AppointmentType? get appointmentType => throw _privateConstructorUsedError;
   int get round => throw _privateConstructorUsedError;
   String get fullname => throw _privateConstructorUsedError;
@@ -208,8 +208,8 @@ abstract class $AppointmentEventCopyWith<$Res> {
   @useResult
   $Res call(
       {DateTime appointmentDate,
-      String appointmenDate,
-      String appointmenTime,
+      String appointmentDateText,
+      String appointmenTimeText,
       AppointmentType? appointmentType,
       int round,
       String fullname,
@@ -234,8 +234,8 @@ class _$AppointmentEventCopyWithImpl<$Res, $Val extends AppointmentEvent>
   @override
   $Res call({
     Object? appointmentDate = null,
-    Object? appointmenDate = null,
-    Object? appointmenTime = null,
+    Object? appointmentDateText = null,
+    Object? appointmenTimeText = null,
     Object? appointmentType = freezed,
     Object? round = null,
     Object? fullname = null,
@@ -248,13 +248,13 @@ class _$AppointmentEventCopyWithImpl<$Res, $Val extends AppointmentEvent>
           ? _value.appointmentDate
           : appointmentDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      appointmenDate: null == appointmenDate
-          ? _value.appointmenDate
-          : appointmenDate // ignore: cast_nullable_to_non_nullable
+      appointmentDateText: null == appointmentDateText
+          ? _value.appointmentDateText
+          : appointmentDateText // ignore: cast_nullable_to_non_nullable
               as String,
-      appointmenTime: null == appointmenTime
-          ? _value.appointmenTime
-          : appointmenTime // ignore: cast_nullable_to_non_nullable
+      appointmenTimeText: null == appointmenTimeText
+          ? _value.appointmenTimeText
+          : appointmenTimeText // ignore: cast_nullable_to_non_nullable
               as String,
       appointmentType: freezed == appointmentType
           ? _value.appointmentType
@@ -294,8 +294,8 @@ abstract class _$$AppointmentEventImplCopyWith<$Res>
   @useResult
   $Res call(
       {DateTime appointmentDate,
-      String appointmenDate,
-      String appointmenTime,
+      String appointmentDateText,
+      String appointmenTimeText,
       AppointmentType? appointmentType,
       int round,
       String fullname,
@@ -318,8 +318,8 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appointmentDate = null,
-    Object? appointmenDate = null,
-    Object? appointmenTime = null,
+    Object? appointmentDateText = null,
+    Object? appointmenTimeText = null,
     Object? appointmentType = freezed,
     Object? round = null,
     Object? fullname = null,
@@ -332,13 +332,13 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
           ? _value.appointmentDate
           : appointmentDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      appointmenDate: null == appointmenDate
-          ? _value.appointmenDate
-          : appointmenDate // ignore: cast_nullable_to_non_nullable
+      appointmentDateText: null == appointmentDateText
+          ? _value.appointmentDateText
+          : appointmentDateText // ignore: cast_nullable_to_non_nullable
               as String,
-      appointmenTime: null == appointmenTime
-          ? _value.appointmenTime
-          : appointmenTime // ignore: cast_nullable_to_non_nullable
+      appointmenTimeText: null == appointmenTimeText
+          ? _value.appointmenTimeText
+          : appointmenTimeText // ignore: cast_nullable_to_non_nullable
               as String,
       appointmentType: freezed == appointmentType
           ? _value.appointmentType
@@ -373,8 +373,8 @@ class __$$AppointmentEventImplCopyWithImpl<$Res>
 class _$AppointmentEventImpl implements _AppointmentEvent {
   const _$AppointmentEventImpl(
       {required this.appointmentDate,
-      required this.appointmenDate,
-      required this.appointmenTime,
+      required this.appointmentDateText,
+      required this.appointmenTimeText,
       required this.appointmentType,
       required this.round,
       required this.fullname,
@@ -385,9 +385,9 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
   @override
   final DateTime appointmentDate;
   @override
-  final String appointmenDate;
+  final String appointmentDateText;
   @override
-  final String appointmenTime;
+  final String appointmenTimeText;
   @override
   final AppointmentType? appointmentType;
   @override
@@ -403,7 +403,7 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
 
   @override
   String toString() {
-    return 'AppointmentEvent(appointmentDate: $appointmentDate, appointmenDate: $appointmenDate, appointmenTime: $appointmenTime, appointmentType: $appointmentType, round: $round, fullname: $fullname, phoneNo: $phoneNo, guardianFullname: $guardianFullname, guardianPhoneNo: $guardianPhoneNo)';
+    return 'AppointmentEvent(appointmentDate: $appointmentDate, appointmentDateText: $appointmentDateText, appointmenTimeText: $appointmenTimeText, appointmentType: $appointmentType, round: $round, fullname: $fullname, phoneNo: $phoneNo, guardianFullname: $guardianFullname, guardianPhoneNo: $guardianPhoneNo)';
   }
 
   @override
@@ -413,10 +413,10 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
             other is _$AppointmentEventImpl &&
             (identical(other.appointmentDate, appointmentDate) ||
                 other.appointmentDate == appointmentDate) &&
-            (identical(other.appointmenDate, appointmenDate) ||
-                other.appointmenDate == appointmenDate) &&
-            (identical(other.appointmenTime, appointmenTime) ||
-                other.appointmenTime == appointmenTime) &&
+            (identical(other.appointmentDateText, appointmentDateText) ||
+                other.appointmentDateText == appointmentDateText) &&
+            (identical(other.appointmenTimeText, appointmenTimeText) ||
+                other.appointmenTimeText == appointmenTimeText) &&
             (identical(other.appointmentType, appointmentType) ||
                 other.appointmentType == appointmentType) &&
             (identical(other.round, round) || other.round == round) &&
@@ -433,8 +433,8 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
   int get hashCode => Object.hash(
       runtimeType,
       appointmentDate,
-      appointmenDate,
-      appointmenTime,
+      appointmentDateText,
+      appointmenTimeText,
       appointmentType,
       round,
       fullname,
@@ -455,8 +455,8 @@ class _$AppointmentEventImpl implements _AppointmentEvent {
 abstract class _AppointmentEvent implements AppointmentEvent {
   const factory _AppointmentEvent(
       {required final DateTime appointmentDate,
-      required final String appointmenDate,
-      required final String appointmenTime,
+      required final String appointmentDateText,
+      required final String appointmenTimeText,
       required final AppointmentType? appointmentType,
       required final int round,
       required final String fullname,
@@ -467,9 +467,9 @@ abstract class _AppointmentEvent implements AppointmentEvent {
   @override
   DateTime get appointmentDate;
   @override
-  String get appointmenDate;
+  String get appointmentDateText;
   @override
-  String get appointmenTime;
+  String get appointmenTimeText;
   @override
   AppointmentType? get appointmentType;
   @override

@@ -41,8 +41,8 @@ class PatientCard extends StatelessWidget {
                       ],
                     ),
                     Divider(
-                      color: Color(0xFFDEE2E4),
-                      thickness: 0.8,
+                      color: MainColors.divider,
+                      thickness: 0.6,
                     ),
                     SizedBox(height: 8),
                     Row(

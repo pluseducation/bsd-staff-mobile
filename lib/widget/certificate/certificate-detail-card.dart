@@ -39,7 +39,10 @@ class _CertificateDetailCardState extends State<CertificateDetailCard> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Divider(color: Color(0xFFDEE2E4), thickness: 0.8),
+                const Divider(
+                  color: MainColors.divider,
+                  thickness: 0.6,
+                ),
                 const SizedBox(height: 8),
                 const Row(
                   children: [

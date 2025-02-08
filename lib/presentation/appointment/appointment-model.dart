@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/appointment.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
@@ -11,7 +12,9 @@ class AppointmentModel extends ChangeNotifier {
   final AppointmentRepository appointmentRepository;
   final AppService appService;
   late Appointment appointment;
+
   late DateTime selectedDate;
+  late List<AppointmentEvent> selectedEvents;
 
   AppointmentModel({
     required this.log,
@@ -21,8 +24,14 @@ class AppointmentModel extends ChangeNotifier {
 
   Future<bool> initData() async {
     try {
-      appointment = await appointmentRepository.findAppointments();
-      selectedDate = DateTime.now();
+      appointment = await appointmentRepository.findAppointment();
+      final now = DateTime.now();
+      selectedDate = convertToDateOnly(now);
+
+      selectedEvents = appointment.events
+          .where((element) => element.appointmentDate == selectedDate)
+          .toList();
+
       return true;
     } catch (e) {
       if (e is NetworkException) {
@@ -37,7 +46,11 @@ class AppointmentModel extends ChangeNotifier {
 
   Future<bool> setSelectedDate(DateTime date) async {
     try {
-      selectedDate = date;
+      selectedDate = convertToDateOnly(date);
+      selectedEvents = appointment.events
+          .where((element) => element.appointmentDate == selectedDate)
+          .toList();
+
       notifyListeners();
       return true;
     } catch (e) {

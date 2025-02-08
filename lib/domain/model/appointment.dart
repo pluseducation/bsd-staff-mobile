@@ -14,8 +14,8 @@ class Appointment with _$Appointment {
 class AppointmentEvent with _$AppointmentEvent {
   const factory AppointmentEvent({
     required DateTime appointmentDate,
-    required String appointmenDate,
-    required String appointmenTime,
+    required String appointmentDateText,
+    required String appointmenTimeText,
     required AppointmentType? appointmentType,
     required int round,
     required String fullname,

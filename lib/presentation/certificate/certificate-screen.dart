@@ -354,8 +354,8 @@ class CertificateListAll extends StatelessWidget {
               ),
             ),
             const Divider(
-              color: Color(0xFFDEE2E4),
-              thickness: 0.8,
+              color: MainColors.divider,
+              thickness: 0.6,
             ),
           ],
         );
@@ -401,8 +401,8 @@ class CertificateRequests extends StatelessWidget {
               ),
             ),
             const Divider(
-              color: Color(0xFFDEE2E4),
-              thickness: 0.8,
+              color: MainColors.divider,
+              thickness: 0.6,
             ),
           ],
         );
@@ -448,8 +448,8 @@ class CertificateCompletes extends StatelessWidget {
               ),
             ),
             const Divider(
-              color: Color(0xFFDEE2E4),
-              thickness: 0.8,
+              color: MainColors.divider,
+              thickness: 0.6,
             ),
           ],
         );

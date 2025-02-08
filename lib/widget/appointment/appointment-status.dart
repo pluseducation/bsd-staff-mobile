@@ -4,7 +4,7 @@ import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentStatus extends StatelessWidget {
-  final AppointmentType appointmentType;
+  final AppointmentType? appointmentType;
   final int round;
 
   const AppointmentStatus({
@@ -38,7 +38,7 @@ class AppointmentStatus extends StatelessWidget {
     } else {
       color = Colors.grey;
       lightColor = MainColors.secondaryLight;
-      text = 'unknown';
+      text = '-';
     }
 
     return Container(

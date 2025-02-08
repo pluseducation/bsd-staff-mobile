@@ -14,7 +14,7 @@ class AppointmentRepository {
     required this.networkMapper,
   });
 
-  Future<Appointment> findAppointments() async {
+  Future<Appointment> findAppointment() async {
     final List<AppointmentEntity> appointmentEntitys =
         await appointmentsApi.findAppointment();
 
@@ -48,9 +48,9 @@ class AppointmentRepository {
         }
 
         final AppointmentEvent appointmentModel = AppointmentEvent(
-          appointmentDate: appointmentAt,
-          appointmenDate: formatDate(appointmentAt),
-          appointmenTime: formatTime(appointmentAt),
+          appointmentDate: convertToDateOnly(appointmentAt),
+          appointmentDateText: formatDate(appointmentAt),
+          appointmenTimeText: formatTime(appointmentAt),
           appointmentType: AppointmentType.setValue(entity.appointmentType),
           round: convertToInt(entity.round),
           fullname: name,
@@ -64,7 +64,6 @@ class AppointmentRepository {
               ? convertToString(entity.guardianPhoneNo)
               : "-",
         );
-
         appointmentEvents.add(appointmentModel);
       }
     }

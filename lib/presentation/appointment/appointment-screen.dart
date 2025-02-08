@@ -1,10 +1,13 @@
 import 'package:bst_staff_mobile/data/repository/appointment-repository.dart';
-import 'package:bst_staff_mobile/domain/model/appointment.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/appointment/appointment-model.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
+import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/appointment/appointment-calendar.dart';
+import 'package:bst_staff_mobile/widget/appointment/appointment-card.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +28,7 @@ class AppointmentScreen extends StatelessWidget {
             child: Container(
               width: double.infinity,
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: MainColors.background,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),
@@ -98,6 +101,41 @@ class _AppointmentContentState extends State<AppointmentContent> {
                       selectedDate: model.selectedDate,
                       onSelectedDate: model.setSelectedDate,
                     ),
+                    const SizedBox(height: 16),
+                    if (model.selectedEvents.isNotEmpty) ...[
+                      Text(
+                        '${formatThaiFullDate(model.selectedDate)} (${model.selectedEvents.length} นัดหมาย)',
+                        style: const TextStyle(
+                          fontSize: FontSizes.medium,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      CarouselSlider(
+                        options: CarouselOptions(
+                          height: 250.0,
+                          aspectRatio: 1.0,
+                          enableInfiniteScroll: false,
+                          viewportFraction: 0.9,
+                          padEnds: false,
+                        ),
+                        items: model.selectedEvents
+                            .map(
+                              (event) => AppointmentCard(
+                                event: event,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ] else ...[
+                      Text(
+                        '${formatThaiFullDate(model.selectedDate)} (ไม่มีนัดหมาย)',
+                        style: const TextStyle(
+                          fontSize: FontSizes.medium,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ],
                 );
               },

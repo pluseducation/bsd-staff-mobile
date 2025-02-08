@@ -18,7 +18,7 @@ class AppointmentCalendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final year = selectedDate.year;
+    final year = DateTime.now().year;
     final endDateNow = DateTime(year, 12, 31);
     final startDate = appointmentDays.isNotEmpty
         ? DateTime(appointmentDays.first.appointmentDate.year)
@@ -40,7 +40,7 @@ class AppointmentCalendar extends StatelessWidget {
             focusedDay: selectedDate,
             locale: Constant.locale,
             selectedDayPredicate: (day) {
-              return isSameDay(selectedDate, day);
+              return isSameDay(selectedDate, convertToDateOnly(day));
             },
             availableCalendarFormats: const {
               CalendarFormat.month: 'Month',
@@ -77,7 +77,7 @@ class AppointmentCalendar extends StatelessWidget {
               formatButtonVisible: false,
               titleCentered: true,
               titleTextFormatter: (date, locale) {
-                return formatheader(date);
+                return formatThaiFullDate(date);
               },
             ),
           ),
