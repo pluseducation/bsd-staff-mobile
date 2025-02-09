@@ -8,10 +8,10 @@ class Search with _$Search {
   factory Search({
     required String searchVal,
     required List<WorkFlowStatus> workFlowStatus,
-    required List<LevelType> levelType,
-    required List<DrugEvalResult> drugEvalResult,
-    required List<TreatmentType> treatmentType,
-    required List<SmivType> smivType,
+    required List<LevelType> levelTypes,
+    required List<DrugEvalResult> drugEvalResults,
+    required List<TreatmentType> treatmentTypes,
+    required List<SmivType> smivTypes,
     required int page,
     required int totalPages,
     required int totalElements,
@@ -21,22 +21,15 @@ class Search with _$Search {
 
 @freezed
 class Patient with _$Patient {
-  factory Patient({
-    required List<PatientContent> content,
-  }) = _Patient;
-}
-
-@freezed
-class PatientContent with _$PatientContent {
-  const factory PatientContent({
+  const factory Patient({
     required int patientId,
     required String fullName,
     required String nationalId,
     required String cycle,
-    required WorkFlowStatus workFlowStatus,
+    required WorkFlowStatus? workFlowStatus,
     DrugEvalResult? drugEvalResult,
     LevelType? levelType,
     TreatmentType? treatmentType,
     SmivType? smivType,
-  }) = _PatientContent;
+  }) = _Patient;
 }

@@ -202,15 +202,15 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
                     searchVal: _controller.text,
                     workFlowStatus:
                         _selectedStatus != null ? [_selectedStatus!] : [],
-                    levelType:
+                    levelTypes:
                         _selectedOASStatus != null ? [_selectedOASStatus!] : [],
-                    drugEvalResult: _selectedDrugStatus != null
+                    drugEvalResults: _selectedDrugStatus != null
                         ? [_selectedDrugStatus!]
                         : [],
-                    treatmentType: _selectedTreatmentStatus != null
+                    treatmentTypes: _selectedTreatmentStatus != null
                         ? [_selectedTreatmentStatus!]
                         : [],
-                    smivType: _selectedSmivStatus != null
+                    smivTypes: _selectedSmivStatus != null
                         ? [_selectedSmivStatus!]
                         : [],
                     page: 0,

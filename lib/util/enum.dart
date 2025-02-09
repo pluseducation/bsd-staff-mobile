@@ -7,6 +7,23 @@ enum WorkFlowStatus {
   assistance,
   discharged;
 
+  String? get value {
+    switch (this) {
+      case WorkFlowStatus.registering:
+        return "REGISTERING";
+      case WorkFlowStatus.screening:
+        return "SCREENING";
+      case WorkFlowStatus.treatment:
+        return "TREATMENT";
+      case WorkFlowStatus.monitoring:
+        return "MONITORING";
+      case WorkFlowStatus.assistance:
+        return "ASSISTANCE";
+      case WorkFlowStatus.discharged:
+        return "DISCHARGED";
+    }
+  }
+
   static WorkFlowStatus? setValue(String? value) {
     switch (value) {
       case "REGISTERING":
@@ -35,6 +52,19 @@ enum LevelType {
   urgency,
   emergency;
 
+  String? get value {
+    switch (this) {
+      case LevelType.normal:
+        return "NORMAL";
+      case LevelType.semiUrgency:
+        return "SEMI_URGENCY";
+      case LevelType.urgency:
+        return "URGENCY";
+      case LevelType.emergency:
+        return "EMERGENCY";
+    }
+  }
+
   static LevelType? setValue(String? value) {
     switch (value) {
       case "NORMAL":
@@ -56,6 +86,17 @@ enum DrugEvalResult {
   user,
   abuse,
   dependence;
+
+  String? get value {
+    switch (this) {
+      case DrugEvalResult.user:
+        return "USER";
+      case DrugEvalResult.abuse:
+        return "ABUSE";
+      case DrugEvalResult.dependence:
+        return "DEPENDENCE";
+    }
+  }
 
   static DrugEvalResult? setValue(String? value) {
     switch (value) {
@@ -86,6 +127,37 @@ enum TreatmentType {
   programInPrisons,
   behaviorCamp,
   other;
+
+  String? get value {
+    switch (this) {
+      case TreatmentType.opd:
+        return "OPD";
+      case TreatmentType.ipdTreatment:
+        return "IPD_TREATMENT";
+      case TreatmentType.ipdRecover:
+        return "IPD_RECOVER";
+      case TreatmentType.ipdMini:
+        return "IPD_MINI";
+      case TreatmentType.cbtx:
+        return "CBTX";
+      case TreatmentType.network:
+        return "NETWORK";
+      case TreatmentType.religious:
+        return "RELIGIOUS";
+      case TreatmentType.rehabilitationTherapyJopc:
+        return "REHABILITATION_THERAPY_JOPC";
+      case TreatmentType.rehabilitationTherapyTrainingCenter:
+        return "REHABILITATION_THERAPY_TRAINING_CENTER";
+      case TreatmentType.wiwatSchoolProject:
+        return "WIWAT_SCHOOL_PROJECT";
+      case TreatmentType.programInPrisons:
+        return "PROGRAM_IN_PRISONS";
+      case TreatmentType.behaviorCamp:
+        return "BEHAVIOR_CAMP";
+      case TreatmentType.other:
+        return "OTHER";
+    }
+  }
 
   static TreatmentType? setValue(String? value) {
     switch (value) {
@@ -125,6 +197,13 @@ enum TreatmentType {
 enum SmivType {
   smiv;
 
+  String? get value {
+    switch (this) {
+      case SmivType.smiv:
+        return "SMIV";
+    }
+  }
+
   static SmivType? setValue(String? value) {
     switch (value) {
       case "SMIV":
@@ -140,6 +219,19 @@ enum AppointmentType {
   monitoring,
   treatment,
   reject;
+
+  String? get value {
+    switch (this) {
+      case AppointmentType.assistance:
+        return "ASSISTANCE";
+      case AppointmentType.monitoring:
+        return "MONITORING";
+      case AppointmentType.treatment:
+        return "TREATMENT";
+      case AppointmentType.reject:
+        return "REJECT";
+    }
+  }
 
   static AppointmentType? setValue(String? value) {
     switch (value) {
@@ -161,6 +253,17 @@ enum CertificateStatus {
   request,
   completed,
   denied;
+
+  String? get value {
+    switch (this) {
+      case CertificateStatus.request:
+        return "REQUEST";
+      case CertificateStatus.completed:
+        return "COMPLETED";
+      case CertificateStatus.denied:
+        return "DENIED";
+    }
+  }
 
   static CertificateStatus? setValue(String? value) {
     switch (value) {

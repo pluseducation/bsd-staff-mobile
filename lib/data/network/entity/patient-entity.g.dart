@@ -37,6 +37,9 @@ PatientEntity _$PatientEntityFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       generatedId: json['generatedId'] as String?,
+      drugEval: json['drugEval'] as String?,
+      level: json['level'] as String?,
+      treatmentType: json['treatmentType'] as String?,
     );
 
 Map<String, dynamic> _$PatientEntityToJson(PatientEntity instance) =>
@@ -50,4 +53,7 @@ Map<String, dynamic> _$PatientEntityToJson(PatientEntity instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'generatedId': instance.generatedId,
+      'drugEval': instance.drugEval,
+      'level': instance.level,
+      'treatmentType': instance.treatmentType,
     };

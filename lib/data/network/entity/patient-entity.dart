@@ -30,6 +30,9 @@ class PatientEntity {
   DateTime? createdAt;
   DateTime? updatedAt;
   String? generatedId;
+  String? drugEval;
+  String? level;
+  String? treatmentType;
 
   PatientEntity({
     required this.name,
@@ -41,6 +44,9 @@ class PatientEntity {
     required this.createdAt,
     required this.updatedAt,
     required this.generatedId,
+    required this.drugEval,
+    required this.level,
+    required this.treatmentType,
   });
 
   factory PatientEntity.fromJson(Map<String, dynamic> json) =>

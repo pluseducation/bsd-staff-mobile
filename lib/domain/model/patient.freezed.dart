@@ -21,16 +21,17 @@ mixin _$Search {
   List<WorkFlowStatus> get workFlowStatus => throw _privateConstructorUsedError;
   set workFlowStatus(List<WorkFlowStatus> value) =>
       throw _privateConstructorUsedError;
-  List<LevelType> get levelType => throw _privateConstructorUsedError;
-  set levelType(List<LevelType> value) => throw _privateConstructorUsedError;
-  List<DrugEvalResult> get drugEvalResult => throw _privateConstructorUsedError;
-  set drugEvalResult(List<DrugEvalResult> value) =>
+  List<LevelType> get levelTypes => throw _privateConstructorUsedError;
+  set levelTypes(List<LevelType> value) => throw _privateConstructorUsedError;
+  List<DrugEvalResult> get drugEvalResults =>
       throw _privateConstructorUsedError;
-  List<TreatmentType> get treatmentType => throw _privateConstructorUsedError;
-  set treatmentType(List<TreatmentType> value) =>
+  set drugEvalResults(List<DrugEvalResult> value) =>
       throw _privateConstructorUsedError;
-  List<SmivType> get smivType => throw _privateConstructorUsedError;
-  set smivType(List<SmivType> value) => throw _privateConstructorUsedError;
+  List<TreatmentType> get treatmentTypes => throw _privateConstructorUsedError;
+  set treatmentTypes(List<TreatmentType> value) =>
+      throw _privateConstructorUsedError;
+  List<SmivType> get smivTypes => throw _privateConstructorUsedError;
+  set smivTypes(List<SmivType> value) => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
   set page(int value) => throw _privateConstructorUsedError;
   int get totalPages => throw _privateConstructorUsedError;
@@ -54,10 +55,10 @@ abstract class $SearchCopyWith<$Res> {
   $Res call(
       {String searchVal,
       List<WorkFlowStatus> workFlowStatus,
-      List<LevelType> levelType,
-      List<DrugEvalResult> drugEvalResult,
-      List<TreatmentType> treatmentType,
-      List<SmivType> smivType,
+      List<LevelType> levelTypes,
+      List<DrugEvalResult> drugEvalResults,
+      List<TreatmentType> treatmentTypes,
+      List<SmivType> smivTypes,
       int page,
       int totalPages,
       int totalElements,
@@ -81,10 +82,10 @@ class _$SearchCopyWithImpl<$Res, $Val extends Search>
   $Res call({
     Object? searchVal = null,
     Object? workFlowStatus = null,
-    Object? levelType = null,
-    Object? drugEvalResult = null,
-    Object? treatmentType = null,
-    Object? smivType = null,
+    Object? levelTypes = null,
+    Object? drugEvalResults = null,
+    Object? treatmentTypes = null,
+    Object? smivTypes = null,
     Object? page = null,
     Object? totalPages = null,
     Object? totalElements = null,
@@ -99,21 +100,21 @@ class _$SearchCopyWithImpl<$Res, $Val extends Search>
           ? _value.workFlowStatus
           : workFlowStatus // ignore: cast_nullable_to_non_nullable
               as List<WorkFlowStatus>,
-      levelType: null == levelType
-          ? _value.levelType
-          : levelType // ignore: cast_nullable_to_non_nullable
+      levelTypes: null == levelTypes
+          ? _value.levelTypes
+          : levelTypes // ignore: cast_nullable_to_non_nullable
               as List<LevelType>,
-      drugEvalResult: null == drugEvalResult
-          ? _value.drugEvalResult
-          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+      drugEvalResults: null == drugEvalResults
+          ? _value.drugEvalResults
+          : drugEvalResults // ignore: cast_nullable_to_non_nullable
               as List<DrugEvalResult>,
-      treatmentType: null == treatmentType
-          ? _value.treatmentType
-          : treatmentType // ignore: cast_nullable_to_non_nullable
+      treatmentTypes: null == treatmentTypes
+          ? _value.treatmentTypes
+          : treatmentTypes // ignore: cast_nullable_to_non_nullable
               as List<TreatmentType>,
-      smivType: null == smivType
-          ? _value.smivType
-          : smivType // ignore: cast_nullable_to_non_nullable
+      smivTypes: null == smivTypes
+          ? _value.smivTypes
+          : smivTypes // ignore: cast_nullable_to_non_nullable
               as List<SmivType>,
       page: null == page
           ? _value.page
@@ -145,10 +146,10 @@ abstract class _$$SearchImplCopyWith<$Res> implements $SearchCopyWith<$Res> {
   $Res call(
       {String searchVal,
       List<WorkFlowStatus> workFlowStatus,
-      List<LevelType> levelType,
-      List<DrugEvalResult> drugEvalResult,
-      List<TreatmentType> treatmentType,
-      List<SmivType> smivType,
+      List<LevelType> levelTypes,
+      List<DrugEvalResult> drugEvalResults,
+      List<TreatmentType> treatmentTypes,
+      List<SmivType> smivTypes,
       int page,
       int totalPages,
       int totalElements,
@@ -170,10 +171,10 @@ class __$$SearchImplCopyWithImpl<$Res>
   $Res call({
     Object? searchVal = null,
     Object? workFlowStatus = null,
-    Object? levelType = null,
-    Object? drugEvalResult = null,
-    Object? treatmentType = null,
-    Object? smivType = null,
+    Object? levelTypes = null,
+    Object? drugEvalResults = null,
+    Object? treatmentTypes = null,
+    Object? smivTypes = null,
     Object? page = null,
     Object? totalPages = null,
     Object? totalElements = null,
@@ -188,21 +189,21 @@ class __$$SearchImplCopyWithImpl<$Res>
           ? _value.workFlowStatus
           : workFlowStatus // ignore: cast_nullable_to_non_nullable
               as List<WorkFlowStatus>,
-      levelType: null == levelType
-          ? _value.levelType
-          : levelType // ignore: cast_nullable_to_non_nullable
+      levelTypes: null == levelTypes
+          ? _value.levelTypes
+          : levelTypes // ignore: cast_nullable_to_non_nullable
               as List<LevelType>,
-      drugEvalResult: null == drugEvalResult
-          ? _value.drugEvalResult
-          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+      drugEvalResults: null == drugEvalResults
+          ? _value.drugEvalResults
+          : drugEvalResults // ignore: cast_nullable_to_non_nullable
               as List<DrugEvalResult>,
-      treatmentType: null == treatmentType
-          ? _value.treatmentType
-          : treatmentType // ignore: cast_nullable_to_non_nullable
+      treatmentTypes: null == treatmentTypes
+          ? _value.treatmentTypes
+          : treatmentTypes // ignore: cast_nullable_to_non_nullable
               as List<TreatmentType>,
-      smivType: null == smivType
-          ? _value.smivType
-          : smivType // ignore: cast_nullable_to_non_nullable
+      smivTypes: null == smivTypes
+          ? _value.smivTypes
+          : smivTypes // ignore: cast_nullable_to_non_nullable
               as List<SmivType>,
       page: null == page
           ? _value.page
@@ -230,10 +231,10 @@ class _$SearchImpl implements _Search {
   _$SearchImpl(
       {required this.searchVal,
       required this.workFlowStatus,
-      required this.levelType,
-      required this.drugEvalResult,
-      required this.treatmentType,
-      required this.smivType,
+      required this.levelTypes,
+      required this.drugEvalResults,
+      required this.treatmentTypes,
+      required this.smivTypes,
       required this.page,
       required this.totalPages,
       required this.totalElements,
@@ -244,13 +245,13 @@ class _$SearchImpl implements _Search {
   @override
   List<WorkFlowStatus> workFlowStatus;
   @override
-  List<LevelType> levelType;
+  List<LevelType> levelTypes;
   @override
-  List<DrugEvalResult> drugEvalResult;
+  List<DrugEvalResult> drugEvalResults;
   @override
-  List<TreatmentType> treatmentType;
+  List<TreatmentType> treatmentTypes;
   @override
-  List<SmivType> smivType;
+  List<SmivType> smivTypes;
   @override
   int page;
   @override
@@ -262,7 +263,7 @@ class _$SearchImpl implements _Search {
 
   @override
   String toString() {
-    return 'Search(searchVal: $searchVal, workFlowStatus: $workFlowStatus, levelType: $levelType, drugEvalResult: $drugEvalResult, treatmentType: $treatmentType, smivType: $smivType, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
+    return 'Search(searchVal: $searchVal, workFlowStatus: $workFlowStatus, levelTypes: $levelTypes, drugEvalResults: $drugEvalResults, treatmentTypes: $treatmentTypes, smivTypes: $smivTypes, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
   }
 
   /// Create a copy of Search
@@ -278,10 +279,10 @@ abstract class _Search implements Search {
   factory _Search(
       {required String searchVal,
       required List<WorkFlowStatus> workFlowStatus,
-      required List<LevelType> levelType,
-      required List<DrugEvalResult> drugEvalResult,
-      required List<TreatmentType> treatmentType,
-      required List<SmivType> smivType,
+      required List<LevelType> levelTypes,
+      required List<DrugEvalResult> drugEvalResults,
+      required List<TreatmentType> treatmentTypes,
+      required List<SmivType> smivTypes,
       required int page,
       required int totalPages,
       required int totalElements,
@@ -294,17 +295,17 @@ abstract class _Search implements Search {
   List<WorkFlowStatus> get workFlowStatus;
   set workFlowStatus(List<WorkFlowStatus> value);
   @override
-  List<LevelType> get levelType;
-  set levelType(List<LevelType> value);
+  List<LevelType> get levelTypes;
+  set levelTypes(List<LevelType> value);
   @override
-  List<DrugEvalResult> get drugEvalResult;
-  set drugEvalResult(List<DrugEvalResult> value);
+  List<DrugEvalResult> get drugEvalResults;
+  set drugEvalResults(List<DrugEvalResult> value);
   @override
-  List<TreatmentType> get treatmentType;
-  set treatmentType(List<TreatmentType> value);
+  List<TreatmentType> get treatmentTypes;
+  set treatmentTypes(List<TreatmentType> value);
   @override
-  List<SmivType> get smivType;
-  set smivType(List<SmivType> value);
+  List<SmivType> get smivTypes;
+  set smivTypes(List<SmivType> value);
   @override
   int get page;
   set page(int value);
@@ -328,7 +329,15 @@ abstract class _Search implements Search {
 
 /// @nodoc
 mixin _$Patient {
-  List<PatientContent> get content => throw _privateConstructorUsedError;
+  int get patientId => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
+  String get nationalId => throw _privateConstructorUsedError;
+  String get cycle => throw _privateConstructorUsedError;
+  WorkFlowStatus? get workFlowStatus => throw _privateConstructorUsedError;
+  DrugEvalResult? get drugEvalResult => throw _privateConstructorUsedError;
+  LevelType? get levelType => throw _privateConstructorUsedError;
+  TreatmentType? get treatmentType => throw _privateConstructorUsedError;
+  SmivType? get smivType => throw _privateConstructorUsedError;
 
   /// Create a copy of Patient
   /// with the given fields replaced by the non-null parameter values.
@@ -341,7 +350,16 @@ abstract class $PatientCopyWith<$Res> {
   factory $PatientCopyWith(Patient value, $Res Function(Patient) then) =
       _$PatientCopyWithImpl<$Res, Patient>;
   @useResult
-  $Res call({List<PatientContent> content});
+  $Res call(
+      {int patientId,
+      String fullName,
+      String nationalId,
+      String cycle,
+      WorkFlowStatus? workFlowStatus,
+      DrugEvalResult? drugEvalResult,
+      LevelType? levelType,
+      TreatmentType? treatmentType,
+      SmivType? smivType});
 }
 
 /// @nodoc
@@ -359,13 +377,53 @@ class _$PatientCopyWithImpl<$Res, $Val extends Patient>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? content = null,
+    Object? patientId = null,
+    Object? fullName = null,
+    Object? nationalId = null,
+    Object? cycle = null,
+    Object? workFlowStatus = freezed,
+    Object? drugEvalResult = freezed,
+    Object? levelType = freezed,
+    Object? treatmentType = freezed,
+    Object? smivType = freezed,
   }) {
     return _then(_value.copyWith(
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as List<PatientContent>,
+      patientId: null == patientId
+          ? _value.patientId
+          : patientId // ignore: cast_nullable_to_non_nullable
+              as int,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      nationalId: null == nationalId
+          ? _value.nationalId
+          : nationalId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
+              as String,
+      workFlowStatus: freezed == workFlowStatus
+          ? _value.workFlowStatus
+          : workFlowStatus // ignore: cast_nullable_to_non_nullable
+              as WorkFlowStatus?,
+      drugEvalResult: freezed == drugEvalResult
+          ? _value.drugEvalResult
+          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+              as DrugEvalResult?,
+      levelType: freezed == levelType
+          ? _value.levelType
+          : levelType // ignore: cast_nullable_to_non_nullable
+              as LevelType?,
+      treatmentType: freezed == treatmentType
+          ? _value.treatmentType
+          : treatmentType // ignore: cast_nullable_to_non_nullable
+              as TreatmentType?,
+      smivType: freezed == smivType
+          ? _value.smivType
+          : smivType // ignore: cast_nullable_to_non_nullable
+              as SmivType?,
     ) as $Val);
   }
 }
@@ -377,7 +435,16 @@ abstract class _$$PatientImplCopyWith<$Res> implements $PatientCopyWith<$Res> {
       __$$PatientImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<PatientContent> content});
+  $Res call(
+      {int patientId,
+      String fullName,
+      String nationalId,
+      String cycle,
+      WorkFlowStatus? workFlowStatus,
+      DrugEvalResult? drugEvalResult,
+      LevelType? levelType,
+      TreatmentType? treatmentType,
+      SmivType? smivType});
 }
 
 /// @nodoc
@@ -393,13 +460,53 @@ class __$$PatientImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? content = null,
+    Object? patientId = null,
+    Object? fullName = null,
+    Object? nationalId = null,
+    Object? cycle = null,
+    Object? workFlowStatus = freezed,
+    Object? drugEvalResult = freezed,
+    Object? levelType = freezed,
+    Object? treatmentType = freezed,
+    Object? smivType = freezed,
   }) {
     return _then(_$PatientImpl(
-      content: null == content
-          ? _value._content
-          : content // ignore: cast_nullable_to_non_nullable
-              as List<PatientContent>,
+      patientId: null == patientId
+          ? _value.patientId
+          : patientId // ignore: cast_nullable_to_non_nullable
+              as int,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      nationalId: null == nationalId
+          ? _value.nationalId
+          : nationalId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
+              as String,
+      workFlowStatus: freezed == workFlowStatus
+          ? _value.workFlowStatus
+          : workFlowStatus // ignore: cast_nullable_to_non_nullable
+              as WorkFlowStatus?,
+      drugEvalResult: freezed == drugEvalResult
+          ? _value.drugEvalResult
+          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+              as DrugEvalResult?,
+      levelType: freezed == levelType
+          ? _value.levelType
+          : levelType // ignore: cast_nullable_to_non_nullable
+              as LevelType?,
+      treatmentType: freezed == treatmentType
+          ? _value.treatmentType
+          : treatmentType // ignore: cast_nullable_to_non_nullable
+              as TreatmentType?,
+      smivType: freezed == smivType
+          ? _value.smivType
+          : smivType // ignore: cast_nullable_to_non_nullable
+              as SmivType?,
     ));
   }
 }
@@ -407,249 +514,7 @@ class __$$PatientImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PatientImpl implements _Patient {
-  _$PatientImpl({required final List<PatientContent> content})
-      : _content = content;
-
-  final List<PatientContent> _content;
-  @override
-  List<PatientContent> get content {
-    if (_content is EqualUnmodifiableListView) return _content;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_content);
-  }
-
-  @override
-  String toString() {
-    return 'Patient(content: $content)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PatientImpl &&
-            const DeepCollectionEquality().equals(other._content, _content));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_content));
-
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PatientImplCopyWith<_$PatientImpl> get copyWith =>
-      __$$PatientImplCopyWithImpl<_$PatientImpl>(this, _$identity);
-}
-
-abstract class _Patient implements Patient {
-  factory _Patient({required final List<PatientContent> content}) =
-      _$PatientImpl;
-
-  @override
-  List<PatientContent> get content;
-
-  /// Create a copy of Patient
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PatientImplCopyWith<_$PatientImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$PatientContent {
-  int get patientId => throw _privateConstructorUsedError;
-  String get fullName => throw _privateConstructorUsedError;
-  String get nationalId => throw _privateConstructorUsedError;
-  String get cycle => throw _privateConstructorUsedError;
-  WorkFlowStatus get workFlowStatus => throw _privateConstructorUsedError;
-  DrugEvalResult? get drugEvalResult => throw _privateConstructorUsedError;
-  LevelType? get levelType => throw _privateConstructorUsedError;
-  TreatmentType? get treatmentType => throw _privateConstructorUsedError;
-  SmivType? get smivType => throw _privateConstructorUsedError;
-
-  /// Create a copy of PatientContent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PatientContentCopyWith<PatientContent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PatientContentCopyWith<$Res> {
-  factory $PatientContentCopyWith(
-          PatientContent value, $Res Function(PatientContent) then) =
-      _$PatientContentCopyWithImpl<$Res, PatientContent>;
-  @useResult
-  $Res call(
-      {int patientId,
-      String fullName,
-      String nationalId,
-      String cycle,
-      WorkFlowStatus workFlowStatus,
-      DrugEvalResult? drugEvalResult,
-      LevelType? levelType,
-      TreatmentType? treatmentType,
-      SmivType? smivType});
-}
-
-/// @nodoc
-class _$PatientContentCopyWithImpl<$Res, $Val extends PatientContent>
-    implements $PatientContentCopyWith<$Res> {
-  _$PatientContentCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of PatientContent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? patientId = null,
-    Object? fullName = null,
-    Object? nationalId = null,
-    Object? cycle = null,
-    Object? workFlowStatus = null,
-    Object? drugEvalResult = freezed,
-    Object? levelType = freezed,
-    Object? treatmentType = freezed,
-    Object? smivType = freezed,
-  }) {
-    return _then(_value.copyWith(
-      patientId: null == patientId
-          ? _value.patientId
-          : patientId // ignore: cast_nullable_to_non_nullable
-              as int,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      nationalId: null == nationalId
-          ? _value.nationalId
-          : nationalId // ignore: cast_nullable_to_non_nullable
-              as String,
-      cycle: null == cycle
-          ? _value.cycle
-          : cycle // ignore: cast_nullable_to_non_nullable
-              as String,
-      workFlowStatus: null == workFlowStatus
-          ? _value.workFlowStatus
-          : workFlowStatus // ignore: cast_nullable_to_non_nullable
-              as WorkFlowStatus,
-      drugEvalResult: freezed == drugEvalResult
-          ? _value.drugEvalResult
-          : drugEvalResult // ignore: cast_nullable_to_non_nullable
-              as DrugEvalResult?,
-      levelType: freezed == levelType
-          ? _value.levelType
-          : levelType // ignore: cast_nullable_to_non_nullable
-              as LevelType?,
-      treatmentType: freezed == treatmentType
-          ? _value.treatmentType
-          : treatmentType // ignore: cast_nullable_to_non_nullable
-              as TreatmentType?,
-      smivType: freezed == smivType
-          ? _value.smivType
-          : smivType // ignore: cast_nullable_to_non_nullable
-              as SmivType?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$PatientContentImplCopyWith<$Res>
-    implements $PatientContentCopyWith<$Res> {
-  factory _$$PatientContentImplCopyWith(_$PatientContentImpl value,
-          $Res Function(_$PatientContentImpl) then) =
-      __$$PatientContentImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int patientId,
-      String fullName,
-      String nationalId,
-      String cycle,
-      WorkFlowStatus workFlowStatus,
-      DrugEvalResult? drugEvalResult,
-      LevelType? levelType,
-      TreatmentType? treatmentType,
-      SmivType? smivType});
-}
-
-/// @nodoc
-class __$$PatientContentImplCopyWithImpl<$Res>
-    extends _$PatientContentCopyWithImpl<$Res, _$PatientContentImpl>
-    implements _$$PatientContentImplCopyWith<$Res> {
-  __$$PatientContentImplCopyWithImpl(
-      _$PatientContentImpl _value, $Res Function(_$PatientContentImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PatientContent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? patientId = null,
-    Object? fullName = null,
-    Object? nationalId = null,
-    Object? cycle = null,
-    Object? workFlowStatus = null,
-    Object? drugEvalResult = freezed,
-    Object? levelType = freezed,
-    Object? treatmentType = freezed,
-    Object? smivType = freezed,
-  }) {
-    return _then(_$PatientContentImpl(
-      patientId: null == patientId
-          ? _value.patientId
-          : patientId // ignore: cast_nullable_to_non_nullable
-              as int,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      nationalId: null == nationalId
-          ? _value.nationalId
-          : nationalId // ignore: cast_nullable_to_non_nullable
-              as String,
-      cycle: null == cycle
-          ? _value.cycle
-          : cycle // ignore: cast_nullable_to_non_nullable
-              as String,
-      workFlowStatus: null == workFlowStatus
-          ? _value.workFlowStatus
-          : workFlowStatus // ignore: cast_nullable_to_non_nullable
-              as WorkFlowStatus,
-      drugEvalResult: freezed == drugEvalResult
-          ? _value.drugEvalResult
-          : drugEvalResult // ignore: cast_nullable_to_non_nullable
-              as DrugEvalResult?,
-      levelType: freezed == levelType
-          ? _value.levelType
-          : levelType // ignore: cast_nullable_to_non_nullable
-              as LevelType?,
-      treatmentType: freezed == treatmentType
-          ? _value.treatmentType
-          : treatmentType // ignore: cast_nullable_to_non_nullable
-              as TreatmentType?,
-      smivType: freezed == smivType
-          ? _value.smivType
-          : smivType // ignore: cast_nullable_to_non_nullable
-              as SmivType?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$PatientContentImpl implements _PatientContent {
-  const _$PatientContentImpl(
+  const _$PatientImpl(
       {required this.patientId,
       required this.fullName,
       required this.nationalId,
@@ -669,7 +534,7 @@ class _$PatientContentImpl implements _PatientContent {
   @override
   final String cycle;
   @override
-  final WorkFlowStatus workFlowStatus;
+  final WorkFlowStatus? workFlowStatus;
   @override
   final DrugEvalResult? drugEvalResult;
   @override
@@ -681,14 +546,14 @@ class _$PatientContentImpl implements _PatientContent {
 
   @override
   String toString() {
-    return 'PatientContent(patientId: $patientId, fullName: $fullName, nationalId: $nationalId, cycle: $cycle, workFlowStatus: $workFlowStatus, drugEvalResult: $drugEvalResult, levelType: $levelType, treatmentType: $treatmentType, smivType: $smivType)';
+    return 'Patient(patientId: $patientId, fullName: $fullName, nationalId: $nationalId, cycle: $cycle, workFlowStatus: $workFlowStatus, drugEvalResult: $drugEvalResult, levelType: $levelType, treatmentType: $treatmentType, smivType: $smivType)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PatientContentImpl &&
+            other is _$PatientImpl &&
             (identical(other.patientId, patientId) ||
                 other.patientId == patientId) &&
             (identical(other.fullName, fullName) ||
@@ -721,27 +586,26 @@ class _$PatientContentImpl implements _PatientContent {
       treatmentType,
       smivType);
 
-  /// Create a copy of PatientContent
+  /// Create a copy of Patient
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PatientContentImplCopyWith<_$PatientContentImpl> get copyWith =>
-      __$$PatientContentImplCopyWithImpl<_$PatientContentImpl>(
-          this, _$identity);
+  _$$PatientImplCopyWith<_$PatientImpl> get copyWith =>
+      __$$PatientImplCopyWithImpl<_$PatientImpl>(this, _$identity);
 }
 
-abstract class _PatientContent implements PatientContent {
-  const factory _PatientContent(
+abstract class _Patient implements Patient {
+  const factory _Patient(
       {required final int patientId,
       required final String fullName,
       required final String nationalId,
       required final String cycle,
-      required final WorkFlowStatus workFlowStatus,
+      required final WorkFlowStatus? workFlowStatus,
       final DrugEvalResult? drugEvalResult,
       final LevelType? levelType,
       final TreatmentType? treatmentType,
-      final SmivType? smivType}) = _$PatientContentImpl;
+      final SmivType? smivType}) = _$PatientImpl;
 
   @override
   int get patientId;
@@ -752,7 +616,7 @@ abstract class _PatientContent implements PatientContent {
   @override
   String get cycle;
   @override
-  WorkFlowStatus get workFlowStatus;
+  WorkFlowStatus? get workFlowStatus;
   @override
   DrugEvalResult? get drugEvalResult;
   @override
@@ -762,10 +626,10 @@ abstract class _PatientContent implements PatientContent {
   @override
   SmivType? get smivType;
 
-  /// Create a copy of PatientContent
+  /// Create a copy of Patient
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PatientContentImplCopyWith<_$PatientContentImpl> get copyWith =>
+  _$$PatientImplCopyWith<_$PatientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

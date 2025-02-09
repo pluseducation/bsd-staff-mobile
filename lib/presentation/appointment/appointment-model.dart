@@ -11,8 +11,8 @@ class AppointmentModel extends ChangeNotifier {
   final Logger log;
   final AppointmentRepository appointmentRepository;
   final AppService appService;
+  
   late Appointment appointment;
-
   late DateTime selectedDate;
   late List<AppointmentEvent> selectedEvents;
 

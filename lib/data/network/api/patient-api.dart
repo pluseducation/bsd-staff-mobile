@@ -2,20 +2,57 @@ import 'package:bst_staff_mobile/data/network/api/base-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/patient-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/workflow-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
+import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:dio/dio.dart';
 
 class PatientApi extends BaseApi {
   PatientApi({required super.baseUrl});
 
   Future<PatientAllEntity> findPatientAll({
-    required String searchVal,
-    required int page,
-    required int size,
+    required Search search,
   }) async {
     try {
       final Dio dio = await getPrivateDio();
+
+      final Map<String, dynamic> queryParameters = {
+        'page': search.page,
+        'size': search.size,
+      };
+
+      if (search.searchVal.isNotEmpty) {
+        queryParameters['searchVal'] = search.searchVal;
+      }
+
+      if (search.workFlowStatus.isNotEmpty) {
+        queryParameters['workFlowStatus'] =
+            search.workFlowStatus.map((status) => status.value).toList();
+      }
+
+      if (search.levelTypes.isNotEmpty) {
+        queryParameters['levelType'] =
+            search.levelTypes.map((levelType) => levelType.value).toList();
+      }
+
+      if (search.drugEvalResults.isNotEmpty) {
+        queryParameters['drugEvalResult'] = search.drugEvalResults
+            .map((drugEvalResult) => drugEvalResult.value)
+            .toList();
+      }
+
+      if (search.treatmentTypes.isNotEmpty) {
+        queryParameters['treatmentType'] = search.treatmentTypes
+            .map((treatmentType) => treatmentType.value)
+            .toList();
+      }
+
+      if (search.smivTypes.isNotEmpty) {
+        queryParameters['smivType'] =
+            search.smivTypes.map((smivType) => smivType.value).toList();
+      }
+
       final response = await dio.get(
-        '/api/v1/staff/patients?searchVal=$searchVal&page=$page&size=$size',
+        '/api/v1/staff/patients?',
+        queryParameters: queryParameters,
       );
       if (response.statusCode == 200) {
         return PatientAllEntity.fromJson(response.data as Map<String, dynamic>);
