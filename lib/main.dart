@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
 import 'package:bst_staff_mobile/data/network/api/appointment-api.dart';
+import 'package:bst_staff_mobile/data/network/api/assistance-api.dart';
 import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
 import 'package:bst_staff_mobile/data/network/api/config-api.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
@@ -18,6 +19,7 @@ import 'package:bst_staff_mobile/data/network/api/user-api.dart';
 import 'package:bst_staff_mobile/data/network/api/usersession-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/data/repository/appointment-repository.dart';
+import 'package:bst_staff_mobile/data/repository/assistance-repository.dart';
 import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/data/repository/config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
@@ -115,9 +117,16 @@ Future<InitialData> _createData() async {
     userSessionApi: userSessionApi,
     networkMapper: networkMapper,
   );
+
   final patientApi = PatientApi(baseUrl: config.baseUrl);
   final patientRepository = PatientRepository(
     patientApi: patientApi,
+    networkMapper: networkMapper,
+  );
+
+  final assistanceApi = AssistanceApi(baseUrl: config.baseUrl);
+  final assistanceRepository = AssistanceRepository(
+    assistanceApi: assistanceApi,
     networkMapper: networkMapper,
   );
 
@@ -126,11 +135,12 @@ Future<InitialData> _createData() async {
   final treatmentApi = TreatmentApi(baseUrl: config.baseUrl);
 
   final workflowRepository = WorkflowRepository(
-      patientApi: patientApi,
-      questionApi: questionApi,
-      networkMapper: networkMapper,
-      screeningApi: screeningsApi,
-      treatmentApi: treatmentApi);
+    patientApi: patientApi,
+    questionApi: questionApi,
+    networkMapper: networkMapper,
+    screeningApi: screeningsApi,
+    treatmentApi: treatmentApi,
+  );
 
   final appointmentsApi = AppointmentApi(baseUrl: config.baseUrl);
 
@@ -173,6 +183,7 @@ Future<InitialData> _createData() async {
       Provider<CertificateRepository>.value(value: certificateRepository),
       Provider<ProfileRepository>.value(value: profileRepository),
       Provider<NotificationRepository>.value(value: notificationRepository),
+      Provider<AssistanceRepository>.value(value: assistanceRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

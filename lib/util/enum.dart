@@ -278,3 +278,73 @@ enum CertificateStatus {
     }
   }
 }
+
+enum AssistanceStatus {
+  pending,
+  inprogress,
+  completed,
+  canceled;
+
+  String? get value {
+    switch (this) {
+      case AssistanceStatus.pending:
+        return "PENDING";
+      case AssistanceStatus.inprogress:
+        return "INPROGRESS";
+      case AssistanceStatus.completed:
+        return "COMPLETED";
+      case AssistanceStatus.canceled:
+        return "CANCELED";
+    }
+  }
+
+  static AssistanceStatus? setValue(String? value) {
+    switch (value) {
+      case "PENDING":
+        return AssistanceStatus.pending;
+      case "INPROGRESS":
+        return AssistanceStatus.inprogress;
+      case "COMPLETED":
+        return AssistanceStatus.completed;
+      case "CANCELED":
+        return AssistanceStatus.canceled;
+      default:
+        return null;
+    }
+  }
+}
+
+enum AssistanceItemStatus {
+  pending,
+  inprogress,
+  completed,
+  exceed;
+
+  String? get value {
+    switch (this) {
+      case AssistanceItemStatus.pending:
+        return "PENDING";
+      case AssistanceItemStatus.inprogress:
+        return "INPROGRESS";
+      case AssistanceItemStatus.completed:
+        return "COMPLETED";
+      case AssistanceItemStatus.exceed:
+        return "EXCEED";
+    }
+  }
+
+  static AssistanceItemStatus? setValue(String? value) {
+    switch (value) {
+      case "PENDING":
+        return AssistanceItemStatus.pending;
+      case "INPROGRESS":
+        return AssistanceItemStatus.inprogress;
+      case "COMPLETED":
+        return AssistanceItemStatus.completed;
+      case "EXCEED":
+        return AssistanceItemStatus.exceed;
+      default:
+        return null;
+    }
+  }
+}
