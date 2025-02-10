@@ -83,3 +83,27 @@ class CertificateColors {
   static const Color completedLight = Color(0XFFdbf5ee);
   static const Color deniedLight = Color(0XFFf8dcdb);
 }
+
+class AssistanceColors {
+  static const Color pending = Color(0xFF656C6F);
+  static const Color inprogress = Color(0xFF2563eb);
+  static const Color completed = Color(0xFF0EB366);
+  static const Color canceled = Color(0XFFF04438);
+
+  static const Color pendingLight = Color(0XFFd6d6d6);
+  static const Color inprogressLight = Color(0xFF2563eb);
+  static const Color completedLight = Color(0xFFD5F8E7);
+  static const Color canceledLight = Color(0XFFf8dcdb);
+}
+
+class AssistanceItemColors {
+  static const Color pending = Color(0xFF656C6F);
+  static const Color inprogress = Color(0xFF2563eb);
+  static const Color completed = Color(0xFF0EB366);
+  static const Color ecceed = Color(0XFFF04438);
+
+  static const Color pendingLight = Color(0XFFd6d6d6);
+  static const Color inprogressLight = Color(0xFF2563eb);
+  static const Color completedLight = Color(0xFFD5F8E7);
+  static const Color ecceedLight = Color(0XFFf8dcdb);
+}
