@@ -9,7 +9,7 @@ class PatientApi extends BaseApi {
   PatientApi({required super.baseUrl});
 
   Future<PatientAllEntity> findPatientAll({
-    required Search search,
+    required SearchPatient search,
   }) async {
     try {
       final Dio dio = await getPrivateDio();

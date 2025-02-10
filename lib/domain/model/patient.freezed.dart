@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$Search {
+mixin _$SearchPatient {
   String get searchVal => throw _privateConstructorUsedError;
   set searchVal(String value) => throw _privateConstructorUsedError;
   List<WorkFlowStatus> get workFlowStatus => throw _privateConstructorUsedError;
@@ -41,16 +41,18 @@ mixin _$Search {
   int get size => throw _privateConstructorUsedError;
   set size(int value) => throw _privateConstructorUsedError;
 
-  /// Create a copy of Search
+  /// Create a copy of SearchPatient
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $SearchCopyWith<Search> get copyWith => throw _privateConstructorUsedError;
+  $SearchPatientCopyWith<SearchPatient> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SearchCopyWith<$Res> {
-  factory $SearchCopyWith(Search value, $Res Function(Search) then) =
-      _$SearchCopyWithImpl<$Res, Search>;
+abstract class $SearchPatientCopyWith<$Res> {
+  factory $SearchPatientCopyWith(
+          SearchPatient value, $Res Function(SearchPatient) then) =
+      _$SearchPatientCopyWithImpl<$Res, SearchPatient>;
   @useResult
   $Res call(
       {String searchVal,
@@ -66,16 +68,16 @@ abstract class $SearchCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SearchCopyWithImpl<$Res, $Val extends Search>
-    implements $SearchCopyWith<$Res> {
-  _$SearchCopyWithImpl(this._value, this._then);
+class _$SearchPatientCopyWithImpl<$Res, $Val extends SearchPatient>
+    implements $SearchPatientCopyWith<$Res> {
+  _$SearchPatientCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Search
+  /// Create a copy of SearchPatient
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -137,10 +139,11 @@ class _$SearchCopyWithImpl<$Res, $Val extends Search>
 }
 
 /// @nodoc
-abstract class _$$SearchImplCopyWith<$Res> implements $SearchCopyWith<$Res> {
-  factory _$$SearchImplCopyWith(
-          _$SearchImpl value, $Res Function(_$SearchImpl) then) =
-      __$$SearchImplCopyWithImpl<$Res>;
+abstract class _$$SearchPatientImplCopyWith<$Res>
+    implements $SearchPatientCopyWith<$Res> {
+  factory _$$SearchPatientImplCopyWith(
+          _$SearchPatientImpl value, $Res Function(_$SearchPatientImpl) then) =
+      __$$SearchPatientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -157,14 +160,14 @@ abstract class _$$SearchImplCopyWith<$Res> implements $SearchCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SearchImplCopyWithImpl<$Res>
-    extends _$SearchCopyWithImpl<$Res, _$SearchImpl>
-    implements _$$SearchImplCopyWith<$Res> {
-  __$$SearchImplCopyWithImpl(
-      _$SearchImpl _value, $Res Function(_$SearchImpl) _then)
+class __$$SearchPatientImplCopyWithImpl<$Res>
+    extends _$SearchPatientCopyWithImpl<$Res, _$SearchPatientImpl>
+    implements _$$SearchPatientImplCopyWith<$Res> {
+  __$$SearchPatientImplCopyWithImpl(
+      _$SearchPatientImpl _value, $Res Function(_$SearchPatientImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Search
+  /// Create a copy of SearchPatient
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -180,7 +183,7 @@ class __$$SearchImplCopyWithImpl<$Res>
     Object? totalElements = null,
     Object? size = null,
   }) {
-    return _then(_$SearchImpl(
+    return _then(_$SearchPatientImpl(
       searchVal: null == searchVal
           ? _value.searchVal
           : searchVal // ignore: cast_nullable_to_non_nullable
@@ -227,8 +230,8 @@ class __$$SearchImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchImpl implements _Search {
-  _$SearchImpl(
+class _$SearchPatientImpl implements _SearchPatient {
+  _$SearchPatientImpl(
       {required this.searchVal,
       required this.workFlowStatus,
       required this.levelTypes,
@@ -263,20 +266,20 @@ class _$SearchImpl implements _Search {
 
   @override
   String toString() {
-    return 'Search(searchVal: $searchVal, workFlowStatus: $workFlowStatus, levelTypes: $levelTypes, drugEvalResults: $drugEvalResults, treatmentTypes: $treatmentTypes, smivTypes: $smivTypes, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
+    return 'SearchPatient(searchVal: $searchVal, workFlowStatus: $workFlowStatus, levelTypes: $levelTypes, drugEvalResults: $drugEvalResults, treatmentTypes: $treatmentTypes, smivTypes: $smivTypes, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
   }
 
-  /// Create a copy of Search
+  /// Create a copy of SearchPatient
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
-      __$$SearchImplCopyWithImpl<_$SearchImpl>(this, _$identity);
+  _$$SearchPatientImplCopyWith<_$SearchPatientImpl> get copyWith =>
+      __$$SearchPatientImplCopyWithImpl<_$SearchPatientImpl>(this, _$identity);
 }
 
-abstract class _Search implements Search {
-  factory _Search(
+abstract class _SearchPatient implements SearchPatient {
+  factory _SearchPatient(
       {required String searchVal,
       required List<WorkFlowStatus> workFlowStatus,
       required List<LevelType> levelTypes,
@@ -286,7 +289,7 @@ abstract class _Search implements Search {
       required int page,
       required int totalPages,
       required int totalElements,
-      required int size}) = _$SearchImpl;
+      required int size}) = _$SearchPatientImpl;
 
   @override
   String get searchVal;
@@ -319,11 +322,11 @@ abstract class _Search implements Search {
   int get size;
   set size(int value);
 
-  /// Create a copy of Search
+  /// Create a copy of SearchPatient
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+  _$$SearchPatientImplCopyWith<_$SearchPatientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

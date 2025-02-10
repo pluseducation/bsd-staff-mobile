@@ -4,8 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'patient.freezed.dart';
 
 @unfreezed
-class Search with _$Search {
-  factory Search({
+class SearchPatient with _$SearchPatient {
+  factory SearchPatient({
     required String searchVal,
     required List<WorkFlowStatus> workFlowStatus,
     required List<LevelType> levelTypes,
@@ -16,7 +16,7 @@ class Search with _$Search {
     required int totalPages,
     required int totalElements,
     required int size,
-  }) = _Search;
+  }) = _SearchPatient;
 }
 
 @freezed

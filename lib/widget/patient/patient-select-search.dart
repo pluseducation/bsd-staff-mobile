@@ -6,7 +6,7 @@ import 'package:bst_staff_mobile/widget/patient/patient-select.dart';
 import 'package:flutter/material.dart';
 
 class PatientSelectSearch extends StatefulWidget {
-  final Function(Search) onSearch;
+  final Function(SearchPatient) onSearch;
 
   const PatientSelectSearch({
     super.key,
@@ -198,7 +198,7 @@ class _PatientSelectSearchState extends State<PatientSelectSearch> {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  final search = Search(
+                  final search = SearchPatient(
                     searchVal: _controller.text,
                     workFlowStatus:
                         _selectedStatus != null ? [_selectedStatus!] : [],

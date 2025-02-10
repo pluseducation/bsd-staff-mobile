@@ -14,7 +14,7 @@ class PatientModel extends ChangeNotifier {
   final AppService appService;
 
   bool isLoading = false;
-  late Search search;
+  late SearchPatient search;
   late List<Patient> patients;
 
   PatientModel({
@@ -42,9 +42,9 @@ class PatientModel extends ChangeNotifier {
     }
   }
 
-  Search initSearch() {
+  SearchPatient initSearch() {
     try {
-      return Search(
+      return SearchPatient(
         page: 0,
         size: Constant.size,
         searchVal: '',
