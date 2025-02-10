@@ -5,7 +5,7 @@ import 'package:bst_staff_mobile/presentation/patient/patient-filter-screen.dart
 import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/background.dart';
+import 'package:bst_staff_mobile/widget/background/base-background.dart';
 import 'package:bst_staff_mobile/widget/common/custom-pagination.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-card.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-search.dart';
@@ -90,50 +90,73 @@ class _PatientContentState extends State<PatientContent> {
           } else if (!snapshot.hasData) {
             return const Center(child: Text('ไม่พบข้อมูล'));
           } else {
-            return Stack(
-              children: [
-                // position top
-                PatientSearch(
-                  onClickFilter: _onClickFilter,
-                  onValueChange: (value) async =>
-                      await _model.searchByValue(value),
-                ),
-
-                Positioned(
-                  top: 60,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: Consumer<PatientModel>(
-                    builder: (context, model, child) {
-                      final patients = model.patients;
-                      return Column(
-                        children: [
-                          Expanded(
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  // wrap card
-                                  ..._buildPatientCard(patients),
-                                ],
+            return Consumer<PatientModel>(
+              builder: (context, model, child) {
+                final patients = model.patients;
+                return Stack(
+                  children: [
+                    // position top
+                    PatientSearch(
+                      onClickFilter: _onClickFilter,
+                      onValueChange: (value) async =>
+                          await _model.searchByValue(value),
+                      isFilter: model.isFilter,
+                      controller: model.valueController,
+                    ),
+                    if (patients.isEmpty) ...[
+                      const Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'ไม่พบข้อมูล',
+                                style: TextStyle(
+                                  color: MainColors.text,
+                                  fontSize: 24,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ] else ...[
+                      Positioned(
+                        top: 60,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    ..._buildPatientCard(patients),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
 
-                          // wrap position bottom
-                          CustomPagination(
-                            currentPage: model.search.page,
-                            totalPages: model.search.totalPages,
-                            goToPage: (page) async {
-                              await model.loadData(page);
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ],
+                            // wrap position bottom
+                            CustomPagination(
+                              currentPage: model.search.page,
+                              totalPages: model.search.totalPages,
+                              goToPage: (page) async {
+                                await model.loadData(page);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ],
+                );
+              },
             );
           }
         },
@@ -164,12 +187,12 @@ class _PatientContentState extends State<PatientContent> {
 
   Future<void> _onClickFilter() async {
     try {
-      // await Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => const PatientSelectSearchScreen(),
-      //   ),
-      // );
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PatientFilterScreen(model: _model),
+        ),
+      );
     } on Exception catch (e) {
       if (!context.mounted) return;
 

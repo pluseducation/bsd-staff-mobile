@@ -34,6 +34,7 @@ class MainColors {
   static const Color semiurgencybg = Color(0x29919EAB);
 
   static const Color divider = Color(0xFFDEE2E4);
+  static const Color natural = Color(0x40E0E0E0);
 }
 
 class PatientStatusColors {

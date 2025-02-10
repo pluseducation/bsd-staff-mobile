@@ -19,7 +19,7 @@ class CustomPagination extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           //Previous Button
           IconButton(
@@ -30,7 +30,6 @@ class CustomPagination extends StatelessWidget {
             onPressed:
                 (currentPage + 1) > 1 ? () => goToPage(currentPage - 1) : null,
           ),
-
           ...buildPageNumbers(),
 
           // Next Button
@@ -58,17 +57,17 @@ class CustomPagination extends StatelessWidget {
     }
 
     // Add "..." if needed
-    if (currentPage + 1 > 5 && totalPages > 6) {
+    if (currentPage > 5 && totalPages >= 6) {
       pages.add(const Text("..."));
     }
 
     // Show middle pages dynamically
-    if (currentPage >= 5 && currentPage <= totalPages - 3) {
+    if (currentPage >= 5 && currentPage < totalPages) {
       pages.add(buildlPageButton(currentPage, currentPage));
     }
 
     // Add "..." if nearing the end but not at the last few pages
-    if (currentPage < totalPages - 3 && totalPages > 6) {
+    if (currentPage < (totalPages - 1) && totalPages >= 6) {
       pages.add(const Text("..."));
     }
 
@@ -82,14 +81,14 @@ class CustomPagination extends StatelessWidget {
 
   Widget buildlPageButton(int currentPage, int page) {
     return GestureDetector(
-      onTap: () => goToPage(page),
+      onTap: () => goToPage(page - 1),
       child: Container(
-        padding: const EdgeInsets.all(8),
-        margin: const EdgeInsets.all(4),
+        width: 35, // Set the fixed width
+        height: 35, // Set the fixed height
+
         decoration: BoxDecoration(
-          color: currentPage == page
-              ? MainColors.primary500
-              : MainColors.secondaryLight,
+          color:
+              currentPage == page ? MainColors.primary500 : Colors.transparent,
           shape: BoxShape.circle,
         ),
         child: Center(
@@ -97,7 +96,7 @@ class CustomPagination extends StatelessWidget {
           child: Text(
             "$page",
             style: TextStyle(
-              color: currentPage == page ? Colors.white : Colors.black,
+              color: currentPage == page ? Colors.white : MainColors.text,
               fontWeight: FontWeight.bold,
               fontSize: FontSizes.medium,
             ),

@@ -24,29 +24,29 @@ class PatientApi extends BaseApi {
       }
 
       if (search.workFlowStatus.isNotEmpty) {
-        queryParameters['workFlowStatus'] =
+        queryParameters['statuses'] =
             search.workFlowStatus.map((status) => status.value).toList();
       }
 
       if (search.levelTypes.isNotEmpty) {
-        queryParameters['levelType'] =
+        queryParameters['levels'] =
             search.levelTypes.map((levelType) => levelType.value).toList();
       }
 
       if (search.drugEvalResults.isNotEmpty) {
-        queryParameters['drugEvalResult'] = search.drugEvalResults
+        queryParameters['drugEvalResults'] = search.drugEvalResults
             .map((drugEvalResult) => drugEvalResult.value)
             .toList();
       }
 
       if (search.treatmentTypes.isNotEmpty) {
-        queryParameters['treatmentType'] = search.treatmentTypes
+        queryParameters['treatmentTypes'] = search.treatmentTypes
             .map((treatmentType) => treatmentType.value)
             .toList();
       }
 
       if (search.smivTypes.isNotEmpty) {
-        queryParameters['smivType'] =
+        queryParameters['smiv'] =
             search.smivTypes.map((smivType) => smivType.value).toList();
       }
 

@@ -14,6 +14,7 @@ class PatientCard extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
+            color: Colors.white,
             border: Border.all(color: MainColors.primary500, width: 0.6),
             borderRadius: const BorderRadius.all(
               Radius.circular(16),

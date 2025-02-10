@@ -51,31 +51,27 @@ class WorkFlowStatusType extends StatelessWidget {
       return Container();
     }
 
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: lightColor,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: lightColor,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            child: Center(
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+    return Container(
+      decoration: BoxDecoration(
+        color: lightColor,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: lightColor,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 12,
+              color: color,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
@@ -91,7 +87,7 @@ class WorkFlowStatusTypeEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const color = MainColors.secondary;
-    const lightColor = MainColors.secondaryLight;
+    const lightColor = MainColors.natural;
     String text;
 
     if (workFlowStatus == WorkFlowStatus.registering) {
@@ -114,31 +110,99 @@ class WorkFlowStatusTypeEmpty extends StatelessWidget {
       return Container();
     }
 
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: lightColor,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: lightColor,
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            child: Center(
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+    return Container(
+      decoration: BoxDecoration(
+        color: lightColor,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: lightColor,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+              fontSize: 12,
+              color: color,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
-      ],
+      ),
+    );
+  }
+}
+
+class WorkFlowStatusTypeSelect extends StatelessWidget {
+  final WorkFlowStatus? workFlowStatus;
+
+  const WorkFlowStatusTypeSelect({
+    super.key,
+    required this.workFlowStatus,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+    Color lightColor;
+    String text;
+
+    if (workFlowStatus == WorkFlowStatus.registering) {
+      lightColor = MainColors.secondaryLight;
+      color = MainColors.secondary;
+      text = "ลงทะเบียน";
+    } else if (workFlowStatus == WorkFlowStatus.screening) {
+      lightColor = MainColors.warningLight;
+      color = MainColors.warning;
+      text = "คัดกรอง";
+    } else if (workFlowStatus == WorkFlowStatus.treatment) {
+      lightColor = MainColors.infoLight;
+      color = MainColors.info;
+      text = "บำบัด";
+    } else if (workFlowStatus == WorkFlowStatus.monitoring) {
+      lightColor = MainColors.successLight;
+      color = MainColors.success;
+      text = "ติดตาม";
+    } else if (workFlowStatus == WorkFlowStatus.assistance) {
+      lightColor = MainColors.secondaryLight;
+      color = MainColors.secondary;
+      text = "ช่วยเหลือ";
+    } else if (workFlowStatus == WorkFlowStatus.discharged) {
+      lightColor = MainColors.errorLight;
+      color = MainColors.error;
+      text = "จำหน่าย";
+    } else {
+      lightColor = Colors.grey;
+      color = Colors.grey;
+      text = '-';
+    }
+
+    if (workFlowStatus == null) {
+      return Container();
+    }
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: color,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 12,
+              color: color,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -224,7 +288,7 @@ class LevelStatusTypeEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const color = MainColors.secondary;
-    const lightColor = MainColors.secondaryLight;
+    const lightColor = MainColors.natural;
     String text;
     const String iconPath = 'assets/images/icon_tag.png';
 
@@ -247,8 +311,83 @@ class LevelStatusTypeEmpty extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: lightColor.withOpacity(0.2),
+        color: lightColor,
+        border: Border.all(
+          color: lightColor,
+        ),
         borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            iconPath,
+            width: 12,
+            height: 12,
+            color: color,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: const TextStyle(
+              color: color,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LevelStatusTypeSelect extends StatelessWidget {
+  final LevelType? levelType;
+
+  const LevelStatusTypeSelect({
+    super.key,
+    required this.levelType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+    String text;
+    const String iconPath = 'assets/images/icon_tag.png';
+    Color lightColor = Colors.black;
+
+    if (levelType == LevelType.normal) {
+      color = PatientLevelTypeColors.normal;
+      lightColor = PatientLevelTypeColors.normalLight;
+      text = 'สีเขียว';
+    } else if (levelType == LevelType.semiUrgency) {
+      color = PatientLevelTypeColors.semiUrgency;
+      lightColor = PatientLevelTypeColors.semiUrgencyLight;
+      text = 'สีเหลือง';
+    } else if (levelType == LevelType.urgency) {
+      color = PatientLevelTypeColors.urgency;
+      lightColor = PatientLevelTypeColors.urgencyLight;
+      text = 'สีส้ม';
+    } else if (levelType == LevelType.emergency) {
+      color = PatientLevelTypeColors.emergency;
+      lightColor = PatientLevelTypeColors.emergencyLight;
+      text = 'สีแดง';
+    } else {
+      color = Colors.grey;
+      text = '-';
+    }
+
+    if (levelType == null) {
+      return Container();
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: color,
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -264,7 +403,7 @@ class LevelStatusTypeEmpty extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: FontSizes.small,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -351,7 +490,7 @@ class DrugEvalResultStatusTypeEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const color = MainColors.secondary;
-    const lightColor = MainColors.secondaryLight;
+    const lightColor = MainColors.natural;
     String text;
     const String iconPath = 'assets/images/icon_tag.png';
 
@@ -372,8 +511,79 @@ class DrugEvalResultStatusTypeEmpty extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: lightColor.withOpacity(0.2),
+        color: lightColor,
+        border: Border.all(
+          color: lightColor,
+        ),
         borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            iconPath,
+            width: 12,
+            height: 12,
+            color: color,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: const TextStyle(
+              color: color,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DrugEvalResultStatusTypeSelect extends StatelessWidget {
+  final DrugEvalResult? drugEvalResult;
+
+  const DrugEvalResultStatusTypeSelect({
+    super.key,
+    required this.drugEvalResult,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+    String text;
+    const String iconPath = 'assets/images/icon_tag.png';
+    Color lightColor = Colors.black;
+
+    if (drugEvalResult == DrugEvalResult.user) {
+      color = PatientDrugEvalResultColors.drugUser;
+      lightColor = PatientDrugEvalResultColors.drugUserLight;
+      text = 'ผู้ใช้';
+    } else if (drugEvalResult == DrugEvalResult.abuse) {
+      color = PatientDrugEvalResultColors.drugAbuse;
+      lightColor = PatientDrugEvalResultColors.drugAbuseLight;
+      text = 'ผู้เสพ';
+    } else if (drugEvalResult == DrugEvalResult.dependence) {
+      color = PatientDrugEvalResultColors.drugDependence;
+      lightColor = PatientDrugEvalResultColors.drugDependenceLight;
+      text = 'ผู้ติด';
+    } else {
+      color = Colors.grey;
+      text = '-';
+    }
+
+    if (drugEvalResult == null) {
+      return Container();
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: color,
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -389,7 +599,7 @@ class DrugEvalResultStatusTypeEmpty extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: FontSizes.small,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -517,7 +727,7 @@ class TreatmentStatusTypeEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const color = MainColors.secondary;
-    const lightColor = MainColors.secondaryLight;
+    const lightColor = MainColors.natural;
     String text;
     const String iconPath = 'assets/images/icon_tag.png';
 
@@ -559,8 +769,120 @@ class TreatmentStatusTypeEmpty extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: lightColor.withOpacity(0.2),
+        color: lightColor,
+        border: Border.all(
+          color: lightColor,
+        ),
         borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            iconPath,
+            width: 12,
+            height: 12,
+            color: color,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: const TextStyle(
+              color: color,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TreatmentStatusTypeSelect extends StatelessWidget {
+  final TreatmentType? treatmentType;
+
+  const TreatmentStatusTypeSelect({
+    super.key,
+    required this.treatmentType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+    String text;
+    const String iconPath = 'assets/images/icon_tag.png';
+    Color lightColor = Colors.black;
+
+    if (treatmentType == TreatmentType.opd) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'ผู้ป่วยนอก';
+    } else if (treatmentType == TreatmentType.ipdTreatment) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'ผู้ป่วยใน (ระยะบำบัด)';
+    } else if (treatmentType == TreatmentType.ipdRecover) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'ผู้ป่วยใน (ระยะฟื้นฟู)';
+    } else if (treatmentType == TreatmentType.ipdMini) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'มินิธีญฯ';
+    } else if (treatmentType == TreatmentType.cbtx) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'CBTx';
+    } else if (treatmentType == TreatmentType.network) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'ภาคีเครือข่าย';
+    } else if (treatmentType == TreatmentType.religious) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'ศาสนสถาน';
+    } else if (treatmentType == TreatmentType.rehabilitationTherapyJopc) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'สถานพินิจ';
+    } else if (treatmentType ==
+        TreatmentType.rehabilitationTherapyTrainingCenter) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'ศูนย์ฝึกและอบรม';
+    } else if (treatmentType == TreatmentType.wiwatSchoolProject) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'โรงเรียนวิวัฒน์';
+    } else if (treatmentType == TreatmentType.programInPrisons) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'กรมราชทัณฑ์';
+    } else if (treatmentType == TreatmentType.behaviorCamp) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'หลักสูตรค่าย';
+    } else if (treatmentType == TreatmentType.other) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'อื่นๆ';
+    } else {
+      color = Colors.grey;
+      text = '-';
+    }
+
+    if (treatmentType == null) {
+      return Container();
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: color,
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -576,7 +898,7 @@ class TreatmentStatusTypeEmpty extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: FontSizes.small,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -644,10 +966,10 @@ class MivStatusType extends StatelessWidget {
   }
 }
 
-class MivStatusTypeEmpty extends StatelessWidget {
+class SmivStatusTypeEmpty extends StatelessWidget {
   final SmivType? smivType;
 
-  const MivStatusTypeEmpty({
+  const SmivStatusTypeEmpty({
     super.key,
     required this.smivType,
   });
@@ -655,7 +977,7 @@ class MivStatusTypeEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const color = MainColors.secondary;
-    const lightColor = MainColors.secondaryLight;
+    const lightColor = MainColors.natural;
     String text;
     const String iconPath = 'assets/images/icon_tag.png';
 
@@ -672,8 +994,71 @@ class MivStatusTypeEmpty extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: lightColor.withOpacity(0.2),
+        color: lightColor,
+        border: Border.all(
+          color: lightColor,
+        ),
         borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            iconPath,
+            width: 12,
+            height: 12,
+            color: color,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: const TextStyle(
+              color: color,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SmivStatusTypeSelect extends StatelessWidget {
+  final SmivType? smivType;
+
+  const SmivStatusTypeSelect({
+    super.key,
+    required this.smivType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+    String text;
+    const String iconPath = 'assets/images/icon_tag.png';
+    Color lightColor = Colors.black;
+
+    if (smivType == SmivType.smiv) {
+      lightColor = MainColors.error;
+      color = MainColors.error;
+      text = 'SMIV';
+    } else {
+      color = Colors.grey;
+      text = '-';
+    }
+
+    if (smivType == null) {
+      return Container();
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: color,
+        ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -689,7 +1074,7 @@ class MivStatusTypeEmpty extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: FontSizes.small,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
           ),

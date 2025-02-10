@@ -14,6 +14,9 @@ class PatientModel extends ChangeNotifier {
   final AppService appService;
 
   bool isLoading = false;
+  bool isFilter = false;
+  TextEditingController valueController = TextEditingController();
+
   late SearchPatient search;
   late List<Patient> patients;
 
@@ -67,32 +70,12 @@ class PatientModel extends ChangeNotifier {
     }
   }
 
-  // bool isMoreData() {
-  //   if (isLoading) return false;
-
-  //   if (search.page + 1 < search.totalPages) {
-  //     isLoading = true;
-  //     notifyListeners();
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
   Future<void> loadData(int page) async {
     try {
       search.page = page;
-      final tmps = await patientRepository.findPatientAll(
+      patients = await patientRepository.findPatientAll(
         search: search,
       );
-
-      if (tmps.isNotEmpty) {
-        for (final tmp in tmps) {
-          if (!patients.any((item) => item.patientId == tmp.patientId)) {
-            patients.add(tmp);
-          }
-        }
-      }
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -145,6 +128,17 @@ class PatientModel extends ChangeNotifier {
       search.treatmentTypes = treatmentTypes;
       search.smivTypes = smivTypes;
 
+      if (workFlowStatus.isNotEmpty ||
+          levelTypes.isNotEmpty ||
+          drugEvalResults.isNotEmpty ||
+          treatmentTypes.isNotEmpty ||
+          smivTypes.isNotEmpty) {
+        isFilter = true;
+      } else {
+        isFilter = false;
+      }
+
+      valueController.text = searchVal;
       patients = await patientRepository.findPatientAll(
         search: search,
       );

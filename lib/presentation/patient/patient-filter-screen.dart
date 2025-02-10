@@ -1,91 +1,113 @@
 import 'package:bst_staff_mobile/domain/model/patient.dart';
+import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
+import 'package:bst_staff_mobile/widget/background/base-background.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-filter.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 
-class PatientSelectSearchScreen extends StatelessWidget {
-  final SearchPatient search;
-  const PatientSelectSearchScreen({super.key, required this.search});
+class PatientFilterScreen extends StatelessWidget {
+  final PatientModel model;
+  const PatientFilterScreen({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MainColors.primary500,
+      extendBodyBehindAppBar: true,
       appBar: const BaseAppBarContent(
         title: 'ตัวกรอง',
       ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  MainColors.primary500,
-                  Colors.white,
-                ],
-                stops: [-0.017, 1.2193],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                transform: GradientRotation(280 * (3.14159 / 50)),
-              ),
-              color: Colors.white12,
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      ),
-                    ),
-                    child: SingleChildScrollView(
-                      child: Center(
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 600),
-                          child: Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Column(
-                              children: [
-                                PatientFilter(
-                                  value: search.searchVal,
-                                  workFlowStatus: search.workFlowStatus,
-                                  levelTypes: search.levelTypes,
-                                  drugEvalResults: search.drugEvalResults,
-                                  treatmentTypes: search.treatmentTypes,
-                                  smivTypes: search.smivTypes,
-                                  onSearch: onSearch,
-                                ),
-                              ],
+      body: BaseBackground(
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 600),
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            PatientFilter(
+                              value: model.search.searchVal,
+                              workFlowStatus: model.search.workFlowStatus,
+                              levelTypes: model.search.levelTypes,
+                              drugEvalResults: model.search.drugEvalResults,
+                              treatmentTypes: model.search.treatmentTypes,
+                              smivTypes: model.search.smivTypes,
+                              onSearch: (
+                                value,
+                                workFlowStatus,
+                                levelTypes,
+                                drugEvalResults,
+                                treatmentTypes,
+                                smivTypes,
+                              ) {
+                                onSearch(
+                                  context,
+                                  value,
+                                  workFlowStatus,
+                                  levelTypes,
+                                  drugEvalResults,
+                                  treatmentTypes,
+                                  smivTypes,
+                                );
+                              },
                             ),
-                          ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  void onSearch(
+  Future<void> onSearch(
+    BuildContext context,
     String value,
     List<WorkFlowStatus> workFlowStatus,
     List<LevelType> levelTypes,
     List<DrugEvalResult> drugEvalResults,
     List<TreatmentType> treatmentTypes,
     List<SmivType> smivTypes,
-  ) {
-    print(value);
+  ) async {
+    try {
+      await model.searchByStatus(
+        value,
+        workFlowStatus,
+        levelTypes,
+        drugEvalResults,
+        treatmentTypes,
+        smivTypes,
+      );
+
+      // pop screen
+      Navigator.pop(context);
+    } catch (e) {
+      if (!context.mounted) return;
+
+      await showInfoDialog(
+        context: context,
+        message: e.toString(),
+      );
+    }
   }
 }

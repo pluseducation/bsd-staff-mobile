@@ -1,4 +1,3 @@
-import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
@@ -107,72 +106,67 @@ class _PatientFilterState extends State<PatientFilter> {
                 fontSize: FontSizes.medium,
               ),
             ),
-            const SizedBox(height: 4),
-            ..._buildWorkFlowStatusType(),
+
             const SizedBox(height: 8),
+            // flex wrap row
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: _buildWorkFlowStatusType(),
+            ),
+            const SizedBox(height: 16),
             const Text(
               "OAS",
               style: TextStyle(
                 fontSize: FontSizes.medium,
               ),
             ),
-            const SizedBox(height: 4),
-            // PatiaOASSelect(
-            //   onSelected: (LevelType? status) {
-            //     setState(() {
-            //       _selectedOASStatus = status;
-            //     });
-            //   },
-            //   initialSelectedStatus: _selectedOASStatus,
-            // ),
             const SizedBox(height: 8),
+            // flex wrap row
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: _buildLevelType(),
+            ),
+            const SizedBox(height: 16),
             const Text(
               "V2",
               style: TextStyle(
                 fontSize: FontSizes.medium,
               ),
             ),
-            const SizedBox(height: 4),
-            // DrugEvalResultSelect(
-            //   onSelected: (DrugEvalResult? status) {
-            //     setState(() {
-            //       _selectedDrugStatus = status;
-            //     });
-            //   },
-            //   initialSelectedStatus: _selectedDrugStatus,
-            // ),
             const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: _buildDrugEvalResult(),
+            ),
+            const SizedBox(height: 16),
             const Text(
               "ประเภท การบำบัดรักษาล่าสุด",
               style: TextStyle(
                 fontSize: FontSizes.medium,
               ),
             ),
-            const SizedBox(height: 4),
-            // TreatmentTypeSelect(
-            //   onSelected: (TreatmentType? status) {
-            //     setState(() {
-            //       _selectedTreatmentStatus = status;
-            //     });
-            //   },
-            //   initialSelectedStatus: _selectedTreatmentStatus,
-            // ),
             const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: _buildTreatmentType(),
+            ),
+            const SizedBox(height: 16),
             const Text(
               "สถานะเพิ่มเติม",
               style: TextStyle(
                 fontSize: FontSizes.medium,
               ),
             ),
-            const SizedBox(height: 4),
-            // SmivTypeSelect(
-            //   onSelected: (SmivType? status) {
-            //     setState(() {
-            //       _selectedSmivStatus = status;
-            //     });
-            //   },
-            //   initialSelectedStatus: _selectedSmivStatus,
-            // ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: _buildSmivType(),
+            ),
           ],
         ),
         const SizedBox(height: 16),
@@ -205,7 +199,14 @@ class _PatientFilterState extends State<PatientFilter> {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  print('search');
+                  widget.onSearch(
+                    _controller.text,
+                    _selecteWorkFlowStatus,
+                    _selecteLevelType,
+                    _selecteDrugEvalResult,
+                    _selecteTreatmentType,
+                    _selecteSmivType,
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: MainColors.primary500,
@@ -231,21 +232,137 @@ class _PatientFilterState extends State<PatientFilter> {
   List<Widget> _buildWorkFlowStatusType() {
     return workFlowStatus.map((item) {
       if (_selecteWorkFlowStatus.contains(item)) {
-        return GestureDetector(
-          onTap: () {
-            _onTabWorkFlowStatusItem(item);
-          },
-          child: WorkFlowStatusType(
-            workFlowStatus: item,
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabWorkFlowStatusItem(item);
+            },
+            child: WorkFlowStatusTypeSelect(
+              workFlowStatus: item,
+            ),
           ),
         );
       } else {
-        return GestureDetector(
-          onTap: () {
-            _onTabWorkFlowStatusItem(item);
-          },
-          child: WorkFlowStatusTypeEmpty(
-            workFlowStatus: item,
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabWorkFlowStatusItem(item);
+            },
+            child: WorkFlowStatusTypeEmpty(
+              workFlowStatus: item,
+            ),
+          ),
+        );
+      }
+    }).toList();
+  }
+
+  List<Widget> _buildLevelType() {
+    return levelTypes.map((item) {
+      if (_selecteLevelType.contains(item)) {
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabLevelTypeItem(item);
+            },
+            child: LevelStatusTypeSelect(
+              levelType: item,
+            ),
+          ),
+        );
+      } else {
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabLevelTypeItem(item);
+            },
+            child: LevelStatusTypeEmpty(
+              levelType: item,
+            ),
+          ),
+        );
+      }
+    }).toList();
+  }
+
+  List<Widget> _buildDrugEvalResult() {
+    return drugEvalResults.map((item) {
+      if (_selecteDrugEvalResult.contains(item)) {
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabDrugEvalResultItem(item);
+            },
+            child: DrugEvalResultStatusTypeSelect(
+              drugEvalResult: item,
+            ),
+          ),
+        );
+      } else {
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabDrugEvalResultItem(item);
+            },
+            child: DrugEvalResultStatusTypeEmpty(
+              drugEvalResult: item,
+            ),
+          ),
+        );
+      }
+    }).toList();
+  }
+
+  List<Widget> _buildTreatmentType() {
+    return treatmentTypes.map((item) {
+      if (_selecteTreatmentType.contains(item)) {
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabTreatmentTypeItem(item);
+            },
+            child: TreatmentStatusTypeSelect(
+              treatmentType: item,
+            ),
+          ),
+        );
+      } else {
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabTreatmentTypeItem(item);
+            },
+            child: TreatmentStatusTypeEmpty(
+              treatmentType: item,
+            ),
+          ),
+        );
+      }
+    }).toList();
+  }
+
+  List<Widget> _buildSmivType() {
+    return smivTypes.map((item) {
+      if (_selecteSmivType.contains(item)) {
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabSmivTypeItem(item);
+            },
+            child: SmivStatusTypeSelect(
+              smivType: item,
+            ),
+          ),
+        );
+      } else {
+        return IntrinsicWidth(
+          child: GestureDetector(
+            onTap: () {
+              _onTabSmivTypeItem(item);
+            },
+            child: SmivStatusTypeEmpty(
+              smivType: item,
+            ),
           ),
         );
       }
@@ -318,7 +435,6 @@ final List<WorkFlowStatus> workFlowStatus = [
   WorkFlowStatus.screening,
   WorkFlowStatus.treatment,
   WorkFlowStatus.monitoring,
-  WorkFlowStatus.assistance,
   WorkFlowStatus.discharged,
 ];
 

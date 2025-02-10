@@ -3,7 +3,7 @@ import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/base-background.dart';
+import 'package:bst_staff_mobile/widget/background/base-background.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 
