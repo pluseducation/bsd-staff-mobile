@@ -14,7 +14,7 @@ class PatientRepository {
   });
 
   Future<List<Patient>> findPatientAll({
-    required Search search,
+    required SearchPatient search,
   }) async {
     final entity = await patientApi.findPatientAll(
       search: search,

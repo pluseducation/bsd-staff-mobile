@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
+import 'package:bst_staff_mobile/widget/base-background.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -12,34 +13,36 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MainColors.primary500,
+      extendBodyBehindAppBar: true,
       appBar: BaseAppBar(),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
+      body: BaseBackground(
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
+                  ),
                 ),
-              ),
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 600),
-                      child: const MenuContent(),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 600),
+                        child: const MenuContent(),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

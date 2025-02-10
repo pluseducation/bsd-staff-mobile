@@ -1,11 +1,11 @@
 // สถานะ
 enum WorkFlowStatus {
-  registering,
-  screening,
-  treatment,
-  monitoring,
-  assistance,
-  discharged;
+  registering, // ลงทะเบียน
+  screening, // คัดกรอง
+  treatment, // บำบัด
+  monitoring, // ติดตาม
+  assistance, // ช่วยเหลือ
+  discharged; // จำหน่าย
 
   String? get value {
     switch (this) {
@@ -43,14 +43,12 @@ enum WorkFlowStatus {
     }
   }
 }
-// ตัวกรอง ผู้ใช้ ผู้เสพ ผู้ติด
 
-// OAS เขียว เหลือง ส้ม แดง
 enum LevelType {
-  normal,
-  semiUrgency,
-  urgency,
-  emergency;
+  normal, // เขียว
+  semiUrgency, // เหลือง
+  urgency, // ส้ม
+  emergency; // แดง
 
   String? get value {
     switch (this) {
@@ -83,9 +81,9 @@ enum LevelType {
 
 // V2
 enum DrugEvalResult {
-  user,
-  abuse,
-  dependence;
+  user, // ผู้ใช้
+  abuse, // ผู้เสพ
+  dependence; // ผู้ติด
 
   String? get value {
     switch (this) {
@@ -114,19 +112,19 @@ enum DrugEvalResult {
 
 // ประเภท การบำบัดรักษาล่าสุด
 enum TreatmentType {
-  opd,
-  ipdTreatment,
-  ipdRecover,
-  ipdMini,
-  cbtx,
-  network,
-  religious,
-  rehabilitationTherapyJopc,
-  rehabilitationTherapyTrainingCenter,
-  wiwatSchoolProject,
-  programInPrisons,
-  behaviorCamp,
-  other;
+  opd, // ผู้ป่วยนอก (Out patient) ในสถานพยาบาล
+  ipdTreatment, // ผู้ป่วยใน ระยะบำบัดในสถานพยาบาล
+  ipdRecover, // ผู้ป่วยใน ระยะฟื้นฟูสมรรถภาพในสถานพยาบาล
+  ipdMini, // ผู้ป่วยใน มินิธัญญารักษ์
+  cbtx, // ฟื้นฟูสมรรถภาพในชุมชน (CBTx)
+  network, // สถานฟื้นฟูสมรรถภาพในภาคีเครือข่าย
+  religious, // ฟื้นฟูสมรรถภาพในศาสนสถาน
+  rehabilitationTherapyJopc, // โปรแกรมการบำบัดฟื้นฟูฯ ในสถานพินิจและคุ้มครองเด็กและเยาวชน
+  rehabilitationTherapyTrainingCenter, // โปรแกรมการบำบัดฟื้นฟูฯ ในศูนย์ฝึกและอบรมเด็กและเยาวชน
+  wiwatSchoolProject, // โครงการโรงเรียนวิวัฒน์พลเมืองราชทัณฑ์
+  programInPrisons, // โปรแกรมการบำบัดฟื้นฟูของกรมราชทัณฑ์ในเรือนจำ/ทัณฑสถาน
+  behaviorCamp, // หลักสูตรค่ายปรับเปลี่ยนพฤติกรรม
+  other; // อื่นๆ
 
   String? get value {
     switch (this) {

@@ -80,6 +80,69 @@ class WorkFlowStatusType extends StatelessWidget {
   }
 }
 
+class WorkFlowStatusTypeEmpty extends StatelessWidget {
+  final WorkFlowStatus? workFlowStatus;
+
+  const WorkFlowStatusTypeEmpty({
+    super.key,
+    required this.workFlowStatus,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const color = MainColors.secondary;
+    const lightColor = MainColors.secondaryLight;
+    String text;
+
+    if (workFlowStatus == WorkFlowStatus.registering) {
+      text = "ลงทะเบียน";
+    } else if (workFlowStatus == WorkFlowStatus.screening) {
+      text = "คัดกรอง";
+    } else if (workFlowStatus == WorkFlowStatus.treatment) {
+      text = "บำบัด";
+    } else if (workFlowStatus == WorkFlowStatus.monitoring) {
+      text = "ติดตาม";
+    } else if (workFlowStatus == WorkFlowStatus.assistance) {
+      text = "ช่วยเหลือ";
+    } else if (workFlowStatus == WorkFlowStatus.discharged) {
+      text = "จำหน่าย";
+    } else {
+      text = '-';
+    }
+
+    if (workFlowStatus == null) {
+      return Container();
+    }
+
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: lightColor,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: lightColor,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: Center(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: color,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class LevelStatusType extends StatelessWidget {
   final LevelType? levelType;
 
@@ -113,6 +176,67 @@ class LevelStatusType extends StatelessWidget {
       text = 'สีแดง';
     } else {
       color = Colors.grey;
+      text = '-';
+    }
+
+    if (levelType == null) {
+      return Container();
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: lightColor.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            iconPath,
+            width: 12,
+            height: 12,
+            color: color,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: TextStyle(
+              color: color,
+              fontSize: FontSizes.small,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LevelStatusTypeEmpty extends StatelessWidget {
+  final LevelType? levelType;
+
+  const LevelStatusTypeEmpty({
+    super.key,
+    required this.levelType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const color = MainColors.secondary;
+    const lightColor = MainColors.secondaryLight;
+    String text;
+    const String iconPath = 'assets/images/icon_tag.png';
+
+    if (levelType == LevelType.normal) {
+      text = 'สีเขียว';
+    } else if (levelType == LevelType.semiUrgency) {
+      text = 'สีเหลือง';
+    } else if (levelType == LevelType.urgency) {
+      text = 'สีส้ม';
+    } else if (levelType == LevelType.emergency) {
+      text = 'สีแดง';
+    } else {
       text = '-';
     }
 
@@ -216,6 +340,65 @@ class DrugEvalResultStatusType extends StatelessWidget {
   }
 }
 
+class DrugEvalResultStatusTypeEmpty extends StatelessWidget {
+  final DrugEvalResult? drugEvalResult;
+
+  const DrugEvalResultStatusTypeEmpty({
+    super.key,
+    required this.drugEvalResult,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const color = MainColors.secondary;
+    const lightColor = MainColors.secondaryLight;
+    String text;
+    const String iconPath = 'assets/images/icon_tag.png';
+
+    if (drugEvalResult == DrugEvalResult.user) {
+      text = 'ผู้ใช้';
+    } else if (drugEvalResult == DrugEvalResult.abuse) {
+      text = 'ผู้เสพ';
+    } else if (drugEvalResult == DrugEvalResult.dependence) {
+      text = 'ผู้ติด';
+    } else {
+      text = '-';
+    }
+
+    if (drugEvalResult == null) {
+      return Container();
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: lightColor.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            iconPath,
+            width: 12,
+            height: 12,
+            color: color,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: TextStyle(
+              color: color,
+              fontSize: FontSizes.small,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class TreatmentStatusType extends StatelessWidget {
   final TreatmentType? treatmentType;
 
@@ -259,8 +442,113 @@ class TreatmentStatusType extends StatelessWidget {
       color = MainColors.primary500;
       lightColor = MainColors.primary500;
       text = 'ศาสนสถาน';
+    } else if (treatmentType == TreatmentType.rehabilitationTherapyJopc) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'สถานพินิจ';
+    } else if (treatmentType ==
+        TreatmentType.rehabilitationTherapyTrainingCenter) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'ศูนย์ฝึกและอบรม';
+    } else if (treatmentType == TreatmentType.wiwatSchoolProject) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'โรงเรียนวิวัฒน์';
+    } else if (treatmentType == TreatmentType.programInPrisons) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'กรมราชทัณฑ์';
+    } else if (treatmentType == TreatmentType.behaviorCamp) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'หลักสูตรค่าย';
+    } else if (treatmentType == TreatmentType.other) {
+      color = MainColors.primary500;
+      lightColor = MainColors.primary500;
+      text = 'อื่นๆ';
     } else {
       color = Colors.grey;
+      text = '-';
+    }
+
+    if (treatmentType == null) {
+      return Container();
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: lightColor.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            iconPath,
+            width: 12,
+            height: 12,
+            color: color,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: TextStyle(
+              color: color,
+              fontSize: FontSizes.small,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TreatmentStatusTypeEmpty extends StatelessWidget {
+  final TreatmentType? treatmentType;
+
+  const TreatmentStatusTypeEmpty({
+    super.key,
+    required this.treatmentType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const color = MainColors.secondary;
+    const lightColor = MainColors.secondaryLight;
+    String text;
+    const String iconPath = 'assets/images/icon_tag.png';
+
+    if (treatmentType == TreatmentType.opd) {
+      text = 'ผู้ป่วยนอก';
+    } else if (treatmentType == TreatmentType.ipdTreatment) {
+      text = 'ผู้ป่วยใน (ระยะบำบัด)';
+    } else if (treatmentType == TreatmentType.ipdRecover) {
+      text = 'ผู้ป่วยใน (ระยะฟื้นฟู)';
+    } else if (treatmentType == TreatmentType.ipdMini) {
+      text = 'มินิธีญฯ';
+    } else if (treatmentType == TreatmentType.cbtx) {
+      text = 'CBTx';
+    } else if (treatmentType == TreatmentType.network) {
+      text = 'ภาคีเครือข่าย';
+    } else if (treatmentType == TreatmentType.religious) {
+      text = 'ศาสนสถาน';
+    } else if (treatmentType == TreatmentType.rehabilitationTherapyJopc) {
+      text = 'สถานพินิจ';
+    } else if (treatmentType ==
+        TreatmentType.rehabilitationTherapyTrainingCenter) {
+      text = 'ศูนย์ฝึกและอบรม';
+    } else if (treatmentType == TreatmentType.wiwatSchoolProject) {
+      text = 'โรงเรียนวิวัฒน์';
+    } else if (treatmentType == TreatmentType.programInPrisons) {
+      text = 'กรมราชทัณฑ์';
+    } else if (treatmentType == TreatmentType.behaviorCamp) {
+      text = 'หลักสูตรค่าย';
+    } else if (treatmentType == TreatmentType.other) {
+      text = 'อื่นๆ';
+    } else {
       text = '-';
     }
 
@@ -319,6 +607,61 @@ class MivStatusType extends StatelessWidget {
       text = 'SMIV';
     } else {
       color = Colors.grey;
+      text = '-';
+    }
+
+    if (smivType == null) {
+      return Container();
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: lightColor.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            iconPath,
+            width: 12,
+            height: 12,
+            color: color,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: TextStyle(
+              color: color,
+              fontSize: FontSizes.small,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MivStatusTypeEmpty extends StatelessWidget {
+  final SmivType? smivType;
+
+  const MivStatusTypeEmpty({
+    super.key,
+    required this.smivType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const color = MainColors.secondary;
+    const lightColor = MainColors.secondaryLight;
+    String text;
+    const String iconPath = 'assets/images/icon_tag.png';
+
+    if (smivType == SmivType.smiv) {
+      text = 'SMIV';
+    } else {
       text = '-';
     }
 

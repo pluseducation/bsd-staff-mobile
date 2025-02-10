@@ -1,10 +1,11 @@
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/presentation/patient/patient-filter-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
-import 'package:bst_staff_mobile/presentation/patient/patient-select-search-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
+import 'package:bst_staff_mobile/widget/background.dart';
 import 'package:bst_staff_mobile/widget/common/custom-pagination.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-card.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-search.dart';
@@ -19,35 +20,37 @@ class PatientScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MainColors.primary500,
+      extendBodyBehindAppBar: true,
       appBar: const BaseAppBarContent(
         title: 'ผู้ป่วย',
         count: 2000,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: MainColors.background,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
+      body: BaseBackground(
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: MainColors.background,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 600),
-                    child: const PatientContent(),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 600),
+                      child: const PatientContent(),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -161,12 +164,12 @@ class _PatientContentState extends State<PatientContent> {
 
   Future<void> _onClickFilter() async {
     try {
-      await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const PatientSelectSearchScreen(),
-        ),
-      );
+      // await Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => const PatientSelectSearchScreen(),
+      //   ),
+      // );
     } on Exception catch (e) {
       if (!context.mounted) return;
 
