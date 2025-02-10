@@ -67,21 +67,21 @@ class PatientModel extends ChangeNotifier {
     }
   }
 
-  bool isMoreData() {
-    if (isLoading) return false;
+  // bool isMoreData() {
+  //   if (isLoading) return false;
 
-    if (search.page + 1 < search.totalPages) {
-      isLoading = true;
-      notifyListeners();
-      return true;
-    } else {
-      return false;
-    }
-  }
+  //   if (search.page + 1 < search.totalPages) {
+  //     isLoading = true;
+  //     notifyListeners();
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  Future<void> loadData() async {
+  Future<void> loadData(int page) async {
     try {
-      search.page++;
+      search.page = page;
       final tmps = await patientRepository.findPatientAll(
         search: search,
       );

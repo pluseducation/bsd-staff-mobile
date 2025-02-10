@@ -159,46 +159,46 @@ class _MyWidgetsState extends State<MyWidgets> {
   }
 }
 
-class TestStatusView extends StatelessWidget {
-  const TestStatusView({super.key});
+// class TestStatusView extends StatelessWidget {
+//   const TestStatusView({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Test Status View",
-          style: TextStyle(color: MainColors.white),
-        ),
-      ),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              // SearchBarWidget(),
-              SizedBox(
-                height: 16,
-              ),
-              PatientCard(),
-              SizedBox(
-                height: 16,
-              ),
-              CertificateCard(),
-              SizedBox(
-                height: 16,
-              ),
-              CertificateDetailCard(),
-              SizedBox(
-                height: 40,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text(
+//           "Test Status View",
+//           style: TextStyle(color: MainColors.white),
+//         ),
+//       ),
+//       body: const SingleChildScrollView(
+//         child: Padding(
+//           padding: EdgeInsets.all(16.0),
+//           child: Column(
+//             children: [
+//               // SearchBarWidget(),
+//               SizedBox(
+//                 height: 16,
+//               ),
+//               PatientCard(),
+//               SizedBox(
+//                 height: 16,
+//               ),
+//               CertificateCard(),
+//               SizedBox(
+//                 height: 16,
+//               ),
+//               CertificateDetailCard(),
+//               SizedBox(
+//                 height: 40,
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class TestPatiaSelectScreen extends StatelessWidget {
   const TestPatiaSelectScreen({super.key});

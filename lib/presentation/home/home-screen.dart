@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         return const MyWidget();
       case 3:
-        return const TestStatusView();
+        return Text('Selected Index: $index');
       case 4:
         return const CameraTest();
       default:

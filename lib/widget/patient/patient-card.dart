@@ -1,11 +1,12 @@
+import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-status.dart';
 import 'package:flutter/material.dart';
 
 class PatientCard extends StatelessWidget {
-  const PatientCard({super.key});
+  final Patient patient;
+  const PatientCard({super.key, required this.patient});
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +14,15 @@ class PatientCard extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            border: Border.all(color: MainColors.primary500),
+            border: Border.all(color: MainColors.primary500, width: 0.6),
             borderRadius: const BorderRadius.all(
               Radius.circular(16),
             ),
           ),
-          child: const Column(
+          child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -29,34 +30,35 @@ class PatientCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "สมชาย หวังผล",
-                          style: TextStyle(
+                          patient.fullName,
+                          style: const TextStyle(
                             fontSize: FontSizes.medium,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         WorkFlowStatusType(
-                          workFlowStatus: WorkFlowStatus.monitoring,
+                          workFlowStatus: patient.workFlowStatus,
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: MainColors.divider,
                       thickness: 0.6,
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.credit_card,
-                                size: 18, color: Colors.grey),
-                            SizedBox(width: 4),
+                            const Icon(
+                              Icons.credit_card,
+                              size: 18,
+                            ),
+                            const SizedBox(width: 4),
                             Text(
-                              "1579900499231 (แทน)",
-                              style: TextStyle(
-                                color: MainColors.text,
+                              patient.nationalId,
+                              style: const TextStyle(
                                 fontSize: FontSizes.small,
                               ),
                             ),
@@ -66,27 +68,26 @@ class PatientCard extends StatelessWidget {
                           spacing: 8,
                           runSpacing: 4,
                           children: [
-                            LevelStatusType(levelType: LevelType.urgency),
+                            LevelStatusType(levelType: patient.levelType),
                             DrugEvalResultStatusType(
-                              drugEvalResult: DrugEvalResult.dependence,
+                              drugEvalResult: patient.drugEvalResult,
                             ),
                           ],
                         ),
                       ],
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "รอบบำบัด : 653210",
-                          style: TextStyle(
+                          'รอบบำบัด : ${patient.cycle}',
+                          style: const TextStyle(
                             fontSize: FontSizes.small,
-                            color: MainColors.text,
                           ),
                         ),
                         TreatmentStatusType(
-                          treatmentType: TreatmentType.ipdTreatment,
+                          treatmentType: patient.treatmentType,
                         ),
                       ],
                     ),

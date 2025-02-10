@@ -1,19 +1,22 @@
 import 'package:bst_staff_mobile/theme/font-size.dart';
+import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 
-class SearchBarWidget extends StatefulWidget {
-  final Function() onClick;
+class PatientSearch extends StatefulWidget {
+  final Function() onClickFilter;
+  final Function(String) onValueChange;
 
-  const SearchBarWidget({
+  const PatientSearch({
     super.key,
-    required this.onClick,
+    required this.onClickFilter,
+    required this.onValueChange,
   });
 
   @override
-  _SearchBarWidgetState createState() => _SearchBarWidgetState();
+  _PatientSearchState createState() => _PatientSearchState();
 }
 
-class _SearchBarWidgetState extends State<SearchBarWidget> {
+class _PatientSearchState extends State<PatientSearch> {
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -25,12 +28,14 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           children: [
             Expanded(
               child: TextField(
+                onChanged: (value) => widget.onValueChange(value),
                 controller: _controller,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
                   hintText: 'ค้นหาจากชื่อ-นามสกุล, เลขบัตร/เลขแทน, เลขรอบบำบัด',
                   hintStyle: const TextStyle(
-                    color: Color(0xFFA0A6A9),
+                    fontSize: FontSizes.small,
+                    color: MainColors.text,
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16.0),
@@ -53,18 +58,16 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
             Row(
               children: [
                 GestureDetector(
-                  onTap: widget.onClick,
+                  onTap: widget.onClickFilter,
                   child: const Row(
                     children: [
                       Icon(
                         Icons.filter_alt_outlined,
-                        color: Color(0xFFA0A6A9),
                       ),
                       SizedBox(width: 4),
                       Text(
                         "ตัวกรอง",
                         style: TextStyle(
-                          color: Color(0xFFA0A6A9),
                           fontSize: FontSizes.small,
                         ),
                       ),

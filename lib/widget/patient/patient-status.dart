@@ -4,7 +4,7 @@ import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 
 class WorkFlowStatusType extends StatelessWidget {
-  final WorkFlowStatus workFlowStatus;
+  final WorkFlowStatus? workFlowStatus;
 
   const WorkFlowStatusType({
     super.key,
@@ -47,6 +47,10 @@ class WorkFlowStatusType extends StatelessWidget {
       text = '-';
     }
 
+    if (workFlowStatus == null) {
+      return Container();
+    }
+
     return Column(
       children: [
         Container(
@@ -77,7 +81,7 @@ class WorkFlowStatusType extends StatelessWidget {
 }
 
 class LevelStatusType extends StatelessWidget {
-  final LevelType levelType;
+  final LevelType? levelType;
 
   const LevelStatusType({
     super.key,
@@ -112,6 +116,10 @@ class LevelStatusType extends StatelessWidget {
       text = '-';
     }
 
+    if (levelType == null) {
+      return Container();
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
@@ -143,7 +151,7 @@ class LevelStatusType extends StatelessWidget {
 }
 
 class DrugEvalResultStatusType extends StatelessWidget {
-  final DrugEvalResult drugEvalResult;
+  final DrugEvalResult? drugEvalResult;
 
   const DrugEvalResultStatusType({
     super.key,
@@ -172,6 +180,10 @@ class DrugEvalResultStatusType extends StatelessWidget {
     } else {
       color = Colors.grey;
       text = '-';
+    }
+
+    if (drugEvalResult == null) {
+      return Container();
     }
 
     return Container(
@@ -205,7 +217,7 @@ class DrugEvalResultStatusType extends StatelessWidget {
 }
 
 class TreatmentStatusType extends StatelessWidget {
-  final TreatmentType treatmentType;
+  final TreatmentType? treatmentType;
 
   const TreatmentStatusType({
     super.key,
@@ -229,6 +241,7 @@ class TreatmentStatusType extends StatelessWidget {
       text = 'ผู้ป่วยใน (ระยะบำบัด)';
     } else if (treatmentType == TreatmentType.ipdRecover) {
       color = MainColors.primary500;
+      lightColor = MainColors.primary500;
       text = 'ผู้ป่วยใน (ระยะฟื้นฟู)';
     } else if (treatmentType == TreatmentType.ipdMini) {
       color = MainColors.primary500;
@@ -249,6 +262,10 @@ class TreatmentStatusType extends StatelessWidget {
     } else {
       color = Colors.grey;
       text = '-';
+    }
+
+    if (treatmentType == null) {
+      return Container();
     }
 
     return Container(
@@ -282,7 +299,7 @@ class TreatmentStatusType extends StatelessWidget {
 }
 
 class MivStatusType extends StatelessWidget {
-  final SmivType smivType;
+  final SmivType? smivType;
 
   const MivStatusType({
     super.key,
@@ -303,6 +320,10 @@ class MivStatusType extends StatelessWidget {
     } else {
       color = Colors.grey;
       text = '-';
+    }
+
+    if (smivType == null) {
+      return Container();
     }
 
     return Container(

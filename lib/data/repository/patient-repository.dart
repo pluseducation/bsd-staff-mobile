@@ -27,11 +27,16 @@ class PatientRepository {
     // set model
     final models = entity.content.map((item) {
       final fullname =
-          convertToString(item.name) + convertToString(item.surname);
+          "${convertToString(item.name)} ${convertToString(item.surname)}";
+
+      final nationalId = item.generatedId != null
+          ? '${item.generatedId} (แทน)'
+          : convertToString(item.nationalId);
+
       return Patient(
         patientId: item.patientId,
         fullName: fullname,
-        nationalId: convertToString(item.nationalId),
+        nationalId: nationalId,
         cycle: convertToString(item.cycle),
         workFlowStatus: WorkFlowStatus.setValue(item.status),
         drugEvalResult: DrugEvalResult.setValue(item.drugEval),
