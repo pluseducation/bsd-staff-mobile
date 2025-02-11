@@ -7,6 +7,7 @@ import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
 import 'package:bst_staff_mobile/data/network/api/config-api.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
+import 'package:bst_staff_mobile/data/network/api/monitoring-api.dart';
 import 'package:bst_staff_mobile/data/network/api/notification-api.dart';
 import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
@@ -133,6 +134,7 @@ Future<InitialData> _createData() async {
   final questionApi = Question(baseUrl: config.baseUrl);
   final screeningsApi = ScreeningApi(baseUrl: config.baseUrl);
   final treatmentApi = TreatmentApi(baseUrl: config.baseUrl);
+  final monitoringApi = MonitoringApi(baseUrl: config.baseUrl);
 
   final workflowRepository = WorkflowRepository(
     patientApi: patientApi,
@@ -140,6 +142,7 @@ Future<InitialData> _createData() async {
     networkMapper: networkMapper,
     screeningApi: screeningsApi,
     treatmentApi: treatmentApi,
+    monitoringApi: monitoringApi,
   );
 
   final appointmentsApi = AppointmentApi(baseUrl: config.baseUrl);

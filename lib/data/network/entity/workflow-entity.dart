@@ -1,93 +1,89 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'workflow-entity.g.dart';
 
 @JsonSerializable()
 class RegisteringEntity {
-  String? subDivisionName;
-  String? subDivisionNo;
-  String? subDivisionMoo;
-  String? subDivisionSubDistrict;
-  String? subDivisionDistrict;
-  String? subDivisionProvince;
-  String? subDivisionTel;
-  dynamic subDivisionFax;
+  int? patientId;
   String? name;
   String? surname;
+  String? nationalId;
+  String? phoneNo;
+  String? dateOfBirth;
+  int? age;
   String? gender;
   String? nationality;
   String? religion;
-  String? nationalId;
-  String? generatedId;
-  String? dateOfBirth;
-  int? age;
-  String? phoneNo;
   String? hometownProvince;
-  bool? currentAddrAsRegistered;
   String? registeredHouseNo;
   String? registeredHouseMoo;
-  String? registeredHouseRoad;
   String? registeredVillage;
-  String? registeredSubDistrict;
-  String? registeredDistrict;
+  String? registeredHouseRoad;
   String? registeredProvince;
+  String? registeredDistrict;
+  String? registeredSubDistrict;
+  String? registeredPostalCode;
   String? currentHouseNo;
   String? currentHouseMoo;
-  String? currentHouseRoad;
   String? currentVillage;
-  String? currentSubDistrict;
-  String? currentDistrict;
+  String? currentHouseRoad;
   String? currentProvince;
-  bool? haveGuardian;
+  String? currentDistrict;
+  String? currentSubDistrict;
+  String? currentPostalCode;
+  String? maritalStatus;
+  String? education;
+  String? occupation;
+  String? income;
   String? guardianName;
   String? guardianSurname;
-  String? guardianRelationShip;
+  String? guardianRelationship;
   String? guardianPhoneNo;
+  String? livingWith;
   String? joinTreatmentBy;
   String? joinSentByCourt;
 
   RegisteringEntity({
-    required this.subDivisionName,
-    required this.subDivisionNo,
-    required this.subDivisionMoo,
-    required this.subDivisionSubDistrict,
-    required this.subDivisionDistrict,
-    required this.subDivisionProvince,
-    required this.subDivisionTel,
-    required this.subDivisionFax,
-    required this.name,
-    required this.surname,
-    required this.gender,
-    required this.nationality,
-    required this.religion,
-    required this.nationalId,
-    required this.generatedId,
-    required this.dateOfBirth,
-    required this.age,
-    required this.phoneNo,
-    required this.hometownProvince,
-    required this.currentAddrAsRegistered,
-    required this.registeredHouseNo,
-    required this.registeredHouseMoo,
-    required this.registeredHouseRoad,
-    required this.registeredVillage,
-    required this.registeredSubDistrict,
-    required this.registeredDistrict,
-    required this.registeredProvince,
-    required this.currentHouseNo,
-    required this.currentHouseMoo,
-    required this.currentHouseRoad,
-    required this.currentVillage,
-    required this.currentSubDistrict,
-    required this.currentDistrict,
-    required this.currentProvince,
-    required this.haveGuardian,
-    required this.guardianName,
-    required this.guardianSurname,
-    required this.guardianRelationShip,
-    required this.guardianPhoneNo,
-    required this.joinTreatmentBy,
-    required this.joinSentByCourt,
+    this.patientId,
+    this.name,
+    this.surname,
+    this.nationalId,
+    this.phoneNo,
+    this.dateOfBirth,
+    this.age,
+    this.gender,
+    this.nationality,
+    this.religion,
+    this.hometownProvince,
+    this.registeredHouseNo,
+    this.registeredHouseMoo,
+    this.registeredVillage,
+    this.registeredHouseRoad,
+    this.registeredProvince,
+    this.registeredDistrict,
+    this.registeredSubDistrict,
+    this.registeredPostalCode,
+    this.currentHouseNo,
+    this.currentHouseMoo,
+    this.currentVillage,
+    this.currentHouseRoad,
+    this.currentProvince,
+    this.currentDistrict,
+    this.currentSubDistrict,
+    this.currentPostalCode,
+    this.maritalStatus,
+    this.education,
+    this.occupation,
+    this.income,
+    this.guardianName,
+    this.guardianSurname,
+    this.guardianRelationship,
+    this.guardianPhoneNo,
+    this.livingWith,
+    this.joinTreatmentBy,
+    this.joinSentByCourt,
   });
 
   factory RegisteringEntity.fromJson(Map<String, dynamic> json) =>
@@ -95,117 +91,52 @@ class RegisteringEntity {
   Map<String, dynamic> toJson() => _$RegisteringEntityToJson(this);
 }
 
-// ProfileEntity
-@JsonSerializable()
-class ProfileEntity {
-  String? name;
-  String? middleName;
-  String? surname;
-  String? patientStatus;
-  String? level;
-
-  ProfileEntity({
-    required this.name,
-    required this.middleName,
-    required this.surname,
-    required this.patientStatus,
-    required this.level,
-  });
-
-  factory ProfileEntity.fromJson(Map<String, dynamic> json) =>
-      _$ProfileEntityFromJson(json);
-  Map<String, dynamic> toJson() => _$ProfileEntityToJson(this);
-}
-// ---------------screening------------------
-
 @JsonSerializable()
 class ScreeningEntity {
-  int? patientId;
-  DateTime? startDate;
-  DateTime? screeningDate;
-  String? refFilePath;
-  String? refFileName;
-  int? maritalStatusId;
-  int? educationId;
-  int? occupationId;
-  String? occupationOther;
-  int? incomeId;
-  int? parentRelationshipId;
-  List<AnswerEntity>? livingWithLast30days;
-  List<AnswerEntity>? mainDrugs;
-  List<AnswerEntity>? secondaryDrugs;
+  String? screeningDate;
+  String? level;
+  String? drugEvalResult;
   String? isToBeNumberOneMember;
+  String? toBeNumberOneDate;
   String? drugUsageApproach;
-  String? frequencyOfUse;
-  String? feelingAddicted;
-  String? frequencyOfProblem;
-  String? irresponsible;
-  String? beNoticed;
-  String? stopUsingButNotSuccess;
-  int? drugEvalScore;
-  String? levelOfAddicted;
-  String? screeningResult;
   String? injectableDrug;
-  String? last3MonthUsage;
-  List<int>? mentalIssueIds;
-  int? mentalEvalScore;
-  String? mentalEvalLevel;
+  String? mainDrug;
+  String? secondaryDrug;
   String? hadMentalTreatment;
-  int? mentalTreatmentId;
+  String? mentalTreatment;
+  String? mentalTreatmentOther;
   String? hadChronicContagious;
-  int? chronicContagiousId;
+  String? chronicContagious;
+  String? chronicContagiousOther;
   String? hadCriminalCase;
-  int? criminalCaseId;
+  String? criminalCase;
+  String? criminalCaseOther;
   String? homeless;
   String? disabledPerson;
   String? disabledCertificateNo;
-  List<FileElementdataEntityEntity>? files;
-  List<NewFileEntity>? newFiles;
-  List<int>? removeDocIds;
 
   ScreeningEntity({
-    required this.patientId,
-    required this.startDate,
-    required this.screeningDate,
-    required this.refFilePath,
-    required this.refFileName,
-    required this.maritalStatusId,
-    required this.educationId,
-    required this.occupationId,
-    required this.occupationOther,
-    required this.incomeId,
-    required this.parentRelationshipId,
-    required this.livingWithLast30days,
-    required this.mainDrugs,
-    required this.secondaryDrugs,
-    required this.isToBeNumberOneMember,
-    required this.drugUsageApproach,
-    required this.frequencyOfUse,
-    required this.feelingAddicted,
-    required this.frequencyOfProblem,
-    required this.irresponsible,
-    required this.beNoticed,
-    required this.stopUsingButNotSuccess,
-    required this.drugEvalScore,
-    required this.levelOfAddicted,
-    required this.screeningResult,
-    required this.injectableDrug,
-    required this.last3MonthUsage,
-    required this.mentalIssueIds,
-    required this.mentalEvalScore,
-    required this.mentalEvalLevel,
-    required this.hadMentalTreatment,
-    required this.mentalTreatmentId,
-    required this.hadChronicContagious,
-    required this.chronicContagiousId,
-    required this.hadCriminalCase,
-    required this.criminalCaseId,
-    required this.homeless,
-    required this.disabledPerson,
-    required this.disabledCertificateNo,
-    required this.files,
-    required this.newFiles,
-    required this.removeDocIds,
+    this.screeningDate,
+    this.level,
+    this.drugEvalResult,
+    this.isToBeNumberOneMember,
+    this.toBeNumberOneDate,
+    this.drugUsageApproach,
+    this.injectableDrug,
+    this.mainDrug,
+    this.secondaryDrug,
+    this.hadMentalTreatment,
+    this.mentalTreatment,
+    this.mentalTreatmentOther,
+    this.hadChronicContagious,
+    this.chronicContagious,
+    this.chronicContagiousOther,
+    this.hadCriminalCase,
+    this.criminalCase,
+    this.criminalCaseOther,
+    this.homeless,
+    this.disabledPerson,
+    this.disabledCertificateNo,
   });
 
   factory ScreeningEntity.fromJson(Map<String, dynamic> json) =>
@@ -214,6 +145,48 @@ class ScreeningEntity {
   Map<String, dynamic> toJson() => _$ScreeningEntityToJson(this);
 }
 
+@JsonSerializable()
+class MonitoringEntity {
+  String? status;
+  DateTime? startDate;
+  DateTime? endDate;
+  int? round;
+  String? roundType;
+  int? roundId;
+  String? subdivision;
+  int? subdivisionId;
+  String? latestResult;
+  int? finalRound;
+  String? treatmentType;
+
+  MonitoringEntity({
+    this.status,
+    this.startDate,
+    this.endDate,
+    this.round,
+    this.roundType,
+    this.roundId,
+    this.subdivision,
+    this.subdivisionId,
+    this.latestResult,
+    this.finalRound,
+    this.treatmentType,
+  });
+
+  factory MonitoringEntity.fromJson(Map<String, dynamic> json) =>
+      _$MonitoringEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MonitoringEntityToJson(this);
+
+  static List<MonitoringEntity> fromJsons(List data) =>
+      List<MonitoringEntity>.from(
+        data.map(
+          (x) => MonitoringEntity.fromJson(x as Map<String, dynamic>),
+        ),
+      );
+}
+
+// delete
 // ---------------treatments------------------
 @JsonSerializable()
 class TreatmentEntity {
@@ -425,6 +398,28 @@ class HistoryEntity {
       _$HistoryEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$HistoryEntityToJson(this);
+}
+
+// ProfileEntity
+@JsonSerializable()
+class ProfileEntity {
+  String? name;
+  String? middleName;
+  String? surname;
+  String? patientStatus;
+  String? level;
+
+  ProfileEntity({
+    required this.name,
+    required this.middleName,
+    required this.surname,
+    required this.patientStatus,
+    required this.level,
+  });
+
+  factory ProfileEntity.fromJson(Map<String, dynamic> json) =>
+      _$ProfileEntityFromJson(json);
+  Map<String, dynamic> toJson() => _$ProfileEntityToJson(this);
 }
 
 //  -------- master -------

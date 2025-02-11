@@ -13,7 +13,6 @@ class PatientModel extends ChangeNotifier {
   final PatientRepository patientRepository;
   final AppService appService;
 
-  bool isLoading = false;
   bool isFilter = false;
   TextEditingController valueController = TextEditingController();
 
@@ -85,7 +84,6 @@ class PatientModel extends ChangeNotifier {
         throw CustomException(e.toString());
       }
     } finally {
-      isLoading = false;
       notifyListeners();
     }
   }

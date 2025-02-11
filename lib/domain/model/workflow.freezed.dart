@@ -17,32 +17,23 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Registering {
   String get imagePath => throw _privateConstructorUsedError;
-  String get fullname =>
-      throw _privateConstructorUsedError; //** find on profile name + surname /patients/${patientId}/profile */
-  String get patientStatus =>
-      throw _privateConstructorUsedError; //**  /patients/${nationalityText}/profile */
-  String get level =>
-      throw _privateConstructorUsedError; //**  /patients/${patientId}/profile */
-  String get dateOfBirthText =>
-      throw _privateConstructorUsedError; //ว/ด/ป ** '/api/v1/staff/patients$patientsid' */
-  String get gender =>
-      throw _privateConstructorUsedError; // เพศ* "/questionchoices$REGISTERING */
-  String get nationalityText =>
-      throw _privateConstructorUsedError; //สัญชาติ** /master/nationalities */
-  String get religionText =>
-      throw _privateConstructorUsedError; //ศาสนา ** /master/religions
-  String get registereText =>
-      throw _privateConstructorUsedError; //  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
-  String get currentAddrText =>
-      throw _privateConstructorUsedError; //ที่อยู่ปัจจุบัน ** find on patient
-  String get guardianfullNameText =>
-      throw _privateConstructorUsedError; //ข้อมูลผู้ปกครอง **  find on patient
-  String get relationShipText =>
-      throw _privateConstructorUsedError; // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
-  String get guardianPhoneNo =>
-      throw _privateConstructorUsedError; // เบอร์โทร 02-xxx-xxx   ** find on patient
-  String get joinTreatmentByText =>
-      throw _privateConstructorUsedError; //เข้าร่วมการรักษา ** find on questionchoices
+  String get fullname => throw _privateConstructorUsedError;
+  String get nationalId => throw _privateConstructorUsedError;
+  String get phoneNo => throw _privateConstructorUsedError;
+  String get dateOfBirth => throw _privateConstructorUsedError;
+  String get genderText => throw _privateConstructorUsedError;
+  String get nationality => throw _privateConstructorUsedError;
+  String get religion => throw _privateConstructorUsedError;
+  String get registereAddress => throw _privateConstructorUsedError;
+  String get currentAddress => throw _privateConstructorUsedError;
+  String get maritalStatus => throw _privateConstructorUsedError;
+  String get education => throw _privateConstructorUsedError;
+  String get occupation => throw _privateConstructorUsedError;
+  String get income => throw _privateConstructorUsedError;
+  String get guardianfullName => throw _privateConstructorUsedError;
+  String get guardianPhoneNo => throw _privateConstructorUsedError;
+  String get livingWithText => throw _privateConstructorUsedError;
+  String get joinTreatmentByText => throw _privateConstructorUsedError;
   String get joinSentByCourtText => throw _privateConstructorUsedError;
 
   /// Create a copy of Registering
@@ -61,17 +52,21 @@ abstract class $RegisteringCopyWith<$Res> {
   $Res call(
       {String imagePath,
       String fullname,
-      String patientStatus,
-      String level,
-      String dateOfBirthText,
-      String gender,
-      String nationalityText,
-      String religionText,
-      String registereText,
-      String currentAddrText,
-      String guardianfullNameText,
-      String relationShipText,
+      String nationalId,
+      String phoneNo,
+      String dateOfBirth,
+      String genderText,
+      String nationality,
+      String religion,
+      String registereAddress,
+      String currentAddress,
+      String maritalStatus,
+      String education,
+      String occupation,
+      String income,
+      String guardianfullName,
       String guardianPhoneNo,
+      String livingWithText,
       String joinTreatmentByText,
       String joinSentByCourtText});
 }
@@ -93,17 +88,21 @@ class _$RegisteringCopyWithImpl<$Res, $Val extends Registering>
   $Res call({
     Object? imagePath = null,
     Object? fullname = null,
-    Object? patientStatus = null,
-    Object? level = null,
-    Object? dateOfBirthText = null,
-    Object? gender = null,
-    Object? nationalityText = null,
-    Object? religionText = null,
-    Object? registereText = null,
-    Object? currentAddrText = null,
-    Object? guardianfullNameText = null,
-    Object? relationShipText = null,
+    Object? nationalId = null,
+    Object? phoneNo = null,
+    Object? dateOfBirth = null,
+    Object? genderText = null,
+    Object? nationality = null,
+    Object? religion = null,
+    Object? registereAddress = null,
+    Object? currentAddress = null,
+    Object? maritalStatus = null,
+    Object? education = null,
+    Object? occupation = null,
+    Object? income = null,
+    Object? guardianfullName = null,
     Object? guardianPhoneNo = null,
+    Object? livingWithText = null,
     Object? joinTreatmentByText = null,
     Object? joinSentByCourtText = null,
   }) {
@@ -116,49 +115,65 @@ class _$RegisteringCopyWithImpl<$Res, $Val extends Registering>
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
               as String,
-      patientStatus: null == patientStatus
-          ? _value.patientStatus
-          : patientStatus // ignore: cast_nullable_to_non_nullable
+      nationalId: null == nationalId
+          ? _value.nationalId
+          : nationalId // ignore: cast_nullable_to_non_nullable
               as String,
-      level: null == level
-          ? _value.level
-          : level // ignore: cast_nullable_to_non_nullable
+      phoneNo: null == phoneNo
+          ? _value.phoneNo
+          : phoneNo // ignore: cast_nullable_to_non_nullable
               as String,
-      dateOfBirthText: null == dateOfBirthText
-          ? _value.dateOfBirthText
-          : dateOfBirthText // ignore: cast_nullable_to_non_nullable
+      dateOfBirth: null == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
+      genderText: null == genderText
+          ? _value.genderText
+          : genderText // ignore: cast_nullable_to_non_nullable
               as String,
-      nationalityText: null == nationalityText
-          ? _value.nationalityText
-          : nationalityText // ignore: cast_nullable_to_non_nullable
+      nationality: null == nationality
+          ? _value.nationality
+          : nationality // ignore: cast_nullable_to_non_nullable
               as String,
-      religionText: null == religionText
-          ? _value.religionText
-          : religionText // ignore: cast_nullable_to_non_nullable
+      religion: null == religion
+          ? _value.religion
+          : religion // ignore: cast_nullable_to_non_nullable
               as String,
-      registereText: null == registereText
-          ? _value.registereText
-          : registereText // ignore: cast_nullable_to_non_nullable
+      registereAddress: null == registereAddress
+          ? _value.registereAddress
+          : registereAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      currentAddrText: null == currentAddrText
-          ? _value.currentAddrText
-          : currentAddrText // ignore: cast_nullable_to_non_nullable
+      currentAddress: null == currentAddress
+          ? _value.currentAddress
+          : currentAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      guardianfullNameText: null == guardianfullNameText
-          ? _value.guardianfullNameText
-          : guardianfullNameText // ignore: cast_nullable_to_non_nullable
+      maritalStatus: null == maritalStatus
+          ? _value.maritalStatus
+          : maritalStatus // ignore: cast_nullable_to_non_nullable
               as String,
-      relationShipText: null == relationShipText
-          ? _value.relationShipText
-          : relationShipText // ignore: cast_nullable_to_non_nullable
+      education: null == education
+          ? _value.education
+          : education // ignore: cast_nullable_to_non_nullable
+              as String,
+      occupation: null == occupation
+          ? _value.occupation
+          : occupation // ignore: cast_nullable_to_non_nullable
+              as String,
+      income: null == income
+          ? _value.income
+          : income // ignore: cast_nullable_to_non_nullable
+              as String,
+      guardianfullName: null == guardianfullName
+          ? _value.guardianfullName
+          : guardianfullName // ignore: cast_nullable_to_non_nullable
               as String,
       guardianPhoneNo: null == guardianPhoneNo
           ? _value.guardianPhoneNo
           : guardianPhoneNo // ignore: cast_nullable_to_non_nullable
+              as String,
+      livingWithText: null == livingWithText
+          ? _value.livingWithText
+          : livingWithText // ignore: cast_nullable_to_non_nullable
               as String,
       joinTreatmentByText: null == joinTreatmentByText
           ? _value.joinTreatmentByText
@@ -183,17 +198,21 @@ abstract class _$$RegisteringImplCopyWith<$Res>
   $Res call(
       {String imagePath,
       String fullname,
-      String patientStatus,
-      String level,
-      String dateOfBirthText,
-      String gender,
-      String nationalityText,
-      String religionText,
-      String registereText,
-      String currentAddrText,
-      String guardianfullNameText,
-      String relationShipText,
+      String nationalId,
+      String phoneNo,
+      String dateOfBirth,
+      String genderText,
+      String nationality,
+      String religion,
+      String registereAddress,
+      String currentAddress,
+      String maritalStatus,
+      String education,
+      String occupation,
+      String income,
+      String guardianfullName,
       String guardianPhoneNo,
+      String livingWithText,
       String joinTreatmentByText,
       String joinSentByCourtText});
 }
@@ -213,17 +232,21 @@ class __$$RegisteringImplCopyWithImpl<$Res>
   $Res call({
     Object? imagePath = null,
     Object? fullname = null,
-    Object? patientStatus = null,
-    Object? level = null,
-    Object? dateOfBirthText = null,
-    Object? gender = null,
-    Object? nationalityText = null,
-    Object? religionText = null,
-    Object? registereText = null,
-    Object? currentAddrText = null,
-    Object? guardianfullNameText = null,
-    Object? relationShipText = null,
+    Object? nationalId = null,
+    Object? phoneNo = null,
+    Object? dateOfBirth = null,
+    Object? genderText = null,
+    Object? nationality = null,
+    Object? religion = null,
+    Object? registereAddress = null,
+    Object? currentAddress = null,
+    Object? maritalStatus = null,
+    Object? education = null,
+    Object? occupation = null,
+    Object? income = null,
+    Object? guardianfullName = null,
     Object? guardianPhoneNo = null,
+    Object? livingWithText = null,
     Object? joinTreatmentByText = null,
     Object? joinSentByCourtText = null,
   }) {
@@ -236,49 +259,65 @@ class __$$RegisteringImplCopyWithImpl<$Res>
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
               as String,
-      patientStatus: null == patientStatus
-          ? _value.patientStatus
-          : patientStatus // ignore: cast_nullable_to_non_nullable
+      nationalId: null == nationalId
+          ? _value.nationalId
+          : nationalId // ignore: cast_nullable_to_non_nullable
               as String,
-      level: null == level
-          ? _value.level
-          : level // ignore: cast_nullable_to_non_nullable
+      phoneNo: null == phoneNo
+          ? _value.phoneNo
+          : phoneNo // ignore: cast_nullable_to_non_nullable
               as String,
-      dateOfBirthText: null == dateOfBirthText
-          ? _value.dateOfBirthText
-          : dateOfBirthText // ignore: cast_nullable_to_non_nullable
+      dateOfBirth: null == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
+      genderText: null == genderText
+          ? _value.genderText
+          : genderText // ignore: cast_nullable_to_non_nullable
               as String,
-      nationalityText: null == nationalityText
-          ? _value.nationalityText
-          : nationalityText // ignore: cast_nullable_to_non_nullable
+      nationality: null == nationality
+          ? _value.nationality
+          : nationality // ignore: cast_nullable_to_non_nullable
               as String,
-      religionText: null == religionText
-          ? _value.religionText
-          : religionText // ignore: cast_nullable_to_non_nullable
+      religion: null == religion
+          ? _value.religion
+          : religion // ignore: cast_nullable_to_non_nullable
               as String,
-      registereText: null == registereText
-          ? _value.registereText
-          : registereText // ignore: cast_nullable_to_non_nullable
+      registereAddress: null == registereAddress
+          ? _value.registereAddress
+          : registereAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      currentAddrText: null == currentAddrText
-          ? _value.currentAddrText
-          : currentAddrText // ignore: cast_nullable_to_non_nullable
+      currentAddress: null == currentAddress
+          ? _value.currentAddress
+          : currentAddress // ignore: cast_nullable_to_non_nullable
               as String,
-      guardianfullNameText: null == guardianfullNameText
-          ? _value.guardianfullNameText
-          : guardianfullNameText // ignore: cast_nullable_to_non_nullable
+      maritalStatus: null == maritalStatus
+          ? _value.maritalStatus
+          : maritalStatus // ignore: cast_nullable_to_non_nullable
               as String,
-      relationShipText: null == relationShipText
-          ? _value.relationShipText
-          : relationShipText // ignore: cast_nullable_to_non_nullable
+      education: null == education
+          ? _value.education
+          : education // ignore: cast_nullable_to_non_nullable
+              as String,
+      occupation: null == occupation
+          ? _value.occupation
+          : occupation // ignore: cast_nullable_to_non_nullable
+              as String,
+      income: null == income
+          ? _value.income
+          : income // ignore: cast_nullable_to_non_nullable
+              as String,
+      guardianfullName: null == guardianfullName
+          ? _value.guardianfullName
+          : guardianfullName // ignore: cast_nullable_to_non_nullable
               as String,
       guardianPhoneNo: null == guardianPhoneNo
           ? _value.guardianPhoneNo
           : guardianPhoneNo // ignore: cast_nullable_to_non_nullable
+              as String,
+      livingWithText: null == livingWithText
+          ? _value.livingWithText
+          : livingWithText // ignore: cast_nullable_to_non_nullable
               as String,
       joinTreatmentByText: null == joinTreatmentByText
           ? _value.joinTreatmentByText
@@ -298,17 +337,21 @@ class _$RegisteringImpl implements _Registering {
   const _$RegisteringImpl(
       {required this.imagePath,
       required this.fullname,
-      required this.patientStatus,
-      required this.level,
-      required this.dateOfBirthText,
-      required this.gender,
-      required this.nationalityText,
-      required this.religionText,
-      required this.registereText,
-      required this.currentAddrText,
-      required this.guardianfullNameText,
-      required this.relationShipText,
+      required this.nationalId,
+      required this.phoneNo,
+      required this.dateOfBirth,
+      required this.genderText,
+      required this.nationality,
+      required this.religion,
+      required this.registereAddress,
+      required this.currentAddress,
+      required this.maritalStatus,
+      required this.education,
+      required this.occupation,
+      required this.income,
+      required this.guardianfullName,
       required this.guardianPhoneNo,
+      required this.livingWithText,
       required this.joinTreatmentByText,
       required this.joinSentByCourtText});
 
@@ -316,49 +359,44 @@ class _$RegisteringImpl implements _Registering {
   final String imagePath;
   @override
   final String fullname;
-//** find on profile name + surname /patients/${patientId}/profile */
   @override
-  final String patientStatus;
-//**  /patients/${nationalityText}/profile */
+  final String nationalId;
   @override
-  final String level;
-//**  /patients/${patientId}/profile */
+  final String phoneNo;
   @override
-  final String dateOfBirthText;
-//ว/ด/ป ** '/api/v1/staff/patients$patientsid' */
+  final String dateOfBirth;
   @override
-  final String gender;
-// เพศ* "/questionchoices$REGISTERING */
+  final String genderText;
   @override
-  final String nationalityText;
-//สัญชาติ** /master/nationalities */
+  final String nationality;
   @override
-  final String religionText;
-//ศาสนา ** /master/religions
+  final String religion;
   @override
-  final String registereText;
-//  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
+  final String registereAddress;
   @override
-  final String currentAddrText;
-//ที่อยู่ปัจจุบัน ** find on patient
+  final String currentAddress;
   @override
-  final String guardianfullNameText;
-//ข้อมูลผู้ปกครอง **  find on patient
+  final String maritalStatus;
   @override
-  final String relationShipText;
-// ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
+  final String education;
+  @override
+  final String occupation;
+  @override
+  final String income;
+  @override
+  final String guardianfullName;
   @override
   final String guardianPhoneNo;
-// เบอร์โทร 02-xxx-xxx   ** find on patient
+  @override
+  final String livingWithText;
   @override
   final String joinTreatmentByText;
-//เข้าร่วมการรักษา ** find on questionchoices
   @override
   final String joinSentByCourtText;
 
   @override
   String toString() {
-    return 'Registering(imagePath: $imagePath, fullname: $fullname, patientStatus: $patientStatus, level: $level, dateOfBirthText: $dateOfBirthText, gender: $gender, nationalityText: $nationalityText, religionText: $religionText, registereText: $registereText, currentAddrText: $currentAddrText, guardianfullNameText: $guardianfullNameText, relationShipText: $relationShipText, guardianPhoneNo: $guardianPhoneNo, joinTreatmentByText: $joinTreatmentByText, joinSentByCourtText: $joinSentByCourtText)';
+    return 'Registering(imagePath: $imagePath, fullname: $fullname, nationalId: $nationalId, phoneNo: $phoneNo, dateOfBirth: $dateOfBirth, genderText: $genderText, nationality: $nationality, religion: $religion, registereAddress: $registereAddress, currentAddress: $currentAddress, maritalStatus: $maritalStatus, education: $education, occupation: $occupation, income: $income, guardianfullName: $guardianfullName, guardianPhoneNo: $guardianPhoneNo, livingWithText: $livingWithText, joinTreatmentByText: $joinTreatmentByText, joinSentByCourtText: $joinSentByCourtText)';
   }
 
   @override
@@ -370,26 +408,34 @@ class _$RegisteringImpl implements _Registering {
                 other.imagePath == imagePath) &&
             (identical(other.fullname, fullname) ||
                 other.fullname == fullname) &&
-            (identical(other.patientStatus, patientStatus) ||
-                other.patientStatus == patientStatus) &&
-            (identical(other.level, level) || other.level == level) &&
-            (identical(other.dateOfBirthText, dateOfBirthText) ||
-                other.dateOfBirthText == dateOfBirthText) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.nationalityText, nationalityText) ||
-                other.nationalityText == nationalityText) &&
-            (identical(other.religionText, religionText) ||
-                other.religionText == religionText) &&
-            (identical(other.registereText, registereText) ||
-                other.registereText == registereText) &&
-            (identical(other.currentAddrText, currentAddrText) ||
-                other.currentAddrText == currentAddrText) &&
-            (identical(other.guardianfullNameText, guardianfullNameText) ||
-                other.guardianfullNameText == guardianfullNameText) &&
-            (identical(other.relationShipText, relationShipText) ||
-                other.relationShipText == relationShipText) &&
+            (identical(other.nationalId, nationalId) ||
+                other.nationalId == nationalId) &&
+            (identical(other.phoneNo, phoneNo) || other.phoneNo == phoneNo) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                other.dateOfBirth == dateOfBirth) &&
+            (identical(other.genderText, genderText) ||
+                other.genderText == genderText) &&
+            (identical(other.nationality, nationality) ||
+                other.nationality == nationality) &&
+            (identical(other.religion, religion) ||
+                other.religion == religion) &&
+            (identical(other.registereAddress, registereAddress) ||
+                other.registereAddress == registereAddress) &&
+            (identical(other.currentAddress, currentAddress) ||
+                other.currentAddress == currentAddress) &&
+            (identical(other.maritalStatus, maritalStatus) ||
+                other.maritalStatus == maritalStatus) &&
+            (identical(other.education, education) ||
+                other.education == education) &&
+            (identical(other.occupation, occupation) ||
+                other.occupation == occupation) &&
+            (identical(other.income, income) || other.income == income) &&
+            (identical(other.guardianfullName, guardianfullName) ||
+                other.guardianfullName == guardianfullName) &&
             (identical(other.guardianPhoneNo, guardianPhoneNo) ||
                 other.guardianPhoneNo == guardianPhoneNo) &&
+            (identical(other.livingWithText, livingWithText) ||
+                other.livingWithText == livingWithText) &&
             (identical(other.joinTreatmentByText, joinTreatmentByText) ||
                 other.joinTreatmentByText == joinTreatmentByText) &&
             (identical(other.joinSentByCourtText, joinSentByCourtText) ||
@@ -397,23 +443,28 @@ class _$RegisteringImpl implements _Registering {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      imagePath,
-      fullname,
-      patientStatus,
-      level,
-      dateOfBirthText,
-      gender,
-      nationalityText,
-      religionText,
-      registereText,
-      currentAddrText,
-      guardianfullNameText,
-      relationShipText,
-      guardianPhoneNo,
-      joinTreatmentByText,
-      joinSentByCourtText);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        imagePath,
+        fullname,
+        nationalId,
+        phoneNo,
+        dateOfBirth,
+        genderText,
+        nationality,
+        religion,
+        registereAddress,
+        currentAddress,
+        maritalStatus,
+        education,
+        occupation,
+        income,
+        guardianfullName,
+        guardianPhoneNo,
+        livingWithText,
+        joinTreatmentByText,
+        joinSentByCourtText
+      ]);
 
   /// Create a copy of Registering
   /// with the given fields replaced by the non-null parameter values.
@@ -428,50 +479,60 @@ abstract class _Registering implements Registering {
   const factory _Registering(
       {required final String imagePath,
       required final String fullname,
-      required final String patientStatus,
-      required final String level,
-      required final String dateOfBirthText,
-      required final String gender,
-      required final String nationalityText,
-      required final String religionText,
-      required final String registereText,
-      required final String currentAddrText,
-      required final String guardianfullNameText,
-      required final String relationShipText,
+      required final String nationalId,
+      required final String phoneNo,
+      required final String dateOfBirth,
+      required final String genderText,
+      required final String nationality,
+      required final String religion,
+      required final String registereAddress,
+      required final String currentAddress,
+      required final String maritalStatus,
+      required final String education,
+      required final String occupation,
+      required final String income,
+      required final String guardianfullName,
       required final String guardianPhoneNo,
+      required final String livingWithText,
       required final String joinTreatmentByText,
       required final String joinSentByCourtText}) = _$RegisteringImpl;
 
   @override
   String get imagePath;
   @override
-  String
-      get fullname; //** find on profile name + surname /patients/${patientId}/profile */
+  String get fullname;
   @override
-  String get patientStatus; //**  /patients/${nationalityText}/profile */
+  String get nationalId;
   @override
-  String get level; //**  /patients/${patientId}/profile */
+  String get phoneNo;
   @override
-  String get dateOfBirthText; //ว/ด/ป ** '/api/v1/staff/patients$patientsid' */
+  String get dateOfBirth;
   @override
-  String get gender; // เพศ* "/questionchoices$REGISTERING */
+  String get genderText;
   @override
-  String get nationalityText; //สัญชาติ** /master/nationalities */
+  String get nationality;
   @override
-  String get religionText; //ศาสนา ** /master/religions
+  String get religion;
   @override
-  String get registereText; //  ที่อยู่ตามทะเบียนราษฎร์ ** find on patient
+  String get registereAddress;
   @override
-  String get currentAddrText; //ที่อยู่ปัจจุบัน ** find on patient
+  String get currentAddress;
   @override
-  String get guardianfullNameText; //ข้อมูลผู้ปกครอง **  find on patient
+  String get maritalStatus;
   @override
-  String
-      get relationShipText; // ** ความสัมพันธ์ (บิดา),(มารดา)  ** find on patient
+  String get education;
   @override
-  String get guardianPhoneNo; // เบอร์โทร 02-xxx-xxx   ** find on patient
+  String get occupation;
   @override
-  String get joinTreatmentByText; //เข้าร่วมการรักษา ** find on questionchoices
+  String get income;
+  @override
+  String get guardianfullName;
+  @override
+  String get guardianPhoneNo;
+  @override
+  String get livingWithText;
+  @override
+  String get joinTreatmentByText;
   @override
   String get joinSentByCourtText;
 
@@ -485,62 +546,26 @@ abstract class _Registering implements Registering {
 
 /// @nodoc
 mixin _$Screening {
-  String get maritalStatusText =>
-      throw _privateConstructorUsedError; //** สถานะ find on  /master/${patientId} */
-  String get educationText =>
-      throw _privateConstructorUsedError; //** การศึกษา  /master/educations */
-  String get occupationText =>
-      throw _privateConstructorUsedError; //**อาชีพ  /master/occupations */
-  String get incomeText =>
-      throw _privateConstructorUsedError; //**รายได้  /master/incomes */
-  String get livingWithLast30days =>
-      throw _privateConstructorUsedError; // /screenings/${patientId} */
-  String get parentRelationshipText =>
-      throw _privateConstructorUsedError; //**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
-  String get screeningDate =>
-      throw _privateConstructorUsedError; // ว/ด/ป  /screenings/${patientId}
-  String get isToBeNumberOneMember =>
-      throw _privateConstructorUsedError; //การใช้ยาเสพติด  /screenings/${patientId}
-  String get drugUsageApproach =>
-      throw _privateConstructorUsedError; //การใช้ยาเสพติด(รูปแบบการเสพ)  /screenings/${patientId}
-  String get mainDrugText =>
-      throw _privateConstructorUsedError; //ยาเสพติดที่ใช้  /master/drugs  #หมายเหตุ  answer == 17 show  other=""
-  String get mentalEvalLevel =>
-      throw _privateConstructorUsedError; //** สรุปผล find on  /screenings/${patientId} */
-  int get drugEvalScore => throw _privateConstructorUsedError;
-  String get levelOfAddicted => throw _privateConstructorUsedError;
-  String get screeningResult => throw _privateConstructorUsedError;
-  String get frequencyOfUse =>
-      throw _privateConstructorUsedError; //** คุณใช้บ่อยเพียงใด  find on  /screenings/${patientId} */
-  String get feelingAddicted =>
-      throw _privateConstructorUsedError; //** คุณมีความต้องการ หรือมีความรู้สึกอยากใช้  find on  /screenings/${patientId} */
-  String get irresponsible =>
-      throw _privateConstructorUsedError; //** การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด  find on  /screenings/${patientId} */
-  String get frequencyOfProblem =>
-      throw _privateConstructorUsedError; //** การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?  find on  /screenings/${patientId} */
-  String get beNoticed =>
-      throw _privateConstructorUsedError; //** ญาติ เพื่อน หรือคนรู้จัก   find on  /screenings/${patientId} */
-  String get stopUsingButNotSuccess =>
-      throw _privateConstructorUsedError; //** คุนเคย find on  /screenings/${patientId} */
-  String get injectableDrug =>
-      throw _privateConstructorUsedError; //** คุณเคยใช้สารเสพติดชนิดฉีดหรือไม่ /screenings/${patientId} */
-  String get last3monthUsage =>
-      throw _privateConstructorUsedError; //** ภายใน 3 เดือนที่ผ่านมา คุณใช้บ่อยเพียงใด find on  /screenings/${patientId} */
-  String get hadMentalTreatment =>
-      throw _privateConstructorUsedError; //**ประวัติรักษาโรคสุขภาพจิต find on  /screenings/${patientId} */
-  String get mentalTreatmentText =>
-      throw _privateConstructorUsedError; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadMentalTreatment == "YES" && show  ui เพิ่ม Text to ui  /master/mentaltreatments */
-  String get hadChronicContagious =>
-      throw _privateConstructorUsedError; //**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
-  String get chronicContagiousText =>
-      throw _privateConstructorUsedError; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
-  String get hadCriminalCase =>
-      throw _privateConstructorUsedError; //**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
-  String get criminalCaseText => throw _privateConstructorUsedError;
-  String get homeless =>
-      throw _privateConstructorUsedError; //**คนเร่ร่อน ไร้ที่พักพิง find on  /screenings/${patientId} */
-  String get disabledPerson =>
-      throw _privateConstructorUsedError; //**ผู้พิการ find on  /screenings/${patientId} */
+  String get screeningDate => throw _privateConstructorUsedError;
+  LevelType? get levelType => throw _privateConstructorUsedError;
+  DrugEvalResult? get drugEvalResult => throw _privateConstructorUsedError;
+  String get isToBeNumberOneMember => throw _privateConstructorUsedError;
+  String get toBeNumberOneDate => throw _privateConstructorUsedError;
+  String get drugUsageApproach => throw _privateConstructorUsedError;
+  String get injectableDrug => throw _privateConstructorUsedError;
+  String get mainDrug => throw _privateConstructorUsedError;
+  String get secondaryDrug => throw _privateConstructorUsedError;
+  String get hadMentalTreatment => throw _privateConstructorUsedError;
+  String get mentalTreatment => throw _privateConstructorUsedError;
+  String get mentalTreatmentOther => throw _privateConstructorUsedError;
+  String get hadChronicContagious => throw _privateConstructorUsedError;
+  String get chronicContagious => throw _privateConstructorUsedError;
+  String get chronicContagiousOther => throw _privateConstructorUsedError;
+  String get hadCriminalCase => throw _privateConstructorUsedError;
+  String get criminalCase => throw _privateConstructorUsedError;
+  String get criminalCaseOther => throw _privateConstructorUsedError;
+  String get homeless => throw _privateConstructorUsedError;
+  String get disabledPerson => throw _privateConstructorUsedError;
   String get disabledCertificateNo => throw _privateConstructorUsedError;
 
   /// Create a copy of Screening
@@ -556,34 +581,24 @@ abstract class $ScreeningCopyWith<$Res> {
       _$ScreeningCopyWithImpl<$Res, Screening>;
   @useResult
   $Res call(
-      {String maritalStatusText,
-      String educationText,
-      String occupationText,
-      String incomeText,
-      String livingWithLast30days,
-      String parentRelationshipText,
-      String screeningDate,
+      {String screeningDate,
+      LevelType? levelType,
+      DrugEvalResult? drugEvalResult,
       String isToBeNumberOneMember,
+      String toBeNumberOneDate,
       String drugUsageApproach,
-      String mainDrugText,
-      String mentalEvalLevel,
-      int drugEvalScore,
-      String levelOfAddicted,
-      String screeningResult,
-      String frequencyOfUse,
-      String feelingAddicted,
-      String irresponsible,
-      String frequencyOfProblem,
-      String beNoticed,
-      String stopUsingButNotSuccess,
       String injectableDrug,
-      String last3monthUsage,
+      String mainDrug,
+      String secondaryDrug,
       String hadMentalTreatment,
-      String mentalTreatmentText,
+      String mentalTreatment,
+      String mentalTreatmentOther,
       String hadChronicContagious,
-      String chronicContagiousText,
+      String chronicContagious,
+      String chronicContagiousOther,
       String hadCriminalCase,
-      String criminalCaseText,
+      String criminalCase,
+      String criminalCaseOther,
       String homeless,
       String disabledPerson,
       String disabledCertificateNo});
@@ -604,150 +619,100 @@ class _$ScreeningCopyWithImpl<$Res, $Val extends Screening>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? maritalStatusText = null,
-    Object? educationText = null,
-    Object? occupationText = null,
-    Object? incomeText = null,
-    Object? livingWithLast30days = null,
-    Object? parentRelationshipText = null,
     Object? screeningDate = null,
+    Object? levelType = freezed,
+    Object? drugEvalResult = freezed,
     Object? isToBeNumberOneMember = null,
+    Object? toBeNumberOneDate = null,
     Object? drugUsageApproach = null,
-    Object? mainDrugText = null,
-    Object? mentalEvalLevel = null,
-    Object? drugEvalScore = null,
-    Object? levelOfAddicted = null,
-    Object? screeningResult = null,
-    Object? frequencyOfUse = null,
-    Object? feelingAddicted = null,
-    Object? irresponsible = null,
-    Object? frequencyOfProblem = null,
-    Object? beNoticed = null,
-    Object? stopUsingButNotSuccess = null,
     Object? injectableDrug = null,
-    Object? last3monthUsage = null,
+    Object? mainDrug = null,
+    Object? secondaryDrug = null,
     Object? hadMentalTreatment = null,
-    Object? mentalTreatmentText = null,
+    Object? mentalTreatment = null,
+    Object? mentalTreatmentOther = null,
     Object? hadChronicContagious = null,
-    Object? chronicContagiousText = null,
+    Object? chronicContagious = null,
+    Object? chronicContagiousOther = null,
     Object? hadCriminalCase = null,
-    Object? criminalCaseText = null,
+    Object? criminalCase = null,
+    Object? criminalCaseOther = null,
     Object? homeless = null,
     Object? disabledPerson = null,
     Object? disabledCertificateNo = null,
   }) {
     return _then(_value.copyWith(
-      maritalStatusText: null == maritalStatusText
-          ? _value.maritalStatusText
-          : maritalStatusText // ignore: cast_nullable_to_non_nullable
-              as String,
-      educationText: null == educationText
-          ? _value.educationText
-          : educationText // ignore: cast_nullable_to_non_nullable
-              as String,
-      occupationText: null == occupationText
-          ? _value.occupationText
-          : occupationText // ignore: cast_nullable_to_non_nullable
-              as String,
-      incomeText: null == incomeText
-          ? _value.incomeText
-          : incomeText // ignore: cast_nullable_to_non_nullable
-              as String,
-      livingWithLast30days: null == livingWithLast30days
-          ? _value.livingWithLast30days
-          : livingWithLast30days // ignore: cast_nullable_to_non_nullable
-              as String,
-      parentRelationshipText: null == parentRelationshipText
-          ? _value.parentRelationshipText
-          : parentRelationshipText // ignore: cast_nullable_to_non_nullable
-              as String,
       screeningDate: null == screeningDate
           ? _value.screeningDate
           : screeningDate // ignore: cast_nullable_to_non_nullable
               as String,
+      levelType: freezed == levelType
+          ? _value.levelType
+          : levelType // ignore: cast_nullable_to_non_nullable
+              as LevelType?,
+      drugEvalResult: freezed == drugEvalResult
+          ? _value.drugEvalResult
+          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+              as DrugEvalResult?,
       isToBeNumberOneMember: null == isToBeNumberOneMember
           ? _value.isToBeNumberOneMember
           : isToBeNumberOneMember // ignore: cast_nullable_to_non_nullable
+              as String,
+      toBeNumberOneDate: null == toBeNumberOneDate
+          ? _value.toBeNumberOneDate
+          : toBeNumberOneDate // ignore: cast_nullable_to_non_nullable
               as String,
       drugUsageApproach: null == drugUsageApproach
           ? _value.drugUsageApproach
           : drugUsageApproach // ignore: cast_nullable_to_non_nullable
               as String,
-      mainDrugText: null == mainDrugText
-          ? _value.mainDrugText
-          : mainDrugText // ignore: cast_nullable_to_non_nullable
-              as String,
-      mentalEvalLevel: null == mentalEvalLevel
-          ? _value.mentalEvalLevel
-          : mentalEvalLevel // ignore: cast_nullable_to_non_nullable
-              as String,
-      drugEvalScore: null == drugEvalScore
-          ? _value.drugEvalScore
-          : drugEvalScore // ignore: cast_nullable_to_non_nullable
-              as int,
-      levelOfAddicted: null == levelOfAddicted
-          ? _value.levelOfAddicted
-          : levelOfAddicted // ignore: cast_nullable_to_non_nullable
-              as String,
-      screeningResult: null == screeningResult
-          ? _value.screeningResult
-          : screeningResult // ignore: cast_nullable_to_non_nullable
-              as String,
-      frequencyOfUse: null == frequencyOfUse
-          ? _value.frequencyOfUse
-          : frequencyOfUse // ignore: cast_nullable_to_non_nullable
-              as String,
-      feelingAddicted: null == feelingAddicted
-          ? _value.feelingAddicted
-          : feelingAddicted // ignore: cast_nullable_to_non_nullable
-              as String,
-      irresponsible: null == irresponsible
-          ? _value.irresponsible
-          : irresponsible // ignore: cast_nullable_to_non_nullable
-              as String,
-      frequencyOfProblem: null == frequencyOfProblem
-          ? _value.frequencyOfProblem
-          : frequencyOfProblem // ignore: cast_nullable_to_non_nullable
-              as String,
-      beNoticed: null == beNoticed
-          ? _value.beNoticed
-          : beNoticed // ignore: cast_nullable_to_non_nullable
-              as String,
-      stopUsingButNotSuccess: null == stopUsingButNotSuccess
-          ? _value.stopUsingButNotSuccess
-          : stopUsingButNotSuccess // ignore: cast_nullable_to_non_nullable
-              as String,
       injectableDrug: null == injectableDrug
           ? _value.injectableDrug
           : injectableDrug // ignore: cast_nullable_to_non_nullable
               as String,
-      last3monthUsage: null == last3monthUsage
-          ? _value.last3monthUsage
-          : last3monthUsage // ignore: cast_nullable_to_non_nullable
+      mainDrug: null == mainDrug
+          ? _value.mainDrug
+          : mainDrug // ignore: cast_nullable_to_non_nullable
+              as String,
+      secondaryDrug: null == secondaryDrug
+          ? _value.secondaryDrug
+          : secondaryDrug // ignore: cast_nullable_to_non_nullable
               as String,
       hadMentalTreatment: null == hadMentalTreatment
           ? _value.hadMentalTreatment
           : hadMentalTreatment // ignore: cast_nullable_to_non_nullable
               as String,
-      mentalTreatmentText: null == mentalTreatmentText
-          ? _value.mentalTreatmentText
-          : mentalTreatmentText // ignore: cast_nullable_to_non_nullable
+      mentalTreatment: null == mentalTreatment
+          ? _value.mentalTreatment
+          : mentalTreatment // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalTreatmentOther: null == mentalTreatmentOther
+          ? _value.mentalTreatmentOther
+          : mentalTreatmentOther // ignore: cast_nullable_to_non_nullable
               as String,
       hadChronicContagious: null == hadChronicContagious
           ? _value.hadChronicContagious
           : hadChronicContagious // ignore: cast_nullable_to_non_nullable
               as String,
-      chronicContagiousText: null == chronicContagiousText
-          ? _value.chronicContagiousText
-          : chronicContagiousText // ignore: cast_nullable_to_non_nullable
+      chronicContagious: null == chronicContagious
+          ? _value.chronicContagious
+          : chronicContagious // ignore: cast_nullable_to_non_nullable
+              as String,
+      chronicContagiousOther: null == chronicContagiousOther
+          ? _value.chronicContagiousOther
+          : chronicContagiousOther // ignore: cast_nullable_to_non_nullable
               as String,
       hadCriminalCase: null == hadCriminalCase
           ? _value.hadCriminalCase
           : hadCriminalCase // ignore: cast_nullable_to_non_nullable
               as String,
-      criminalCaseText: null == criminalCaseText
-          ? _value.criminalCaseText
-          : criminalCaseText // ignore: cast_nullable_to_non_nullable
+      criminalCase: null == criminalCase
+          ? _value.criminalCase
+          : criminalCase // ignore: cast_nullable_to_non_nullable
+              as String,
+      criminalCaseOther: null == criminalCaseOther
+          ? _value.criminalCaseOther
+          : criminalCaseOther // ignore: cast_nullable_to_non_nullable
               as String,
       homeless: null == homeless
           ? _value.homeless
@@ -774,34 +739,24 @@ abstract class _$$ScreeningImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String maritalStatusText,
-      String educationText,
-      String occupationText,
-      String incomeText,
-      String livingWithLast30days,
-      String parentRelationshipText,
-      String screeningDate,
+      {String screeningDate,
+      LevelType? levelType,
+      DrugEvalResult? drugEvalResult,
       String isToBeNumberOneMember,
+      String toBeNumberOneDate,
       String drugUsageApproach,
-      String mainDrugText,
-      String mentalEvalLevel,
-      int drugEvalScore,
-      String levelOfAddicted,
-      String screeningResult,
-      String frequencyOfUse,
-      String feelingAddicted,
-      String irresponsible,
-      String frequencyOfProblem,
-      String beNoticed,
-      String stopUsingButNotSuccess,
       String injectableDrug,
-      String last3monthUsage,
+      String mainDrug,
+      String secondaryDrug,
       String hadMentalTreatment,
-      String mentalTreatmentText,
+      String mentalTreatment,
+      String mentalTreatmentOther,
       String hadChronicContagious,
-      String chronicContagiousText,
+      String chronicContagious,
+      String chronicContagiousOther,
       String hadCriminalCase,
-      String criminalCaseText,
+      String criminalCase,
+      String criminalCaseOther,
       String homeless,
       String disabledPerson,
       String disabledCertificateNo});
@@ -820,150 +775,100 @@ class __$$ScreeningImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? maritalStatusText = null,
-    Object? educationText = null,
-    Object? occupationText = null,
-    Object? incomeText = null,
-    Object? livingWithLast30days = null,
-    Object? parentRelationshipText = null,
     Object? screeningDate = null,
+    Object? levelType = freezed,
+    Object? drugEvalResult = freezed,
     Object? isToBeNumberOneMember = null,
+    Object? toBeNumberOneDate = null,
     Object? drugUsageApproach = null,
-    Object? mainDrugText = null,
-    Object? mentalEvalLevel = null,
-    Object? drugEvalScore = null,
-    Object? levelOfAddicted = null,
-    Object? screeningResult = null,
-    Object? frequencyOfUse = null,
-    Object? feelingAddicted = null,
-    Object? irresponsible = null,
-    Object? frequencyOfProblem = null,
-    Object? beNoticed = null,
-    Object? stopUsingButNotSuccess = null,
     Object? injectableDrug = null,
-    Object? last3monthUsage = null,
+    Object? mainDrug = null,
+    Object? secondaryDrug = null,
     Object? hadMentalTreatment = null,
-    Object? mentalTreatmentText = null,
+    Object? mentalTreatment = null,
+    Object? mentalTreatmentOther = null,
     Object? hadChronicContagious = null,
-    Object? chronicContagiousText = null,
+    Object? chronicContagious = null,
+    Object? chronicContagiousOther = null,
     Object? hadCriminalCase = null,
-    Object? criminalCaseText = null,
+    Object? criminalCase = null,
+    Object? criminalCaseOther = null,
     Object? homeless = null,
     Object? disabledPerson = null,
     Object? disabledCertificateNo = null,
   }) {
     return _then(_$ScreeningImpl(
-      maritalStatusText: null == maritalStatusText
-          ? _value.maritalStatusText
-          : maritalStatusText // ignore: cast_nullable_to_non_nullable
-              as String,
-      educationText: null == educationText
-          ? _value.educationText
-          : educationText // ignore: cast_nullable_to_non_nullable
-              as String,
-      occupationText: null == occupationText
-          ? _value.occupationText
-          : occupationText // ignore: cast_nullable_to_non_nullable
-              as String,
-      incomeText: null == incomeText
-          ? _value.incomeText
-          : incomeText // ignore: cast_nullable_to_non_nullable
-              as String,
-      livingWithLast30days: null == livingWithLast30days
-          ? _value.livingWithLast30days
-          : livingWithLast30days // ignore: cast_nullable_to_non_nullable
-              as String,
-      parentRelationshipText: null == parentRelationshipText
-          ? _value.parentRelationshipText
-          : parentRelationshipText // ignore: cast_nullable_to_non_nullable
-              as String,
       screeningDate: null == screeningDate
           ? _value.screeningDate
           : screeningDate // ignore: cast_nullable_to_non_nullable
               as String,
+      levelType: freezed == levelType
+          ? _value.levelType
+          : levelType // ignore: cast_nullable_to_non_nullable
+              as LevelType?,
+      drugEvalResult: freezed == drugEvalResult
+          ? _value.drugEvalResult
+          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+              as DrugEvalResult?,
       isToBeNumberOneMember: null == isToBeNumberOneMember
           ? _value.isToBeNumberOneMember
           : isToBeNumberOneMember // ignore: cast_nullable_to_non_nullable
+              as String,
+      toBeNumberOneDate: null == toBeNumberOneDate
+          ? _value.toBeNumberOneDate
+          : toBeNumberOneDate // ignore: cast_nullable_to_non_nullable
               as String,
       drugUsageApproach: null == drugUsageApproach
           ? _value.drugUsageApproach
           : drugUsageApproach // ignore: cast_nullable_to_non_nullable
               as String,
-      mainDrugText: null == mainDrugText
-          ? _value.mainDrugText
-          : mainDrugText // ignore: cast_nullable_to_non_nullable
-              as String,
-      mentalEvalLevel: null == mentalEvalLevel
-          ? _value.mentalEvalLevel
-          : mentalEvalLevel // ignore: cast_nullable_to_non_nullable
-              as String,
-      drugEvalScore: null == drugEvalScore
-          ? _value.drugEvalScore
-          : drugEvalScore // ignore: cast_nullable_to_non_nullable
-              as int,
-      levelOfAddicted: null == levelOfAddicted
-          ? _value.levelOfAddicted
-          : levelOfAddicted // ignore: cast_nullable_to_non_nullable
-              as String,
-      screeningResult: null == screeningResult
-          ? _value.screeningResult
-          : screeningResult // ignore: cast_nullable_to_non_nullable
-              as String,
-      frequencyOfUse: null == frequencyOfUse
-          ? _value.frequencyOfUse
-          : frequencyOfUse // ignore: cast_nullable_to_non_nullable
-              as String,
-      feelingAddicted: null == feelingAddicted
-          ? _value.feelingAddicted
-          : feelingAddicted // ignore: cast_nullable_to_non_nullable
-              as String,
-      irresponsible: null == irresponsible
-          ? _value.irresponsible
-          : irresponsible // ignore: cast_nullable_to_non_nullable
-              as String,
-      frequencyOfProblem: null == frequencyOfProblem
-          ? _value.frequencyOfProblem
-          : frequencyOfProblem // ignore: cast_nullable_to_non_nullable
-              as String,
-      beNoticed: null == beNoticed
-          ? _value.beNoticed
-          : beNoticed // ignore: cast_nullable_to_non_nullable
-              as String,
-      stopUsingButNotSuccess: null == stopUsingButNotSuccess
-          ? _value.stopUsingButNotSuccess
-          : stopUsingButNotSuccess // ignore: cast_nullable_to_non_nullable
-              as String,
       injectableDrug: null == injectableDrug
           ? _value.injectableDrug
           : injectableDrug // ignore: cast_nullable_to_non_nullable
               as String,
-      last3monthUsage: null == last3monthUsage
-          ? _value.last3monthUsage
-          : last3monthUsage // ignore: cast_nullable_to_non_nullable
+      mainDrug: null == mainDrug
+          ? _value.mainDrug
+          : mainDrug // ignore: cast_nullable_to_non_nullable
+              as String,
+      secondaryDrug: null == secondaryDrug
+          ? _value.secondaryDrug
+          : secondaryDrug // ignore: cast_nullable_to_non_nullable
               as String,
       hadMentalTreatment: null == hadMentalTreatment
           ? _value.hadMentalTreatment
           : hadMentalTreatment // ignore: cast_nullable_to_non_nullable
               as String,
-      mentalTreatmentText: null == mentalTreatmentText
-          ? _value.mentalTreatmentText
-          : mentalTreatmentText // ignore: cast_nullable_to_non_nullable
+      mentalTreatment: null == mentalTreatment
+          ? _value.mentalTreatment
+          : mentalTreatment // ignore: cast_nullable_to_non_nullable
+              as String,
+      mentalTreatmentOther: null == mentalTreatmentOther
+          ? _value.mentalTreatmentOther
+          : mentalTreatmentOther // ignore: cast_nullable_to_non_nullable
               as String,
       hadChronicContagious: null == hadChronicContagious
           ? _value.hadChronicContagious
           : hadChronicContagious // ignore: cast_nullable_to_non_nullable
               as String,
-      chronicContagiousText: null == chronicContagiousText
-          ? _value.chronicContagiousText
-          : chronicContagiousText // ignore: cast_nullable_to_non_nullable
+      chronicContagious: null == chronicContagious
+          ? _value.chronicContagious
+          : chronicContagious // ignore: cast_nullable_to_non_nullable
+              as String,
+      chronicContagiousOther: null == chronicContagiousOther
+          ? _value.chronicContagiousOther
+          : chronicContagiousOther // ignore: cast_nullable_to_non_nullable
               as String,
       hadCriminalCase: null == hadCriminalCase
           ? _value.hadCriminalCase
           : hadCriminalCase // ignore: cast_nullable_to_non_nullable
               as String,
-      criminalCaseText: null == criminalCaseText
-          ? _value.criminalCaseText
-          : criminalCaseText // ignore: cast_nullable_to_non_nullable
+      criminalCase: null == criminalCase
+          ? _value.criminalCase
+          : criminalCase // ignore: cast_nullable_to_non_nullable
+              as String,
+      criminalCaseOther: null == criminalCaseOther
+          ? _value.criminalCaseOther
+          : criminalCaseOther // ignore: cast_nullable_to_non_nullable
               as String,
       homeless: null == homeless
           ? _value.homeless
@@ -985,130 +890,74 @@ class __$$ScreeningImplCopyWithImpl<$Res>
 
 class _$ScreeningImpl implements _Screening {
   const _$ScreeningImpl(
-      {required this.maritalStatusText,
-      required this.educationText,
-      required this.occupationText,
-      required this.incomeText,
-      required this.livingWithLast30days,
-      required this.parentRelationshipText,
-      required this.screeningDate,
+      {required this.screeningDate,
+      required this.levelType,
+      required this.drugEvalResult,
       required this.isToBeNumberOneMember,
+      required this.toBeNumberOneDate,
       required this.drugUsageApproach,
-      required this.mainDrugText,
-      required this.mentalEvalLevel,
-      required this.drugEvalScore,
-      required this.levelOfAddicted,
-      required this.screeningResult,
-      required this.frequencyOfUse,
-      required this.feelingAddicted,
-      required this.irresponsible,
-      required this.frequencyOfProblem,
-      required this.beNoticed,
-      required this.stopUsingButNotSuccess,
       required this.injectableDrug,
-      required this.last3monthUsage,
+      required this.mainDrug,
+      required this.secondaryDrug,
       required this.hadMentalTreatment,
-      required this.mentalTreatmentText,
+      required this.mentalTreatment,
+      required this.mentalTreatmentOther,
       required this.hadChronicContagious,
-      required this.chronicContagiousText,
+      required this.chronicContagious,
+      required this.chronicContagiousOther,
       required this.hadCriminalCase,
-      required this.criminalCaseText,
+      required this.criminalCase,
+      required this.criminalCaseOther,
       required this.homeless,
       required this.disabledPerson,
       required this.disabledCertificateNo});
 
   @override
-  final String maritalStatusText;
-//** สถานะ find on  /master/${patientId} */
-  @override
-  final String educationText;
-//** การศึกษา  /master/educations */
-  @override
-  final String occupationText;
-//**อาชีพ  /master/occupations */
-  @override
-  final String incomeText;
-//**รายได้  /master/incomes */
-  @override
-  final String livingWithLast30days;
-// /screenings/${patientId} */
-  @override
-  final String parentRelationshipText;
-//**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
-  @override
   final String screeningDate;
-// ว/ด/ป  /screenings/${patientId}
+  @override
+  final LevelType? levelType;
+  @override
+  final DrugEvalResult? drugEvalResult;
   @override
   final String isToBeNumberOneMember;
-//การใช้ยาเสพติด  /screenings/${patientId}
+  @override
+  final String toBeNumberOneDate;
   @override
   final String drugUsageApproach;
-//การใช้ยาเสพติด(รูปแบบการเสพ)  /screenings/${patientId}
-  @override
-  final String mainDrugText;
-//ยาเสพติดที่ใช้  /master/drugs  #หมายเหตุ  answer == 17 show  other=""
-  @override
-  final String mentalEvalLevel;
-//** สรุปผล find on  /screenings/${patientId} */
-  @override
-  final int drugEvalScore;
-  @override
-  final String levelOfAddicted;
-  @override
-  final String screeningResult;
-  @override
-  final String frequencyOfUse;
-//** คุณใช้บ่อยเพียงใด  find on  /screenings/${patientId} */
-  @override
-  final String feelingAddicted;
-//** คุณมีความต้องการ หรือมีความรู้สึกอยากใช้  find on  /screenings/${patientId} */
-  @override
-  final String irresponsible;
-//** การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด  find on  /screenings/${patientId} */
-  @override
-  final String frequencyOfProblem;
-//** การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?  find on  /screenings/${patientId} */
-  @override
-  final String beNoticed;
-//** ญาติ เพื่อน หรือคนรู้จัก   find on  /screenings/${patientId} */
-  @override
-  final String stopUsingButNotSuccess;
-//** คุนเคย find on  /screenings/${patientId} */
   @override
   final String injectableDrug;
-//** คุณเคยใช้สารเสพติดชนิดฉีดหรือไม่ /screenings/${patientId} */
   @override
-  final String last3monthUsage;
-//** ภายใน 3 เดือนที่ผ่านมา คุณใช้บ่อยเพียงใด find on  /screenings/${patientId} */
+  final String mainDrug;
+  @override
+  final String secondaryDrug;
   @override
   final String hadMentalTreatment;
-//**ประวัติรักษาโรคสุขภาพจิต find on  /screenings/${patientId} */
   @override
-  final String mentalTreatmentText;
-//**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadMentalTreatment == "YES" && show  ui เพิ่ม Text to ui  /master/mentaltreatments */
+  final String mentalTreatment;
+  @override
+  final String mentalTreatmentOther;
   @override
   final String hadChronicContagious;
-//**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
   @override
-  final String chronicContagiousText;
-//**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
+  final String chronicContagious;
+  @override
+  final String chronicContagiousOther;
   @override
   final String hadCriminalCase;
-//**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
   @override
-  final String criminalCaseText;
+  final String criminalCase;
+  @override
+  final String criminalCaseOther;
   @override
   final String homeless;
-//**คนเร่ร่อน ไร้ที่พักพิง find on  /screenings/${patientId} */
   @override
   final String disabledPerson;
-//**ผู้พิการ find on  /screenings/${patientId} */
   @override
   final String disabledCertificateNo;
 
   @override
   String toString() {
-    return 'Screening(maritalStatusText: $maritalStatusText, educationText: $educationText, occupationText: $occupationText, incomeText: $incomeText, livingWithLast30days: $livingWithLast30days, parentRelationshipText: $parentRelationshipText, screeningDate: $screeningDate, isToBeNumberOneMember: $isToBeNumberOneMember, drugUsageApproach: $drugUsageApproach, mainDrugText: $mainDrugText, mentalEvalLevel: $mentalEvalLevel, drugEvalScore: $drugEvalScore, levelOfAddicted: $levelOfAddicted, screeningResult: $screeningResult, frequencyOfUse: $frequencyOfUse, feelingAddicted: $feelingAddicted, irresponsible: $irresponsible, frequencyOfProblem: $frequencyOfProblem, beNoticed: $beNoticed, stopUsingButNotSuccess: $stopUsingButNotSuccess, injectableDrug: $injectableDrug, last3monthUsage: $last3monthUsage, hadMentalTreatment: $hadMentalTreatment, mentalTreatmentText: $mentalTreatmentText, hadChronicContagious: $hadChronicContagious, chronicContagiousText: $chronicContagiousText, hadCriminalCase: $hadCriminalCase, criminalCaseText: $criminalCaseText, homeless: $homeless, disabledPerson: $disabledPerson, disabledCertificateNo: $disabledCertificateNo)';
+    return 'Screening(screeningDate: $screeningDate, levelType: $levelType, drugEvalResult: $drugEvalResult, isToBeNumberOneMember: $isToBeNumberOneMember, toBeNumberOneDate: $toBeNumberOneDate, drugUsageApproach: $drugUsageApproach, injectableDrug: $injectableDrug, mainDrug: $mainDrug, secondaryDrug: $secondaryDrug, hadMentalTreatment: $hadMentalTreatment, mentalTreatment: $mentalTreatment, mentalTreatmentOther: $mentalTreatmentOther, hadChronicContagious: $hadChronicContagious, chronicContagious: $chronicContagious, chronicContagiousOther: $chronicContagiousOther, hadCriminalCase: $hadCriminalCase, criminalCase: $criminalCase, criminalCaseOther: $criminalCaseOther, homeless: $homeless, disabledPerson: $disabledPerson, disabledCertificateNo: $disabledCertificateNo)';
   }
 
   @override
@@ -1116,62 +965,42 @@ class _$ScreeningImpl implements _Screening {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScreeningImpl &&
-            (identical(other.maritalStatusText, maritalStatusText) ||
-                other.maritalStatusText == maritalStatusText) &&
-            (identical(other.educationText, educationText) ||
-                other.educationText == educationText) &&
-            (identical(other.occupationText, occupationText) ||
-                other.occupationText == occupationText) &&
-            (identical(other.incomeText, incomeText) ||
-                other.incomeText == incomeText) &&
-            (identical(other.livingWithLast30days, livingWithLast30days) ||
-                other.livingWithLast30days == livingWithLast30days) &&
-            (identical(other.parentRelationshipText, parentRelationshipText) ||
-                other.parentRelationshipText == parentRelationshipText) &&
             (identical(other.screeningDate, screeningDate) ||
                 other.screeningDate == screeningDate) &&
+            (identical(other.levelType, levelType) ||
+                other.levelType == levelType) &&
+            (identical(other.drugEvalResult, drugEvalResult) ||
+                other.drugEvalResult == drugEvalResult) &&
             (identical(other.isToBeNumberOneMember, isToBeNumberOneMember) ||
                 other.isToBeNumberOneMember == isToBeNumberOneMember) &&
+            (identical(other.toBeNumberOneDate, toBeNumberOneDate) ||
+                other.toBeNumberOneDate == toBeNumberOneDate) &&
             (identical(other.drugUsageApproach, drugUsageApproach) ||
                 other.drugUsageApproach == drugUsageApproach) &&
-            (identical(other.mainDrugText, mainDrugText) ||
-                other.mainDrugText == mainDrugText) &&
-            (identical(other.mentalEvalLevel, mentalEvalLevel) ||
-                other.mentalEvalLevel == mentalEvalLevel) &&
-            (identical(other.drugEvalScore, drugEvalScore) ||
-                other.drugEvalScore == drugEvalScore) &&
-            (identical(other.levelOfAddicted, levelOfAddicted) ||
-                other.levelOfAddicted == levelOfAddicted) &&
-            (identical(other.screeningResult, screeningResult) ||
-                other.screeningResult == screeningResult) &&
-            (identical(other.frequencyOfUse, frequencyOfUse) ||
-                other.frequencyOfUse == frequencyOfUse) &&
-            (identical(other.feelingAddicted, feelingAddicted) ||
-                other.feelingAddicted == feelingAddicted) &&
-            (identical(other.irresponsible, irresponsible) ||
-                other.irresponsible == irresponsible) &&
-            (identical(other.frequencyOfProblem, frequencyOfProblem) ||
-                other.frequencyOfProblem == frequencyOfProblem) &&
-            (identical(other.beNoticed, beNoticed) ||
-                other.beNoticed == beNoticed) &&
-            (identical(other.stopUsingButNotSuccess, stopUsingButNotSuccess) ||
-                other.stopUsingButNotSuccess == stopUsingButNotSuccess) &&
             (identical(other.injectableDrug, injectableDrug) ||
                 other.injectableDrug == injectableDrug) &&
-            (identical(other.last3monthUsage, last3monthUsage) ||
-                other.last3monthUsage == last3monthUsage) &&
+            (identical(other.mainDrug, mainDrug) ||
+                other.mainDrug == mainDrug) &&
+            (identical(other.secondaryDrug, secondaryDrug) ||
+                other.secondaryDrug == secondaryDrug) &&
             (identical(other.hadMentalTreatment, hadMentalTreatment) ||
                 other.hadMentalTreatment == hadMentalTreatment) &&
-            (identical(other.mentalTreatmentText, mentalTreatmentText) ||
-                other.mentalTreatmentText == mentalTreatmentText) &&
+            (identical(other.mentalTreatment, mentalTreatment) ||
+                other.mentalTreatment == mentalTreatment) &&
+            (identical(other.mentalTreatmentOther, mentalTreatmentOther) ||
+                other.mentalTreatmentOther == mentalTreatmentOther) &&
             (identical(other.hadChronicContagious, hadChronicContagious) ||
                 other.hadChronicContagious == hadChronicContagious) &&
-            (identical(other.chronicContagiousText, chronicContagiousText) ||
-                other.chronicContagiousText == chronicContagiousText) &&
+            (identical(other.chronicContagious, chronicContagious) ||
+                other.chronicContagious == chronicContagious) &&
+            (identical(other.chronicContagiousOther, chronicContagiousOther) ||
+                other.chronicContagiousOther == chronicContagiousOther) &&
             (identical(other.hadCriminalCase, hadCriminalCase) ||
                 other.hadCriminalCase == hadCriminalCase) &&
-            (identical(other.criminalCaseText, criminalCaseText) ||
-                other.criminalCaseText == criminalCaseText) &&
+            (identical(other.criminalCase, criminalCase) ||
+                other.criminalCase == criminalCase) &&
+            (identical(other.criminalCaseOther, criminalCaseOther) ||
+                other.criminalCaseOther == criminalCaseOther) &&
             (identical(other.homeless, homeless) ||
                 other.homeless == homeless) &&
             (identical(other.disabledPerson, disabledPerson) ||
@@ -1183,34 +1012,24 @@ class _$ScreeningImpl implements _Screening {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        maritalStatusText,
-        educationText,
-        occupationText,
-        incomeText,
-        livingWithLast30days,
-        parentRelationshipText,
         screeningDate,
+        levelType,
+        drugEvalResult,
         isToBeNumberOneMember,
+        toBeNumberOneDate,
         drugUsageApproach,
-        mainDrugText,
-        mentalEvalLevel,
-        drugEvalScore,
-        levelOfAddicted,
-        screeningResult,
-        frequencyOfUse,
-        feelingAddicted,
-        irresponsible,
-        frequencyOfProblem,
-        beNoticed,
-        stopUsingButNotSuccess,
         injectableDrug,
-        last3monthUsage,
+        mainDrug,
+        secondaryDrug,
         hadMentalTreatment,
-        mentalTreatmentText,
+        mentalTreatment,
+        mentalTreatmentOther,
         hadChronicContagious,
-        chronicContagiousText,
+        chronicContagious,
+        chronicContagiousOther,
         hadCriminalCase,
-        criminalCaseText,
+        criminalCase,
+        criminalCaseOther,
         homeless,
         disabledPerson,
         disabledCertificateNo
@@ -1227,115 +1046,68 @@ class _$ScreeningImpl implements _Screening {
 
 abstract class _Screening implements Screening {
   const factory _Screening(
-      {required final String maritalStatusText,
-      required final String educationText,
-      required final String occupationText,
-      required final String incomeText,
-      required final String livingWithLast30days,
-      required final String parentRelationshipText,
-      required final String screeningDate,
+      {required final String screeningDate,
+      required final LevelType? levelType,
+      required final DrugEvalResult? drugEvalResult,
       required final String isToBeNumberOneMember,
+      required final String toBeNumberOneDate,
       required final String drugUsageApproach,
-      required final String mainDrugText,
-      required final String mentalEvalLevel,
-      required final int drugEvalScore,
-      required final String levelOfAddicted,
-      required final String screeningResult,
-      required final String frequencyOfUse,
-      required final String feelingAddicted,
-      required final String irresponsible,
-      required final String frequencyOfProblem,
-      required final String beNoticed,
-      required final String stopUsingButNotSuccess,
       required final String injectableDrug,
-      required final String last3monthUsage,
+      required final String mainDrug,
+      required final String secondaryDrug,
       required final String hadMentalTreatment,
-      required final String mentalTreatmentText,
+      required final String mentalTreatment,
+      required final String mentalTreatmentOther,
       required final String hadChronicContagious,
-      required final String chronicContagiousText,
+      required final String chronicContagious,
+      required final String chronicContagiousOther,
       required final String hadCriminalCase,
-      required final String criminalCaseText,
+      required final String criminalCase,
+      required final String criminalCaseOther,
       required final String homeless,
       required final String disabledPerson,
       required final String disabledCertificateNo}) = _$ScreeningImpl;
 
   @override
-  String get maritalStatusText; //** สถานะ find on  /master/${patientId} */
+  String get screeningDate;
   @override
-  String get educationText; //** การศึกษา  /master/educations */
+  LevelType? get levelType;
   @override
-  String get occupationText; //**อาชีพ  /master/occupations */
+  DrugEvalResult? get drugEvalResult;
   @override
-  String get incomeText; //**รายได้  /master/incomes */
+  String get isToBeNumberOneMember;
   @override
-  String get livingWithLast30days; // /screenings/${patientId} */
+  String get toBeNumberOneDate;
   @override
-  String
-      get parentRelationshipText; //**ความสัมพันธ์ระหว่างบิดามารดา */master/relationships
+  String get drugUsageApproach;
   @override
-  String get screeningDate; // ว/ด/ป  /screenings/${patientId}
+  String get injectableDrug;
   @override
-  String get isToBeNumberOneMember; //การใช้ยาเสพติด  /screenings/${patientId}
+  String get mainDrug;
   @override
-  String
-      get drugUsageApproach; //การใช้ยาเสพติด(รูปแบบการเสพ)  /screenings/${patientId}
+  String get secondaryDrug;
   @override
-  String
-      get mainDrugText; //ยาเสพติดที่ใช้  /master/drugs  #หมายเหตุ  answer == 17 show  other=""
+  String get hadMentalTreatment;
   @override
-  String get mentalEvalLevel; //** สรุปผล find on  /screenings/${patientId} */
+  String get mentalTreatment;
   @override
-  int get drugEvalScore;
+  String get mentalTreatmentOther;
   @override
-  String get levelOfAddicted;
+  String get hadChronicContagious;
   @override
-  String get screeningResult;
+  String get chronicContagious;
   @override
-  String
-      get frequencyOfUse; //** คุณใช้บ่อยเพียงใด  find on  /screenings/${patientId} */
+  String get chronicContagiousOther;
   @override
-  String
-      get feelingAddicted; //** คุณมีความต้องการ หรือมีความรู้สึกอยากใช้  find on  /screenings/${patientId} */
+  String get hadCriminalCase;
   @override
-  String
-      get irresponsible; //** การใช้ ยาบ้า ทำให้คุณไม่สามารถรับผิดชอบ หรือทำกิจกรรมที่คุณเคยทำได้ตามปกติบ่อยเพียงใด  find on  /screenings/${patientId} */
+  String get criminalCase;
   @override
-  String
-      get frequencyOfProblem; //** การใช้ ทำให้คุณเกิดปัญหาสุขภาพ ครอบครัว สังคม กฏหมาย หรือการเงินบ่อยเพียงใด?  find on  /screenings/${patientId} */
+  String get criminalCaseOther;
   @override
-  String
-      get beNoticed; //** ญาติ เพื่อน หรือคนรู้จัก   find on  /screenings/${patientId} */
+  String get homeless;
   @override
-  String
-      get stopUsingButNotSuccess; //** คุนเคย find on  /screenings/${patientId} */
-  @override
-  String
-      get injectableDrug; //** คุณเคยใช้สารเสพติดชนิดฉีดหรือไม่ /screenings/${patientId} */
-  @override
-  String
-      get last3monthUsage; //** ภายใน 3 เดือนที่ผ่านมา คุณใช้บ่อยเพียงใด find on  /screenings/${patientId} */
-  @override
-  String
-      get hadMentalTreatment; //**ประวัติรักษาโรคสุขภาพจิต find on  /screenings/${patientId} */
-  @override
-  String
-      get mentalTreatmentText; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadMentalTreatment == "YES" && show  ui เพิ่ม Text to ui  /master/mentaltreatments */
-  @override
-  String
-      get hadChronicContagious; //**ประวัติโรคเรื้อรัง / โรคติดต่อ find on  /screenings/${patientId} */
-  @override
-  String
-      get chronicContagiousText; //**ประวัติรักษาโรคสุขภาพจิต find on  การใช้งาน เช็ค hadChronicContagious == "YES" && show  ui เพิ่ม Text to ui  /master/chroniccontagiouses */
-  @override
-  String
-      get hadCriminalCase; //**ประวัติคดีอาญา / โรคติดต่อ find on  /screenings/${patientId} */
-  @override
-  String get criminalCaseText;
-  @override
-  String
-      get homeless; //**คนเร่ร่อน ไร้ที่พักพิง find on  /screenings/${patientId} */
-  @override
-  String get disabledPerson; //**ผู้พิการ find on  /screenings/${patientId} */
+  String get disabledPerson;
   @override
   String get disabledCertificateNo;
 
@@ -1655,5 +1427,242 @@ abstract class _Treatment implements Treatment {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TreatmentImplCopyWith<_$TreatmentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$Monitoring {
+  String get startDate => throw _privateConstructorUsedError;
+  String get endDate => throw _privateConstructorUsedError;
+  int get round => throw _privateConstructorUsedError;
+  String get subdivision => throw _privateConstructorUsedError;
+  String get latestResult => throw _privateConstructorUsedError;
+  bool get finalRound => throw _privateConstructorUsedError;
+
+  /// Create a copy of Monitoring
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $MonitoringCopyWith<Monitoring> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MonitoringCopyWith<$Res> {
+  factory $MonitoringCopyWith(
+          Monitoring value, $Res Function(Monitoring) then) =
+      _$MonitoringCopyWithImpl<$Res, Monitoring>;
+  @useResult
+  $Res call(
+      {String startDate,
+      String endDate,
+      int round,
+      String subdivision,
+      String latestResult,
+      bool finalRound});
+}
+
+/// @nodoc
+class _$MonitoringCopyWithImpl<$Res, $Val extends Monitoring>
+    implements $MonitoringCopyWith<$Res> {
+  _$MonitoringCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Monitoring
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? round = null,
+    Object? subdivision = null,
+    Object? latestResult = null,
+    Object? finalRound = null,
+  }) {
+    return _then(_value.copyWith(
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      round: null == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as int,
+      subdivision: null == subdivision
+          ? _value.subdivision
+          : subdivision // ignore: cast_nullable_to_non_nullable
+              as String,
+      latestResult: null == latestResult
+          ? _value.latestResult
+          : latestResult // ignore: cast_nullable_to_non_nullable
+              as String,
+      finalRound: null == finalRound
+          ? _value.finalRound
+          : finalRound // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MonitoringImplCopyWith<$Res>
+    implements $MonitoringCopyWith<$Res> {
+  factory _$$MonitoringImplCopyWith(
+          _$MonitoringImpl value, $Res Function(_$MonitoringImpl) then) =
+      __$$MonitoringImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String startDate,
+      String endDate,
+      int round,
+      String subdivision,
+      String latestResult,
+      bool finalRound});
+}
+
+/// @nodoc
+class __$$MonitoringImplCopyWithImpl<$Res>
+    extends _$MonitoringCopyWithImpl<$Res, _$MonitoringImpl>
+    implements _$$MonitoringImplCopyWith<$Res> {
+  __$$MonitoringImplCopyWithImpl(
+      _$MonitoringImpl _value, $Res Function(_$MonitoringImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Monitoring
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? round = null,
+    Object? subdivision = null,
+    Object? latestResult = null,
+    Object? finalRound = null,
+  }) {
+    return _then(_$MonitoringImpl(
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      round: null == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as int,
+      subdivision: null == subdivision
+          ? _value.subdivision
+          : subdivision // ignore: cast_nullable_to_non_nullable
+              as String,
+      latestResult: null == latestResult
+          ? _value.latestResult
+          : latestResult // ignore: cast_nullable_to_non_nullable
+              as String,
+      finalRound: null == finalRound
+          ? _value.finalRound
+          : finalRound // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MonitoringImpl implements _Monitoring {
+  const _$MonitoringImpl(
+      {required this.startDate,
+      required this.endDate,
+      required this.round,
+      required this.subdivision,
+      required this.latestResult,
+      required this.finalRound});
+
+  @override
+  final String startDate;
+  @override
+  final String endDate;
+  @override
+  final int round;
+  @override
+  final String subdivision;
+  @override
+  final String latestResult;
+  @override
+  final bool finalRound;
+
+  @override
+  String toString() {
+    return 'Monitoring(startDate: $startDate, endDate: $endDate, round: $round, subdivision: $subdivision, latestResult: $latestResult, finalRound: $finalRound)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MonitoringImpl &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.round, round) || other.round == round) &&
+            (identical(other.subdivision, subdivision) ||
+                other.subdivision == subdivision) &&
+            (identical(other.latestResult, latestResult) ||
+                other.latestResult == latestResult) &&
+            (identical(other.finalRound, finalRound) ||
+                other.finalRound == finalRound));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, startDate, endDate, round,
+      subdivision, latestResult, finalRound);
+
+  /// Create a copy of Monitoring
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MonitoringImplCopyWith<_$MonitoringImpl> get copyWith =>
+      __$$MonitoringImplCopyWithImpl<_$MonitoringImpl>(this, _$identity);
+}
+
+abstract class _Monitoring implements Monitoring {
+  const factory _Monitoring(
+      {required final String startDate,
+      required final String endDate,
+      required final int round,
+      required final String subdivision,
+      required final String latestResult,
+      required final bool finalRound}) = _$MonitoringImpl;
+
+  @override
+  String get startDate;
+  @override
+  String get endDate;
+  @override
+  int get round;
+  @override
+  String get subdivision;
+  @override
+  String get latestResult;
+  @override
+  bool get finalRound;
+
+  /// Create a copy of Monitoring
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MonitoringImplCopyWith<_$MonitoringImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

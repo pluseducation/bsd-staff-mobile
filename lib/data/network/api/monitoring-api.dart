@@ -5,20 +5,20 @@ import 'package:bst_staff_mobile/data/network/entity/workflow-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:dio/dio.dart';
 
-class ScreeningApi extends BaseApi {
-  ScreeningApi({required super.baseUrl});
+class MonitoringApi extends BaseApi {
+  MonitoringApi({required super.baseUrl});
 
-  Future<ScreeningEntity> findScreening(
+  Future<List<MonitoringEntity>> findMonitoring(
     int patientsid,
   ) async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/staff/patients/$patientsid/screening',
+        '/api/v1/staff/patients/$patientsid/monitoring',
       );
       if (response.statusCode == 200) {
-        return ScreeningEntity.fromJson(
-          response.data as Map<String, dynamic>,
+        return MonitoringEntity.fromJsons(
+          response.data as List<dynamic>,
         );
       } else {
         throw Exception('Unknown error');

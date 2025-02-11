@@ -1,12 +1,69 @@
-// import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
-// import 'package:bst_staff_mobile/domain/model/workflow.dart';
-// import 'package:bst_staff_mobile/domain/service/app_service.dart';
-// import 'package:bst_staff_mobile/presentation/patient/workflow-model.dart';
-// import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
-// import 'package:bst_staff_mobile/widget/status-widget.dart';
-// import 'package:flutter/material.dart';
-// import 'package:logger/logger.dart';
-// import 'package:provider/provider.dart';
+import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
+import 'package:bst_staff_mobile/domain/model/workflow.dart';
+import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/presentation/patient/workflow-model.dart';
+import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
+import 'package:bst_staff_mobile/widget/background/base-background.dart';
+import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
+import 'package:bst_staff_mobile/widget/status-widget.dart';
+import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
+
+class RegisteringScreen extends StatelessWidget {
+  const RegisteringScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: const BaseAppBarContent(
+        title: 'ตัวกรอง',
+      ),
+      body: BaseBackground(
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 600),
+                      child: const RegisteringContent(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RegisteringContent extends StatefulWidget {
+  const RegisteringContent({super.key});
+
+  @override
+  State<RegisteringContent> createState() => _RegisteringContentState();
+}
+
+class _RegisteringContentState extends State<RegisteringContent> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
 
 // class RegisteringScreen extends StatefulWidget {
 //   final int patientId;

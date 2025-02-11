@@ -13,7 +13,7 @@ class BaseApi {
     final options = BaseOptions(
       baseUrl: baseUrl,
       connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 10),
     );
 
     _dio = Dio(options);
@@ -58,7 +58,7 @@ class BaseApi {
     final options = BaseOptions(
       baseUrl: baseUrl,
       connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 10),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -99,7 +99,7 @@ class BaseApi {
     final options = BaseOptions(
       baseUrl: baseUrl,
       connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 10),
     );
     return Dio(options)
       ..options.headers = {

@@ -16,9 +16,7 @@ class PatientRepository {
   Future<List<Patient>> findPatientAll({
     required SearchPatient search,
   }) async {
-    final entity = await patientApi.findPatientAll(
-      search: search,
-    );
+    final entity = await patientApi.findPatientAll(search);
 
     // set search
     search.totalElements = entity.totalElements;
