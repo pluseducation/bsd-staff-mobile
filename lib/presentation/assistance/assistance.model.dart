@@ -4,6 +4,7 @@ import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/assistance.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/util/constant.dart';
+import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
@@ -13,6 +14,7 @@ class AssistanceModel extends ChangeNotifier {
   final AppService appService;
 
   bool isLoading = false;
+  TextEditingController valueController = TextEditingController();
   late SearchAssistance search;
   late List<Assistance> assistance;
 
@@ -45,7 +47,6 @@ class AssistanceModel extends ChangeNotifier {
     try {
       return SearchAssistance(
         searchVal: '',
-        workFlowStatus: [],
         assistanceStatus: [],
         page: 0,
         totalPages: 0,
@@ -63,33 +64,303 @@ class AssistanceModel extends ChangeNotifier {
     }
   }
 
-  bool isMoreData() {
-    if (isLoading) return false;
-
-    if (search.page + 1 < search.totalPages) {
-      isLoading = true;
+  Future<void> loadData(int page) async {
+    try {
+      search.page = page;
+      assistance = await assistanceRepository.findAssistanceAll(
+        search: search,
+      );
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    } finally {
+      isLoading = false;
       notifyListeners();
-      return true;
-    } else {
-      return false;
     }
   }
 
-  Future<void> loadData() async {
+  Future<void> searchByValue(String value) async {
     try {
-      search.page++;
-      final tmps = await assistanceRepository.findAssistanceAll(
+      search = initSearch();
+      search.searchVal = value;
+
+      assistance = await assistanceRepository.findAssistanceAll(
+        search: search,
+      );
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    } finally {
+      notifyListeners();
+    }
+  }
+}
+
+class AssistanceTypePendingModel extends ChangeNotifier {
+  final Logger log;
+  final AssistanceRepository assistanceRepository;
+  final AppService appService;
+
+  bool isLoading = false;
+  late SearchAssistance search;
+  late List<Assistance> assistance;
+
+  AssistanceTypePendingModel({
+    required this.log,
+    required this.assistanceRepository,
+    required this.appService,
+  });
+
+  Future<bool> initData() async {
+    try {
+      search = initSearch();
+      assistance = await assistanceRepository.findAssistanceAll(
         search: search,
       );
 
-      if (tmps.isNotEmpty) {
-        for (final tmp in tmps) {
-          if (!assistance
-              .any((item) => item.assistanceRoundId == tmp.assistanceRoundId)) {
-            assistance.add(tmp);
-          }
-        }
+      return true;
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
       }
+    }
+  }
+
+  SearchAssistance initSearch() {
+    try {
+      return SearchAssistance(
+        searchVal: '',
+        assistanceStatus: [AssistanceStatus.pending],
+        page: 0,
+        totalPages: 0,
+        totalElements: 0,
+        size: Constant.size,
+      );
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
+  Future<void> loadData(int page) async {
+    try {
+      search.page = page;
+      assistance = await assistanceRepository.findAssistanceAll(
+        search: search,
+      );
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> searchByValue(String value) async {
+    try {
+      search = initSearch();
+      search.searchVal = value;
+
+      assistance = await assistanceRepository.findAssistanceAll(
+        search: search,
+      );
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    } finally {
+      notifyListeners();
+    }
+  }
+}
+
+class AssistanceTypeInprogressModel extends ChangeNotifier {
+  final Logger log;
+  final AssistanceRepository assistanceRepository;
+  final AppService appService;
+
+  bool isLoading = false;
+  late SearchAssistance search;
+  late List<Assistance> assistance;
+
+  AssistanceTypeInprogressModel({
+    required this.log,
+    required this.assistanceRepository,
+    required this.appService,
+  });
+
+  Future<bool> initData() async {
+    try {
+      search = initSearch();
+      assistance = await assistanceRepository.findAssistanceAll(
+        search: search,
+      );
+
+      return true;
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
+  SearchAssistance initSearch() {
+    try {
+      return SearchAssistance(
+        searchVal: '',
+        assistanceStatus: [AssistanceStatus.inprogress],
+        page: 0,
+        totalPages: 0,
+        totalElements: 0,
+        size: Constant.size,
+      );
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
+  Future<void> loadData(int page) async {
+    try {
+      search.page = page;
+      assistance = await assistanceRepository.findAssistanceAll(
+        search: search,
+      );
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> searchByValue(String value) async {
+    try {
+      search = initSearch();
+      search.searchVal = value;
+
+      assistance = await assistanceRepository.findAssistanceAll(
+        search: search,
+      );
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    } finally {
+      notifyListeners();
+    }
+  }
+}
+
+class AssistanceTypeCompletedModel extends ChangeNotifier {
+  final Logger log;
+  final AssistanceRepository assistanceRepository;
+  final AppService appService;
+
+  bool isLoading = false;
+  late SearchAssistance search;
+  late List<Assistance> assistance;
+
+  AssistanceTypeCompletedModel({
+    required this.log,
+    required this.assistanceRepository,
+    required this.appService,
+  });
+
+  Future<bool> initData() async {
+    try {
+      search = initSearch();
+      assistance = await assistanceRepository.findAssistanceAll(
+        search: search,
+      );
+
+      return true;
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
+  SearchAssistance initSearch() {
+    try {
+      return SearchAssistance(
+        searchVal: '',
+        assistanceStatus: [AssistanceStatus.completed],
+        page: 0,
+        totalPages: 0,
+        totalElements: 0,
+        size: Constant.size,
+      );
+    } catch (e) {
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
+    }
+  }
+
+  Future<void> loadData(int page) async {
+    try {
+      search.page = page;
+      assistance = await assistanceRepository.findAssistanceAll(
+        search: search,
+      );
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);

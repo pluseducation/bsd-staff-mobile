@@ -1,4 +1,5 @@
 import 'package:bst_staff_mobile/presentation/appointment/appointment-screen.dart';
+import 'package:bst_staff_mobile/presentation/assistance/assistance-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
@@ -122,7 +123,7 @@ class _MenuContentState extends State<MenuContent> {
             _buildMenu(
               name: "Dashboard",
               imagePath: "assets/images/icon_dashboard.png",
-              label: "ส่งต่อ/รอรับ",
+              label: "แดชบอร์ด",
               onTap: _onTabMenu,
             ),
             _buildMenu(
@@ -177,6 +178,13 @@ class _MenuContentState extends State<MenuContent> {
           context,
           MaterialPageRoute(
             builder: (context) => const PatientScreen(),
+          ),
+        );
+      } else if (name == "Assistance") {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const AssistanceScreen(),
           ),
         );
       }

@@ -92,7 +92,7 @@ class AssistanceColors {
   static const Color canceled = Color(0XFFF04438);
 
   static const Color pendingLight = Color(0XFFd6d6d6);
-  static const Color inprogressLight = Color(0xFF2563eb);
+  static const Color inprogressLight = Color(0xFFCCD8F6);
   static const Color completedLight = Color(0xFFD5F8E7);
   static const Color canceledLight = Color(0XFFf8dcdb);
 }

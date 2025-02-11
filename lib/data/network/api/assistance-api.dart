@@ -22,14 +22,8 @@ class AssistanceApi extends BaseApi {
         queryParameters['searchVal'] = searchAssistance.searchVal;
       }
 
-      if (searchAssistance.workFlowStatus.isNotEmpty) {
-        queryParameters['workFlowStatus'] = searchAssistance.workFlowStatus
-            .map((status) => status.value)
-            .toList();
-      }
-
       if (searchAssistance.assistanceStatus.isNotEmpty) {
-        queryParameters['assistanceStatus'] = searchAssistance.assistanceStatus
+        queryParameters['statuses'] = searchAssistance.assistanceStatus
             .map((status) => status.value)
             .toList();
       }

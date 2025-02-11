@@ -18,9 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SearchAssistance {
   String get searchVal => throw _privateConstructorUsedError;
   set searchVal(String value) => throw _privateConstructorUsedError;
-  List<WorkFlowStatus> get workFlowStatus => throw _privateConstructorUsedError;
-  set workFlowStatus(List<WorkFlowStatus> value) =>
-      throw _privateConstructorUsedError;
   List<AssistanceStatus> get assistanceStatus =>
       throw _privateConstructorUsedError;
   set assistanceStatus(List<AssistanceStatus> value) =>
@@ -49,7 +46,6 @@ abstract class $SearchAssistanceCopyWith<$Res> {
   @useResult
   $Res call(
       {String searchVal,
-      List<WorkFlowStatus> workFlowStatus,
       List<AssistanceStatus> assistanceStatus,
       int page,
       int totalPages,
@@ -73,7 +69,6 @@ class _$SearchAssistanceCopyWithImpl<$Res, $Val extends SearchAssistance>
   @override
   $Res call({
     Object? searchVal = null,
-    Object? workFlowStatus = null,
     Object? assistanceStatus = null,
     Object? page = null,
     Object? totalPages = null,
@@ -85,10 +80,6 @@ class _$SearchAssistanceCopyWithImpl<$Res, $Val extends SearchAssistance>
           ? _value.searchVal
           : searchVal // ignore: cast_nullable_to_non_nullable
               as String,
-      workFlowStatus: null == workFlowStatus
-          ? _value.workFlowStatus
-          : workFlowStatus // ignore: cast_nullable_to_non_nullable
-              as List<WorkFlowStatus>,
       assistanceStatus: null == assistanceStatus
           ? _value.assistanceStatus
           : assistanceStatus // ignore: cast_nullable_to_non_nullable
@@ -123,7 +114,6 @@ abstract class _$$SearchAssistanceImplCopyWith<$Res>
   @useResult
   $Res call(
       {String searchVal,
-      List<WorkFlowStatus> workFlowStatus,
       List<AssistanceStatus> assistanceStatus,
       int page,
       int totalPages,
@@ -145,7 +135,6 @@ class __$$SearchAssistanceImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? searchVal = null,
-    Object? workFlowStatus = null,
     Object? assistanceStatus = null,
     Object? page = null,
     Object? totalPages = null,
@@ -157,10 +146,6 @@ class __$$SearchAssistanceImplCopyWithImpl<$Res>
           ? _value.searchVal
           : searchVal // ignore: cast_nullable_to_non_nullable
               as String,
-      workFlowStatus: null == workFlowStatus
-          ? _value.workFlowStatus
-          : workFlowStatus // ignore: cast_nullable_to_non_nullable
-              as List<WorkFlowStatus>,
       assistanceStatus: null == assistanceStatus
           ? _value.assistanceStatus
           : assistanceStatus // ignore: cast_nullable_to_non_nullable
@@ -190,7 +175,6 @@ class __$$SearchAssistanceImplCopyWithImpl<$Res>
 class _$SearchAssistanceImpl implements _SearchAssistance {
   _$SearchAssistanceImpl(
       {required this.searchVal,
-      required this.workFlowStatus,
       required this.assistanceStatus,
       required this.page,
       required this.totalPages,
@@ -199,8 +183,6 @@ class _$SearchAssistanceImpl implements _SearchAssistance {
 
   @override
   String searchVal;
-  @override
-  List<WorkFlowStatus> workFlowStatus;
   @override
   List<AssistanceStatus> assistanceStatus;
   @override
@@ -214,7 +196,7 @@ class _$SearchAssistanceImpl implements _SearchAssistance {
 
   @override
   String toString() {
-    return 'SearchAssistance(searchVal: $searchVal, workFlowStatus: $workFlowStatus, assistanceStatus: $assistanceStatus, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
+    return 'SearchAssistance(searchVal: $searchVal, assistanceStatus: $assistanceStatus, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
   }
 
   /// Create a copy of SearchAssistance
@@ -230,7 +212,6 @@ class _$SearchAssistanceImpl implements _SearchAssistance {
 abstract class _SearchAssistance implements SearchAssistance {
   factory _SearchAssistance(
       {required String searchVal,
-      required List<WorkFlowStatus> workFlowStatus,
       required List<AssistanceStatus> assistanceStatus,
       required int page,
       required int totalPages,
@@ -240,9 +221,6 @@ abstract class _SearchAssistance implements SearchAssistance {
   @override
   String get searchVal;
   set searchVal(String value);
-  @override
-  List<WorkFlowStatus> get workFlowStatus;
-  set workFlowStatus(List<WorkFlowStatus> value);
   @override
   List<AssistanceStatus> get assistanceStatus;
   set assistanceStatus(List<AssistanceStatus> value);

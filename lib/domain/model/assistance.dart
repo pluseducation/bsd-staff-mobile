@@ -7,7 +7,6 @@ part 'assistance.freezed.dart';
 class SearchAssistance with _$SearchAssistance {
   factory SearchAssistance({
     required String searchVal,
-    required List<WorkFlowStatus> workFlowStatus,
     required List<AssistanceStatus> assistanceStatus,
     required int page,
     required int totalPages,
