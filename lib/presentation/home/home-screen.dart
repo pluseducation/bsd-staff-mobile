@@ -1,5 +1,4 @@
 import 'package:bst_staff_mobile/presentation/menu/menu-screen.dart';
-import 'package:bst_staff_mobile/presentation/test.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-bottom-navigationbar.dart';
 import 'package:flutter/material.dart';
 
@@ -30,11 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return const MenuScreen();
       case 1:
-        return const MyWidget();
+        return Text('Selected Index: $index');
       case 3:
         return Text('Selected Index: $index');
       case 4:
-        return const CameraTest();
+        return Text('Selected Index: $index');
       default:
         return Text('Selected Index: $index');
     }

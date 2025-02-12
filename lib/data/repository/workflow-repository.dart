@@ -38,9 +38,9 @@ class WorkflowRepository {
           await questionApi.findScreeningsQuestionChoices();
       String imagePath = "";
 
-      if (patientEntity.gender == "MALE") {
+      if (patientEntity.gender == "ชาย") {
         imagePath = Constant.maleImage;
-      } else if (patientEntity.gender == "FEMALE") {
+      } else if (patientEntity.gender == "หญิง") {
         imagePath = Constant.femaleImage;
       } else {
         imagePath = Constant.femaleImage;
@@ -48,8 +48,8 @@ class WorkflowRepository {
 
       final fullName =
           "${convertToString(patientEntity.name)} ${convertToString(patientEntity.surname)}";
-      final genderText =
-          findChoiceDescription(questionEntity, "gender", patientEntity.gender);
+      final genderText = convertToString(patientEntity.gender);
+      //findChoiceDescription(questionEntity, "gender", patientEntity.gender);
 
       String registereAddress = "-";
       final List<String?> addressComponents = [
@@ -64,7 +64,7 @@ class WorkflowRepository {
       ];
 
       final registereAddressList = addressComponents
-          .where((component) => component != null)
+          .where((component) => component != null && component != "")
           .map((component) => convertToString(component))
           .toList();
 
@@ -85,7 +85,7 @@ class WorkflowRepository {
       ];
 
       final currentAddressList = currentAddressComponents
-          .where((component) => component != null)
+          .where((component) => component != null && component != "")
           .map((component) => convertToString(component))
           .toList();
 
@@ -121,18 +121,24 @@ class WorkflowRepository {
       final model = Registering(
         imagePath: imagePath,
         fullname: fullName,
-        nationalId: convertToString(patientEntity.nationalId),
+        nationalId:
+            convertToString(patientEntity.nationalId, defaultValue: "-"),
         phoneNo: convertToString(patientEntity.phoneNo),
-        dateOfBirth: convertToString(patientEntity.dateOfBirth),
+        dateOfBirth:
+            convertToString(patientEntity.dateOfBirth, defaultValue: "-"),
+        age: convertToString(patientEntity.age, defaultValue: "-"),
         genderText: genderText,
-        nationality: convertToString(patientEntity.nationality),
-        religion: convertToString(patientEntity.religion),
+        nationality:
+            convertToString(patientEntity.nationality, defaultValue: "-"),
+        religion: convertToString(patientEntity.religion, defaultValue: "-"),
         registereAddress: registereAddress,
         currentAddress: currentAddress,
-        maritalStatus: convertToString(patientEntity.maritalStatus),
-        education: convertToString(patientEntity.education),
-        occupation: convertToString(patientEntity.occupation),
-        income: convertToString(patientEntity.income),
+        maritalStatus:
+            convertToString(patientEntity.maritalStatus, defaultValue: "-"),
+        education: convertToString(patientEntity.education, defaultValue: "-"),
+        occupation:
+            convertToString(patientEntity.occupation, defaultValue: "-"),
+        income: convertToString(patientEntity.income, defaultValue: "-"),
         guardianfullName: guardianfullName,
         guardianPhoneNo: convertToString(patientEntity.guardianPhoneNo),
         livingWithText: livingWithText,
@@ -151,31 +157,84 @@ class WorkflowRepository {
       final screeningEntity = await screeningApi.findScreening(patientId);
       final questionEntity = await questionApi.findScreeningsQuestionChoices();
 
+      final isToBeNumberOneMember = findChoiceDescription(
+        questionEntity,
+        "is_to_be_number_one_member",
+        screeningEntity.isToBeNumberOneMember,
+      );
+
+      final injectableDrug = findChoiceDescription(
+        questionEntity,
+        "injectable_drug",
+        screeningEntity.injectableDrug,
+      );
+
+      final homeless = findChoiceDescription(
+        questionEntity,
+        "is_homeless",
+        screeningEntity.homeless,
+      );
+
+      final disabledPerson = findChoiceDescription(
+        questionEntity,
+        "disabled_person",
+        screeningEntity.disabledPerson,
+      );
+
+      final hadMentalTreatment = findChoiceDescription(
+        questionEntity,
+        "had_mental_treatment",
+        screeningEntity.hadMentalTreatment,
+      );
+
+      final hadChronicContagious = findChoiceDescription(
+        questionEntity,
+        "had_chronic_contagious",
+        screeningEntity.hadChronicContagious,
+      );
+
+      final hadCriminalCase = findChoiceDescription(
+        questionEntity,
+        "had_criminal_case",
+        screeningEntity.hadCriminalCase,
+      );
+
+      final mentalTreatment = screeningEntity.mentalTreatment != null
+          ? convertToString(screeningEntity.mentalTreatment)
+          : convertToString(screeningEntity.mentalTreatmentOther);
+
+      final chronicContagious = screeningEntity.chronicContagious != null
+          ? convertToString(screeningEntity.chronicContagious)
+          : convertToString(screeningEntity.chronicContagiousOther);
+
+      final criminalCase = screeningEntity.criminalCase != null
+          ? convertToString(screeningEntity.criminalCase)
+          : convertToString(screeningEntity.criminalCaseOther);
+
+      final drugUsageApproach = findChoiceDescription(
+        questionEntity,
+        "drug_usage_approach",
+        screeningEntity.drugUsageApproach,
+      );
+
       final model = Screening(
         screeningDate: convertToString(screeningEntity.screeningDate),
         levelType: LevelType.setValue(screeningEntity.level),
         drugEvalResult: DrugEvalResult.setValue(screeningEntity.drugEvalResult),
-        isToBeNumberOneMember:
-            convertToString(screeningEntity.isToBeNumberOneMember),
+        isToBeNumberOneMember: isToBeNumberOneMember,
         toBeNumberOneDate: convertToString(screeningEntity.toBeNumberOneDate),
-        drugUsageApproach: convertToString(screeningEntity.drugUsageApproach),
-        injectableDrug: convertToString(screeningEntity.injectableDrug),
+        drugUsageApproach: drugUsageApproach,
+        injectableDrug: injectableDrug,
         mainDrug: convertToString(screeningEntity.mainDrug),
         secondaryDrug: convertToString(screeningEntity.secondaryDrug),
-        hadMentalTreatment: convertToString(screeningEntity.hadMentalTreatment),
-        mentalTreatment: convertToString(screeningEntity.mentalTreatment),
-        mentalTreatmentOther:
-            convertToString(screeningEntity.mentalTreatmentOther),
-        hadChronicContagious:
-            convertToString(screeningEntity.hadChronicContagious),
-        chronicContagious: convertToString(screeningEntity.chronicContagious),
-        chronicContagiousOther:
-            convertToString(screeningEntity.chronicContagiousOther),
-        hadCriminalCase: convertToString(screeningEntity.hadCriminalCase),
-        criminalCase: convertToString(screeningEntity.criminalCase),
-        criminalCaseOther: convertToString(screeningEntity.criminalCaseOther),
-        homeless: convertToString(screeningEntity.homeless),
-        disabledPerson: convertToString(screeningEntity.disabledPerson),
+        hadMentalTreatment: hadMentalTreatment,
+        mentalTreatment: mentalTreatment,
+        hadChronicContagious: hadChronicContagious,
+        chronicContagious: chronicContagious,
+        hadCriminalCase: hadCriminalCase,
+        criminalCase: criminalCase,
+        homeless: homeless,
+        disabledPerson: disabledPerson,
         disabledCertificateNo:
             convertToString(screeningEntity.disabledCertificateNo),
       );
@@ -244,12 +303,12 @@ class WorkflowRepository {
     final questionEntity =
         questionList.where((t) => t.question?.question == question).firstOrNull;
     if (questionEntity == null) {
-      return "";
+      return "-";
     }
 
     final choiseEntitys = questionEntity.choices;
     if (choiseEntitys == null) {
-      return "";
+      return "-";
     }
 
     for (final answer in answers) {
@@ -266,7 +325,7 @@ class WorkflowRepository {
     }
 
     if (values.isEmpty) {
-      return "";
+      return "-";
     }
 
     return values.join(', ');
@@ -280,13 +339,13 @@ class WorkflowRepository {
     final questionEntity =
         questionList.where((t) => t.question?.question == question).firstOrNull;
     if (questionEntity == null) {
-      return "";
+      return "-";
     }
 
     final choise =
         questionEntity.choices?.where((t) => t.choice == choice).firstOrNull;
     if (choise == null) {
-      return "";
+      return "-";
     }
 
     return convertToString(choise.desc);
@@ -300,13 +359,13 @@ class WorkflowRepository {
     final questionEntity =
         questionList.where((t) => t.question?.question == question).firstOrNull;
     if (questionEntity == null) {
-      return "";
+      return "-";
     }
 
     final choiceEntitys =
         questionEntity.choices?.where((t) => t.choices != null).toList();
     if (choiceEntitys == null) {
-      return "";
+      return "-";
     }
 
     ChoiceEntity? choiceChildEntity;
@@ -320,7 +379,7 @@ class WorkflowRepository {
     }
 
     if (choiceChildEntity == null) {
-      return "";
+      return "-";
     }
 
     return convertToString(choiceChildEntity.desc);

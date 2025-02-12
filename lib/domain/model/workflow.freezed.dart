@@ -21,6 +21,7 @@ mixin _$Registering {
   String get nationalId => throw _privateConstructorUsedError;
   String get phoneNo => throw _privateConstructorUsedError;
   String get dateOfBirth => throw _privateConstructorUsedError;
+  String get age => throw _privateConstructorUsedError;
   String get genderText => throw _privateConstructorUsedError;
   String get nationality => throw _privateConstructorUsedError;
   String get religion => throw _privateConstructorUsedError;
@@ -55,6 +56,7 @@ abstract class $RegisteringCopyWith<$Res> {
       String nationalId,
       String phoneNo,
       String dateOfBirth,
+      String age,
       String genderText,
       String nationality,
       String religion,
@@ -91,6 +93,7 @@ class _$RegisteringCopyWithImpl<$Res, $Val extends Registering>
     Object? nationalId = null,
     Object? phoneNo = null,
     Object? dateOfBirth = null,
+    Object? age = null,
     Object? genderText = null,
     Object? nationality = null,
     Object? religion = null,
@@ -126,6 +129,10 @@ class _$RegisteringCopyWithImpl<$Res, $Val extends Registering>
       dateOfBirth: null == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as String,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
               as String,
       genderText: null == genderText
           ? _value.genderText
@@ -201,6 +208,7 @@ abstract class _$$RegisteringImplCopyWith<$Res>
       String nationalId,
       String phoneNo,
       String dateOfBirth,
+      String age,
       String genderText,
       String nationality,
       String religion,
@@ -235,6 +243,7 @@ class __$$RegisteringImplCopyWithImpl<$Res>
     Object? nationalId = null,
     Object? phoneNo = null,
     Object? dateOfBirth = null,
+    Object? age = null,
     Object? genderText = null,
     Object? nationality = null,
     Object? religion = null,
@@ -270,6 +279,10 @@ class __$$RegisteringImplCopyWithImpl<$Res>
       dateOfBirth: null == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as String,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
               as String,
       genderText: null == genderText
           ? _value.genderText
@@ -340,6 +353,7 @@ class _$RegisteringImpl implements _Registering {
       required this.nationalId,
       required this.phoneNo,
       required this.dateOfBirth,
+      required this.age,
       required this.genderText,
       required this.nationality,
       required this.religion,
@@ -365,6 +379,8 @@ class _$RegisteringImpl implements _Registering {
   final String phoneNo;
   @override
   final String dateOfBirth;
+  @override
+  final String age;
   @override
   final String genderText;
   @override
@@ -396,7 +412,7 @@ class _$RegisteringImpl implements _Registering {
 
   @override
   String toString() {
-    return 'Registering(imagePath: $imagePath, fullname: $fullname, nationalId: $nationalId, phoneNo: $phoneNo, dateOfBirth: $dateOfBirth, genderText: $genderText, nationality: $nationality, religion: $religion, registereAddress: $registereAddress, currentAddress: $currentAddress, maritalStatus: $maritalStatus, education: $education, occupation: $occupation, income: $income, guardianfullName: $guardianfullName, guardianPhoneNo: $guardianPhoneNo, livingWithText: $livingWithText, joinTreatmentByText: $joinTreatmentByText, joinSentByCourtText: $joinSentByCourtText)';
+    return 'Registering(imagePath: $imagePath, fullname: $fullname, nationalId: $nationalId, phoneNo: $phoneNo, dateOfBirth: $dateOfBirth, age: $age, genderText: $genderText, nationality: $nationality, religion: $religion, registereAddress: $registereAddress, currentAddress: $currentAddress, maritalStatus: $maritalStatus, education: $education, occupation: $occupation, income: $income, guardianfullName: $guardianfullName, guardianPhoneNo: $guardianPhoneNo, livingWithText: $livingWithText, joinTreatmentByText: $joinTreatmentByText, joinSentByCourtText: $joinSentByCourtText)';
   }
 
   @override
@@ -413,6 +429,7 @@ class _$RegisteringImpl implements _Registering {
             (identical(other.phoneNo, phoneNo) || other.phoneNo == phoneNo) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
                 other.dateOfBirth == dateOfBirth) &&
+            (identical(other.age, age) || other.age == age) &&
             (identical(other.genderText, genderText) ||
                 other.genderText == genderText) &&
             (identical(other.nationality, nationality) ||
@@ -450,6 +467,7 @@ class _$RegisteringImpl implements _Registering {
         nationalId,
         phoneNo,
         dateOfBirth,
+        age,
         genderText,
         nationality,
         religion,
@@ -482,6 +500,7 @@ abstract class _Registering implements Registering {
       required final String nationalId,
       required final String phoneNo,
       required final String dateOfBirth,
+      required final String age,
       required final String genderText,
       required final String nationality,
       required final String religion,
@@ -507,6 +526,8 @@ abstract class _Registering implements Registering {
   String get phoneNo;
   @override
   String get dateOfBirth;
+  @override
+  String get age;
   @override
   String get genderText;
   @override
@@ -557,13 +578,10 @@ mixin _$Screening {
   String get secondaryDrug => throw _privateConstructorUsedError;
   String get hadMentalTreatment => throw _privateConstructorUsedError;
   String get mentalTreatment => throw _privateConstructorUsedError;
-  String get mentalTreatmentOther => throw _privateConstructorUsedError;
   String get hadChronicContagious => throw _privateConstructorUsedError;
   String get chronicContagious => throw _privateConstructorUsedError;
-  String get chronicContagiousOther => throw _privateConstructorUsedError;
   String get hadCriminalCase => throw _privateConstructorUsedError;
   String get criminalCase => throw _privateConstructorUsedError;
-  String get criminalCaseOther => throw _privateConstructorUsedError;
   String get homeless => throw _privateConstructorUsedError;
   String get disabledPerson => throw _privateConstructorUsedError;
   String get disabledCertificateNo => throw _privateConstructorUsedError;
@@ -592,13 +610,10 @@ abstract class $ScreeningCopyWith<$Res> {
       String secondaryDrug,
       String hadMentalTreatment,
       String mentalTreatment,
-      String mentalTreatmentOther,
       String hadChronicContagious,
       String chronicContagious,
-      String chronicContagiousOther,
       String hadCriminalCase,
       String criminalCase,
-      String criminalCaseOther,
       String homeless,
       String disabledPerson,
       String disabledCertificateNo});
@@ -630,13 +645,10 @@ class _$ScreeningCopyWithImpl<$Res, $Val extends Screening>
     Object? secondaryDrug = null,
     Object? hadMentalTreatment = null,
     Object? mentalTreatment = null,
-    Object? mentalTreatmentOther = null,
     Object? hadChronicContagious = null,
     Object? chronicContagious = null,
-    Object? chronicContagiousOther = null,
     Object? hadCriminalCase = null,
     Object? criminalCase = null,
-    Object? criminalCaseOther = null,
     Object? homeless = null,
     Object? disabledPerson = null,
     Object? disabledCertificateNo = null,
@@ -686,10 +698,6 @@ class _$ScreeningCopyWithImpl<$Res, $Val extends Screening>
           ? _value.mentalTreatment
           : mentalTreatment // ignore: cast_nullable_to_non_nullable
               as String,
-      mentalTreatmentOther: null == mentalTreatmentOther
-          ? _value.mentalTreatmentOther
-          : mentalTreatmentOther // ignore: cast_nullable_to_non_nullable
-              as String,
       hadChronicContagious: null == hadChronicContagious
           ? _value.hadChronicContagious
           : hadChronicContagious // ignore: cast_nullable_to_non_nullable
@@ -698,10 +706,6 @@ class _$ScreeningCopyWithImpl<$Res, $Val extends Screening>
           ? _value.chronicContagious
           : chronicContagious // ignore: cast_nullable_to_non_nullable
               as String,
-      chronicContagiousOther: null == chronicContagiousOther
-          ? _value.chronicContagiousOther
-          : chronicContagiousOther // ignore: cast_nullable_to_non_nullable
-              as String,
       hadCriminalCase: null == hadCriminalCase
           ? _value.hadCriminalCase
           : hadCriminalCase // ignore: cast_nullable_to_non_nullable
@@ -709,10 +713,6 @@ class _$ScreeningCopyWithImpl<$Res, $Val extends Screening>
       criminalCase: null == criminalCase
           ? _value.criminalCase
           : criminalCase // ignore: cast_nullable_to_non_nullable
-              as String,
-      criminalCaseOther: null == criminalCaseOther
-          ? _value.criminalCaseOther
-          : criminalCaseOther // ignore: cast_nullable_to_non_nullable
               as String,
       homeless: null == homeless
           ? _value.homeless
@@ -750,13 +750,10 @@ abstract class _$$ScreeningImplCopyWith<$Res>
       String secondaryDrug,
       String hadMentalTreatment,
       String mentalTreatment,
-      String mentalTreatmentOther,
       String hadChronicContagious,
       String chronicContagious,
-      String chronicContagiousOther,
       String hadCriminalCase,
       String criminalCase,
-      String criminalCaseOther,
       String homeless,
       String disabledPerson,
       String disabledCertificateNo});
@@ -786,13 +783,10 @@ class __$$ScreeningImplCopyWithImpl<$Res>
     Object? secondaryDrug = null,
     Object? hadMentalTreatment = null,
     Object? mentalTreatment = null,
-    Object? mentalTreatmentOther = null,
     Object? hadChronicContagious = null,
     Object? chronicContagious = null,
-    Object? chronicContagiousOther = null,
     Object? hadCriminalCase = null,
     Object? criminalCase = null,
-    Object? criminalCaseOther = null,
     Object? homeless = null,
     Object? disabledPerson = null,
     Object? disabledCertificateNo = null,
@@ -842,10 +836,6 @@ class __$$ScreeningImplCopyWithImpl<$Res>
           ? _value.mentalTreatment
           : mentalTreatment // ignore: cast_nullable_to_non_nullable
               as String,
-      mentalTreatmentOther: null == mentalTreatmentOther
-          ? _value.mentalTreatmentOther
-          : mentalTreatmentOther // ignore: cast_nullable_to_non_nullable
-              as String,
       hadChronicContagious: null == hadChronicContagious
           ? _value.hadChronicContagious
           : hadChronicContagious // ignore: cast_nullable_to_non_nullable
@@ -854,10 +844,6 @@ class __$$ScreeningImplCopyWithImpl<$Res>
           ? _value.chronicContagious
           : chronicContagious // ignore: cast_nullable_to_non_nullable
               as String,
-      chronicContagiousOther: null == chronicContagiousOther
-          ? _value.chronicContagiousOther
-          : chronicContagiousOther // ignore: cast_nullable_to_non_nullable
-              as String,
       hadCriminalCase: null == hadCriminalCase
           ? _value.hadCriminalCase
           : hadCriminalCase // ignore: cast_nullable_to_non_nullable
@@ -865,10 +851,6 @@ class __$$ScreeningImplCopyWithImpl<$Res>
       criminalCase: null == criminalCase
           ? _value.criminalCase
           : criminalCase // ignore: cast_nullable_to_non_nullable
-              as String,
-      criminalCaseOther: null == criminalCaseOther
-          ? _value.criminalCaseOther
-          : criminalCaseOther // ignore: cast_nullable_to_non_nullable
               as String,
       homeless: null == homeless
           ? _value.homeless
@@ -901,13 +883,10 @@ class _$ScreeningImpl implements _Screening {
       required this.secondaryDrug,
       required this.hadMentalTreatment,
       required this.mentalTreatment,
-      required this.mentalTreatmentOther,
       required this.hadChronicContagious,
       required this.chronicContagious,
-      required this.chronicContagiousOther,
       required this.hadCriminalCase,
       required this.criminalCase,
-      required this.criminalCaseOther,
       required this.homeless,
       required this.disabledPerson,
       required this.disabledCertificateNo});
@@ -935,19 +914,13 @@ class _$ScreeningImpl implements _Screening {
   @override
   final String mentalTreatment;
   @override
-  final String mentalTreatmentOther;
-  @override
   final String hadChronicContagious;
   @override
   final String chronicContagious;
   @override
-  final String chronicContagiousOther;
-  @override
   final String hadCriminalCase;
   @override
   final String criminalCase;
-  @override
-  final String criminalCaseOther;
   @override
   final String homeless;
   @override
@@ -957,7 +930,7 @@ class _$ScreeningImpl implements _Screening {
 
   @override
   String toString() {
-    return 'Screening(screeningDate: $screeningDate, levelType: $levelType, drugEvalResult: $drugEvalResult, isToBeNumberOneMember: $isToBeNumberOneMember, toBeNumberOneDate: $toBeNumberOneDate, drugUsageApproach: $drugUsageApproach, injectableDrug: $injectableDrug, mainDrug: $mainDrug, secondaryDrug: $secondaryDrug, hadMentalTreatment: $hadMentalTreatment, mentalTreatment: $mentalTreatment, mentalTreatmentOther: $mentalTreatmentOther, hadChronicContagious: $hadChronicContagious, chronicContagious: $chronicContagious, chronicContagiousOther: $chronicContagiousOther, hadCriminalCase: $hadCriminalCase, criminalCase: $criminalCase, criminalCaseOther: $criminalCaseOther, homeless: $homeless, disabledPerson: $disabledPerson, disabledCertificateNo: $disabledCertificateNo)';
+    return 'Screening(screeningDate: $screeningDate, levelType: $levelType, drugEvalResult: $drugEvalResult, isToBeNumberOneMember: $isToBeNumberOneMember, toBeNumberOneDate: $toBeNumberOneDate, drugUsageApproach: $drugUsageApproach, injectableDrug: $injectableDrug, mainDrug: $mainDrug, secondaryDrug: $secondaryDrug, hadMentalTreatment: $hadMentalTreatment, mentalTreatment: $mentalTreatment, hadChronicContagious: $hadChronicContagious, chronicContagious: $chronicContagious, hadCriminalCase: $hadCriminalCase, criminalCase: $criminalCase, homeless: $homeless, disabledPerson: $disabledPerson, disabledCertificateNo: $disabledCertificateNo)';
   }
 
   @override
@@ -987,20 +960,14 @@ class _$ScreeningImpl implements _Screening {
                 other.hadMentalTreatment == hadMentalTreatment) &&
             (identical(other.mentalTreatment, mentalTreatment) ||
                 other.mentalTreatment == mentalTreatment) &&
-            (identical(other.mentalTreatmentOther, mentalTreatmentOther) ||
-                other.mentalTreatmentOther == mentalTreatmentOther) &&
             (identical(other.hadChronicContagious, hadChronicContagious) ||
                 other.hadChronicContagious == hadChronicContagious) &&
             (identical(other.chronicContagious, chronicContagious) ||
                 other.chronicContagious == chronicContagious) &&
-            (identical(other.chronicContagiousOther, chronicContagiousOther) ||
-                other.chronicContagiousOther == chronicContagiousOther) &&
             (identical(other.hadCriminalCase, hadCriminalCase) ||
                 other.hadCriminalCase == hadCriminalCase) &&
             (identical(other.criminalCase, criminalCase) ||
                 other.criminalCase == criminalCase) &&
-            (identical(other.criminalCaseOther, criminalCaseOther) ||
-                other.criminalCaseOther == criminalCaseOther) &&
             (identical(other.homeless, homeless) ||
                 other.homeless == homeless) &&
             (identical(other.disabledPerson, disabledPerson) ||
@@ -1010,30 +977,26 @@ class _$ScreeningImpl implements _Screening {
   }
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        screeningDate,
-        levelType,
-        drugEvalResult,
-        isToBeNumberOneMember,
-        toBeNumberOneDate,
-        drugUsageApproach,
-        injectableDrug,
-        mainDrug,
-        secondaryDrug,
-        hadMentalTreatment,
-        mentalTreatment,
-        mentalTreatmentOther,
-        hadChronicContagious,
-        chronicContagious,
-        chronicContagiousOther,
-        hadCriminalCase,
-        criminalCase,
-        criminalCaseOther,
-        homeless,
-        disabledPerson,
-        disabledCertificateNo
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      screeningDate,
+      levelType,
+      drugEvalResult,
+      isToBeNumberOneMember,
+      toBeNumberOneDate,
+      drugUsageApproach,
+      injectableDrug,
+      mainDrug,
+      secondaryDrug,
+      hadMentalTreatment,
+      mentalTreatment,
+      hadChronicContagious,
+      chronicContagious,
+      hadCriminalCase,
+      criminalCase,
+      homeless,
+      disabledPerson,
+      disabledCertificateNo);
 
   /// Create a copy of Screening
   /// with the given fields replaced by the non-null parameter values.
@@ -1057,13 +1020,10 @@ abstract class _Screening implements Screening {
       required final String secondaryDrug,
       required final String hadMentalTreatment,
       required final String mentalTreatment,
-      required final String mentalTreatmentOther,
       required final String hadChronicContagious,
       required final String chronicContagious,
-      required final String chronicContagiousOther,
       required final String hadCriminalCase,
       required final String criminalCase,
-      required final String criminalCaseOther,
       required final String homeless,
       required final String disabledPerson,
       required final String disabledCertificateNo}) = _$ScreeningImpl;
@@ -1091,19 +1051,13 @@ abstract class _Screening implements Screening {
   @override
   String get mentalTreatment;
   @override
-  String get mentalTreatmentOther;
-  @override
   String get hadChronicContagious;
   @override
   String get chronicContagious;
   @override
-  String get chronicContagiousOther;
-  @override
   String get hadCriminalCase;
   @override
   String get criminalCase;
-  @override
-  String get criminalCaseOther;
   @override
   String get homeless;
   @override

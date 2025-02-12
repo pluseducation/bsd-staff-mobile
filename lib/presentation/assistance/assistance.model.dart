@@ -15,6 +15,8 @@ class AssistanceModel extends ChangeNotifier {
 
   bool isLoading = false;
   TextEditingController valueController = TextEditingController();
+
+  late ValueNotifier<int> dataNotifier;
   late SearchAssistance search;
   late List<Assistance> assistance;
 
@@ -24,12 +26,15 @@ class AssistanceModel extends ChangeNotifier {
     required this.appService,
   });
 
-  Future<bool> initData() async {
+  Future<bool> initData(ValueNotifier<int> dataNotifier) async {
     try {
+      this.dataNotifier = dataNotifier;
       search = initSearch();
       assistance = await assistanceRepository.findAssistanceAll(
         search: search,
       );
+
+      this.dataNotifier.value = search.totalElements;
 
       return true;
     } catch (e) {
@@ -92,6 +97,8 @@ class AssistanceModel extends ChangeNotifier {
       assistance = await assistanceRepository.findAssistanceAll(
         search: search,
       );
+
+      dataNotifier.value = search.totalElements;
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);

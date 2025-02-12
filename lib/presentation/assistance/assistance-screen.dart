@@ -14,6 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
+// Global ValueNotifier to hold count changes
+final ValueNotifier<int> dataNotifier = ValueNotifier<int>(0);
+
 class AssistanceScreen extends StatelessWidget {
   const AssistanceScreen({super.key});
 
@@ -21,9 +24,9 @@ class AssistanceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColors.primary500,
-      appBar: const BaseAppBarContent(
-        title: 'ผู้ป่ช่วยเหลือ',
-        count: 235,
+      appBar: BaseAppBarContent(
+        title: 'ช่วยเหลือ',
+        valueListenable: dataNotifier,
       ),
       body: Column(
         children: [
@@ -42,14 +45,14 @@ class AssistanceScreen extends StatelessWidget {
                 child: Center(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 600),
-                    child: const Stack(
+                    child: Stack(
                       children: [
                         Positioned(
                           top: 0,
                           left: 0,
                           right: 0,
                           bottom: 0,
-                          child: AssistanceSearchContent(),
+                          child: AssistanceContent(dataNotifier: dataNotifier),
                         ),
                       ],
                     ),
@@ -64,15 +67,15 @@ class AssistanceScreen extends StatelessWidget {
   }
 }
 
-class AssistanceSearchContent extends StatefulWidget {
-  const AssistanceSearchContent({super.key});
+class AssistanceContent extends StatefulWidget {
+  final ValueNotifier<int> dataNotifier;
+  const AssistanceContent({super.key, required this.dataNotifier});
 
   @override
-  _AssistanceSearchContentState createState() =>
-      _AssistanceSearchContentState();
+  _AssistanceContentState createState() => _AssistanceContentState();
 }
 
-class _AssistanceSearchContentState extends State<AssistanceSearchContent> {
+class _AssistanceContentState extends State<AssistanceContent> {
   late final AssistanceModel _model;
   late final AssistanceTypePendingModel _modelPending;
   late final AssistanceTypeInprogressModel _modelInprogress;
@@ -149,7 +152,7 @@ class _AssistanceSearchContentState extends State<AssistanceSearchContent> {
     return ChangeNotifierProvider<AssistanceModel>.value(
       value: _model,
       child: FutureBuilder<bool>(
-        future: _model.initData(),
+        future: _model.initData(widget.dataNotifier),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -495,7 +498,7 @@ class _AssistanceSearchContentState extends State<AssistanceSearchContent> {
 Widget _buildTabBar() {
   return TabBar(
     isScrollable: true,
-    indicatorColor: Colors.blue,
+    indicatorColor: MainColors.primary300,
     tabAlignment: TabAlignment.start,
     dividerColor: Colors.transparent,
     labelColor: MainColors.primary500,

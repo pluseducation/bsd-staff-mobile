@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-filter-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
+import 'package:bst_staff_mobile/presentation/workflow/workflow-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
@@ -14,6 +15,9 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
+// Global ValueNotifier to hold count changes
+final ValueNotifier<int> dataNotifier = ValueNotifier<int>(0);
+
 class PatientScreen extends StatelessWidget {
   const PatientScreen({super.key});
 
@@ -21,9 +25,9 @@ class PatientScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: const BaseAppBarContent(
+      appBar: BaseAppBarContent(
         title: 'ผู้ป่วย',
-        count: 2000,
+        valueListenable: dataNotifier,
       ),
       body: BaseBackground(
         child: Column(
@@ -43,7 +47,7 @@ class PatientScreen extends StatelessWidget {
                   child: Center(
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 600),
-                      child: const PatientContent(),
+                      child: PatientContent(dataNotifier: dataNotifier),
                     ),
                   ),
                 ),
@@ -57,7 +61,8 @@ class PatientScreen extends StatelessWidget {
 }
 
 class PatientContent extends StatefulWidget {
-  const PatientContent({super.key});
+  final ValueNotifier<int> dataNotifier;
+  const PatientContent({super.key, required this.dataNotifier});
 
   @override
   State<PatientContent> createState() => _PatientContentState();
@@ -81,7 +86,7 @@ class _PatientContentState extends State<PatientContent> {
     return ChangeNotifierProvider<PatientModel>.value(
       value: _model,
       child: FutureBuilder<bool>(
-        future: _model.initData(),
+        future: _model.initData(widget.dataNotifier),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -171,11 +176,20 @@ class _PatientContentState extends State<PatientContent> {
 
     for (var i = 0; i < patients.length; i++) {
       patientCards.add(
-        PatientCard(
-          patient: patients[i],
-          // onClick: () async {
-          //   print('aaa');
-          // },
+        GestureDetector(
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => WorkflowScreen(
+                  patientId: patients[i].patientId,
+                ),
+              ),
+            );
+          },
+          child: PatientCard(
+            patient: patients[i],
+          ),
         ),
       );
 

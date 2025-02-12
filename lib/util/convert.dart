@@ -30,10 +30,17 @@ double convertToDouble(dynamic object) {
   }
 }
 
-String convertToString(dynamic object) {
+String convertToString(dynamic object, {String defaultValue = ""}) {
   try {
-    final String? value = object as String?;
-    return value ?? "";
+    if (object == null) {
+      return defaultValue;
+    } else if (object is String) {
+      return object;
+    } else if (object is int || object is double) {
+      return object.toString();
+    } else {
+      return object.toString();
+    }
   } catch (e) {
     rethrow;
   }
@@ -64,8 +71,16 @@ String formatDate(DateTime? date) {
   if (date == null) {
     return "";
   }
-  final DateFormat thaiDateFormat = DateFormat.yMMMd('th_TH');
-  return thaiDateFormat.format(date);
+
+  final year = date.year;
+  DateTime adjustedDate = date;
+  if (year < 2500) {
+    adjustedDate = DateTime(year + 543, date.month, date.day);
+  }
+
+  final DateFormat thaiDateFormat = DateFormat('d MMMM yyyy', 'th_TH');
+  final value = thaiDateFormat.format(adjustedDate);
+  return value;
 }
 
 String formatTime(DateTime? dateTime) {

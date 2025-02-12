@@ -1,4 +1,3 @@
-import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';

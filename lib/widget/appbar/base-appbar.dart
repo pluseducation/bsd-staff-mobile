@@ -185,10 +185,62 @@ class BaseAppBarHome extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
-  final int? count;
+  final ValueNotifier<int>? valueListenable;
   final String title;
 
   const BaseAppBarContent({
+    super.key,
+    this.valueListenable,
+    required this.title,
+  });
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      toolbarHeight: kToolbarHeight,
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+      iconTheme: const IconThemeData(color: Colors.white),
+      title: _buildTitle(),
+    );
+  }
+
+  Widget _buildTitle() {
+    if (valueListenable != null) {
+      return ValueListenableBuilder<int>(
+        valueListenable: valueListenable!,
+        builder: (context, value, child) {
+          return Text(
+            "$title (${NumberFormat.decimalPattern().format(value)})",
+            style: const TextStyle(
+              fontSize: FontSizes.medium,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        },
+      );
+    } else {
+      return Text(
+        title,
+        style: const TextStyle(
+          fontSize: FontSizes.medium,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+    }
+  }
+}
+
+class BaseAppBarBlank extends StatelessWidget implements PreferredSizeWidget {
+  final int? count;
+  final String title;
+
+  const BaseAppBarBlank({
     super.key,
     this.count,
     required this.title,
@@ -205,12 +257,10 @@ class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: kToolbarHeight,
       centerTitle: true,
       backgroundColor: Colors.transparent,
-      iconTheme: const IconThemeData(color: Colors.white),
       title: Text(
         formattedCount != null ? "$title ($formattedCount)" : title,
         style: const TextStyle(
           fontSize: FontSizes.medium,
-          color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
       ),

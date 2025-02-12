@@ -16,6 +16,7 @@ class PatientModel extends ChangeNotifier {
   bool isFilter = false;
   TextEditingController valueController = TextEditingController();
 
+  late ValueNotifier<int> dataNotifier;
   late SearchPatient search;
   late List<Patient> patients;
 
@@ -25,13 +26,14 @@ class PatientModel extends ChangeNotifier {
     required this.appService,
   });
 
-  Future<bool> initData() async {
+  Future<bool> initData(ValueNotifier<int> dataNotifier) async {
     try {
+      this.dataNotifier = dataNotifier;
       search = initSearch();
       patients = await patientRepository.findPatientAll(
         search: search,
       );
-
+      this.dataNotifier.value = search.totalElements;
       return true;
     } catch (e) {
       if (e is NetworkException) {
@@ -96,6 +98,8 @@ class PatientModel extends ChangeNotifier {
       patients = await patientRepository.findPatientAll(
         search: search,
       );
+
+      dataNotifier.value = search.totalElements;
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -140,6 +144,8 @@ class PatientModel extends ChangeNotifier {
       patients = await patientRepository.findPatientAll(
         search: search,
       );
+
+      dataNotifier.value = search.totalElements;
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);

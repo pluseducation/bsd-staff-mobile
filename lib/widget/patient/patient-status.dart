@@ -413,6 +413,52 @@ class LevelStatusTypeSelect extends StatelessWidget {
   }
 }
 
+class LevelStatusTypeLabel extends StatelessWidget {
+  final LevelType? levelType;
+
+  const LevelStatusTypeLabel({
+    super.key,
+    required this.levelType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+    String text;
+    const String iconPath = 'assets/images/icon_tag.png';
+
+    if (levelType == LevelType.normal) {
+      color = PatientLevelTypeColors.normal;
+      text = 'สีเขียว ไม่มีอาการ';
+    } else if (levelType == LevelType.semiUrgency) {
+      color = PatientLevelTypeColors.semiUrgency;
+      text = 'สีเหลือง กึ่งเร่งด่วน (Semi-Urgency)';
+    } else if (levelType == LevelType.urgency) {
+      color = PatientLevelTypeColors.urgency;
+      text = 'สีส้ม เร่งด่วน (Urgency)';
+    } else if (levelType == LevelType.emergency) {
+      color = PatientLevelTypeColors.emergency;
+      text = 'สีแดง ฉุกเฉิน (Emergency)';
+    } else {
+      color = Colors.grey;
+      text = '-';
+    }
+
+    if (levelType == null) {
+      return Container();
+    }
+
+    return Text(
+      text,
+      style: TextStyle(
+        color: color,
+        fontSize: FontSizes.medium,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+}
+
 class DrugEvalResultStatusType extends StatelessWidget {
   final DrugEvalResult? drugEvalResult;
 
@@ -604,6 +650,48 @@ class DrugEvalResultStatusTypeSelect extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class DrugEvalResultStatusTypeLabel extends StatelessWidget {
+  final DrugEvalResult? drugEvalResult;
+
+  const DrugEvalResultStatusTypeLabel({
+    super.key,
+    required this.drugEvalResult,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+    String text;
+
+    if (drugEvalResult == DrugEvalResult.user) {
+      color = PatientDrugEvalResultColors.drugUser;
+      text = 'ผู้ใช้ (User, กลุ่มเสี่ยงต่ำ)';
+    } else if (drugEvalResult == DrugEvalResult.abuse) {
+      color = PatientDrugEvalResultColors.drugAbuse;
+      text = 'ผู้เสพ (Abuse, กลุ่มเสี่ยงปานกลาง)';
+    } else if (drugEvalResult == DrugEvalResult.dependence) {
+      color = PatientDrugEvalResultColors.drugDependence;
+      text = 'ผู้ติด (Dependence, กลุ่มเสี่ยงสูง)';
+    } else {
+      color = Colors.grey;
+      text = '-';
+    }
+
+    if (drugEvalResult == null) {
+      return Container();
+    }
+
+    return Text(
+      text,
+      style: TextStyle(
+        color: color,
+        fontSize: FontSizes.medium,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
