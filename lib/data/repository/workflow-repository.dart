@@ -248,15 +248,24 @@ class WorkflowRepository {
   Future<List<Monitoring>> findMonitoring(int patientId) async {
     try {
       final monitoringEntitys = await monitoringApi.findMonitoring(patientId);
-      //final questionEntity = await questionApi.findScreeningsQuestionChoices();
+
+      String latestResultDateText = "";
+      if (monitoringEntitys.isNotEmpty) {
+        final latestResultDate = monitoringEntitys
+            .where((t) => t.finalRound == 1)
+            .firstOrNull
+            ?.endDate;
+        latestResultDateText = formatDate(latestResultDate, defaultValue: "-");
+      }
 
       final models = monitoringEntitys.map((monitoringEntity) {
         return Monitoring(
+          latestResultDate: latestResultDateText,
           startDate: formatDate(monitoringEntity.startDate),
           endDate: convertToString(monitoringEntity.endDate),
           round: convertToInt(monitoringEntity.round),
           subdivision: convertToString(monitoringEntity.subdivision),
-          latestResult: convertToString(monitoringEntity.latestResult),
+          latestResult: UsingDrugStatus.setValue(monitoringEntity.latestResult),
           finalRound: monitoringEntity.finalRound == 1,
         );
       }).toList();
@@ -267,69 +276,69 @@ class WorkflowRepository {
     }
   }
 
-  String _findDrugDescription(
-    List<DrugsEntity> drugList,
-    List<AnswerEntity> answers,
-  ) {
-    final List<String> values = [];
+  // String _findDrugDescription(
+  //   List<DrugsEntity> drugList,
+  //   List<AnswerEntity> answers,
+  // ) {
+  //   final List<String> values = [];
 
-    for (final answer in answers) {
-      if (answer.answer == "17") {
-        values.add(convertToString(answer.other));
-      } else {
-        final drugEntity =
-            drugList.where((t) => t.id.toString() == answer.answer).firstOrNull;
+  //   for (final answer in answers) {
+  //     if (answer.answer == "17") {
+  //       values.add(convertToString(answer.other));
+  //     } else {
+  //       final drugEntity =
+  //           drugList.where((t) => t.id.toString() == answer.answer).firstOrNull;
 
-        if (drugEntity != null) {
-          values.add(convertToString(drugEntity.name));
-        }
-      }
-    }
+  //       if (drugEntity != null) {
+  //         values.add(convertToString(drugEntity.name));
+  //       }
+  //     }
+  //   }
 
-    if (values.isEmpty) {
-      return "";
-    }
+  //   if (values.isEmpty) {
+  //     return "";
+  //   }
 
-    return values.join(', ');
-  }
+  //   return values.join(', ');
+  // }
 
-  String _findChoiceDescriptionList(
-    List<QuestionChoicesEntity> questionList,
-    String question,
-    List<AnswerEntity> answers,
-  ) {
-    final List<String> values = [];
+  // String _findChoiceDescriptionList(
+  //   List<QuestionChoicesEntity> questionList,
+  //   String question,
+  //   List<AnswerEntity> answers,
+  // ) {
+  //   final List<String> values = [];
 
-    final questionEntity =
-        questionList.where((t) => t.question?.question == question).firstOrNull;
-    if (questionEntity == null) {
-      return "-";
-    }
+  //   final questionEntity =
+  //       questionList.where((t) => t.question?.question == question).firstOrNull;
+  //   if (questionEntity == null) {
+  //     return "-";
+  //   }
 
-    final choiseEntitys = questionEntity.choices;
-    if (choiseEntitys == null) {
-      return "-";
-    }
+  //   final choiseEntitys = questionEntity.choices;
+  //   if (choiseEntitys == null) {
+  //     return "-";
+  //   }
 
-    for (final answer in answers) {
-      if (answer.answer == "OTHER") {
-        values.add(convertToString(answer.other));
-      } else {
-        final choiseEntity =
-            choiseEntitys.where((t) => t.choice == answer.answer).firstOrNull;
+  //   for (final answer in answers) {
+  //     if (answer.answer == "OTHER") {
+  //       values.add(convertToString(answer.other));
+  //     } else {
+  //       final choiseEntity =
+  //           choiseEntitys.where((t) => t.choice == answer.answer).firstOrNull;
 
-        if (choiseEntity != null) {
-          values.add(convertToString(choiseEntity.desc));
-        }
-      }
-    }
+  //       if (choiseEntity != null) {
+  //         values.add(convertToString(choiseEntity.desc));
+  //       }
+  //     }
+  //   }
 
-    if (values.isEmpty) {
-      return "-";
-    }
+  //   if (values.isEmpty) {
+  //     return "-";
+  //   }
 
-    return values.join(', ');
-  }
+  //   return values.join(', ');
+  // }
 
   String findChoiceDescription(
     List<QuestionChoicesEntity> questionList,

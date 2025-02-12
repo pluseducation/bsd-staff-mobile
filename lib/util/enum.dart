@@ -346,3 +346,53 @@ enum AssistanceItemStatus {
     }
   }
 }
+
+enum RoundTypeStatus {
+  medical,
+  social;
+
+  String? get value {
+    switch (this) {
+      case RoundTypeStatus.medical:
+        return "MEDICAL";
+      case RoundTypeStatus.social:
+        return "SOCIAL";
+    }
+  }
+
+  static RoundTypeStatus? setValue(String? value) {
+    switch (value) {
+      case "MEDICAL":
+        return RoundTypeStatus.medical;
+      case "SOCIAL":
+        return RoundTypeStatus.social;
+      default:
+        return null;
+    }
+  }
+}
+
+enum UsingDrugStatus {
+  usingDrug,
+  notUsingDrug;
+
+  String? get value {
+    switch (this) {
+      case UsingDrugStatus.usingDrug:
+        return "USING_DRUG";
+      case UsingDrugStatus.notUsingDrug:
+        return "NOT_USING_DRUG";
+    }
+  }
+
+  static UsingDrugStatus? setValue(String? value) {
+    switch (value) {
+      case "USING_DRUG":
+        return UsingDrugStatus.usingDrug;
+      case "NOT_USING_DRUG":
+        return UsingDrugStatus.notUsingDrug;
+      default:
+        return null;
+    }
+  }
+}

@@ -54,3 +54,40 @@ class PatientEntity {
 
   Map<String, dynamic> toJson() => _$PatientEntityToJson(this);
 }
+
+@JsonSerializable()
+class PatientHistoryEntity {
+  String? cycle;
+  int? no;
+  DateTime? date;
+  String? workflowType;
+  int? subDivisionId;
+  String? subDivisionName;
+  DateTime? createdAt;
+  DateTime? treatmentDate;
+  int? monitoringRound;
+
+  PatientHistoryEntity({
+    required this.cycle,
+    required this.no,
+    required this.date,
+    required this.workflowType,
+    required this.subDivisionId,
+    required this.subDivisionName,
+    required this.createdAt,
+    required this.treatmentDate,
+    required this.monitoringRound,
+  });
+
+  factory PatientHistoryEntity.fromJson(Map<String, dynamic> json) =>
+      _$PatientHistoryEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PatientHistoryEntityToJson(this);
+
+  static List<PatientHistoryEntity> fromJsons(List data) =>
+      List<PatientHistoryEntity>.from(
+        data.map(
+          (x) => PatientHistoryEntity.fromJson(x as Map<String, dynamic>),
+        ),
+      );
+}

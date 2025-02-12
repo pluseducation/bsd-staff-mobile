@@ -57,3 +57,36 @@ Map<String, dynamic> _$PatientEntityToJson(PatientEntity instance) =>
       'level': instance.level,
       'treatmentType': instance.treatmentType,
     };
+
+PatientHistoryEntity _$PatientHistoryEntityFromJson(
+        Map<String, dynamic> json) =>
+    PatientHistoryEntity(
+      cycle: json['cycle'] as String?,
+      no: (json['no'] as num?)?.toInt(),
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      workflowType: json['workflowType'] as String?,
+      subDivisionId: (json['subDivisionId'] as num?)?.toInt(),
+      subDivisionName: json['subDivisionName'] as String?,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      treatmentDate: json['treatmentDate'] == null
+          ? null
+          : DateTime.parse(json['treatmentDate'] as String),
+      monitoringRound: (json['monitoringRound'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$PatientHistoryEntityToJson(
+        PatientHistoryEntity instance) =>
+    <String, dynamic>{
+      'cycle': instance.cycle,
+      'no': instance.no,
+      'date': instance.date?.toIso8601String(),
+      'workflowType': instance.workflowType,
+      'subDivisionId': instance.subDivisionId,
+      'subDivisionName': instance.subDivisionName,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'treatmentDate': instance.treatmentDate?.toIso8601String(),
+      'monitoringRound': instance.monitoringRound,
+    };

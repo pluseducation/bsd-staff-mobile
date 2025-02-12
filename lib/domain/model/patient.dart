@@ -33,3 +33,25 @@ class Patient with _$Patient {
     SmivType? smivType,
   }) = _Patient;
 }
+
+@unfreezed
+class SearchPatientHistory with _$SearchPatientHistory {
+  factory SearchPatientHistory({
+    required String type,
+    required String name,
+    required String surname,
+    required String nationalId,
+    required String cycle,
+  }) = _SearchPatientHistory;
+}
+
+@freezed
+class PatientHistory with _$PatientHistory {
+  const factory PatientHistory({
+    required int no,
+    required String cycle,
+    required String createdAt,
+    required String subDivisionName,
+    required WorkFlowStatus? workFlowStatus,
+  }) = _PatientHistory;
+}

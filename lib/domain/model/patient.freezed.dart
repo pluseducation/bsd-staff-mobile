@@ -636,3 +636,430 @@ abstract class _Patient implements Patient {
   _$$PatientImplCopyWith<_$PatientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$SearchPatientHistory {
+  String get type => throw _privateConstructorUsedError;
+  set type(String value) => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
+  String get surname => throw _privateConstructorUsedError;
+  set surname(String value) => throw _privateConstructorUsedError;
+  String get nationalId => throw _privateConstructorUsedError;
+  set nationalId(String value) => throw _privateConstructorUsedError;
+  String get cycle => throw _privateConstructorUsedError;
+  set cycle(String value) => throw _privateConstructorUsedError;
+
+  /// Create a copy of SearchPatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SearchPatientHistoryCopyWith<SearchPatientHistory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchPatientHistoryCopyWith<$Res> {
+  factory $SearchPatientHistoryCopyWith(SearchPatientHistory value,
+          $Res Function(SearchPatientHistory) then) =
+      _$SearchPatientHistoryCopyWithImpl<$Res, SearchPatientHistory>;
+  @useResult
+  $Res call(
+      {String type,
+      String name,
+      String surname,
+      String nationalId,
+      String cycle});
+}
+
+/// @nodoc
+class _$SearchPatientHistoryCopyWithImpl<$Res,
+        $Val extends SearchPatientHistory>
+    implements $SearchPatientHistoryCopyWith<$Res> {
+  _$SearchPatientHistoryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of SearchPatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? name = null,
+    Object? surname = null,
+    Object? nationalId = null,
+    Object? cycle = null,
+  }) {
+    return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      surname: null == surname
+          ? _value.surname
+          : surname // ignore: cast_nullable_to_non_nullable
+              as String,
+      nationalId: null == nationalId
+          ? _value.nationalId
+          : nationalId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SearchPatientHistoryImplCopyWith<$Res>
+    implements $SearchPatientHistoryCopyWith<$Res> {
+  factory _$$SearchPatientHistoryImplCopyWith(_$SearchPatientHistoryImpl value,
+          $Res Function(_$SearchPatientHistoryImpl) then) =
+      __$$SearchPatientHistoryImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String type,
+      String name,
+      String surname,
+      String nationalId,
+      String cycle});
+}
+
+/// @nodoc
+class __$$SearchPatientHistoryImplCopyWithImpl<$Res>
+    extends _$SearchPatientHistoryCopyWithImpl<$Res, _$SearchPatientHistoryImpl>
+    implements _$$SearchPatientHistoryImplCopyWith<$Res> {
+  __$$SearchPatientHistoryImplCopyWithImpl(_$SearchPatientHistoryImpl _value,
+      $Res Function(_$SearchPatientHistoryImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SearchPatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? name = null,
+    Object? surname = null,
+    Object? nationalId = null,
+    Object? cycle = null,
+  }) {
+    return _then(_$SearchPatientHistoryImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      surname: null == surname
+          ? _value.surname
+          : surname // ignore: cast_nullable_to_non_nullable
+              as String,
+      nationalId: null == nationalId
+          ? _value.nationalId
+          : nationalId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchPatientHistoryImpl implements _SearchPatientHistory {
+  _$SearchPatientHistoryImpl(
+      {required this.type,
+      required this.name,
+      required this.surname,
+      required this.nationalId,
+      required this.cycle});
+
+  @override
+  String type;
+  @override
+  String name;
+  @override
+  String surname;
+  @override
+  String nationalId;
+  @override
+  String cycle;
+
+  @override
+  String toString() {
+    return 'SearchPatientHistory(type: $type, name: $name, surname: $surname, nationalId: $nationalId, cycle: $cycle)';
+  }
+
+  /// Create a copy of SearchPatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchPatientHistoryImplCopyWith<_$SearchPatientHistoryImpl>
+      get copyWith =>
+          __$$SearchPatientHistoryImplCopyWithImpl<_$SearchPatientHistoryImpl>(
+              this, _$identity);
+}
+
+abstract class _SearchPatientHistory implements SearchPatientHistory {
+  factory _SearchPatientHistory(
+      {required String type,
+      required String name,
+      required String surname,
+      required String nationalId,
+      required String cycle}) = _$SearchPatientHistoryImpl;
+
+  @override
+  String get type;
+  set type(String value);
+  @override
+  String get name;
+  set name(String value);
+  @override
+  String get surname;
+  set surname(String value);
+  @override
+  String get nationalId;
+  set nationalId(String value);
+  @override
+  String get cycle;
+  set cycle(String value);
+
+  /// Create a copy of SearchPatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchPatientHistoryImplCopyWith<_$SearchPatientHistoryImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$PatientHistory {
+  int get no => throw _privateConstructorUsedError;
+  String get cycle => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
+  String get subDivisionName => throw _privateConstructorUsedError;
+  WorkFlowStatus? get workFlowStatus => throw _privateConstructorUsedError;
+
+  /// Create a copy of PatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PatientHistoryCopyWith<PatientHistory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PatientHistoryCopyWith<$Res> {
+  factory $PatientHistoryCopyWith(
+          PatientHistory value, $Res Function(PatientHistory) then) =
+      _$PatientHistoryCopyWithImpl<$Res, PatientHistory>;
+  @useResult
+  $Res call(
+      {int no,
+      String cycle,
+      String createdAt,
+      String subDivisionName,
+      WorkFlowStatus? workFlowStatus});
+}
+
+/// @nodoc
+class _$PatientHistoryCopyWithImpl<$Res, $Val extends PatientHistory>
+    implements $PatientHistoryCopyWith<$Res> {
+  _$PatientHistoryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? no = null,
+    Object? cycle = null,
+    Object? createdAt = null,
+    Object? subDivisionName = null,
+    Object? workFlowStatus = freezed,
+  }) {
+    return _then(_value.copyWith(
+      no: null == no
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as int,
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      subDivisionName: null == subDivisionName
+          ? _value.subDivisionName
+          : subDivisionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      workFlowStatus: freezed == workFlowStatus
+          ? _value.workFlowStatus
+          : workFlowStatus // ignore: cast_nullable_to_non_nullable
+              as WorkFlowStatus?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PatientHistoryImplCopyWith<$Res>
+    implements $PatientHistoryCopyWith<$Res> {
+  factory _$$PatientHistoryImplCopyWith(_$PatientHistoryImpl value,
+          $Res Function(_$PatientHistoryImpl) then) =
+      __$$PatientHistoryImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int no,
+      String cycle,
+      String createdAt,
+      String subDivisionName,
+      WorkFlowStatus? workFlowStatus});
+}
+
+/// @nodoc
+class __$$PatientHistoryImplCopyWithImpl<$Res>
+    extends _$PatientHistoryCopyWithImpl<$Res, _$PatientHistoryImpl>
+    implements _$$PatientHistoryImplCopyWith<$Res> {
+  __$$PatientHistoryImplCopyWithImpl(
+      _$PatientHistoryImpl _value, $Res Function(_$PatientHistoryImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? no = null,
+    Object? cycle = null,
+    Object? createdAt = null,
+    Object? subDivisionName = null,
+    Object? workFlowStatus = freezed,
+  }) {
+    return _then(_$PatientHistoryImpl(
+      no: null == no
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as int,
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      subDivisionName: null == subDivisionName
+          ? _value.subDivisionName
+          : subDivisionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      workFlowStatus: freezed == workFlowStatus
+          ? _value.workFlowStatus
+          : workFlowStatus // ignore: cast_nullable_to_non_nullable
+              as WorkFlowStatus?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PatientHistoryImpl implements _PatientHistory {
+  const _$PatientHistoryImpl(
+      {required this.no,
+      required this.cycle,
+      required this.createdAt,
+      required this.subDivisionName,
+      required this.workFlowStatus});
+
+  @override
+  final int no;
+  @override
+  final String cycle;
+  @override
+  final String createdAt;
+  @override
+  final String subDivisionName;
+  @override
+  final WorkFlowStatus? workFlowStatus;
+
+  @override
+  String toString() {
+    return 'PatientHistory(no: $no, cycle: $cycle, createdAt: $createdAt, subDivisionName: $subDivisionName, workFlowStatus: $workFlowStatus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PatientHistoryImpl &&
+            (identical(other.no, no) || other.no == no) &&
+            (identical(other.cycle, cycle) || other.cycle == cycle) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.subDivisionName, subDivisionName) ||
+                other.subDivisionName == subDivisionName) &&
+            (identical(other.workFlowStatus, workFlowStatus) ||
+                other.workFlowStatus == workFlowStatus));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, no, cycle, createdAt, subDivisionName, workFlowStatus);
+
+  /// Create a copy of PatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PatientHistoryImplCopyWith<_$PatientHistoryImpl> get copyWith =>
+      __$$PatientHistoryImplCopyWithImpl<_$PatientHistoryImpl>(
+          this, _$identity);
+}
+
+abstract class _PatientHistory implements PatientHistory {
+  const factory _PatientHistory(
+      {required final int no,
+      required final String cycle,
+      required final String createdAt,
+      required final String subDivisionName,
+      required final WorkFlowStatus? workFlowStatus}) = _$PatientHistoryImpl;
+
+  @override
+  int get no;
+  @override
+  String get cycle;
+  @override
+  String get createdAt;
+  @override
+  String get subDivisionName;
+  @override
+  WorkFlowStatus? get workFlowStatus;
+
+  /// Create a copy of PatientHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PatientHistoryImplCopyWith<_$PatientHistoryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

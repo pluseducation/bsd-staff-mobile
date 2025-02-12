@@ -67,9 +67,9 @@ DateTime convertToDateOnly(DateTime dateTime) {
 }
 
 // format
-String formatDate(DateTime? date) {
+String formatDate(DateTime? date, {String defaultValue = ""}) {
   if (date == null) {
-    return "";
+    return defaultValue;
   }
 
   final year = date.year;

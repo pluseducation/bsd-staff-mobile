@@ -73,11 +73,12 @@ class Treatment with _$Treatment {
 @freezed
 class Monitoring with _$Monitoring {
   const factory Monitoring({
+    required String latestResultDate,
     required String startDate,
     required String endDate,
     required int round,
     required String subdivision,
-    required String latestResult,
+    required UsingDrugStatus? latestResult,
     required bool finalRound,
   }) = _Monitoring;
 }

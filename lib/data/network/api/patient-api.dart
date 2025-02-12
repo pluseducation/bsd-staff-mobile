@@ -107,6 +107,50 @@ class PatientApi extends BaseApi {
     }
   }
 
+  Future<List<PatientHistoryEntity>> findPatientHistory(
+    SearchPatientHistory search,
+  ) async {
+    try {
+      final Map<String, dynamic> queryParameters = {};
+
+      if (search.type == "NAME") {
+        queryParameters['name'] = search.name;
+        queryParameters['surname'] = search.name;
+      } else if (search.type == "NATIONAL_ID") {
+        queryParameters['nationalId'] = search.nationalId;
+      } else if (search.type == "CYCLE") {
+        queryParameters['cycle'] = search.cycle;
+      }
+
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get(
+        '/api/v1/staff/patients/history',
+        queryParameters: queryParameters,
+      );
+      if (response.statusCode == 200) {
+        return PatientHistoryEntity.fromJsons(
+          response.data as List,
+        );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data.toString(),
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
   // Future<ProfileEntity> findProfile(
   //   int id, {
   //   required int patientsid,

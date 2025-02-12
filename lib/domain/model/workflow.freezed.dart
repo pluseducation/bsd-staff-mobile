@@ -1386,11 +1386,12 @@ abstract class _Treatment implements Treatment {
 
 /// @nodoc
 mixin _$Monitoring {
+  String get latestResultDate => throw _privateConstructorUsedError;
   String get startDate => throw _privateConstructorUsedError;
   String get endDate => throw _privateConstructorUsedError;
   int get round => throw _privateConstructorUsedError;
   String get subdivision => throw _privateConstructorUsedError;
-  String get latestResult => throw _privateConstructorUsedError;
+  UsingDrugStatus? get latestResult => throw _privateConstructorUsedError;
   bool get finalRound => throw _privateConstructorUsedError;
 
   /// Create a copy of Monitoring
@@ -1407,11 +1408,12 @@ abstract class $MonitoringCopyWith<$Res> {
       _$MonitoringCopyWithImpl<$Res, Monitoring>;
   @useResult
   $Res call(
-      {String startDate,
+      {String latestResultDate,
+      String startDate,
       String endDate,
       int round,
       String subdivision,
-      String latestResult,
+      UsingDrugStatus? latestResult,
       bool finalRound});
 }
 
@@ -1430,14 +1432,19 @@ class _$MonitoringCopyWithImpl<$Res, $Val extends Monitoring>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? latestResultDate = null,
     Object? startDate = null,
     Object? endDate = null,
     Object? round = null,
     Object? subdivision = null,
-    Object? latestResult = null,
+    Object? latestResult = freezed,
     Object? finalRound = null,
   }) {
     return _then(_value.copyWith(
+      latestResultDate: null == latestResultDate
+          ? _value.latestResultDate
+          : latestResultDate // ignore: cast_nullable_to_non_nullable
+              as String,
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -1454,10 +1461,10 @@ class _$MonitoringCopyWithImpl<$Res, $Val extends Monitoring>
           ? _value.subdivision
           : subdivision // ignore: cast_nullable_to_non_nullable
               as String,
-      latestResult: null == latestResult
+      latestResult: freezed == latestResult
           ? _value.latestResult
           : latestResult // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UsingDrugStatus?,
       finalRound: null == finalRound
           ? _value.finalRound
           : finalRound // ignore: cast_nullable_to_non_nullable
@@ -1475,11 +1482,12 @@ abstract class _$$MonitoringImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String startDate,
+      {String latestResultDate,
+      String startDate,
       String endDate,
       int round,
       String subdivision,
-      String latestResult,
+      UsingDrugStatus? latestResult,
       bool finalRound});
 }
 
@@ -1496,14 +1504,19 @@ class __$$MonitoringImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? latestResultDate = null,
     Object? startDate = null,
     Object? endDate = null,
     Object? round = null,
     Object? subdivision = null,
-    Object? latestResult = null,
+    Object? latestResult = freezed,
     Object? finalRound = null,
   }) {
     return _then(_$MonitoringImpl(
+      latestResultDate: null == latestResultDate
+          ? _value.latestResultDate
+          : latestResultDate // ignore: cast_nullable_to_non_nullable
+              as String,
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -1520,10 +1533,10 @@ class __$$MonitoringImplCopyWithImpl<$Res>
           ? _value.subdivision
           : subdivision // ignore: cast_nullable_to_non_nullable
               as String,
-      latestResult: null == latestResult
+      latestResult: freezed == latestResult
           ? _value.latestResult
           : latestResult // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UsingDrugStatus?,
       finalRound: null == finalRound
           ? _value.finalRound
           : finalRound // ignore: cast_nullable_to_non_nullable
@@ -1536,13 +1549,16 @@ class __$$MonitoringImplCopyWithImpl<$Res>
 
 class _$MonitoringImpl implements _Monitoring {
   const _$MonitoringImpl(
-      {required this.startDate,
+      {required this.latestResultDate,
+      required this.startDate,
       required this.endDate,
       required this.round,
       required this.subdivision,
       required this.latestResult,
       required this.finalRound});
 
+  @override
+  final String latestResultDate;
   @override
   final String startDate;
   @override
@@ -1552,13 +1568,13 @@ class _$MonitoringImpl implements _Monitoring {
   @override
   final String subdivision;
   @override
-  final String latestResult;
+  final UsingDrugStatus? latestResult;
   @override
   final bool finalRound;
 
   @override
   String toString() {
-    return 'Monitoring(startDate: $startDate, endDate: $endDate, round: $round, subdivision: $subdivision, latestResult: $latestResult, finalRound: $finalRound)';
+    return 'Monitoring(latestResultDate: $latestResultDate, startDate: $startDate, endDate: $endDate, round: $round, subdivision: $subdivision, latestResult: $latestResult, finalRound: $finalRound)';
   }
 
   @override
@@ -1566,6 +1582,8 @@ class _$MonitoringImpl implements _Monitoring {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MonitoringImpl &&
+            (identical(other.latestResultDate, latestResultDate) ||
+                other.latestResultDate == latestResultDate) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
@@ -1579,8 +1597,8 @@ class _$MonitoringImpl implements _Monitoring {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, startDate, endDate, round,
-      subdivision, latestResult, finalRound);
+  int get hashCode => Object.hash(runtimeType, latestResultDate, startDate,
+      endDate, round, subdivision, latestResult, finalRound);
 
   /// Create a copy of Monitoring
   /// with the given fields replaced by the non-null parameter values.
@@ -1593,13 +1611,16 @@ class _$MonitoringImpl implements _Monitoring {
 
 abstract class _Monitoring implements Monitoring {
   const factory _Monitoring(
-      {required final String startDate,
+      {required final String latestResultDate,
+      required final String startDate,
       required final String endDate,
       required final int round,
       required final String subdivision,
-      required final String latestResult,
+      required final UsingDrugStatus? latestResult,
       required final bool finalRound}) = _$MonitoringImpl;
 
+  @override
+  String get latestResultDate;
   @override
   String get startDate;
   @override
@@ -1609,7 +1630,7 @@ abstract class _Monitoring implements Monitoring {
   @override
   String get subdivision;
   @override
-  String get latestResult;
+  UsingDrugStatus? get latestResult;
   @override
   bool get finalRound;
 
