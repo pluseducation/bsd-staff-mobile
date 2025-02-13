@@ -247,6 +247,7 @@ abstract class _SearchAssistance implements SearchAssistance {
 
 /// @nodoc
 mixin _$Assistance {
+  int get latestRoundId => throw _privateConstructorUsedError;
   int get assistanceRoundId => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
   String get nationalId => throw _privateConstructorUsedError;
@@ -268,7 +269,8 @@ abstract class $AssistanceCopyWith<$Res> {
       _$AssistanceCopyWithImpl<$Res, Assistance>;
   @useResult
   $Res call(
-      {int assistanceRoundId,
+      {int latestRoundId,
+      int assistanceRoundId,
       String fullName,
       String nationalId,
       String cycle,
@@ -291,6 +293,7 @@ class _$AssistanceCopyWithImpl<$Res, $Val extends Assistance>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? latestRoundId = null,
     Object? assistanceRoundId = null,
     Object? fullName = null,
     Object? nationalId = null,
@@ -299,6 +302,10 @@ class _$AssistanceCopyWithImpl<$Res, $Val extends Assistance>
     Object? assistanceStatus = freezed,
   }) {
     return _then(_value.copyWith(
+      latestRoundId: null == latestRoundId
+          ? _value.latestRoundId
+          : latestRoundId // ignore: cast_nullable_to_non_nullable
+              as int,
       assistanceRoundId: null == assistanceRoundId
           ? _value.assistanceRoundId
           : assistanceRoundId // ignore: cast_nullable_to_non_nullable
@@ -336,7 +343,8 @@ abstract class _$$AssistanceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int assistanceRoundId,
+      {int latestRoundId,
+      int assistanceRoundId,
       String fullName,
       String nationalId,
       String cycle,
@@ -357,6 +365,7 @@ class __$$AssistanceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? latestRoundId = null,
     Object? assistanceRoundId = null,
     Object? fullName = null,
     Object? nationalId = null,
@@ -365,6 +374,10 @@ class __$$AssistanceImplCopyWithImpl<$Res>
     Object? assistanceStatus = freezed,
   }) {
     return _then(_$AssistanceImpl(
+      latestRoundId: null == latestRoundId
+          ? _value.latestRoundId
+          : latestRoundId // ignore: cast_nullable_to_non_nullable
+              as int,
       assistanceRoundId: null == assistanceRoundId
           ? _value.assistanceRoundId
           : assistanceRoundId // ignore: cast_nullable_to_non_nullable
@@ -397,13 +410,16 @@ class __$$AssistanceImplCopyWithImpl<$Res>
 
 class _$AssistanceImpl implements _Assistance {
   const _$AssistanceImpl(
-      {required this.assistanceRoundId,
+      {required this.latestRoundId,
+      required this.assistanceRoundId,
       required this.fullName,
       required this.nationalId,
       required this.cycle,
       required this.workFlowStatus,
       this.assistanceStatus});
 
+  @override
+  final int latestRoundId;
   @override
   final int assistanceRoundId;
   @override
@@ -419,7 +435,7 @@ class _$AssistanceImpl implements _Assistance {
 
   @override
   String toString() {
-    return 'Assistance(assistanceRoundId: $assistanceRoundId, fullName: $fullName, nationalId: $nationalId, cycle: $cycle, workFlowStatus: $workFlowStatus, assistanceStatus: $assistanceStatus)';
+    return 'Assistance(latestRoundId: $latestRoundId, assistanceRoundId: $assistanceRoundId, fullName: $fullName, nationalId: $nationalId, cycle: $cycle, workFlowStatus: $workFlowStatus, assistanceStatus: $assistanceStatus)';
   }
 
   @override
@@ -427,6 +443,8 @@ class _$AssistanceImpl implements _Assistance {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AssistanceImpl &&
+            (identical(other.latestRoundId, latestRoundId) ||
+                other.latestRoundId == latestRoundId) &&
             (identical(other.assistanceRoundId, assistanceRoundId) ||
                 other.assistanceRoundId == assistanceRoundId) &&
             (identical(other.fullName, fullName) ||
@@ -441,8 +459,8 @@ class _$AssistanceImpl implements _Assistance {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, assistanceRoundId, fullName,
-      nationalId, cycle, workFlowStatus, assistanceStatus);
+  int get hashCode => Object.hash(runtimeType, latestRoundId, assistanceRoundId,
+      fullName, nationalId, cycle, workFlowStatus, assistanceStatus);
 
   /// Create a copy of Assistance
   /// with the given fields replaced by the non-null parameter values.
@@ -455,13 +473,16 @@ class _$AssistanceImpl implements _Assistance {
 
 abstract class _Assistance implements Assistance {
   const factory _Assistance(
-      {required final int assistanceRoundId,
+      {required final int latestRoundId,
+      required final int assistanceRoundId,
       required final String fullName,
       required final String nationalId,
       required final String cycle,
       required final WorkFlowStatus? workFlowStatus,
       final AssistanceStatus? assistanceStatus}) = _$AssistanceImpl;
 
+  @override
+  int get latestRoundId;
   @override
   int get assistanceRoundId;
   @override
@@ -480,5 +501,232 @@ abstract class _Assistance implements Assistance {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AssistanceImplCopyWith<_$AssistanceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$AssistanceDetail {
+  String get assistanceTypeName => throw _privateConstructorUsedError;
+  String get assistanceDepartmentName => throw _privateConstructorUsedError;
+  String get assistanceSubDivisionName => throw _privateConstructorUsedError;
+  String get remark => throw _privateConstructorUsedError;
+  AssistanceItemStatus? get assistanceItemStatus =>
+      throw _privateConstructorUsedError;
+
+  /// Create a copy of AssistanceDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $AssistanceDetailCopyWith<AssistanceDetail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AssistanceDetailCopyWith<$Res> {
+  factory $AssistanceDetailCopyWith(
+          AssistanceDetail value, $Res Function(AssistanceDetail) then) =
+      _$AssistanceDetailCopyWithImpl<$Res, AssistanceDetail>;
+  @useResult
+  $Res call(
+      {String assistanceTypeName,
+      String assistanceDepartmentName,
+      String assistanceSubDivisionName,
+      String remark,
+      AssistanceItemStatus? assistanceItemStatus});
+}
+
+/// @nodoc
+class _$AssistanceDetailCopyWithImpl<$Res, $Val extends AssistanceDetail>
+    implements $AssistanceDetailCopyWith<$Res> {
+  _$AssistanceDetailCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of AssistanceDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? assistanceTypeName = null,
+    Object? assistanceDepartmentName = null,
+    Object? assistanceSubDivisionName = null,
+    Object? remark = null,
+    Object? assistanceItemStatus = freezed,
+  }) {
+    return _then(_value.copyWith(
+      assistanceTypeName: null == assistanceTypeName
+          ? _value.assistanceTypeName
+          : assistanceTypeName // ignore: cast_nullable_to_non_nullable
+              as String,
+      assistanceDepartmentName: null == assistanceDepartmentName
+          ? _value.assistanceDepartmentName
+          : assistanceDepartmentName // ignore: cast_nullable_to_non_nullable
+              as String,
+      assistanceSubDivisionName: null == assistanceSubDivisionName
+          ? _value.assistanceSubDivisionName
+          : assistanceSubDivisionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      remark: null == remark
+          ? _value.remark
+          : remark // ignore: cast_nullable_to_non_nullable
+              as String,
+      assistanceItemStatus: freezed == assistanceItemStatus
+          ? _value.assistanceItemStatus
+          : assistanceItemStatus // ignore: cast_nullable_to_non_nullable
+              as AssistanceItemStatus?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AssistanceDetailImplCopyWith<$Res>
+    implements $AssistanceDetailCopyWith<$Res> {
+  factory _$$AssistanceDetailImplCopyWith(_$AssistanceDetailImpl value,
+          $Res Function(_$AssistanceDetailImpl) then) =
+      __$$AssistanceDetailImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String assistanceTypeName,
+      String assistanceDepartmentName,
+      String assistanceSubDivisionName,
+      String remark,
+      AssistanceItemStatus? assistanceItemStatus});
+}
+
+/// @nodoc
+class __$$AssistanceDetailImplCopyWithImpl<$Res>
+    extends _$AssistanceDetailCopyWithImpl<$Res, _$AssistanceDetailImpl>
+    implements _$$AssistanceDetailImplCopyWith<$Res> {
+  __$$AssistanceDetailImplCopyWithImpl(_$AssistanceDetailImpl _value,
+      $Res Function(_$AssistanceDetailImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AssistanceDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? assistanceTypeName = null,
+    Object? assistanceDepartmentName = null,
+    Object? assistanceSubDivisionName = null,
+    Object? remark = null,
+    Object? assistanceItemStatus = freezed,
+  }) {
+    return _then(_$AssistanceDetailImpl(
+      assistanceTypeName: null == assistanceTypeName
+          ? _value.assistanceTypeName
+          : assistanceTypeName // ignore: cast_nullable_to_non_nullable
+              as String,
+      assistanceDepartmentName: null == assistanceDepartmentName
+          ? _value.assistanceDepartmentName
+          : assistanceDepartmentName // ignore: cast_nullable_to_non_nullable
+              as String,
+      assistanceSubDivisionName: null == assistanceSubDivisionName
+          ? _value.assistanceSubDivisionName
+          : assistanceSubDivisionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      remark: null == remark
+          ? _value.remark
+          : remark // ignore: cast_nullable_to_non_nullable
+              as String,
+      assistanceItemStatus: freezed == assistanceItemStatus
+          ? _value.assistanceItemStatus
+          : assistanceItemStatus // ignore: cast_nullable_to_non_nullable
+              as AssistanceItemStatus?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AssistanceDetailImpl implements _AssistanceDetail {
+  const _$AssistanceDetailImpl(
+      {required this.assistanceTypeName,
+      required this.assistanceDepartmentName,
+      required this.assistanceSubDivisionName,
+      required this.remark,
+      required this.assistanceItemStatus});
+
+  @override
+  final String assistanceTypeName;
+  @override
+  final String assistanceDepartmentName;
+  @override
+  final String assistanceSubDivisionName;
+  @override
+  final String remark;
+  @override
+  final AssistanceItemStatus? assistanceItemStatus;
+
+  @override
+  String toString() {
+    return 'AssistanceDetail(assistanceTypeName: $assistanceTypeName, assistanceDepartmentName: $assistanceDepartmentName, assistanceSubDivisionName: $assistanceSubDivisionName, remark: $remark, assistanceItemStatus: $assistanceItemStatus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AssistanceDetailImpl &&
+            (identical(other.assistanceTypeName, assistanceTypeName) ||
+                other.assistanceTypeName == assistanceTypeName) &&
+            (identical(
+                    other.assistanceDepartmentName, assistanceDepartmentName) ||
+                other.assistanceDepartmentName == assistanceDepartmentName) &&
+            (identical(other.assistanceSubDivisionName,
+                    assistanceSubDivisionName) ||
+                other.assistanceSubDivisionName == assistanceSubDivisionName) &&
+            (identical(other.remark, remark) || other.remark == remark) &&
+            (identical(other.assistanceItemStatus, assistanceItemStatus) ||
+                other.assistanceItemStatus == assistanceItemStatus));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      assistanceTypeName,
+      assistanceDepartmentName,
+      assistanceSubDivisionName,
+      remark,
+      assistanceItemStatus);
+
+  /// Create a copy of AssistanceDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AssistanceDetailImplCopyWith<_$AssistanceDetailImpl> get copyWith =>
+      __$$AssistanceDetailImplCopyWithImpl<_$AssistanceDetailImpl>(
+          this, _$identity);
+}
+
+abstract class _AssistanceDetail implements AssistanceDetail {
+  const factory _AssistanceDetail(
+          {required final String assistanceTypeName,
+          required final String assistanceDepartmentName,
+          required final String assistanceSubDivisionName,
+          required final String remark,
+          required final AssistanceItemStatus? assistanceItemStatus}) =
+      _$AssistanceDetailImpl;
+
+  @override
+  String get assistanceTypeName;
+  @override
+  String get assistanceDepartmentName;
+  @override
+  String get assistanceSubDivisionName;
+  @override
+  String get remark;
+  @override
+  AssistanceItemStatus? get assistanceItemStatus;
+
+  /// Create a copy of AssistanceDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AssistanceDetailImplCopyWith<_$AssistanceDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

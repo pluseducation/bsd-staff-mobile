@@ -131,6 +131,12 @@ Future<InitialData> _createData() async {
     networkMapper: networkMapper,
   );
 
+  final assistanceDetailApi = AssistanceDetailApi(baseUrl: config.baseUrl);
+  final assistanceDetailRepository = AssistanceDetailRepository(
+    assistanceDetailApi: assistanceDetailApi,
+    networkMapper: networkMapper,
+  );
+
   final questionApi = Question(baseUrl: config.baseUrl);
   final screeningsApi = ScreeningApi(baseUrl: config.baseUrl);
   final treatmentApi = TreatmentApi(baseUrl: config.baseUrl);
@@ -187,6 +193,9 @@ Future<InitialData> _createData() async {
       Provider<ProfileRepository>.value(value: profileRepository),
       Provider<NotificationRepository>.value(value: notificationRepository),
       Provider<AssistanceRepository>.value(value: assistanceRepository),
+      Provider<AssistanceDetailRepository>.value(
+        value: assistanceDetailRepository,
+      ),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

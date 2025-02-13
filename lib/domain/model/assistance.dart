@@ -18,6 +18,7 @@ class SearchAssistance with _$SearchAssistance {
 @freezed
 class Assistance with _$Assistance {
   const factory Assistance({
+    required int latestRoundId,
     required int assistanceRoundId,
     required String fullName,
     required String nationalId,
@@ -25,4 +26,15 @@ class Assistance with _$Assistance {
     required WorkFlowStatus? workFlowStatus,
     AssistanceStatus? assistanceStatus,
   }) = _Assistance;
+}
+
+@freezed
+class AssistanceDetail with _$AssistanceDetail {
+  const factory AssistanceDetail({
+    required String assistanceTypeName,
+    required String assistanceDepartmentName,
+    required String assistanceSubDivisionName,
+    required String remark,
+    required AssistanceItemStatus? assistanceItemStatus,
+  }) = _AssistanceDetail;
 }

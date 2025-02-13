@@ -56,3 +56,53 @@ Map<String, dynamic> _$AssistanceEntityToJson(AssistanceEntity instance) =>
       'patientId': instance.patientId,
       'latestRoundId': instance.latestRoundId,
     };
+
+AssistanceDetailEntity _$AssistanceDetailEntityFromJson(
+        Map<String, dynamic> json) =>
+    AssistanceDetailEntity(
+      content: (json['content'] as List<dynamic>)
+          .map((e) =>
+              AssistanceDetailContentEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$AssistanceDetailEntityToJson(
+        AssistanceDetailEntity instance) =>
+    <String, dynamic>{
+      'content': instance.content,
+    };
+
+AssistanceDetailContentEntity _$AssistanceDetailContentEntityFromJson(
+        Map<String, dynamic> json) =>
+    AssistanceDetailContentEntity(
+      id: (json['id'] as num?)?.toInt(),
+      assistanceTypeId: (json['assistanceTypeId'] as num?)?.toInt(),
+      assistanceTypeName: json['assistanceTypeName'] as String?,
+      assistanceTypeOther: json['assistanceTypeOther'] as String?,
+      subDivisionId: (json['subDivisionId'] as num?)?.toInt(),
+      status: json['status'] as String?,
+      remark: json['remark'] as String?,
+      exceedReasonId: (json['exceedReasonId'] as num?)?.toInt(),
+      assistanceDepartmentId: (json['assistanceDepartmentId'] as num?)?.toInt(),
+      assistanceDepartmentName: json['assistanceDepartmentName'] as String?,
+      assistanceSubDivisionId:
+          (json['assistanceSubDivisionId'] as num?)?.toInt(),
+      assistanceSubDivisionName: json['assistanceSubDivisionName'] as String?,
+    );
+
+Map<String, dynamic> _$AssistanceDetailContentEntityToJson(
+        AssistanceDetailContentEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'assistanceTypeId': instance.assistanceTypeId,
+      'assistanceTypeName': instance.assistanceTypeName,
+      'assistanceTypeOther': instance.assistanceTypeOther,
+      'subDivisionId': instance.subDivisionId,
+      'status': instance.status,
+      'remark': instance.remark,
+      'exceedReasonId': instance.exceedReasonId,
+      'assistanceDepartmentId': instance.assistanceDepartmentId,
+      'assistanceDepartmentName': instance.assistanceDepartmentName,
+      'assistanceSubDivisionId': instance.assistanceSubDivisionId,
+      'assistanceSubDivisionName': instance.assistanceSubDivisionName,
+    };

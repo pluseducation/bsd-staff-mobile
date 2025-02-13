@@ -1,20 +1,20 @@
 import 'package:bst_staff_mobile/data/repository/assistance-repository.dart';
 import 'package:bst_staff_mobile/domain/model/assistance.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/assistance/assistance-report.dart';
+import 'package:bst_staff_mobile/presentation/assistance/assistance-detail.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance.model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/assistance/assistance-card.dart';
 import 'package:bst_staff_mobile/widget/assistance/assistance-search.dart';
+import 'package:bst_staff_mobile/widget/background/base-background.dart';
 import 'package:bst_staff_mobile/widget/common/custom-pagination.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
-// Global ValueNotifier to hold count changes
 final ValueNotifier<int> dataNotifier = ValueNotifier<int>(0);
 
 class AssistanceScreen extends StatelessWidget {
@@ -23,45 +23,48 @@ class AssistanceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MainColors.primary500,
+      extendBodyBehindAppBar: true,
       appBar: BaseAppBarContent(
         title: 'ช่วยเหลือ',
         valueListenable: dataNotifier,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: MainColors.background,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
+      body: BaseBackground(
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: MainColors.background,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 600),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          child: AssistanceContent(dataNotifier: dataNotifier),
-                        ),
-                      ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 600),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            child:
+                                AssistanceContent(dataNotifier: dataNotifier),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -69,7 +72,10 @@ class AssistanceScreen extends StatelessWidget {
 
 class AssistanceContent extends StatefulWidget {
   final ValueNotifier<int> dataNotifier;
-  const AssistanceContent({super.key, required this.dataNotifier});
+  const AssistanceContent({
+    super.key,
+    required this.dataNotifier,
+  });
 
   @override
   _AssistanceContentState createState() => _AssistanceContentState();
@@ -128,10 +134,12 @@ class _AssistanceContentState extends State<AssistanceContent> {
                 await _modelInprogress.searchByValue(value);
                 await _modelCompleted.searchByValue(value);
               },
-
-              // controller: model.valueController,
             ),
-            _buildTabBar(),
+            _buildTabBar(
+              totalPending: _modelPending.search.totalElements,
+              totalInprogress: _modelInprogress.search.totalElements,
+              totalCompleted: _modelCompleted.search.totalElements,
+            ),
             Expanded(
               child: TabBarView(
                 children: [
@@ -465,6 +473,9 @@ class _AssistanceContentState extends State<AssistanceContent> {
       patientCards.add(
         AssistanceCard(
           assistance: assistance[i],
+          onclickReport: (latestRoundId) {
+            _onAssistanceReport(latestRoundId);
+          },
         ),
       );
 
@@ -476,14 +487,19 @@ class _AssistanceContentState extends State<AssistanceContent> {
     return patientCards;
   }
 
-  Future<void> _onClickFilter() async {
+  Future<void> _onAssistanceReport(int latestRoundId) async {
     try {
-      await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const AssistanceReportScreen(),
-        ),
-      );
+      print("object");
+      if (latestRoundId != null) {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AssistanceReportScreen(
+              latestRoundId: latestRoundId,
+            ),
+          ),
+        );
+      }
     } on Exception catch (e) {
       if (!context.mounted) return;
 
@@ -495,7 +511,11 @@ class _AssistanceContentState extends State<AssistanceContent> {
   }
 }
 
-Widget _buildTabBar() {
+Widget _buildTabBar({
+  required int totalPending,
+  required int totalInprogress,
+  required int totalCompleted,
+}) {
   return TabBar(
     isScrollable: true,
     indicatorColor: MainColors.primary300,
@@ -505,9 +525,9 @@ Widget _buildTabBar() {
     labelPadding: const EdgeInsets.symmetric(horizontal: 8),
     tabs: [
       _buildTab("ทั้งหมด", 0),
-      _buildTab("รอดำเนินการ", 2),
-      _buildTab("กำลังดำเนินการ", 2),
-      _buildTab("เสร็จสิ้น", 1),
+      _buildTab("รอดำเนินการ", totalPending),
+      _buildTab("กำลังดำเนินการ", totalInprogress),
+      _buildTab("เสร็จสิ้น", totalCompleted),
     ],
   );
 }

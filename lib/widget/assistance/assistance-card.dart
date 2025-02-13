@@ -1,5 +1,4 @@
 import 'package:bst_staff_mobile/domain/model/assistance.dart';
-import 'package:bst_staff_mobile/presentation/assistance/assistance-report.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/assistance/assistance.dart';
@@ -8,9 +7,12 @@ import 'package:flutter/material.dart';
 
 class AssistanceCard extends StatelessWidget {
   final Assistance assistance;
+  final Function(int latestRoundId) onclickReport;
+
   const AssistanceCard({
     super.key,
     required this.assistance,
+    required this.onclickReport,
   });
 
   @override
@@ -19,15 +21,7 @@ class AssistanceCard extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            print("AssistanceReportScreen");
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => AssistanceReportScreen(
-            //         // assistance: assistance,
-            //         ),
-            //   ),
-            // );
+            onclickReport(assistance.latestRoundId);
           },
           child: Container(
             decoration: BoxDecoration(

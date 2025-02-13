@@ -56,3 +56,43 @@ class AssistanceEntity {
 
   Map<String, dynamic> toJson() => _$AssistanceEntityToJson(this);
 }
+
+//-------------------- lib
+
+@JsonSerializable()
+class AssistanceDetailContentEntity {
+  int? id;
+  int? assistanceTypeId;
+  String? assistanceTypeName;
+  String? assistanceTypeOther;
+  int? subDivisionId;
+  String? status;
+  String? remark;
+  int? exceedReasonId;
+  int? assistanceDepartmentId;
+  String? assistanceDepartmentName;
+  int? assistanceSubDivisionId;
+  String? assistanceSubDivisionName;
+
+  AssistanceDetailContentEntity({
+    required this.id,
+    required this.assistanceTypeId,
+    required this.assistanceTypeName,
+    required this.assistanceTypeOther,
+    required this.subDivisionId,
+    required this.status,
+    required this.remark,
+    required this.exceedReasonId,
+    required this.assistanceDepartmentId,
+    required this.assistanceDepartmentName,
+    required this.assistanceSubDivisionId,
+    required this.assistanceSubDivisionName,
+  });
+
+  factory AssistanceDetailContentEntity.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$AssistanceDetailContentEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AssistanceDetailContentEntityToJson(this);
+}
