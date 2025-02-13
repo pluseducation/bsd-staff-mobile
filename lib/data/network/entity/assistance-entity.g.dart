@@ -57,21 +57,6 @@ Map<String, dynamic> _$AssistanceEntityToJson(AssistanceEntity instance) =>
       'latestRoundId': instance.latestRoundId,
     };
 
-AssistanceDetailEntity _$AssistanceDetailEntityFromJson(
-        Map<String, dynamic> json) =>
-    AssistanceDetailEntity(
-      content: (json['content'] as List<dynamic>)
-          .map((e) =>
-              AssistanceDetailContentEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$AssistanceDetailEntityToJson(
-        AssistanceDetailEntity instance) =>
-    <String, dynamic>{
-      'content': instance.content,
-    };
-
 AssistanceDetailContentEntity _$AssistanceDetailContentEntityFromJson(
         Map<String, dynamic> json) =>
     AssistanceDetailContentEntity(

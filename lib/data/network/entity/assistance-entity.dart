@@ -95,4 +95,12 @@ class AssistanceDetailContentEntity {
       _$AssistanceDetailContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$AssistanceDetailContentEntityToJson(this);
+
+  static List<AssistanceDetailContentEntity> fromJsons(List data) =>
+      List<AssistanceDetailContentEntity>.from(
+        data.map(
+          (x) =>
+              AssistanceDetailContentEntity.fromJson(x as Map<String, dynamic>),
+        ),
+      );
 }

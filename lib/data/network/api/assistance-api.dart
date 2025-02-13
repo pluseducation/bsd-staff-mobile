@@ -56,7 +56,7 @@ class AssistanceApi extends BaseApi {
     }
   }
 
-  Future<AssistanceDetailEntity> findAssistanceByRoundById({
+  Future<List<AssistanceDetailContentEntity>> findAssistanceByRoundById({
     required int assistanceRoundId,
   }) async {
     try {
@@ -65,8 +65,8 @@ class AssistanceApi extends BaseApi {
         '/api/v1/staff/assistances/round/$assistanceRoundId/items',
       );
       if (response.statusCode == 200) {
-        return assistanceDetailEntityFromJson(
-          response.data as List,
+        return AssistanceDetailContentEntity.fromJsons(
+          response.data as List<dynamic>,
         );
       } else {
         throw Exception('Unknown error');

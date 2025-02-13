@@ -49,7 +49,7 @@ class AssistanceRepository {
       assistanceRoundId: assistanceRoundId,
     );
 
-    final models = entity.content.map((item) {
+    final models = entity.map((item) {
       return AssistanceDetail(
         assistanceTypeName: convertToString(item.assistanceTypeName),
         assistanceDepartmentName:
