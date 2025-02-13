@@ -83,9 +83,6 @@ class AssistanceContent extends StatefulWidget {
 
 class _AssistanceContentState extends State<AssistanceContent> {
   late final AssistanceModel _model;
-  late final AssistanceTypePendingModel _modelPending;
-  late final AssistanceTypeInprogressModel _modelInprogress;
-  late final AssistanceTypeCompletedModel _modelCompleted;
 
   @override
   void initState() {
@@ -96,53 +93,14 @@ class _AssistanceContentState extends State<AssistanceContent> {
           Provider.of<AssistanceRepository>(context, listen: false),
       appService: Provider.of<AppService>(context, listen: false),
     );
-
-    _modelPending = AssistanceTypePendingModel(
-      log: Provider.of<Logger>(context, listen: false),
-      assistanceRepository:
-          Provider.of<AssistanceRepository>(context, listen: false),
-      appService: Provider.of<AppService>(context, listen: false),
-    );
-
-    _modelInprogress = AssistanceTypeInprogressModel(
-      log: Provider.of<Logger>(context, listen: false),
-      assistanceRepository:
-          Provider.of<AssistanceRepository>(context, listen: false),
-      appService: Provider.of<AppService>(context, listen: false),
-    );
-
-    _modelCompleted = AssistanceTypeCompletedModel(
-      log: Provider.of<Logger>(context, listen: false),
-      assistanceRepository:
-          Provider.of<AssistanceRepository>(context, listen: false),
-      appService: Provider.of<AppService>(context, listen: false),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<AssistanceModel>.value(value: _model),
-        ChangeNotifierProvider<AssistanceTypePendingModel>.value(
-          value: _modelPending,
-        ),
-        ChangeNotifierProvider<AssistanceTypeInprogressModel>.value(
-          value: _modelInprogress,
-        ),
-        ChangeNotifierProvider<AssistanceTypeCompletedModel>.value(
-          value: _modelCompleted,
-        ),
-      ],
-      child: FutureBuilder<List<bool>>(
-        future: Future.wait(
-          [
-            _model.initData(widget.dataNotifier),
-            _modelPending.initData(),
-            _modelInprogress.initData(),
-            _modelCompleted.initData(),
-          ],
-        ),
+    return ChangeNotifierProvider<AssistanceModel>.value(
+      value: _model,
+      child: FutureBuilder<bool>(
+        future: _model.initData(widget.dataNotifier),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -151,70 +109,110 @@ class _AssistanceContentState extends State<AssistanceContent> {
           } else if (!snapshot.hasData) {
             return const Center(child: Text('ไม่พบข้อมูล'));
           } else {
-            return DefaultTabController(
-              length: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    AssistanceSearch(
-                      onValueChange: (value) async {
-                        await _model.searchByValue(value);
-                        await _modelPending.searchByValue(value);
-                        await _modelInprogress.searchByValue(value);
-                        await _modelCompleted.searchByValue(value);
-                      },
-                    ),
-                    TabBar(
-                      isScrollable: true,
-                      indicatorColor: MainColors.primary300,
-                      tabAlignment: TabAlignment.start,
-                      dividerColor: Colors.transparent,
-                      labelColor: MainColors.primary500,
-                      labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                      tabs: [
-                        Consumer<AssistanceModel>(
-                          builder: (context, model, child) {
-                            return _buildTab("ทั้งหมด", 0);
+            return Consumer<AssistanceModel>(
+              builder: (context, model, child) {
+                final assistance = model.assistance;
+                final assistancePending = model.assistancePending;
+                final assistanceInprogress = model.assistanceInprogress;
+                final assistanceCompleted = model.assistanceCompleted;
+
+                return DefaultTabController(
+                  length: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        AssistanceSearch(
+                          onValueChange: (value) async {
+                            await _model.searchByValue(value);
                           },
                         ),
-                        Consumer<AssistanceTypePendingModel>(
-                          builder: (context, model, child) {
-                            return _buildTab(
+                        TabBar(
+                          isScrollable: true,
+                          indicatorColor: MainColors.primary300,
+                          tabAlignment: TabAlignment.start,
+                          dividerColor: Colors.transparent,
+                          labelColor: MainColors.primary500,
+                          labelPadding:
+                              const EdgeInsets.symmetric(horizontal: 8),
+                          tabs: [
+                            _buildTab("ทั้งหมด", 0),
+                            _buildTab(
                               "รอดำเนินการ",
-                              model.search.totalElements,
-                            );
-                          },
-                        ),
-                        Consumer<AssistanceTypeInprogressModel>(
-                          builder: (context, model, child) {
-                            return _buildTab(
+                              _model.assistancePending.length,
+                            ),
+                            _buildTab(
                               "กำลังดำเนินการ",
-                              model.search.totalElements,
-                            );
-                          },
+                              _model.assistanceInprogress.length,
+                            ),
+                            _buildTab(
+                              "เสร็จสิ้น",
+                              model.assistanceCompleted.length,
+                            ),
+                          ],
                         ),
-                        Consumer<AssistanceTypeCompletedModel>(
-                          builder: (context, model, child) {
-                            return _buildTab(
-                                "เสร็จสิ้น", model.search.totalElements);
+                        Expanded(
+                          child: TabBarView(
+                            children: [
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      ..._buildAssistanceCard(
+                                        assistance,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      ..._buildAssistanceCard(
+                                        assistancePending,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      ..._buildAssistanceCard(
+                                        assistanceInprogress,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      ..._buildAssistanceCard(
+                                        assistanceCompleted,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        CustomPagination(
+                          currentPage: model.search.page,
+                          totalPages: model.search.totalPages,
+                          goToPage: (page) async {
+                            await model.loadData(page);
                           },
                         ),
                       ],
                     ),
-                    Expanded(
-                      child: TabBarView(
-                        children: [
-                          _buildAssistanceAll(),
-                          _buildAssistanceTypePending(),
-                          _buildAssistanceTypeInprogress(),
-                          _buildAssistanceTypeCompleted(),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             );
           }
         },
@@ -222,251 +220,7 @@ class _AssistanceContentState extends State<AssistanceContent> {
     );
   }
 
-  Widget _buildAssistanceAll() {
-    return Consumer<AssistanceModel>(
-      builder: (context, model, child) {
-        final assistance = model.assistance;
-        return Stack(
-          children: [
-            if (assistance.isEmpty) ...[
-              const Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'ไม่พบข้อมูล',
-                        style: TextStyle(
-                          color: MainColors.text,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ] else ...[
-              Positioned(
-                top: 20,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            ..._buildAssistanceAllCard(assistance),
-                          ],
-                        ),
-                      ),
-                    ),
-                    CustomPagination(
-                      currentPage: model.search.page,
-                      totalPages: model.search.totalPages,
-                      goToPage: (page) async {
-                        await model.loadData(page);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _buildAssistanceTypePending() {
-    return Consumer<AssistanceTypePendingModel>(
-      builder: (context, model, child) {
-        final assistance = model.assistance;
-        return Stack(
-          children: [
-            if (assistance.isEmpty) ...[
-              const Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'ไม่พบข้อมูล',
-                        style: TextStyle(
-                          color: MainColors.text,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ] else ...[
-              Positioned(
-                top: 20,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            ..._buildAssistanceAllCard(assistance),
-                          ],
-                        ),
-                      ),
-                    ),
-                    CustomPagination(
-                      currentPage: model.search.page,
-                      totalPages: model.search.totalPages,
-                      goToPage: (page) async {
-                        await model.loadData(page);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _buildAssistanceTypeInprogress() {
-    return Consumer<AssistanceTypeInprogressModel>(
-      builder: (context, model, child) {
-        final assistance = model.assistance;
-        return Stack(
-          children: [
-            if (assistance.isEmpty) ...[
-              const Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'ไม่พบข้อมูล',
-                        style: TextStyle(
-                          color: MainColors.text,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ] else ...[
-              Positioned(
-                top: 20,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            ..._buildAssistanceAllCard(assistance),
-                          ],
-                        ),
-                      ),
-                    ),
-                    CustomPagination(
-                      currentPage: model.search.page,
-                      totalPages: model.search.totalPages,
-                      goToPage: (page) async {
-                        await model.loadData(page);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _buildAssistanceTypeCompleted() {
-    return Consumer<AssistanceTypeCompletedModel>(
-      builder: (context, model, child) {
-        final assistance = model.assistance;
-        return Stack(
-          children: [
-            if (assistance.isEmpty) ...[
-              const Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'ไม่พบข้อมูล',
-                        style: TextStyle(
-                          color: MainColors.text,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ] else ...[
-              Positioned(
-                top: 20,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            ..._buildAssistanceAllCard(assistance),
-                          ],
-                        ),
-                      ),
-                    ),
-                    CustomPagination(
-                      currentPage: model.search.page,
-                      totalPages: model.search.totalPages,
-                      goToPage: (page) async {
-                        await model.loadData(page);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ],
-        );
-      },
-    );
-  }
-
-  List<Widget> _buildAssistanceAllCard(
+  List<Widget> _buildAssistanceCard(
     List<Assistance> assistance,
   ) {
     final List<Widget> patientCards = [];
