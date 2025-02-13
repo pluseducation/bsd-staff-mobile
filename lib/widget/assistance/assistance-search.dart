@@ -30,7 +30,7 @@ class _AssistanceSearchState extends State<AssistanceSearch> {
           children: [
             Expanded(
               child: TextField(
-                // onChanged: (value) => widget.onValueChange(value),
+                onChanged: (value) => widget.onValueChange(value),
                 controller: valueController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
@@ -57,26 +57,26 @@ class _AssistanceSearchState extends State<AssistanceSearch> {
                 ),
               ),
             ),
-            const SizedBox(
-              width: 8,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                widget.onValueChange(valueController.text);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: MainColors.primary500,
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: const Icon(
-                Icons.search,
-                color: Colors.white,
-                size: 24,
-              ),
-            ),
+            // const SizedBox(
+            //   width: 8,
+            // ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     widget.onValueChange(valueController.text);
+            //   },
+            //   style: ElevatedButton.styleFrom(
+            //     backgroundColor: MainColors.primary500,
+            //     padding: const EdgeInsets.symmetric(vertical: 4),
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(8),
+            //     ),
+            //   ),
+            //   child: const Icon(
+            //     Icons.search,
+            //     color: Colors.white,
+            //     size: 24,
+            //   ),
+            // ),
           ],
         ),
       ],

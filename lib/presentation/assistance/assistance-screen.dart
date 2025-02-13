@@ -1,7 +1,7 @@
 import 'package:bst_staff_mobile/data/repository/assistance-repository.dart';
 import 'package:bst_staff_mobile/domain/model/assistance.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/assistance/assistance-detail.dart';
+import 'package:bst_staff_mobile/presentation/assistance/assistance-detail-screen.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance.model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
@@ -171,6 +171,20 @@ class _AssistanceContentState extends State<AssistanceContent> {
   }
 
   Widget _buildAssistanceTab(List<Assistance> assistance) {
+    if (assistance.isEmpty) {
+      return const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'ไม่พบข้อมูล',
+            style: TextStyle(
+              color: MainColors.text,
+              fontSize: 24,
+            ),
+          ),
+        ],
+      );
+    }
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -210,7 +224,7 @@ class _AssistanceContentState extends State<AssistanceContent> {
         await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => AssistanceReportScreen(
+            builder: (context) => AssistanceDetailScreen(
               latestRoundId: latestRoundId,
             ),
           ),

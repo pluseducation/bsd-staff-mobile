@@ -1,6 +1,6 @@
 import 'package:bst_staff_mobile/data/repository/assistance-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/assistance/assistance.model.dart';
+import 'package:bst_staff_mobile/presentation/assistance/assistance-detail-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/assistance/assistance.dart';
@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
-class AssistanceReportScreen extends StatelessWidget {
+class AssistanceDetailScreen extends StatelessWidget {
   final int latestRoundId;
-  const AssistanceReportScreen({
+  const AssistanceDetailScreen({
     super.key,
     required this.latestRoundId,
   });
@@ -38,7 +38,7 @@ class AssistanceReportScreen extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: 600),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AssistanceReportContent(latestRoundId: latestRoundId),
+              child: AssistanceDetailContent(latestRoundId: latestRoundId),
             ),
           ),
         ),
@@ -47,16 +47,16 @@ class AssistanceReportScreen extends StatelessWidget {
   }
 }
 
-class AssistanceReportContent extends StatefulWidget {
+class AssistanceDetailContent extends StatefulWidget {
   final int latestRoundId;
-  const AssistanceReportContent({super.key, required this.latestRoundId});
+  const AssistanceDetailContent({super.key, required this.latestRoundId});
 
   @override
-  State<AssistanceReportContent> createState() =>
-      _AssistanceReportContentState();
+  State<AssistanceDetailContent> createState() =>
+      _AssistanceDetailContentState();
 }
 
-class _AssistanceReportContentState extends State<AssistanceReportContent> {
+class _AssistanceDetailContentState extends State<AssistanceDetailContent> {
   late AssistanceDetailModel _model;
 
   @override
