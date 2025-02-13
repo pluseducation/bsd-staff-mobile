@@ -34,7 +34,7 @@ class _AssistanceSearchState extends State<AssistanceSearch> {
                 controller: valueController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
-                  hintText: 'ค้นหาจากคีย์',
+                  hintText: 'ค้นหาจากชื่อ-นามสกุล,เลขบัตร/เลขแทน,เลขรอบบำบัด',
                   hintStyle: const TextStyle(
                     fontSize: FontSizes.small,
                     color: MainColors.text,

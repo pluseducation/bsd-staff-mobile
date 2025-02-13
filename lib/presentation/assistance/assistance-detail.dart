@@ -96,7 +96,7 @@ class _AssistanceReportContentState extends State<AssistanceReportContent> {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(
-                              color: const Color(0xFFDEE2E4),
+                              color: const Color(0x804F4F4F),
                               width: 0.6,
                             ),
                             borderRadius: const BorderRadius.all(

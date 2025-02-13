@@ -46,18 +46,7 @@ class AssistanceScreen extends StatelessWidget {
                   child: Center(
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 600),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            child:
-                                AssistanceContent(dataNotifier: dataNotifier),
-                          ),
-                        ],
-                      ),
+                      child: AssistanceContent(dataNotifier: dataNotifier),
                     ),
                   ),
                 ),
@@ -134,7 +123,7 @@ class _AssistanceContentState extends State<AssistanceContent> {
                           dividerColor: Colors.transparent,
                           labelColor: MainColors.primary500,
                           labelPadding:
-                              const EdgeInsets.symmetric(horizontal: 8),
+                              const EdgeInsets.symmetric(horizontal: 4),
                           tabs: [
                             _buildTab("ทั้งหมด", 0),
                             _buildTab(
@@ -151,53 +140,14 @@ class _AssistanceContentState extends State<AssistanceContent> {
                             ),
                           ],
                         ),
+                        const SizedBox(height: 8),
                         Expanded(
                           child: TabBarView(
                             children: [
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      ..._buildAssistanceCard(
-                                        assistance,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      ..._buildAssistanceCard(
-                                        assistancePending,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      ..._buildAssistanceCard(
-                                        assistanceInprogress,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      ..._buildAssistanceCard(
-                                        assistanceCompleted,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              _buildAssistanceTab(assistance),
+                              _buildAssistanceTab(assistancePending),
+                              _buildAssistanceTab(assistanceInprogress),
+                              _buildAssistanceTab(assistanceCompleted),
                             ],
                           ),
                         ),
@@ -216,6 +166,16 @@ class _AssistanceContentState extends State<AssistanceContent> {
             );
           }
         },
+      ),
+    );
+  }
+
+  Widget _buildAssistanceTab(List<Assistance> assistance) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ..._buildAssistanceCard(assistance),
+        ],
       ),
     );
   }
@@ -267,30 +227,35 @@ class _AssistanceContentState extends State<AssistanceContent> {
   }
 }
 
-Widget _buildTab(String title, int count) {
+Widget _buildTab(String title, int? count) {
   return Tab(
     child: Row(
       children: [
         Text(title, style: const TextStyle(fontSize: FontSizes.small)),
-        _buildBadge(count),
+        if (title != "ทั้งหมด") ...[
+          const SizedBox(width: 4),
+          _buildBadge(count ?? 0),
+        ],
       ],
     ),
   );
 }
 
 Widget _buildBadge(int count) {
-  if (count == 0) {
-    return const SizedBox.shrink();
-  }
   return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+    width: 24,
+    height: 24,
+    alignment: Alignment.center,
     decoration: BoxDecoration(
       color: Colors.grey.shade300,
-      borderRadius: BorderRadius.circular(16),
+      shape: BoxShape.circle,
     ),
     child: Text(
       count.toString(),
-      style: const TextStyle(fontSize: FontSizes.small, color: MainColors.text),
+      style: const TextStyle(
+        fontSize: FontSizes.text,
+        color: MainColors.text,
+      ),
     ),
   );
 }
