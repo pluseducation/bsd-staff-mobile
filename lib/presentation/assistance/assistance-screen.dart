@@ -219,17 +219,14 @@ class _AssistanceContentState extends State<AssistanceContent> {
 
   Future<void> _onAssistanceReport(int latestRoundId) async {
     try {
-      print("object");
-      if (latestRoundId != null) {
-        await Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AssistanceDetailScreen(
-              latestRoundId: latestRoundId,
-            ),
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AssistanceDetailScreen(
+            latestRoundId: latestRoundId,
           ),
-        );
-      }
+        ),
+      );
     } on Exception catch (e) {
       if (!context.mounted) return;
 

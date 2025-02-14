@@ -73,7 +73,7 @@ class BaseBottomNavigationBar extends StatelessWidget {
                 ),
                 size: 24,
               ),
-              label: 'แจ้งเตือน',
+              label: 'โปรไฟล์',
             ),
           ],
         ),

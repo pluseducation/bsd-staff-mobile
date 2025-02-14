@@ -326,11 +326,7 @@ class _ReferContentState extends State<ReferContent> {
   }
 
   Future<void> _onClickRefer(int referFromId) async {
-    try {
-      if (referFromId != null) {
-        print('referFromId: $referFromId');
-      }
-    } on Exception catch (e) {
+    try {} on Exception catch (e) {
       if (!context.mounted) return;
 
       await showInfoDialog(

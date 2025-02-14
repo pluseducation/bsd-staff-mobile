@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/presentation/history/patient-history-screen.dart';
 import 'package:bst_staff_mobile/presentation/menu/menu-screen.dart';
-import 'package:bst_staff_mobile/presentation/notifications/notification-screen.dart';
+import 'package:bst_staff_mobile/presentation/notification/notification-screen.dart';
+import 'package:bst_staff_mobile/presentation/profile/profile-screen.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-bottom-navigationbar.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 3:
         return const NotificationScreen();
       case 4:
-        return Text('Selected Index: $index');
+        return const ProfileScreen();
       default:
         return Text('Selected Index: $index');
     }

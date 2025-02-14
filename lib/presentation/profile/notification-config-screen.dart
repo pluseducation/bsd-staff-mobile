@@ -1,27 +1,27 @@
 import 'package:bst_staff_mobile/data/repository/notification-config-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/profile/profile-provider.dart';
+import 'package:bst_staff_mobile/presentation/profile/notification-config-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
-class NotificationSettingScreen extends StatefulWidget {
-  const NotificationSettingScreen({super.key});
+class NotificationConfigScreen extends StatefulWidget {
+  const NotificationConfigScreen({super.key});
 
   @override
-  _NotificationSettingScreenState createState() =>
-      _NotificationSettingScreenState();
+  _NotificationConfigScreenState createState() =>
+      _NotificationConfigScreenState();
 }
 
-class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
-  late NotificationProvider _model;
+class _NotificationConfigScreenState extends State<NotificationConfigScreen> {
+  late NotificationConfigModel _model;
 
   @override
   void initState() {
     super.initState();
-    _model = NotificationProvider(
+    _model = NotificationConfigModel(
       log: Provider.of<Logger>(super.context, listen: false),
       notificationRepository: Provider.of<NotificationConfigRepository>(
           super.context,
@@ -34,7 +34,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<NotificationProvider>.value(
+    return ChangeNotifierProvider<NotificationConfigModel>.value(
       value: _model,
       child: Scaffold(
         appBar: AppBar(
@@ -58,7 +58,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
             } else if (!snapshot.hasData) {
               return const Center(child: Text('ไม่พบข้อมูล'));
             } else {
-              return Consumer<NotificationProvider>(
+              return Consumer<NotificationConfigModel>(
                 builder: (context, model, child) {
                   final notification = model.notification;
                   return SingleChildScrollView(

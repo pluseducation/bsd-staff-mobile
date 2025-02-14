@@ -1,7 +1,8 @@
 import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
 import 'package:bst_staff_mobile/domain/model/notification-app.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/notifications/notification-model.dart';
+import 'package:bst_staff_mobile/presentation/notification/notification-model.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
@@ -124,15 +125,19 @@ class _NotificationContentState extends State<NotificationContent> {
               builder: (context, model, child) {
                 final notifications = model.notifications;
                 if (notifications.isEmpty) {
-                  return const Expanded(
+                  return Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'ไม่พบข้อมูล',
+                        Image.asset(
+                          "assets/images/empty_notification.png",
+                          height: 200,
+                        ),
+                        const Text(
+                          'ยังไม่มีแจ้งเตือน',
                           style: TextStyle(
-                            color: MainColors.text,
-                            fontSize: 24,
+                            fontSize: FontSizes.medium,
+                            color: MainColors.primary300,
                           ),
                         ),
                       ],
