@@ -1,8 +1,8 @@
 import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
-import 'package:bst_staff_mobile/data/network/entity/certificate-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/certificate.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
+import 'package:bst_staff_mobile/util/enum.dart';
 
 class CertificateRepository {
   final CertificateApi certificateApi;
@@ -13,22 +13,22 @@ class CertificateRepository {
     required this.networkMapper,
   });
 
-  Future<Certificate> findCertificateByName({
-    required String name,
+  Future<List<Certificate>> findCertificateAll({
+    required SearchCertificate search,
   }) async {
-    final CertificateEntity certificateEntity =
-        await certificateApi.findCertificateAll(name: name);
+    final entity = await certificateApi.findCertificateAll(
+      searchCertificate: search,
+    );
 
-    List<CertificateRequest> certificateAlls = [];
-    final List<CertificateRequest> certificateRequests = [];
-    final List<CertificateRequest> certificateCompletes = [];
+    search.totalElements = entity.totalElements!;
+    search.totalPages = entity.totalPages!;
 
-    for (final content in certificateEntity.content ?? []) {
+    final models = entity.content!.map((item) {
       final String fullname =
-          "${convertToString(content.name)} ${convertToString(content.surname)}";
-      final String nationalId = convertToString(content.nationalId);
+          "${convertToString(item.name)} ${convertToString(item.surname)}";
+      final String nationalId = convertToString(item.nationalId);
 
-      final DateTime? requestedDate = content.requestedDate as DateTime?;
+      final DateTime? requestedDate = item.requestedDate;
       final String requestedDateText = convertThaiDate(requestedDate);
       final DateTime currentDate = DateTime.now();
       final Duration difference =
@@ -38,28 +38,18 @@ class CertificateRepository {
       final String finalRequestedDateText =
           "$requestedDateText ($sum วันที่แล้ว)";
 
-      final String status = convertToString(content.status);
+      final String status = convertToString(item.status);
 
-      final certificateRequest = CertificateRequest(
+      return Certificate(
+        id: convertToInt(item.id),
         fullName: fullname,
-        nationalId: nationalId,
+        nationalId: convertToString(item.nationalId),
+        cycle: '', //convertToString(item.cycle)
         requestedDateText: finalRequestedDateText,
-        status: status,
+        certificateStatus: CertificateStatus.setValue(status),
       );
+    }).toList();
 
-      if (status == 'COMPLETED') {
-        certificateCompletes.add(certificateRequest);
-      } else if (status == 'REQUEST') {
-        certificateRequests.add(certificateRequest);
-      }
-    }
-
-    certificateAlls = certificateRequests + certificateCompletes;
-
-    return Certificate(
-      alls: certificateAlls,
-      requests: certificateRequests,
-      completes: certificateCompletes,
-    );
+    return models;
   }
 }

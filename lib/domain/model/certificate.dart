@@ -1,22 +1,27 @@
+import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'certificate.freezed.dart';
 
-@freezed
-class Certificate with _$Certificate {
-  const factory Certificate({
-    required List<CertificateRequest> alls,
-    required List<CertificateRequest> requests,
-    required List<CertificateRequest> completes,
-  }) = _CertificateAll;
+@unfreezed
+class SearchCertificate with _$SearchCertificate {
+  factory SearchCertificate({
+    required String searchVal,
+    required int page,
+    required int totalPages,
+    required int totalElements,
+    required int size,
+  }) = _SearchCertificate;
 }
 
 @freezed
-class CertificateRequest with _$CertificateRequest {
-  const factory CertificateRequest({
+class Certificate with _$Certificate {
+  const factory Certificate({
+    required int id,
     required String fullName, //  name + surname
     required String nationalId, // เลขบัตร
+    required String cycle,
     required String requestedDateText, // วันที่ขอ
-    required String status, // สถานะ
-  }) = _CertificateRequest;
+    required CertificateStatus? certificateStatus,
+  }) = _Certificate;
 }

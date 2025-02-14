@@ -8,42 +8,24 @@ part of 'certificate-entity.dart';
 
 CertificateEntity _$CertificateEntityFromJson(Map<String, dynamic> json) =>
     CertificateEntity(
+      content: (json['content'] as List<dynamic>?)
+          ?.map((e) =>
+              CertificateContentEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
       totalPages: (json['totalPages'] as num?)?.toInt(),
       totalElements: (json['totalElements'] as num?)?.toInt(),
-      first: json['first'] as bool?,
-      last: json['last'] as bool?,
-      size: (json['size'] as num?)?.toInt(),
-      content: (json['content'] as List<dynamic>?)
-          ?.map((e) => ContentEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      number: (json['number'] as num?)?.toInt(),
-      sort: json['sort'] == null
-          ? null
-          : SortEntity.fromJson(json['sort'] as Map<String, dynamic>),
-      numberOfElements: (json['numberOfElements'] as num?)?.toInt(),
-      pageable: json['pageable'] == null
-          ? null
-          : PageableEntity.fromJson(json['pageable'] as Map<String, dynamic>),
-      empty: json['empty'] as bool?,
     );
 
 Map<String, dynamic> _$CertificateEntityToJson(CertificateEntity instance) =>
     <String, dynamic>{
+      'content': instance.content,
       'totalPages': instance.totalPages,
       'totalElements': instance.totalElements,
-      'first': instance.first,
-      'last': instance.last,
-      'size': instance.size,
-      'content': instance.content,
-      'number': instance.number,
-      'sort': instance.sort,
-      'numberOfElements': instance.numberOfElements,
-      'pageable': instance.pageable,
-      'empty': instance.empty,
     };
 
-ContentEntity _$ContentEntityFromJson(Map<String, dynamic> json) =>
-    ContentEntity(
+CertificateContentEntity _$CertificateContentEntityFromJson(
+        Map<String, dynamic> json) =>
+    CertificateContentEntity(
       name: json['name'] as String?,
       id: (json['id'] as num?)?.toInt(),
       status: json['status'] as String?,
@@ -59,50 +41,16 @@ ContentEntity _$ContentEntityFromJson(Map<String, dynamic> json) =>
       approvedSurname: json['approvedSurname'] as String?,
     );
 
-Map<String, dynamic> _$ContentEntityToJson(ContentEntity instance) =>
+Map<String, dynamic> _$CertificateContentEntityToJson(
+        CertificateContentEntity instance) =>
     <String, dynamic>{
+      'status': instance.status,
       'name': instance.name,
       'id': instance.id,
-      'status': instance.status,
-      'surname': instance.surname,
       'nationalId': instance.nationalId,
+      'surname': instance.surname,
       'requestedDate': instance.requestedDate?.toIso8601String(),
       'approvedDate': instance.approvedDate?.toIso8601String(),
       'approvedName': instance.approvedName,
       'approvedSurname': instance.approvedSurname,
-    };
-
-PageableEntity _$PageableEntityFromJson(Map<String, dynamic> json) =>
-    PageableEntity(
-      offset: (json['offset'] as num?)?.toInt(),
-      sort: json['sort'] == null
-          ? null
-          : SortEntity.fromJson(json['sort'] as Map<String, dynamic>),
-      pageNumber: (json['pageNumber'] as num?)?.toInt(),
-      pageSize: (json['pageSize'] as num?)?.toInt(),
-      paged: json['paged'] as bool?,
-      unpaged: json['unpaged'] as bool?,
-    );
-
-Map<String, dynamic> _$PageableEntityToJson(PageableEntity instance) =>
-    <String, dynamic>{
-      'offset': instance.offset,
-      'sort': instance.sort,
-      'pageNumber': instance.pageNumber,
-      'pageSize': instance.pageSize,
-      'paged': instance.paged,
-      'unpaged': instance.unpaged,
-    };
-
-SortEntity _$SortEntityFromJson(Map<String, dynamic> json) => SortEntity(
-      empty: json['empty'] as bool?,
-      sorted: json['sorted'] as bool?,
-      unsorted: json['unsorted'] as bool?,
-    );
-
-Map<String, dynamic> _$SortEntityToJson(SortEntity instance) =>
-    <String, dynamic>{
-      'empty': instance.empty,
-      'sorted': instance.sorted,
-      'unsorted': instance.unsorted,
     };

@@ -15,10 +15,223 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
+mixin _$SearchCertificate {
+  String get searchVal => throw _privateConstructorUsedError;
+  set searchVal(String value) => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  set page(int value) => throw _privateConstructorUsedError;
+  int get totalPages => throw _privateConstructorUsedError;
+  set totalPages(int value) => throw _privateConstructorUsedError;
+  int get totalElements => throw _privateConstructorUsedError;
+  set totalElements(int value) => throw _privateConstructorUsedError;
+  int get size => throw _privateConstructorUsedError;
+  set size(int value) => throw _privateConstructorUsedError;
+
+  /// Create a copy of SearchCertificate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SearchCertificateCopyWith<SearchCertificate> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchCertificateCopyWith<$Res> {
+  factory $SearchCertificateCopyWith(
+          SearchCertificate value, $Res Function(SearchCertificate) then) =
+      _$SearchCertificateCopyWithImpl<$Res, SearchCertificate>;
+  @useResult
+  $Res call(
+      {String searchVal,
+      int page,
+      int totalPages,
+      int totalElements,
+      int size});
+}
+
+/// @nodoc
+class _$SearchCertificateCopyWithImpl<$Res, $Val extends SearchCertificate>
+    implements $SearchCertificateCopyWith<$Res> {
+  _$SearchCertificateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of SearchCertificate
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? searchVal = null,
+    Object? page = null,
+    Object? totalPages = null,
+    Object? totalElements = null,
+    Object? size = null,
+  }) {
+    return _then(_value.copyWith(
+      searchVal: null == searchVal
+          ? _value.searchVal
+          : searchVal // ignore: cast_nullable_to_non_nullable
+              as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalElements: null == totalElements
+          ? _value.totalElements
+          : totalElements // ignore: cast_nullable_to_non_nullable
+              as int,
+      size: null == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SearchCertificateImplCopyWith<$Res>
+    implements $SearchCertificateCopyWith<$Res> {
+  factory _$$SearchCertificateImplCopyWith(_$SearchCertificateImpl value,
+          $Res Function(_$SearchCertificateImpl) then) =
+      __$$SearchCertificateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String searchVal,
+      int page,
+      int totalPages,
+      int totalElements,
+      int size});
+}
+
+/// @nodoc
+class __$$SearchCertificateImplCopyWithImpl<$Res>
+    extends _$SearchCertificateCopyWithImpl<$Res, _$SearchCertificateImpl>
+    implements _$$SearchCertificateImplCopyWith<$Res> {
+  __$$SearchCertificateImplCopyWithImpl(_$SearchCertificateImpl _value,
+      $Res Function(_$SearchCertificateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SearchCertificate
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? searchVal = null,
+    Object? page = null,
+    Object? totalPages = null,
+    Object? totalElements = null,
+    Object? size = null,
+  }) {
+    return _then(_$SearchCertificateImpl(
+      searchVal: null == searchVal
+          ? _value.searchVal
+          : searchVal // ignore: cast_nullable_to_non_nullable
+              as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalElements: null == totalElements
+          ? _value.totalElements
+          : totalElements // ignore: cast_nullable_to_non_nullable
+              as int,
+      size: null == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchCertificateImpl implements _SearchCertificate {
+  _$SearchCertificateImpl(
+      {required this.searchVal,
+      required this.page,
+      required this.totalPages,
+      required this.totalElements,
+      required this.size});
+
+  @override
+  String searchVal;
+  @override
+  int page;
+  @override
+  int totalPages;
+  @override
+  int totalElements;
+  @override
+  int size;
+
+  @override
+  String toString() {
+    return 'SearchCertificate(searchVal: $searchVal, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
+  }
+
+  /// Create a copy of SearchCertificate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchCertificateImplCopyWith<_$SearchCertificateImpl> get copyWith =>
+      __$$SearchCertificateImplCopyWithImpl<_$SearchCertificateImpl>(
+          this, _$identity);
+}
+
+abstract class _SearchCertificate implements SearchCertificate {
+  factory _SearchCertificate(
+      {required String searchVal,
+      required int page,
+      required int totalPages,
+      required int totalElements,
+      required int size}) = _$SearchCertificateImpl;
+
+  @override
+  String get searchVal;
+  set searchVal(String value);
+  @override
+  int get page;
+  set page(int value);
+  @override
+  int get totalPages;
+  set totalPages(int value);
+  @override
+  int get totalElements;
+  set totalElements(int value);
+  @override
+  int get size;
+  set size(int value);
+
+  /// Create a copy of SearchCertificate
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchCertificateImplCopyWith<_$SearchCertificateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$Certificate {
-  List<CertificateRequest> get alls => throw _privateConstructorUsedError;
-  List<CertificateRequest> get requests => throw _privateConstructorUsedError;
-  List<CertificateRequest> get completes => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError; //  name + surname
+  String get nationalId => throw _privateConstructorUsedError; // เลขบัตร
+  String get cycle => throw _privateConstructorUsedError;
+  String get requestedDateText =>
+      throw _privateConstructorUsedError; // วันที่ขอ
+  CertificateStatus? get certificateStatus =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of Certificate
   /// with the given fields replaced by the non-null parameter values.
@@ -34,9 +247,12 @@ abstract class $CertificateCopyWith<$Res> {
       _$CertificateCopyWithImpl<$Res, Certificate>;
   @useResult
   $Res call(
-      {List<CertificateRequest> alls,
-      List<CertificateRequest> requests,
-      List<CertificateRequest> completes});
+      {int id,
+      String fullName,
+      String nationalId,
+      String cycle,
+      String requestedDateText,
+      CertificateStatus? certificateStatus});
 }
 
 /// @nodoc
@@ -54,47 +270,65 @@ class _$CertificateCopyWithImpl<$Res, $Val extends Certificate>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? alls = null,
-    Object? requests = null,
-    Object? completes = null,
+    Object? id = null,
+    Object? fullName = null,
+    Object? nationalId = null,
+    Object? cycle = null,
+    Object? requestedDateText = null,
+    Object? certificateStatus = freezed,
   }) {
     return _then(_value.copyWith(
-      alls: null == alls
-          ? _value.alls
-          : alls // ignore: cast_nullable_to_non_nullable
-              as List<CertificateRequest>,
-      requests: null == requests
-          ? _value.requests
-          : requests // ignore: cast_nullable_to_non_nullable
-              as List<CertificateRequest>,
-      completes: null == completes
-          ? _value.completes
-          : completes // ignore: cast_nullable_to_non_nullable
-              as List<CertificateRequest>,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      nationalId: null == nationalId
+          ? _value.nationalId
+          : nationalId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
+              as String,
+      requestedDateText: null == requestedDateText
+          ? _value.requestedDateText
+          : requestedDateText // ignore: cast_nullable_to_non_nullable
+              as String,
+      certificateStatus: freezed == certificateStatus
+          ? _value.certificateStatus
+          : certificateStatus // ignore: cast_nullable_to_non_nullable
+              as CertificateStatus?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$CertificateAllImplCopyWith<$Res>
+abstract class _$$CertificateImplCopyWith<$Res>
     implements $CertificateCopyWith<$Res> {
-  factory _$$CertificateAllImplCopyWith(_$CertificateAllImpl value,
-          $Res Function(_$CertificateAllImpl) then) =
-      __$$CertificateAllImplCopyWithImpl<$Res>;
+  factory _$$CertificateImplCopyWith(
+          _$CertificateImpl value, $Res Function(_$CertificateImpl) then) =
+      __$$CertificateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {List<CertificateRequest> alls,
-      List<CertificateRequest> requests,
-      List<CertificateRequest> completes});
+      {int id,
+      String fullName,
+      String nationalId,
+      String cycle,
+      String requestedDateText,
+      CertificateStatus? certificateStatus});
 }
 
 /// @nodoc
-class __$$CertificateAllImplCopyWithImpl<$Res>
-    extends _$CertificateCopyWithImpl<$Res, _$CertificateAllImpl>
-    implements _$$CertificateAllImplCopyWith<$Res> {
-  __$$CertificateAllImplCopyWithImpl(
-      _$CertificateAllImpl _value, $Res Function(_$CertificateAllImpl) _then)
+class __$$CertificateImplCopyWithImpl<$Res>
+    extends _$CertificateCopyWithImpl<$Res, _$CertificateImpl>
+    implements _$$CertificateImplCopyWith<$Res> {
+  __$$CertificateImplCopyWithImpl(
+      _$CertificateImpl _value, $Res Function(_$CertificateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of Certificate
@@ -102,166 +336,18 @@ class __$$CertificateAllImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? alls = null,
-    Object? requests = null,
-    Object? completes = null,
-  }) {
-    return _then(_$CertificateAllImpl(
-      alls: null == alls
-          ? _value._alls
-          : alls // ignore: cast_nullable_to_non_nullable
-              as List<CertificateRequest>,
-      requests: null == requests
-          ? _value._requests
-          : requests // ignore: cast_nullable_to_non_nullable
-              as List<CertificateRequest>,
-      completes: null == completes
-          ? _value._completes
-          : completes // ignore: cast_nullable_to_non_nullable
-              as List<CertificateRequest>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CertificateAllImpl implements _CertificateAll {
-  const _$CertificateAllImpl(
-      {required final List<CertificateRequest> alls,
-      required final List<CertificateRequest> requests,
-      required final List<CertificateRequest> completes})
-      : _alls = alls,
-        _requests = requests,
-        _completes = completes;
-
-  final List<CertificateRequest> _alls;
-  @override
-  List<CertificateRequest> get alls {
-    if (_alls is EqualUnmodifiableListView) return _alls;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_alls);
-  }
-
-  final List<CertificateRequest> _requests;
-  @override
-  List<CertificateRequest> get requests {
-    if (_requests is EqualUnmodifiableListView) return _requests;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_requests);
-  }
-
-  final List<CertificateRequest> _completes;
-  @override
-  List<CertificateRequest> get completes {
-    if (_completes is EqualUnmodifiableListView) return _completes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_completes);
-  }
-
-  @override
-  String toString() {
-    return 'Certificate(alls: $alls, requests: $requests, completes: $completes)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CertificateAllImpl &&
-            const DeepCollectionEquality().equals(other._alls, _alls) &&
-            const DeepCollectionEquality().equals(other._requests, _requests) &&
-            const DeepCollectionEquality()
-                .equals(other._completes, _completes));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_alls),
-      const DeepCollectionEquality().hash(_requests),
-      const DeepCollectionEquality().hash(_completes));
-
-  /// Create a copy of Certificate
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CertificateAllImplCopyWith<_$CertificateAllImpl> get copyWith =>
-      __$$CertificateAllImplCopyWithImpl<_$CertificateAllImpl>(
-          this, _$identity);
-}
-
-abstract class _CertificateAll implements Certificate {
-  const factory _CertificateAll(
-          {required final List<CertificateRequest> alls,
-          required final List<CertificateRequest> requests,
-          required final List<CertificateRequest> completes}) =
-      _$CertificateAllImpl;
-
-  @override
-  List<CertificateRequest> get alls;
-  @override
-  List<CertificateRequest> get requests;
-  @override
-  List<CertificateRequest> get completes;
-
-  /// Create a copy of Certificate
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CertificateAllImplCopyWith<_$CertificateAllImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$CertificateRequest {
-  String get fullName => throw _privateConstructorUsedError; //  name + surname
-  String get nationalId => throw _privateConstructorUsedError; // เลขบัตร
-  String get requestedDateText =>
-      throw _privateConstructorUsedError; // วันที่ขอ
-  String get status => throw _privateConstructorUsedError;
-
-  /// Create a copy of CertificateRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CertificateRequestCopyWith<CertificateRequest> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CertificateRequestCopyWith<$Res> {
-  factory $CertificateRequestCopyWith(
-          CertificateRequest value, $Res Function(CertificateRequest) then) =
-      _$CertificateRequestCopyWithImpl<$Res, CertificateRequest>;
-  @useResult
-  $Res call(
-      {String fullName,
-      String nationalId,
-      String requestedDateText,
-      String status});
-}
-
-/// @nodoc
-class _$CertificateRequestCopyWithImpl<$Res, $Val extends CertificateRequest>
-    implements $CertificateRequestCopyWith<$Res> {
-  _$CertificateRequestCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of CertificateRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
+    Object? id = null,
     Object? fullName = null,
     Object? nationalId = null,
+    Object? cycle = null,
     Object? requestedDateText = null,
-    Object? status = null,
+    Object? certificateStatus = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_$CertificateImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -270,81 +356,35 @@ class _$CertificateRequestCopyWithImpl<$Res, $Val extends CertificateRequest>
           ? _value.nationalId
           : nationalId // ignore: cast_nullable_to_non_nullable
               as String,
-      requestedDateText: null == requestedDateText
-          ? _value.requestedDateText
-          : requestedDateText // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$CertificateRequestImplCopyWith<$Res>
-    implements $CertificateRequestCopyWith<$Res> {
-  factory _$$CertificateRequestImplCopyWith(_$CertificateRequestImpl value,
-          $Res Function(_$CertificateRequestImpl) then) =
-      __$$CertificateRequestImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String fullName,
-      String nationalId,
-      String requestedDateText,
-      String status});
-}
-
-/// @nodoc
-class __$$CertificateRequestImplCopyWithImpl<$Res>
-    extends _$CertificateRequestCopyWithImpl<$Res, _$CertificateRequestImpl>
-    implements _$$CertificateRequestImplCopyWith<$Res> {
-  __$$CertificateRequestImplCopyWithImpl(_$CertificateRequestImpl _value,
-      $Res Function(_$CertificateRequestImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CertificateRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fullName = null,
-    Object? nationalId = null,
-    Object? requestedDateText = null,
-    Object? status = null,
-  }) {
-    return _then(_$CertificateRequestImpl(
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      nationalId: null == nationalId
-          ? _value.nationalId
-          : nationalId // ignore: cast_nullable_to_non_nullable
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
               as String,
       requestedDateText: null == requestedDateText
           ? _value.requestedDateText
           : requestedDateText // ignore: cast_nullable_to_non_nullable
               as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      certificateStatus: freezed == certificateStatus
+          ? _value.certificateStatus
+          : certificateStatus // ignore: cast_nullable_to_non_nullable
+              as CertificateStatus?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$CertificateRequestImpl implements _CertificateRequest {
-  const _$CertificateRequestImpl(
-      {required this.fullName,
+class _$CertificateImpl implements _Certificate {
+  const _$CertificateImpl(
+      {required this.id,
+      required this.fullName,
       required this.nationalId,
+      required this.cycle,
       required this.requestedDateText,
-      required this.status});
+      required this.certificateStatus});
 
+  @override
+  final int id;
   @override
   final String fullName;
 //  name + surname
@@ -352,64 +392,74 @@ class _$CertificateRequestImpl implements _CertificateRequest {
   final String nationalId;
 // เลขบัตร
   @override
+  final String cycle;
+  @override
   final String requestedDateText;
 // วันที่ขอ
   @override
-  final String status;
+  final CertificateStatus? certificateStatus;
 
   @override
   String toString() {
-    return 'CertificateRequest(fullName: $fullName, nationalId: $nationalId, requestedDateText: $requestedDateText, status: $status)';
+    return 'Certificate(id: $id, fullName: $fullName, nationalId: $nationalId, cycle: $cycle, requestedDateText: $requestedDateText, certificateStatus: $certificateStatus)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CertificateRequestImpl &&
+            other is _$CertificateImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
             (identical(other.nationalId, nationalId) ||
                 other.nationalId == nationalId) &&
+            (identical(other.cycle, cycle) || other.cycle == cycle) &&
             (identical(other.requestedDateText, requestedDateText) ||
                 other.requestedDateText == requestedDateText) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.certificateStatus, certificateStatus) ||
+                other.certificateStatus == certificateStatus));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, fullName, nationalId, requestedDateText, status);
+  int get hashCode => Object.hash(runtimeType, id, fullName, nationalId, cycle,
+      requestedDateText, certificateStatus);
 
-  /// Create a copy of CertificateRequest
+  /// Create a copy of Certificate
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CertificateRequestImplCopyWith<_$CertificateRequestImpl> get copyWith =>
-      __$$CertificateRequestImplCopyWithImpl<_$CertificateRequestImpl>(
-          this, _$identity);
+  _$$CertificateImplCopyWith<_$CertificateImpl> get copyWith =>
+      __$$CertificateImplCopyWithImpl<_$CertificateImpl>(this, _$identity);
 }
 
-abstract class _CertificateRequest implements CertificateRequest {
-  const factory _CertificateRequest(
-      {required final String fullName,
+abstract class _Certificate implements Certificate {
+  const factory _Certificate(
+      {required final int id,
+      required final String fullName,
       required final String nationalId,
+      required final String cycle,
       required final String requestedDateText,
-      required final String status}) = _$CertificateRequestImpl;
+      required final CertificateStatus? certificateStatus}) = _$CertificateImpl;
 
+  @override
+  int get id;
   @override
   String get fullName; //  name + surname
   @override
   String get nationalId; // เลขบัตร
   @override
+  String get cycle;
+  @override
   String get requestedDateText; // วันที่ขอ
   @override
-  String get status;
+  CertificateStatus? get certificateStatus;
 
-  /// Create a copy of CertificateRequest
+  /// Create a copy of Certificate
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CertificateRequestImplCopyWith<_$CertificateRequestImpl> get copyWith =>
+  _$$CertificateImplCopyWith<_$CertificateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

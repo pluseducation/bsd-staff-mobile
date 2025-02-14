@@ -3,30 +3,14 @@ part 'certificate-entity.g.dart';
 
 @JsonSerializable()
 class CertificateEntity {
+  List<CertificateContentEntity>? content;
   int? totalPages;
   int? totalElements;
-  bool? first;
-  bool? last;
-  int? size;
-  List<ContentEntity>? content;
-  int? number;
-  SortEntity? sort;
-  int? numberOfElements;
-  PageableEntity? pageable;
-  bool? empty;
 
   CertificateEntity({
+    required this.content,
     required this.totalPages,
     required this.totalElements,
-    required this.first,
-    required this.last,
-    required this.size,
-    required this.content,
-    required this.number,
-    required this.sort,
-    required this.numberOfElements,
-    required this.pageable,
-    required this.empty,
   });
   factory CertificateEntity.fromJson(Map<String, dynamic> json) =>
       _$CertificateEntityFromJson(json);
@@ -35,18 +19,18 @@ class CertificateEntity {
 }
 
 @JsonSerializable()
-class ContentEntity {
+class CertificateContentEntity {
+  String? status;
   String? name;
   int? id;
-  String? status;
-  String? surname;
   String? nationalId;
+  String? surname;
   DateTime? requestedDate;
   DateTime? approvedDate;
   String? approvedName;
   String? approvedSurname;
 
-  ContentEntity({
+  CertificateContentEntity({
     required this.name,
     required this.id,
     required this.status,
@@ -58,49 +42,49 @@ class ContentEntity {
     required this.approvedSurname,
   });
 
-  factory ContentEntity.fromJson(Map<String, dynamic> json) =>
-      _$ContentEntityFromJson(json);
+  factory CertificateContentEntity.fromJson(Map<String, dynamic> json) =>
+      _$CertificateContentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ContentEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CertificateContentEntityToJson(this);
 }
 
-@JsonSerializable()
-class PageableEntity {
-  int? offset;
-  SortEntity? sort;
-  int? pageNumber;
-  int? pageSize;
-  bool? paged;
-  bool? unpaged;
+// @JsonSerializable()
+// class PageableEntity {
+//   int? offset;
+//   SortEntity? sort;
+//   int? pageNumber;
+//   int? pageSize;
+//   bool? paged;
+//   bool? unpaged;
 
-  PageableEntity({
-    required this.offset,
-    required this.sort,
-    required this.pageNumber,
-    required this.pageSize,
-    required this.paged,
-    required this.unpaged,
-  });
+//   PageableEntity({
+//     required this.offset,
+//     required this.sort,
+//     required this.pageNumber,
+//     required this.pageSize,
+//     required this.paged,
+//     required this.unpaged,
+//   });
 
-  factory PageableEntity.fromJson(Map<String, dynamic> json) =>
-      _$PageableEntityFromJson(json);
+//   factory PageableEntity.fromJson(Map<String, dynamic> json) =>
+//       _$PageableEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PageableEntityToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$PageableEntityToJson(this);
+// }
 
-@JsonSerializable()
-class SortEntity {
-  bool? empty;
-  bool? sorted;
-  bool? unsorted;
+// @JsonSerializable()
+// class SortEntity {
+//   bool? empty;
+//   bool? sorted;
+//   bool? unsorted;
 
-  SortEntity({
-    required this.empty,
-    required this.sorted,
-    required this.unsorted,
-  });
-  factory SortEntity.fromJson(Map<String, dynamic> json) =>
-      _$SortEntityFromJson(json);
+//   SortEntity({
+//     required this.empty,
+//     required this.sorted,
+//     required this.unsorted,
+//   });
+//   factory SortEntity.fromJson(Map<String, dynamic> json) =>
+//       _$SortEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SortEntityToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$SortEntityToJson(this);
+// }

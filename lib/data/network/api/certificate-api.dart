@@ -1,18 +1,30 @@
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/certificate-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
+import 'package:bst_staff_mobile/domain/model/certificate.dart';
 import 'package:dio/dio.dart';
 
 class CertificateApi extends BaseApi {
   CertificateApi({required super.baseUrl});
 
   Future<CertificateEntity> findCertificateAll({
-    required String name,
+    required SearchCertificate searchCertificate,
   }) async {
     try {
       final Dio dio = await getPrivateDio();
+
+      final Map<String, dynamic> queryParameters = {
+        'page': searchCertificate.page,
+        'size': searchCertificate.size,
+      };
+
+      if (searchCertificate.searchVal.isNotEmpty) {
+        queryParameters['searchVal'] = searchCertificate.searchVal;
+      }
+
       final response = await dio.get(
-        '/api/v1/staff/certificaterequests?name=$name&page=0&size=10000',
+        '/api/v1/staff/certificaterequests?',
+        queryParameters: queryParameters,
       );
       if (response.statusCode == 200) {
         return CertificateEntity.fromJson(
