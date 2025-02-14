@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/presentation/appointment/appointment-screen.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
+import 'package:bst_staff_mobile/presentation/refer/refer-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
@@ -184,6 +185,15 @@ class _MenuContentState extends State<MenuContent> {
           context,
           MaterialPageRoute(
             builder: (context) => const AssistanceScreen(),
+          ),
+        );
+      } else if (name == "Certificate") {
+        print("Certificate");
+      } else if (name == "Refer") {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ReferScreen(),
           ),
         );
       }
