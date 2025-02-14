@@ -1,28 +1,19 @@
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
-import 'package:bst_staff_mobile/data/network/entity/notification-entity.dart';
+import 'package:bst_staff_mobile/data/network/entity/notification-config-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
-import 'package:bst_staff_mobile/domain/model/notification-app.dart';
 import 'package:dio/dio.dart';
 
-class NotificationApi extends BaseApi {
-  NotificationApi({required super.baseUrl});
+class NotificationConfigApi extends BaseApi {
+  NotificationConfigApi({required super.baseUrl});
 
-  Future<NotificationEntity> findAll(SearchNotification search) async {
+  Future<NotificationConfigEntity> findNotification() async {
     try {
       final Dio dio = await getPrivateDio();
-
-      final Map<String, dynamic> queryParameters = {
-        'page': search.page,
-        'size': search.size,
-      };
-
       final response = await dio.get(
-        '/api/v1/staff/notifications',
-        queryParameters: queryParameters,
+        '/api/v1/staff/notificationconfigs',
       );
-
       if (response.statusCode == 200) {
-        return NotificationEntity.fromJson(
+        return NotificationConfigEntity.fromJson(
           response.data as Map<String, dynamic>,
         );
       } else {
@@ -32,7 +23,7 @@ class NotificationApi extends BaseApi {
       if (error.response != null) {
         throw NetworkException(
           statusCode: error.response?.statusCode,
-          message: error.response?.data as String,
+          message: error.response?.data.toString(),
         );
       } else {
         throw NetworkException(
@@ -45,14 +36,28 @@ class NotificationApi extends BaseApi {
     }
   }
 
-  Future<void> updateAcknowledged(int id) async {
+  Future<bool> updateNotification({
+    required bool appointment,
+    required bool monitoring,
+    required bool refer,
+    required bool assistant,
+    required bool login,
+  }) async {
     try {
       final Dio dio = await getPrivateDio();
-      final response = await dio.patch(
-        "/api/v1/notifications/acknowledged/$id",
+      final response = await dio.post(
+        '/api/v1/staff/notificationconfigs',
+        data: {
+          'appointment': appointment,
+          'monitoring': monitoring,
+          'refer': refer,
+          'assistant': assistant,
+          'login': login,
+        },
       );
 
       if (response.statusCode == 200) {
+        return response.data as bool;
       } else {
         throw Exception('Unknown error');
       }

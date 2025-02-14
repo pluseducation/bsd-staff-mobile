@@ -30,7 +30,7 @@ class BaseBottomNavigationBar extends StatelessWidget {
               icon: ImageIcon(
                 AssetImage(
                   currentIndex == 0
-                      ? 'assets/images/icon_home1.png'
+                      ? 'assets/images/icon_home_fill.png'
                       : 'assets/images/icon_home.png',
                 ),
                 size: 24,
@@ -41,7 +41,7 @@ class BaseBottomNavigationBar extends StatelessWidget {
               icon: ImageIcon(
                 AssetImage(
                   currentIndex == 1
-                      ? 'assets/images/icon_search1.png'
+                      ? 'assets/images/icon_search_fill.png'
                       : 'assets/images/icon_search.png',
                 ),
                 size: 24,
@@ -56,7 +56,7 @@ class BaseBottomNavigationBar extends StatelessWidget {
               icon: ImageIcon(
                 AssetImage(
                   currentIndex == 3
-                      ? 'assets/images/icon_notification1.png'
+                      ? 'assets/images/icon_notification_fill.png'
                       : 'assets/images/icon_notification.png',
                 ),
                 size: 24,
@@ -68,7 +68,7 @@ class BaseBottomNavigationBar extends StatelessWidget {
               icon: ImageIcon(
                 AssetImage(
                   currentIndex == 4
-                      ? 'assets/images/icon_profile1.png'
+                      ? 'assets/images/icon_profile_fill.png'
                       : 'assets/images/icon_profile.png',
                 ),
                 size: 24,

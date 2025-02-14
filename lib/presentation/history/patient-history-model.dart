@@ -31,9 +31,7 @@ class PatientHistoryModel extends ChangeNotifier {
   Future<bool> initData() async {
     try {
       search = initSearch();
-      historys = await patientHistoryRepository.findPatientHistory(
-        search: search,
-      );
+      historys = [];
       return true;
     } catch (e) {
       if (e is NetworkException) {
