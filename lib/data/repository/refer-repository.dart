@@ -5,18 +5,18 @@ import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 
 class ReferRepository {
-  final SenderApi senderApi;
+  final ReferApi referApi;
   final NetworkMapper networkMapper;
 
   ReferRepository({
-    required this.senderApi,
+    required this.referApi,
     required this.networkMapper,
   });
 
-  Future<List<Sender>> findRefer({
+  Future<List<Sender>> findSender({
     required SearchSender search,
   }) async {
-    final entity = await senderApi.findRefer(
+    final entity = await referApi.findRefer(
       searchSender: search,
     );
 
@@ -42,21 +42,11 @@ class ReferRepository {
 
     return models;
   }
-}
-
-class ReceiverRepository {
-  final ReceiverApi receiverApi;
-  final NetworkMapper networkMapper;
-
-  ReceiverRepository({
-    required this.receiverApi,
-    required this.networkMapper,
-  });
 
   Future<List<Receiver>> findReceiver({
     required SearchReceiver search,
   }) async {
-    final entity = await receiverApi.findReceiver(
+    final entity = await referApi.findReceiver(
       searchReceiver: search,
     );
 

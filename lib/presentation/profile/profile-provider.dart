@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
+import 'package:bst_staff_mobile/data/repository/notification-config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
 import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
@@ -85,7 +85,7 @@ class ProfileModel {
 
 class NotificationProvider extends ChangeNotifier {
   final Logger log;
-  final NotificationRepository notificationRepository;
+  final NotificationConfigRepository notificationRepository;
   final AppService appService;
   late noti.Notification notification;
 

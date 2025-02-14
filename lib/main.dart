@@ -9,6 +9,7 @@ import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
 import 'package:bst_staff_mobile/data/network/api/monitoring-api.dart';
 import 'package:bst_staff_mobile/data/network/api/notification-api.dart';
+import 'package:bst_staff_mobile/data/network/api/notification-config-api.dart';
 import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/api/profile-api.dart';
@@ -26,7 +27,9 @@ import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/data/repository/config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
+import 'package:bst_staff_mobile/data/repository/notification-config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
+import 'package:bst_staff_mobile/data/repository/patient-history-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
@@ -127,21 +130,20 @@ Future<InitialData> _createData() async {
     networkMapper: networkMapper,
   );
 
+  final patientHistoryRepository = PatientHistoryRepository(
+    patientApi: patientApi,
+    networkMapper: networkMapper,
+  );
+
   final assistanceApi = AssistanceApi(baseUrl: config.baseUrl);
   final assistanceRepository = AssistanceRepository(
     assistanceApi: assistanceApi,
     networkMapper: networkMapper,
   );
 
-  final senderApi = SenderApi(baseUrl: config.baseUrl);
+  final referApi = ReferApi(baseUrl: config.baseUrl);
   final referRepository = ReferRepository(
-    senderApi: senderApi,
-    networkMapper: networkMapper,
-  );
-
-  final receiverApi = ReceiverApi(baseUrl: config.baseUrl);
-  final receiverRepository = ReceiverRepository(
-    receiverApi: receiverApi,
+    referApi: referApi,
     networkMapper: networkMapper,
   );
 
@@ -180,6 +182,12 @@ Future<InitialData> _createData() async {
     baseUrl: config.baseUrl,
   );
 
+  final notificationConfigApi = NotificationConfigApi(baseUrl: config.baseUrl);
+  final notificationConfigRepository = NotificationConfigRepository(
+    notificationConfigApi: notificationConfigApi,
+    networkMapper: networkMapper,
+  );
+
   final notificationApi = NotificationApi(baseUrl: config.baseUrl);
   final notificationRepository = NotificationRepository(
     notificationApi: notificationApi,
@@ -195,14 +203,18 @@ Future<InitialData> _createData() async {
       Provider<RegisterRepository>.value(value: registerRepository),
       Provider<DashboardRepository>.value(value: dashboardRepository),
       Provider<PatientRepository>.value(value: patientRepository),
+      Provider<PatientHistoryRepository>.value(value: patientHistoryRepository),
       Provider<WorkflowRepository>.value(value: workflowRepository),
       Provider<AppointmentRepository>.value(value: appointmentRepository),
       Provider<CertificateRepository>.value(value: certificateRepository),
       Provider<ProfileRepository>.value(value: profileRepository),
+      Provider<NotificationConfigRepository>.value(
+        value: notificationConfigRepository,
+      ),
+      Provider<AssistanceRepository>.value(value: assistanceRepository),
       Provider<NotificationRepository>.value(value: notificationRepository),
       Provider<AssistanceRepository>.value(value: assistanceRepository),
       Provider<ReferRepository>.value(value: referRepository),
-      Provider<ReceiverRepository>.value(value: receiverRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

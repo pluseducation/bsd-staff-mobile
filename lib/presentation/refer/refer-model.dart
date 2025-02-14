@@ -27,7 +27,7 @@ class SenderModel extends ChangeNotifier {
   Future<bool> initData() async {
     try {
       search = initSearch();
-      sender = await referRepository.findRefer(search: search);
+      sender = await referRepository.findSender(search: search);
 
       return true;
     } catch (e) {
@@ -65,7 +65,7 @@ class SenderModel extends ChangeNotifier {
   Future<void> loadData(int page) async {
     try {
       search.page = page;
-      sender = await referRepository.findRefer(search: search);
+      sender = await referRepository.findSender(search: search);
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -85,7 +85,7 @@ class SenderModel extends ChangeNotifier {
       search = initSearch();
       search.searchVal = value;
 
-      sender = await referRepository.findRefer(search: search);
+      sender = await referRepository.findSender(search: search);
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -102,7 +102,7 @@ class SenderModel extends ChangeNotifier {
 
 class ReceiverModel extends ChangeNotifier {
   final Logger log;
-  final ReceiverRepository receiverRepository;
+  final ReferRepository referRepository;
   final AppService appService;
 
   bool isLoading = false;
@@ -114,7 +114,7 @@ class ReceiverModel extends ChangeNotifier {
 
   ReceiverModel({
     required this.log,
-    required this.receiverRepository,
+    required this.referRepository,
     required this.appService,
   });
 
@@ -122,7 +122,7 @@ class ReceiverModel extends ChangeNotifier {
     try {
       this.dataNotifier = dataNotifier;
       search = initSearch();
-      receiver = await receiverRepository.findReceiver(search: search);
+      receiver = await referRepository.findReceiver(search: search);
 
       this.dataNotifier.value = search.totalElements;
 
@@ -162,7 +162,7 @@ class ReceiverModel extends ChangeNotifier {
   Future<void> loadData(int page) async {
     try {
       search.page = page;
-      receiver = await receiverRepository.findReceiver(search: search);
+      receiver = await referRepository.findReceiver(search: search);
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -182,7 +182,7 @@ class ReceiverModel extends ChangeNotifier {
       search = initSearch();
       search.searchVal = value;
 
-      receiver = await receiverRepository.findReceiver(search: search);
+      receiver = await referRepository.findReceiver(search: search);
 
       dataNotifier.value = search.totalElements;
     } catch (e) {

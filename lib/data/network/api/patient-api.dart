@@ -115,7 +115,7 @@ class PatientApi extends BaseApi {
 
       if (search.type == "NAME") {
         queryParameters['name'] = search.name;
-        queryParameters['surname'] = search.name;
+        queryParameters['surname'] = search.surname;
       } else if (search.type == "NATIONAL_ID") {
         queryParameters['nationalId'] = search.nationalId;
       } else if (search.type == "CYCLE") {

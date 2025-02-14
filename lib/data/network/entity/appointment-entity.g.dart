@@ -18,7 +18,9 @@ AppointmentEntity _$AppointmentEntityFromJson(Map<String, dynamic> json) =>
       guardianPhoneNo: json['guardianPhoneNo'] as String?,
       phoneNo: json['phoneNo'] as String?,
       appointmentId: (json['appointmentId'] as num?)?.toInt(),
-      appointmentAt: json['appointmentAt'] as String?,
+      appointmentAt: json['appointmentAt'] == null
+          ? null
+          : DateTime.parse(json['appointmentAt'] as String),
       appointmentType: json['appointmentType'] as String?,
       note: json['note'] as String?,
       appointmentWithName: json['appointmentWithName'] as String?,
@@ -38,7 +40,7 @@ Map<String, dynamic> _$AppointmentEntityToJson(AppointmentEntity instance) =>
       'guardianPhoneNo': instance.guardianPhoneNo,
       'phoneNo': instance.phoneNo,
       'appointmentId': instance.appointmentId,
-      'appointmentAt': instance.appointmentAt,
+      'appointmentAt': instance.appointmentAt?.toIso8601String(),
       'appointmentType': instance.appointmentType,
       'note': instance.note,
       'appointmentWithName': instance.appointmentWithName,

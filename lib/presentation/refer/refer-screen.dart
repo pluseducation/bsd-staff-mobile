@@ -84,8 +84,7 @@ class _ReferContentState extends State<ReferContent> {
 
     _modelReceiver = ReceiverModel(
       log: Provider.of<Logger>(context, listen: false),
-      receiverRepository:
-          Provider.of<ReceiverRepository>(context, listen: false),
+      referRepository: Provider.of<ReferRepository>(context, listen: false),
       appService: Provider.of<AppService>(context, listen: false),
     );
   }

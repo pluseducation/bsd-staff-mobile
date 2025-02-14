@@ -4,8 +4,8 @@ import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/refer.dart';
 import 'package:dio/dio.dart';
 
-class SenderApi extends BaseApi {
-  SenderApi({required super.baseUrl});
+class ReferApi extends BaseApi {
+  ReferApi({required super.baseUrl});
 
   Future<SenderEntity> findRefer({
     required SearchSender searchSender,
@@ -55,10 +55,6 @@ class SenderApi extends BaseApi {
       throw Exception('Unknown error : $error');
     }
   }
-}
-
-class ReceiverApi extends BaseApi {
-  ReceiverApi({required super.baseUrl});
 
   Future<ReceiverEntity> findReceiver({
     required SearchReceiver searchReceiver,

@@ -8,38 +8,35 @@ part of 'notification-entity.dart';
 
 NotificationEntity _$NotificationEntityFromJson(Map<String, dynamic> json) =>
     NotificationEntity(
-      appointment: json['appointment'] as bool?,
-      monitoring: json['monitoring'] as bool?,
-      refer: json['refer'] as bool?,
-      assistant: json['assistant'] as bool?,
-      login: json['login'] as bool?,
+      content: (json['content'] as List<dynamic>?)
+          ?.map((e) =>
+              NotificationContentEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      totalPages: (json['totalPages'] as num).toInt(),
+      totalElements: (json['totalElements'] as num).toInt(),
     );
 
 Map<String, dynamic> _$NotificationEntityToJson(NotificationEntity instance) =>
     <String, dynamic>{
-      'appointment': instance.appointment,
-      'monitoring': instance.monitoring,
-      'refer': instance.refer,
-      'assistant': instance.assistant,
-      'login': instance.login,
+      'content': instance.content,
+      'totalPages': instance.totalPages,
+      'totalElements': instance.totalElements,
     };
 
-UpdateNotificationEntity _$UpdateNotificationEntityFromJson(
+NotificationContentEntity _$NotificationContentEntityFromJson(
         Map<String, dynamic> json) =>
-    UpdateNotificationEntity(
-      appointment: json['appointment'] as bool?,
-      monitoring: json['monitoring'] as bool?,
-      refer: json['refer'] as bool?,
-      assistant: json['assistant'] as bool?,
-      login: json['login'] as bool?,
+    NotificationContentEntity(
+      id: (json['id'] as num?)?.toInt(),
+      type: json['type'] as String?,
+      msg: json['msg'] as String?,
+      acknowledged: (json['acknowledged'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$UpdateNotificationEntityToJson(
-        UpdateNotificationEntity instance) =>
+Map<String, dynamic> _$NotificationContentEntityToJson(
+        NotificationContentEntity instance) =>
     <String, dynamic>{
-      'appointment': instance.appointment,
-      'monitoring': instance.monitoring,
-      'refer': instance.refer,
-      'assistant': instance.assistant,
-      'login': instance.login,
+      'id': instance.id,
+      'type': instance.type,
+      'msg': instance.msg,
+      'acknowledged': instance.acknowledged,
     };

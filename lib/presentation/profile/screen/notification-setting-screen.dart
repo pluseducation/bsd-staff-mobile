@@ -1,9 +1,8 @@
-import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
+import 'package:bst_staff_mobile/data/repository/notification-config-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-provider.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/layout/home-layout.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -24,8 +23,9 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
     super.initState();
     _model = NotificationProvider(
       log: Provider.of<Logger>(super.context, listen: false),
-      notificationRepository:
-          Provider.of<NotificationRepository>(super.context, listen: false),
+      notificationRepository: Provider.of<NotificationConfigRepository>(
+          super.context,
+          listen: false),
       appService: Provider.of<AppService>(super.context, listen: false),
     );
 

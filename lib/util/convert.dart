@@ -46,7 +46,7 @@ String convertToString(dynamic object, {String defaultValue = ""}) {
   }
 }
 
-DateTime convertToDatetime(String? object) {
+DateTime convertToDatetime(dynamic object) {
   try {
     if (object == null) {
       return DateTime.now();
