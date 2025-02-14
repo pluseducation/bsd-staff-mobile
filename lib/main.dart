@@ -14,6 +14,7 @@ import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/api/profile-api.dart';
 import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
+import 'package:bst_staff_mobile/data/network/api/refer-api.dart';
 import 'package:bst_staff_mobile/data/network/api/register-api.dart';
 import 'package:bst_staff_mobile/data/network/api/screening-api.dart';
 import 'package:bst_staff_mobile/data/network/api/treatment-api.dart';
@@ -32,6 +33,7 @@ import 'package:bst_staff_mobile/data/repository/patient-history-repository.dart
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
+import 'package:bst_staff_mobile/data/repository/refer-repository.dart';
 import 'package:bst_staff_mobile/data/repository/register-repository.dart';
 import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
 import 'package:bst_staff_mobile/domain/model/config.dart';
@@ -139,6 +141,12 @@ Future<InitialData> _createData() async {
     networkMapper: networkMapper,
   );
 
+  final referApi = ReferApi(baseUrl: config.baseUrl);
+  final referRepository = ReferRepository(
+    referApi: referApi,
+    networkMapper: networkMapper,
+  );
+
   final questionApi = Question(baseUrl: config.baseUrl);
   final screeningsApi = ScreeningApi(baseUrl: config.baseUrl);
   final treatmentApi = TreatmentApi(baseUrl: config.baseUrl);
@@ -205,6 +213,8 @@ Future<InitialData> _createData() async {
       ),
       Provider<AssistanceRepository>.value(value: assistanceRepository),
       Provider<NotificationRepository>.value(value: notificationRepository),
+      Provider<AssistanceRepository>.value(value: assistanceRepository),
+      Provider<ReferRepository>.value(value: referRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

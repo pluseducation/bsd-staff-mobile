@@ -396,3 +396,33 @@ enum UsingDrugStatus {
     }
   }
 }
+
+enum ReferStatus {
+  referring,
+  rejected,
+  accepted;
+
+  String? get value {
+    switch (this) {
+      case ReferStatus.referring:
+        return "REFERRING";
+      case ReferStatus.rejected:
+        return "REJECTED";
+      case ReferStatus.accepted:
+        return "ACCEPTED";
+    }
+  }
+
+  static ReferStatus? setValue(String? value) {
+    switch (value) {
+      case "REFERRING":
+        return ReferStatus.referring;
+      case "REJECTED":
+        return ReferStatus.rejected;
+      case "ACCEPTED":
+        return ReferStatus.accepted;
+      default:
+        return null;
+    }
+  }
+}

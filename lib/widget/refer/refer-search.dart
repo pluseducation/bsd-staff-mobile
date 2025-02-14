@@ -2,19 +2,19 @@ import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 
-class AssistanceSearch extends StatefulWidget {
+class ReferSearch extends StatefulWidget {
   final Function(String) onValueChange;
 
-  const AssistanceSearch({
+  const ReferSearch({
     super.key,
     required this.onValueChange,
   });
 
   @override
-  _AssistanceSearchState createState() => _AssistanceSearchState();
+  _ReferSearchState createState() => _ReferSearchState();
 }
 
-class _AssistanceSearchState extends State<AssistanceSearch> {
+class _ReferSearchState extends State<ReferSearch> {
   TextEditingController valueController = TextEditingController();
   @override
   void initState() {
