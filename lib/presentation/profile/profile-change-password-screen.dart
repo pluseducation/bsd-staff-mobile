@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
-class ProfileInfoScreen extends StatelessWidget {
-  const ProfileInfoScreen({super.key});
+class ProfileChangePasswordScreen extends StatelessWidget {
+  const ProfileChangePasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,33 +19,36 @@ class ProfileInfoScreen extends StatelessWidget {
       appBar: const BaseAppBarBlank(
         title: 'เปลี่ยนรหัสผ่าน',
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center(
+      body: Center(
+        child: Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
-                  child: const ProfileInfoContent(),
+                  child: const ProfileChangePasswordContent(),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
 
-class ProfileInfoContent extends StatefulWidget {
-  const ProfileInfoContent({super.key});
+class ProfileChangePasswordContent extends StatefulWidget {
+  const ProfileChangePasswordContent({super.key});
 
   @override
-  _ProfileInfoContentState createState() => _ProfileInfoContentState();
+  _ProfileChangePasswordContentState createState() =>
+      _ProfileChangePasswordContentState();
 }
 
-class _ProfileInfoContentState extends State<ProfileInfoContent> {
+class _ProfileChangePasswordContentState
+    extends State<ProfileChangePasswordContent> {
   final _formKey = GlobalKey<FormState>();
   late ProfileChangePasswordModel _model;
 
@@ -76,116 +79,85 @@ class _ProfileInfoContentState extends State<ProfileInfoContent> {
           } else {
             return Consumer<ProfileChangePasswordModel>(
               builder: (context, model, child) {
-                final offercer = model.officer;
                 return Form(
                   key: _formKey,
                   child: SingleChildScrollView(
-                    child: Center(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 600),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                const Text(
-                                  'ตั้งรหัสผ่านใหม่',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                TextFormField(
-                                  controller: _model.passwordController,
-                                  obscureText: _model.obscureNewPassword,
-                                  decoration: InputDecoration(
-                                    hintText: "รหัสผ่านใหม่",
-                                    suffixIcon: IconButton(
-                                      icon: Icon(
-                                        _model.obscureNewPassword
-                                            ? Icons.visibility_off
-                                            : Icons.visibility,
-                                      ),
-                                      onPressed: () {
-                                        setState(() {
-                                          _model.obscureNewPassword =
-                                              !_model.obscureNewPassword;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'กรุณาระบุรหัสผ่าน';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                TextFormField(
-                                  controller: model.confirmPasswordController,
-                                  obscureText: _model.obscureConfirmPassword,
-                                  decoration: InputDecoration(
-                                    hintText: "ยืนยันรหัสผ่านใหม่",
-                                    suffixIcon: IconButton(
-                                      icon: Icon(
-                                        _model.obscureConfirmPassword
-                                            ? Icons.visibility_off
-                                            : Icons.visibility,
-                                      ),
-                                      onPressed: () {
-                                        setState(() {
-                                          _model.obscureConfirmPassword =
-                                              !_model.obscureConfirmPassword;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'กรุณายืนยันรหัสผ่าน';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    onPressed: () async {
-                                      if (_formKey.currentState!.validate()) {
-                                        await _onSubmit();
-                                      }
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: MainColors.primary500,
-                                    ),
-                                    child: const Text(
-                                      'ยืนยัน',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextFormField(
+                          controller: model.passwordController,
+                          obscureText: !model.visiblePassword,
+                          decoration: InputDecoration(
+                            hintText: "รหัสผ่านใหม่",
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                model.visiblePassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                              onPressed: () {
+                                model.handleVisiblePassword();
+                              },
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'กรุณาระบุรหัสผ่าน';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        TextFormField(
+                          controller: model.confirmPasswordController,
+                          obscureText: !model.visibleConfirmPassword,
+                          decoration: InputDecoration(
+                            hintText: "ยืนยันรหัสผ่านใหม่",
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                model.visibleConfirmPassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                              onPressed: () {
+                                model.handleVisibleConfirmPassword();
+                              },
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'กรุณาระบุยืนยันรหัสผ่าน';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                await _onSubmit();
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: MainColors.primary500,
+                            ),
+                            child: const Text(
+                              'ยืนยัน',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 );

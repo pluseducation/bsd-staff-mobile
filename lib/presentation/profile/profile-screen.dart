@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
+import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/notification-config-screen.dart';
@@ -14,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
+final ValueNotifier<Profile?> dataNotifier = ValueNotifier<Profile?>(null);
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -21,9 +24,8 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: const BaseAppBarProfile(
-        fullname: "สุนิสา ใจดี",
-        subdivisionName: 'โรงพยาบาลปากช่อง',
+      appBar: BaseAppBarProfile(
+        valueListenable: dataNotifier,
       ),
       body: BaseBackground(
         child: Column(
@@ -42,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 600),
-                    child: const ProfileContent(),
+                    child: ProfileContent(dataNotifier: dataNotifier),
                   ),
                 ),
               ),
@@ -55,7 +57,8 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class ProfileContent extends StatefulWidget {
-  const ProfileContent({super.key});
+  final ValueNotifier<Profile?> dataNotifier;
+  const ProfileContent({super.key, required this.dataNotifier});
 
   @override
   _ProfileContentState createState() => _ProfileContentState();
@@ -82,7 +85,7 @@ class _ProfileContentState extends State<ProfileContent> {
     return ChangeNotifierProvider<ProfileModel>.value(
       value: _model,
       child: FutureBuilder<bool>(
-        future: _model.initData(),
+        future: _model.initData(widget.dataNotifier),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

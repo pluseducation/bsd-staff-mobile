@@ -1,5 +1,6 @@
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/presentation/profile/profile-change-password-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-info-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
@@ -18,20 +19,21 @@ class ProfileInfoScreen extends StatelessWidget {
       appBar: const BaseAppBarBlank(
         title: 'ข้อมูลส่วนตัว',
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center(
+      body: Center(
+        child: Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
                   child: const ProfileInfoContent(),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -79,6 +81,35 @@ class _ProfileInfoContentState extends State<ProfileInfoContent> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                          color: MainColors.divider,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.info,
+                                color: MainColors.text,
+                                size: FontSizes.medium,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                "หากต้องการแก้ไขข้อมูล กรุณาติดต่อ Admin",
+                                style: TextStyle(
+                                  fontSize: FontSizes.small,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       const SizedBox(
                         height: 16,
                       ),
@@ -89,7 +120,6 @@ class _ProfileInfoContentState extends State<ProfileInfoContent> {
                             "ชื่อ-สกุล",
                             style: TextStyle(
                               fontSize: FontSizes.medium,
-                              color: MainColors.text,
                             ),
                           ),
                           Text(
@@ -111,7 +141,6 @@ class _ProfileInfoContentState extends State<ProfileInfoContent> {
                             "เบอร์โทรศัพท์",
                             style: TextStyle(
                               fontSize: FontSizes.medium,
-                              color: MainColors.text,
                             ),
                           ),
                           Text(
@@ -133,7 +162,6 @@ class _ProfileInfoContentState extends State<ProfileInfoContent> {
                             "ชื่อบัญชีเข้าใช้งาน",
                             style: TextStyle(
                               fontSize: FontSizes.medium,
-                              color: MainColors.text,
                             ),
                           ),
                           Text(
@@ -147,6 +175,48 @@ class _ProfileInfoContentState extends State<ProfileInfoContent> {
                       ),
                       const SizedBox(
                         height: 16,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ProfileChangePasswordScreen(),
+                                ),
+                              );
+                            },
+                            style: OutlinedButton.styleFrom(
+                              side: const BorderSide(
+                                color: MainColors.primary500,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'เปลี่ยนรหัสผ่าน',
+                                  style: TextStyle(
+                                    fontSize: FontSizes.medium,
+                                    fontWeight: FontWeight.bold,
+                                    color: MainColors.primary500,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Icon(
+                                  Icons.lock,
+                                  color: MainColors.primary500,
+                                  size: FontSizes.medium,
+                                ),
+                              ],
+                            )),
                       ),
                     ],
                   ),

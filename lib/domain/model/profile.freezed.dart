@@ -16,13 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Profile {
-  String get fullname =>
-      throw _privateConstructorUsedError; // ชื่อ-สกุล nameTh +  surnameTh  /officers${data}
-  String get phoneNo =>
-      throw _privateConstructorUsedError; // เบอร์โทร / officers${data}
-  String get username =>
-      throw _privateConstructorUsedError; // ชื่อบัญชีเข้าใช้งาน  /officers${data}
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get fullname => throw _privateConstructorUsedError;
+  String get phoneNo => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get subDivisionName => throw _privateConstructorUsedError;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -36,7 +33,10 @@ abstract class $ProfileCopyWith<$Res> {
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
   $Res call(
-      {String fullname, String phoneNo, String username, String imageUrl});
+      {String fullname,
+      String phoneNo,
+      String username,
+      String subDivisionName});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? fullname = null,
     Object? phoneNo = null,
     Object? username = null,
-    Object? imageUrl = null,
+    Object? subDivisionName = null,
   }) {
     return _then(_value.copyWith(
       fullname: null == fullname
@@ -72,9 +72,9 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      subDivisionName: null == subDivisionName
+          ? _value.subDivisionName
+          : subDivisionName // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -88,7 +88,10 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String fullname, String phoneNo, String username, String imageUrl});
+      {String fullname,
+      String phoneNo,
+      String username,
+      String subDivisionName});
 }
 
 /// @nodoc
@@ -107,7 +110,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? fullname = null,
     Object? phoneNo = null,
     Object? username = null,
-    Object? imageUrl = null,
+    Object? subDivisionName = null,
   }) {
     return _then(_$ProfileImpl(
       fullname: null == fullname
@@ -122,9 +125,9 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      subDivisionName: null == subDivisionName
+          ? _value.subDivisionName
+          : subDivisionName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -137,23 +140,20 @@ class _$ProfileImpl implements _Profile {
       {required this.fullname,
       required this.phoneNo,
       required this.username,
-      required this.imageUrl});
+      required this.subDivisionName});
 
   @override
   final String fullname;
-// ชื่อ-สกุล nameTh +  surnameTh  /officers${data}
   @override
   final String phoneNo;
-// เบอร์โทร / officers${data}
   @override
   final String username;
-// ชื่อบัญชีเข้าใช้งาน  /officers${data}
   @override
-  final String imageUrl;
+  final String subDivisionName;
 
   @override
   String toString() {
-    return 'Profile(fullname: $fullname, phoneNo: $phoneNo, username: $username, imageUrl: $imageUrl)';
+    return 'Profile(fullname: $fullname, phoneNo: $phoneNo, username: $username, subDivisionName: $subDivisionName)';
   }
 
   @override
@@ -166,13 +166,13 @@ class _$ProfileImpl implements _Profile {
             (identical(other.phoneNo, phoneNo) || other.phoneNo == phoneNo) &&
             (identical(other.username, username) ||
                 other.username == username) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+            (identical(other.subDivisionName, subDivisionName) ||
+                other.subDivisionName == subDivisionName));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, fullname, phoneNo, username, imageUrl);
+      Object.hash(runtimeType, fullname, phoneNo, username, subDivisionName);
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -188,16 +188,16 @@ abstract class _Profile implements Profile {
       {required final String fullname,
       required final String phoneNo,
       required final String username,
-      required final String imageUrl}) = _$ProfileImpl;
+      required final String subDivisionName}) = _$ProfileImpl;
 
   @override
-  String get fullname; // ชื่อ-สกุล nameTh +  surnameTh  /officers${data}
+  String get fullname;
   @override
-  String get phoneNo; // เบอร์โทร / officers${data}
+  String get phoneNo;
   @override
-  String get username; // ชื่อบัญชีเข้าใช้งาน  /officers${data}
+  String get username;
   @override
-  String get imageUrl;
+  String get subDivisionName;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.

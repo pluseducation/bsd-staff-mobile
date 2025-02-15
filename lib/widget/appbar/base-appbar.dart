@@ -1,3 +1,4 @@
+import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -132,13 +133,11 @@ class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class BaseAppBarProfile extends StatelessWidget implements PreferredSizeWidget {
-  final String fullname;
-  final String subdivisionName;
+  final ValueNotifier<Profile?> valueListenable;
 
   const BaseAppBarProfile({
     super.key,
-    required this.fullname,
-    required this.subdivisionName,
+    required this.valueListenable,
   });
 
   @override
@@ -156,23 +155,32 @@ class BaseAppBarProfile extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget _buildTitle() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        fullname,
-        style: const TextStyle(
-          fontSize: FontSizes.large,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      Text(
-        subdivisionName,
-        style: const TextStyle(
-          fontSize: FontSizes.medium,
-          color: Colors.white,
-        ),
-      ),
-    ]);
+    return ValueListenableBuilder<Profile?>(
+      valueListenable: valueListenable,
+      builder: (context, value, child) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              value?.fullname ?? "",
+              style: const TextStyle(
+                fontSize: FontSizes.large,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              value?.subDivisionName ?? "",
+              style: const TextStyle(
+                fontSize: FontSizes.medium,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+    ;
   }
 }
 

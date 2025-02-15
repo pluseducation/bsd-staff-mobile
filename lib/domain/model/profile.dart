@@ -4,10 +4,10 @@ part 'profile.freezed.dart';
 @freezed
 class Profile with _$Profile {
   const factory Profile({
-    required String fullname, // ชื่อ-สกุล nameTh +  surnameTh  /officers${data}
-    required String phoneNo, // เบอร์โทร / officers${data}
-    required String username, // ชื่อบัญชีเข้าใช้งาน  /officers${data}
-    required String imageUrl,
+    required String fullname,
+    required String phoneNo,
+    required String username,
+    required String subDivisionName,
   }) = _Profile;
 }
 

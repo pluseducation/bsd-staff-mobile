@@ -21,28 +21,15 @@ class ProfileRepository {
 
   Future<Profile> findProfileByOfficerId(int officerId) async {
     final profileEntity = await profileApi.findProfile(officerId: officerId);
-    final profileOfficerEntity = await profileApi.findProfileOfficer();
 
     final String fullname =
         "${convertToString(profileEntity.nameTh)} ${convertToString(profileEntity.surnameTh)}";
 
-    final String phone =
-        (profileEntity.phoneNo != null && profileEntity.phoneNo!.isNotEmpty)
-            ? convertToString(profileEntity.phoneNo)
-            : "-";
-    final String username =
-        (profileEntity.username != null && profileEntity.username!.isNotEmpty)
-            ? convertToString(profileEntity.username)
-            : "-";
-    final imageUrl = profileOfficerEntity.imageUrl != null
-        ? baseUrl + convertToString(profileOfficerEntity.imageUrl)
-        : '';
-
     final profile = Profile(
       fullname: fullname,
-      phoneNo: phone,
-      username: username,
-      imageUrl: imageUrl,
+      phoneNo: convertToString(profileEntity.phoneNo, defaultValue: "-"),
+      username: convertToString(profileEntity.username, defaultValue: "-"),
+      subDivisionName: convertToString(profileEntity.subDivisionId),
     );
 
     return profile;
@@ -61,26 +48,6 @@ class ProfileRepository {
       confirmPassword: confirmPassword,
     );
 
-    return result;
-  }
-
-  Future<String> updateProfileImage(
-    File image,
-  ) async {
-    final result = await profileApi.uploadImage(
-      file: image,
-    );
-
-    final profileEntity = await profileApi.findProfileOfficer();
-    final imageUrl = profileEntity.imageUrl != null
-        ? baseUrl + convertToString(profileEntity.imageUrl)
-        : '';
-
-    return imageUrl;
-  }
-
-  Future<bool> deleteUser() async {
-    final result = await userApi.deleteUser();
     return result;
   }
 }

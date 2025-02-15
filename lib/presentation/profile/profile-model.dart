@@ -11,6 +11,7 @@ class ProfileModel extends ChangeNotifier {
   final ProfileRepository profileRepository;
   final AppService appService;
 
+  late ValueNotifier<Profile?> dataNotifier;
   late Profile officer;
 
   ProfileModel({
@@ -19,14 +20,16 @@ class ProfileModel extends ChangeNotifier {
     required this.appService,
   });
 
-  Future<bool> initData() async {
+  Future<bool> initData(ValueNotifier<Profile?> dataNotifier) async {
     try {
+      this.dataNotifier = dataNotifier;
       final officerId = await appService.preferencesRepo.getOfficerId();
       if (officerId == null) {
         return false;
       }
 
       officer = await profileRepository.findProfileByOfficerId(officerId);
+      this.dataNotifier.value = officer;
       return true;
     } catch (e) {
       if (e is NetworkException) {

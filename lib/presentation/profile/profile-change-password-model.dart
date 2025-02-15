@@ -12,9 +12,8 @@ class ProfileChangePasswordModel extends ChangeNotifier {
   final AppService appService;
 
   late int officerId;
-  late Profile officer;
-  bool obscureNewPassword = true;
-  bool obscureConfirmPassword = true;
+  bool visiblePassword = false;
+  bool visibleConfirmPassword = false;
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
@@ -33,7 +32,6 @@ class ProfileChangePasswordModel extends ChangeNotifier {
 
       this.officerId = officerId;
 
-      officer = await profileRepository.findProfileByOfficerId(officerId);
       return true;
     } catch (e) {
       if (e is NetworkException) {
@@ -65,5 +63,15 @@ class ProfileChangePasswordModel extends ChangeNotifier {
         throw CustomException(e.toString());
       }
     }
+  }
+
+  void handleVisiblePassword() {
+    visiblePassword = !visiblePassword;
+    notifyListeners();
+  }
+
+  void handleVisibleConfirmPassword() {
+    visibleConfirmPassword = !visibleConfirmPassword;
+    notifyListeners();
   }
 }
