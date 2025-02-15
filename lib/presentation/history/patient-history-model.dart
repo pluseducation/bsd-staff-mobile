@@ -1,11 +1,8 @@
 import 'package:bst_staff_mobile/data/repository/patient-history-repository.dart';
-import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/util/constant.dart';
-import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 

@@ -2,13 +2,11 @@ import 'package:bst_staff_mobile/data/repository/patient-history-repository.dart
 import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/history/patient-history-model.dart';
-import 'package:bst_staff_mobile/presentation/workflow/workflow-screen.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
 import 'package:bst_staff_mobile/widget/history/patient-history-card.dart';
 import 'package:bst_staff_mobile/widget/history/patient-history-search.dart';
-import 'package:bst_staff_mobile/widget/patient/patient-card.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';

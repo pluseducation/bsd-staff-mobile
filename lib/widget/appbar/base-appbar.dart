@@ -1,10 +1,9 @@
 import 'package:bst_staff_mobile/theme/font-size.dart';
-import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 const double toolbarHeight = 150;
-const double toolbarHeightHome = 60;
+const double toolbarHeightProfile = 70;
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -80,110 +79,6 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-class BaseAppBarHome extends StatelessWidget implements PreferredSizeWidget {
-  const BaseAppBarHome({super.key});
-
-  @override
-  Size get preferredSize => const Size.fromHeight(60);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [MainColors.primary500, MainColors.primary500],
-              stops: [-0.017, 1.2193],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: AppBar(
-            toolbarHeight: toolbarHeightHome,
-            backgroundColor: Colors.transparent,
-            title: Row(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          "assets/images/logo_1.png",
-                          width: 50,
-                        ),
-                        const SizedBox(width: 8),
-                        Image.asset(
-                          "assets/images/logo3.png",
-                          width: 85,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: -100,
-          left: -70,
-          child: Container(
-            width: 300,
-            height: 400,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0.1449, 0.9606],
-                colors: [
-                  MainColors.primary500,
-                  Colors.white,
-                ],
-                transform: GradientRotation(300.72 * (3.14159 / 180)),
-              ),
-              color: Colors.white12,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 60,
-          right: -20,
-          child: Container(
-            width: 180,
-            height: 280,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(100),
-                bottomRight: Radius.circular(100),
-                topLeft: Radius.circular(60),
-              ),
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomRight,
-                stops: [0.1449, 0.9606],
-                colors: [
-                  MainColors.primary500,
-                  Colors.white,
-                ],
-                transform: GradientRotation(280 * (3.14159 / 50)),
-              ),
-              color: Colors.white12,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
   final ValueNotifier<int>? valueListenable;
   final String title;
@@ -233,6 +128,51 @@ class BaseAppBarContent extends StatelessWidget implements PreferredSizeWidget {
         ),
       );
     }
+  }
+}
+
+class BaseAppBarProfile extends StatelessWidget implements PreferredSizeWidget {
+  final String fullname;
+  final String subdivisionName;
+
+  const BaseAppBarProfile({
+    super.key,
+    required this.fullname,
+    required this.subdivisionName,
+  });
+
+  @override
+  Size get preferredSize => const Size.fromHeight(toolbarHeightProfile);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      toolbarHeight: kToolbarHeight,
+      centerTitle: false,
+      backgroundColor: Colors.transparent,
+      iconTheme: const IconThemeData(color: Colors.white),
+      title: _buildTitle(),
+    );
+  }
+
+  Widget _buildTitle() {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        fullname,
+        style: const TextStyle(
+          fontSize: FontSizes.large,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      Text(
+        subdivisionName,
+        style: const TextStyle(
+          fontSize: FontSizes.medium,
+          color: Colors.white,
+        ),
+      ),
+    ]);
   }
 }
 

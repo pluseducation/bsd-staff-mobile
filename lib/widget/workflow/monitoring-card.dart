@@ -1,8 +1,6 @@
-import 'package:bst_staff_mobile/domain/model/appointment.dart';
 import 'package:bst_staff_mobile/domain/model/workflow.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/appointment/appointment-status.dart';
 import 'package:bst_staff_mobile/widget/workflow/monitoring-status.dart';
 import 'package:flutter/material.dart';
 
