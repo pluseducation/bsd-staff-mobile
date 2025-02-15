@@ -2,12 +2,12 @@ import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 
-class UsingDrugTag extends StatelessWidget {
-  final UsingDrugStatus? usingDrugStatus;
+class TreatmentStatusTag extends StatelessWidget {
+  final TreatmentStatus? treatmentStatus;
 
-  const UsingDrugTag({
+  const TreatmentStatusTag({
     super.key,
-    required this.usingDrugStatus,
+    required this.treatmentStatus,
   });
 
   @override
@@ -16,21 +16,21 @@ class UsingDrugTag extends StatelessWidget {
     Color lightColor;
     String text;
 
-    if (usingDrugStatus == UsingDrugStatus.usingDrug) {
+    if (treatmentStatus == TreatmentStatus.incompleted) {
       lightColor = MainColors.errorLight;
       color = MainColors.error;
-      text = "เสพ";
-    } else if (usingDrugStatus == UsingDrugStatus.notUsingDrug) {
+      text = "ไม่ครบโปรแกรม";
+    } else if (treatmentStatus == TreatmentStatus.completed) {
       lightColor = MainColors.successLight;
       color = MainColors.success;
-      text = "ไม่เสพ";
+      text = "ครบโปรแกรม";
     } else {
       lightColor = Colors.grey;
       color = Colors.grey;
       text = '-';
     }
 
-    if (usingDrugStatus == null) {
+    if (treatmentStatus == null) {
       return Container();
     }
 

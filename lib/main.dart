@@ -148,7 +148,7 @@ Future<InitialData> _createData() async {
   );
 
   final questionApi = Question(baseUrl: config.baseUrl);
-  final screeningsApi = ScreeningApi(baseUrl: config.baseUrl);
+  final screeningApi = ScreeningApi(baseUrl: config.baseUrl);
   final treatmentApi = TreatmentApi(baseUrl: config.baseUrl);
   final monitoringApi = MonitoringApi(baseUrl: config.baseUrl);
 
@@ -156,7 +156,7 @@ Future<InitialData> _createData() async {
     patientApi: patientApi,
     questionApi: questionApi,
     networkMapper: networkMapper,
-    screeningApi: screeningsApi,
+    screeningApi: screeningApi,
     treatmentApi: treatmentApi,
     monitoringApi: monitoringApi,
   );

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bst_staff_mobile/data/network/api/profile-api.dart';
 import 'package:bst_staff_mobile/data/network/api/user-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
@@ -20,34 +18,31 @@ class ProfileRepository {
   });
 
   Future<Profile> findProfileByOfficerId(int officerId) async {
-    final profileEntity = await profileApi.findProfile(officerId: officerId);
+    final profileEntity = await profileApi.findProfile();
 
     final String fullname =
-        "${convertToString(profileEntity.nameTh)} ${convertToString(profileEntity.surnameTh)}";
+        "${convertToString(profileEntity.name)} ${convertToString(profileEntity.surname)}";
 
     final profile = Profile(
       fullname: fullname,
       phoneNo: convertToString(profileEntity.phoneNo, defaultValue: "-"),
       username: convertToString(profileEntity.username, defaultValue: "-"),
-      subDivisionName: convertToString(profileEntity.subDivisionId),
+      subDivisionName:
+          convertToString(profileEntity.subDivisionName, defaultValue: "-"),
     );
 
     return profile;
   }
 
   Future<bool> updateProfile(
-    int officerId,
     String password,
     String confirmPassword,
   ) async {
-    final entityProfile = await profileApi.findProfile(officerId: officerId);
-
-    final result = await profileApi.updateProfile(
-      entityProfile: entityProfile,
+    await profileApi.updateProfile(
       password: password,
       confirmPassword: confirmPassword,
     );
 
-    return result;
+    return true;
   }
 }

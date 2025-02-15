@@ -41,16 +41,4 @@ class ProfileInfoModel extends ChangeNotifier {
       }
     }
   }
-
-  Future<bool> updateProfile(
-    int officerId,
-    String password,
-    String confirmPassword,
-  ) async {
-    return profileRepository.updateProfile(
-      officerId,
-      password,
-      confirmPassword,
-    );
-  }
 }

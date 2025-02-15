@@ -26,7 +26,7 @@ class MonitoringCard extends StatelessWidget {
                     fontSize: FontSizes.medium,
                   ),
                 ),
-                TagUsingDrug(
+                UsingDrugTag(
                   usingDrugStatus: data.latestResult,
                 ),
               ],

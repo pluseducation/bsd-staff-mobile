@@ -1,6 +1,5 @@
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 part 'workflow.freezed.dart';
 
 @freezed
@@ -29,7 +28,6 @@ class Registering with _$Registering {
   }) = _Registering;
 }
 
-// --------Screening----------
 @freezed
 class Screening with _$Screening {
   const factory Screening({
@@ -54,20 +52,64 @@ class Screening with _$Screening {
   }) = _Screening;
 }
 
-// --------Screening----------
 @freezed
 class Treatment with _$Treatment {
   const factory Treatment({
     required String treatmentDate,
-    required String mentalEvalLevel,
-    required int drugEvalScore,
-    required String levelOfAddicted,
-    required String treatmentResult,
+    required LevelType? mentalEvalLevel,
+    required DrugEvalResult? treatmentResult,
+    required String? usageReasons,
+    required String? firstAgeUsage,
+    required String? firstDrugUsage,
+    required String? currentDrugUsages,
+    required String? totalUsage,
+    required String? hadTreatmentText,
+    required List<TreatmentHistory> inHistories,
+    required List<TreatmentHistory> outHistoryies,
+    required List<String> joinReasons,
+    required List<DrugUsageBefore> drugUsageBefores,
+    required List<Plan> plans,
+    required List<String> dosings,
+    required List<String> techniques,
+    required List<String> programmes,
+    required bool harmReduction,
+    required List<String> harmItems,
     required String evaluationDate,
-    required String evaluationResult,
-    required String mentalTreatmentResult,
-    required String physicalTreatmentResult,
+    required TreatmentStatus? evaluationResult,
+    required String completedReasonText,
+    required String mentalTreatmentResultText,
+    required String physicalTreatmentResultText,
+    required String incompletedReasonText,
   }) = _Treatment;
+}
+
+@freezed
+class TreatmentHistory with _$TreatmentHistory {
+  const factory TreatmentHistory({
+    required String subDivisionName,
+    required int times,
+    required String lastestUsedDate,
+  }) = _TreatmentHistory;
+}
+
+@freezed
+class DrugUsageBefore with _$DrugUsageBefore {
+  const factory DrugUsageBefore({
+    required int order,
+    required String drug,
+    required String firstYearUsage,
+  }) = _DrugUsageBefore;
+}
+
+@freezed
+class Plan with _$Plan {
+  const factory Plan({
+    required String planType,
+    required String subDivisionName,
+    required String startDate,
+    required String endDate,
+    required String round,
+  }) = _Plan;
 }
 
 @freezed

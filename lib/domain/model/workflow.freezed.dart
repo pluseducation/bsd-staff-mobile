@@ -1076,14 +1076,32 @@ abstract class _Screening implements Screening {
 /// @nodoc
 mixin _$Treatment {
   String get treatmentDate => throw _privateConstructorUsedError;
-  String get mentalEvalLevel => throw _privateConstructorUsedError;
-  int get drugEvalScore => throw _privateConstructorUsedError;
-  String get levelOfAddicted => throw _privateConstructorUsedError;
-  String get treatmentResult => throw _privateConstructorUsedError;
+  LevelType? get mentalEvalLevel => throw _privateConstructorUsedError;
+  DrugEvalResult? get treatmentResult => throw _privateConstructorUsedError;
+  String? get usageReasons => throw _privateConstructorUsedError;
+  String? get firstAgeUsage => throw _privateConstructorUsedError;
+  String? get firstDrugUsage => throw _privateConstructorUsedError;
+  String? get currentDrugUsages => throw _privateConstructorUsedError;
+  String? get totalUsage => throw _privateConstructorUsedError;
+  String? get hadTreatmentText => throw _privateConstructorUsedError;
+  List<TreatmentHistory> get inHistories => throw _privateConstructorUsedError;
+  List<TreatmentHistory> get outHistoryies =>
+      throw _privateConstructorUsedError;
+  List<String> get joinReasons => throw _privateConstructorUsedError;
+  List<DrugUsageBefore> get drugUsageBefores =>
+      throw _privateConstructorUsedError;
+  List<Plan> get plans => throw _privateConstructorUsedError;
+  List<String> get dosings => throw _privateConstructorUsedError;
+  List<String> get techniques => throw _privateConstructorUsedError;
+  List<String> get programmes => throw _privateConstructorUsedError;
+  bool get harmReduction => throw _privateConstructorUsedError;
+  List<String> get harmItems => throw _privateConstructorUsedError;
   String get evaluationDate => throw _privateConstructorUsedError;
-  String get evaluationResult => throw _privateConstructorUsedError;
-  String get mentalTreatmentResult => throw _privateConstructorUsedError;
-  String get physicalTreatmentResult => throw _privateConstructorUsedError;
+  TreatmentStatus? get evaluationResult => throw _privateConstructorUsedError;
+  String get completedReasonText => throw _privateConstructorUsedError;
+  String get mentalTreatmentResultText => throw _privateConstructorUsedError;
+  String get physicalTreatmentResultText => throw _privateConstructorUsedError;
+  String get incompletedReasonText => throw _privateConstructorUsedError;
 
   /// Create a copy of Treatment
   /// with the given fields replaced by the non-null parameter values.
@@ -1099,14 +1117,30 @@ abstract class $TreatmentCopyWith<$Res> {
   @useResult
   $Res call(
       {String treatmentDate,
-      String mentalEvalLevel,
-      int drugEvalScore,
-      String levelOfAddicted,
-      String treatmentResult,
+      LevelType? mentalEvalLevel,
+      DrugEvalResult? treatmentResult,
+      String? usageReasons,
+      String? firstAgeUsage,
+      String? firstDrugUsage,
+      String? currentDrugUsages,
+      String? totalUsage,
+      String? hadTreatmentText,
+      List<TreatmentHistory> inHistories,
+      List<TreatmentHistory> outHistoryies,
+      List<String> joinReasons,
+      List<DrugUsageBefore> drugUsageBefores,
+      List<Plan> plans,
+      List<String> dosings,
+      List<String> techniques,
+      List<String> programmes,
+      bool harmReduction,
+      List<String> harmItems,
       String evaluationDate,
-      String evaluationResult,
-      String mentalTreatmentResult,
-      String physicalTreatmentResult});
+      TreatmentStatus? evaluationResult,
+      String completedReasonText,
+      String mentalTreatmentResultText,
+      String physicalTreatmentResultText,
+      String incompletedReasonText});
 }
 
 /// @nodoc
@@ -1125,51 +1159,131 @@ class _$TreatmentCopyWithImpl<$Res, $Val extends Treatment>
   @override
   $Res call({
     Object? treatmentDate = null,
-    Object? mentalEvalLevel = null,
-    Object? drugEvalScore = null,
-    Object? levelOfAddicted = null,
-    Object? treatmentResult = null,
+    Object? mentalEvalLevel = freezed,
+    Object? treatmentResult = freezed,
+    Object? usageReasons = freezed,
+    Object? firstAgeUsage = freezed,
+    Object? firstDrugUsage = freezed,
+    Object? currentDrugUsages = freezed,
+    Object? totalUsage = freezed,
+    Object? hadTreatmentText = freezed,
+    Object? inHistories = null,
+    Object? outHistoryies = null,
+    Object? joinReasons = null,
+    Object? drugUsageBefores = null,
+    Object? plans = null,
+    Object? dosings = null,
+    Object? techniques = null,
+    Object? programmes = null,
+    Object? harmReduction = null,
+    Object? harmItems = null,
     Object? evaluationDate = null,
-    Object? evaluationResult = null,
-    Object? mentalTreatmentResult = null,
-    Object? physicalTreatmentResult = null,
+    Object? evaluationResult = freezed,
+    Object? completedReasonText = null,
+    Object? mentalTreatmentResultText = null,
+    Object? physicalTreatmentResultText = null,
+    Object? incompletedReasonText = null,
   }) {
     return _then(_value.copyWith(
       treatmentDate: null == treatmentDate
           ? _value.treatmentDate
           : treatmentDate // ignore: cast_nullable_to_non_nullable
               as String,
-      mentalEvalLevel: null == mentalEvalLevel
+      mentalEvalLevel: freezed == mentalEvalLevel
           ? _value.mentalEvalLevel
           : mentalEvalLevel // ignore: cast_nullable_to_non_nullable
-              as String,
-      drugEvalScore: null == drugEvalScore
-          ? _value.drugEvalScore
-          : drugEvalScore // ignore: cast_nullable_to_non_nullable
-              as int,
-      levelOfAddicted: null == levelOfAddicted
-          ? _value.levelOfAddicted
-          : levelOfAddicted // ignore: cast_nullable_to_non_nullable
-              as String,
-      treatmentResult: null == treatmentResult
+              as LevelType?,
+      treatmentResult: freezed == treatmentResult
           ? _value.treatmentResult
           : treatmentResult // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DrugEvalResult?,
+      usageReasons: freezed == usageReasons
+          ? _value.usageReasons
+          : usageReasons // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstAgeUsage: freezed == firstAgeUsage
+          ? _value.firstAgeUsage
+          : firstAgeUsage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstDrugUsage: freezed == firstDrugUsage
+          ? _value.firstDrugUsage
+          : firstDrugUsage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currentDrugUsages: freezed == currentDrugUsages
+          ? _value.currentDrugUsages
+          : currentDrugUsages // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalUsage: freezed == totalUsage
+          ? _value.totalUsage
+          : totalUsage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hadTreatmentText: freezed == hadTreatmentText
+          ? _value.hadTreatmentText
+          : hadTreatmentText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      inHistories: null == inHistories
+          ? _value.inHistories
+          : inHistories // ignore: cast_nullable_to_non_nullable
+              as List<TreatmentHistory>,
+      outHistoryies: null == outHistoryies
+          ? _value.outHistoryies
+          : outHistoryies // ignore: cast_nullable_to_non_nullable
+              as List<TreatmentHistory>,
+      joinReasons: null == joinReasons
+          ? _value.joinReasons
+          : joinReasons // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      drugUsageBefores: null == drugUsageBefores
+          ? _value.drugUsageBefores
+          : drugUsageBefores // ignore: cast_nullable_to_non_nullable
+              as List<DrugUsageBefore>,
+      plans: null == plans
+          ? _value.plans
+          : plans // ignore: cast_nullable_to_non_nullable
+              as List<Plan>,
+      dosings: null == dosings
+          ? _value.dosings
+          : dosings // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      techniques: null == techniques
+          ? _value.techniques
+          : techniques // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      programmes: null == programmes
+          ? _value.programmes
+          : programmes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      harmReduction: null == harmReduction
+          ? _value.harmReduction
+          : harmReduction // ignore: cast_nullable_to_non_nullable
+              as bool,
+      harmItems: null == harmItems
+          ? _value.harmItems
+          : harmItems // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       evaluationDate: null == evaluationDate
           ? _value.evaluationDate
           : evaluationDate // ignore: cast_nullable_to_non_nullable
               as String,
-      evaluationResult: null == evaluationResult
+      evaluationResult: freezed == evaluationResult
           ? _value.evaluationResult
           : evaluationResult // ignore: cast_nullable_to_non_nullable
+              as TreatmentStatus?,
+      completedReasonText: null == completedReasonText
+          ? _value.completedReasonText
+          : completedReasonText // ignore: cast_nullable_to_non_nullable
               as String,
-      mentalTreatmentResult: null == mentalTreatmentResult
-          ? _value.mentalTreatmentResult
-          : mentalTreatmentResult // ignore: cast_nullable_to_non_nullable
+      mentalTreatmentResultText: null == mentalTreatmentResultText
+          ? _value.mentalTreatmentResultText
+          : mentalTreatmentResultText // ignore: cast_nullable_to_non_nullable
               as String,
-      physicalTreatmentResult: null == physicalTreatmentResult
-          ? _value.physicalTreatmentResult
-          : physicalTreatmentResult // ignore: cast_nullable_to_non_nullable
+      physicalTreatmentResultText: null == physicalTreatmentResultText
+          ? _value.physicalTreatmentResultText
+          : physicalTreatmentResultText // ignore: cast_nullable_to_non_nullable
+              as String,
+      incompletedReasonText: null == incompletedReasonText
+          ? _value.incompletedReasonText
+          : incompletedReasonText // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -1185,14 +1299,30 @@ abstract class _$$TreatmentImplCopyWith<$Res>
   @useResult
   $Res call(
       {String treatmentDate,
-      String mentalEvalLevel,
-      int drugEvalScore,
-      String levelOfAddicted,
-      String treatmentResult,
+      LevelType? mentalEvalLevel,
+      DrugEvalResult? treatmentResult,
+      String? usageReasons,
+      String? firstAgeUsage,
+      String? firstDrugUsage,
+      String? currentDrugUsages,
+      String? totalUsage,
+      String? hadTreatmentText,
+      List<TreatmentHistory> inHistories,
+      List<TreatmentHistory> outHistoryies,
+      List<String> joinReasons,
+      List<DrugUsageBefore> drugUsageBefores,
+      List<Plan> plans,
+      List<String> dosings,
+      List<String> techniques,
+      List<String> programmes,
+      bool harmReduction,
+      List<String> harmItems,
       String evaluationDate,
-      String evaluationResult,
-      String mentalTreatmentResult,
-      String physicalTreatmentResult});
+      TreatmentStatus? evaluationResult,
+      String completedReasonText,
+      String mentalTreatmentResultText,
+      String physicalTreatmentResultText,
+      String incompletedReasonText});
 }
 
 /// @nodoc
@@ -1209,51 +1339,131 @@ class __$$TreatmentImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? treatmentDate = null,
-    Object? mentalEvalLevel = null,
-    Object? drugEvalScore = null,
-    Object? levelOfAddicted = null,
-    Object? treatmentResult = null,
+    Object? mentalEvalLevel = freezed,
+    Object? treatmentResult = freezed,
+    Object? usageReasons = freezed,
+    Object? firstAgeUsage = freezed,
+    Object? firstDrugUsage = freezed,
+    Object? currentDrugUsages = freezed,
+    Object? totalUsage = freezed,
+    Object? hadTreatmentText = freezed,
+    Object? inHistories = null,
+    Object? outHistoryies = null,
+    Object? joinReasons = null,
+    Object? drugUsageBefores = null,
+    Object? plans = null,
+    Object? dosings = null,
+    Object? techniques = null,
+    Object? programmes = null,
+    Object? harmReduction = null,
+    Object? harmItems = null,
     Object? evaluationDate = null,
-    Object? evaluationResult = null,
-    Object? mentalTreatmentResult = null,
-    Object? physicalTreatmentResult = null,
+    Object? evaluationResult = freezed,
+    Object? completedReasonText = null,
+    Object? mentalTreatmentResultText = null,
+    Object? physicalTreatmentResultText = null,
+    Object? incompletedReasonText = null,
   }) {
     return _then(_$TreatmentImpl(
       treatmentDate: null == treatmentDate
           ? _value.treatmentDate
           : treatmentDate // ignore: cast_nullable_to_non_nullable
               as String,
-      mentalEvalLevel: null == mentalEvalLevel
+      mentalEvalLevel: freezed == mentalEvalLevel
           ? _value.mentalEvalLevel
           : mentalEvalLevel // ignore: cast_nullable_to_non_nullable
-              as String,
-      drugEvalScore: null == drugEvalScore
-          ? _value.drugEvalScore
-          : drugEvalScore // ignore: cast_nullable_to_non_nullable
-              as int,
-      levelOfAddicted: null == levelOfAddicted
-          ? _value.levelOfAddicted
-          : levelOfAddicted // ignore: cast_nullable_to_non_nullable
-              as String,
-      treatmentResult: null == treatmentResult
+              as LevelType?,
+      treatmentResult: freezed == treatmentResult
           ? _value.treatmentResult
           : treatmentResult // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DrugEvalResult?,
+      usageReasons: freezed == usageReasons
+          ? _value.usageReasons
+          : usageReasons // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstAgeUsage: freezed == firstAgeUsage
+          ? _value.firstAgeUsage
+          : firstAgeUsage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstDrugUsage: freezed == firstDrugUsage
+          ? _value.firstDrugUsage
+          : firstDrugUsage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currentDrugUsages: freezed == currentDrugUsages
+          ? _value.currentDrugUsages
+          : currentDrugUsages // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalUsage: freezed == totalUsage
+          ? _value.totalUsage
+          : totalUsage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hadTreatmentText: freezed == hadTreatmentText
+          ? _value.hadTreatmentText
+          : hadTreatmentText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      inHistories: null == inHistories
+          ? _value._inHistories
+          : inHistories // ignore: cast_nullable_to_non_nullable
+              as List<TreatmentHistory>,
+      outHistoryies: null == outHistoryies
+          ? _value._outHistoryies
+          : outHistoryies // ignore: cast_nullable_to_non_nullable
+              as List<TreatmentHistory>,
+      joinReasons: null == joinReasons
+          ? _value._joinReasons
+          : joinReasons // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      drugUsageBefores: null == drugUsageBefores
+          ? _value._drugUsageBefores
+          : drugUsageBefores // ignore: cast_nullable_to_non_nullable
+              as List<DrugUsageBefore>,
+      plans: null == plans
+          ? _value._plans
+          : plans // ignore: cast_nullable_to_non_nullable
+              as List<Plan>,
+      dosings: null == dosings
+          ? _value._dosings
+          : dosings // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      techniques: null == techniques
+          ? _value._techniques
+          : techniques // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      programmes: null == programmes
+          ? _value._programmes
+          : programmes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      harmReduction: null == harmReduction
+          ? _value.harmReduction
+          : harmReduction // ignore: cast_nullable_to_non_nullable
+              as bool,
+      harmItems: null == harmItems
+          ? _value._harmItems
+          : harmItems // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       evaluationDate: null == evaluationDate
           ? _value.evaluationDate
           : evaluationDate // ignore: cast_nullable_to_non_nullable
               as String,
-      evaluationResult: null == evaluationResult
+      evaluationResult: freezed == evaluationResult
           ? _value.evaluationResult
           : evaluationResult // ignore: cast_nullable_to_non_nullable
+              as TreatmentStatus?,
+      completedReasonText: null == completedReasonText
+          ? _value.completedReasonText
+          : completedReasonText // ignore: cast_nullable_to_non_nullable
               as String,
-      mentalTreatmentResult: null == mentalTreatmentResult
-          ? _value.mentalTreatmentResult
-          : mentalTreatmentResult // ignore: cast_nullable_to_non_nullable
+      mentalTreatmentResultText: null == mentalTreatmentResultText
+          ? _value.mentalTreatmentResultText
+          : mentalTreatmentResultText // ignore: cast_nullable_to_non_nullable
               as String,
-      physicalTreatmentResult: null == physicalTreatmentResult
-          ? _value.physicalTreatmentResult
-          : physicalTreatmentResult // ignore: cast_nullable_to_non_nullable
+      physicalTreatmentResultText: null == physicalTreatmentResultText
+          ? _value.physicalTreatmentResultText
+          : physicalTreatmentResultText // ignore: cast_nullable_to_non_nullable
+              as String,
+      incompletedReasonText: null == incompletedReasonText
+          ? _value.incompletedReasonText
+          : incompletedReasonText // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -1265,36 +1475,148 @@ class _$TreatmentImpl implements _Treatment {
   const _$TreatmentImpl(
       {required this.treatmentDate,
       required this.mentalEvalLevel,
-      required this.drugEvalScore,
-      required this.levelOfAddicted,
       required this.treatmentResult,
+      required this.usageReasons,
+      required this.firstAgeUsage,
+      required this.firstDrugUsage,
+      required this.currentDrugUsages,
+      required this.totalUsage,
+      required this.hadTreatmentText,
+      required final List<TreatmentHistory> inHistories,
+      required final List<TreatmentHistory> outHistoryies,
+      required final List<String> joinReasons,
+      required final List<DrugUsageBefore> drugUsageBefores,
+      required final List<Plan> plans,
+      required final List<String> dosings,
+      required final List<String> techniques,
+      required final List<String> programmes,
+      required this.harmReduction,
+      required final List<String> harmItems,
       required this.evaluationDate,
       required this.evaluationResult,
-      required this.mentalTreatmentResult,
-      required this.physicalTreatmentResult});
+      required this.completedReasonText,
+      required this.mentalTreatmentResultText,
+      required this.physicalTreatmentResultText,
+      required this.incompletedReasonText})
+      : _inHistories = inHistories,
+        _outHistoryies = outHistoryies,
+        _joinReasons = joinReasons,
+        _drugUsageBefores = drugUsageBefores,
+        _plans = plans,
+        _dosings = dosings,
+        _techniques = techniques,
+        _programmes = programmes,
+        _harmItems = harmItems;
 
   @override
   final String treatmentDate;
   @override
-  final String mentalEvalLevel;
+  final LevelType? mentalEvalLevel;
   @override
-  final int drugEvalScore;
+  final DrugEvalResult? treatmentResult;
   @override
-  final String levelOfAddicted;
+  final String? usageReasons;
   @override
-  final String treatmentResult;
+  final String? firstAgeUsage;
+  @override
+  final String? firstDrugUsage;
+  @override
+  final String? currentDrugUsages;
+  @override
+  final String? totalUsage;
+  @override
+  final String? hadTreatmentText;
+  final List<TreatmentHistory> _inHistories;
+  @override
+  List<TreatmentHistory> get inHistories {
+    if (_inHistories is EqualUnmodifiableListView) return _inHistories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_inHistories);
+  }
+
+  final List<TreatmentHistory> _outHistoryies;
+  @override
+  List<TreatmentHistory> get outHistoryies {
+    if (_outHistoryies is EqualUnmodifiableListView) return _outHistoryies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_outHistoryies);
+  }
+
+  final List<String> _joinReasons;
+  @override
+  List<String> get joinReasons {
+    if (_joinReasons is EqualUnmodifiableListView) return _joinReasons;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_joinReasons);
+  }
+
+  final List<DrugUsageBefore> _drugUsageBefores;
+  @override
+  List<DrugUsageBefore> get drugUsageBefores {
+    if (_drugUsageBefores is EqualUnmodifiableListView)
+      return _drugUsageBefores;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_drugUsageBefores);
+  }
+
+  final List<Plan> _plans;
+  @override
+  List<Plan> get plans {
+    if (_plans is EqualUnmodifiableListView) return _plans;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_plans);
+  }
+
+  final List<String> _dosings;
+  @override
+  List<String> get dosings {
+    if (_dosings is EqualUnmodifiableListView) return _dosings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dosings);
+  }
+
+  final List<String> _techniques;
+  @override
+  List<String> get techniques {
+    if (_techniques is EqualUnmodifiableListView) return _techniques;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_techniques);
+  }
+
+  final List<String> _programmes;
+  @override
+  List<String> get programmes {
+    if (_programmes is EqualUnmodifiableListView) return _programmes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_programmes);
+  }
+
+  @override
+  final bool harmReduction;
+  final List<String> _harmItems;
+  @override
+  List<String> get harmItems {
+    if (_harmItems is EqualUnmodifiableListView) return _harmItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_harmItems);
+  }
+
   @override
   final String evaluationDate;
   @override
-  final String evaluationResult;
+  final TreatmentStatus? evaluationResult;
   @override
-  final String mentalTreatmentResult;
+  final String completedReasonText;
   @override
-  final String physicalTreatmentResult;
+  final String mentalTreatmentResultText;
+  @override
+  final String physicalTreatmentResultText;
+  @override
+  final String incompletedReasonText;
 
   @override
   String toString() {
-    return 'Treatment(treatmentDate: $treatmentDate, mentalEvalLevel: $mentalEvalLevel, drugEvalScore: $drugEvalScore, levelOfAddicted: $levelOfAddicted, treatmentResult: $treatmentResult, evaluationDate: $evaluationDate, evaluationResult: $evaluationResult, mentalTreatmentResult: $mentalTreatmentResult, physicalTreatmentResult: $physicalTreatmentResult)';
+    return 'Treatment(treatmentDate: $treatmentDate, mentalEvalLevel: $mentalEvalLevel, treatmentResult: $treatmentResult, usageReasons: $usageReasons, firstAgeUsage: $firstAgeUsage, firstDrugUsage: $firstDrugUsage, currentDrugUsages: $currentDrugUsages, totalUsage: $totalUsage, hadTreatmentText: $hadTreatmentText, inHistories: $inHistories, outHistoryies: $outHistoryies, joinReasons: $joinReasons, drugUsageBefores: $drugUsageBefores, plans: $plans, dosings: $dosings, techniques: $techniques, programmes: $programmes, harmReduction: $harmReduction, harmItems: $harmItems, evaluationDate: $evaluationDate, evaluationResult: $evaluationResult, completedReasonText: $completedReasonText, mentalTreatmentResultText: $mentalTreatmentResultText, physicalTreatmentResultText: $physicalTreatmentResultText, incompletedReasonText: $incompletedReasonText)';
   }
 
   @override
@@ -1306,35 +1628,84 @@ class _$TreatmentImpl implements _Treatment {
                 other.treatmentDate == treatmentDate) &&
             (identical(other.mentalEvalLevel, mentalEvalLevel) ||
                 other.mentalEvalLevel == mentalEvalLevel) &&
-            (identical(other.drugEvalScore, drugEvalScore) ||
-                other.drugEvalScore == drugEvalScore) &&
-            (identical(other.levelOfAddicted, levelOfAddicted) ||
-                other.levelOfAddicted == levelOfAddicted) &&
             (identical(other.treatmentResult, treatmentResult) ||
                 other.treatmentResult == treatmentResult) &&
+            (identical(other.usageReasons, usageReasons) ||
+                other.usageReasons == usageReasons) &&
+            (identical(other.firstAgeUsage, firstAgeUsage) ||
+                other.firstAgeUsage == firstAgeUsage) &&
+            (identical(other.firstDrugUsage, firstDrugUsage) ||
+                other.firstDrugUsage == firstDrugUsage) &&
+            (identical(other.currentDrugUsages, currentDrugUsages) ||
+                other.currentDrugUsages == currentDrugUsages) &&
+            (identical(other.totalUsage, totalUsage) ||
+                other.totalUsage == totalUsage) &&
+            (identical(other.hadTreatmentText, hadTreatmentText) ||
+                other.hadTreatmentText == hadTreatmentText) &&
+            const DeepCollectionEquality()
+                .equals(other._inHistories, _inHistories) &&
+            const DeepCollectionEquality()
+                .equals(other._outHistoryies, _outHistoryies) &&
+            const DeepCollectionEquality()
+                .equals(other._joinReasons, _joinReasons) &&
+            const DeepCollectionEquality()
+                .equals(other._drugUsageBefores, _drugUsageBefores) &&
+            const DeepCollectionEquality().equals(other._plans, _plans) &&
+            const DeepCollectionEquality().equals(other._dosings, _dosings) &&
+            const DeepCollectionEquality()
+                .equals(other._techniques, _techniques) &&
+            const DeepCollectionEquality()
+                .equals(other._programmes, _programmes) &&
+            (identical(other.harmReduction, harmReduction) ||
+                other.harmReduction == harmReduction) &&
+            const DeepCollectionEquality()
+                .equals(other._harmItems, _harmItems) &&
             (identical(other.evaluationDate, evaluationDate) ||
                 other.evaluationDate == evaluationDate) &&
             (identical(other.evaluationResult, evaluationResult) ||
                 other.evaluationResult == evaluationResult) &&
-            (identical(other.mentalTreatmentResult, mentalTreatmentResult) ||
-                other.mentalTreatmentResult == mentalTreatmentResult) &&
-            (identical(
-                    other.physicalTreatmentResult, physicalTreatmentResult) ||
-                other.physicalTreatmentResult == physicalTreatmentResult));
+            (identical(other.completedReasonText, completedReasonText) ||
+                other.completedReasonText == completedReasonText) &&
+            (identical(other.mentalTreatmentResultText,
+                    mentalTreatmentResultText) ||
+                other.mentalTreatmentResultText == mentalTreatmentResultText) &&
+            (identical(other.physicalTreatmentResultText,
+                    physicalTreatmentResultText) ||
+                other.physicalTreatmentResultText ==
+                    physicalTreatmentResultText) &&
+            (identical(other.incompletedReasonText, incompletedReasonText) ||
+                other.incompletedReasonText == incompletedReasonText));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      treatmentDate,
-      mentalEvalLevel,
-      drugEvalScore,
-      levelOfAddicted,
-      treatmentResult,
-      evaluationDate,
-      evaluationResult,
-      mentalTreatmentResult,
-      physicalTreatmentResult);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        treatmentDate,
+        mentalEvalLevel,
+        treatmentResult,
+        usageReasons,
+        firstAgeUsage,
+        firstDrugUsage,
+        currentDrugUsages,
+        totalUsage,
+        hadTreatmentText,
+        const DeepCollectionEquality().hash(_inHistories),
+        const DeepCollectionEquality().hash(_outHistoryies),
+        const DeepCollectionEquality().hash(_joinReasons),
+        const DeepCollectionEquality().hash(_drugUsageBefores),
+        const DeepCollectionEquality().hash(_plans),
+        const DeepCollectionEquality().hash(_dosings),
+        const DeepCollectionEquality().hash(_techniques),
+        const DeepCollectionEquality().hash(_programmes),
+        harmReduction,
+        const DeepCollectionEquality().hash(_harmItems),
+        evaluationDate,
+        evaluationResult,
+        completedReasonText,
+        mentalTreatmentResultText,
+        physicalTreatmentResultText,
+        incompletedReasonText
+      ]);
 
   /// Create a copy of Treatment
   /// with the given fields replaced by the non-null parameter values.
@@ -1348,39 +1719,635 @@ class _$TreatmentImpl implements _Treatment {
 abstract class _Treatment implements Treatment {
   const factory _Treatment(
       {required final String treatmentDate,
-      required final String mentalEvalLevel,
-      required final int drugEvalScore,
-      required final String levelOfAddicted,
-      required final String treatmentResult,
+      required final LevelType? mentalEvalLevel,
+      required final DrugEvalResult? treatmentResult,
+      required final String? usageReasons,
+      required final String? firstAgeUsage,
+      required final String? firstDrugUsage,
+      required final String? currentDrugUsages,
+      required final String? totalUsage,
+      required final String? hadTreatmentText,
+      required final List<TreatmentHistory> inHistories,
+      required final List<TreatmentHistory> outHistoryies,
+      required final List<String> joinReasons,
+      required final List<DrugUsageBefore> drugUsageBefores,
+      required final List<Plan> plans,
+      required final List<String> dosings,
+      required final List<String> techniques,
+      required final List<String> programmes,
+      required final bool harmReduction,
+      required final List<String> harmItems,
       required final String evaluationDate,
-      required final String evaluationResult,
-      required final String mentalTreatmentResult,
-      required final String physicalTreatmentResult}) = _$TreatmentImpl;
+      required final TreatmentStatus? evaluationResult,
+      required final String completedReasonText,
+      required final String mentalTreatmentResultText,
+      required final String physicalTreatmentResultText,
+      required final String incompletedReasonText}) = _$TreatmentImpl;
 
   @override
   String get treatmentDate;
   @override
-  String get mentalEvalLevel;
+  LevelType? get mentalEvalLevel;
   @override
-  int get drugEvalScore;
+  DrugEvalResult? get treatmentResult;
   @override
-  String get levelOfAddicted;
+  String? get usageReasons;
   @override
-  String get treatmentResult;
+  String? get firstAgeUsage;
+  @override
+  String? get firstDrugUsage;
+  @override
+  String? get currentDrugUsages;
+  @override
+  String? get totalUsage;
+  @override
+  String? get hadTreatmentText;
+  @override
+  List<TreatmentHistory> get inHistories;
+  @override
+  List<TreatmentHistory> get outHistoryies;
+  @override
+  List<String> get joinReasons;
+  @override
+  List<DrugUsageBefore> get drugUsageBefores;
+  @override
+  List<Plan> get plans;
+  @override
+  List<String> get dosings;
+  @override
+  List<String> get techniques;
+  @override
+  List<String> get programmes;
+  @override
+  bool get harmReduction;
+  @override
+  List<String> get harmItems;
   @override
   String get evaluationDate;
   @override
-  String get evaluationResult;
+  TreatmentStatus? get evaluationResult;
   @override
-  String get mentalTreatmentResult;
+  String get completedReasonText;
   @override
-  String get physicalTreatmentResult;
+  String get mentalTreatmentResultText;
+  @override
+  String get physicalTreatmentResultText;
+  @override
+  String get incompletedReasonText;
 
   /// Create a copy of Treatment
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TreatmentImplCopyWith<_$TreatmentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$TreatmentHistory {
+  String get subDivisionName => throw _privateConstructorUsedError;
+  int get times => throw _privateConstructorUsedError;
+  String get lastestUsedDate => throw _privateConstructorUsedError;
+
+  /// Create a copy of TreatmentHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $TreatmentHistoryCopyWith<TreatmentHistory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TreatmentHistoryCopyWith<$Res> {
+  factory $TreatmentHistoryCopyWith(
+          TreatmentHistory value, $Res Function(TreatmentHistory) then) =
+      _$TreatmentHistoryCopyWithImpl<$Res, TreatmentHistory>;
+  @useResult
+  $Res call({String subDivisionName, int times, String lastestUsedDate});
+}
+
+/// @nodoc
+class _$TreatmentHistoryCopyWithImpl<$Res, $Val extends TreatmentHistory>
+    implements $TreatmentHistoryCopyWith<$Res> {
+  _$TreatmentHistoryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of TreatmentHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? subDivisionName = null,
+    Object? times = null,
+    Object? lastestUsedDate = null,
+  }) {
+    return _then(_value.copyWith(
+      subDivisionName: null == subDivisionName
+          ? _value.subDivisionName
+          : subDivisionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      times: null == times
+          ? _value.times
+          : times // ignore: cast_nullable_to_non_nullable
+              as int,
+      lastestUsedDate: null == lastestUsedDate
+          ? _value.lastestUsedDate
+          : lastestUsedDate // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TreatmentHistoryImplCopyWith<$Res>
+    implements $TreatmentHistoryCopyWith<$Res> {
+  factory _$$TreatmentHistoryImplCopyWith(_$TreatmentHistoryImpl value,
+          $Res Function(_$TreatmentHistoryImpl) then) =
+      __$$TreatmentHistoryImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String subDivisionName, int times, String lastestUsedDate});
+}
+
+/// @nodoc
+class __$$TreatmentHistoryImplCopyWithImpl<$Res>
+    extends _$TreatmentHistoryCopyWithImpl<$Res, _$TreatmentHistoryImpl>
+    implements _$$TreatmentHistoryImplCopyWith<$Res> {
+  __$$TreatmentHistoryImplCopyWithImpl(_$TreatmentHistoryImpl _value,
+      $Res Function(_$TreatmentHistoryImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TreatmentHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? subDivisionName = null,
+    Object? times = null,
+    Object? lastestUsedDate = null,
+  }) {
+    return _then(_$TreatmentHistoryImpl(
+      subDivisionName: null == subDivisionName
+          ? _value.subDivisionName
+          : subDivisionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      times: null == times
+          ? _value.times
+          : times // ignore: cast_nullable_to_non_nullable
+              as int,
+      lastestUsedDate: null == lastestUsedDate
+          ? _value.lastestUsedDate
+          : lastestUsedDate // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TreatmentHistoryImpl implements _TreatmentHistory {
+  const _$TreatmentHistoryImpl(
+      {required this.subDivisionName,
+      required this.times,
+      required this.lastestUsedDate});
+
+  @override
+  final String subDivisionName;
+  @override
+  final int times;
+  @override
+  final String lastestUsedDate;
+
+  @override
+  String toString() {
+    return 'TreatmentHistory(subDivisionName: $subDivisionName, times: $times, lastestUsedDate: $lastestUsedDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TreatmentHistoryImpl &&
+            (identical(other.subDivisionName, subDivisionName) ||
+                other.subDivisionName == subDivisionName) &&
+            (identical(other.times, times) || other.times == times) &&
+            (identical(other.lastestUsedDate, lastestUsedDate) ||
+                other.lastestUsedDate == lastestUsedDate));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, subDivisionName, times, lastestUsedDate);
+
+  /// Create a copy of TreatmentHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TreatmentHistoryImplCopyWith<_$TreatmentHistoryImpl> get copyWith =>
+      __$$TreatmentHistoryImplCopyWithImpl<_$TreatmentHistoryImpl>(
+          this, _$identity);
+}
+
+abstract class _TreatmentHistory implements TreatmentHistory {
+  const factory _TreatmentHistory(
+      {required final String subDivisionName,
+      required final int times,
+      required final String lastestUsedDate}) = _$TreatmentHistoryImpl;
+
+  @override
+  String get subDivisionName;
+  @override
+  int get times;
+  @override
+  String get lastestUsedDate;
+
+  /// Create a copy of TreatmentHistory
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TreatmentHistoryImplCopyWith<_$TreatmentHistoryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$DrugUsageBefore {
+  int get order => throw _privateConstructorUsedError;
+  String get drug => throw _privateConstructorUsedError;
+  String get firstYearUsage => throw _privateConstructorUsedError;
+
+  /// Create a copy of DrugUsageBefore
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $DrugUsageBeforeCopyWith<DrugUsageBefore> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DrugUsageBeforeCopyWith<$Res> {
+  factory $DrugUsageBeforeCopyWith(
+          DrugUsageBefore value, $Res Function(DrugUsageBefore) then) =
+      _$DrugUsageBeforeCopyWithImpl<$Res, DrugUsageBefore>;
+  @useResult
+  $Res call({int order, String drug, String firstYearUsage});
+}
+
+/// @nodoc
+class _$DrugUsageBeforeCopyWithImpl<$Res, $Val extends DrugUsageBefore>
+    implements $DrugUsageBeforeCopyWith<$Res> {
+  _$DrugUsageBeforeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of DrugUsageBefore
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? order = null,
+    Object? drug = null,
+    Object? firstYearUsage = null,
+  }) {
+    return _then(_value.copyWith(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
+      drug: null == drug
+          ? _value.drug
+          : drug // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstYearUsage: null == firstYearUsage
+          ? _value.firstYearUsage
+          : firstYearUsage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DrugUsageBeforeImplCopyWith<$Res>
+    implements $DrugUsageBeforeCopyWith<$Res> {
+  factory _$$DrugUsageBeforeImplCopyWith(_$DrugUsageBeforeImpl value,
+          $Res Function(_$DrugUsageBeforeImpl) then) =
+      __$$DrugUsageBeforeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int order, String drug, String firstYearUsage});
+}
+
+/// @nodoc
+class __$$DrugUsageBeforeImplCopyWithImpl<$Res>
+    extends _$DrugUsageBeforeCopyWithImpl<$Res, _$DrugUsageBeforeImpl>
+    implements _$$DrugUsageBeforeImplCopyWith<$Res> {
+  __$$DrugUsageBeforeImplCopyWithImpl(
+      _$DrugUsageBeforeImpl _value, $Res Function(_$DrugUsageBeforeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DrugUsageBefore
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? order = null,
+    Object? drug = null,
+    Object? firstYearUsage = null,
+  }) {
+    return _then(_$DrugUsageBeforeImpl(
+      order: null == order
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
+      drug: null == drug
+          ? _value.drug
+          : drug // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstYearUsage: null == firstYearUsage
+          ? _value.firstYearUsage
+          : firstYearUsage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DrugUsageBeforeImpl implements _DrugUsageBefore {
+  const _$DrugUsageBeforeImpl(
+      {required this.order, required this.drug, required this.firstYearUsage});
+
+  @override
+  final int order;
+  @override
+  final String drug;
+  @override
+  final String firstYearUsage;
+
+  @override
+  String toString() {
+    return 'DrugUsageBefore(order: $order, drug: $drug, firstYearUsage: $firstYearUsage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DrugUsageBeforeImpl &&
+            (identical(other.order, order) || other.order == order) &&
+            (identical(other.drug, drug) || other.drug == drug) &&
+            (identical(other.firstYearUsage, firstYearUsage) ||
+                other.firstYearUsage == firstYearUsage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, order, drug, firstYearUsage);
+
+  /// Create a copy of DrugUsageBefore
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DrugUsageBeforeImplCopyWith<_$DrugUsageBeforeImpl> get copyWith =>
+      __$$DrugUsageBeforeImplCopyWithImpl<_$DrugUsageBeforeImpl>(
+          this, _$identity);
+}
+
+abstract class _DrugUsageBefore implements DrugUsageBefore {
+  const factory _DrugUsageBefore(
+      {required final int order,
+      required final String drug,
+      required final String firstYearUsage}) = _$DrugUsageBeforeImpl;
+
+  @override
+  int get order;
+  @override
+  String get drug;
+  @override
+  String get firstYearUsage;
+
+  /// Create a copy of DrugUsageBefore
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DrugUsageBeforeImplCopyWith<_$DrugUsageBeforeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$Plan {
+  String get planType => throw _privateConstructorUsedError;
+  String get subDivisionName => throw _privateConstructorUsedError;
+  String get startDate => throw _privateConstructorUsedError;
+  String get endDate => throw _privateConstructorUsedError;
+  String get round => throw _privateConstructorUsedError;
+
+  /// Create a copy of Plan
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PlanCopyWith<Plan> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlanCopyWith<$Res> {
+  factory $PlanCopyWith(Plan value, $Res Function(Plan) then) =
+      _$PlanCopyWithImpl<$Res, Plan>;
+  @useResult
+  $Res call(
+      {String planType,
+      String subDivisionName,
+      String startDate,
+      String endDate,
+      String round});
+}
+
+/// @nodoc
+class _$PlanCopyWithImpl<$Res, $Val extends Plan>
+    implements $PlanCopyWith<$Res> {
+  _$PlanCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Plan
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? planType = null,
+    Object? subDivisionName = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? round = null,
+  }) {
+    return _then(_value.copyWith(
+      planType: null == planType
+          ? _value.planType
+          : planType // ignore: cast_nullable_to_non_nullable
+              as String,
+      subDivisionName: null == subDivisionName
+          ? _value.subDivisionName
+          : subDivisionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      round: null == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PlanImplCopyWith<$Res> implements $PlanCopyWith<$Res> {
+  factory _$$PlanImplCopyWith(
+          _$PlanImpl value, $Res Function(_$PlanImpl) then) =
+      __$$PlanImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String planType,
+      String subDivisionName,
+      String startDate,
+      String endDate,
+      String round});
+}
+
+/// @nodoc
+class __$$PlanImplCopyWithImpl<$Res>
+    extends _$PlanCopyWithImpl<$Res, _$PlanImpl>
+    implements _$$PlanImplCopyWith<$Res> {
+  __$$PlanImplCopyWithImpl(_$PlanImpl _value, $Res Function(_$PlanImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Plan
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? planType = null,
+    Object? subDivisionName = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? round = null,
+  }) {
+    return _then(_$PlanImpl(
+      planType: null == planType
+          ? _value.planType
+          : planType // ignore: cast_nullable_to_non_nullable
+              as String,
+      subDivisionName: null == subDivisionName
+          ? _value.subDivisionName
+          : subDivisionName // ignore: cast_nullable_to_non_nullable
+              as String,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      round: null == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PlanImpl implements _Plan {
+  const _$PlanImpl(
+      {required this.planType,
+      required this.subDivisionName,
+      required this.startDate,
+      required this.endDate,
+      required this.round});
+
+  @override
+  final String planType;
+  @override
+  final String subDivisionName;
+  @override
+  final String startDate;
+  @override
+  final String endDate;
+  @override
+  final String round;
+
+  @override
+  String toString() {
+    return 'Plan(planType: $planType, subDivisionName: $subDivisionName, startDate: $startDate, endDate: $endDate, round: $round)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PlanImpl &&
+            (identical(other.planType, planType) ||
+                other.planType == planType) &&
+            (identical(other.subDivisionName, subDivisionName) ||
+                other.subDivisionName == subDivisionName) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.round, round) || other.round == round));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, planType, subDivisionName, startDate, endDate, round);
+
+  /// Create a copy of Plan
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlanImplCopyWith<_$PlanImpl> get copyWith =>
+      __$$PlanImplCopyWithImpl<_$PlanImpl>(this, _$identity);
+}
+
+abstract class _Plan implements Plan {
+  const factory _Plan(
+      {required final String planType,
+      required final String subDivisionName,
+      required final String startDate,
+      required final String endDate,
+      required final String round}) = _$PlanImpl;
+
+  @override
+  String get planType;
+  @override
+  String get subDivisionName;
+  @override
+  String get startDate;
+  @override
+  String get endDate;
+  @override
+  String get round;
+
+  /// Create a copy of Plan
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PlanImplCopyWith<_$PlanImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

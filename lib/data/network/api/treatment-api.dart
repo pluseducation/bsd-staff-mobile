@@ -8,10 +8,7 @@ import 'package:dio/dio.dart';
 class TreatmentApi extends BaseApi {
   TreatmentApi({required super.baseUrl});
 
-  Future<TreatmentEntity> findScreenings(
-    int id, {
-    required int patientsid,
-  }) async {
+  Future<TreatmentEntity> findTreatment(int patientsid) async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(

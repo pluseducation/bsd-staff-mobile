@@ -1,5 +1,3 @@
-// Screenings
-
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/workflow-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';

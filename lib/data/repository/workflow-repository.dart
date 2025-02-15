@@ -4,6 +4,7 @@ import 'package:bst_staff_mobile/data/network/api/questionchoices-api.dart';
 import 'package:bst_staff_mobile/data/network/api/screening-api.dart';
 import 'package:bst_staff_mobile/data/network/api/treatment-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/questionchoices-entity.dart';
+import 'package:bst_staff_mobile/data/network/entity/workflow-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/workflow.dart';
 import 'package:bst_staff_mobile/util/constant.dart';
@@ -33,7 +34,7 @@ class WorkflowRepository {
 
       final questionEntity = await questionApi.findRegisteringQuestionChoices();
       final questionScreeningEntity =
-          await questionApi.findScreeningsQuestionChoices();
+          await questionApi.findScreeningQuestionChoices();
       String imagePath = "";
 
       if (patientEntity.gender == "ชาย") {
@@ -100,7 +101,7 @@ class WorkflowRepository {
 
       final livingWithText = findChoiceDescription(
         questionScreeningEntity,
-        "living_with",
+        "screening_info_last_30_days_answer",
         patientEntity.livingWith,
       );
 
@@ -153,7 +154,7 @@ class WorkflowRepository {
   Future<Screening> findScreening(int patientId) async {
     try {
       final screeningEntity = await screeningApi.findScreening(patientId);
-      final questionEntity = await questionApi.findScreeningsQuestionChoices();
+      final questionEntity = await questionApi.findScreeningQuestionChoices();
 
       final isToBeNumberOneMember = findChoiceDescription(
         questionEntity,
@@ -274,69 +275,279 @@ class WorkflowRepository {
     }
   }
 
-  // String _findDrugDescription(
-  //   List<DrugsEntity> drugList,
-  //   List<AnswerEntity> answers,
-  // ) {
-  //   final List<String> values = [];
+  Future<Treatment> findTreatment(int patientId) async {
+    try {
+      final treatmentEntity = await treatmentApi.findTreatment(patientId);
+      final questionEntity = await questionApi.findTreatmentQuestionChoices();
 
-  //   for (final answer in answers) {
-  //     if (answer.answer == "17") {
-  //       values.add(convertToString(answer.other));
-  //     } else {
-  //       final drugEntity =
-  //           drugList.where((t) => t.id.toString() == answer.answer).firstOrNull;
+      final usageReasons = findChoiceDescriptionList(
+          questionEntity, "first_usage_reasons", treatmentEntity.usageReasons);
+      final currentDrugUsages = treatmentEntity.currentDrugUsages != null
+          ? treatmentEntity.currentDrugUsages!.join(", ")
+          : "";
+      final hadTreatmentText = findChoiceDescription(
+        questionEntity,
+        "had_treatment",
+        treatmentEntity.hadTreatment,
+      );
+      final inHistories = findTreatmentHistory(treatmentEntity.inHistories);
+      final outHistories = findTreatmentHistory(treatmentEntity.outHistories);
+      final joinReasons = findChoiceDescriptionList(
+        questionEntity,
+        "treatment_join_reason",
+        treatmentEntity.joinReasons,
+      );
 
-  //       if (drugEntity != null) {
-  //         values.add(convertToString(drugEntity.name));
-  //       }
-  //     }
-  //   }
+      final drugUsageBefores =
+          findDrugUsageBefore(treatmentEntity.drugUsageBefores);
 
-  //   if (values.isEmpty) {
-  //     return "";
-  //   }
+      final plans = findPlan(treatmentEntity.plans);
 
-  //   return values.join(', ');
-  // }
+      final dosings = findChoiceDescriptionListForDosing(
+        questionEntity,
+        "dosing",
+        treatmentEntity.dosings,
+      );
 
-  // String _findChoiceDescriptionList(
-  //   List<QuestionChoicesEntity> questionList,
-  //   String question,
-  //   List<AnswerEntity> answers,
-  // ) {
-  //   final List<String> values = [];
+      final techniques = findChoiceDescriptionList(
+        questionEntity,
+        "technique",
+        treatmentEntity.techniques,
+      );
 
-  //   final questionEntity =
-  //       questionList.where((t) => t.question?.question == question).firstOrNull;
-  //   if (questionEntity == null) {
-  //     return "-";
-  //   }
+      final programmes = findChoiceDescriptionList(
+        questionEntity,
+        "treatment_programme",
+        treatmentEntity.programmes,
+      );
 
-  //   final choiseEntitys = questionEntity.choices;
-  //   if (choiseEntitys == null) {
-  //     return "-";
-  //   }
+      final harmItems = treatmentEntity.harmItems != null
+          ? treatmentEntity.harmItems!
+          : List<String>.empty();
 
-  //   for (final answer in answers) {
-  //     if (answer.answer == "OTHER") {
-  //       values.add(convertToString(answer.other));
-  //     } else {
-  //       final choiseEntity =
-  //           choiseEntitys.where((t) => t.choice == answer.answer).firstOrNull;
+      final completedReasonText = findChoiceDescription(
+        questionEntity,
+        "completed_reason",
+        treatmentEntity.completedReason,
+      );
 
-  //       if (choiseEntity != null) {
-  //         values.add(convertToString(choiseEntity.desc));
-  //       }
-  //     }
-  //   }
+      final inCompletedReasonText = findChoiceDescription(
+        questionEntity,
+        "incompleted_reason",
+        treatmentEntity.incompletedReason,
+      );
 
-  //   if (values.isEmpty) {
-  //     return "-";
-  //   }
+      final mentalTreatmentResultText = findChoiceDescription(
+        questionEntity,
+        "mental_treatment_result",
+        treatmentEntity.mentalTreatmentResult,
+      );
 
-  //   return values.join(', ');
-  // }
+      final physicalTreatmentResultText = findChoiceDescription(
+        questionEntity,
+        "phisical_treatment_result",
+        treatmentEntity.physicalTreatmentResult,
+      );
+
+      final model = Treatment(
+        treatmentDate:
+            convertToString(treatmentEntity.treatmentDate, defaultValue: "-"),
+        mentalEvalLevel: LevelType.setValue(treatmentEntity.mentalEvalLevel),
+        treatmentResult:
+            DrugEvalResult.setValue(treatmentEntity.treatmentResult),
+        usageReasons: usageReasons.join(", "),
+        firstAgeUsage:
+            convertToString(treatmentEntity.firstAgeUsage, defaultValue: "-"),
+        firstDrugUsage:
+            convertToString(treatmentEntity.firstDrugUsage, defaultValue: "-"),
+        currentDrugUsages: currentDrugUsages,
+        totalUsage:
+            convertToString(treatmentEntity.totalUsage, defaultValue: "-"),
+        hadTreatmentText: hadTreatmentText,
+        inHistories: inHistories,
+        outHistoryies: outHistories,
+        joinReasons: joinReasons,
+        drugUsageBefores: drugUsageBefores,
+        plans: plans,
+        dosings: dosings,
+        techniques: techniques,
+        programmes: programmes,
+        harmReduction: convertToBool(treatmentEntity.harmReduction),
+        harmItems: harmItems,
+        evaluationDate:
+            convertToString(treatmentEntity.evaluationDate, defaultValue: "-"),
+        evaluationResult:
+            TreatmentStatus.setValue(treatmentEntity.evaluationResult),
+        completedReasonText: completedReasonText,
+        mentalTreatmentResultText: mentalTreatmentResultText,
+        physicalTreatmentResultText: physicalTreatmentResultText,
+        incompletedReasonText: inCompletedReasonText,
+      );
+
+      return model;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  List<TreatmentHistory> findTreatmentHistory(
+    List<TreatmentHistoryEntity>? treatmentHistoryEntitys,
+  ) {
+    if (treatmentHistoryEntitys == null) {
+      return List.empty();
+    }
+
+    final values = treatmentHistoryEntitys.map((item) {
+      return TreatmentHistory(
+        subDivisionName: convertToString(item.subDivisionName),
+        times: convertToInt(item.times),
+        lastestUsedDate: convertToString(
+          item.lastestUsedDate,
+          defaultValue: "-",
+        ),
+      );
+    }).toList();
+
+    return values;
+  }
+
+  List<DrugUsageBefore> findDrugUsageBefore(
+    List<DrugUsageBeforeEntity>? drugUsageBeforeEntity,
+  ) {
+    if (drugUsageBeforeEntity == null) {
+      return List.empty();
+    }
+
+    final values = drugUsageBeforeEntity.map((item) {
+      return DrugUsageBefore(
+        order: convertToInt(item.order),
+        drug: convertToString(
+          item.drug,
+          defaultValue: "-",
+        ),
+        firstYearUsage: convertToString(
+          item.firstYearUsage,
+          defaultValue: "-",
+        ),
+      );
+    }).toList();
+
+    return values;
+  }
+
+  List<Plan> findPlan(
+    List<PlanEntity>? planEntitys,
+  ) {
+    if (planEntitys == null) {
+      return List.empty();
+    }
+
+    final values = planEntitys.map((item) {
+      final startDate = item.planEvalResults?.first.evalDate;
+      final startDateText = formatDate(startDate, defaultValue: "-");
+
+      final round = item.planEvalResults?.length;
+      final roundText = round != null ? round.toString() : "-";
+
+      return Plan(
+        planType: convertToString(item.planType),
+        subDivisionName: convertToString(item.subDivision),
+        startDate: startDateText,
+        endDate: convertToString(item.endDate),
+        round: roundText,
+      );
+    }).toList();
+
+    return values;
+  }
+
+  List<String> findChoiceDescriptionList(
+    List<QuestionChoicesEntity> questionList,
+    String question,
+    List<AnswerEntity>? answers,
+  ) {
+    if (answers == null) {
+      return List.empty();
+    }
+
+    final List<String> values = [];
+
+    final questionEntity =
+        questionList.where((t) => t.question?.question == question).firstOrNull;
+    if (questionEntity == null) {
+      return List.empty();
+    }
+
+    final choiseEntitys = questionEntity.choices;
+    if (choiseEntitys == null) {
+      return List.empty();
+    }
+
+    for (final answer in answers) {
+      if (answer.answer == "OTHER") {
+        values.add(convertToString(answer.other));
+      } else {
+        final choiseEntity =
+            choiseEntitys.where((t) => t.choice == answer.answer).firstOrNull;
+
+        if (choiseEntity != null) {
+          values.add(convertToString(choiseEntity.desc));
+        }
+      }
+    }
+
+    if (values.isEmpty) {
+      return List.empty();
+    }
+
+    return values;
+  }
+
+  List<String> findChoiceDescriptionListForDosing(
+    List<QuestionChoicesEntity> questionList,
+    String question,
+    List<AnswerEntity>? answers,
+  ) {
+    if (answers == null) {
+      return List.empty();
+    }
+
+    final List<String> values = [];
+
+    final questionEntity =
+        questionList.where((t) => t.question?.question == question).firstOrNull;
+    if (questionEntity == null) {
+      return List.empty();
+    }
+
+    // dosing where choice == "YES"
+    final choiseEntitys = questionEntity.choices
+        ?.where((t) => t.choice == "YES")
+        .firstOrNull
+        ?.choices;
+    if (choiseEntitys == null) {
+      return List.empty();
+    }
+
+    for (final answer in answers) {
+      if (answer.answer == "OTHER") {
+        values.add(convertToString(answer.other));
+      } else {
+        final choiseEntity =
+            choiseEntitys.where((t) => t.choice == answer.answer).firstOrNull;
+
+        if (choiseEntity != null) {
+          values.add(convertToString(choiseEntity.desc));
+        }
+      }
+    }
+
+    if (values.isEmpty) {
+      return List.empty();
+    }
+
+    return values;
+  }
 
   String findChoiceDescription(
     List<QuestionChoicesEntity> questionList,

@@ -8,32 +8,30 @@ part of 'profile-entity.dart';
 
 ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) =>
     ProfileEntity(
-      userId: (json['userId'] as num?)?.toInt(),
+      id: (json['id'] as num?)?.toInt(),
       username: json['username'] as String?,
-      roleId: (json['roleId'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      surname: json['surname'] as String?,
+      imageUrl: json['imageUrl'] as String?,
       subDivisionId: (json['subDivisionId'] as num?)?.toInt(),
-      active: json['active'] as bool?,
-      officerId: (json['officerId'] as num?)?.toInt(),
-      nameTh: json['nameTh'] as String?,
-      surnameTh: json['surnameTh'] as String?,
-      nationalId: json['nationalId'] as String?,
+      subDivisionName: json['subDivisionName'] as String?,
+      subDivisionLevel: json['subDivisionLevel'] as String?,
+      roleName: json['roleName'] as String?,
       phoneNo: json['phoneNo'] as String?,
-      email: json['email'] as String?,
     );
 
 Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'id': instance.id,
       'username': instance.username,
-      'roleId': instance.roleId,
+      'name': instance.name,
+      'surname': instance.surname,
+      'imageUrl': instance.imageUrl,
       'subDivisionId': instance.subDivisionId,
-      'active': instance.active,
-      'officerId': instance.officerId,
-      'nameTh': instance.nameTh,
-      'surnameTh': instance.surnameTh,
-      'nationalId': instance.nationalId,
+      'subDivisionName': instance.subDivisionName,
+      'subDivisionLevel': instance.subDivisionLevel,
+      'roleName': instance.roleName,
       'phoneNo': instance.phoneNo,
-      'email': instance.email,
     };
 
 ProfileUpdateEntity _$ProfileUpdateEntityFromJson(Map<String, dynamic> json) =>

@@ -9,13 +9,11 @@ import 'package:dio/dio.dart';
 class ProfileApi extends BaseApi {
   ProfileApi({required super.baseUrl});
 
-  Future<ProfileEntity> findProfile({
-    required int officerId,
-  }) async {
+  Future<ProfileEntity> findProfile() async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/staff/officers/$officerId',
+        '/api/v1/staff/profiles/officer',
       );
       if (response.statusCode == 200) {
         return ProfileEntity.fromJson(
@@ -41,33 +39,21 @@ class ProfileApi extends BaseApi {
     }
   }
 
-  Future<bool> updateProfile({
-    required ProfileEntity entityProfile,
+  Future<void> updateProfile({
     required String password,
     required String confirmPassword,
   }) async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.put(
-        '/api/v1/staff/officers',
+        '/api/v1/staff/profiles',
         data: {
-          'username': entityProfile.username,
           'password': password,
           'confirmPassword': confirmPassword,
-          'name': entityProfile.nameTh,
-          'surname': entityProfile.surnameTh,
-          'nationalId': entityProfile.nationalId,
-          'email': entityProfile.email,
-          'phoneNo': entityProfile.phoneNo,
-          'roleId': entityProfile.roleId,
-          'subDivisionId': entityProfile.subDivisionId,
-          'officerId': entityProfile.officerId,
-          'active': entityProfile.active,
         },
       );
 
       if (response.statusCode == 200) {
-        return response.data as bool;
       } else {
         throw Exception('Unknown error');
       }

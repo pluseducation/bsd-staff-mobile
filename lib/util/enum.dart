@@ -426,3 +426,28 @@ enum ReferStatus {
     }
   }
 }
+
+enum TreatmentStatus {
+  incompleted,
+  completed;
+
+  String? get value {
+    switch (this) {
+      case TreatmentStatus.incompleted:
+        return "INCOMPLETED";
+      case TreatmentStatus.completed:
+        return "COMPLETED";
+    }
+  }
+
+  static TreatmentStatus? setValue(String? value) {
+    switch (value) {
+      case "INCOMPLETED":
+        return TreatmentStatus.incompleted;
+      case "COMPLETED":
+        return TreatmentStatus.completed;
+      default:
+        return null;
+    }
+  }
+}

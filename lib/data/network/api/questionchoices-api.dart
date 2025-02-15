@@ -38,7 +38,7 @@ class Question extends BaseApi {
     }
   }
 
-  Future<List<QuestionChoicesEntity>> findScreeningsQuestionChoices() async {
+  Future<List<QuestionChoicesEntity>> findScreeningQuestionChoices() async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(

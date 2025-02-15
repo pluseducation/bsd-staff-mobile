@@ -10,7 +10,7 @@ class NotificationConfigApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/staff/notificationconfigs',
+        '/api/v1/staff/notifications-config',
       );
       if (response.statusCode == 200) {
         return NotificationConfigEntity.fromJson(
@@ -46,7 +46,7 @@ class NotificationConfigApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.post(
-        '/api/v1/staff/notificationconfigs',
+        '/api/v1/staff/notifications-config',
         data: {
           'appointment': appointment,
           'monitoring': monitoring,

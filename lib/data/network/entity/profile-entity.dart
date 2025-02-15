@@ -5,30 +5,28 @@ part 'profile-entity.g.dart';
 // profile
 @JsonSerializable()
 class ProfileEntity {
-  int? userId;
+  int? id;
   String? username;
-  int? roleId;
+  String? name;
+  String? surname;
+  String? imageUrl;
   int? subDivisionId;
-  bool? active;
-  int? officerId;
-  String? nameTh;
-  String? surnameTh;
-  String? nationalId;
+  String? subDivisionName;
+  String? subDivisionLevel;
+  String? roleName;
   String? phoneNo;
-  String? email;
 
   ProfileEntity({
-    required this.userId,
+    required this.id,
     required this.username,
-    required this.roleId,
+    required this.name,
+    required this.surname,
+    required this.imageUrl,
     required this.subDivisionId,
-    required this.active,
-    required this.officerId,
-    required this.nameTh,
-    required this.surnameTh,
-    required this.nationalId,
+    required this.subDivisionName,
+    required this.subDivisionLevel,
+    required this.roleName,
     required this.phoneNo,
-    required this.email,
   });
 
   factory ProfileEntity.fromJson(Map<String, dynamic> json) =>

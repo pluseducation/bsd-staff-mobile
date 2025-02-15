@@ -30,6 +30,19 @@ double convertToDouble(dynamic object) {
   }
 }
 
+bool convertToBool(dynamic object) {
+  try {
+    if (object == null) {
+      return false;
+    }
+
+    final bool value = object as bool;
+    return value;
+  } catch (e) {
+    rethrow;
+  }
+}
+
 String convertToString(dynamic object, {String defaultValue = ""}) {
   try {
     if (object == null) {
