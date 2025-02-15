@@ -125,23 +125,21 @@ class _NotificationContentState extends State<NotificationContent> {
               builder: (context, model, child) {
                 final notifications = model.notifications;
                 if (notifications.isEmpty) {
-                  return Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          "assets/images/empty_notification.png",
-                          height: 200,
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/images/empty_notification.png",
+                        height: 200,
+                      ),
+                      const Text(
+                        'ยังไม่มีแจ้งเตือน',
+                        style: TextStyle(
+                          fontSize: FontSizes.medium,
+                          color: MainColors.primary300,
                         ),
-                        const Text(
-                          'ยังไม่มีแจ้งเตือน',
-                          style: TextStyle(
-                            fontSize: FontSizes.medium,
-                            color: MainColors.primary300,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   );
                 }
 
