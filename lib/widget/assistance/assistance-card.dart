@@ -1,7 +1,7 @@
 import 'package:bst_staff_mobile/domain/model/assistance.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/assistance/assistance.dart';
+import 'package:bst_staff_mobile/widget/assistance/assistance-status.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-status.dart';
 import 'package:flutter/material.dart';
 

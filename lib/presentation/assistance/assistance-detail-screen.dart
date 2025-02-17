@@ -3,7 +3,7 @@ import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance-detail-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/assistance/assistance.dart';
+import 'package:bst_staff_mobile/widget/assistance/assistance-status.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
