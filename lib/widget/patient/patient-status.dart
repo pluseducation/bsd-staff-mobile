@@ -65,7 +65,7 @@ class WorkFlowStatusType extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: FontSizes.text,
               color: color,
               fontWeight: FontWeight.bold,
             ),
@@ -124,7 +124,7 @@ class WorkFlowStatusTypeEmpty extends StatelessWidget {
           child: Text(
             text,
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: FontSizes.text,
               color: color,
               fontWeight: FontWeight.bold,
             ),
@@ -196,7 +196,7 @@ class WorkFlowStatusTypeSelect extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: FontSizes.text,
               color: color,
               fontWeight: FontWeight.bold,
             ),
@@ -267,7 +267,7 @@ class LevelStatusType extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: FontSizes.small,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -331,7 +331,7 @@ class LevelStatusTypeEmpty extends StatelessWidget {
             text,
             style: const TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -403,7 +403,7 @@ class LevelStatusTypeSelect extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -515,7 +515,7 @@ class DrugEvalResultStatusType extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: FontSizes.small,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -577,7 +577,7 @@ class DrugEvalResultStatusTypeEmpty extends StatelessWidget {
             text,
             style: const TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -645,7 +645,7 @@ class DrugEvalResultStatusTypeSelect extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -794,7 +794,7 @@ class TreatmentStatusType extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: FontSizes.small,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -877,7 +877,7 @@ class TreatmentStatusTypeEmpty extends StatelessWidget {
             text,
             style: const TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -986,7 +986,7 @@ class TreatmentStatusTypeSelect extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -1044,7 +1044,7 @@ class MivStatusType extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: FontSizes.small,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -1102,7 +1102,7 @@ class SmivStatusTypeEmpty extends StatelessWidget {
             text,
             style: const TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -1162,7 +1162,7 @@ class SmivStatusTypeSelect extends StatelessWidget {
             text,
             style: TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: FontSizes.text,
               fontWeight: FontWeight.bold,
             ),
           ),
