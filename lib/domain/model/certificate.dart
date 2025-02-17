@@ -6,7 +6,7 @@ part 'certificate.freezed.dart';
 @unfreezed
 class SearchCertificate with _$SearchCertificate {
   factory SearchCertificate({
-    required String searchVal,
+    required String name,
     required int page,
     required int totalPages,
     required int totalElements,

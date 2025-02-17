@@ -24,6 +24,7 @@ class CertificateContentEntity {
   String? name;
   int? id;
   String? nationalId;
+  String? cycle;
   String? surname;
   DateTime? requestedDate;
   DateTime? approvedDate;
@@ -36,6 +37,7 @@ class CertificateContentEntity {
     required this.status,
     required this.surname,
     required this.nationalId,
+    required this.cycle,
     required this.requestedDate,
     required this.approvedDate,
     required this.approvedName,
