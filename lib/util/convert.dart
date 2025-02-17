@@ -104,6 +104,30 @@ String formatTime(DateTime? dateTime) {
   return formatter.format(dateTime);
 }
 
+String formatTimegone(DateTime? date) {
+  String value = "";
+  final now = DateTime.now();
+  final tmp = convertToDatetime(date);
+  final diff = tmp.difference(now);
+  final days = diff.inDays;
+  final hours = diff.inHours;
+  final minutes = diff.inMinutes;
+  if (days > 0) {
+    value = "อีก $days วัน";
+  } else if (hours > 0) {
+    value = "อีก $hours ชั่วโมง";
+  } else if (minutes > 0) {
+    value = "อีก $minutes นาที";
+  } else if (days < 0) {
+    value = "เมื่อ ${days.abs()} วันที่แล้ว";
+  } else if (hours < 0) {
+    value = "เมื่อ ${hours.abs()} ชั่วโมงที่แล้ว";
+  } else if (minutes < 0) {
+    value = "เมื่อ ${minutes.abs()} นาทีที่แล้ว";
+  }
+  return value;
+}
+
 // Thai only
 String formatThaiFullDate(DateTime date) {
   final year = date.year;
