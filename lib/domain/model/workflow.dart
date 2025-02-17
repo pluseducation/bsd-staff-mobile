@@ -31,7 +31,7 @@ class Registering with _$Registering {
 @freezed
 class Screening with _$Screening {
   const factory Screening({
-    required String screeningDate,
+    required String? screeningDate,
     required LevelType? levelType,
     required DrugEvalResult? drugEvalResult,
     required String isToBeNumberOneMember,
@@ -55,15 +55,15 @@ class Screening with _$Screening {
 @freezed
 class Treatment with _$Treatment {
   const factory Treatment({
-    required String treatmentDate,
+    required String? treatmentDate,
     required LevelType? mentalEvalLevel,
     required DrugEvalResult? treatmentResult,
-    required String? usageReasons,
-    required String? firstAgeUsage,
-    required String? firstDrugUsage,
-    required String? currentDrugUsages,
-    required String? totalUsage,
-    required String? hadTreatmentText,
+    required String usageReasons,
+    required String firstAgeUsage,
+    required String firstDrugUsage,
+    required String currentDrugUsages,
+    required String totalUsage,
+    required String hadTreatmentText,
     required List<TreatmentHistory> inHistories,
     required List<TreatmentHistory> outHistoryies,
     required List<String> joinReasons,
@@ -109,6 +109,7 @@ class Plan with _$Plan {
     required String startDate,
     required String endDate,
     required String round,
+    required LastedEvalResult? lastedEvalResult,
   }) = _Plan;
 }
 

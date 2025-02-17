@@ -210,9 +210,8 @@ TreatmentEntity _$TreatmentEntityFromJson(Map<String, dynamic> json) =>
       otherDosing: json['otherDosing'] as String?,
       otherPhysical: json['otherPhysical'] as String?,
       otherMental: json['otherMental'] as String?,
-      dosings: (json['dosings'] as List<dynamic>?)
-          ?.map((e) => AnswerEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      dosings:
+          (json['dosings'] as List<dynamic>?)?.map((e) => e as String).toList(),
       harmReduction: json['harmReduction'] as bool?,
       harmItems: (json['harmItems'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -376,9 +375,7 @@ PlanEvalResultEntity _$PlanEvalResultEntityFromJson(
         Map<String, dynamic> json) =>
     PlanEvalResultEntity(
       order: (json['order'] as num?)?.toInt(),
-      evalDate: json['evalDate'] == null
-          ? null
-          : DateTime.parse(json['evalDate'] as String),
+      evalDate: json['evalDate'] as String?,
       evalResult: (json['evalResult'] as num?)?.toInt(),
     );
 
@@ -386,7 +383,7 @@ Map<String, dynamic> _$PlanEvalResultEntityToJson(
         PlanEvalResultEntity instance) =>
     <String, dynamic>{
       'order': instance.order,
-      'evalDate': instance.evalDate?.toIso8601String(),
+      'evalDate': instance.evalDate,
       'evalResult': instance.evalResult,
     };
 

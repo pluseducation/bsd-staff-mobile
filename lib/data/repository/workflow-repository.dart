@@ -217,7 +217,7 @@ class WorkflowRepository {
       );
 
       final model = Screening(
-        screeningDate: convertToString(screeningEntity.screeningDate),
+        screeningDate: screeningEntity.screeningDate,
         levelType: LevelType.setValue(screeningEntity.level),
         drugEvalResult: DrugEvalResult.setValue(screeningEntity.drugEvalResult),
         isToBeNumberOneMember: isToBeNumberOneMember,
@@ -239,37 +239,6 @@ class WorkflowRepository {
       );
 
       return model;
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  Future<List<Monitoring>> findMonitoring(int patientId) async {
-    try {
-      final monitoringEntitys = await monitoringApi.findMonitoring(patientId);
-
-      String latestResultDateText = "";
-      if (monitoringEntitys.isNotEmpty) {
-        final latestResultDate = monitoringEntitys
-            .where((t) => t.finalRound == 1)
-            .firstOrNull
-            ?.endDate;
-        latestResultDateText = formatDate(latestResultDate, defaultValue: "-");
-      }
-
-      final models = monitoringEntitys.map((monitoringEntity) {
-        return Monitoring(
-          latestResultDate: latestResultDateText,
-          startDate: formatDate(monitoringEntity.startDate),
-          endDate: convertToString(monitoringEntity.endDate),
-          round: convertToInt(monitoringEntity.round),
-          subdivision: convertToString(monitoringEntity.subdivision),
-          latestResult: UsingDrugStatus.setValue(monitoringEntity.latestResult),
-          finalRound: monitoringEntity.finalRound == 1,
-        );
-      }).toList();
-
-      return models;
     } catch (e) {
       rethrow;
     }
@@ -303,11 +272,7 @@ class WorkflowRepository {
 
       final plans = findPlan(treatmentEntity.plans);
 
-      final dosings = findChoiceDescriptionListForDosing(
-        questionEntity,
-        "dosing",
-        treatmentEntity.dosings,
-      );
+      final dosings = treatmentEntity.dosings ?? List<String>.empty();
 
       final techniques = findChoiceDescriptionList(
         questionEntity,
@@ -350,12 +315,11 @@ class WorkflowRepository {
       );
 
       final model = Treatment(
-        treatmentDate:
-            convertToString(treatmentEntity.treatmentDate, defaultValue: "-"),
+        treatmentDate: treatmentEntity.treatmentDate,
         mentalEvalLevel: LevelType.setValue(treatmentEntity.mentalEvalLevel),
         treatmentResult:
             DrugEvalResult.setValue(treatmentEntity.treatmentResult),
-        usageReasons: usageReasons.join(", "),
+        usageReasons: usageReasons.isNotEmpty ? usageReasons.join(", ") : "-",
         firstAgeUsage:
             convertToString(treatmentEntity.firstAgeUsage, defaultValue: "-"),
         firstDrugUsage:
@@ -385,6 +349,37 @@ class WorkflowRepository {
       );
 
       return model;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<Monitoring>> findMonitoring(int patientId) async {
+    try {
+      final monitoringEntitys = await monitoringApi.findMonitoring(patientId);
+
+      String latestResultDateText = "";
+      if (monitoringEntitys.isNotEmpty) {
+        final latestResultDate = monitoringEntitys
+            .where((t) => t.finalRound == 1)
+            .firstOrNull
+            ?.endDate;
+        latestResultDateText = formatDate(latestResultDate, defaultValue: "-");
+      }
+
+      final models = monitoringEntitys.map((monitoringEntity) {
+        return Monitoring(
+          latestResultDate: latestResultDateText,
+          startDate: formatDate(monitoringEntity.startDate),
+          endDate: convertToString(monitoringEntity.endDate),
+          round: convertToInt(monitoringEntity.round),
+          subdivision: convertToString(monitoringEntity.subdivision),
+          latestResult: UsingDrugStatus.setValue(monitoringEntity.latestResult),
+          finalRound: monitoringEntity.finalRound == 1,
+        );
+      }).toList();
+
+      return models;
     } catch (e) {
       rethrow;
     }
@@ -444,7 +439,9 @@ class WorkflowRepository {
 
     final values = planEntitys.map((item) {
       final startDate = item.planEvalResults?.first.evalDate;
-      final startDateText = formatDate(startDate, defaultValue: "-");
+      final startDateText = startDate ?? "-";
+
+      final lastedEvalResult = item.planEvalResults?.last.evalResult;
 
       final round = item.planEvalResults?.length;
       final roundText = round != null ? round.toString() : "-";
@@ -455,6 +452,7 @@ class WorkflowRepository {
         startDate: startDateText,
         endDate: convertToString(item.endDate),
         round: roundText,
+        lastedEvalResult: LastedEvalResult.setValue(lastedEvalResult),
       );
     }).toList();
 

@@ -28,7 +28,7 @@ class WorkflowModel extends ChangeNotifier {
       patientId = id;
       registering = await workflowRepository.findRegistering(patientId);
       screening = await workflowRepository.findScreening(patientId);
-      treatment = null; //await workflowRepository.xxx(patientId);
+      treatment = await workflowRepository.findTreatment(patientId);
       monitorings = await workflowRepository.findMonitoring(patientId);
       return true;
     } catch (e) {

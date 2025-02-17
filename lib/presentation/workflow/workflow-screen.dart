@@ -8,6 +8,10 @@ import 'package:bst_staff_mobile/util/launch.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-status.dart';
 import 'package:bst_staff_mobile/widget/workflow/monitoring-card.dart';
+import 'package:bst_staff_mobile/widget/workflow/treatment-drugusagebefore-card.dart';
+import 'package:bst_staff_mobile/widget/workflow/treatment-evalresult-card.dart';
+import 'package:bst_staff_mobile/widget/workflow/treatment-history-card.dart';
+import 'package:bst_staff_mobile/widget/workflow/treatment-plan-card.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -141,7 +145,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                                 ),
                               ),
                             ],
-                            if (model.screening != null) ...[
+                            if (model.screening?.screeningDate != null) ...[
                               _buildScreening(model.screening!),
                             ] else ...[
                               const Expanded(
@@ -159,7 +163,24 @@ class _WorkflowContentState extends State<WorkflowContent> {
                                 ),
                               ),
                             ],
-                            Text('-'),
+                            if (model.treatment?.treatmentDate != null) ...[
+                              _buildTreatment(model.treatment!),
+                            ] else ...[
+                              const Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'ไม่พบข้อมูล',
+                                      style: TextStyle(
+                                        color: MainColors.text,
+                                        fontSize: 24,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                             if (model.monitorings.isNotEmpty) ...[
                               _buildMonitoring(model.monitorings),
                             ] else ...[
@@ -671,7 +692,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.screeningDate,
+                data.screeningDate ?? "-",
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -925,6 +946,442 @@ class _WorkflowContentState extends State<WorkflowContent> {
         ),
       ),
     );
+  }
+
+  Widget _buildTreatment(Treatment data) {
+    return SingleChildScrollView(
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "วันที่เข้ารับการบำบัด",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                data.treatmentDate ?? "-",
+                style: const TextStyle(
+                  fontSize: FontSizes.medium,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "ประเมินพฤติกรรมก้าวร้าว (OAS)",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              LevelStatusTypeLabel(
+                levelType: data.mentalEvalLevel,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "แบบประเมินพฤติกรรมการใช้ยาเสพติด (V2)",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              DrugEvalResultStatusTypeLabel(
+                drugEvalResult: data.treatmentResult,
+              ),
+              const Divider(
+                color: MainColors.divider,
+                thickness: 0.6,
+              ),
+              const Text(
+                "สาเหตุสำคัญที่ใช้ยาเสพติดครั้งแรก",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                data.usageReasons,
+                style: const TextStyle(
+                  fontSize: FontSizes.medium,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "ใช้ยาเสพติดครั้งแรก",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                "${data.firstAgeUsage} ปี",
+                style: const TextStyle(
+                  fontSize: FontSizes.medium,
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                "ยาเสพติดที่ใช้ : ${data.firstDrugUsage}",
+                style: const TextStyle(
+                  fontSize: FontSizes.medium,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "การใช้ยาเสพติดในปัจจุบัน",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                data.currentDrugUsages,
+                style: const TextStyle(
+                  fontSize: FontSizes.medium,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "ระยะเวลาที่ใช้",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                "${data.totalUsage} ปี",
+                style: const TextStyle(
+                  fontSize: FontSizes.medium,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "เคยเข้ารับการบำบัดรักษามาก่อนหรือไม่",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                data.hadTreatmentText,
+                style: const TextStyle(
+                  fontSize: FontSizes.medium,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "ข้อมูลการบำบัดรักษาในระบบ",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ..._buildTreatmentHistoryList(data.inHistories),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "ข้อมูลการบำบัดรักษานอกระบบ",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ..._buildTreatmentHistoryList(data.outHistoryies),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "เหตุผลสำคัญที่เข้ารับการบำบัดรักษาครั้งนี้",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ..._buildTreatmentList(data.joinReasons),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "ชนิดยาเสพติดที่ใช้ก่อนมารักษา",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ..._buildDrugUsageBeforeList(data.drugUsageBefores),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "ประวัติการบำบัดรักษา",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ..._buildPlanList(data.plans),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "การให้ยา",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ..._buildTreatmentList(data.dosings),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "เทคนิคการบำบัดฟื้นฟูสมรรถภาพ",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ..._buildTreatmentList(data.techniques),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "โปรแกรมการบำบัดฟื้นฟูสมรรถภาพ",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ..._buildTreatmentList(data.programmes),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "โปรแกรมการลดอันตรายจากการใช้ยาเสพติด (Harm reduction)",
+                style: TextStyle(
+                  fontSize: FontSizes.medium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ..._buildTreatmentList(data.harmItems),
+              const SizedBox(
+                height: 16,
+              ),
+              TreatmentEvalresultCard(
+                status: data.evaluationResult,
+                date: data.evaluationDate,
+                completedReasonText: data.completedReasonText,
+                mentalTreatmentResultText: data.mentalTreatmentResultText,
+                physicalTreatmentResultText: data.physicalTreatmentResultText,
+                incompletedReasonText: data.incompletedReasonText,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildTreatmentHistoryList(
+    List<TreatmentHistory> datas,
+  ) {
+    if (datas.isEmpty) {
+      return [
+        const Text(
+          "-",
+          style: TextStyle(
+            fontSize: FontSizes.medium,
+          ),
+        ),
+      ];
+    }
+
+    final List<Widget> dataCards = [];
+    for (var i = 0; i < datas.length; i++) {
+      dataCards.add(
+        TreatmentHistoryCard(
+          data: datas[i],
+        ),
+      );
+
+      if (i < datas.length - 1) {
+        dataCards.add(const SizedBox(height: 8));
+      }
+    }
+
+    return dataCards;
+  }
+
+  List<Widget> _buildTreatmentList(
+    List<String> datas,
+  ) {
+    if (datas.isEmpty) {
+      return [
+        const Text(
+          "-",
+          style: TextStyle(
+            fontSize: FontSizes.medium,
+          ),
+        ),
+      ];
+    }
+
+    final List<Widget> dataCards = [];
+    for (var i = 0; i < datas.length; i++) {
+      dataCards.add(
+        Row(
+          children: [
+            const Icon(Icons.circle, size: 8),
+            const SizedBox(
+              width: 8,
+            ),
+            Text(
+              datas[i],
+              style: const TextStyle(
+                fontSize: FontSizes.medium,
+              ),
+            ),
+          ],
+        ),
+      );
+
+      if (i < datas.length - 1) {
+        dataCards.add(const SizedBox(height: 8));
+      }
+    }
+
+    return dataCards;
+  }
+
+  List<Widget> _buildDrugUsageBeforeList(
+    List<DrugUsageBefore> datas,
+  ) {
+    if (datas.isEmpty) {
+      return [
+        const Text(
+          "-",
+          style: TextStyle(
+            fontSize: FontSizes.medium,
+          ),
+        ),
+      ];
+    }
+
+    final List<Widget> dataCards = [];
+    for (var i = 0; i < datas.length; i++) {
+      dataCards.add(
+        TreatmentDrugusagebeforeCard(
+          data: datas[i],
+        ),
+      );
+
+      if (i < datas.length - 1) {
+        dataCards.add(const SizedBox(height: 8));
+      }
+    }
+
+    return dataCards;
+  }
+
+  List<Widget> _buildPlanList(
+    List<Plan> datas,
+  ) {
+    if (datas.isEmpty) {
+      return [
+        const Text(
+          "-",
+          style: TextStyle(
+            fontSize: FontSizes.medium,
+          ),
+        ),
+      ];
+    }
+
+    final List<Widget> dataCards = [];
+    for (var i = 0; i < datas.length; i++) {
+      dataCards.add(
+        TreatmentPlanCard(
+          data: datas[i],
+        ),
+      );
+
+      if (i < datas.length - 1) {
+        dataCards.add(const SizedBox(height: 8));
+      }
+    }
+
+    return dataCards;
   }
 
   Widget _buildMonitoring(List<Monitoring> datas) {

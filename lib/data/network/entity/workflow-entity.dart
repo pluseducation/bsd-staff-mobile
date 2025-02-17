@@ -205,7 +205,7 @@ class TreatmentEntity {
   String? otherDosing;
   String? otherPhysical;
   String? otherMental;
-  List<AnswerEntity>? dosings;
+  List<String>? dosings;
   bool? harmReduction;
   List<String>? harmItems;
   List<AnswerEntity>? techniques;
@@ -365,7 +365,7 @@ class PlanEntity {
 @JsonSerializable()
 class PlanEvalResultEntity {
   int? order;
-  DateTime? evalDate;
+  String? evalDate;
   int? evalResult;
 
   PlanEvalResultEntity({

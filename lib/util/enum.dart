@@ -451,3 +451,28 @@ enum TreatmentStatus {
     }
   }
 }
+
+enum LastedEvalResult {
+  take,
+  notTake;
+
+  int? get value {
+    switch (this) {
+      case LastedEvalResult.take:
+        return 1;
+      case LastedEvalResult.notTake:
+        return 0;
+    }
+  }
+
+  static LastedEvalResult? setValue(int? value) {
+    switch (value) {
+      case 1:
+        return LastedEvalResult.take;
+      case 0:
+        return LastedEvalResult.notTake;
+      default:
+        return null;
+    }
+  }
+}

@@ -58,3 +58,60 @@ class TreatmentStatusTag extends StatelessWidget {
     );
   }
 }
+
+class EvalResultTag extends StatelessWidget {
+  final LastedEvalResult? lastedEvalResult;
+
+  const EvalResultTag({
+    super.key,
+    required this.lastedEvalResult,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color color;
+    Color lightColor;
+    String text;
+
+    if (lastedEvalResult == LastedEvalResult.take) {
+      lightColor = MainColors.errorLight;
+      color = MainColors.error;
+      text = "เสพ";
+    } else if (lastedEvalResult == LastedEvalResult.notTake) {
+      lightColor = MainColors.successLight;
+      color = MainColors.success;
+      text = "ไม่เสพ";
+    } else {
+      lightColor = Colors.grey;
+      color = Colors.grey;
+      text = '-';
+    }
+
+    if (lastedEvalResult == null) {
+      return Container();
+    }
+
+    return Container(
+      decoration: BoxDecoration(
+        color: lightColor,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: lightColor,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 12,
+              color: color,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
