@@ -19,11 +19,11 @@ class CertificateApi extends BaseApi {
       };
 
       if (searchCertificate.searchVal.isNotEmpty) {
-        queryParameters['searchVal'] = searchCertificate.searchVal;
+        queryParameters['name'] = searchCertificate.searchVal;
       }
 
       final response = await dio.get(
-        '/api/v1/staff/certificaterequests?',
+        '/api/v1/staff/certificaterequests',
         queryParameters: queryParameters,
       );
       if (response.statusCode == 200) {

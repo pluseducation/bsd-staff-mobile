@@ -44,7 +44,7 @@ class CertificateRepository {
         id: convertToInt(item.id),
         fullName: fullname,
         nationalId: convertToString(item.nationalId),
-        cycle: '', //convertToString(item.cycle)
+        cycle: 'รอ:field', //convertToString(item.cycle)
         requestedDateText: finalRequestedDateText,
         certificateStatus: CertificateStatus.setValue(status),
       );
