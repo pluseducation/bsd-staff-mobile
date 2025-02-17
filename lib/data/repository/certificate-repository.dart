@@ -26,19 +26,7 @@ class CertificateRepository {
     final models = entity.content!.map((item) {
       final String fullname =
           "${convertToString(item.name)} ${convertToString(item.surname)}";
-      final String nationalId = convertToString(item.nationalId);
-
-      final DateTime? requestedDate = item.requestedDate;
-      final String requestedDateText = convertThaiDate(requestedDate);
-      final DateTime currentDate = DateTime.now();
-      final Duration difference =
-          currentDate.difference(requestedDate ?? currentDate);
-      final int sum = difference.inDays;
-
-      final String finalRequestedDateText =
-          "$requestedDateText ($sum วันที่แล้ว)";
-
-      final String status = convertToString(item.status);
+      final String finalRequestedDateText = formatTimegone(item.requestedDate);
 
       return Certificate(
         id: convertToInt(item.id),
@@ -46,7 +34,7 @@ class CertificateRepository {
         nationalId: convertToString(item.nationalId),
         cycle: 'รอ:field', //convertToString(item.cycle)
         requestedDateText: finalRequestedDateText,
-        certificateStatus: CertificateStatus.setValue(status),
+        certificateStatus: CertificateStatus.setValue(item.status),
       );
     }).toList();
 
