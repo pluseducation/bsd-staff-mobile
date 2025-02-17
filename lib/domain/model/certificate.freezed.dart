@@ -455,3 +455,303 @@ abstract class _Certificate implements Certificate {
   _$$CertificateImplCopyWith<_$CertificateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$CertificateDetail {
+  int get id => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
+  String get nationalId => throw _privateConstructorUsedError;
+  String get cycle => throw _privateConstructorUsedError;
+  String get phoneNo => throw _privateConstructorUsedError;
+  WorkFlowStatus? get workFlowStatus => throw _privateConstructorUsedError;
+  DrugEvalResult? get drugEvalResult => throw _privateConstructorUsedError;
+  LevelType? get levelType => throw _privateConstructorUsedError;
+  String get fullNameApproved => throw _privateConstructorUsedError;
+
+  /// Create a copy of CertificateDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CertificateDetailCopyWith<CertificateDetail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CertificateDetailCopyWith<$Res> {
+  factory $CertificateDetailCopyWith(
+          CertificateDetail value, $Res Function(CertificateDetail) then) =
+      _$CertificateDetailCopyWithImpl<$Res, CertificateDetail>;
+  @useResult
+  $Res call(
+      {int id,
+      String fullName,
+      String nationalId,
+      String cycle,
+      String phoneNo,
+      WorkFlowStatus? workFlowStatus,
+      DrugEvalResult? drugEvalResult,
+      LevelType? levelType,
+      String fullNameApproved});
+}
+
+/// @nodoc
+class _$CertificateDetailCopyWithImpl<$Res, $Val extends CertificateDetail>
+    implements $CertificateDetailCopyWith<$Res> {
+  _$CertificateDetailCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of CertificateDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? fullName = null,
+    Object? nationalId = null,
+    Object? cycle = null,
+    Object? phoneNo = null,
+    Object? workFlowStatus = freezed,
+    Object? drugEvalResult = freezed,
+    Object? levelType = freezed,
+    Object? fullNameApproved = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      nationalId: null == nationalId
+          ? _value.nationalId
+          : nationalId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNo: null == phoneNo
+          ? _value.phoneNo
+          : phoneNo // ignore: cast_nullable_to_non_nullable
+              as String,
+      workFlowStatus: freezed == workFlowStatus
+          ? _value.workFlowStatus
+          : workFlowStatus // ignore: cast_nullable_to_non_nullable
+              as WorkFlowStatus?,
+      drugEvalResult: freezed == drugEvalResult
+          ? _value.drugEvalResult
+          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+              as DrugEvalResult?,
+      levelType: freezed == levelType
+          ? _value.levelType
+          : levelType // ignore: cast_nullable_to_non_nullable
+              as LevelType?,
+      fullNameApproved: null == fullNameApproved
+          ? _value.fullNameApproved
+          : fullNameApproved // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CertificateDetailImplCopyWith<$Res>
+    implements $CertificateDetailCopyWith<$Res> {
+  factory _$$CertificateDetailImplCopyWith(_$CertificateDetailImpl value,
+          $Res Function(_$CertificateDetailImpl) then) =
+      __$$CertificateDetailImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String fullName,
+      String nationalId,
+      String cycle,
+      String phoneNo,
+      WorkFlowStatus? workFlowStatus,
+      DrugEvalResult? drugEvalResult,
+      LevelType? levelType,
+      String fullNameApproved});
+}
+
+/// @nodoc
+class __$$CertificateDetailImplCopyWithImpl<$Res>
+    extends _$CertificateDetailCopyWithImpl<$Res, _$CertificateDetailImpl>
+    implements _$$CertificateDetailImplCopyWith<$Res> {
+  __$$CertificateDetailImplCopyWithImpl(_$CertificateDetailImpl _value,
+      $Res Function(_$CertificateDetailImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CertificateDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? fullName = null,
+    Object? nationalId = null,
+    Object? cycle = null,
+    Object? phoneNo = null,
+    Object? workFlowStatus = freezed,
+    Object? drugEvalResult = freezed,
+    Object? levelType = freezed,
+    Object? fullNameApproved = null,
+  }) {
+    return _then(_$CertificateDetailImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      nationalId: null == nationalId
+          ? _value.nationalId
+          : nationalId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cycle: null == cycle
+          ? _value.cycle
+          : cycle // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNo: null == phoneNo
+          ? _value.phoneNo
+          : phoneNo // ignore: cast_nullable_to_non_nullable
+              as String,
+      workFlowStatus: freezed == workFlowStatus
+          ? _value.workFlowStatus
+          : workFlowStatus // ignore: cast_nullable_to_non_nullable
+              as WorkFlowStatus?,
+      drugEvalResult: freezed == drugEvalResult
+          ? _value.drugEvalResult
+          : drugEvalResult // ignore: cast_nullable_to_non_nullable
+              as DrugEvalResult?,
+      levelType: freezed == levelType
+          ? _value.levelType
+          : levelType // ignore: cast_nullable_to_non_nullable
+              as LevelType?,
+      fullNameApproved: null == fullNameApproved
+          ? _value.fullNameApproved
+          : fullNameApproved // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CertificateDetailImpl implements _CertificateDetail {
+  const _$CertificateDetailImpl(
+      {required this.id,
+      required this.fullName,
+      required this.nationalId,
+      required this.cycle,
+      required this.phoneNo,
+      required this.workFlowStatus,
+      this.drugEvalResult,
+      this.levelType,
+      required this.fullNameApproved});
+
+  @override
+  final int id;
+  @override
+  final String fullName;
+  @override
+  final String nationalId;
+  @override
+  final String cycle;
+  @override
+  final String phoneNo;
+  @override
+  final WorkFlowStatus? workFlowStatus;
+  @override
+  final DrugEvalResult? drugEvalResult;
+  @override
+  final LevelType? levelType;
+  @override
+  final String fullNameApproved;
+
+  @override
+  String toString() {
+    return 'CertificateDetail(id: $id, fullName: $fullName, nationalId: $nationalId, cycle: $cycle, phoneNo: $phoneNo, workFlowStatus: $workFlowStatus, drugEvalResult: $drugEvalResult, levelType: $levelType, fullNameApproved: $fullNameApproved)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CertificateDetailImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.nationalId, nationalId) ||
+                other.nationalId == nationalId) &&
+            (identical(other.cycle, cycle) || other.cycle == cycle) &&
+            (identical(other.phoneNo, phoneNo) || other.phoneNo == phoneNo) &&
+            (identical(other.workFlowStatus, workFlowStatus) ||
+                other.workFlowStatus == workFlowStatus) &&
+            (identical(other.drugEvalResult, drugEvalResult) ||
+                other.drugEvalResult == drugEvalResult) &&
+            (identical(other.levelType, levelType) ||
+                other.levelType == levelType) &&
+            (identical(other.fullNameApproved, fullNameApproved) ||
+                other.fullNameApproved == fullNameApproved));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, fullName, nationalId, cycle,
+      phoneNo, workFlowStatus, drugEvalResult, levelType, fullNameApproved);
+
+  /// Create a copy of CertificateDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CertificateDetailImplCopyWith<_$CertificateDetailImpl> get copyWith =>
+      __$$CertificateDetailImplCopyWithImpl<_$CertificateDetailImpl>(
+          this, _$identity);
+}
+
+abstract class _CertificateDetail implements CertificateDetail {
+  const factory _CertificateDetail(
+      {required final int id,
+      required final String fullName,
+      required final String nationalId,
+      required final String cycle,
+      required final String phoneNo,
+      required final WorkFlowStatus? workFlowStatus,
+      final DrugEvalResult? drugEvalResult,
+      final LevelType? levelType,
+      required final String fullNameApproved}) = _$CertificateDetailImpl;
+
+  @override
+  int get id;
+  @override
+  String get fullName;
+  @override
+  String get nationalId;
+  @override
+  String get cycle;
+  @override
+  String get phoneNo;
+  @override
+  WorkFlowStatus? get workFlowStatus;
+  @override
+  DrugEvalResult? get drugEvalResult;
+  @override
+  LevelType? get levelType;
+  @override
+  String get fullNameApproved;
+
+  /// Create a copy of CertificateDetail
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CertificateDetailImplCopyWith<_$CertificateDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

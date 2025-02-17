@@ -49,8 +49,7 @@ class CertificateCard extends StatelessWidget {
                             ),
                           ),
                           CertificateStatusType(
-                            certificateStatus: certificate.certificateStatus ??
-                                CertificateStatus.request,
+                            certificateStatus: certificate.certificateStatus,
                           ),
                         ],
                       ),

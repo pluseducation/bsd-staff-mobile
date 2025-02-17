@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/domain/model/certificate.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/presentation/certificate/certificate-detail-screen.dart';
 import 'package:bst_staff_mobile/presentation/certificate/certificate-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
@@ -204,8 +205,8 @@ class _MyWidgetState extends State<CertificateContent> {
       certificateCard.add(
         CertificateCard(
           certificate: certificate[i],
-          onclickCertificate: (id) {
-            _oncertificateDetail(id);
+          onclickCertificate: (certificateById) {
+            _oncertificateDetail(certificateById);
           },
         ),
       );
@@ -218,16 +219,16 @@ class _MyWidgetState extends State<CertificateContent> {
     return certificateCard;
   }
 
-  Future<void> _oncertificateDetail(int id) async {
+  Future<void> _oncertificateDetail(int certificateById) async {
     try {
-      // await Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => AssistanceDetailScreen(
-      //       id: id,
-      //     ),
-      //   ),
-      // );
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CertificateDetailScreen(
+            certificateById: certificateById,
+          ),
+        ),
+      );
     } on Exception catch (e) {
       if (!context.mounted) return;
 

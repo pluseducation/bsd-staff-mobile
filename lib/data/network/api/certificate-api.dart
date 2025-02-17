@@ -49,4 +49,76 @@ class CertificateApi extends BaseApi {
       throw Exception('Unknown error : $error');
     }
   }
+
+  Future<CertificateDetailEntity> findCertificateById({
+    required int certificateById,
+  }) async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get(
+        '/api/v1/staff/certificaterequests/$certificateById',
+      );
+      if (response.statusCode == 200) {
+        return CertificateDetailEntity.fromJson(
+          response.data as Map<String, dynamic>,
+        );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data.toString(),
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
+  // Add this method put
+
+  Future<bool> updateCertificateStatus({
+    required int id,
+    required String status,
+    required String fileNameOrg,
+    required String contentBase64,
+  }) async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.put(
+        '/api/v1/staff/certificaterequests/$id',
+        data: {
+          "id": id,
+          "status": status,
+          "file": {"fileNameOrg": fileNameOrg, "content": contentBase64},
+        },
+      );
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data.toString(),
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
 }

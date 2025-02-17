@@ -40,4 +40,47 @@ class CertificateRepository {
 
     return models;
   }
+
+  Future<CertificateDetail> findCertificateById({
+    required int certificateById,
+  }) async {
+    final entity = await certificateApi.findCertificateById(
+      certificateById: certificateById,
+    );
+
+    final fullname =
+        '${convertToString(entity.name)} ${convertToString(entity.surname)}';
+
+    final fullNameApproved =
+        "${convertToString(entity.approvedName)} ${convertToString(entity.approvedSurname)}";
+
+    final model = CertificateDetail(
+      id: convertToInt(entity.id),
+      fullName: fullname,
+      nationalId: convertToString(entity.nationalId),
+      cycle: convertToString(entity.cycle),
+      phoneNo: convertToString(entity.phoneNo),
+      workFlowStatus: WorkFlowStatus.setValue(entity.workflowType),
+      drugEvalResult: DrugEvalResult.setValue(entity.drugEvalResult),
+      levelType: LevelType.setValue(entity.mentalEvalResult),
+      fullNameApproved: fullNameApproved,
+    );
+
+    return model;
+  }
+
+  Future<bool> updateCertificateStatus({
+    required int id,
+    required CertificateStatus status,
+    required String fileNameOrg,
+    required String contentBase64,
+  }) async {
+    final result = await certificateApi.updateCertificateStatus(
+      id: id,
+      status: status.value.toString(),
+      fileNameOrg: fileNameOrg,
+      contentBase64: contentBase64,
+    );
+    return result;
+  }
 }

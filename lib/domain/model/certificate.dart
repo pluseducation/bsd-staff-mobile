@@ -25,3 +25,18 @@ class Certificate with _$Certificate {
     required CertificateStatus? certificateStatus,
   }) = _Certificate;
 }
+
+@freezed
+class CertificateDetail with _$CertificateDetail {
+  const factory CertificateDetail({
+    required int id,
+    required String fullName,
+    required String nationalId,
+    required String cycle,
+    required String phoneNo,
+    required WorkFlowStatus? workFlowStatus,
+    DrugEvalResult? drugEvalResult,
+    LevelType? levelType,
+    required String fullNameApproved,
+  }) = _CertificateDetail;
+}

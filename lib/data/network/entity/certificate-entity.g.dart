@@ -56,3 +56,43 @@ Map<String, dynamic> _$CertificateContentEntityToJson(
       'approvedName': instance.approvedName,
       'approvedSurname': instance.approvedSurname,
     };
+
+CertificateDetailEntity _$CertificateDetailEntityFromJson(
+        Map<String, dynamic> json) =>
+    CertificateDetailEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      surname: json['surname'] as String?,
+      nationalId: json['nationalId'] as String?,
+      dateOfBirth: json['dateOfBirth'] == null
+          ? null
+          : DateTime.parse(json['dateOfBirth'] as String),
+      phoneNo: json['phoneNo'] as String?,
+      workflowType: json['workflowType'] as String?,
+      drugEvalResult: json['drugEvalResult'] as String?,
+      mentalEvalResult: json['mentalEvalResult'] as String?,
+      cycle: json['cycle'] as String?,
+      approvedName: json['approvedName'] as String?,
+      approvedSurname: json['approvedSurname'] as String?,
+      position: json['position'] as String?,
+      fileName: json['fileName'] as String?,
+    );
+
+Map<String, dynamic> _$CertificateDetailEntityToJson(
+        CertificateDetailEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'surname': instance.surname,
+      'nationalId': instance.nationalId,
+      'dateOfBirth': instance.dateOfBirth?.toIso8601String(),
+      'phoneNo': instance.phoneNo,
+      'workflowType': instance.workflowType,
+      'drugEvalResult': instance.drugEvalResult,
+      'mentalEvalResult': instance.mentalEvalResult,
+      'cycle': instance.cycle,
+      'approvedName': instance.approvedName,
+      'approvedSurname': instance.approvedSurname,
+      'position': instance.position,
+      'fileName': instance.fileName,
+    };

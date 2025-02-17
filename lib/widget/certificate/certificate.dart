@@ -4,7 +4,7 @@ import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 
 class CertificateStatusType extends StatelessWidget {
-  final CertificateStatus certificateStatus;
+  final CertificateStatus? certificateStatus;
 
   const CertificateStatusType({
     super.key,
@@ -53,7 +53,7 @@ class CertificateStatusType extends StatelessWidget {
 }
 
 class CertificateDrugType extends StatelessWidget {
-  final DrugEvalResult drugEvalResult;
+  final DrugEvalResult? drugEvalResult;
 
   const CertificateDrugType({
     super.key,
@@ -107,7 +107,7 @@ class CertificateDrugType extends StatelessWidget {
 }
 
 class CertificateWorkFlowType extends StatelessWidget {
-  final WorkFlowStatus workFlowStatus;
+  final WorkFlowStatus? workFlowStatus;
 
   const CertificateWorkFlowType({
     super.key,
@@ -172,7 +172,7 @@ class CertificateWorkFlowType extends StatelessWidget {
 }
 
 class CertificateLevelType extends StatelessWidget {
-  final LevelType levelType;
+  final LevelType? levelType;
 
   const CertificateLevelType({
     super.key,

@@ -49,3 +49,45 @@ class CertificateContentEntity {
 
   Map<String, dynamic> toJson() => _$CertificateContentEntityToJson(this);
 }
+
+//--
+
+@JsonSerializable()
+class CertificateDetailEntity {
+  int? id;
+  String? name;
+  String? surname;
+  String? nationalId;
+  DateTime? dateOfBirth;
+  String? phoneNo;
+  String? workflowType;
+  String? drugEvalResult;
+  String? mentalEvalResult;
+  String? cycle;
+  String? approvedName;
+  String? approvedSurname;
+  String? position;
+  String? fileName;
+
+  CertificateDetailEntity({
+    required this.id,
+    required this.name,
+    required this.surname,
+    required this.nationalId,
+    required this.dateOfBirth,
+    required this.phoneNo,
+    required this.workflowType,
+    required this.drugEvalResult,
+    required this.mentalEvalResult,
+    required this.cycle,
+    required this.approvedName,
+    required this.approvedSurname,
+    required this.position,
+    required this.fileName,
+  });
+
+  factory CertificateDetailEntity.fromJson(Map<String, dynamic> json) =>
+      _$CertificateDetailEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CertificateDetailEntityToJson(this);
+}
