@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchCertificate {
-  String get searchVal => throw _privateConstructorUsedError;
-  set searchVal(String value) => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  set name(String value) => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
   set page(int value) => throw _privateConstructorUsedError;
   int get totalPages => throw _privateConstructorUsedError;
@@ -41,11 +41,7 @@ abstract class $SearchCertificateCopyWith<$Res> {
       _$SearchCertificateCopyWithImpl<$Res, SearchCertificate>;
   @useResult
   $Res call(
-      {String searchVal,
-      int page,
-      int totalPages,
-      int totalElements,
-      int size});
+      {String name, int page, int totalPages, int totalElements, int size});
 }
 
 /// @nodoc
@@ -63,16 +59,16 @@ class _$SearchCertificateCopyWithImpl<$Res, $Val extends SearchCertificate>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchVal = null,
+    Object? name = null,
     Object? page = null,
     Object? totalPages = null,
     Object? totalElements = null,
     Object? size = null,
   }) {
     return _then(_value.copyWith(
-      searchVal: null == searchVal
-          ? _value.searchVal
-          : searchVal // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       page: null == page
           ? _value.page
@@ -103,11 +99,7 @@ abstract class _$$SearchCertificateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String searchVal,
-      int page,
-      int totalPages,
-      int totalElements,
-      int size});
+      {String name, int page, int totalPages, int totalElements, int size});
 }
 
 /// @nodoc
@@ -123,16 +115,16 @@ class __$$SearchCertificateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchVal = null,
+    Object? name = null,
     Object? page = null,
     Object? totalPages = null,
     Object? totalElements = null,
     Object? size = null,
   }) {
     return _then(_$SearchCertificateImpl(
-      searchVal: null == searchVal
-          ? _value.searchVal
-          : searchVal // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       page: null == page
           ? _value.page
@@ -158,14 +150,14 @@ class __$$SearchCertificateImplCopyWithImpl<$Res>
 
 class _$SearchCertificateImpl implements _SearchCertificate {
   _$SearchCertificateImpl(
-      {required this.searchVal,
+      {required this.name,
       required this.page,
       required this.totalPages,
       required this.totalElements,
       required this.size});
 
   @override
-  String searchVal;
+  String name;
   @override
   int page;
   @override
@@ -177,7 +169,7 @@ class _$SearchCertificateImpl implements _SearchCertificate {
 
   @override
   String toString() {
-    return 'SearchCertificate(searchVal: $searchVal, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
+    return 'SearchCertificate(name: $name, page: $page, totalPages: $totalPages, totalElements: $totalElements, size: $size)';
   }
 
   /// Create a copy of SearchCertificate
@@ -192,15 +184,15 @@ class _$SearchCertificateImpl implements _SearchCertificate {
 
 abstract class _SearchCertificate implements SearchCertificate {
   factory _SearchCertificate(
-      {required String searchVal,
+      {required String name,
       required int page,
       required int totalPages,
       required int totalElements,
       required int size}) = _$SearchCertificateImpl;
 
   @override
-  String get searchVal;
-  set searchVal(String value);
+  String get name;
+  set name(String value);
   @override
   int get page;
   set page(int value);

@@ -31,6 +31,7 @@ CertificateContentEntity _$CertificateContentEntityFromJson(
       status: json['status'] as String?,
       surname: json['surname'] as String?,
       nationalId: json['nationalId'] as String?,
+      cycle: json['cycle'] as String?,
       requestedDate: json['requestedDate'] == null
           ? null
           : DateTime.parse(json['requestedDate'] as String),
@@ -48,6 +49,7 @@ Map<String, dynamic> _$CertificateContentEntityToJson(
       'name': instance.name,
       'id': instance.id,
       'nationalId': instance.nationalId,
+      'cycle': instance.cycle,
       'surname': instance.surname,
       'requestedDate': instance.requestedDate?.toIso8601String(),
       'approvedDate': instance.approvedDate?.toIso8601String(),

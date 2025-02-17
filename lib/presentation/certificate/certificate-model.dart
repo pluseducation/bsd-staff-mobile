@@ -72,7 +72,7 @@ class CertificateModel extends ChangeNotifier {
   SearchCertificate initSearch() {
     try {
       return SearchCertificate(
-        searchVal: '',
+        name: '',
         page: 0,
         totalPages: 0,
         totalElements: 0,
@@ -113,7 +113,7 @@ class CertificateModel extends ChangeNotifier {
     print('value===>>>: $value');
     try {
       search = initSearch();
-      search.searchVal = value;
+      search.name = value;
 
       certificate = await certificateRepository.findCertificateAll(
         search: search,

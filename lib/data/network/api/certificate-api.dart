@@ -18,8 +18,8 @@ class CertificateApi extends BaseApi {
         'size': searchCertificate.size,
       };
 
-      if (searchCertificate.searchVal.isNotEmpty) {
-        queryParameters['name'] = searchCertificate.searchVal;
+      if (searchCertificate.name.isNotEmpty) {
+        queryParameters['name'] = searchCertificate.name;
       }
 
       final response = await dio.get(
