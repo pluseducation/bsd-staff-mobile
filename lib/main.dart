@@ -27,6 +27,7 @@ import 'package:bst_staff_mobile/data/repository/assistance-repository.dart';
 import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/data/repository/config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
+import 'package:bst_staff_mobile/data/repository/home-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/notification-config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
@@ -120,6 +121,12 @@ Future<InitialData> _createData() async {
 
   final dashboardApi = DashboardApi(baseUrl: config.baseUrl);
 
+  final homeRepository = HomeRepository(
+    dashboardApi: dashboardApi,
+    userSessionApi: userSessionApi,
+    networkMapper: networkMapper,
+  );
+
   final dashboardRepository = DashboardRepository(
     dashboardApi: dashboardApi,
     userSessionApi: userSessionApi,
@@ -208,6 +215,7 @@ Future<InitialData> _createData() async {
       Provider<ConfigRepository>.value(value: configRepository),
       Provider<LoginRepository>.value(value: loginRepository),
       Provider<RegisterRepository>.value(value: registerRepository),
+      Provider<HomeRepository>.value(value: homeRepository),
       Provider<DashboardRepository>.value(value: dashboardRepository),
       Provider<PatientRepository>.value(value: patientRepository),
       Provider<PatientHistoryRepository>.value(value: patientHistoryRepository),

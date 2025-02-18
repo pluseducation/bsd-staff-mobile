@@ -1,7 +1,7 @@
 import 'package:bst_staff_mobile/data/repository/register-repository.dart';
 import 'package:bst_staff_mobile/domain/model/register.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
+import 'package:bst_staff_mobile/presentation/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/create-account-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
@@ -244,7 +244,7 @@ class _CreateAccounFormState extends State<_CreateAccounForm> {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (context) => HomeScreen(),
+        builder: (context) => LayoutScreen(),
       ),
       (route) => false,
     );

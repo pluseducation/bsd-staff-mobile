@@ -17,7 +17,7 @@ class MenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: BaseAppBar(),
+      appBar: BaseAppBarMenu(),
       body: BaseBackground(
         child: Column(
           children: [

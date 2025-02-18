@@ -1,6 +1,6 @@
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
+import 'package:bst_staff_mobile/presentation/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-model.dart';
 import 'package:bst_staff_mobile/presentation/login/register-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
@@ -182,7 +182,7 @@ class _LoginContentState extends State<LoginContent> {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => LayoutScreen(),
         ),
         (route) => false,
       );
