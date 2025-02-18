@@ -1,33 +1,34 @@
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
-import 'package:bst_staff_mobile/data/network/entity/certificate-entity.dart';
+import 'package:bst_staff_mobile/data/network/entity/login-entity.dart';
+import 'package:bst_staff_mobile/data/network/entity/officer-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
-import 'package:bst_staff_mobile/domain/model/certificate.dart';
+import 'package:bst_staff_mobile/domain/model/officer.dart';
 import 'package:dio/dio.dart';
 
-class CertificateApi extends BaseApi {
-  CertificateApi({required super.baseUrl});
+class OfficerApi extends BaseApi {
+  OfficerApi({required super.baseUrl});
 
-  Future<CertificateEntity> findCertificateAll({
-    required SearchCertificate searchCertificate,
+  Future<OfficerEntity> findOfficer({
+    required SearchOfficer searchOfficer,
   }) async {
     try {
       final Dio dio = await getPrivateDio();
 
       final Map<String, dynamic> queryParameters = {
-        'page': searchCertificate.page,
-        'size': searchCertificate.size,
+        'page': searchOfficer.page,
+        'size': searchOfficer.size,
       };
 
-      if (searchCertificate.name.isNotEmpty) {
-        queryParameters['name'] = searchCertificate.name;
+      if (searchOfficer.name.isNotEmpty) {
+        queryParameters['name'] = searchOfficer.name;
       }
 
       final response = await dio.get(
-        '/api/v1/staff/certificaterequests',
+        '/api/v1/staff/officers?',
         queryParameters: queryParameters,
       );
       if (response.statusCode == 200) {
-        return CertificateEntity.fromJson(
+        return OfficerEntity.fromJson(
           response.data as Map<String, dynamic>,
         );
       } else {
@@ -50,58 +51,46 @@ class CertificateApi extends BaseApi {
     }
   }
 
-  Future<CertificateDetailEntity> findCertificateById({
-    required int certificateById,
+  Future<void> updateOfficer({
+    required int officerId,
+    required bool active,
   }) async {
+    try {
+      final Dio dio = await getPrivateDio();
+      final response = await dio.patch(
+        '/api/v1/staff/officers/$officerId/$active',
+      );
+      if (response.statusCode == 200) {
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data.toString(),
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
+
+  Future<ProfilesOfficerEntity> findProfilesOfficer() async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/staff/certificaterequests/$certificateById',
+        '/api/v1/staff/profiles/officer',
       );
       if (response.statusCode == 200) {
-        return CertificateDetailEntity.fromJson(
+        return ProfilesOfficerEntity.fromJson(
           response.data as Map<String, dynamic>,
         );
-      } else {
-        throw Exception('Unknown error');
-      }
-    } on DioException catch (error) {
-      if (error.response != null) {
-        throw NetworkException(
-          statusCode: error.response?.statusCode,
-          message: error.response?.data.toString(),
-        );
-      } else {
-        throw NetworkException(
-          statusCode: 404,
-          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
-        );
-      }
-    } catch (error) {
-      throw Exception('Unknown error : $error');
-    }
-  }
-
-  // Add this method put
-
-  Future<bool> updateCertificateStatus({
-    required int id,
-    required String status,
-    required String fileNameOrg,
-    required String content,
-  }) async {
-    try {
-      final Dio dio = await getPrivateDio();
-      final response = await dio.put(
-        '/api/v1/staff/certificaterequests',
-        data: {
-          "id": id,
-          "status": status,
-          "file": {"fileNameOrg": fileNameOrg, "content": content},
-        },
-      );
-      if (response.statusCode == 200) {
-        return true;
       } else {
         throw Exception('Unknown error');
       }

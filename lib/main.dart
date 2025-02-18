@@ -10,6 +10,7 @@ import 'package:bst_staff_mobile/data/network/api/login-api.dart';
 import 'package:bst_staff_mobile/data/network/api/monitoring-api.dart';
 import 'package:bst_staff_mobile/data/network/api/notification-api.dart';
 import 'package:bst_staff_mobile/data/network/api/notification-config-api.dart';
+import 'package:bst_staff_mobile/data/network/api/officer-api.dart';
 import 'package:bst_staff_mobile/data/network/api/otp-api.dart';
 import 'package:bst_staff_mobile/data/network/api/patient-api.dart';
 import 'package:bst_staff_mobile/data/network/api/profile-api.dart';
@@ -30,6 +31,7 @@ import 'package:bst_staff_mobile/data/repository/home-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/notification-config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
+import 'package:bst_staff_mobile/data/repository/officer-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-history-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
@@ -193,6 +195,11 @@ Future<InitialData> _createData() async {
     networkMapper: networkMapper,
   );
 
+  final officerRepository = OfficerRepository(
+    officerApi: officerApi,
+    networkMapper: networkMapper,
+  );
+
   final profileApi = ProfileApi(baseUrl: config.baseUrl);
   final profileRepository = ProfileRepository(
     profileApi: profileApi,
@@ -227,6 +234,7 @@ Future<InitialData> _createData() async {
       Provider<WorkflowRepository>.value(value: workflowRepository),
       Provider<AppointmentRepository>.value(value: appointmentRepository),
       Provider<CertificateRepository>.value(value: certificateRepository),
+      Provider<OfficerRepository>.value(value: officerRepository),
       Provider<ProfileRepository>.value(value: profileRepository),
       Provider<NotificationConfigRepository>.value(
         value: notificationConfigRepository,

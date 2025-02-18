@@ -1,6 +1,7 @@
 import 'package:bst_staff_mobile/presentation/appointment/appointment-screen.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance-screen.dart';
 import 'package:bst_staff_mobile/presentation/certificate/certificate-screen.dart';
+import 'package:bst_staff_mobile/presentation/officer/officer-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-screen.dart';
 import 'package:bst_staff_mobile/presentation/refer/refer-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
@@ -200,6 +201,21 @@ class _MenuContentState extends State<MenuContent> {
           context,
           MaterialPageRoute(
             builder: (context) => const ReferScreen(),
+          ),
+        );
+      } else if (name == "Dashboard") {
+        print("Dashboard");
+        // await Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => const DashboardScreen(),
+        //   ),
+        // );
+      } else if (name == "User") {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const OfficerScreen(),
           ),
         );
       }
