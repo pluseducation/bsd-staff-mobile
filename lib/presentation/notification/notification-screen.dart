@@ -40,11 +40,9 @@ class NotificationScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 600),
-                      child: NotificationContent(dataNotifier: dataNotifier),
-                    ),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 600),
+                    child: NotificationContent(dataNotifier: dataNotifier),
                   ),
                 ),
               ),

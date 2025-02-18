@@ -6,6 +6,7 @@ import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance-detail-screen.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance-screen.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance.model.dart';
+import 'package:bst_staff_mobile/presentation/dashboard/dashboard-model.dart';
 import 'package:bst_staff_mobile/presentation/home/home-model.dart';
 import 'package:bst_staff_mobile/presentation/refer/refer-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
@@ -20,8 +21,8 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 600),
-                    child: const HomeContent(),
+                    child: const DashboardContent(),
                   ),
                 ),
               ),
@@ -57,22 +58,22 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class HomeContent extends StatefulWidget {
-  const HomeContent({
+class DashboardContent extends StatefulWidget {
+  const DashboardContent({
     super.key,
   });
 
   @override
-  _HomeContentState createState() => _HomeContentState();
+  _DashboardContentState createState() => _DashboardContentState();
 }
 
-class _HomeContentState extends State<HomeContent> {
-  late final HomeModel _model;
+class _DashboardContentState extends State<DashboardContent> {
+  late final DashboardModel _model;
 
   @override
   void initState() {
     super.initState();
-    _model = HomeModel(
+    _model = DashboardModel(
       log: Provider.of<Logger>(context, listen: false),
       homeRepository: Provider.of<HomeRepository>(context, listen: false),
       appService: Provider.of<AppService>(context, listen: false),
@@ -81,7 +82,7 @@ class _HomeContentState extends State<HomeContent> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<HomeModel>.value(
+    return ChangeNotifierProvider<DashboardModel>.value(
       value: _model,
       child: FutureBuilder<bool>(
         future: _model.initData(),

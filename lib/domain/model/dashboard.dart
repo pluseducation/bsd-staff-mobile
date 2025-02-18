@@ -36,22 +36,6 @@ class ReferCount with _$ReferCount {
 // }
 
 // @freezed
-// class StatPatientWeek with _$StatPatientWeek {
-//   const factory StatPatientWeek({
-//     required int newPatientWeek,
-//     required List<double> dataWeek,
-//   }) = _StatPatientWeek;
-// }
-
-// @freezed
-// class StatPatientMonth with _$StatPatientMonth {
-//   const factory StatPatientMonth({
-//     required int newPatientMonth,
-//     required List<double> dataMonth,
-//   }) = _StatPatientMonth;
-// }
-
-// @freezed
 // class Level with _$Level {
 //   const factory Level({
 //     required int year,
@@ -89,3 +73,19 @@ class ReferCount with _$ReferCount {
 //     required int healthServiceId,
 //   }) = _ReportData;
 // }
+
+@freezed
+class StatPatientWeek with _$StatPatientWeek {
+  const factory StatPatientWeek({
+    required int newPatientWeek,
+    required List<double> dataWeek,
+  }) = _StatPatientWeek;
+}
+
+@freezed
+class StatPatientMonth with _$StatPatientMonth {
+  const factory StatPatientMonth({
+    required int newPatientMonth,
+    required List<double> dataMonth,
+  }) = _StatPatientMonth;
+}

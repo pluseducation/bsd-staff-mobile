@@ -399,3 +399,316 @@ abstract class _ReferCount implements ReferCount {
   _$$ReferCountImplCopyWith<_$ReferCountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$StatPatientWeek {
+  int get newPatientWeek => throw _privateConstructorUsedError;
+  List<double> get dataWeek => throw _privateConstructorUsedError;
+
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $StatPatientWeekCopyWith<StatPatientWeek> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StatPatientWeekCopyWith<$Res> {
+  factory $StatPatientWeekCopyWith(
+          StatPatientWeek value, $Res Function(StatPatientWeek) then) =
+      _$StatPatientWeekCopyWithImpl<$Res, StatPatientWeek>;
+  @useResult
+  $Res call({int newPatientWeek, List<double> dataWeek});
+}
+
+/// @nodoc
+class _$StatPatientWeekCopyWithImpl<$Res, $Val extends StatPatientWeek>
+    implements $StatPatientWeekCopyWith<$Res> {
+  _$StatPatientWeekCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newPatientWeek = null,
+    Object? dataWeek = null,
+  }) {
+    return _then(_value.copyWith(
+      newPatientWeek: null == newPatientWeek
+          ? _value.newPatientWeek
+          : newPatientWeek // ignore: cast_nullable_to_non_nullable
+              as int,
+      dataWeek: null == dataWeek
+          ? _value.dataWeek
+          : dataWeek // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StatPatientWeekImplCopyWith<$Res>
+    implements $StatPatientWeekCopyWith<$Res> {
+  factory _$$StatPatientWeekImplCopyWith(_$StatPatientWeekImpl value,
+          $Res Function(_$StatPatientWeekImpl) then) =
+      __$$StatPatientWeekImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int newPatientWeek, List<double> dataWeek});
+}
+
+/// @nodoc
+class __$$StatPatientWeekImplCopyWithImpl<$Res>
+    extends _$StatPatientWeekCopyWithImpl<$Res, _$StatPatientWeekImpl>
+    implements _$$StatPatientWeekImplCopyWith<$Res> {
+  __$$StatPatientWeekImplCopyWithImpl(
+      _$StatPatientWeekImpl _value, $Res Function(_$StatPatientWeekImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newPatientWeek = null,
+    Object? dataWeek = null,
+  }) {
+    return _then(_$StatPatientWeekImpl(
+      newPatientWeek: null == newPatientWeek
+          ? _value.newPatientWeek
+          : newPatientWeek // ignore: cast_nullable_to_non_nullable
+              as int,
+      dataWeek: null == dataWeek
+          ? _value._dataWeek
+          : dataWeek // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StatPatientWeekImpl implements _StatPatientWeek {
+  const _$StatPatientWeekImpl(
+      {required this.newPatientWeek, required final List<double> dataWeek})
+      : _dataWeek = dataWeek;
+
+  @override
+  final int newPatientWeek;
+  final List<double> _dataWeek;
+  @override
+  List<double> get dataWeek {
+    if (_dataWeek is EqualUnmodifiableListView) return _dataWeek;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dataWeek);
+  }
+
+  @override
+  String toString() {
+    return 'StatPatientWeek(newPatientWeek: $newPatientWeek, dataWeek: $dataWeek)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StatPatientWeekImpl &&
+            (identical(other.newPatientWeek, newPatientWeek) ||
+                other.newPatientWeek == newPatientWeek) &&
+            const DeepCollectionEquality().equals(other._dataWeek, _dataWeek));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newPatientWeek,
+      const DeepCollectionEquality().hash(_dataWeek));
+
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StatPatientWeekImplCopyWith<_$StatPatientWeekImpl> get copyWith =>
+      __$$StatPatientWeekImplCopyWithImpl<_$StatPatientWeekImpl>(
+          this, _$identity);
+}
+
+abstract class _StatPatientWeek implements StatPatientWeek {
+  const factory _StatPatientWeek(
+      {required final int newPatientWeek,
+      required final List<double> dataWeek}) = _$StatPatientWeekImpl;
+
+  @override
+  int get newPatientWeek;
+  @override
+  List<double> get dataWeek;
+
+  /// Create a copy of StatPatientWeek
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$StatPatientWeekImplCopyWith<_$StatPatientWeekImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$StatPatientMonth {
+  int get newPatientMonth => throw _privateConstructorUsedError;
+  List<double> get dataMonth => throw _privateConstructorUsedError;
+
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $StatPatientMonthCopyWith<StatPatientMonth> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StatPatientMonthCopyWith<$Res> {
+  factory $StatPatientMonthCopyWith(
+          StatPatientMonth value, $Res Function(StatPatientMonth) then) =
+      _$StatPatientMonthCopyWithImpl<$Res, StatPatientMonth>;
+  @useResult
+  $Res call({int newPatientMonth, List<double> dataMonth});
+}
+
+/// @nodoc
+class _$StatPatientMonthCopyWithImpl<$Res, $Val extends StatPatientMonth>
+    implements $StatPatientMonthCopyWith<$Res> {
+  _$StatPatientMonthCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newPatientMonth = null,
+    Object? dataMonth = null,
+  }) {
+    return _then(_value.copyWith(
+      newPatientMonth: null == newPatientMonth
+          ? _value.newPatientMonth
+          : newPatientMonth // ignore: cast_nullable_to_non_nullable
+              as int,
+      dataMonth: null == dataMonth
+          ? _value.dataMonth
+          : dataMonth // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StatPatientMonthImplCopyWith<$Res>
+    implements $StatPatientMonthCopyWith<$Res> {
+  factory _$$StatPatientMonthImplCopyWith(_$StatPatientMonthImpl value,
+          $Res Function(_$StatPatientMonthImpl) then) =
+      __$$StatPatientMonthImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int newPatientMonth, List<double> dataMonth});
+}
+
+/// @nodoc
+class __$$StatPatientMonthImplCopyWithImpl<$Res>
+    extends _$StatPatientMonthCopyWithImpl<$Res, _$StatPatientMonthImpl>
+    implements _$$StatPatientMonthImplCopyWith<$Res> {
+  __$$StatPatientMonthImplCopyWithImpl(_$StatPatientMonthImpl _value,
+      $Res Function(_$StatPatientMonthImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newPatientMonth = null,
+    Object? dataMonth = null,
+  }) {
+    return _then(_$StatPatientMonthImpl(
+      newPatientMonth: null == newPatientMonth
+          ? _value.newPatientMonth
+          : newPatientMonth // ignore: cast_nullable_to_non_nullable
+              as int,
+      dataMonth: null == dataMonth
+          ? _value._dataMonth
+          : dataMonth // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StatPatientMonthImpl implements _StatPatientMonth {
+  const _$StatPatientMonthImpl(
+      {required this.newPatientMonth, required final List<double> dataMonth})
+      : _dataMonth = dataMonth;
+
+  @override
+  final int newPatientMonth;
+  final List<double> _dataMonth;
+  @override
+  List<double> get dataMonth {
+    if (_dataMonth is EqualUnmodifiableListView) return _dataMonth;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dataMonth);
+  }
+
+  @override
+  String toString() {
+    return 'StatPatientMonth(newPatientMonth: $newPatientMonth, dataMonth: $dataMonth)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StatPatientMonthImpl &&
+            (identical(other.newPatientMonth, newPatientMonth) ||
+                other.newPatientMonth == newPatientMonth) &&
+            const DeepCollectionEquality()
+                .equals(other._dataMonth, _dataMonth));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newPatientMonth,
+      const DeepCollectionEquality().hash(_dataMonth));
+
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StatPatientMonthImplCopyWith<_$StatPatientMonthImpl> get copyWith =>
+      __$$StatPatientMonthImplCopyWithImpl<_$StatPatientMonthImpl>(
+          this, _$identity);
+}
+
+abstract class _StatPatientMonth implements StatPatientMonth {
+  const factory _StatPatientMonth(
+      {required final int newPatientMonth,
+      required final List<double> dataMonth}) = _$StatPatientMonthImpl;
+
+  @override
+  int get newPatientMonth;
+  @override
+  List<double> get dataMonth;
+
+  /// Create a copy of StatPatientMonth
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$StatPatientMonthImplCopyWith<_$StatPatientMonthImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

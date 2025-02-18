@@ -70,44 +70,9 @@ class DashboardRepository {
     return model;
   }
 
-  // delete
   // Future<StatYear> findStatYear() async {
   //   final entity = await dashboardApi.findStatYear();
   //   final model = networkMapper.toStatYear(entity);
-
-  //   return model;
-  // }
-
-  // Future<StatPatientWeek> findStatPatientWeek() async {
-  //   final entity = await dashboardApi.findStatPatientWeek();
-  //   final List<double> dataWeek = [];
-  //   dataWeek.add(convertToDouble(entity.monday));
-  //   dataWeek.add(convertToDouble(entity.tuesday));
-  //   dataWeek.add(convertToDouble(entity.wednesday));
-  //   dataWeek.add(convertToDouble(entity.thursday));
-  //   dataWeek.add(convertToDouble(entity.friday));
-  //   dataWeek.add(convertToDouble(entity.saturday));
-  //   dataWeek.add(convertToDouble(entity.sunday));
-  //   final model = networkMapper.toStatPatientWeek(
-  //     entity,
-  //     dataWeek,
-  //   );
-
-  //   return model;
-  // }
-
-  // Future<StatPatientMonth> findStatPatientMonth() async {
-  //   final entity = await dashboardApi.findStatPatientMonth();
-  //   final List<double> dataMonth = [];
-
-  //   for (final total in entity.totals) {
-  //     dataMonth.add(convertToDouble(total.total));
-  //   }
-
-  //   final model = networkMapper.toStatPatientMonth(
-  //     entity,
-  //     dataMonth,
-  //   );
 
   //   return model;
   // }
@@ -150,4 +115,38 @@ class DashboardRepository {
 
   //   return models;
   // }
+
+  Future<StatPatientWeek> findStatPatientWeek() async {
+    final entity = await dashboardApi.findStatPatientWeek();
+    final List<double> dataWeek = [];
+    dataWeek.add(convertToDouble(entity.monday));
+    dataWeek.add(convertToDouble(entity.tuesday));
+    dataWeek.add(convertToDouble(entity.wednesday));
+    dataWeek.add(convertToDouble(entity.thursday));
+    dataWeek.add(convertToDouble(entity.friday));
+    dataWeek.add(convertToDouble(entity.saturday));
+    dataWeek.add(convertToDouble(entity.sunday));
+    final model = StatPatientWeek(
+      newPatientWeek: convertToInt(entity.newPatientWeek),
+      dataWeek: dataWeek,
+    );
+
+    return model;
+  }
+
+  Future<StatPatientMonth> findStatPatientMonth() async {
+    final entity = await dashboardApi.findStatPatientMonth();
+    final List<double> dataMonth = [];
+
+    for (final total in entity.totals) {
+      dataMonth.add(convertToDouble(total.total));
+    }
+
+    final model = StatPatientMonth(
+      newPatientMonth: convertToInt(entity.newPatientMonth),
+      dataMonth: dataMonth,
+    );
+
+    return model;
+  }
 }

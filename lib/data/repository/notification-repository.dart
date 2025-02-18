@@ -148,35 +148,3 @@ class NotificationRepository {
     await notificationApi.updateAcknowledged(id);
   }
 }
-
-class NotificationMsgEntity {
-  final String? type;
-  final String? no;
-  final DateTime? appointmentAt;
-  final DateTime? approvedAt; // for certificate request
-  final String? appointmentPlace;
-
-  NotificationMsgEntity({
-    required this.type,
-    required this.no,
-    required this.appointmentAt,
-    required this.approvedAt, // for certificate request
-    required this.appointmentPlace,
-  });
-
-  factory NotificationMsgEntity.fromJson(String json) {
-    final Map<String, dynamic> newJson =
-        jsonDecode(json) as Map<String, dynamic>;
-    return NotificationMsgEntity(
-      type: newJson['type'] as String?,
-      no: newJson['no'] as String?,
-      appointmentAt: newJson['appointmentAt'] != null
-          ? DateTime.parse(newJson['appointmentAt'] as String)
-          : null,
-      approvedAt: newJson['approvedAt'] != null
-          ? DateTime.parse(newJson['approvedAt'] as String)
-          : null,
-      appointmentPlace: newJson['appointmentPlace'] as String?,
-    );
-  }
-}

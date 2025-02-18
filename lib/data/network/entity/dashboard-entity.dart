@@ -146,70 +146,70 @@ class ReferCountEntity {
 //   Map<String, dynamic> toJson() => _$StatYearEntityToJson(this);
 // }
 
-// @JsonSerializable()
-// class StatPatientWeekEntity {
-//   int newPatientToday;
-//   int newPatientWeek;
-//   String? dayOfWeek;
-//   int monday;
-//   int tuesday;
-//   int wednesday;
-//   int thursday;
-//   int friday;
-//   int saturday;
-//   int sunday;
+@JsonSerializable()
+class StatPatientWeekEntity {
+  int newPatientToday;
+  int newPatientWeek;
+  String? dayOfWeek;
+  int monday;
+  int tuesday;
+  int wednesday;
+  int thursday;
+  int friday;
+  int saturday;
+  int sunday;
 
-//   StatPatientWeekEntity({
-//     required this.newPatientToday,
-//     required this.newPatientWeek,
-//     required this.dayOfWeek,
-//     required this.monday,
-//     required this.tuesday,
-//     required this.wednesday,
-//     required this.thursday,
-//     required this.friday,
-//     required this.saturday,
-//     required this.sunday,
-//   });
+  StatPatientWeekEntity({
+    required this.newPatientToday,
+    required this.newPatientWeek,
+    required this.dayOfWeek,
+    required this.monday,
+    required this.tuesday,
+    required this.wednesday,
+    required this.thursday,
+    required this.friday,
+    required this.saturday,
+    required this.sunday,
+  });
 
-//   factory StatPatientWeekEntity.fromJson(Map<String, dynamic> json) =>
-//       _$StatPatientWeekEntityFromJson(json);
+  factory StatPatientWeekEntity.fromJson(Map<String, dynamic> json) =>
+      _$StatPatientWeekEntityFromJson(json);
 
-//   Map<String, dynamic> toJson() => _$StatPatientWeekEntityToJson(this);
-// }
+  Map<String, dynamic> toJson() => _$StatPatientWeekEntityToJson(this);
+}
 
-// @JsonSerializable()
-// class StatPatientMonthEntity {
-//   int newPatientToday;
-//   int newPatientMonth;
-//   int dayOfMonth;
-//   List<StatPatientMonthTotalEntity> totals;
+@JsonSerializable()
+class StatPatientMonthEntity {
+  int newPatientToday;
+  int newPatientMonth;
+  int dayOfMonth;
+  List<StatPatientMonthTotalEntity> totals;
 
-//   StatPatientMonthEntity({
-//     required this.newPatientToday,
-//     required this.newPatientMonth,
-//     required this.dayOfMonth,
-//     required this.totals,
-//   });
+  StatPatientMonthEntity({
+    required this.newPatientToday,
+    required this.newPatientMonth,
+    required this.dayOfMonth,
+    required this.totals,
+  });
 
-//   factory StatPatientMonthEntity.fromJson(Map<String, dynamic> json) =>
-//       _$StatPatientMonthEntityFromJson(json);
+  factory StatPatientMonthEntity.fromJson(Map<String, dynamic> json) =>
+      _$StatPatientMonthEntityFromJson(json);
 
-//   Map<String, dynamic> toJson() => _$StatPatientMonthEntityToJson(this);
-// }
+  Map<String, dynamic> toJson() => _$StatPatientMonthEntityToJson(this);
+}
 
-// @JsonSerializable()
-// class StatPatientMonthTotalEntity {
-//   int date;
-//   int total;
+@JsonSerializable()
+class StatPatientMonthTotalEntity {
+  int date;
+  int total;
 
-//   StatPatientMonthTotalEntity({
-//     required this.date,
-//     required this.total,
-//   });
+  StatPatientMonthTotalEntity({
+    required this.date,
+    required this.total,
+  });
 
-//   factory StatPatientMonthTotalEntity.fromJson(Map<String, dynamic> json) =>
-//       _$StatPatientMonthTotalEntityFromJson(json);
+  factory StatPatientMonthTotalEntity.fromJson(Map<String, dynamic> json) =>
+      _$StatPatientMonthTotalEntityFromJson(json);
 
-//   Map<String, dynamic> toJson() => _$StatPatientMonthTotalEntityToJson(this);
-// }
+  Map<String, dynamic> toJson() => _$StatPatientMonthTotalEntityToJson(this);
+}
