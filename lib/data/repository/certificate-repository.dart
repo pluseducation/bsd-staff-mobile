@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/certificate.dart';
@@ -73,13 +75,13 @@ class CertificateRepository {
     required int id,
     required CertificateStatus status,
     required String fileNameOrg,
-    required String contentBase64,
+    required String content,
   }) async {
     final result = await certificateApi.updateCertificateStatus(
       id: id,
-      status: status.value.toString(),
+      status: status.value ?? '',
       fileNameOrg: fileNameOrg,
-      contentBase64: contentBase64,
+      content: content,
     );
     return result;
   }

@@ -11,7 +11,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
-import 'package:path_provider/path_provider.dart';
 
 class CertificateDetailScreen extends StatelessWidget {
   final int certificateById;
@@ -258,7 +257,7 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
                   ? ElevatedButton.icon(
                       onPressed: () {
                         _selectedStatus = CertificateStatus.completed;
-                        model.approve(_selectedStatus!);
+                        model.approve();
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -283,7 +282,7 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
                   : OutlinedButton.icon(
                       onPressed: () {
                         _selectedStatus = CertificateStatus.completed;
-                        model.approve(_selectedStatus!);
+                        model.approve();
                       },
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -312,7 +311,7 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
                   ? ElevatedButton.icon(
                       onPressed: () {
                         _selectedStatus = CertificateStatus.denied;
-                        model.reject(_selectedStatus!);
+                        model.reject();
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -337,7 +336,7 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
                   : OutlinedButton.icon(
                       onPressed: () {
                         _selectedStatus = CertificateStatus.denied;
-                        model.reject(_selectedStatus!);
+                        model.reject();
                       },
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -416,12 +415,20 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
 
   Future<void> _confirm() async {
     try {
+      if (_selectedStatus == null) {
+        await showInfoDialog(
+          context: context,
+          message: 'กรุณาเลือกสถานะก่อนยืนยัน',
+        );
+        return;
+      }
+
       if (_selectedStatus != null) {
         await _model.updateCertificateStatus(
           id: _model.certificateDetail.id,
           status: _selectedStatus!,
           fileNameOrg: 'assets/images/image_login.png',
-          contentBase64: 'contentBase64',
+          content: 'string',
         );
       }
       Navigator.pop(context);

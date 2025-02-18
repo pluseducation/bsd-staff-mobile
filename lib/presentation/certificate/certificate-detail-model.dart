@@ -13,7 +13,7 @@ class CertificateDetailModel extends ChangeNotifier {
   final AppService appService;
 
   late CertificateDetail certificateDetail;
-  bool isApprovedClicked = true;
+  bool isApprovedClicked = false;
   bool isRejectedClicked = false;
 
   CertificateDetailModel({
@@ -39,43 +39,34 @@ class CertificateDetailModel extends ChangeNotifier {
     }
   }
 
-  Future<void> approve(CertificateStatus status) async {
+  Future<void> approve() async {
     isApprovedClicked = true;
     isRejectedClicked = false;
     notifyListeners();
-    await updateCertificateStatus(
-      id: certificateDetail.id,
-      status: status,
-      fileNameOrg: 'assets/images/image_login.png',
-      contentBase64: 'contentBase64',
-    );
   }
 
-  Future<void> reject(CertificateStatus status) async {
+  Future<void> reject() async {
     isApprovedClicked = false;
     isRejectedClicked = true;
     notifyListeners();
-    await updateCertificateStatus(
-      id: certificateDetail.id,
-      status: status,
-      fileNameOrg: 'assets/images/image_login.png',
-      contentBase64: 'contentBase64',
-    );
   }
 
   Future<void> updateCertificateStatus({
     required int id,
     required CertificateStatus status,
     required String fileNameOrg,
-    required String contentBase64,
+    required String content,
   }) async {
     try {
-      await certificateRepository.updateCertificateStatus(
-        id: id,
-        status: status,
-        fileNameOrg: fileNameOrg,
-        contentBase64: contentBase64,
+      log.i(
+        'Updating Certificate Status - ID: $id, Status: $status, File Name: $fileNameOrg',
       );
+      // await certificateRepository.updateCertificateStatus(
+      //   id: id,
+      //   status: status,
+      //   fileNameOrg: fileNameOrg,
+      //   content: content,
+      // );
       appService.intervalWebAuth();
     } catch (e) {
       if (e is NetworkException) {
