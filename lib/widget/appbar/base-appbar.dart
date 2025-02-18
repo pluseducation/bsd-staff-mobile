@@ -1,12 +1,13 @@
 import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 const double toolbarHeight = 150;
 const double toolbarHeightProfile = 70;
 
-class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
+class BaseAppBarMenu extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize = const Size.fromHeight(150.0);
 
@@ -76,6 +77,38 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
           width: 130,
         ),
       ],
+    );
+  }
+}
+
+class BaseAppBarHome extends StatelessWidget implements PreferredSizeWidget {
+  const BaseAppBarHome({
+    super.key,
+  });
+
+  @override
+  final Size preferredSize = const Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      toolbarHeight: kToolbarHeight,
+      backgroundColor: Colors.transparent,
+      title: Row(
+        children: [
+          Image.asset(
+            "assets/images/logo_1.png",
+            width: 40,
+          ),
+          const SizedBox(
+            width: 8,
+          ),
+          Image.asset(
+            "assets/images/logo3.png",
+            width: 50,
+          ),
+        ],
+      ),
     );
   }
 }

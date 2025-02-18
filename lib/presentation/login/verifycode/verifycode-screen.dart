@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bst_staff_mobile/presentation/home/home-screen.dart';
+import 'package:bst_staff_mobile/presentation/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/verifycode/verifycode-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
@@ -241,7 +241,7 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => LayoutScreen(),
         ),
       );
 

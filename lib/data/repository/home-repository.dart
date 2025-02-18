@@ -4,12 +4,12 @@ import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 
-class DashboardRepository {
+class HomeRepository {
   final DashboardApi dashboardApi;
   final UserSessionApi userSessionApi;
   final NetworkMapper networkMapper;
 
-  DashboardRepository({
+  HomeRepository({
     required this.dashboardApi,
     required this.userSessionApi,
     required this.networkMapper,
