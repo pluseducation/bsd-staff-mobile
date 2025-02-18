@@ -4,8 +4,10 @@ import 'package:bst_staff_mobile/domain/model/assistance.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance-detail-screen.dart';
+import 'package:bst_staff_mobile/presentation/assistance/assistance-screen.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance.model.dart';
 import 'package:bst_staff_mobile/presentation/home/home.model.dart';
+import 'package:bst_staff_mobile/presentation/refer/refer-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
@@ -93,62 +95,64 @@ class _HomeContentState extends State<HomeContent> {
           } else {
             return Consumer<HomeModel>(
               builder: (context, model, child) {
-                return Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Text(
-                          model.dateNow,
-                          style: const TextStyle(
-                            fontSize: FontSizes.medium,
-                            fontWeight: FontWeight.bold,
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text(
+                        model.dateNow,
+                        style: const TextStyle(
+                          fontSize: FontSizes.medium,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _buildTotalPatient(model.totalPatient),
                           ),
-                        ),
-                        const SizedBox(height: 16),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: _buildTotalPatient(model.totalPatient),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildRetention(model.retention),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _buildRegistering(
+                              model.workflowCount.countRegistering,
                             ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: _buildRetention(model.retention),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildScreening(
+                              model.workflowCount.countScreening,
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: _buildRegistering(
-                                model.workflowCount.countRegistering,
-                              ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _buildTreatment(
+                              model.workflowCount.countTreatment,
                             ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: _buildScreening(
-                                model.workflowCount.countScreening,
-                              ),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildMonitoring(
+                              model.workflowCount.countMonitoring,
                             ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: _buildTreatment(
-                                model.workflowCount.countTreatment,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: _buildMonitoring(
-                                model.workflowCount.countMonitoring,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        Row(
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      // Use LayoutBuilder to calculate the available height
+                      SizedBox(
+                        height: 250,
+                        child: Row(
                           children: [
                             Expanded(
                               child: _buildAssistance(
@@ -161,8 +165,8 @@ class _HomeContentState extends State<HomeContent> {
                             ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 );
               },
@@ -369,103 +373,189 @@ class _HomeContentState extends State<HomeContent> {
   }
 
   Widget _buildAssistance(int assistance) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Image.asset('assets/images/home_assistance.png',
-                        height: 16),
-                    const SizedBox(width: 8),
-                    const Text(
-                      "ช่วยเหลือ",
-                      style: TextStyle(
-                        fontSize: FontSizes.medium,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const AssistanceScreen(),
+          ),
+        );
+      },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset('assets/images/home_assistance.png',
+                          height: 16),
+                      const SizedBox(width: 8),
+                      const Text(
+                        "ช่วยเหลือ",
+                        style: TextStyle(
+                          fontSize: FontSizes.medium,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                // icon next
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  size: FontSizes.medium,
-                  color: MainColors.primary500,
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              _model.numberFormat.format(assistance),
-              style: const TextStyle(
-                fontSize: FontSizes.large,
-                fontWeight: FontWeight.bold,
+                    ],
+                  ),
+                  // icon next
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: FontSizes.medium,
+                    color: MainColors.primary500,
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "ทั้งหมด",
-              style: TextStyle(
-                fontSize: FontSizes.large,
-                color: MainColors.text,
+              const SizedBox(height: 16),
+              Text(
+                _model.numberFormat.format(assistance),
+                style: const TextStyle(
+                  fontSize: FontSizes.large,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 16),
+              const Text(
+                "ทั้งหมด",
+                style: TextStyle(
+                  fontSize: FontSizes.large,
+                  color: MainColors.text,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildRefer(ReferCount refer) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Image.asset('assets/images/home_refer.png', height: 16),
-                    const SizedBox(width: 8),
-                    const Text(
-                      "ช่วยเหลือ",
-                      style: TextStyle(
-                        fontSize: FontSizes.medium,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ReferScreen(),
+          ),
+        );
+      },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset('assets/images/home_refer.png', height: 16),
+                      const SizedBox(width: 8),
+                      const Text(
+                        "ช่วยเหลือ",
+                        style: TextStyle(
+                          fontSize: FontSizes.medium,
+                        ),
                       ),
+                    ],
+                  ),
+                  // icon next
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: FontSizes.medium,
+                    color: MainColors.primary500,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                _model.numberFormat.format(refer.receiver + refer.sender),
+                style: const TextStyle(
+                  fontSize: FontSizes.large,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                "ทั้งหมด",
+                style: TextStyle(
+                  fontSize: FontSizes.large,
+                  color: MainColors.text,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: const BoxDecoration(
+                          color: MainColors.primary500,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        "ส่งต่อ",
+                        style: TextStyle(
+                          fontSize: FontSizes.medium,
+                          color: MainColors.text,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    _model.numberFormat.format(refer.sender),
+                    style: const TextStyle(
+                      fontSize: FontSizes.medium,
+                      color: MainColors.text,
                     ),
-                  ],
-                ),
-                // icon next
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  size: FontSizes.medium,
-                  color: MainColors.primary500,
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              _model.numberFormat.format(refer.receiver + refer.sender),
-              style: const TextStyle(
-                fontSize: FontSizes.large,
-                fontWeight: FontWeight.bold,
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              "ทั้งหมด",
-              style: TextStyle(
-                fontSize: FontSizes.large,
-                color: MainColors.text,
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: const BoxDecoration(
+                          color: MainColors.primary500,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        "รอรับ",
+                        style: TextStyle(
+                          fontSize: FontSizes.medium,
+                          color: MainColors.text,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    _model.numberFormat.format(refer.receiver),
+                    style: const TextStyle(
+                      fontSize: FontSizes.medium,
+                      color: MainColors.text,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

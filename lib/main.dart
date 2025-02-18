@@ -40,7 +40,9 @@ import 'package:bst_staff_mobile/data/repository/workflow-repository.dart';
 import 'package:bst_staff_mobile/domain/model/config.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
+import 'package:bst_staff_mobile/domain/service/notifi_service.dart';
 import 'package:bst_staff_mobile/presentation/app/app.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -65,7 +67,17 @@ Future<void> main() async {
   await Sqflite.devSetDebugModeOn(kDebugMode);
   getIt.registerSingleton<NavigationService>(NavigationService());
 
+  // disabl e landscape mode
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   final data = await _createData();
+
+  // firebase
+  await Firebase.initializeApp();
+  MessageService().initialize();
 
   runApp(App(data: data));
 }

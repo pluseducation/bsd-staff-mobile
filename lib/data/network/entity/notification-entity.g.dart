@@ -30,13 +30,14 @@ NotificationContentEntity _$NotificationContentEntityFromJson(
       type: json['type'] as String?,
       msg: json['msg'] as String?,
       acknowledged: (json['acknowledged'] as num?)?.toInt(),
-    );
+    )..title = json['title'] as String?;
 
 Map<String, dynamic> _$NotificationContentEntityToJson(
         NotificationContentEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
+      'title': instance.title,
       'msg': instance.msg,
       'acknowledged': instance.acknowledged,
     };

@@ -67,6 +67,7 @@ class NotificationModel extends ChangeNotifier {
   bool isMoreData() {
     if (isLoading) return false;
     if (search.page + 1 < search.totalPages) {
+      search.page = search.page + 1;
       isLoading = true;
       notifyListeners();
       return true;

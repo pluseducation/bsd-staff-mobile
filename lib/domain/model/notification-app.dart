@@ -16,10 +16,10 @@ class SearchNotification with _$SearchNotification {
 class NotificationApp with _$NotificationApp {
   factory NotificationApp({
     required int id,
+    required String title,
     required String msg,
-    required String time,
-    required String subdivisionName,
-    required String timegone,
+    // required String time,
+    // required String timegone,
     required bool acknowledged,
   }) = _NotificationApp;
 }

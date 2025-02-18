@@ -102,8 +102,9 @@ class BaseBottomNavigationBar extends StatelessWidget {
                     ],
                   ),
                 ),
-                Transform.scale(
-                  scale: 1.3,
+                Container(
+                  width: 70,
+                  height: 70,
                   child: FloatingActionButton(
                     onPressed: () {
                       onTap(2);

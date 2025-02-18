@@ -21,6 +21,7 @@ class NotificationEntity {
 class NotificationContentEntity {
   int? id;
   String? type;
+  String? title;
   String? msg;
   int? acknowledged;
 

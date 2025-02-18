@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "769192565811",
+    "project_id": "notification-4b3ef",
+    "storage_bucket": "notification-4b3ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769192565811:android:04ab61633b78c35c809746",
+        "android_client_info": {
+          "package_name": "com.osnarc.antidrug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5ZoVmsd5mVaopizvFmRSoW2ine1gVRMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769192565811:android:7632d3f515ba8a48809746",
+        "android_client_info": {
+          "package_name": "com.osnarc.lomruk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5ZoVmsd5mVaopizvFmRSoW2ine1gVRMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

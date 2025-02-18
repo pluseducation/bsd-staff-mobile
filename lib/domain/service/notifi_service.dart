@@ -1,88 +1,65 @@
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'package:flutter/foundation.dart';
-// import 'package:permission_handler/permission_handler.dart';
+import 'dart:io';
 
-// class NotificationService {
-//   final FlutterLocalNotificationsPlugin notificationsPlugin =
-//       FlutterLocalNotificationsPlugin();
+import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
+import 'package:bst_staff_mobile/main.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-//   Future<void> initNotification() async {
-//     const AndroidInitializationSettings initializationSettingsAndroid =
-//         AndroidInitializationSettings('@drawable/flutter_logo');
+class MessageService {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-//     final DarwinInitializationSettings initializationSettingsIOS =
-//         DarwinInitializationSettings(
-//       requestAlertPermission: true,
-//       requestBadgePermission: true,
-//       requestSoundPermission: true,
-//       onDidReceiveLocalNotification: (
-//         int id,
-//         String? title,
-//         String? body,
-//         String? payload,
-//       ) async {},
-//     );
+  void initialize() {
+    // Request permissions for iOS
+    _firebaseMessaging.requestPermission();
 
-//     final InitializationSettings initializationSettings =
-//         InitializationSettings(
-//       android: initializationSettingsAndroid,
-//       iOS: initializationSettingsIOS,
-//     );
+    // Handle foreground messages
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Got a message whilst in the foreground!');
+      print('Message data: ${message.data}');
 
-//     final bool? initialized = await notificationsPlugin.initialize(
-//       initializationSettings,
-//       onDidReceiveNotificationResponse:
-//           (NotificationResponse notificationResponse) async {
-//         if (kDebugMode) {
-//           print(
-//               'Notification clicked with payload: ${notificationResponse.payload}');
-//         }
-//       },
-//     );
+      if (message.notification != null) {
+        print('Message also contained a notification: ${message.notification}');
+      }
+    });
 
-//     if (kDebugMode) {
-//       print('Notification initialized: $initialized');
-//     }
+    // Handle messages when the app is opened from a notification
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      getIt<NavigationService>().navigateToReplacement('/notification');
+    });
 
-//     if (await Permission.notification.isDenied) {
-//       await Permission.notification.request();
-//     }
-//   }
+    // Handle background messages
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-//   NotificationDetails notificationDetails() {
-//     const AndroidNotificationDetails androidNotificationDetails =
-//         AndroidNotificationDetails(
-//       'channelId',
-//       'channelName',
-//       importance: Importance.max,
-//       priority: Priority.high,
-//       showWhen: true,
-//     );
+    // Get the FCM token
+    _getToken();
 
-//     const DarwinNotificationDetails iOSNotificationDetails =
-//         DarwinNotificationDetails();
+    // Get the APNS token for iOS
+    // if (Platform.isIOS) {
+    //   _getAPNSToken();
+    // }
+  }
 
-//     return const NotificationDetails(
-//       android: androidNotificationDetails,
-//       iOS: iOSNotificationDetails,
-//     );
-//   }
+  static Future<void> _firebaseMessagingBackgroundHandler(
+    RemoteMessage message,
+  ) async {
+    print('Handling a background message: ${message.messageId}');
+  }
 
-//   Future<void> showNotification({
-//     int id = 0,
-//     String? title,
-//     String? body,
-//     String? payLoad,
-//   }) async {
-//     if (kDebugMode) {
-//       print('Showing notification with title: $title and body: $body');
-//     }
-//     return notificationsPlugin.show(
-//       id,
-//       title,
-//       body,
-//       notificationDetails(),
-//       payload: payLoad,
-//     );
-//   }
-// }
+  Future<void> _getToken() async {
+    try {
+      final String? token = await _firebaseMessaging.getToken();
+      print("FCM Registration Token: $token");
+      // You can also log the token or send it to your server for testing
+
+      if (token != null) {
+        // Save the token in shared preferences
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('fcm_token', token);
+      }
+      // ignore: empty_catches
+    } catch (e) {
+      print(e);
+    }
+  }
+}

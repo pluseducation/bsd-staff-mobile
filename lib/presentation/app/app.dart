@@ -1,9 +1,9 @@
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
 import 'package:bst_staff_mobile/main.dart';
-import 'package:bst_staff_mobile/presentation/splash/splash-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/auth/auth-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
+import 'package:bst_staff_mobile/presentation/splash/splash-screen.dart';
 import 'package:bst_staff_mobile/theme/dark-theme.dart';
 import 'package:bst_staff_mobile/theme/light-theme.dart';
 import 'package:bst_staff_mobile/util/l10n/app-localizations.dart';

@@ -197,15 +197,15 @@ abstract class _SearchNotification implements SearchNotification {
 mixin _$NotificationApp {
   int get id => throw _privateConstructorUsedError;
   set id(int value) => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  set title(String value) => throw _privateConstructorUsedError;
   String get msg => throw _privateConstructorUsedError;
-  set msg(String value) => throw _privateConstructorUsedError;
-  String get time => throw _privateConstructorUsedError;
-  set time(String value) => throw _privateConstructorUsedError;
-  String get subdivisionName => throw _privateConstructorUsedError;
-  set subdivisionName(String value) => throw _privateConstructorUsedError;
-  String get timegone => throw _privateConstructorUsedError;
-  set timegone(String value) => throw _privateConstructorUsedError;
-  bool get acknowledged => throw _privateConstructorUsedError;
+  set msg(String value) =>
+      throw _privateConstructorUsedError; // required String time,
+// required String timegone,
+  bool get acknowledged =>
+      throw _privateConstructorUsedError; // required String time,
+// required String timegone,
   set acknowledged(bool value) => throw _privateConstructorUsedError;
 
   /// Create a copy of NotificationApp
@@ -221,13 +221,7 @@ abstract class $NotificationAppCopyWith<$Res> {
           NotificationApp value, $Res Function(NotificationApp) then) =
       _$NotificationAppCopyWithImpl<$Res, NotificationApp>;
   @useResult
-  $Res call(
-      {int id,
-      String msg,
-      String time,
-      String subdivisionName,
-      String timegone,
-      bool acknowledged});
+  $Res call({int id, String title, String msg, bool acknowledged});
 }
 
 /// @nodoc
@@ -246,10 +240,8 @@ class _$NotificationAppCopyWithImpl<$Res, $Val extends NotificationApp>
   @override
   $Res call({
     Object? id = null,
+    Object? title = null,
     Object? msg = null,
-    Object? time = null,
-    Object? subdivisionName = null,
-    Object? timegone = null,
     Object? acknowledged = null,
   }) {
     return _then(_value.copyWith(
@@ -257,21 +249,13 @@ class _$NotificationAppCopyWithImpl<$Res, $Val extends NotificationApp>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       msg: null == msg
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
-              as String,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String,
-      subdivisionName: null == subdivisionName
-          ? _value.subdivisionName
-          : subdivisionName // ignore: cast_nullable_to_non_nullable
-              as String,
-      timegone: null == timegone
-          ? _value.timegone
-          : timegone // ignore: cast_nullable_to_non_nullable
               as String,
       acknowledged: null == acknowledged
           ? _value.acknowledged
@@ -289,13 +273,7 @@ abstract class _$$NotificationAppImplCopyWith<$Res>
       __$$NotificationAppImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      String msg,
-      String time,
-      String subdivisionName,
-      String timegone,
-      bool acknowledged});
+  $Res call({int id, String title, String msg, bool acknowledged});
 }
 
 /// @nodoc
@@ -312,10 +290,8 @@ class __$$NotificationAppImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? title = null,
     Object? msg = null,
-    Object? time = null,
-    Object? subdivisionName = null,
-    Object? timegone = null,
     Object? acknowledged = null,
   }) {
     return _then(_$NotificationAppImpl(
@@ -323,21 +299,13 @@ class __$$NotificationAppImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       msg: null == msg
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
-              as String,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String,
-      subdivisionName: null == subdivisionName
-          ? _value.subdivisionName
-          : subdivisionName // ignore: cast_nullable_to_non_nullable
-              as String,
-      timegone: null == timegone
-          ? _value.timegone
-          : timegone // ignore: cast_nullable_to_non_nullable
               as String,
       acknowledged: null == acknowledged
           ? _value.acknowledged
@@ -352,28 +320,24 @@ class __$$NotificationAppImplCopyWithImpl<$Res>
 class _$NotificationAppImpl implements _NotificationApp {
   _$NotificationAppImpl(
       {required this.id,
+      required this.title,
       required this.msg,
-      required this.time,
-      required this.subdivisionName,
-      required this.timegone,
       required this.acknowledged});
 
   @override
   int id;
   @override
+  String title;
+  @override
   String msg;
-  @override
-  String time;
-  @override
-  String subdivisionName;
-  @override
-  String timegone;
+// required String time,
+// required String timegone,
   @override
   bool acknowledged;
 
   @override
   String toString() {
-    return 'NotificationApp(id: $id, msg: $msg, time: $time, subdivisionName: $subdivisionName, timegone: $timegone, acknowledged: $acknowledged)';
+    return 'NotificationApp(id: $id, title: $title, msg: $msg, acknowledged: $acknowledged)';
   }
 
   /// Create a copy of NotificationApp
@@ -389,29 +353,23 @@ class _$NotificationAppImpl implements _NotificationApp {
 abstract class _NotificationApp implements NotificationApp {
   factory _NotificationApp(
       {required int id,
+      required String title,
       required String msg,
-      required String time,
-      required String subdivisionName,
-      required String timegone,
       required bool acknowledged}) = _$NotificationAppImpl;
 
   @override
   int get id;
   set id(int value);
   @override
+  String get title;
+  set title(String value);
+  @override
   String get msg;
-  set msg(String value);
+  set msg(String value); // required String time,
+// required String timegone,
   @override
-  String get time;
-  set time(String value);
-  @override
-  String get subdivisionName;
-  set subdivisionName(String value);
-  @override
-  String get timegone;
-  set timegone(String value);
-  @override
-  bool get acknowledged;
+  bool get acknowledged; // required String time,
+// required String timegone,
   set acknowledged(bool value);
 
   /// Create a copy of NotificationApp

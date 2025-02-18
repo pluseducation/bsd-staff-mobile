@@ -154,7 +154,6 @@ class _NotificationContentState extends State<NotificationContent> {
                           child: CircularProgressIndicator(),
                         ),
                     ],
-                    //children: [Text('AAA')],
                   ),
                 );
               },
@@ -173,77 +172,73 @@ class _NotificationContentState extends State<NotificationContent> {
         onTap: () {
           _model.updateAcknowledged(value.id);
         },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                children: [
-                  Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 8),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CircleAvatar(
-                        radius: 30,
-                        backgroundImage: AssetImage(
-                          "assets/images/icon_notification.png",
+                      CircleAvatar(
+                        radius: 24, // Size of the circle
+                        backgroundColor: MainColors.primary500,
+                        child: ClipOval(
+                          child: Image.asset(
+                            "assets/images/icon_notification.png",
+                            fit: BoxFit.cover,
+                            width: 24,
+                            height: 24,
+                            color: MainColors.white,
+                          ),
                         ),
-                        backgroundColor: MainColors.backgroundProfile,
                       ),
-                      const SizedBox(width: 24),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            value.msg,
-                            style: const TextStyle(
-                              fontSize: 16,
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              value.title,
+                              style: const TextStyle(
+                                fontSize: FontSizes.medium,
+                              ),
                             ),
-                          ),
-                          Text(
-                            value.time,
-                            style: const TextStyle(
-                              fontSize: 16,
+                            const SizedBox(height: 8),
+                            Text(
+                              value.msg,
+                              style: const TextStyle(
+                                fontSize: FontSizes.text,
+                              ),
                             ),
-                          ),
-                          Text(
-                            value.subdivisionName,
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            value.timegone,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFF9CA5BF),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                  if (!value.acknowledged)
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: Container(
-                        width: 12,
-                        height: 12,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFFF0000),
-                          shape: BoxShape.circle,
-                        ),
+                ),
+                if (!value.acknowledged)
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      width: 12,
+                      height: 12,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFFF0000),
+                        shape: BoxShape.circle,
                       ),
                     ),
-                ],
-              ),
-              const Divider(
-                color: MainColors.divider,
-                thickness: 0.6,
-              ),
-            ],
-          ),
+                  ),
+              ],
+            ),
+            const Divider(
+              color: MainColors.divider,
+              thickness: 0.6,
+            ),
+          ],
         ),
       );
     }).toList();

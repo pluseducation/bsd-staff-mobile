@@ -49,7 +49,7 @@ class NotificationApi extends BaseApi {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.patch(
-        "/api/v1/notifications/acknowledged/$id",
+        "/api/v1/staff/notifications/acknowledged/$id",
       );
 
       if (response.statusCode == 200) {
