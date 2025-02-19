@@ -70,22 +70,9 @@ class DashboardRepository {
     return model;
   }
 
-  // Future<StatYear> findStatYear() async {
-  //   final entity = await dashboardApi.findStatYear();
-  //   final model = networkMapper.toStatYear(entity);
-
-  //   return model;
-  // }
-
   // Future<int> findpatients() async {
   //   final value = await dashboardApi.findpatients();
   //   return value;
-  // }
-
-  // Future<Level> findLevel() async {
-  //   final entity = await dashboardApi.findLevel();
-  //   final model = networkMapper.toLevel(entity);
-  //   return model;
   // }
 
   // Future<List<ReportData>> findReportData({
@@ -115,6 +102,52 @@ class DashboardRepository {
 
   //   return models;
   // }
+
+  Future<Level> findLevel() async {
+    final entity = await dashboardApi.findLevel();
+    final currentYear = entity.fiscalYear != null
+        ? convertToInt(entity.fiscalYear)
+        : DateTime.now().year;
+    final model = Level(
+      year: entity.fiscalYear ?? currentYear,
+      screeningTotal: convertToInt(entity.screening?.URGENCY.count) +
+          convertToInt(entity.screening?.EMERGENCY.count) +
+          convertToInt(entity.screening?.SEMI_URGENCY.count) +
+          convertToInt(entity.screening?.NORMAL.count),
+      screeningUrgencyCount: convertToInt(entity.screening?.URGENCY.count),
+      screeningUrgencyPercent:
+          convertToDouble(entity.screening?.URGENCY.percentage),
+      screeningEmergencyCount: convertToInt(entity.screening?.EMERGENCY.count),
+      screeningEmergencyPercent:
+          convertToDouble(entity.screening?.EMERGENCY.percentage),
+      screeningSemiUrgencyCount:
+          convertToInt(entity.screening?.SEMI_URGENCY.count),
+      screeningSemiUrgencyPercent:
+          convertToDouble(entity.screening?.SEMI_URGENCY.percentage),
+      screeningNormalCount: convertToInt(entity.screening?.NORMAL.count),
+      screeningNormalPercent:
+          convertToDouble(entity.screening?.NORMAL.percentage),
+      treatmentTotal: convertToInt(entity.treatment?.URGENCY.count) +
+          convertToInt(entity.treatment?.EMERGENCY.count) +
+          convertToInt(entity.treatment?.SEMI_URGENCY.count) +
+          convertToInt(entity.treatment?.NORMAL.count),
+      treatmentUrgencyCount: convertToInt(entity.treatment?.URGENCY.count),
+      treatmentUrgencyPercent:
+          convertToDouble(entity.treatment?.URGENCY.percentage),
+      treatmentEmergencyCount: convertToInt(entity.treatment?.EMERGENCY.count),
+      treatmentEmergencyPercent:
+          convertToDouble(entity.treatment?.EMERGENCY.percentage),
+      treatmentSemiUrgencyCount:
+          convertToInt(entity.treatment?.SEMI_URGENCY.count),
+      treatmentSemiUrgencyPercent:
+          convertToDouble(entity.treatment?.SEMI_URGENCY.percentage),
+      treatmentNormalCount: convertToInt(entity.treatment?.NORMAL.count),
+      treatmentNormalPercent:
+          convertToDouble(entity.treatment?.NORMAL.percentage),
+    );
+
+    return model;
+  }
 
   Future<StatPatientWeek> findStatPatientWeek() async {
     final entity = await dashboardApi.findStatPatientWeek();

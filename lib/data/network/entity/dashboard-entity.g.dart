@@ -31,6 +31,54 @@ Map<String, dynamic> _$ReferCountEntityToJson(ReferCountEntity instance) =>
       'receiver': instance.receiver,
     };
 
+LevelEntity _$LevelEntityFromJson(Map<String, dynamic> json) => LevelEntity(
+      screening: json['screening'] == null
+          ? null
+          : LevelTypeEntity.fromJson(json['screening'] as Map<String, dynamic>),
+      treatment: json['treatment'] == null
+          ? null
+          : LevelTypeEntity.fromJson(json['treatment'] as Map<String, dynamic>),
+      fiscalYear: (json['fiscalYear'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$LevelEntityToJson(LevelEntity instance) =>
+    <String, dynamic>{
+      'screening': instance.screening,
+      'treatment': instance.treatment,
+      'fiscalYear': instance.fiscalYear,
+    };
+
+LevelTypeEntity _$LevelTypeEntityFromJson(Map<String, dynamic> json) =>
+    LevelTypeEntity(
+      URGENCY:
+          LevelDataEntity.fromJson(json['URGENCY'] as Map<String, dynamic>),
+      EMERGENCY:
+          LevelDataEntity.fromJson(json['EMERGENCY'] as Map<String, dynamic>),
+      SEMI_URGENCY: LevelDataEntity.fromJson(
+          json['SEMI_URGENCY'] as Map<String, dynamic>),
+      NORMAL: LevelDataEntity.fromJson(json['NORMAL'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LevelTypeEntityToJson(LevelTypeEntity instance) =>
+    <String, dynamic>{
+      'URGENCY': instance.URGENCY,
+      'EMERGENCY': instance.EMERGENCY,
+      'SEMI_URGENCY': instance.SEMI_URGENCY,
+      'NORMAL': instance.NORMAL,
+    };
+
+LevelDataEntity _$LevelDataEntityFromJson(Map<String, dynamic> json) =>
+    LevelDataEntity(
+      percentage: (json['percentage'] as num).toDouble(),
+      count: (json['count'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$LevelDataEntityToJson(LevelDataEntity instance) =>
+    <String, dynamic>{
+      'percentage': instance.percentage,
+      'count': instance.count,
+    };
+
 StatPatientWeekEntity _$StatPatientWeekEntityFromJson(
         Map<String, dynamic> json) =>
     StatPatientWeekEntity(

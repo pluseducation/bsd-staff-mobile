@@ -1,3 +1,4 @@
+import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/data/repository/home-repository.dart';
 import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
@@ -6,11 +7,11 @@ import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
+import 'package:logger/logger.dart' as logger;
 
 class DashboardModel extends ChangeNotifier {
-  final Logger log;
-  final HomeRepository homeRepository;
+  final logger.Logger log;
+  final DashboardRepository dashboardRepository;
   final AppService appService;
 
   late String dateNow;
@@ -19,11 +20,15 @@ class DashboardModel extends ChangeNotifier {
   late WorkFlowCount workflowCount;
   late ReferCount referCount;
 
+  late StatPatientWeek statPatientWeek;
+  late StatPatientMonth statPatientMonth;
+  late Level level;
+
   NumberFormat numberFormat = NumberFormat("#,###");
 
   DashboardModel({
     required this.log,
-    required this.homeRepository,
+    required this.dashboardRepository,
     required this.appService,
   });
 
@@ -31,11 +36,14 @@ class DashboardModel extends ChangeNotifier {
     try {
       final now = DateTime.now();
       dateNow = formatDate(now);
-      totalPatient = await homeRepository.findTotalPatientDashboard();
-      retention = await homeRepository.findRetentionDashboard();
-      workflowCount = await homeRepository.findWorkflowDashboard();
-      referCount = await homeRepository.findReferDashboard();
+      totalPatient = await dashboardRepository.findTotalPatientDashboard();
+      retention = await dashboardRepository.findRetentionDashboard();
+      workflowCount = await dashboardRepository.findWorkflowDashboard();
+      referCount = await dashboardRepository.findReferDashboard();
 
+      level = await dashboardRepository.findLevel();
+      statPatientWeek = await dashboardRepository.findStatPatientWeek();
+      statPatientMonth = await dashboardRepository.findStatPatientMonth();
       return true;
     } catch (e) {
       if (e is NetworkException) {

@@ -1,6 +1,5 @@
 import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -16,6 +15,7 @@ class BaseAppBarMenu extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       toolbarHeight: toolbarHeight,
       backgroundColor: Colors.transparent,
+      iconTheme: const IconThemeData(color: Colors.white),
       title: Row(
         children: [
           Column(
@@ -94,6 +94,7 @@ class BaseAppBarHome extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       toolbarHeight: kToolbarHeight,
       backgroundColor: Colors.transparent,
+      iconTheme: const IconThemeData(color: Colors.white),
       title: Row(
         children: [
           Image.asset(

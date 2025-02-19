@@ -1,21 +1,13 @@
-import 'package:bst_staff_mobile/data/repository/assistance-repository.dart';
 import 'package:bst_staff_mobile/data/repository/home-repository.dart';
-import 'package:bst_staff_mobile/domain/model/assistance.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/assistance/assistance-detail-screen.dart';
 import 'package:bst_staff_mobile/presentation/assistance/assistance-screen.dart';
-import 'package:bst_staff_mobile/presentation/assistance/assistance.model.dart';
 import 'package:bst_staff_mobile/presentation/home/home-model.dart';
 import 'package:bst_staff_mobile/presentation/refer/refer-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
-import 'package:bst_staff_mobile/widget/assistance/assistance-card.dart';
-import 'package:bst_staff_mobile/widget/assistance/assistance-search.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
-import 'package:bst_staff_mobile/widget/common/custom-pagination.dart';
-import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -133,6 +125,7 @@ class _HomeContentState extends State<HomeContent> {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 16),
                       Row(
                         children: [
                           Expanded(
@@ -351,7 +344,7 @@ class _HomeContentState extends State<HomeContent> {
                 Image.asset('assets/images/home_monitoring.png', height: 16),
                 const SizedBox(width: 8),
                 const Text(
-                  "ติดตาม  ",
+                  "ติดตาม",
                   style: TextStyle(
                     fontSize: FontSizes.medium,
                   ),
@@ -457,7 +450,7 @@ class _HomeContentState extends State<HomeContent> {
                       Image.asset('assets/images/home_refer.png', height: 16),
                       const SizedBox(width: 8),
                       const Text(
-                        "ช่วยเหลือ",
+                        "ส่งต่อ/รอรับ",
                         style: TextStyle(
                           fontSize: FontSizes.medium,
                         ),

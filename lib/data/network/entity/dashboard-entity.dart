@@ -42,59 +42,6 @@ class ReferCountEntity {
 
 // delete
 // @JsonSerializable()
-// class LevelEntity {
-//   LevelTypeEntity? screening;
-//   LevelTypeEntity? treatment;
-//   int? fiscalYear;
-
-//   LevelEntity({
-//     required this.screening,
-//     required this.treatment,
-//     required this.fiscalYear,
-//   });
-
-//   factory LevelEntity.fromJson(Map<String, dynamic> json) =>
-//       _$LevelEntityFromJson(json);
-// }
-
-// @JsonSerializable()
-// class LevelTypeEntity {
-//   LevelDataEntity URGENCY;
-//   LevelDataEntity EMERGENCY;
-//   LevelDataEntity SEMI_URGENCY;
-//   LevelDataEntity NORMAL;
-
-//   LevelTypeEntity({
-//     required this.URGENCY,
-//     required this.EMERGENCY,
-//     required this.SEMI_URGENCY,
-//     required this.NORMAL,
-//   });
-
-//   factory LevelTypeEntity.fromJson(Map<String, dynamic> json) =>
-//       _$LevelTypeEntityFromJson(json);
-// }
-
-// @JsonSerializable()
-// class LevelDataEntity {
-//   double percentage;
-//   int count;
-
-//   LevelDataEntity({
-//     required this.percentage,
-//     required this.count,
-//   });
-
-//   factory LevelDataEntity.fromJson(Map<String, dynamic> json) =>
-//       _$LevelDataEntityFromJson(json);
-// }
-
-// List<ReportDataEntity> reportDataFromJson(List data) =>
-//     List<ReportDataEntity>.from(
-//       data.map((x) => ReportDataEntity.fromJson(x as Map<String, dynamic>)),
-//     );
-
-// @JsonSerializable()
 // class ReportDataEntity {
 //   String? name;
 //   int? register;
@@ -145,6 +92,59 @@ class ReferCountEntity {
 
 //   Map<String, dynamic> toJson() => _$StatYearEntityToJson(this);
 // }
+
+// List<ReportDataEntity> reportDataFromJson(List data) =>
+//     List<ReportDataEntity>.from(
+//       data.map((x) => ReportDataEntity.fromJson(x as Map<String, dynamic>)),
+//     );
+
+@JsonSerializable()
+class LevelEntity {
+  LevelTypeEntity? screening;
+  LevelTypeEntity? treatment;
+  int? fiscalYear;
+
+  LevelEntity({
+    required this.screening,
+    required this.treatment,
+    required this.fiscalYear,
+  });
+
+  factory LevelEntity.fromJson(Map<String, dynamic> json) =>
+      _$LevelEntityFromJson(json);
+}
+
+@JsonSerializable()
+class LevelTypeEntity {
+  LevelDataEntity URGENCY;
+  LevelDataEntity EMERGENCY;
+  LevelDataEntity SEMI_URGENCY;
+  LevelDataEntity NORMAL;
+
+  LevelTypeEntity({
+    required this.URGENCY,
+    required this.EMERGENCY,
+    required this.SEMI_URGENCY,
+    required this.NORMAL,
+  });
+
+  factory LevelTypeEntity.fromJson(Map<String, dynamic> json) =>
+      _$LevelTypeEntityFromJson(json);
+}
+
+@JsonSerializable()
+class LevelDataEntity {
+  double percentage;
+  int count;
+
+  LevelDataEntity({
+    required this.percentage,
+    required this.count,
+  });
+
+  factory LevelDataEntity.fromJson(Map<String, dynamic> json) =>
+      _$LevelDataEntityFromJson(json);
+}
 
 @JsonSerializable()
 class StatPatientWeekEntity {
