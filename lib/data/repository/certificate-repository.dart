@@ -52,9 +52,10 @@ class CertificateRepository {
 
     final fullname =
         '${convertToString(entity.name)} ${convertToString(entity.surname)}';
-
-    final fullNameApproved =
-        "${convertToString(entity.approvedName)} ${convertToString(entity.approvedSurname)}";
+    final fullNameApproved = (convertToString(entity.approvedName).isEmpty &&
+            convertToString(entity.approvedSurname).isEmpty)
+        ? '-'
+        : "${convertToString(entity.approvedName)} ${convertToString(entity.approvedSurname)}";
 
     final model = CertificateDetail(
       id: convertToInt(entity.id),

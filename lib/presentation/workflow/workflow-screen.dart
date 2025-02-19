@@ -1306,10 +1306,12 @@ class _WorkflowContentState extends State<WorkflowContent> {
             const SizedBox(
               width: 8,
             ),
-            Text(
-              datas[i],
-              style: const TextStyle(
-                fontSize: FontSizes.medium,
+            Expanded(
+              child: Text(
+                datas[i],
+                style: const TextStyle(
+                  fontSize: FontSizes.medium,
+                ),
               ),
             ),
           ],
