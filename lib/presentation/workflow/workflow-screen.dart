@@ -747,7 +747,9 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.isToBeNumberOneMember,
+                data.isToBeNumberOneMember.isEmpty
+                    ? "-"
+                    : data.isToBeNumberOneMember,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -756,7 +758,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 8,
               ),
               Text(
-                "วันที่เป็นสมาชิก : ${data.toBeNumberOneDate}",
+                "วันที่เป็นสมาชิก : ${data.toBeNumberOneDate.isEmpty ? "-" : data.toBeNumberOneDate}",
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -775,7 +777,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.drugUsageApproach, // data.injectableDrug
+                data.drugUsageApproach.isEmpty ? "-" : data.drugUsageApproach,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -794,7 +796,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.mainDrug,
+                data.mainDrug.isEmpty ? "-" : data.mainDrug,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -813,7 +815,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.secondaryDrug,
+                data.secondaryDrug.isEmpty ? "-" : data.secondaryDrug,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -851,7 +853,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.mentalTreatment,
+                data.mentalTreatment.isEmpty ? "-" : data.mentalTreatment,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -870,7 +872,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.chronicContagious,
+                data.chronicContagious.isEmpty ? "-" : data.chronicContagious,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -889,7 +891,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.criminalCase,
+                data.criminalCase.isEmpty ? "-" : data.criminalCase,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -908,7 +910,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.homeless,
+                data.homeless.isEmpty ? "-" : data.homeless,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -927,7 +929,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.disabledPerson,
+                data.disabledPerson.isEmpty ? "-" : data.disabledPerson,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -936,7 +938,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 8,
               ),
               Text(
-                "หมายเลขรับรองความพิการ : ${data.disabledCertificateNo}",
+                "หมายเลขรับรองความพิการ : ${data.disabledCertificateNo.isEmpty ? "-" : data.disabledCertificateNo}",
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
