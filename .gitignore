@@ -60,6 +60,7 @@ unlinked_spec.ds
 **/android/**/GeneratedPluginRegistrant.java
 **/android/projectFilesBackup/
 **/android/key.properties
+**/android/app/.cxx
 **/android/nativetemplates/build/
 /android/app/debug
 /android/app/profile
