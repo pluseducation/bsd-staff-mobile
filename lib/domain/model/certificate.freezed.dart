@@ -467,6 +467,7 @@ mixin _$CertificateDetail {
   DrugEvalResult? get drugEvalResult => throw _privateConstructorUsedError;
   LevelType? get levelType => throw _privateConstructorUsedError;
   String get fullNameApproved => throw _privateConstructorUsedError;
+  String get fileName => throw _privateConstructorUsedError;
 
   /// Create a copy of CertificateDetail
   /// with the given fields replaced by the non-null parameter values.
@@ -490,7 +491,8 @@ abstract class $CertificateDetailCopyWith<$Res> {
       WorkFlowStatus? workFlowStatus,
       DrugEvalResult? drugEvalResult,
       LevelType? levelType,
-      String fullNameApproved});
+      String fullNameApproved,
+      String fileName});
 }
 
 /// @nodoc
@@ -517,6 +519,7 @@ class _$CertificateDetailCopyWithImpl<$Res, $Val extends CertificateDetail>
     Object? drugEvalResult = freezed,
     Object? levelType = freezed,
     Object? fullNameApproved = null,
+    Object? fileName = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -555,6 +558,10 @@ class _$CertificateDetailCopyWithImpl<$Res, $Val extends CertificateDetail>
           ? _value.fullNameApproved
           : fullNameApproved // ignore: cast_nullable_to_non_nullable
               as String,
+      fileName: null == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -576,7 +583,8 @@ abstract class _$$CertificateDetailImplCopyWith<$Res>
       WorkFlowStatus? workFlowStatus,
       DrugEvalResult? drugEvalResult,
       LevelType? levelType,
-      String fullNameApproved});
+      String fullNameApproved,
+      String fileName});
 }
 
 /// @nodoc
@@ -601,6 +609,7 @@ class __$$CertificateDetailImplCopyWithImpl<$Res>
     Object? drugEvalResult = freezed,
     Object? levelType = freezed,
     Object? fullNameApproved = null,
+    Object? fileName = null,
   }) {
     return _then(_$CertificateDetailImpl(
       id: null == id
@@ -639,6 +648,10 @@ class __$$CertificateDetailImplCopyWithImpl<$Res>
           ? _value.fullNameApproved
           : fullNameApproved // ignore: cast_nullable_to_non_nullable
               as String,
+      fileName: null == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -655,7 +668,8 @@ class _$CertificateDetailImpl implements _CertificateDetail {
       required this.workFlowStatus,
       this.drugEvalResult,
       this.levelType,
-      required this.fullNameApproved});
+      required this.fullNameApproved,
+      required this.fileName});
 
   @override
   final int id;
@@ -675,10 +689,12 @@ class _$CertificateDetailImpl implements _CertificateDetail {
   final LevelType? levelType;
   @override
   final String fullNameApproved;
+  @override
+  final String fileName;
 
   @override
   String toString() {
-    return 'CertificateDetail(id: $id, fullName: $fullName, nationalId: $nationalId, cycle: $cycle, phoneNo: $phoneNo, workFlowStatus: $workFlowStatus, drugEvalResult: $drugEvalResult, levelType: $levelType, fullNameApproved: $fullNameApproved)';
+    return 'CertificateDetail(id: $id, fullName: $fullName, nationalId: $nationalId, cycle: $cycle, phoneNo: $phoneNo, workFlowStatus: $workFlowStatus, drugEvalResult: $drugEvalResult, levelType: $levelType, fullNameApproved: $fullNameApproved, fileName: $fileName)';
   }
 
   @override
@@ -700,12 +716,24 @@ class _$CertificateDetailImpl implements _CertificateDetail {
             (identical(other.levelType, levelType) ||
                 other.levelType == levelType) &&
             (identical(other.fullNameApproved, fullNameApproved) ||
-                other.fullNameApproved == fullNameApproved));
+                other.fullNameApproved == fullNameApproved) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, fullName, nationalId, cycle,
-      phoneNo, workFlowStatus, drugEvalResult, levelType, fullNameApproved);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      fullName,
+      nationalId,
+      cycle,
+      phoneNo,
+      workFlowStatus,
+      drugEvalResult,
+      levelType,
+      fullNameApproved,
+      fileName);
 
   /// Create a copy of CertificateDetail
   /// with the given fields replaced by the non-null parameter values.
@@ -727,7 +755,8 @@ abstract class _CertificateDetail implements CertificateDetail {
       required final WorkFlowStatus? workFlowStatus,
       final DrugEvalResult? drugEvalResult,
       final LevelType? levelType,
-      required final String fullNameApproved}) = _$CertificateDetailImpl;
+      required final String fullNameApproved,
+      required final String fileName}) = _$CertificateDetailImpl;
 
   @override
   int get id;
@@ -747,6 +776,8 @@ abstract class _CertificateDetail implements CertificateDetail {
   LevelType? get levelType;
   @override
   String get fullNameApproved;
+  @override
+  String get fileName;
 
   /// Create a copy of CertificateDetail
   /// with the given fields replaced by the non-null parameter values.

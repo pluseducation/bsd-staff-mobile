@@ -38,5 +38,6 @@ class CertificateDetail with _$CertificateDetail {
     DrugEvalResult? drugEvalResult,
     LevelType? levelType,
     required String fullNameApproved,
+    required String fileName,
   }) = _CertificateDetail;
 }

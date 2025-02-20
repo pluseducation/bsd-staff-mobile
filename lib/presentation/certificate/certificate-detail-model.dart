@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
@@ -15,6 +17,7 @@ class CertificateDetailModel extends ChangeNotifier {
   late CertificateDetail certificateDetail;
   bool isApprovedClicked = false;
   bool isRejectedClicked = false;
+  bool isShowImage = false;
 
   CertificateDetailModel({
     required this.log,
@@ -54,18 +57,13 @@ class CertificateDetailModel extends ChangeNotifier {
   Future<void> updateCertificateStatus({
     required int id,
     required CertificateStatus status,
-    required String fileNameOrg,
-    required String content,
+    required File imageFile,
   }) async {
     try {
-      log.i(
-        'Updating Certificate Status - ID: $id, Status: $status, File Name: $fileNameOrg',
-      );
       await certificateRepository.updateCertificateStatus(
         id: id,
         status: status,
-        fileNameOrg: fileNameOrg,
-        content: content,
+        imageFile: imageFile,
       );
       appService.intervalWebAuth();
     } catch (e) {

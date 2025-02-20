@@ -70,7 +70,7 @@ Future<void> main() async {
   await Sqflite.devSetDebugModeOn(kDebugMode);
   getIt.registerSingleton<NavigationService>(NavigationService());
 
-  // disabl e landscape mode
+  //disabl e landscape mode
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

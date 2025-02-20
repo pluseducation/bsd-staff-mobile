@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/certificate/certificate-detail-model.dart';
@@ -7,7 +9,6 @@ import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:bst_staff_mobile/widget/certificate/certificate-camera.dart';
 import 'package:bst_staff_mobile/widget/certificate/certificate.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -53,6 +54,7 @@ class CertificateDetailScreen extends StatelessWidget {
 
 class CertificateDetailContent extends StatefulWidget {
   final int certificateById;
+
   const CertificateDetailContent({
     super.key,
     required this.certificateById,
@@ -65,7 +67,9 @@ class CertificateDetailContent extends StatefulWidget {
 
 class _CertificateDetailCardState extends State<CertificateDetailContent> {
   late CertificateDetailModel _model;
+  String? _imagePath;
   CertificateStatus? _selectedStatus;
+
   @override
   void initState() {
     super.initState();
@@ -205,6 +209,9 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
                               ),
                             ),
                             const SizedBox(height: 16),
+                            // if (_model.certificateDetail.fileName.isNotEmpty)
+                            //   _buildShowImage()
+                            // else
                             _buildCameraImage(),
                             const SizedBox(height: 16),
                             Padding(
@@ -403,14 +410,66 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
     );
   }
 
+  Widget _buildShowImage() {
+    return Stack(
+      alignment: Alignment.bottomRight,
+      children: [
+        SizedBox(
+          width: 120,
+          height: 120,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Image.network(
+              _model.certificateDetail.fileName,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: IconButton(
+              onPressed: () {
+                print("แก้ไข้เอกสาร");
+              },
+              icon: const Icon(Icons.camera_alt, size: 18, color: Colors.blue),
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Future<void> _openCamera() async {
-    final cameras = await availableCameras();
-    Navigator.push(
+    final File? imageFile = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CertificateCamera(cameras: cameras),
+        builder: (context) => const CertificateCamera(),
       ),
     );
+
+    if (imageFile != null) {
+      setState(() {
+        _imagePath = imageFile.path;
+      });
+      return;
+    }
   }
 
   Future<void> _confirm() async {
@@ -424,11 +483,14 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
       }
 
       if (_selectedStatus != null) {
+        File? imageFile;
+        if (_imagePath != null) {
+          imageFile = File(_imagePath!);
+        }
         await _model.updateCertificateStatus(
           id: _model.certificateDetail.id,
           status: _selectedStatus!,
-          fileNameOrg: 'assets/images/image_login.png',
-          content: 'string',
+          imageFile: imageFile!,
         );
       }
       Navigator.pop(context);
