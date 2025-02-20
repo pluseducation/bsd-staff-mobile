@@ -12,12 +12,12 @@ class TreatmentDrugusagebeforeCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
+                color: Colors.black,
               ),
               child: Text(
                 data.order.toString(),

@@ -8,41 +8,32 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 
-class HomeModel extends ChangeNotifier {
+class MenuModel extends ChangeNotifier {
   final Logger log;
-  final HomeRepository homeRepository;
   final AppService appService;
 
-  late String dateNow;
-  late int totalPatient;
-  late double retention;
-  late WorkFlowCount workflowCount;
-  late ReferCount referCount;
+  bool appointment = false;
+  bool patient = false;
+  bool assistance = false;
+  bool certificate = false;
+  bool refer = false;
+  bool dashboard = false;
+  bool user = false;
 
-  late bool patient = false;
-  late bool assistance = false;
-  late bool refer = false;
-  NumberFormat numberFormat = NumberFormat("#,###");
-
-  HomeModel({
+  MenuModel({
     required this.log,
-    required this.homeRepository,
     required this.appService,
   });
 
   Future<bool> initData() async {
+    appointment = appService.appointment;
+    patient = appService.patient;
+    assistance = appService.assistance;
+    certificate = appService.certificate;
+    refer = appService.refer;
+    dashboard = appService.dashboard;
+    user = appService.user;
     try {
-      final now = DateTime.now();
-      dateNow = formatDate(now);
-      totalPatient = await homeRepository.findTotalPatientDashboard();
-      retention = await homeRepository.findRetentionDashboard();
-      workflowCount = await homeRepository.findWorkflowDashboard();
-      referCount = await homeRepository.findReferDashboard();
-
-      patient = appService.patient;
-      assistance = appService.assistance;
-      refer = appService.refer;
-
       return true;
     } catch (e) {
       if (e is NetworkException) {

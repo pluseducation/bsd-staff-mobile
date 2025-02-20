@@ -23,6 +23,10 @@ class DashboardModel extends ChangeNotifier {
   late StatPatientWeek statPatientWeek;
   late StatPatientMonth statPatientMonth;
   late Level level;
+  late bool patient = false;
+  late bool refer = false;
+  late bool assistance = false;
+  late bool stat = false;
 
   NumberFormat numberFormat = NumberFormat("#,###");
 
@@ -44,6 +48,12 @@ class DashboardModel extends ChangeNotifier {
       level = await dashboardRepository.findLevel();
       statPatientWeek = await dashboardRepository.findStatPatientWeek();
       statPatientMonth = await dashboardRepository.findStatPatientMonth();
+
+      patient = appService.patient;
+      refer = appService.refer;
+      assistance = appService.assistance;
+      stat = appService.stat;
+
       return true;
     } catch (e) {
       if (e is NetworkException) {

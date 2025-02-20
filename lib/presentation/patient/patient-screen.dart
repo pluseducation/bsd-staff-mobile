@@ -4,6 +4,7 @@ import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-filter-screen.dart';
 import 'package:bst_staff_mobile/presentation/patient/patient-model.dart';
 import 'package:bst_staff_mobile/presentation/workflow/workflow-screen.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
@@ -122,7 +123,7 @@ class _PatientContentState extends State<PatientContent> {
                                 'ไม่พบข้อมูล',
                                 style: TextStyle(
                                   color: MainColors.text,
-                                  fontSize: 24,
+                                  fontSize: FontSizes.large,
                                 ),
                               ),
                             ],

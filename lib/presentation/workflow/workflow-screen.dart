@@ -130,73 +130,65 @@ class _WorkflowContentState extends State<WorkflowContent> {
                             if (model.registering != null) ...[
                               _buildRegistering(model.registering!),
                             ] else ...[
-                              const Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'ไม่พบข้อมูล',
-                                      style: TextStyle(
-                                        color: MainColors.text,
-                                        fontSize: 24,
-                                      ),
+                              const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'ไม่พบข้อมูล',
+                                    style: TextStyle(
+                                      color: MainColors.text,
+                                      fontSize: FontSizes.large,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ],
                             if (model.screening?.screeningDate != null) ...[
                               _buildScreening(model.screening!),
                             ] else ...[
-                              const Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'ไม่พบข้อมูล',
-                                      style: TextStyle(
-                                        color: MainColors.text,
-                                        fontSize: 24,
-                                      ),
+                              const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'ไม่พบข้อมูล',
+                                    style: TextStyle(
+                                      color: MainColors.text,
+                                      fontSize: FontSizes.large,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ],
                             if (model.treatment?.treatmentDate != null) ...[
                               _buildTreatment(model.treatment!),
                             ] else ...[
-                              const Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'ไม่พบข้อมูล',
-                                      style: TextStyle(
-                                        color: MainColors.text,
-                                        fontSize: 24,
-                                      ),
+                              const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'ไม่พบข้อมูล',
+                                    style: TextStyle(
+                                      color: MainColors.text,
+                                      fontSize: FontSizes.large,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ],
                             if (model.monitorings.isNotEmpty) ...[
                               _buildMonitoring(model.monitorings),
                             ] else ...[
-                              const Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'ไม่พบข้อมูล',
-                                      style: TextStyle(
-                                        color: MainColors.text,
-                                        fontSize: 24,
-                                      ),
+                              const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'ไม่พบข้อมูล',
+                                    style: TextStyle(
+                                      color: MainColors.text,
+                                      fontSize: FontSizes.large,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ],
                           ],
@@ -747,9 +739,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.isToBeNumberOneMember.isEmpty
-                    ? "-"
-                    : data.isToBeNumberOneMember,
+                data.isToBeNumberOneMember,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -758,7 +748,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 8,
               ),
               Text(
-                "วันที่เป็นสมาชิก : ${data.toBeNumberOneDate.isEmpty ? "-" : data.toBeNumberOneDate}",
+                "วันที่เป็นสมาชิก : ${data.toBeNumberOneDate}",
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -777,7 +767,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.drugUsageApproach.isEmpty ? "-" : data.drugUsageApproach,
+                data.drugUsageApproach,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -796,7 +786,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.mainDrug.isEmpty ? "-" : data.mainDrug,
+                data.mainDrug,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -815,7 +805,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.secondaryDrug.isEmpty ? "-" : data.secondaryDrug,
+                data.secondaryDrug,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -853,7 +843,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.mentalTreatment.isEmpty ? "-" : data.mentalTreatment,
+                data.mentalTreatment,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -872,7 +862,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.chronicContagious.isEmpty ? "-" : data.chronicContagious,
+                data.chronicContagious,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -891,7 +881,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.criminalCase.isEmpty ? "-" : data.criminalCase,
+                data.criminalCase,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -910,7 +900,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.homeless.isEmpty ? "-" : data.homeless,
+                data.homeless,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -929,7 +919,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 16,
               ),
               Text(
-                data.disabledPerson.isEmpty ? "-" : data.disabledPerson,
+                data.disabledPerson,
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),
@@ -938,7 +928,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
                 height: 8,
               ),
               Text(
-                "หมายเลขรับรองความพิการ : ${data.disabledCertificateNo.isEmpty ? "-" : data.disabledCertificateNo}",
+                "หมายเลขรับรองความพิการ : ${data.disabledCertificateNo}",
                 style: const TextStyle(
                   fontSize: FontSizes.medium,
                 ),

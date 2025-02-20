@@ -45,7 +45,7 @@ bool convertToBool(dynamic object) {
 
 String convertToString(dynamic object, {String defaultValue = ""}) {
   try {
-    if (object == null) {
+    if (object == null || object == "") {
       return defaultValue;
     } else if (object is String) {
       return object;

@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:bst_staff_mobile/data/network/api/notification-api.dart';
-import 'package:bst_staff_mobile/data/network/entity/notification-entity.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/notification-app.dart';
 import 'package:bst_staff_mobile/util/convert.dart';

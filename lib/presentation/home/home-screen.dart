@@ -98,64 +98,72 @@ class _HomeContentState extends State<HomeContent> {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildTotalPatient(model.totalPatient),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: _buildRetention(model.retention),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildRegistering(
-                              model.workflowCount.countRegistering,
+                      if (model.patient) ...[
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _buildTotalPatient(model.totalPatient),
                             ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: _buildScreening(
-                              model.workflowCount.countScreening,
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: _buildRetention(model.retention),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildTreatment(
-                              model.workflowCount.countTreatment,
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _buildRegistering(
+                                model.workflowCount.countRegistering,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: _buildMonitoring(
-                              model.workflowCount.countMonitoring,
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: _buildScreening(
+                                model.workflowCount.countScreening,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _buildTreatment(
+                                model.workflowCount.countTreatment,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: _buildMonitoring(
+                                model.workflowCount.countMonitoring,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                      ],
                       // Use LayoutBuilder to calculate the available height
                       SizedBox(
                         height: 250,
                         child: Row(
                           children: [
-                            Expanded(
-                              child: _buildAssistance(
-                                model.workflowCount.countAssistance,
+                            if (model.assistance) ...[
+                              Expanded(
+                                child: _buildAssistance(
+                                  model.workflowCount.countAssistance,
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: _buildRefer(model.referCount),
-                            ),
+                              if (model.refer) ...[
+                                const SizedBox(width: 16),
+                              ],
+                            ],
+                            if (model.refer) ...[
+                              Expanded(
+                                child: _buildRefer(model.referCount),
+                              ),
+                            ],
                           ],
                         ),
                       ),

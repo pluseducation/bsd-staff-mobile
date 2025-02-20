@@ -181,7 +181,7 @@ class _MyWidgetState extends State<CertificateContent> {
             'ไม่พบข้อมูล',
             style: TextStyle(
               color: MainColors.text,
-              fontSize: 24,
+              fontSize: FontSizes.large,
             ),
           ),
         ],

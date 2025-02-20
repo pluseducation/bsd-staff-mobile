@@ -2,6 +2,7 @@ import 'package:bst_staff_mobile/data/repository/patient-history-repository.dart
 import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/history/patient-history-model.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
@@ -88,6 +89,20 @@ class _PatientHistoryContentState extends State<PatientHistoryContent> {
           } else if (!snapshot.hasData) {
             return const Center(child: Text('ไม่พบข้อมูล'));
           } else {
+            if (!_model.history) {
+              return const Expanded(
+                child: Center(
+                  child: Text(
+                    'ไม่มีสิทธิ์เข้าถึงข้อมูล',
+                    style: TextStyle(
+                      color: MainColors.text,
+                      fontSize: FontSizes.large,
+                    ),
+                  ),
+                ),
+              );
+            }
+
             return Column(
               children: [
                 PatientHistorySearch(

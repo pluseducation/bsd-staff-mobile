@@ -179,7 +179,7 @@ class _AssistanceContentState extends State<AssistanceContent> {
             'ไม่พบข้อมูล',
             style: TextStyle(
               color: MainColors.text,
-              fontSize: 24,
+              fontSize: FontSizes.large,
             ),
           ),
         ],

@@ -2,7 +2,6 @@ import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-model.dart';
-import 'package:bst_staff_mobile/presentation/refer/refer-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
@@ -100,73 +99,88 @@ class _DashboardContentState extends State<DashboardContent> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _buildTotalPatient(model.totalPatient),
-                              _buildRetention(model.retention),
-                            ],
+                      if (model.patient) ...[
+                        Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                _buildTotalPatient(model.totalPatient),
+                                _buildRetention(model.retention),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildRegistering(
-                              model.workflowCount.countRegistering,
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _buildRegistering(
+                                model.workflowCount.countRegistering,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: _buildScreening(
-                              model.workflowCount.countScreening,
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: _buildScreening(
+                                model.workflowCount.countScreening,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildTreatment(
-                              model.workflowCount.countTreatment,
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _buildTreatment(
+                                model.workflowCount.countTreatment,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: _buildMonitoring(
-                              model.workflowCount.countMonitoring,
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: _buildMonitoring(
+                                model.workflowCount.countMonitoring,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: _buildAssistance(
-                              model.workflowCount.countAssistance,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: _buildRefer(model.referCount),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      DashboardLevel(
-                        level: model.level,
-                      ),
-                      const SizedBox(height: 8),
-                      DashboardStat(
-                        statPatientMonth: model.statPatientMonth,
-                        statPatientWeek: model.statPatientWeek,
-                      ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                      if (model.assistance || model.refer) ...[
+                        Row(
+                          children: [
+                            if (model.assistance) ...[
+                              Expanded(
+                                child: _buildAssistance(
+                                  model.workflowCount.countAssistance,
+                                ),
+                              ),
+                              if (model.refer) ...[
+                                const SizedBox(width: 8),
+                              ],
+                            ],
+                            if (model.refer) ...[
+                              Expanded(
+                                child: _buildRefer(
+                                  model.referCount,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                      if (model.patient) ...[
+                        DashboardLevel(
+                          level: model.level,
+                        ),
+                        const SizedBox(height: 8),
+                        DashboardStat(
+                          statPatientMonth: model.statPatientMonth,
+                          statPatientWeek: model.statPatientWeek,
+                        ),
+                        const SizedBox(height: 8),
+                      ],
                     ],
                   ),
                 );
