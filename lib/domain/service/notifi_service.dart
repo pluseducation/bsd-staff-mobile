@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
 import 'package:bst_staff_mobile/main.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

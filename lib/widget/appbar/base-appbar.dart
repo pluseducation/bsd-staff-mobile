@@ -214,7 +214,6 @@ class BaseAppBarProfile extends StatelessWidget implements PreferredSizeWidget {
         );
       },
     );
-    ;
   }
 }
 

@@ -1,11 +1,8 @@
-import 'package:bst_staff_mobile/data/network/entity/dashboard-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/login-entity.dart';
 import 'package:bst_staff_mobile/data/network/entity/usersession-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/mapper-exception.dart';
-import 'package:bst_staff_mobile/domain/model/dashboard.dart' as modelDashboard;
 import 'package:bst_staff_mobile/domain/model/login.dart';
 import 'package:bst_staff_mobile/domain/model/session.dart';
-import 'package:bst_staff_mobile/util/convert.dart';
 import 'package:logger/logger.dart';
 
 class NetworkMapper {

@@ -16,6 +16,7 @@ class CertificateDetailModel extends ChangeNotifier {
 
   late int certificateId;
   late CertificateDetail certificateDetail;
+  CertificateStatus? status;
   late bool isRequest;
 
   late bool isShowImage = false;
@@ -26,7 +27,6 @@ class CertificateDetailModel extends ChangeNotifier {
   File? file;
   bool isApproved = false;
   bool isRejected = false;
-  CertificateStatus? status;
 
   CertificateDetailModel({
     required this.log,

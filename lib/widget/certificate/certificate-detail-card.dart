@@ -324,46 +324,6 @@ class _CertificateDetailCardState extends State<CertificateDetailCard> {
     );
   }
 
-  Widget _buildScanner() {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            print("สแกน");
-          },
-          child: Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              border: Border.all(color: MainColors.primary500),
-              borderRadius: const BorderRadius.all(Radius.circular(16)),
-            ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.qr_code_scanner,
-                  color: MainColors.primary500,
-                  size: 40,
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  "สแกน",
-                  style: TextStyle(
-                    color: MainColors.primary500,
-                    fontSize: FontSizes.medium,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   Future<void> _onApproveClick() async {
     try {
       setState(() {
