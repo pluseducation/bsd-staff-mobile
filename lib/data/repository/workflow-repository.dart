@@ -221,11 +221,15 @@ class WorkflowRepository {
         levelType: LevelType.setValue(screeningEntity.level),
         drugEvalResult: DrugEvalResult.setValue(screeningEntity.drugEvalResult),
         isToBeNumberOneMember: isToBeNumberOneMember,
-        toBeNumberOneDate: convertToString(screeningEntity.toBeNumberOneDate),
+        toBeNumberOneDate: convertToString(
+          screeningEntity.toBeNumberOneDate,
+          defaultValue: "-",
+        ),
         drugUsageApproach: drugUsageApproach,
         injectableDrug: injectableDrug,
-        mainDrug: convertToString(screeningEntity.mainDrug),
-        secondaryDrug: convertToString(screeningEntity.secondaryDrug),
+        mainDrug: convertToString(screeningEntity.mainDrug, defaultValue: "-"),
+        secondaryDrug:
+            convertToString(screeningEntity.secondaryDrug, defaultValue: "-"),
         hadMentalTreatment: hadMentalTreatment,
         mentalTreatment: mentalTreatment,
         hadChronicContagious: hadChronicContagious,
@@ -234,8 +238,9 @@ class WorkflowRepository {
         criminalCase: criminalCase,
         homeless: homeless,
         disabledPerson: disabledPerson,
-        disabledCertificateNo:
-            convertToString(screeningEntity.disabledCertificateNo),
+        disabledCertificateNo: convertToString(
+            screeningEntity.disabledCertificateNo,
+            defaultValue: "-"),
       );
 
       return model;
@@ -371,9 +376,10 @@ class WorkflowRepository {
         return Monitoring(
           latestResultDate: latestResultDateText,
           startDate: formatDate(monitoringEntity.startDate),
-          endDate: convertToString(monitoringEntity.endDate),
+          endDate: convertToString(monitoringEntity.endDate, defaultValue: "-"),
           round: convertToInt(monitoringEntity.round),
-          subdivision: convertToString(monitoringEntity.subdivision),
+          subdivision:
+              convertToString(monitoringEntity.subdivision, defaultValue: "-"),
           latestResult: UsingDrugStatus.setValue(monitoringEntity.latestResult),
           finalRound: monitoringEntity.finalRound == 1,
         );
@@ -394,7 +400,8 @@ class WorkflowRepository {
 
     final values = treatmentHistoryEntitys.map((item) {
       return TreatmentHistory(
-        subDivisionName: convertToString(item.subDivisionName),
+        subDivisionName:
+            convertToString(item.subDivisionName, defaultValue: "-"),
         times: convertToInt(item.times),
         lastestUsedDate: convertToString(
           item.lastestUsedDate,
@@ -447,10 +454,10 @@ class WorkflowRepository {
       final roundText = round != null ? round.toString() : "-";
 
       return Plan(
-        planType: convertToString(item.planType),
-        subDivisionName: convertToString(item.subDivision),
+        planType: convertToString(item.planType, defaultValue: "-"),
+        subDivisionName: convertToString(item.subDivision, defaultValue: "-"),
         startDate: startDateText,
-        endDate: convertToString(item.endDate),
+        endDate: convertToString(item.endDate, defaultValue: "-"),
         round: roundText,
         lastedEvalResult: LastedEvalResult.setValue(lastedEvalResult),
       );
@@ -564,7 +571,7 @@ class WorkflowRepository {
       return "-";
     }
 
-    return convertToString(choise.desc);
+    return convertToString(choise.desc, defaultValue: "-");
   }
 
   String findChoiceDescriptionChild(
@@ -598,6 +605,6 @@ class WorkflowRepository {
       return "-";
     }
 
-    return convertToString(choiceChildEntity.desc);
+    return convertToString(choiceChildEntity.desc, defaultValue: "-");
   }
 }

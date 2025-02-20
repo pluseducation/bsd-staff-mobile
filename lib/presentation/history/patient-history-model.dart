@@ -18,6 +18,7 @@ class PatientHistoryModel extends ChangeNotifier {
 
   late SearchPatientHistory search;
   late List<PatientHistory> historys;
+  late bool history = false;
 
   PatientHistoryModel({
     required this.log,
@@ -29,6 +30,7 @@ class PatientHistoryModel extends ChangeNotifier {
     try {
       search = initSearch();
       historys = [];
+      history = appService.history;
       return true;
     } catch (e) {
       if (e is NetworkException) {

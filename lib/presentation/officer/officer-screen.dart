@@ -172,7 +172,7 @@ class _OfficerContentState extends State<OfficerContent> {
             'ไม่พบข้อมูล',
             style: TextStyle(
               color: MainColors.text,
-              fontSize: 24,
+              fontSize: FontSizes.large,
             ),
           ),
         ],
