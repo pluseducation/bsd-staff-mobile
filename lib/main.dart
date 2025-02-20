@@ -6,6 +6,7 @@ import 'package:bst_staff_mobile/data/network/api/assistance-api.dart';
 import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
 import 'package:bst_staff_mobile/data/network/api/config-api.dart';
 import 'package:bst_staff_mobile/data/network/api/dashboard-api.dart';
+import 'package:bst_staff_mobile/data/network/api/file-api.dart';
 import 'package:bst_staff_mobile/data/network/api/login-api.dart';
 import 'package:bst_staff_mobile/data/network/api/monitoring-api.dart';
 import 'package:bst_staff_mobile/data/network/api/notification-api.dart';
@@ -102,6 +103,7 @@ Future<InitialData> _createData() async {
   final registerApi = RegisterApi(baseUrl: config.baseAuthUrl);
   final officerApi = OfficerApi(baseUrl: config.baseUrl);
   final otpApi = OtpApi(baseUrl: config.baseAuthUrl);
+  final fileApi = FileApi(baseUrl: config.baseAuthUrl);
   final userSessionApi = UserSessionApi(baseUrl: config.baseAuthUrl);
 
   final configRepository = ConfigRepository(
