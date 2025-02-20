@@ -14,10 +14,12 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 class CertificateDetailScreen extends StatelessWidget {
-  final int certificateById;
+  final int certificateId;
+  final CertificateStatus? status;
   const CertificateDetailScreen({
     super.key,
-    required this.certificateById,
+    required this.certificateId,
+    required this.status,
   });
 
   @override
@@ -43,7 +45,10 @@ class CertificateDetailScreen extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: 600),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: CertificateDetailContent(certificateById: certificateById),
+              child: CertificateDetailContent(
+                certificateId: certificateId,
+                status: status,
+              ),
             ),
           ),
         ),
@@ -53,11 +58,13 @@ class CertificateDetailScreen extends StatelessWidget {
 }
 
 class CertificateDetailContent extends StatefulWidget {
-  final int certificateById;
+  final int certificateId;
+  final CertificateStatus? status;
 
   const CertificateDetailContent({
     super.key,
-    required this.certificateById,
+    required this.certificateId,
+    required this.status,
   });
 
   @override
@@ -67,8 +74,6 @@ class CertificateDetailContent extends StatefulWidget {
 
 class _CertificateDetailCardState extends State<CertificateDetailContent> {
   late CertificateDetailModel _model;
-  String? _imagePath;
-  CertificateStatus? _selectedStatus;
 
   @override
   void initState() {
@@ -87,7 +92,7 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
     return ChangeNotifierProvider<CertificateDetailModel>.value(
       value: _model,
       child: FutureBuilder<bool>(
-        future: _model.initData(widget.certificateById),
+        future: _model.initData(widget.certificateId, widget.status),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -199,47 +204,54 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            _buildActionButtons(),
+                            if (model.isRequest == true) ...[
+                              _buildActionButtons(),
+                            ] else ...[
+                              _buildStatus(model.status),
+                            ],
                             const SizedBox(height: 16),
-                            const Text(
-                              "ถ่ายเอกสารเอกสารใบรับรอง",
-                              style: TextStyle(
-                                fontSize: FontSizes.medium,
-                                fontWeight: FontWeight.bold,
+                            if (model.isRequest == true) ...[
+                              const Text(
+                                "ถ่ายเอกสารเอกสารใบรับรอง",
+                                style: TextStyle(
+                                  fontSize: FontSizes.medium,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 16),
-                            // if (_model.certificateDetail.fileName.isNotEmpty)
-                            //   _buildShowImage()
-                            // else
-                            _buildCameraImage(),
-                            const SizedBox(height: 16),
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: SizedBox(
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    _confirm();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: MainColors.primary500,
-                                    padding: const EdgeInsets.all(8),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                              const SizedBox(height: 16),
+                              if (model.isShowImage) ...[
+                                _buildShowImage(),
+                              ] else ...[
+                                _buildCameraImage(),
+                              ],
+                              const SizedBox(height: 16),
+                              Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      _confirm();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: MainColors.primary500,
+                                      padding: const EdgeInsets.all(8),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                     ),
-                                  ),
-                                  child: const Text(
-                                    'ยืนยัน',
-                                    style: TextStyle(
-                                      fontSize: FontSizes.medium,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                    child: const Text(
+                                      'ยืนยัน',
+                                      style: TextStyle(
+                                        fontSize: FontSizes.medium,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
+                            ],
                           ],
                         ),
                       ),
@@ -260,15 +272,14 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
         return Row(
           children: [
             Expanded(
-              child: model.isApprovedClicked
+              child: model.isApproved
                   ? ElevatedButton.icon(
                       onPressed: () {
-                        _selectedStatus = CertificateStatus.completed;
                         model.approve();
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 10),
-                        backgroundColor: const Color(0xFF0EB366),
+                        backgroundColor: MainColors.success,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -288,36 +299,36 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
                     )
                   : OutlinedButton.icon(
                       onPressed: () {
-                        _selectedStatus = CertificateStatus.completed;
                         model.approve();
                       },
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 10),
-                        side: const BorderSide(color: Color(0xFF0EB366)),
+                        side: const BorderSide(
+                          color: MainColors.success,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                       icon: const Icon(
                         Icons.radio_button_unchecked,
-                        color: Color(0xFF0EB366),
+                        color: MainColors.success,
                       ),
                       label: const Text(
                         "อนุมัติ",
                         style: TextStyle(
                           fontSize: FontSizes.medium,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF0EB366),
+                          color: MainColors.success,
                         ),
                       ),
                     ),
             ),
             const SizedBox(width: 16),
             Expanded(
-              child: model.isRejectedClicked
+              child: model.isRejected
                   ? ElevatedButton.icon(
                       onPressed: () {
-                        _selectedStatus = CertificateStatus.denied;
                         model.reject();
                       },
                       style: ElevatedButton.styleFrom(
@@ -342,7 +353,6 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
                     )
                   : OutlinedButton.icon(
                       onPressed: () {
-                        _selectedStatus = CertificateStatus.denied;
                         model.reject();
                       },
                       style: OutlinedButton.styleFrom(
@@ -370,6 +380,62 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
         );
       },
     );
+  }
+
+  Widget _buildStatus(CertificateStatus? status) {
+    if (status == CertificateStatus.completed) {
+      return Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: MainColors.success,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Row(
+          children: [
+            Icon(
+              Icons.radio_button_checked,
+              color: Colors.white,
+            ),
+            SizedBox(width: 8),
+            Text(
+              'อนุมัติ',
+              style: TextStyle(
+                fontSize: FontSizes.medium,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      );
+    } else if (status == CertificateStatus.denied) {
+      return Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: MainColors.error,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Row(
+          children: [
+            Icon(
+              Icons.radio_button_checked,
+              color: Colors.white,
+            ),
+            SizedBox(width: 8),
+            Text(
+              'ปฏิเสธ',
+              style: TextStyle(
+                fontSize: FontSizes.medium,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   Widget _buildCameraImage() {
@@ -415,43 +481,51 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
       alignment: Alignment.bottomRight,
       children: [
         SizedBox(
-          width: 120,
-          height: 120,
+          width: double.infinity,
+          height: 300,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              _model.certificateDetail.fileName,
-              fit: BoxFit.cover,
-            ),
+            child: _model.fileType == "NETWORK"
+                ? Image.network(
+                    _model.networkPath ?? "",
+                    fit: BoxFit.fill,
+                  )
+                : Image.file(
+                    _model.file!,
+                    fit: BoxFit.fitHeight,
+                  ),
           ),
         ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: Container(
-            width: 32,
-            height: 32,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: IconButton(
-              onPressed: () {
-                print("แก้ไข้เอกสาร");
-              },
-              icon: const Icon(Icons.camera_alt, size: 18, color: Colors.blue),
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
+        if (_model.isRequest == true) ...[
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: IconButton(
+                onPressed: () {
+                  _openCamera();
+                },
+                icon:
+                    const Icon(Icons.camera_alt, size: 18, color: Colors.blue),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              ),
             ),
           ),
-        ),
+        ]
       ],
     );
   }
@@ -465,34 +539,22 @@ class _CertificateDetailCardState extends State<CertificateDetailContent> {
     );
 
     if (imageFile != null) {
-      setState(() {
-        _imagePath = imageFile.path;
-      });
-      return;
+      _model.setLocalFile(imageFile);
     }
   }
 
   Future<void> _confirm() async {
     try {
-      if (_selectedStatus == null) {
+      if (_model.status == null ||
+          _model.file == null ||
+          _model.status == CertificateStatus.request) {
         await showInfoDialog(
           context: context,
-          message: 'กรุณาเลือกสถานะก่อนยืนยัน',
+          message: 'กรุณาเลือกสถานะและไฟล์ก่อนยืนยัน',
         );
         return;
       }
-
-      if (_selectedStatus != null) {
-        File? imageFile;
-        if (_imagePath != null) {
-          imageFile = File(_imagePath!);
-        }
-        await _model.updateCertificateStatus(
-          id: _model.certificateDetail.id,
-          status: _selectedStatus!,
-          imageFile: imageFile!,
-        );
-      }
+      await _model.updateCertificateStatus();
       Navigator.pop(context);
     } catch (e) {
       if (!context.mounted) return;

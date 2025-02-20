@@ -103,7 +103,7 @@ Future<InitialData> _createData() async {
   final registerApi = RegisterApi(baseUrl: config.baseAuthUrl);
   final officerApi = OfficerApi(baseUrl: config.baseUrl);
   final otpApi = OtpApi(baseUrl: config.baseAuthUrl);
-  final fileApi = FileApi(baseUrl: config.baseAuthUrl);
+  final fileApi = FileApi(baseUrl: config.baseUrl);
   final userSessionApi = UserSessionApi(baseUrl: config.baseAuthUrl);
 
   final configRepository = ConfigRepository(
@@ -194,6 +194,7 @@ Future<InitialData> _createData() async {
   final certificateApi = CertificateApi(baseUrl: config.baseUrl);
   final certificateRepository = CertificateRepository(
     certificateApi: certificateApi,
+    fileApi: fileApi,
     networkMapper: networkMapper,
   );
 

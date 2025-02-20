@@ -5,6 +5,7 @@ import 'package:bst_staff_mobile/presentation/certificate/certificate-detail-scr
 import 'package:bst_staff_mobile/presentation/certificate/certificate-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
+import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
 import 'package:bst_staff_mobile/widget/certificate/certificate-card.dart';
@@ -205,8 +206,8 @@ class _MyWidgetState extends State<CertificateContent> {
       certificateCard.add(
         CertificateCard(
           certificate: certificate[i],
-          onclickCertificate: (certificateById) {
-            _oncertificateDetail(certificateById);
+          onclickCertificate: (certificateId, status) {
+            _oncertificateDetail(certificateId, status);
           },
         ),
       );
@@ -219,13 +220,17 @@ class _MyWidgetState extends State<CertificateContent> {
     return certificateCard;
   }
 
-  Future<void> _oncertificateDetail(int certificateById) async {
+  Future<void> _oncertificateDetail(
+    int certificateId,
+    CertificateStatus? status,
+  ) async {
     try {
       await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => CertificateDetailScreen(
-            certificateById: certificateById,
+            certificateId: certificateId,
+            status: status,
           ),
         ),
       );

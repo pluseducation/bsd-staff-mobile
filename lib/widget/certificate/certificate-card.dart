@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 
 class CertificateCard extends StatelessWidget {
   final Certificate certificate;
-  final Function(int latestRoundId) onclickCertificate;
+  final Function(
+    int certificateId,
+    CertificateStatus? status,
+  ) onclickCertificate;
 
   const CertificateCard({
     super.key,
@@ -21,7 +24,7 @@ class CertificateCard extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            onclickCertificate(certificate.id);
+            onclickCertificate(certificate.id, certificate.certificateStatus);
           },
           child: Container(
             decoration: BoxDecoration(

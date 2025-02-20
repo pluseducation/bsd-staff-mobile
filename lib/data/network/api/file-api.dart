@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 class FileApi extends BaseApi {
   FileApi({required super.baseUrl});
 
-  Future<String> findFilePath(String userId, String fileName) async {
+  Future<String> findFilePath(int userId, String fileName) async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(

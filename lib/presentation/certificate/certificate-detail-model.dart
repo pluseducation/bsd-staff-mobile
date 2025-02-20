@@ -14,10 +14,19 @@ class CertificateDetailModel extends ChangeNotifier {
   final CertificateRepository certificateRepository;
   final AppService appService;
 
+  late int certificateId;
   late CertificateDetail certificateDetail;
-  bool isApprovedClicked = false;
-  bool isRejectedClicked = false;
-  bool isShowImage = false;
+  late bool isRequest;
+
+  late bool isShowImage = false;
+  late String fileType; //'NETWORK' , 'LOCAL'
+  String? networkPath;
+  String? localPath;
+
+  File? file;
+  bool isApproved = false;
+  bool isRejected = false;
+  CertificateStatus? status;
 
   CertificateDetailModel({
     required this.log,
@@ -25,11 +34,31 @@ class CertificateDetailModel extends ChangeNotifier {
     required this.appService,
   });
 
-  Future<bool> initData(int certificateById) async {
+  Future<bool> initData(int certificateId, CertificateStatus? status) async {
     try {
+      this.certificateId = certificateId;
+      this.status = status;
+      final officerId = await appService.preferencesRepo.getOfficerId();
       certificateDetail = await certificateRepository.findCertificateById(
-        certificateById: certificateById,
+        certificateId: certificateId,
+        officerId: officerId,
       );
+
+      isShowImage = false;
+      if (this.status == CertificateStatus.request) {
+        isRequest = true;
+      } else {
+        isRequest = false;
+      }
+
+      // if (certificateDetail.fileName.isNotEmpty) {
+      //   fileType = "NETWORK";
+      //   networkPath = certificateDetail.fileName;
+      //   isShowImage = true;
+      // } else {
+      //   isShowImage = false;
+      // }
+
       return true;
     } catch (e) {
       if (e is NetworkException) {
@@ -43,29 +72,36 @@ class CertificateDetailModel extends ChangeNotifier {
   }
 
   Future<void> approve() async {
-    isApprovedClicked = true;
-    isRejectedClicked = false;
+    isApproved = true;
+    isRejected = false;
+    status = CertificateStatus.completed;
     notifyListeners();
   }
 
   Future<void> reject() async {
-    isApprovedClicked = false;
-    isRejectedClicked = true;
+    isApproved = false;
+    isRejected = true;
+    status = CertificateStatus.denied;
     notifyListeners();
   }
 
-  Future<void> updateCertificateStatus({
-    required int id,
-    required CertificateStatus status,
-    required File imageFile,
-  }) async {
+  Future<void> setLocalFile(File addFile) async {
+    isShowImage = true;
+    fileType = "LOCAL";
+    localPath = addFile.path;
+    file = addFile;
+    notifyListeners();
+  }
+
+  Future<void> updateCertificateStatus() async {
     try {
-      await certificateRepository.updateCertificateStatus(
-        id: id,
-        status: status,
-        imageFile: imageFile,
-      );
-      appService.intervalWebAuth();
+      if (status != null && file != null) {
+        await certificateRepository.updateCertificateStatus(
+          id: certificateId,
+          status: status!,
+          imageFile: file!,
+        );
+      }
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);

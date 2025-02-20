@@ -54,12 +54,12 @@ class CertificateApi extends BaseApi {
   }
 
   Future<CertificateDetailEntity> findCertificateById({
-    required int certificateById,
+    required int certificateId,
   }) async {
     try {
       final Dio dio = await getPrivateDio();
       final response = await dio.get(
-        '/api/v1/staff/certificaterequests/$certificateById',
+        '/api/v1/staff/certificaterequests/$certificateId',
       );
       if (response.statusCode == 200) {
         return CertificateDetailEntity.fromJson(

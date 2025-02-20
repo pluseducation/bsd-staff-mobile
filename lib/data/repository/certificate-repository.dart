@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
+import 'package:bst_staff_mobile/data/network/api/file-api.dart';
 import 'package:bst_staff_mobile/data/network/network_mapper.dart';
 import 'package:bst_staff_mobile/domain/model/certificate.dart';
 import 'package:bst_staff_mobile/util/convert.dart';
@@ -8,10 +9,12 @@ import 'package:bst_staff_mobile/util/enum.dart';
 
 class CertificateRepository {
   final CertificateApi certificateApi;
+  final FileApi fileApi;
   final NetworkMapper networkMapper;
 
   CertificateRepository({
     required this.certificateApi,
+    required this.fileApi,
     required this.networkMapper,
   });
 
@@ -44,10 +47,11 @@ class CertificateRepository {
   }
 
   Future<CertificateDetail> findCertificateById({
-    required int certificateById,
+    required int certificateId,
+    required int? officerId,
   }) async {
     final entity = await certificateApi.findCertificateById(
-      certificateById: certificateById,
+      certificateId: certificateId,
     );
 
     final fullname =
@@ -56,6 +60,11 @@ class CertificateRepository {
             convertToString(entity.approvedSurname).isEmpty)
         ? '-'
         : "${convertToString(entity.approvedName)} ${convertToString(entity.approvedSurname)}";
+
+    final filename = convertToString(entity.fileName);
+    // if (filename.isNotEmpty && officerId != null) {
+    //   filename = await fileApi.findFilePath(officerId, filename);
+    // }
 
     final model = CertificateDetail(
       id: convertToInt(entity.id),
@@ -67,7 +76,7 @@ class CertificateRepository {
       drugEvalResult: DrugEvalResult.setValue(entity.drugEvalResult),
       levelType: LevelType.setValue(entity.mentalEvalResult),
       fullNameApproved: fullNameApproved,
-      fileName: convertToString(entity.fileName),
+      fileName: filename,
     );
 
     return model;
