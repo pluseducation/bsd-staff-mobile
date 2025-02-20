@@ -61,12 +61,12 @@ class CertificateDetailModel extends ChangeNotifier {
       log.i(
         'Updating Certificate Status - ID: $id, Status: $status, File Name: $fileNameOrg',
       );
-      // await certificateRepository.updateCertificateStatus(
-      //   id: id,
-      //   status: status,
-      //   fileNameOrg: fileNameOrg,
-      //   content: content,
-      // );
+      await certificateRepository.updateCertificateStatus(
+        id: id,
+        status: status,
+        fileNameOrg: fileNameOrg,
+        content: content,
+      );
       appService.intervalWebAuth();
     } catch (e) {
       if (e is NetworkException) {
