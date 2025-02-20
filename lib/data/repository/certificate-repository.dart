@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:bst_staff_mobile/data/network/api/certificate-api.dart';
@@ -67,6 +68,7 @@ class CertificateRepository {
       drugEvalResult: DrugEvalResult.setValue(entity.drugEvalResult),
       levelType: LevelType.setValue(entity.mentalEvalResult),
       fullNameApproved: fullNameApproved,
+      fileName: convertToString(entity.fileName),
     );
 
     return model;
@@ -75,14 +77,12 @@ class CertificateRepository {
   Future<bool> updateCertificateStatus({
     required int id,
     required CertificateStatus status,
-    required String fileNameOrg,
-    required String content,
+    required File imageFile,
   }) async {
     final result = await certificateApi.updateCertificateStatus(
       id: id,
       status: status.value ?? '',
-      fileNameOrg: fileNameOrg,
-      content: content,
+      imageFile: imageFile,
     );
     return result;
   }

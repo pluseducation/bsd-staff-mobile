@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:bst_staff_mobile/data/network/api/base-api.dart';
 import 'package:bst_staff_mobile/data/network/entity/certificate-entity.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
@@ -87,17 +90,20 @@ class CertificateApi extends BaseApi {
   Future<bool> updateCertificateStatus({
     required int id,
     required String status,
-    required String fileNameOrg,
-    required String content,
+    required File imageFile,
   }) async {
     try {
+      final fileNameOrg = imageFile.path.split('/').last;
+      final bytes = await imageFile.readAsBytes();
+      final contentBase64 = base64Encode(bytes);
+
       final Dio dio = await getPrivateDio();
       final response = await dio.put(
         '/api/v1/staff/certificaterequests',
         data: {
           "id": id,
           "status": status,
-          "file": {"fileNameOrg": fileNameOrg, "content": content},
+          "file": {"fileNameOrg": fileNameOrg, "content": contentBase64},
         },
       );
       if (response.statusCode == 200) {

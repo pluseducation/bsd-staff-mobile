@@ -1,19 +1,25 @@
 import 'dart:io';
 
 import 'package:bst_staff_mobile/theme/font-size.dart';
+import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 
 class CertificateCamera extends StatefulWidget {
-  final List<CameraDescription> cameras;
-  const CertificateCamera({super.key, required this.cameras});
+  const CertificateCamera({
+    super.key,
+  });
 
   @override
   State<CertificateCamera> createState() => _CertificateCameraState();
 }
 
 class _CertificateCameraState extends State<CertificateCamera> {
+  late CameraDescription camera;
+  late List<CameraDescription> cameras;
   late CameraController _controller;
   bool _isCameraInitialized = false;
   String? _imagePath;
@@ -21,41 +27,21 @@ class _CertificateCameraState extends State<CertificateCamera> {
   @override
   void initState() {
     super.initState();
-    if (widget.cameras.isNotEmpty) {
-      _initializeCamera();
-    } else {
-      setState(() {
-        _isCameraInitialized = false;
-      });
-    }
+    _initializeCamera();
   }
 
   Future<void> _initializeCamera() async {
-    _controller = CameraController(widget.cameras[0], ResolutionPreset.medium);
+    cameras = await availableCameras();
+    camera = cameras
+        .firstWhere((cam) => cam.lensDirection == CameraLensDirection.back);
+    _controller = CameraController(camera, ResolutionPreset.medium);
     await _controller.initialize();
+    _controller.lockCaptureOrientation(DeviceOrientation.landscapeRight);
+
     if (!mounted) return;
     setState(() {
       _isCameraInitialized = true;
     });
-  }
-
-  Future<void> _takePicture() async {
-    if (!_controller.value.isInitialized) return;
-    try {
-      final directory = await getApplicationDocumentsDirectory();
-      final image = await _controller.takePicture();
-
-      final imagePath =
-          '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
-      await image.saveTo(imagePath);
-
-      setState(() {
-        _imagePath = imagePath;
-        print("Image Path:=====>>>>> $_imagePath");
-      });
-    } catch (e) {
-      print("Error taking picture: $e");
-    }
   }
 
   @override
@@ -66,6 +52,14 @@ class _CertificateCameraState extends State<CertificateCamera> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_isCameraInitialized) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xFF211E1E),
       body: Column(
@@ -99,21 +93,20 @@ class _CertificateCameraState extends State<CertificateCamera> {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                if (_isCameraInitialized)
-                  Container(
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 2),
-                      color: Colors.grey.withOpacity(0.5),
+            child: _imagePath == null
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 34, left: 34),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 2),
+                        color: Colors.grey.withOpacity(0.5),
+                      ),
+                      child: CameraPreview(
+                        _controller,
+                      ),
                     ),
-                    child: CameraPreview(_controller),
-                  ),
-                if (_imagePath != null)
-                  Container(
-                    height: double.infinity,
+                  )
+                : Container(
                     decoration: BoxDecoration(
                       border: Border.all(width: 2),
                       color: Colors.grey.withOpacity(0.5),
@@ -123,8 +116,6 @@ class _CertificateCameraState extends State<CertificateCamera> {
                       fit: BoxFit.cover,
                     ),
                   ),
-              ],
-            ),
           ),
           Container(
             height: 200,
@@ -201,8 +192,8 @@ class _CertificateCameraState extends State<CertificateCamera> {
                                     color: Colors.green,
                                     size: 48,
                                   ),
-                                  onPressed: () async {
-                                    Navigator.pop(context, _imagePath);
+                                  onPressed: () {
+                                    _confirmTakePicture(File(_imagePath!));
                                   },
                                 ),
                                 const Text(
@@ -225,5 +216,47 @@ class _CertificateCameraState extends State<CertificateCamera> {
         ],
       ),
     );
+  }
+
+  Future<void> _takePicture() async {
+    if (!_controller.value.isInitialized) return;
+    try {
+      final XFile imageFile = await _controller.takePicture();
+      final List<int> imageBytes = await File(imageFile.path).readAsBytes();
+      final img.Image? image = img.decodeImage(Uint8List.fromList(imageBytes));
+      if (image == null) {
+        print("Error decoding image.");
+        return;
+      }
+
+      final img.Image rotatedImage = img.copyRotate(image, angle: 270);
+
+      final directory = await getApplicationDocumentsDirectory();
+      final rotatedImagePath =
+          '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
+
+      File(rotatedImagePath).writeAsBytesSync(img.encodeJpg(rotatedImage));
+
+      setState(() {
+        _imagePath = rotatedImagePath;
+        print("Rotated Image Path:=====>>>>> $_imagePath");
+      });
+
+      await File(imageFile.path).delete();
+    } catch (e) {
+      print("Error taking picture: $e");
+    }
+  }
+
+  Future<void> _confirmTakePicture(File imageFile) async {
+    try {
+      Navigator.pop(context, imageFile);
+    } catch (e) {
+      if (!context.mounted) return;
+      await showInfoDialog(
+        context: context,
+        message: e.toString(),
+      );
+    }
   }
 }
