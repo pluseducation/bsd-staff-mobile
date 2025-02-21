@@ -401,6 +401,286 @@ abstract class _ReferCount implements ReferCount {
 }
 
 /// @nodoc
+mixin _$ReportData {
+  String get name => throw _privateConstructorUsedError;
+  String get register => throw _privateConstructorUsedError;
+  String get screening => throw _privateConstructorUsedError;
+  String get treatment => throw _privateConstructorUsedError;
+  String get monitoring => throw _privateConstructorUsedError;
+  String get retentionRate => throw _privateConstructorUsedError;
+  int get districtId => throw _privateConstructorUsedError;
+  int get healthServiceId => throw _privateConstructorUsedError;
+
+  /// Create a copy of ReportData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ReportDataCopyWith<ReportData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReportDataCopyWith<$Res> {
+  factory $ReportDataCopyWith(
+          ReportData value, $Res Function(ReportData) then) =
+      _$ReportDataCopyWithImpl<$Res, ReportData>;
+  @useResult
+  $Res call(
+      {String name,
+      String register,
+      String screening,
+      String treatment,
+      String monitoring,
+      String retentionRate,
+      int districtId,
+      int healthServiceId});
+}
+
+/// @nodoc
+class _$ReportDataCopyWithImpl<$Res, $Val extends ReportData>
+    implements $ReportDataCopyWith<$Res> {
+  _$ReportDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ReportData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? register = null,
+    Object? screening = null,
+    Object? treatment = null,
+    Object? monitoring = null,
+    Object? retentionRate = null,
+    Object? districtId = null,
+    Object? healthServiceId = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      register: null == register
+          ? _value.register
+          : register // ignore: cast_nullable_to_non_nullable
+              as String,
+      screening: null == screening
+          ? _value.screening
+          : screening // ignore: cast_nullable_to_non_nullable
+              as String,
+      treatment: null == treatment
+          ? _value.treatment
+          : treatment // ignore: cast_nullable_to_non_nullable
+              as String,
+      monitoring: null == monitoring
+          ? _value.monitoring
+          : monitoring // ignore: cast_nullable_to_non_nullable
+              as String,
+      retentionRate: null == retentionRate
+          ? _value.retentionRate
+          : retentionRate // ignore: cast_nullable_to_non_nullable
+              as String,
+      districtId: null == districtId
+          ? _value.districtId
+          : districtId // ignore: cast_nullable_to_non_nullable
+              as int,
+      healthServiceId: null == healthServiceId
+          ? _value.healthServiceId
+          : healthServiceId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ReportDataImplCopyWith<$Res>
+    implements $ReportDataCopyWith<$Res> {
+  factory _$$ReportDataImplCopyWith(
+          _$ReportDataImpl value, $Res Function(_$ReportDataImpl) then) =
+      __$$ReportDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      String register,
+      String screening,
+      String treatment,
+      String monitoring,
+      String retentionRate,
+      int districtId,
+      int healthServiceId});
+}
+
+/// @nodoc
+class __$$ReportDataImplCopyWithImpl<$Res>
+    extends _$ReportDataCopyWithImpl<$Res, _$ReportDataImpl>
+    implements _$$ReportDataImplCopyWith<$Res> {
+  __$$ReportDataImplCopyWithImpl(
+      _$ReportDataImpl _value, $Res Function(_$ReportDataImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ReportData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? register = null,
+    Object? screening = null,
+    Object? treatment = null,
+    Object? monitoring = null,
+    Object? retentionRate = null,
+    Object? districtId = null,
+    Object? healthServiceId = null,
+  }) {
+    return _then(_$ReportDataImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      register: null == register
+          ? _value.register
+          : register // ignore: cast_nullable_to_non_nullable
+              as String,
+      screening: null == screening
+          ? _value.screening
+          : screening // ignore: cast_nullable_to_non_nullable
+              as String,
+      treatment: null == treatment
+          ? _value.treatment
+          : treatment // ignore: cast_nullable_to_non_nullable
+              as String,
+      monitoring: null == monitoring
+          ? _value.monitoring
+          : monitoring // ignore: cast_nullable_to_non_nullable
+              as String,
+      retentionRate: null == retentionRate
+          ? _value.retentionRate
+          : retentionRate // ignore: cast_nullable_to_non_nullable
+              as String,
+      districtId: null == districtId
+          ? _value.districtId
+          : districtId // ignore: cast_nullable_to_non_nullable
+              as int,
+      healthServiceId: null == healthServiceId
+          ? _value.healthServiceId
+          : healthServiceId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReportDataImpl implements _ReportData {
+  const _$ReportDataImpl(
+      {required this.name,
+      required this.register,
+      required this.screening,
+      required this.treatment,
+      required this.monitoring,
+      required this.retentionRate,
+      required this.districtId,
+      required this.healthServiceId});
+
+  @override
+  final String name;
+  @override
+  final String register;
+  @override
+  final String screening;
+  @override
+  final String treatment;
+  @override
+  final String monitoring;
+  @override
+  final String retentionRate;
+  @override
+  final int districtId;
+  @override
+  final int healthServiceId;
+
+  @override
+  String toString() {
+    return 'ReportData(name: $name, register: $register, screening: $screening, treatment: $treatment, monitoring: $monitoring, retentionRate: $retentionRate, districtId: $districtId, healthServiceId: $healthServiceId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReportDataImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.register, register) ||
+                other.register == register) &&
+            (identical(other.screening, screening) ||
+                other.screening == screening) &&
+            (identical(other.treatment, treatment) ||
+                other.treatment == treatment) &&
+            (identical(other.monitoring, monitoring) ||
+                other.monitoring == monitoring) &&
+            (identical(other.retentionRate, retentionRate) ||
+                other.retentionRate == retentionRate) &&
+            (identical(other.districtId, districtId) ||
+                other.districtId == districtId) &&
+            (identical(other.healthServiceId, healthServiceId) ||
+                other.healthServiceId == healthServiceId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name, register, screening,
+      treatment, monitoring, retentionRate, districtId, healthServiceId);
+
+  /// Create a copy of ReportData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReportDataImplCopyWith<_$ReportDataImpl> get copyWith =>
+      __$$ReportDataImplCopyWithImpl<_$ReportDataImpl>(this, _$identity);
+}
+
+abstract class _ReportData implements ReportData {
+  const factory _ReportData(
+      {required final String name,
+      required final String register,
+      required final String screening,
+      required final String treatment,
+      required final String monitoring,
+      required final String retentionRate,
+      required final int districtId,
+      required final int healthServiceId}) = _$ReportDataImpl;
+
+  @override
+  String get name;
+  @override
+  String get register;
+  @override
+  String get screening;
+  @override
+  String get treatment;
+  @override
+  String get monitoring;
+  @override
+  String get retentionRate;
+  @override
+  int get districtId;
+  @override
+  int get healthServiceId;
+
+  /// Create a copy of ReportData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ReportDataImplCopyWith<_$ReportDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$Level {
   int get year => throw _privateConstructorUsedError;
   int get screeningTotal => throw _privateConstructorUsedError;

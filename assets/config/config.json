@@ -1,4 +1,4 @@
 {
-  "baseUrl": "https://pluslivetest.com/bst-staff-service",
-  "baseAuthUrl": "https://pluslivetest.com/bst-auth-service"
+  "baseUrl": "https://antidrug.moph.go.th/bst-admin-service",
+  "baseAuthUrl": "https://antidrug.moph.go.th/bst-auth-service"
 }

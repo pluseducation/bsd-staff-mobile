@@ -42,32 +42,6 @@ class ReferCountEntity {
 
 // delete
 // @JsonSerializable()
-// class ReportDataEntity {
-//   String? name;
-//   int? register;
-//   int? screening;
-//   int? treatment;
-//   int? monitoring;
-//   double? retentionRate;
-//   int? districtId;
-//   int? healthServiceId;
-//   ReportDataEntity({
-//     required this.name,
-//     required this.register,
-//     required this.screening,
-//     required this.treatment,
-//     required this.monitoring,
-//     required this.retentionRate,
-//     required this.districtId,
-//     required this.healthServiceId,
-//   });
-
-//   factory ReportDataEntity.fromJson(Map<String, dynamic> json) =>
-//       _$ReportDataEntityFromJson(json);
-// }
-
-// delete
-// @JsonSerializable()
 // class StatYearEntity {
 //   int year;
 //   int total;
@@ -212,4 +186,36 @@ class StatPatientMonthTotalEntity {
       _$StatPatientMonthTotalEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$StatPatientMonthTotalEntityToJson(this);
+}
+
+@JsonSerializable()
+class ReportDataEntity {
+  String? name;
+  int? register;
+  int? screening;
+  int? treatment;
+  int? monitoring;
+  double? retentionRate;
+  int? districtId;
+  int? healthServiceId;
+  ReportDataEntity({
+    required this.name,
+    required this.register,
+    required this.screening,
+    required this.treatment,
+    required this.monitoring,
+    required this.retentionRate,
+    required this.districtId,
+    required this.healthServiceId,
+  });
+
+  factory ReportDataEntity.fromJson(Map<String, dynamic> json) =>
+      _$ReportDataEntityFromJson(json);
+
+  static List<ReportDataEntity> fromJsons(List data) =>
+      List<ReportDataEntity>.from(
+        data.map(
+          (x) => ReportDataEntity.fromJson(x as Map<String, dynamic>),
+        ),
+      );
 }

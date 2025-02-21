@@ -208,53 +208,53 @@ class DashboardApi extends BaseApi {
       throw Exception('Unknown error : $error');
     }
   }
+
+  Future<List<ReportDataEntity>> findReportData({
+    required String name,
+    required int districtId,
+    required int healthServiceId,
+  }) async {
+    try {
+      final Map<String, dynamic> queryParams = {};
+
+      // Validate and add parameters conditionally
+      if (name.isNotEmpty) {
+        queryParams['name'] = name;
+      }
+      if (districtId > 0) {
+        queryParams['districtId'] = districtId;
+      }
+      if (healthServiceId > 0) {
+        queryParams['healthServiceId'] = healthServiceId;
+      }
+
+      final Dio dio = await getPrivateDio();
+      final response = await dio.get(
+        '/api/v1/staff/dashboard/report',
+        queryParameters: queryParams,
+      );
+      if (response.statusCode == 200) {
+        return ReportDataEntity.fromJsons(response.data as List);
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data.toString(),
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
 }
-
-// Future<List<ReportDataEntity>> findReportData({
-//   required String name,
-//   required int districtId,
-//   required int healthServiceId,
-// }) async {
-//   try {
-//     final Map<String, dynamic> queryParams = {};
-
-//     // Validate and add parameters conditionally
-//     if (name.isNotEmpty) {
-//       queryParams['name'] = name;
-//     }
-//     if (districtId > 0) {
-//       queryParams['districtId'] = districtId;
-//     }
-//     if (healthServiceId > 0) {
-//       queryParams['healthServiceId'] = healthServiceId;
-//     }
-
-//     final Dio dio = await getPrivateDio();
-//     final response = await dio.get(
-//       '/api/v1/staff/dashboard/report',
-//       queryParameters: queryParams,
-//     );
-//     if (response.statusCode == 200) {
-//       return reportDataFromJson(response.data as List);
-//     } else {
-//       throw Exception('Unknown error');
-//     }
-//   } on DioException catch (error) {
-//     if (error.response != null) {
-//       throw NetworkException(
-//         statusCode: error.response?.statusCode,
-//         message: error.response?.data.toString(),
-//       );
-//     } else {
-//       throw NetworkException(
-//         statusCode: 404,
-//         message: "ไม่สามารถเชื่อมต่อ Internet ได้",
-//       );
-//     }
-//   } catch (error) {
-//     throw Exception('Unknown error : $error');
-//   }
-// }
 
 // Future<int> findpatients() async {
 //   try {

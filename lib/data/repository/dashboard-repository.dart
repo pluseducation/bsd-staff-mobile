@@ -70,38 +70,33 @@ class DashboardRepository {
     return model;
   }
 
-  // Future<int> findpatients() async {
-  //   final value = await dashboardApi.findpatients();
-  //   return value;
-  // }
+  Future<List<ReportData>> findReportData(
+    String name,
+    int districtId,
+    int healthServiceId,
+  ) async {
+    final entitys = await dashboardApi.findReportData(
+      name: name,
+      districtId: districtId,
+      healthServiceId: healthServiceId,
+    );
 
-  // Future<List<ReportData>> findReportData({
-  //   required String name,
-  //   required int districtId,
-  //   required int healthServiceId,
-  // }) async {
-  //   final entitys = await dashboardApi.findReportData(
-  //     name: name,
-  //     districtId: districtId,
-  //     healthServiceId: healthServiceId,
-  //   );
+    final models = entitys.map((entity) {
+      final model = ReportData(
+        name: convertToString(entity.name),
+        register: convertToInt(entity.register).toString(),
+        screening: convertToInt(entity.screening).toString(),
+        treatment: convertToInt(entity.treatment).toString(),
+        monitoring: convertToInt(entity.monitoring).toString(),
+        retentionRate: convertToDouble(entity.retentionRate).toStringAsFixed(2),
+        districtId: convertToInt(entity.districtId),
+        healthServiceId: convertToInt(entity.healthServiceId),
+      );
+      return model;
+    }).toList();
 
-  //   final models = entitys.map((entity) {
-  //     final model = ReportData(
-  //       name: convertToString(entity.name),
-  //       register: convertToInt(entity.register).toString(),
-  //       screening: convertToInt(entity.screening).toString(),
-  //       treatment: convertToInt(entity.treatment).toString(),
-  //       monitoring: convertToInt(entity.monitoring).toString(),
-  //       retentionRate: convertToDouble(entity.retentionRate).toStringAsFixed(2),
-  //       districtId: convertToInt(entity.districtId),
-  //       healthServiceId: convertToInt(entity.healthServiceId),
-  //     );
-  //     return model;
-  //   }).toList();
-
-  //   return models;
-  // }
+    return models;
+  }
 
   Future<Level> findLevel() async {
     final entity = await dashboardApi.findLevel();

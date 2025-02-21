@@ -35,19 +35,19 @@ class ReferCount with _$ReferCount {
 //   }) = _StatYear;
 // }
 
-// @freezed
-// class ReportData with _$ReportData {
-//   const factory ReportData({
-//     required String name,
-//     required String register,
-//     required String screening,
-//     required String treatment,
-//     required String monitoring,
-//     required String retentionRate,
-//     required int districtId,
-//     required int healthServiceId,
-//   }) = _ReportData;
-// }
+@freezed
+class ReportData with _$ReportData {
+  const factory ReportData({
+    required String name,
+    required String register,
+    required String screening,
+    required String treatment,
+    required String monitoring,
+    required String retentionRate,
+    required int districtId,
+    required int healthServiceId,
+  }) = _ReportData;
+}
 
 @freezed
 class Level with _$Level {

@@ -2,11 +2,14 @@ import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/dashboard/dashboard-model.dart';
+import 'package:bst_staff_mobile/presentation/dashboard/report-data-screen.dart';
+import 'package:bst_staff_mobile/presentation/dashboard/repost-data-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
 import 'package:bst_staff_mobile/widget/dashboard/dashboard-level.dart';
+import 'package:bst_staff_mobile/widget/dashboard/dashboard-report-table.dart';
 import 'package:bst_staff_mobile/widget/dashboard/dashboard-stat.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -60,11 +63,19 @@ class DashboardContent extends StatefulWidget {
 
 class _DashboardContentState extends State<DashboardContent> {
   late final DashboardModel _model;
+  late final ReportDataModel _reportModel;
 
   @override
   void initState() {
     super.initState();
     _model = DashboardModel(
+      log: Provider.of<Logger>(context, listen: false),
+      dashboardRepository:
+          Provider.of<DashboardRepository>(context, listen: false),
+      appService: Provider.of<AppService>(context, listen: false),
+    );
+
+    _reportModel = ReportDataModel(
       log: Provider.of<Logger>(context, listen: false),
       dashboardRepository:
           Provider.of<DashboardRepository>(context, listen: false),
@@ -180,6 +191,11 @@ class _DashboardContentState extends State<DashboardContent> {
                           statPatientWeek: model.statPatientWeek,
                         ),
                         const SizedBox(height: 8),
+                      ],
+                      if (model.stat) ...[
+                        DashboardReportTable(
+                          model: _reportModel,
+                        ),
                       ],
                     ],
                   ),

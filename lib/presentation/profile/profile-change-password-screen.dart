@@ -19,21 +19,28 @@ class ProfileChangePasswordScreen extends StatelessWidget {
       appBar: const BaseAppBarBlank(
         title: 'เปลี่ยนรหัสผ่าน',
       ),
-      body: Center(
-        child: Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: MainColors.background,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
+              ),
+              child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
                   child: const ProfileChangePasswordContent(),
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
