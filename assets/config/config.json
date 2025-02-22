@@ -1,4 +1,4 @@
 {
-  "baseUrl": "https://antidrug.moph.go.th/bst-admin-service",
+  "baseUrl": "https://antidrug.moph.go.th/bst-staff-service",
   "baseAuthUrl": "https://antidrug.moph.go.th/bst-auth-service"
 }

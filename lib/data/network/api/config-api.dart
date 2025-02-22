@@ -12,7 +12,6 @@ class ConfigApi extends BaseApi {
       final response = await dio.get(
         '/api/public/staff/mobile/configs',
       );
-
       if (response.statusCode == 200) {
         return ConfigServerEntity.fromJson(
           response.data as Map<String, dynamic>,

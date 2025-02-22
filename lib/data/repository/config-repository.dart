@@ -12,10 +12,10 @@ class ConfigRepository {
     required this.networkMapper,
   });
 
-  Future<ConfigServer> loadConfig() async {
+  Future<UpdateApp> findConfig() async {
     final entity = await configApi.loadConfig();
     ;
-    final config = ConfigServer(
+    final config = UpdateApp(
       iosVersion: convertToString(entity.iosVersion),
       iosUpdateUrl: convertToString(entity.iosUpdateUrl),
       iosIsDeploy: convertToString(entity.iosIsDeploy),

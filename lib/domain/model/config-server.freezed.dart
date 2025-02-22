@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ConfigServer {
+mixin _$UpdateApp {
   String get iosVersion => throw _privateConstructorUsedError;
   String get iosUpdateUrl => throw _privateConstructorUsedError;
   String get iosIsDeploy => throw _privateConstructorUsedError;
@@ -23,18 +23,17 @@ mixin _$ConfigServer {
   String get androidUpdateUrl => throw _privateConstructorUsedError;
   String get androidIsDeploy => throw _privateConstructorUsedError;
 
-  /// Create a copy of ConfigServer
+  /// Create a copy of UpdateApp
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ConfigServerCopyWith<ConfigServer> get copyWith =>
+  $UpdateAppCopyWith<UpdateApp> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ConfigServerCopyWith<$Res> {
-  factory $ConfigServerCopyWith(
-          ConfigServer value, $Res Function(ConfigServer) then) =
-      _$ConfigServerCopyWithImpl<$Res, ConfigServer>;
+abstract class $UpdateAppCopyWith<$Res> {
+  factory $UpdateAppCopyWith(UpdateApp value, $Res Function(UpdateApp) then) =
+      _$UpdateAppCopyWithImpl<$Res, UpdateApp>;
   @useResult
   $Res call(
       {String iosVersion,
@@ -46,16 +45,16 @@ abstract class $ConfigServerCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ConfigServerCopyWithImpl<$Res, $Val extends ConfigServer>
-    implements $ConfigServerCopyWith<$Res> {
-  _$ConfigServerCopyWithImpl(this._value, this._then);
+class _$UpdateAppCopyWithImpl<$Res, $Val extends UpdateApp>
+    implements $UpdateAppCopyWith<$Res> {
+  _$UpdateAppCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ConfigServer
+  /// Create a copy of UpdateApp
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -97,11 +96,11 @@ class _$ConfigServerCopyWithImpl<$Res, $Val extends ConfigServer>
 }
 
 /// @nodoc
-abstract class _$$ConfigServerImplCopyWith<$Res>
-    implements $ConfigServerCopyWith<$Res> {
-  factory _$$ConfigServerImplCopyWith(
-          _$ConfigServerImpl value, $Res Function(_$ConfigServerImpl) then) =
-      __$$ConfigServerImplCopyWithImpl<$Res>;
+abstract class _$$UpdateAppImplCopyWith<$Res>
+    implements $UpdateAppCopyWith<$Res> {
+  factory _$$UpdateAppImplCopyWith(
+          _$UpdateAppImpl value, $Res Function(_$UpdateAppImpl) then) =
+      __$$UpdateAppImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -114,14 +113,14 @@ abstract class _$$ConfigServerImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ConfigServerImplCopyWithImpl<$Res>
-    extends _$ConfigServerCopyWithImpl<$Res, _$ConfigServerImpl>
-    implements _$$ConfigServerImplCopyWith<$Res> {
-  __$$ConfigServerImplCopyWithImpl(
-      _$ConfigServerImpl _value, $Res Function(_$ConfigServerImpl) _then)
+class __$$UpdateAppImplCopyWithImpl<$Res>
+    extends _$UpdateAppCopyWithImpl<$Res, _$UpdateAppImpl>
+    implements _$$UpdateAppImplCopyWith<$Res> {
+  __$$UpdateAppImplCopyWithImpl(
+      _$UpdateAppImpl _value, $Res Function(_$UpdateAppImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ConfigServer
+  /// Create a copy of UpdateApp
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -133,7 +132,7 @@ class __$$ConfigServerImplCopyWithImpl<$Res>
     Object? androidUpdateUrl = null,
     Object? androidIsDeploy = null,
   }) {
-    return _then(_$ConfigServerImpl(
+    return _then(_$UpdateAppImpl(
       iosVersion: null == iosVersion
           ? _value.iosVersion
           : iosVersion // ignore: cast_nullable_to_non_nullable
@@ -164,8 +163,8 @@ class __$$ConfigServerImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ConfigServerImpl implements _ConfigServer {
-  const _$ConfigServerImpl(
+class _$UpdateAppImpl implements _UpdateApp {
+  const _$UpdateAppImpl(
       {required this.iosVersion,
       required this.iosUpdateUrl,
       required this.iosIsDeploy,
@@ -188,14 +187,14 @@ class _$ConfigServerImpl implements _ConfigServer {
 
   @override
   String toString() {
-    return 'ConfigServer(iosVersion: $iosVersion, iosUpdateUrl: $iosUpdateUrl, iosIsDeploy: $iosIsDeploy, androidVersion: $androidVersion, androidUpdateUrl: $androidUpdateUrl, androidIsDeploy: $androidIsDeploy)';
+    return 'UpdateApp(iosVersion: $iosVersion, iosUpdateUrl: $iosUpdateUrl, iosIsDeploy: $iosIsDeploy, androidVersion: $androidVersion, androidUpdateUrl: $androidUpdateUrl, androidIsDeploy: $androidIsDeploy)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ConfigServerImpl &&
+            other is _$UpdateAppImpl &&
             (identical(other.iosVersion, iosVersion) ||
                 other.iosVersion == iosVersion) &&
             (identical(other.iosUpdateUrl, iosUpdateUrl) ||
@@ -214,23 +213,23 @@ class _$ConfigServerImpl implements _ConfigServer {
   int get hashCode => Object.hash(runtimeType, iosVersion, iosUpdateUrl,
       iosIsDeploy, androidVersion, androidUpdateUrl, androidIsDeploy);
 
-  /// Create a copy of ConfigServer
+  /// Create a copy of UpdateApp
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ConfigServerImplCopyWith<_$ConfigServerImpl> get copyWith =>
-      __$$ConfigServerImplCopyWithImpl<_$ConfigServerImpl>(this, _$identity);
+  _$$UpdateAppImplCopyWith<_$UpdateAppImpl> get copyWith =>
+      __$$UpdateAppImplCopyWithImpl<_$UpdateAppImpl>(this, _$identity);
 }
 
-abstract class _ConfigServer implements ConfigServer {
-  const factory _ConfigServer(
+abstract class _UpdateApp implements UpdateApp {
+  const factory _UpdateApp(
       {required final String iosVersion,
       required final String iosUpdateUrl,
       required final String iosIsDeploy,
       required final String androidVersion,
       required final String androidUpdateUrl,
-      required final String androidIsDeploy}) = _$ConfigServerImpl;
+      required final String androidIsDeploy}) = _$UpdateAppImpl;
 
   @override
   String get iosVersion;
@@ -245,10 +244,10 @@ abstract class _ConfigServer implements ConfigServer {
   @override
   String get androidIsDeploy;
 
-  /// Create a copy of ConfigServer
+  /// Create a copy of UpdateApp
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ConfigServerImplCopyWith<_$ConfigServerImpl> get copyWith =>
+  _$$UpdateAppImplCopyWith<_$UpdateAppImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

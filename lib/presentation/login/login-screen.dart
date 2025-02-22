@@ -1,5 +1,6 @@
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/presentation/common/updater-screen.dart';
 import 'package:bst_staff_mobile/presentation/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-model.dart';
 import 'package:bst_staff_mobile/presentation/login/register-screen.dart';
@@ -13,58 +14,60 @@ import 'package:provider/provider.dart';
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/image_login.png"),
-            fit: BoxFit.cover,
+    return UpdaterScreen(
+      child: Scaffold(
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/image_login.png"),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 600),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          "assets/images/logo_1.png",
-                          height: 100,
-                        ),
-                        Image.asset(
-                          "assets/images/logo_2.png",
-                          height: 100,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    const Center(
-                      child: Text(
-                        'เข้าสู่ระบบ',
-                        style: TextStyle(
-                          fontSize: FontSizes.medium,
-                          fontWeight: FontWeight.bold,
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/logo_1.png",
+                            height: 100,
+                          ),
+                          Image.asset(
+                            "assets/images/logo_2.png",
+                            height: 100,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      const Center(
+                        child: Text(
+                          'เข้าสู่ระบบ',
+                          style: TextStyle(
+                            fontSize: FontSizes.medium,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    const Center(
-                      child: Text(
-                        "สำหรับเจ้าหน้าที่",
-                        style: TextStyle(
-                          fontSize: FontSizes.medium,
+                      const Center(
+                        child: Text(
+                          "สำหรับเจ้าหน้าที่",
+                          style: TextStyle(
+                            fontSize: FontSizes.medium,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    const LoginContent(),
-                  ],
+                      const SizedBox(height: 16),
+                      const LoginContent(),
+                    ],
+                  ),
                 ),
               ),
             ),
