@@ -110,7 +110,6 @@ class CertificateModel extends ChangeNotifier {
   }
 
   Future<void> searchByValue(String value) async {
-    print('value===>>>: $value');
     try {
       search = initSearch();
       search.name = value;
