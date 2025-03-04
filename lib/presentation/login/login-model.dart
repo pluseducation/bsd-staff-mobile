@@ -4,14 +4,15 @@ import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class LoginModel {
   final Logger log;
   final LoginRepository loginRepository;
   final AppService appService;
 
+  late String currentVersion;
   bool obscureNewPassword = true;
-
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -20,6 +21,17 @@ class LoginModel {
     required this.loginRepository,
     required this.appService,
   });
+
+  Future<bool> initData() async {
+    try {
+      final packageInfo = await PackageInfo.fromPlatform();
+      currentVersion = packageInfo.version;
+      return true;
+    } catch (e) {
+      log.e('System Error', error: e);
+      throw CustomException(e.toString());
+    }
+  }
 
   Future<void> login() async {
     try {

@@ -17,6 +17,7 @@ class UpdaterScreen extends StatefulWidget {
 
 class _UpdaterScreenState extends State<UpdaterScreen> {
   late final UpdaterModel _model;
+  late bool isChecked = false;
 
   @override
   void initState() {
@@ -27,84 +28,76 @@ class _UpdaterScreenState extends State<UpdaterScreen> {
           Provider.of<ConfigRepository>(super.context, listen: false),
       appService: Provider.of<AppService>(super.context, listen: false),
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkForUpdate();
+    });
+  }
+
+  Future<void> _checkForUpdate() async {
+    final isUpdate = await _model.initData();
+    setState(() {
+      isChecked = true;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<UpdaterModel>.value(
-      value: _model,
-      child: FutureBuilder<bool>(
-        future: _model.initData(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Scaffold(
-              body: Center(
-                child: Text('Error: ${snapshot.error}'),
+    if (isChecked) {
+      final isUpdate = _model.checkUpdate();
+      if (isUpdate) {
+        return _buildUpdateScreen();
+      } else {
+        return widget.child;
+      }
+    }
+
+    return const Center(child: CircularProgressIndicator());
+  }
+
+  Widget _buildUpdateScreen() {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // Center vertically
+          mainAxisSize: MainAxisSize.min, // Minimize the height of the Column
+          children: [
+            Text(
+              "App Version ปัจจุบันคือ ${_model.currentVersion}",
+              style: const TextStyle(
+                fontSize: 16,
               ),
-            );
-          } else if (!snapshot.hasData) {
-            return const Center(child: Text('No data'));
-          } else {
-            return Consumer<UpdaterModel>(
-              builder: (context, model, child) {
-                if (model.checkUpdate()) {
-                  return Scaffold(
-                    body: Center(
-                      child: Column(
-                        mainAxisAlignment:
-                            MainAxisAlignment.center, // Center vertically
-                        crossAxisAlignment:
-                            CrossAxisAlignment.center, // Center horizontally
-                        mainAxisSize: MainAxisSize
-                            .min, // Minimize the height of the Column
-                        children: [
-                          Text(
-                            "App Version ปัจจุบันคือ ${model.currentVersion}",
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            "กรุณาอัพเดทแอพพลิเคชั่นก่อนเข้าใช้งาน",
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          if (model.updateUrl.isNotEmpty) ...[
-                            SizedBox(
-                              width: 100,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  padding: const EdgeInsets.all(10),
-                                ),
-                                onPressed: () {
-                                  launchWeb(model.updateUrl);
-                                },
-                                child: const Text(
-                                  'อัพเดท',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              "กรุณาอัพเดทแอพพลิเคชั่นก่อนเข้าใช้งาน",
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 8),
+            if (_model.updateUrl.isNotEmpty) ...[
+              SizedBox(
+                width: 100,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(10),
+                  ),
+                  onPressed: () {
+                    launchWeb(_model.updateUrl);
+                  },
+                  child: const Text(
+                    'อัพเดท',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                } else {
-                  return widget.child;
-                }
-              },
-            );
-          }
-        },
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
       ),
     );
   }

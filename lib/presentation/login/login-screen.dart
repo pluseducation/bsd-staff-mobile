@@ -108,73 +108,93 @@ class _LoginContentState extends State<LoginContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextFormField(
-            controller: _model.usernameController,
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.person),
-              hintText: "Username",
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'กรุณาระบุ Username';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 26),
-          TextFormField(
-            controller: _model.passwordController,
-            obscureText: _model.obscureNewPassword,
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.lock),
-              hintText: "Password",
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _model.obscureNewPassword
-                      ? Icons.visibility_off
-                      : Icons.visibility,
+    return FutureBuilder<bool>(
+      future: _model.initData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return const Center(child: Text('ไม่พบข้อมูล'));
+        } else {
+          return Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: _model.usernameController,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.person),
+                    hintText: "Username",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'กรุณาระบุ Username';
+                    }
+                    return null;
+                  },
                 ),
-                onPressed: () {
-                  setState(() {
-                    _model.obscureNewPassword = !_model.obscureNewPassword;
-                  });
-                },
-              ),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'กรุณาระบุ Password';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 25),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  loginOnClick();
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: MainColors.primary500),
-              child: const Text(
-                'เข้าสู่ระบบ',
-                style: TextStyle(
-                  fontSize: FontSizes.medium,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 26),
+                TextFormField(
+                  controller: _model.passwordController,
+                  obscureText: _model.obscureNewPassword,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.lock),
+                    hintText: "Password",
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _model.obscureNewPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _model.obscureNewPassword =
+                              !_model.obscureNewPassword;
+                        });
+                      },
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'กรุณาระบุ Password';
+                    }
+                    return null;
+                  },
                 ),
-              ),
+                const SizedBox(height: 25),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        loginOnClick();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: MainColors.primary500),
+                    child: const Text(
+                      'เข้าสู่ระบบ',
+                      style: TextStyle(
+                        fontSize: FontSizes.medium,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  "App Version ${_model.currentVersion}",
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
+          );
+        }
+      },
     );
   }
 
