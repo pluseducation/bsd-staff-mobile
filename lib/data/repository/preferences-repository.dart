@@ -20,6 +20,14 @@ class PreferencesRepository {
     await preferences.setThemeMode(mode.index);
   }
 
+  Future<String?> getUsername() async {
+    return preferences.getUsername();
+  }
+
+  Future<void> setUsername(String value) async {
+    await preferences.setUsername(value);
+  }
+
   Future<String?> getAccessToken() async {
     return preferences.getAccessToken();
   }

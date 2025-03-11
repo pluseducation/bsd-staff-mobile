@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences {
   static const keyThemeMode = 'theme_mode';
+  static const keyUsername = 'username';
   static const keyAccessToken = 'accessToken';
   static const keyRefreshToken = 'refreshToken';
   static const keyLoggedTooLong = 'loggedTooLong';
@@ -24,6 +25,14 @@ class Preferences {
 
   Future<void> setThemeMode(int value) async {
     await prefs.setInt(keyThemeMode, value);
+  }
+
+  Future<String?> getUsername() async {
+    return prefs.getString(keyUsername);
+  }
+
+  Future<void> setUsername(String value) async {
+    await prefs.setString(keyUsername, value);
   }
 
   Future<String?> getAccessToken() async {

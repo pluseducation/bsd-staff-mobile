@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bst_staff_mobile/data/database/dao/login-dao.dart';
 import 'package:bst_staff_mobile/data/datasource/preferences.dart';
 import 'package:bst_staff_mobile/data/network/api/appointment-api.dart';
 import 'package:bst_staff_mobile/data/network/api/assistance-api.dart';
@@ -95,7 +96,7 @@ Future<InitialData> _createData() async {
   // Load project configuration
   final config = await _loadConfig(log);
 
-  // Services & Data
+  // Data
   final networkMapper = NetworkMapper(log: log);
   final configApi = ConfigApi(baseUrl: config.baseUrl);
   final loginApi = LoginApi(baseUrl: config.baseAuthUrl);
@@ -106,6 +107,9 @@ Future<InitialData> _createData() async {
   final fileApi = FileApi(baseUrl: config.baseUrl);
   final userSessionApi = UserSessionApi(baseUrl: config.baseAuthUrl);
 
+  // Database
+  final loginDao = LoginDao();
+
   final configRepository = ConfigRepository(
     configApi: configApi,
     networkMapper: networkMapper,
@@ -113,9 +117,11 @@ Future<InitialData> _createData() async {
 
   final loginRepository = LoginRepository(
     loginApi: loginApi,
+    loginDao: loginDao,
     officerApi: officerApi,
     otpApi: otpApi,
     userSessionApi: userSessionApi,
+    userApi: userApi,
     networkMapper: networkMapper,
   );
 

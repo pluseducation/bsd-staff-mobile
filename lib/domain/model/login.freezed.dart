@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Login {
+  String get username => throw _privateConstructorUsedError;
   String get accessToken => throw _privateConstructorUsedError;
   String get refreshToken => throw _privateConstructorUsedError;
   String get reqAuthenToken => throw _privateConstructorUsedError;
@@ -34,7 +35,8 @@ abstract class $LoginCopyWith<$Res> {
       _$LoginCopyWithImpl<$Res, Login>;
   @useResult
   $Res call(
-      {String accessToken,
+      {String username,
+      String accessToken,
       String refreshToken,
       String reqAuthenToken,
       bool loggedTooLong,
@@ -56,6 +58,7 @@ class _$LoginCopyWithImpl<$Res, $Val extends Login>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? username = null,
     Object? accessToken = null,
     Object? refreshToken = null,
     Object? reqAuthenToken = null,
@@ -63,6 +66,10 @@ class _$LoginCopyWithImpl<$Res, $Val extends Login>
     Object? phoneNo = null,
   }) {
     return _then(_value.copyWith(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -95,7 +102,8 @@ abstract class _$$LoginImplCopyWith<$Res> implements $LoginCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String accessToken,
+      {String username,
+      String accessToken,
       String refreshToken,
       String reqAuthenToken,
       bool loggedTooLong,
@@ -115,6 +123,7 @@ class __$$LoginImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? username = null,
     Object? accessToken = null,
     Object? refreshToken = null,
     Object? reqAuthenToken = null,
@@ -122,6 +131,10 @@ class __$$LoginImplCopyWithImpl<$Res>
     Object? phoneNo = null,
   }) {
     return _then(_$LoginImpl(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -150,12 +163,15 @@ class __$$LoginImplCopyWithImpl<$Res>
 
 class _$LoginImpl implements _Login {
   const _$LoginImpl(
-      {required this.accessToken,
+      {required this.username,
+      required this.accessToken,
       required this.refreshToken,
       required this.reqAuthenToken,
       required this.loggedTooLong,
       required this.phoneNo});
 
+  @override
+  final String username;
   @override
   final String accessToken;
   @override
@@ -169,7 +185,7 @@ class _$LoginImpl implements _Login {
 
   @override
   String toString() {
-    return 'Login(accessToken: $accessToken, refreshToken: $refreshToken, reqAuthenToken: $reqAuthenToken, loggedTooLong: $loggedTooLong, phoneNo: $phoneNo)';
+    return 'Login(username: $username, accessToken: $accessToken, refreshToken: $refreshToken, reqAuthenToken: $reqAuthenToken, loggedTooLong: $loggedTooLong, phoneNo: $phoneNo)';
   }
 
   @override
@@ -177,6 +193,8 @@ class _$LoginImpl implements _Login {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginImpl &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken) &&
             (identical(other.refreshToken, refreshToken) ||
@@ -189,8 +207,8 @@ class _$LoginImpl implements _Login {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken,
-      reqAuthenToken, loggedTooLong, phoneNo);
+  int get hashCode => Object.hash(runtimeType, username, accessToken,
+      refreshToken, reqAuthenToken, loggedTooLong, phoneNo);
 
   /// Create a copy of Login
   /// with the given fields replaced by the non-null parameter values.
@@ -203,12 +221,15 @@ class _$LoginImpl implements _Login {
 
 abstract class _Login implements Login {
   const factory _Login(
-      {required final String accessToken,
+      {required final String username,
+      required final String accessToken,
       required final String refreshToken,
       required final String reqAuthenToken,
       required final bool loggedTooLong,
       required final String phoneNo}) = _$LoginImpl;
 
+  @override
+  String get username;
   @override
   String get accessToken;
   @override

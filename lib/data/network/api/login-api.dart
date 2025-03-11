@@ -81,4 +81,42 @@ class LoginApi extends BaseApi {
       throw Exception('Unknown error : $error');
     }
   }
+
+  Future<LoginEntity> loginWithPin({
+    required String username,
+    required String pin,
+  }) async {
+    try {
+      final Dio dio = await getDio();
+      final response = await dio.post(
+        '/login?mobile=true&pin=true',
+        data: {
+          'username': username,
+          'pin': pin,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return LoginEntity.fromJson(
+          response.data as Map<String, dynamic>,
+        );
+      } else {
+        throw Exception('Unknown error');
+      }
+    } on DioException catch (error) {
+      if (error.response != null) {
+        throw NetworkException(
+          statusCode: error.response?.statusCode,
+          message: error.response?.data as String,
+        );
+      } else {
+        throw NetworkException(
+          statusCode: 404,
+          message: "ไม่สามารถเชื่อมต่อ Internet ได้",
+        );
+      }
+    } catch (error) {
+      throw Exception('Unknown error : $error');
+    }
+  }
 }

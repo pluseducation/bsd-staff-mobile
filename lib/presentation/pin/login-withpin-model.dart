@@ -2,48 +2,62 @@ import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginModel {
+class LoginWithPinModel extends ChangeNotifier {
   final Logger log;
   final LoginRepository loginRepository;
   final AppService appService;
 
-  late String currentVersion;
-  bool obscureNewPassword = true;
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+  String title = "ใส่รหัส PIN";
+  bool isError = false;
+  String pin = "";
 
-  LoginModel({
+  LoginWithPinModel({
     required this.log,
     required this.loginRepository,
     required this.appService,
   });
 
-  Future<bool> initData() async {
+  Future<bool> setPin(String value, String type) async {
     try {
-      final packageInfo = await PackageInfo.fromPlatform();
-      currentVersion = packageInfo.version;
-      return true;
+      if (isError == true) {
+        isError = false;
+        title = "ใส่รหัส PIN";
+      }
+
+      if (pin.length <= 6) {
+        if (type == "ADD") {
+          pin += value;
+        } else {
+          if (pin.isNotEmpty) {
+            pin = pin.substring(0, pin.length - 1);
+          }
+        }
+      }
+
+      if (pin.length == 6) {
+        notifyListeners();
+        return true;
+      }
+      notifyListeners();
+      return false;
     } catch (e) {
-      log.e('System Error', error: e);
-      throw CustomException(e.toString());
+      if (e is NetworkException) {
+        log.e('Network Error', error: e);
+        throw CustomException(e.message);
+      } else {
+        log.e('System Error', error: e);
+        throw CustomException(e.toString());
+      }
     }
   }
 
   Future<void> login() async {
     try {
-      final String username = usernameController.text;
-      final String password = passwordController.text;
-
-      final login = await loginRepository.login(
-        username: username,
-        password: password,
-      );
-
+      final login = await loginRepository.loginWithPin(pin);
       appService.preferencesRepo.setAccessToken(login.accessToken);
       appService.preferencesRepo.setRefreshToken(login.refreshToken);
       appService.preferencesRepo.setLoggedTooLong(login.loggedTooLong);
@@ -71,24 +85,14 @@ class LoginModel {
         log.e('System Error', error: e);
         throw CustomException(e.toString());
       }
+    } finally {
+      pin = "";
+      notifyListeners();
     }
   }
+
+  Future<String?> _getFcmToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('fcm_token');
+  }
 }
-
-Future<String?> _getFcmToken() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString('fcm_token');
-}
-  
-
-// for test otp
-      // final loginForOtp = await loginRepository.loginForOtp(
-      //   username: username,
-      //   password: password,
-      // );
-
-      // String phone = "0656644696";
-      // await loginRepository.findOtp(
-      //   phone: phone,
-      //   token: loginForOtp.reqAuthenToken,
-      // );

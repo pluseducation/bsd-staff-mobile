@@ -10,23 +10,6 @@ class NetworkMapper {
 
   NetworkMapper({required this.log});
 
-  // login
-  Login toLogin(LoginEntity entity) {
-    try {
-      return Login(
-        accessToken: entity.accessToken ?? "",
-        refreshToken: entity.refreshToken ?? "",
-        reqAuthenToken: entity.reqAuthenToken ?? "",
-        loggedTooLong: entity.loggedTooLong ?? false,
-        phoneNo: entity.phoneNo ?? "",
-      );
-    } catch (e) {
-      throw MapperException<LoginEntity, Login>(
-        e.toString(),
-      );
-    }
-  }
-
   Session toUserSession(UserSessionEntity entity) {
     try {
       return Session(
