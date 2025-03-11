@@ -78,52 +78,47 @@ class BaseBottomNavigationBar extends StatelessWidget {
           ],
         ),
         Positioned(
-          top: -50, //35
-          left: MediaQuery.of(context).size.width / 2 - 35,
-          child: GestureDetector(
-            onTap: () {
-              onTap(2);
-            },
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  width: 85,
-                  height: 85,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
+          top: -50,
+          left: MediaQuery.of(context).size.width / 2 - (85 / 2),
+          child: Container(
+            width: 85,
+            height: 85,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 5,
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: Center(
+              child: InkWell(
+                onTap: () => onTap(2),
+                borderRadius: BorderRadius.circular(
+                  75 / 2,
+                ), // Ensuring circular ripple effect
+                child: Container(
+                  width: 75,
+                  height: 75,
+                  decoration: const BoxDecoration(
+                    color: MainColors.primary500,
                     shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.white.withOpacity(0.1),
-                        blurRadius: 5,
-                        spreadRadius: 2,
+                  ),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.grid_view, color: Colors.white, size: 28),
+                      Text(
+                        'เมนูทั้งหมด',
+                        style: TextStyle(color: Colors.white, fontSize: 10),
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  width: 70,
-                  height: 70,
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      onTap(2);
-                    },
-                    backgroundColor: MainColors.primary500,
-                    shape: const CircleBorder(),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.grid_view, color: Colors.white, size: 28),
-                        Text(
-                          'เมนูทั้งหมด',
-                          style: TextStyle(color: Colors.white, fontSize: 10),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),
