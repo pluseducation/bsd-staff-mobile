@@ -277,7 +277,18 @@ class WorkflowRepository {
 
       final plans = findPlan(treatmentEntity.plans);
 
-      final dosings = treatmentEntity.dosings ?? List<String>.empty();
+      // check if item in treatmentEntity.dosings equal "OTHER" then return otherDosing else return dosing
+      final dosings = (treatmentEntity.dosings != null &&
+              treatmentEntity.dosings!.isNotEmpty)
+          ? treatmentEntity.dosings!
+              .map((item) => item == "OTHER"
+                  ? convertToString(
+                      treatmentEntity.otherDosing,
+                      defaultValue: "-",
+                    )
+                  : item)
+              .toList()
+          : List<String>.empty();
 
       final techniques = findChoiceDescriptionList(
         questionEntity,
@@ -445,13 +456,26 @@ class WorkflowRepository {
     }
 
     final values = planEntitys.map((item) {
-      final startDate = item.planEvalResults?.first.evalDate;
-      final startDateText = startDate ?? "-";
+      // final planEvalResult = item.planEvalResults?.first.evalDate;
+      // final startDate = item.planEvalResults?.first.evalDate;
+      // final startDateText = startDate ?? "-";
 
-      final lastedEvalResult = item.planEvalResults?.last.evalResult;
+      // final lastedEvalResult = item.planEvalResults?.last.evalResult;
 
-      final round = item.planEvalResults?.length;
-      final roundText = round != null ? round.toString() : "-";
+      // final round = item.planEvalResults?.length;
+      // final roundText = round != null ? round.toString() : "-";
+      String startDateText = "-";
+      String roundText = "-";
+      LastedEvalResult? lastedEvalResult = null;
+
+      final planEvalResult = item.planEvalResults?.firstOrNull;
+      if (planEvalResult != null) {
+        startDateText = convertToString(planEvalResult.evalDate);
+        roundText = item.planEvalResults != null
+            ? item.planEvalResults!.length.toString()
+            : "-";
+        lastedEvalResult = LastedEvalResult.setValue(planEvalResult.evalResult);
+      }
 
       return Plan(
         planType: convertToString(item.planType, defaultValue: "-"),
@@ -459,7 +483,7 @@ class WorkflowRepository {
         startDate: startDateText,
         endDate: convertToString(item.endDate, defaultValue: "-"),
         round: roundText,
-        lastedEvalResult: LastedEvalResult.setValue(lastedEvalResult),
+        lastedEvalResult: lastedEvalResult,
       );
     }).toList();
 

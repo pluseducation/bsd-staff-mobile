@@ -57,23 +57,23 @@ class AppService extends ChangeNotifier {
   }
 
   Future<void> intervalWebAuth() async {
-    Timer.periodic(const Duration(seconds: 5), (timer) async {
-      final token = await preferencesRepo.getAccessToken() ?? "";
-      if (token.isNotEmpty) {
-        try {
-          final session = await loginRepository.findUserSession();
-          if (session.status == "REQ_LOGIN") {
-            timer.cancel();
-            getIt<NavigationService>().navigateToReplacement('/auth');
-          }
-        } catch (e) {
-          timer.cancel();
-          getIt<NavigationService>().navigateToReplacement('/login');
-        }
-      } else {
-        timer.cancel();
-      }
-    });
+    // Timer.periodic(const Duration(seconds: 5), (timer) async {
+    //   final token = await preferencesRepo.getAccessToken() ?? "";
+    //   if (token.isNotEmpty) {
+    //     try {
+    //       final session = await loginRepository.findUserSession();
+    //       if (session.status == "REQ_LOGIN") {
+    //         timer.cancel();
+    //         getIt<NavigationService>().navigateToReplacement('/auth');
+    //       }
+    //     } catch (e) {
+    //       timer.cancel();
+    //       getIt<NavigationService>().navigateToReplacement('/login');
+    //     }
+    //   } else {
+    //     timer.cancel();
+    //   }
+    // });
   }
 
   Future<void> initPermission() async {

@@ -13,6 +13,7 @@ import 'package:bst_staff_mobile/widget/patient/patient-card.dart';
 import 'package:bst_staff_mobile/widget/patient/patient-search.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
@@ -31,30 +32,20 @@ class PatientScreen extends StatelessWidget {
         valueListenable: dataNotifier,
       ),
       body: BaseBackground(
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: MainColors.background,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 600),
-                      child: PatientContent(dataNotifier: dataNotifier),
-                    ),
-                  ),
-                ),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 600),
+            decoration: const BoxDecoration(
+              color: MainColors.background,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
               ),
             ),
-          ],
+            padding: const EdgeInsets.all(16),
+            child: PatientContent(dataNotifier: dataNotifier),
+          ),
         ),
       ),
     );
@@ -99,9 +90,8 @@ class _PatientContentState extends State<PatientContent> {
             return Consumer<PatientModel>(
               builder: (context, model, child) {
                 final patients = model.patients;
-                return Stack(
+                return Column(
                   children: [
-                    // position top
                     PatientSearch(
                       onClickFilter: _onClickFilter,
                       onValueChange: (value) async =>
@@ -109,61 +99,37 @@ class _PatientContentState extends State<PatientContent> {
                       isFilter: model.isFilter,
                       controller: model.valueController,
                     ),
-                    if (patients.isEmpty) ...[
-                      const Positioned(
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        child: Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Expanded(
+                      child: patients.isEmpty
+                          ? const Center(
+                              child: Text(
                                 'ไม่พบข้อมูล',
                                 style: TextStyle(
                                   color: MainColors.text,
                                   fontSize: FontSizes.large,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ] else ...[
-                      Positioned(
-                        top: 60,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    ..._buildPatientCard(patients),
-                                  ],
-                                ),
+                            )
+                          : SingleChildScrollView(
+                              keyboardDismissBehavior:
+                                  ScrollViewKeyboardDismissBehavior.onDrag,
+                              child: Column(
+                                children: _buildPatientCard(patients),
                               ),
                             ),
-
-                            // wrap position bottom
-                            CustomPagination(
-                              currentPage: model.search.page,
-                              totalPages: model.search.totalPages,
-                              goToPage: (page) async {
-                                await model.loadData(page);
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ),
+                    CustomPagination(
+                      currentPage: model.search.page,
+                      totalPages: model.search.totalPages,
+                      goToPage: (page) async {
+                        await model.loadData(page);
+                      },
+                    ),
                   ],
                 );
-
-                // ----
               },
             );
           }

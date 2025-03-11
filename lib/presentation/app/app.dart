@@ -13,8 +13,9 @@ import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
   final InitialData data;
+  final FocusNode _focusNode = FocusNode();
 
-  const App({required this.data});
+  App({required this.data});
 
   //NavigateService(navigatorKey : navigatorKey);
 
@@ -39,13 +40,7 @@ class App extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-
           home: const SplashScreen(),
-          // home: BaseBottomNavigationBar(),
-          // home: LoginScreen(),
-
-          // home: ProfileScreen(),
-
           initialRoute: '/',
           routes: {
             '/login': (context) => LoginScreen(),
