@@ -117,6 +117,8 @@ class _PatientHistoryContentState extends State<PatientHistoryContent> {
                   builder: (context, model, child) {
                     return Expanded(
                       child: SingleChildScrollView(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
                         child: Column(
                           children: [
                             ..._buildPatientHistoryCard(model.historys),

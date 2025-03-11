@@ -142,6 +142,8 @@ class _NotificationContentState extends State<NotificationContent> {
                 }
 
                 return SingleChildScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   controller: _scrollController,
                   child: Column(
                     children: [

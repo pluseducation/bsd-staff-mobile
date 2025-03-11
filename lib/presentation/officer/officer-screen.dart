@@ -179,6 +179,7 @@ class _OfficerContentState extends State<OfficerContent> {
       );
     }
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
         children: [
           ..._buildAssistanceCard(officer),

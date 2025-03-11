@@ -51,6 +51,7 @@ class _ConfirmNumberState extends State<ConfirmNumber> {
       body: ChangeNotifierProvider(
         create: (context) => _model,
         child: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: SizedBox(

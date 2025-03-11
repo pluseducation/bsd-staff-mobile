@@ -62,6 +62,8 @@ class _NotificationConfigScreenState extends State<NotificationConfigScreen> {
                 builder: (context, model, child) {
                   final notification = model.notification;
                   return SingleChildScrollView(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     child: Center(
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 600),

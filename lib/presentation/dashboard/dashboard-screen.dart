@@ -100,6 +100,8 @@ class _DashboardContentState extends State<DashboardContent> {
             return Consumer<DashboardModel>(
               builder: (context, model, child) {
                 return SingleChildScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   child: Column(
                     children: [
                       Text(

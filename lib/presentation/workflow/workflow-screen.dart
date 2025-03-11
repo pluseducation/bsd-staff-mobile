@@ -207,6 +207,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
 
   Widget _buildRegistering(Registering data) {
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -667,6 +668,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
 
   Widget _buildScreening(Screening data) {
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -942,6 +944,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
 
   Widget _buildTreatment(Treatment data) {
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -1382,6 +1385,7 @@ class _WorkflowContentState extends State<WorkflowContent> {
     final latestResultDate = datas.isNotEmpty ? datas[0].latestResultDate : "";
 
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Padding(
         padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
         child: Column(

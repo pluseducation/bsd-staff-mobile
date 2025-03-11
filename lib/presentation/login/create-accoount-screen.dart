@@ -23,6 +23,7 @@ class CreateAccountScreen extends StatelessWidget {
         backgroundColor: MainColors.background,
       ),
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
           children: [
             _CreateAccounForm(register: register),

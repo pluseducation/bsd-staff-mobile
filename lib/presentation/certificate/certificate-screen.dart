@@ -189,6 +189,7 @@ class _MyWidgetState extends State<CertificateContent> {
       );
     }
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
         children: [
           ..._buildcertificateCard(certificate),

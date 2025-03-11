@@ -89,6 +89,8 @@ class _ProfileChangePasswordContentState
                 return Form(
                   key: _formKey,
                   child: SingleChildScrollView(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

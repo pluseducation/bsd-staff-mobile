@@ -200,6 +200,8 @@ class _ReferContentState extends State<ReferContent> {
                   children: [
                     Expanded(
                       child: SingleChildScrollView(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
                         child: Column(
                           children: [
                             ..._buildSenderCard(sender),
@@ -255,6 +257,8 @@ class _ReferContentState extends State<ReferContent> {
                   children: [
                     Expanded(
                       child: SingleChildScrollView(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
                         child: Column(
                           children: [
                             ..._buildReceiverCard(receiver),

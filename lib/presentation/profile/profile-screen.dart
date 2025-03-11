@@ -97,6 +97,8 @@ class _ProfileContentState extends State<ProfileContent> {
             return Consumer<ProfileModel>(
               builder: (context, model, child) {
                 return SingleChildScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

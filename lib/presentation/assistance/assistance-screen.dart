@@ -186,6 +186,7 @@ class _AssistanceContentState extends State<AssistanceContent> {
       );
     }
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
         children: [
           ..._buildAssistanceCard(assistance),

@@ -37,6 +37,8 @@ class AppointmentScreen extends StatelessWidget {
                   ),
                 ),
                 child: SingleChildScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Center(

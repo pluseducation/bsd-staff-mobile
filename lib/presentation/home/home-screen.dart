@@ -88,6 +88,8 @@ class _HomeContentState extends State<HomeContent> {
             return Consumer<HomeModel>(
               builder: (context, model, child) {
                 return SingleChildScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   child: Column(
                     children: [
                       Text(

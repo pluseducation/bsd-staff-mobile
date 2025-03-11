@@ -85,6 +85,8 @@ class _ProfileInfoContentState extends State<ProfileInfoContent> {
               builder: (context, model, child) {
                 final offercer = model.officer;
                 return SingleChildScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

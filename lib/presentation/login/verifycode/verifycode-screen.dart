@@ -37,6 +37,7 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),

@@ -159,6 +159,8 @@ class _ReportDataContentState extends State<ReportDataContent> {
 
                     return Expanded(
                       child: SingleChildScrollView(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
                         child: ConstrainedBox(
                           constraints: BoxConstraints(
                             minWidth: MediaQuery.of(context).size.width,

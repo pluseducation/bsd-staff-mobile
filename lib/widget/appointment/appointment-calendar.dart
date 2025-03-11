@@ -34,6 +34,7 @@ class AppointmentCalendar extends StatelessWidget {
     return Column(
       children: [
         SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: TableCalendar(
             firstDay: startDate,
             lastDay: endDate,
