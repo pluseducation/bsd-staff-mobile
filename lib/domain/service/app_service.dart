@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bst_staff_mobile/data/repository/config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
-import 'package:bst_staff_mobile/domain/model/config-server.dart';
 import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
 import 'package:bst_staff_mobile/main.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +45,7 @@ class AppService extends ChangeNotifier {
   }
 
   Future<void> logout() async {
+    preferencesRepo.setUsername("");
     preferencesRepo.setAccessToken("");
     preferencesRepo.setRefreshToken("");
   }
@@ -57,23 +56,23 @@ class AppService extends ChangeNotifier {
   }
 
   Future<void> intervalWebAuth() async {
-    // Timer.periodic(const Duration(seconds: 5), (timer) async {
-    //   final token = await preferencesRepo.getAccessToken() ?? "";
-    //   if (token.isNotEmpty) {
-    //     try {
-    //       final session = await loginRepository.findUserSession();
-    //       if (session.status == "REQ_LOGIN") {
-    //         timer.cancel();
-    //         getIt<NavigationService>().navigateToReplacement('/auth');
-    //       }
-    //     } catch (e) {
-    //       timer.cancel();
-    //       getIt<NavigationService>().navigateToReplacement('/login');
-    //     }
-    //   } else {
-    //     timer.cancel();
-    //   }
-    // });
+    Timer.periodic(const Duration(seconds: 5), (timer) async {
+      final token = await preferencesRepo.getAccessToken() ?? "";
+      if (token.isNotEmpty) {
+        try {
+          final session = await loginRepository.findUserSession();
+          if (session.status == "REQ_LOGIN") {
+            timer.cancel();
+            getIt<NavigationService>().navigateToReplacement('/auth');
+          }
+        } catch (e) {
+          timer.cancel();
+          getIt<NavigationService>().navigateToReplacement('/login');
+        }
+      } else {
+        timer.cancel();
+      }
+    });
   }
 
   Future<void> initPermission() async {

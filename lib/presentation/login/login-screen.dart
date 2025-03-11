@@ -4,6 +4,8 @@ import 'package:bst_staff_mobile/presentation/common/updater-screen.dart';
 import 'package:bst_staff_mobile/presentation/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-model.dart';
 import 'package:bst_staff_mobile/presentation/login/register-screen.dart';
+import 'package:bst_staff_mobile/presentation/pin/login-withpin-screen.dart';
+import 'package:bst_staff_mobile/presentation/pin/pin-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
@@ -92,7 +94,7 @@ class LoginContent extends StatefulWidget {
 class _LoginContentState extends State<LoginContent> {
   final _formKey = GlobalKey<FormState>();
   late final LoginModel _model;
-  late AppService appService;
+  bool _hasNavigated = false;
 
   @override
   void initState() {
@@ -104,8 +106,6 @@ class _LoginContentState extends State<LoginContent> {
           Provider.of<LoginRepository>(super.context, listen: false),
       appService: Provider.of<AppService>(super.context, listen: false),
     );
-
-    appService = Provider.of<AppService>(context, listen: false);
   }
 
   @override
@@ -120,6 +120,20 @@ class _LoginContentState extends State<LoginContent> {
         } else if (!snapshot.hasData) {
           return const Center(child: Text('ไม่พบข้อมูล'));
         } else {
+          if (_model.isHavePin && !_hasNavigated) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              setState(() {
+                _hasNavigated = true;
+              });
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginWithPinScreen(),
+                ),
+              );
+            });
+          }
+
           return Form(
             key: _formKey,
             child: Column(
@@ -137,7 +151,7 @@ class _LoginContentState extends State<LoginContent> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 26),
+                const SizedBox(height: 24),
                 TextFormField(
                   controller: _model.passwordController,
                   obscureText: _model.obscureNewPassword,
@@ -165,7 +179,34 @@ class _LoginContentState extends State<LoginContent> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (_model.isHavePin) ...[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginWithPinScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'เข้าสู่ระบบด้วย pin',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: MainColors.primary500,
+                          ),
+                        ),
+                      ),
+                    ] else ...[
+                      const SizedBox(),
+                    ],
+                  ],
+                ),
+                const SizedBox(height: 8),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -203,14 +244,12 @@ class _LoginContentState extends State<LoginContent> {
   Future<void> loginOnClick() async {
     try {
       await _model.login();
-
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => LayoutScreen(),
-        ),
-        (route) => false,
-      );
+      if (_model.isHavePin) {
+        gotoHomeScreen();
+        return;
+      } else {
+        gotoPinScreen("login");
+      }
     } on Exception catch (e) {
       showInfoDialog(
         context: context,
@@ -223,12 +262,32 @@ class _LoginContentState extends State<LoginContent> {
     gotoRegisterScreen();
   }
 
+  void gotoHomeScreen() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LayoutScreen(),
+      ),
+      (route) => false,
+    );
+  }
+
   void gotoRegisterScreen() {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => RegisterScreen(),
       ),
+    );
+  }
+
+  void gotoPinScreen(String screen) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PinScreen(screen: screen),
+      ),
+      (route) => false,
     );
   }
 }

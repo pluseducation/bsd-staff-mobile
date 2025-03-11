@@ -34,9 +34,10 @@ class _CertificateCameraState extends State<CertificateCamera> {
     cameras = await availableCameras();
     camera = cameras
         .firstWhere((cam) => cam.lensDirection == CameraLensDirection.back);
-    _controller = CameraController(camera, ResolutionPreset.medium);
+    _controller =
+        CameraController(camera, ResolutionPreset.medium, enableAudio: false);
     await _controller.initialize();
-    _controller.lockCaptureOrientation(DeviceOrientation.landscapeRight);
+    _controller.lockCaptureOrientation(DeviceOrientation.portraitUp);
 
     if (!mounted) return;
     setState(() {
@@ -229,16 +230,23 @@ class _CertificateCameraState extends State<CertificateCamera> {
         return;
       }
 
-      final img.Image rotatedImage = img.copyRotate(image, angle: 270);
+      // for android
+      // final img.Image rotatedImage = img.copyRotate(image, angle: 270);
 
+      // final directory = await getApplicationDocumentsDirectory();
+      // final rotatedImagePath =
+      //     '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
+
+      // File(rotatedImagePath).writeAsBytesSync(img.encodeJpg(rotatedImage));
+
+      // for ios
       final directory = await getApplicationDocumentsDirectory();
-      final rotatedImagePath =
+      final imagePath =
           '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
-
-      File(rotatedImagePath).writeAsBytesSync(img.encodeJpg(rotatedImage));
+      File(imagePath).writeAsBytesSync(img.encodeJpg(image));
 
       setState(() {
-        _imagePath = rotatedImagePath;
+        _imagePath = imagePath;
         print("Rotated Image Path:=====>>>>> $_imagePath");
       });
 

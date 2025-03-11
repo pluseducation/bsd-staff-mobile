@@ -8,7 +8,6 @@ import 'package:bst_staff_mobile/presentation/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/pin/pin-model.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
-import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
 import 'package:bst_staff_mobile/widget/background/base-background.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -34,6 +33,7 @@ class PinScreen extends StatelessWidget {
             decoration: const BoxDecoration(
               color: Colors.transparent,
             ),
+            constraints: const BoxConstraints(maxWidth: 600),
             padding: const EdgeInsets.all(16),
             child: PinContent(screen: screen, register: register),
           ),

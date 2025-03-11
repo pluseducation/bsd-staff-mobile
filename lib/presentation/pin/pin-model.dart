@@ -105,6 +105,7 @@ class PinModel extends ChangeNotifier {
   Future<void> login() async {
     try {
       final login = await loginRepository.loginWithPin(updatepin);
+      appService.preferencesRepo.setUsername(login.username);
       appService.preferencesRepo.setAccessToken(login.accessToken);
       appService.preferencesRepo.setRefreshToken(login.refreshToken);
       appService.preferencesRepo.setLoggedTooLong(login.loggedTooLong);

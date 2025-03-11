@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/domain/model/register.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/create-account-model.dart';
+import 'package:bst_staff_mobile/presentation/pin/pin-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
 import 'package:bst_staff_mobile/widget/popup/dialog.dart';
@@ -231,7 +232,7 @@ class _CreateAccounFormState extends State<_CreateAccounForm> {
       final password = _passwordController.text;
       final confirmPassword = _confirmPasswordController.text;
       await _model.confirmPassword(password, confirmPassword);
-      gotoRegistersuccessfullyScreen();
+      gotoRegistersuccessfullyScreen(_model.register);
     } on Exception catch (e) {
       if (!context.mounted) return;
       showInfoDialog(
@@ -241,11 +242,14 @@ class _CreateAccounFormState extends State<_CreateAccounForm> {
     }
   }
 
-  void gotoRegistersuccessfullyScreen() {
+  void gotoRegistersuccessfullyScreen(Register register) {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (context) => LayoutScreen(),
+        builder: (context) => PinScreen(
+          screen: "register",
+          register: register,
+        ),
       ),
       (route) => false,
     );

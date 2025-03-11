@@ -12,10 +12,12 @@ class LoginModel {
   final LoginRepository loginRepository;
   final AppService appService;
 
-  late String currentVersion;
   bool obscureNewPassword = true;
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+
+  late String currentVersion;
+  late bool isHavePin = false;
 
   LoginModel({
     required this.log,
@@ -27,6 +29,7 @@ class LoginModel {
     try {
       final packageInfo = await PackageInfo.fromPlatform();
       currentVersion = packageInfo.version;
+      isHavePin = await loginRepository.isHavePin();
       return true;
     } catch (e) {
       log.e('System Error', error: e);
@@ -44,6 +47,7 @@ class LoginModel {
         password: password,
       );
 
+      appService.preferencesRepo.setUsername(username);
       appService.preferencesRepo.setAccessToken(login.accessToken);
       appService.preferencesRepo.setRefreshToken(login.refreshToken);
       appService.preferencesRepo.setLoggedTooLong(login.loggedTooLong);
