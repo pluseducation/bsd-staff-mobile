@@ -3,6 +3,7 @@ import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
 import 'package:bst_staff_mobile/domain/model/profile.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/login/login-screen.dart';
+import 'package:bst_staff_mobile/presentation/pin/pin-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/notification-config-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-info-screen.dart';
 import 'package:bst_staff_mobile/presentation/profile/profile-model.dart';
@@ -213,6 +214,69 @@ class _ProfileContentState extends State<ProfileContent> {
                                         ),
                                         const Text(
                                           "แจ้งเตือน",
+                                          style: TextStyle(
+                                            fontSize: FontSizes.medium,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Color(0xFF9CA3AF),
+                                      size: 20,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const PinScreen(
+                                    screen: "PROFILE",
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: MainColors.white,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: MainColors.white,
+                                          ),
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(4.0),
+                                            child: Icon(
+                                              Icons.pin,
+                                              color: MainColors.primary500,
+                                              size: 35,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 16,
+                                        ),
+                                        const Text(
+                                          "เปลี่ยนรหัส Pin Code",
                                           style: TextStyle(
                                             fontSize: FontSizes.medium,
                                             fontWeight: FontWeight.bold,

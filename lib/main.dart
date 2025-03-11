@@ -36,6 +36,7 @@ import 'package:bst_staff_mobile/data/repository/notification-repository.dart';
 import 'package:bst_staff_mobile/data/repository/officer-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-history-repository.dart';
 import 'package:bst_staff_mobile/data/repository/patient-repository.dart';
+import 'package:bst_staff_mobile/data/repository/pin-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
 import 'package:bst_staff_mobile/data/repository/profile-repository.dart';
 import 'package:bst_staff_mobile/data/repository/refer-repository.dart';
@@ -229,6 +230,11 @@ Future<InitialData> _createData() async {
     networkMapper: networkMapper,
   );
 
+  final pinRepository = PinRepository(
+    userApi: userApi,
+    loginDao: loginDao,
+  );
+
   // Create list of providers
   return InitialData(
     providers: [
@@ -252,6 +258,7 @@ Future<InitialData> _createData() async {
       Provider<NotificationRepository>.value(value: notificationRepository),
       Provider<AssistanceRepository>.value(value: assistanceRepository),
       Provider<ReferRepository>.value(value: referRepository),
+      Provider<PinRepository>.value(value: pinRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

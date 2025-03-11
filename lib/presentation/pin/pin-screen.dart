@@ -1,10 +1,15 @@
+import 'dart:ffi';
+
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/pin-repository.dart';
 import 'package:bst_staff_mobile/domain/model/register.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/pin/pin-model.dart';
+import 'package:bst_staff_mobile/theme/font-size.dart';
 import 'package:bst_staff_mobile/theme/main-colors.dart';
+import 'package:bst_staff_mobile/widget/appbar/base-appbar.dart';
+import 'package:bst_staff_mobile/widget/background/base-background.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -17,31 +22,22 @@ class PinScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // Background image
-          Container(
+      // AppBar background color is transparent
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      extendBodyBehindAppBar: true,
+      body: BaseBackgroundImage(
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Container(
             decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/bg_login.png"),
-                fit: BoxFit.cover,
-              ),
+              color: Colors.transparent,
             ),
+            padding: const EdgeInsets.all(16),
+            child: PinContent(screen: screen, register: register),
           ),
-          // Content
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomAppBar(),
-                Container(
-                  padding: const EdgeInsets.all(10.0),
-                  constraints: const BoxConstraints(maxWidth: 600),
-                  child: PinContent(screen: screen, register: register),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -113,44 +109,48 @@ class _PinContentState extends State<PinContent> {
       value: _model,
       child: Consumer<PinModel>(
         builder: (context, model, child) {
-          return Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "assets/images/logoappbar1.png",
-                      width: 100,
-                      fit: BoxFit.cover,
+          return SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/images/logo_1.png",
+                        width: 70,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(width: 6),
+                      Image.asset(
+                        "assets/images/logo_2.png",
+                        width: 140,
+                        fit: BoxFit.cover,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  if (model.isError == false) ...[
+                    Text(
+                      model.title,
+                      style: const TextStyle(fontSize: FontSizes.large),
                     ),
-                    const SizedBox(width: 5),
-                    Image.asset(
-                      "assets/images/logo_lomruk.png",
-                      width: 100,
-                      fit: BoxFit.cover,
+                  ] else ...[
+                    Text(
+                      model.title,
+                      style: const TextStyle(
+                        fontSize: FontSizes.large,
+                        color: MainColors.error,
+                      ),
                     ),
                   ],
-                ),
-                const SizedBox(height: 24),
-                if (model.isError == false) ...[
-                  Text(
-                    model.title,
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                ] else ...[
-                  Text(
-                    model.title,
-                    style:
-                        const TextStyle(fontSize: 18, color: MainColors.error),
-                  ),
+                  const SizedBox(height: 24),
+                  _buildBullet(model.pin.length),
+                  const SizedBox(height: 24),
+                  _buildKeypad(),
                 ],
-                const SizedBox(height: 24),
-                _buildBullet(model.pin.length),
-                _buildKeypad(),
-              ],
+              ),
             ),
           );
         },
@@ -229,16 +229,4 @@ class _PinContentState extends State<PinContent> {
       },
     );
   }
-}
-
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-    );
-  }
-
-  @override
-  Size get preferredSize => Size.fromHeight(60.0);
 }

@@ -82,3 +82,31 @@ class BaseBackground extends StatelessWidget {
     );
   }
 }
+
+class BaseBackgroundImage extends StatelessWidget {
+  // add parameter child widget
+  final Widget child;
+  const BaseBackgroundImage({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/image_login.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        SafeArea(
+          left: false,
+          right: false,
+          bottom: false,
+          child: child,
+        ),
+      ],
+    );
+  }
+}
