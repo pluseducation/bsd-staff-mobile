@@ -4,6 +4,7 @@ import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/patient.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/util/constant.dart';
+import 'package:bst_staff_mobile/util/debouncer.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -19,6 +20,7 @@ class PatientModel extends ChangeNotifier {
   late ValueNotifier<int> dataNotifier;
   late SearchPatient search;
   late List<Patient> patients;
+  late Debouncer debouncer;
 
   PatientModel({
     required this.log,
@@ -34,6 +36,10 @@ class PatientModel extends ChangeNotifier {
         search: search,
       );
       this.dataNotifier.value = search.totalElements;
+
+      // debouncer
+      debouncer = Debouncer(milliseconds: Constant.timeDebounce);
+
       return true;
     } catch (e) {
       if (e is NetworkException) {
@@ -92,14 +98,15 @@ class PatientModel extends ChangeNotifier {
 
   Future<void> searchByValue(String value) async {
     try {
-      search = initSearch();
-      search.searchVal = value;
-
-      patients = await patientRepository.findPatientAll(
-        search: search,
-      );
-
-      dataNotifier.value = search.totalElements;
+      debouncer.run(() async {
+        search = initSearch();
+        search.searchVal = value;
+        patients = await patientRepository.findPatientAll(
+          search: search,
+        );
+        dataNotifier.value = search.totalElements;
+        notifyListeners();
+      });
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -108,8 +115,6 @@ class PatientModel extends ChangeNotifier {
         log.e('System Error', error: e);
         throw CustomException(e.toString());
       }
-    } finally {
-      notifyListeners();
     }
   }
 

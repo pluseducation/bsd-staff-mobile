@@ -4,6 +4,7 @@ import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/refer.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/util/constant.dart';
+import 'package:bst_staff_mobile/util/debouncer.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
@@ -17,6 +18,7 @@ class SenderModel extends ChangeNotifier {
 
   late SearchSender search;
   late List<Sender> sender;
+  late Debouncer debouncer;
 
   SenderModel({
     required this.log,
@@ -28,6 +30,9 @@ class SenderModel extends ChangeNotifier {
     try {
       search = initSearch();
       sender = await referRepository.findSender(search: search);
+
+      // debouncer
+      debouncer = Debouncer(milliseconds: Constant.timeDebounce);
 
       return true;
     } catch (e) {
@@ -82,10 +87,13 @@ class SenderModel extends ChangeNotifier {
 
   Future<void> searchByValue(String value) async {
     try {
-      search = initSearch();
-      search.searchVal = value;
+      debouncer.run(() async {
+        search = initSearch();
+        search.searchVal = value;
 
-      sender = await referRepository.findSender(search: search);
+        sender = await referRepository.findSender(search: search);
+        notifyListeners();
+      });
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -94,8 +102,6 @@ class SenderModel extends ChangeNotifier {
         log.e('System Error', error: e);
         throw CustomException(e.toString());
       }
-    } finally {
-      notifyListeners();
     }
   }
 }
@@ -111,6 +117,7 @@ class ReceiverModel extends ChangeNotifier {
   late ValueNotifier<int> dataNotifier;
   late SearchReceiver search;
   late List<Receiver> receiver;
+  late Debouncer debouncer;
 
   ReceiverModel({
     required this.log,
@@ -125,6 +132,8 @@ class ReceiverModel extends ChangeNotifier {
       receiver = await referRepository.findReceiver(search: search);
 
       this.dataNotifier.value = search.totalElements;
+      // debouncer
+      debouncer = Debouncer(milliseconds: Constant.timeDebounce);
 
       return true;
     } catch (e) {
@@ -179,12 +188,13 @@ class ReceiverModel extends ChangeNotifier {
 
   Future<void> searchByValue(String value) async {
     try {
-      search = initSearch();
-      search.searchVal = value;
-
-      receiver = await referRepository.findReceiver(search: search);
-
-      dataNotifier.value = search.totalElements;
+      debouncer.run(() async {
+        search = initSearch();
+        search.searchVal = value;
+        receiver = await referRepository.findReceiver(search: search);
+        dataNotifier.value = search.totalElements;
+        notifyListeners();
+      });
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -193,8 +203,6 @@ class ReceiverModel extends ChangeNotifier {
         log.e('System Error', error: e);
         throw CustomException(e.toString());
       }
-    } finally {
-      notifyListeners();
     }
   }
 }

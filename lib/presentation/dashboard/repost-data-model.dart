@@ -3,6 +3,8 @@ import 'package:bst_staff_mobile/domain/exception/custom-exception.dart';
 import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/dashboard.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
+import 'package:bst_staff_mobile/util/constant.dart';
+import 'package:bst_staff_mobile/util/debouncer.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart' as logger;
 
@@ -15,6 +17,7 @@ class ReportDataModel extends ChangeNotifier {
   late int healthServiceId;
   late int districtId;
   late List<ReportData> report;
+  late Debouncer debouncer;
 
   ReportDataModel({
     required this.log,
@@ -38,6 +41,9 @@ class ReportDataModel extends ChangeNotifier {
         healthServiceId,
       );
 
+      // debouncer
+      debouncer = Debouncer(milliseconds: Constant.timeDebounce);
+
       return true;
     } catch (e) {
       if (e is NetworkException) {
@@ -52,13 +58,15 @@ class ReportDataModel extends ChangeNotifier {
 
   Future<bool> search(String name) async {
     try {
-      this.name = name;
-
-      report = await dashboardRepository.findReportData(
-        name,
-        districtId,
-        healthServiceId,
-      );
+      debouncer.run(() async {
+        this.name = name;
+        report = await dashboardRepository.findReportData(
+          name,
+          districtId,
+          healthServiceId,
+        );
+        notifyListeners();
+      });
       return true;
     } catch (e) {
       if (e is NetworkException) {
@@ -68,8 +76,6 @@ class ReportDataModel extends ChangeNotifier {
         log.e('System Error', error: e);
         throw CustomException(e.toString());
       }
-    } finally {
-      notifyListeners();
     }
   }
 }

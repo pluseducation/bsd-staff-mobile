@@ -4,6 +4,7 @@ import 'package:bst_staff_mobile/domain/exception/network-exception.dart';
 import 'package:bst_staff_mobile/domain/model/certificate.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/util/constant.dart';
+import 'package:bst_staff_mobile/util/debouncer.dart';
 import 'package:bst_staff_mobile/util/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -22,6 +23,7 @@ class CertificateModel extends ChangeNotifier {
   late List<Certificate> certificateRequest;
   late List<Certificate> certificateCompleted;
   late List<Certificate> certificateDenied;
+  late Debouncer debouncer;
 
   CertificateModel({
     required this.log,
@@ -56,6 +58,9 @@ class CertificateModel extends ChangeNotifier {
           .toList();
 
       this.dataNotifier.value = search.totalElements;
+
+      // debouncer
+      debouncer = Debouncer(milliseconds: Constant.timeDebounce);
 
       return true;
     } catch (e) {
@@ -111,32 +116,35 @@ class CertificateModel extends ChangeNotifier {
 
   Future<void> searchByValue(String value) async {
     try {
-      search = initSearch();
-      search.name = value;
+      debouncer.run(() async {
+        search = initSearch();
+        search.name = value;
 
-      certificate = await certificateRepository.findCertificateAll(
-        search: search,
-      );
+        certificate = await certificateRepository.findCertificateAll(
+          search: search,
+        );
 
-      certificateRequest = certificate
-          .where(
-            (item) => item.certificateStatus == CertificateStatus.request,
-          )
-          .toList();
+        certificateRequest = certificate
+            .where(
+              (item) => item.certificateStatus == CertificateStatus.request,
+            )
+            .toList();
 
-      certificateCompleted = certificate
-          .where(
-            (item) => item.certificateStatus == CertificateStatus.completed,
-          )
-          .toList();
+        certificateCompleted = certificate
+            .where(
+              (item) => item.certificateStatus == CertificateStatus.completed,
+            )
+            .toList();
 
-      certificateDenied = certificate
-          .where(
-            (item) => item.certificateStatus == CertificateStatus.denied,
-          )
-          .toList();
+        certificateDenied = certificate
+            .where(
+              (item) => item.certificateStatus == CertificateStatus.denied,
+            )
+            .toList();
 
-      dataNotifier.value = search.totalElements;
+        dataNotifier.value = search.totalElements;
+        notifyListeners();
+      });
     } catch (e) {
       if (e is NetworkException) {
         log.e('Network Error', error: e);
@@ -145,8 +153,6 @@ class CertificateModel extends ChangeNotifier {
         log.e('System Error', error: e);
         throw CustomException(e.toString());
       }
-    } finally {
-      notifyListeners();
     }
   }
 }
