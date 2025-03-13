@@ -473,4 +473,5 @@ final List<TreatmentType> treatmentDjopTypes = [
 
 final List<SmivType> smivTypes = [
   SmivType.smiv,
+  SmivType.noSmiv,
 ];

@@ -193,12 +193,15 @@ enum TreatmentType {
 
 //สถานะเพิ่มเติม
 enum SmivType {
-  smiv;
+  smiv,
+  noSmiv;
 
   String? get value {
     switch (this) {
       case SmivType.smiv:
         return "SMIV";
+      case SmivType.noSmiv:
+        return "NO_SMIV";
     }
   }
 
@@ -206,6 +209,8 @@ enum SmivType {
     switch (value) {
       case "SMIV":
         return SmivType.smiv;
+      case "NO_SMIV":
+        return SmivType.noSmiv;
       default:
         return null;
     }

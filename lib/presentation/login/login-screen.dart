@@ -2,6 +2,7 @@ import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
 import 'package:bst_staff_mobile/presentation/common/updater-screen.dart';
 import 'package:bst_staff_mobile/presentation/layout-screen.dart';
+import 'package:bst_staff_mobile/presentation/login/forgot/forgot-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/login-model.dart';
 import 'package:bst_staff_mobile/presentation/login/register-screen.dart';
 import 'package:bst_staff_mobile/presentation/pin/login-withpin-screen.dart';
@@ -181,9 +182,22 @@ class _LoginContentState extends State<LoginContent> {
                 ),
                 const SizedBox(height: 8),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     if (_model.isHavePin) ...[
+                      TextButton(
+                        onPressed: () {
+                          gotoForgotScreen();
+                        },
+                        child: const Text(
+                          'ลืมรหัสผ่าน?',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: MainColors.secondary,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
                       TextButton(
                         onPressed: () {
                           Navigator.push(
@@ -202,6 +216,19 @@ class _LoginContentState extends State<LoginContent> {
                         ),
                       ),
                     ] else ...[
+                      TextButton(
+                        onPressed: () {
+                          gotoForgotScreen();
+                        },
+                        child: const Text(
+                          'ลืมรหัสผ่าน?',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: MainColors.secondary,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
                       const SizedBox(),
                     ],
                   ],
@@ -288,6 +315,15 @@ class _LoginContentState extends State<LoginContent> {
         builder: (context) => PinScreen(screen: screen),
       ),
       (route) => false,
+    );
+  }
+
+  void gotoForgotScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ForgotScreen(),
+      ),
     );
   }
 }

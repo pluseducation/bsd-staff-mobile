@@ -37,7 +37,12 @@ class _CertificateCameraState extends State<CertificateCamera> {
     _controller =
         CameraController(camera, ResolutionPreset.medium, enableAudio: false);
     await _controller.initialize();
-    _controller.lockCaptureOrientation(DeviceOrientation.portraitUp);
+
+    if (Platform.isAndroid) {
+      _controller.lockCaptureOrientation(DeviceOrientation.landscapeRight);
+    } else if (Platform.isIOS) {
+      _controller.lockCaptureOrientation(DeviceOrientation.portraitUp);
+    }
 
     if (!mounted) return;
     setState(() {
@@ -230,20 +235,24 @@ class _CertificateCameraState extends State<CertificateCamera> {
         return;
       }
 
-      // for android
-      // final img.Image rotatedImage = img.copyRotate(image, angle: 270);
+      String imagePath;
+      if (Platform.isAndroid) {
+        final img.Image rotatedImage = img.copyRotate(image, angle: 270);
 
-      // final directory = await getApplicationDocumentsDirectory();
-      // final rotatedImagePath =
-      //     '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
+        final directory = await getApplicationDocumentsDirectory();
+        final rotatedImagePath =
+            '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
 
-      // File(rotatedImagePath).writeAsBytesSync(img.encodeJpg(rotatedImage));
-
-      // for ios
-      final directory = await getApplicationDocumentsDirectory();
-      final imagePath =
-          '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
-      File(imagePath).writeAsBytesSync(img.encodeJpg(image));
+        File(rotatedImagePath).writeAsBytesSync(img.encodeJpg(rotatedImage));
+        imagePath = rotatedImagePath;
+      } else if (Platform.isIOS) {
+        final directory = await getApplicationDocumentsDirectory();
+        imagePath =
+            '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
+        File(imagePath).writeAsBytesSync(img.encodeJpg(image));
+      } else {
+        imagePath = "";
+      }
 
       setState(() {
         _imagePath = imagePath;

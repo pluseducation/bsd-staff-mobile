@@ -29,6 +29,7 @@ import 'package:bst_staff_mobile/data/repository/assistance-repository.dart';
 import 'package:bst_staff_mobile/data/repository/certificate-repository.dart';
 import 'package:bst_staff_mobile/data/repository/config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/dashboard-repository.dart';
+import 'package:bst_staff_mobile/data/repository/forgot-repository.dart';
 import 'package:bst_staff_mobile/data/repository/home-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/notification-config-repository.dart';
@@ -235,6 +236,12 @@ Future<InitialData> _createData() async {
     loginDao: loginDao,
   );
 
+  final forgotRepository = ForgotRepository(
+    userApi: userApi,
+    otpApi: otpApi,
+    loginDao: loginDao,
+  );
+
   // Create list of providers
   return InitialData(
     providers: [
@@ -259,6 +266,7 @@ Future<InitialData> _createData() async {
       Provider<AssistanceRepository>.value(value: assistanceRepository),
       Provider<ReferRepository>.value(value: referRepository),
       Provider<PinRepository>.value(value: pinRepository),
+      Provider<ForgotRepository>.value(value: forgotRepository),
       ChangeNotifierProvider<AppService>.value(value: appService),
     ],
   );

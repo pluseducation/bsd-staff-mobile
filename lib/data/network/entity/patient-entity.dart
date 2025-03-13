@@ -33,6 +33,7 @@ class PatientEntity {
   String? drugEval;
   String? level;
   String? treatmentType;
+  String? smiv;
 
   PatientEntity({
     required this.name,
@@ -47,6 +48,7 @@ class PatientEntity {
     required this.drugEval,
     required this.level,
     required this.treatmentType,
+    required this.smiv,
   });
 
   factory PatientEntity.fromJson(Map<String, dynamic> json) =>

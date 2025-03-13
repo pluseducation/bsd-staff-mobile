@@ -40,6 +40,7 @@ class PatientRepository {
         drugEvalResult: DrugEvalResult.setValue(item.drugEval),
         levelType: LevelType.setValue(item.level),
         treatmentType: TreatmentType.setValue(item.treatmentType),
+        smivType: SmivType.setValue(item.smiv),
       );
     }).toList();
 

@@ -40,6 +40,7 @@ PatientEntity _$PatientEntityFromJson(Map<String, dynamic> json) =>
       drugEval: json['drugEval'] as String?,
       level: json['level'] as String?,
       treatmentType: json['treatmentType'] as String?,
+      smiv: json['smiv'] as String?,
     );
 
 Map<String, dynamic> _$PatientEntityToJson(PatientEntity instance) =>
@@ -56,6 +57,7 @@ Map<String, dynamic> _$PatientEntityToJson(PatientEntity instance) =>
       'drugEval': instance.drugEval,
       'level': instance.level,
       'treatmentType': instance.treatmentType,
+      'smiv': instance.smiv,
     };
 
 PatientHistoryEntity _$PatientHistoryEntityFromJson(

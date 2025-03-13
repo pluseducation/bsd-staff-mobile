@@ -87,8 +87,17 @@ class PatientCard extends StatelessWidget {
                             fontSize: FontSizes.small,
                           ),
                         ),
-                        TreatmentStatusType(
-                          treatmentType: patient.treatmentType,
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 4,
+                          children: [
+                            TreatmentStatusType(
+                              treatmentType: patient.treatmentType,
+                            ),
+                            SmivStatusType(
+                              smivType: patient.smivType,
+                            ),
+                          ],
                         ),
                       ],
                     ),

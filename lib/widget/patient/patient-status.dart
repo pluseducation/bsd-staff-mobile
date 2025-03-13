@@ -996,10 +996,10 @@ class TreatmentStatusTypeSelect extends StatelessWidget {
   }
 }
 
-class MivStatusType extends StatelessWidget {
+class SmivStatusType extends StatelessWidget {
   final SmivType? smivType;
 
-  const MivStatusType({
+  const SmivStatusType({
     super.key,
     required this.smivType,
   });
@@ -1015,6 +1015,10 @@ class MivStatusType extends StatelessWidget {
       lightColor = MainColors.error;
       color = MainColors.error;
       text = 'SMIV';
+    } else if (smivType == SmivType.noSmiv) {
+      lightColor = MainColors.errorLight;
+      color = MainColors.error;
+      text = 'NO-SMIV';
     } else {
       color = Colors.grey;
       text = '-';
@@ -1071,6 +1075,8 @@ class SmivStatusTypeEmpty extends StatelessWidget {
 
     if (smivType == SmivType.smiv) {
       text = 'SMIV';
+    } else if (smivType == SmivType.noSmiv) {
+      text = 'NO-SMIV';
     } else {
       text = '-';
     }
@@ -1131,6 +1137,10 @@ class SmivStatusTypeSelect extends StatelessWidget {
       lightColor = MainColors.error;
       color = MainColors.error;
       text = 'SMIV';
+    } else if (smivType == SmivType.noSmiv) {
+      lightColor = MainColors.error;
+      color = MainColors.error;
+      text = 'NO-SMIV';
     } else {
       color = Colors.grey;
       text = '-';
