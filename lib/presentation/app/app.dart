@@ -13,9 +13,8 @@ import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
   final InitialData data;
-  final FocusNode _focusNode = FocusNode();
 
-  App({required this.data});
+  const App({required this.data});
 
   //NavigateService(navigatorKey : navigatorKey);
 

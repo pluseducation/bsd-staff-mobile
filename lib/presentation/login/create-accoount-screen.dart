@@ -1,7 +1,6 @@
 import 'package:bst_staff_mobile/data/repository/register-repository.dart';
 import 'package:bst_staff_mobile/domain/model/register.dart';
 import 'package:bst_staff_mobile/domain/service/app_service.dart';
-import 'package:bst_staff_mobile/presentation/layout-screen.dart';
 import 'package:bst_staff_mobile/presentation/login/create-account-model.dart';
 import 'package:bst_staff_mobile/presentation/pin/pin-screen.dart';
 import 'package:bst_staff_mobile/theme/font-size.dart';

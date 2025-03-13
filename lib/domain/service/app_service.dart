@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:bst_staff_mobile/data/repository/config-repository.dart';
 import 'package:bst_staff_mobile/data/repository/login-repository.dart';
 import 'package:bst_staff_mobile/data/repository/preferences-repository.dart';
-import 'package:bst_staff_mobile/domain/service/navigate_service.dart';
-import 'package:bst_staff_mobile/main.dart';
 import 'package:flutter/material.dart';
 
 class AppService extends ChangeNotifier {
